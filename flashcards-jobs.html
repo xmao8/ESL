@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Job Flashcards – Learn English Together</title>
+  <title>Job Flashcards</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
+      background-color: #f4f4f9;
       margin: 0;
       padding: 0;
       display: flex;
@@ -36,7 +36,6 @@
     h1 {
       margin: 2rem 0 1rem;
       color: #2c3e50;
-      text-align: center;
     }
 
     #flashcard {
@@ -53,32 +52,52 @@
       padding: 1.5rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       cursor: pointer;
+      margin-bottom: 1rem;
       transition: background-color 0.3s ease;
     }
 
-    #flashcard.revealed {
+    #flashcard.flipped {
       background-color: #3498db;
       color: white;
     }
 
     .buttons {
-      margin-top: 2rem;
-      text-align: center;
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
     }
 
-    .buttons a {
-      display: inline-block;
-      margin: 0.5rem;
-      padding: 0.75rem 1.5rem;
+    button {
+      padding: 0.6rem 1.2rem;
+      border: none;
       background-color: #3498db;
       color: white;
-      text-decoration: none;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      cursor: pointer;
     }
 
-    .buttons a:hover {
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .nav-buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .nav-buttons a:hover {
       background-color: #2980b9;
     }
   </style>
@@ -94,9 +113,14 @@
 
   <h1>Job Flashcards</h1>
 
-  <div id="flashcard" onclick="flipCard()">Click to reveal</div>
+  <div id="flashcard" onclick="flipCard()">Click to flip</div>
 
   <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="nav-buttons">
     <a href="flashcards.html">← Back to Flashcards</a>
     <a href="index.html">🏠 Home</a>
   </div>
@@ -146,24 +170,34 @@
     ];
 
     let index = 0;
-    let showingAnswer = false;
+    let flipped = false;
     const card = document.getElementById("flashcard");
 
     function showCard() {
-      card.classList.remove("revealed");
-      card.textContent = flashcards[index][0];
-      showingAnswer = false;
+      card.classList.remove("flipped");
+      flipped = false;
+      card.textContent = flashcards[index][0]; // Show description
     }
 
     function flipCard() {
-      if (!showingAnswer) {
-        card.classList.add("revealed");
-        card.textContent = flashcards[index][1];
-        showingAnswer = true;
+      if (flipped) {
+        card.textContent = flashcards[index][0];
+        card.classList.remove("flipped");
       } else {
-        index = (index + 1) % flashcards.length;
-        showCard();
+        card.textContent = flashcards[index][1];
+        card.classList.add("flipped");
       }
+      flipped = !flipped;
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
     }
 
     showCard();

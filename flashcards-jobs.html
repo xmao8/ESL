@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f9;
+      background-color: #f0f4f8;
       margin: 0;
       padding: 0;
       display: flex;
@@ -36,6 +36,7 @@
     h1 {
       margin: 2rem 0 1rem;
       color: #2c3e50;
+      text-align: center;
     }
 
     #flashcard {
@@ -112,5 +113,61 @@
       ["Handles payments at a store or restaurant.", "Cashier"],
       ["Helps customers find and buy items in a store.", "Sales Associate"],
       ["Assists customers with questions or problems, often by phone or in person.", "Customer Service Representative"],
-      ["Builds houses]()
+      ["Builds houses, roads, and buildings.", "Construction Worker"],
+      ["Paints buildings, walls, and other surfaces.", "Painter"],
+      ["Fixes cars, trucks, or machines.", "Mechanic"],
+      ["Helps elderly or sick people with daily tasks at home.", "Home Health Aide"],
+      ["Assists nurses in caring for patients in hospitals or care homes.", "Nursing Assistant (CNA)"],
+      ["Supports doctors by taking vital signs, preparing exam rooms, and helping with paperwork.", "Medical Assistant"],
+      ["Assists teachers in the classroom, especially in early education.", "Teacher’s Aide"],
+      ["Cares for children in daycares or after-school programs.", "Childcare Worker"],
+      ["Delivers packages, food, or other items to homes and businesses.", "Delivery Driver"],
+      ["Packs, loads, and moves goods in storage or shipping facilities.", "Warehouse Worker"],
+      ["Teaches and conducts research at a college or university.", "Professor"],
+      ["Leads and manages a school.", "Principal"],
+      ["Helps students with academic, personal, or social challenges.", "School Counselor"],
+      ["Manages books and information resources in libraries.", "Librarian"],
+      ["Makes legal decisions in a court of law.", "Judge"],
+      ["Represents clients in legal matters.", "Lawyer / Attorney"],
+      ["Enforces laws and keeps communities safe.", "Police Officer"],
+      ["Supports individuals and families through social services.", "Social Worker"],
+      ["Diagnoses and treats illnesses.", "Doctor / Physician"],
+      ["Performs operations on patients.", "Surgeon"],
+      ["Treats teeth and oral health problems.", "Dentist"],
+      ["Prepares and gives medicine to patients.", "Pharmacist"],
+      ["Treats mental and emotional issues.", "Psychologist"],
+      ["Helps people cope with life challenges and mental health.", "Therapist / Counselor"],
+      ["Manages money and financial records for businesses or individuals.", "Accountant"],
+      ["Studies market trends to help businesses or clients invest wisely.", "Financial Analyst"],
+      ["Hires and supports employees in a company.", "Human Resources Manager"],
+      ["Designs and builds machines, structures, or systems.", "Engineer"],
+      ["Creates computer programs and apps.", "Software Developer"],
+      ["Researches and studies natural phenomena to gain knowledge or solve problems.", "Scientist"]
+    ];
 
+    let index = 0;
+    let showingAnswer = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("revealed");
+      card.textContent = flashcards[index][0];
+      showingAnswer = false;
+    }
+
+    function flipCard() {
+      if (!showingAnswer) {
+        card.classList.add("revealed");
+        card.textContent = flashcards[index][1];
+        showingAnswer = true;
+      } else {
+        index = (index + 1) % flashcards.length;
+        showCard();
+      }
+    }
+
+    showCard();
+  </script>
+
+</body>
+</html>

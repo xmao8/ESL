@@ -43,29 +43,21 @@
       padding: 2rem 1rem;
     }
 
-    .section {
+    .label-link {
+      display: block;
       background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #2c3e50;
+      transition: background 0.3s;
     }
 
-    .section h2 {
-      margin-bottom: 1rem;
-      color: #3498db;
-    }
-
-    .section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .section li {
-      background: #eef6fb;
-      margin-bottom: 0.5rem;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
+    .label-link:hover {
+      background: #e0f3ff;
     }
 
     .buttons {
@@ -100,25 +92,15 @@
   <h1>Daily English</h1>
 
   <div class="container">
+    <a class="label-link" href="daily-doctor.html">In the Doctor's Office</a>
 
-    <div class="section">
-      <h2>In the Doctor's Office</h2>
-      <ul>
-        <li>“I’m here for my appointment.”</li>
-        <li>“What symptoms are you experiencing?”</li>
-        <li>“How long have you had this pain?”</li>
-        <li>“You may need a blood test.”</li>
-        <li>“Please take a seat in the waiting room.”</li>
-        <li>“I’ll write you a prescription.”</li>
-      </ul>
-    </div>
+    <!-- Add more labels below as needed -->
+    <!-- <a class="label-link" href="daily-store.html">At the Store</a> -->
+    <!-- <a class="label-link" href="daily-phone.html">On the Phone</a> -->
+  </div>
 
-    <!-- More daily English sections can go here -->
-
-    <div class="buttons">
-      <a href="index.html">🏠 Back to Home</a>
-    </div>
-
+  <div class="buttons">
+    <a href="index.html">🏠 Back to Home</a>
   </div>
 
 </body>

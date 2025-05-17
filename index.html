@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My First GitHub Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Learn English Together</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .block {
+      background-color: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .flashcards {
+      background: linear-gradient(to right, #f9d423, #ff4e50);
+      color: white;
+    }
+
+    .daily {
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      color: white;
+    }
+
+    .grammar {
+      background: linear-gradient(to right, #ffafbd, #ffc3a0);
+      color: #2c3e50;
+    }
+
+    .block h2 {
+      margin-bottom: 1rem;
+    }
+
+    .block p {
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>This is my first website on GitHub Pages.</p>
+
+  <h1>Learn English Together</h1>
+
+  <div class="container">
+    <div class="block flashcards">
+      <h2>Learning Flashcards</h2>
+      <p>Boost your vocabulary with interactive flashcards on various topics like food, travel, and more.</p>
+    </div>
+
+    <div class="block daily">
+      <h2>Daily English</h2>
+      <p>Practice real-life conversations and useful expressions for everyday situations.</p>
+    </div>
+
+    <div class="block grammar">
+      <h2>Grammar Essentials</h2>
+      <p>Understand key grammar rules with simple explanations and clear examples.</p>
+    </div>
+  </div>
+
 </body>
 </html>

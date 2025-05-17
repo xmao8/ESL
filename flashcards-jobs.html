@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flashcards – Job and Professional</title>
+  <title>Job Flashcards – Learn English Together</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f0f5;
+      background-color: #f4f4f9;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     nav {
       background-color: #2c3e50;
+      width: 100%;
       padding: 1rem;
       text-align: center;
     }
@@ -30,68 +34,35 @@
     }
 
     h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-top: 2rem;
+      margin: 2rem 0 1rem;
       color: #2c3e50;
     }
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem 3rem;
-    }
-
-    .card {
-      perspective: 1000px;
-    }
-
-    .card-inner {
-      position: relative;
-      width: 100%;
+    #flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
       height: 200px;
-      text-align: center;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
-
-    .card:hover .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-front,
-    .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
       border-radius: 12px;
-      padding: 1rem;
       display: flex;
-      justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      font-size: 1.1rem;
+      justify-content: center;
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .card-front {
-      background-color: #ffffff;
-      color: #2c3e50;
-    }
-
-    .card-back {
+    #flashcard.revealed {
       background-color: #3498db;
       color: white;
-      transform: rotateY(180deg);
     }
 
     .buttons {
-      text-align: center;
       margin-top: 2rem;
+      text-align: center;
     }
 
     .buttons a {
@@ -120,82 +91,26 @@
     <a href="grammar.html">Grammar</a>
   </nav>
 
-  <h1>Job and Professional Flashcards</h1>
+  <h1>Job Flashcards</h1>
 
-  <div class="container">
-    <!-- Example Cards (you can duplicate these) -->
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          Cleans buildings like schools, offices, and hospitals.
-        </div>
-        <div class="card-back">
-          Janitor / Cleaner
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          Prepares food in restaurants or cafeterias.
-        </div>
-        <div class="card-back">
-          Cook / Line Cook
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          Fixes cars, trucks, or machines.
-        </div>
-        <div class="card-back">
-          Mechanic
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          Helps students with academic, personal, or social challenges.
-        </div>
-        <div class="card-back">
-          School Counselor
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          Treats mental and emotional issues.
-        </div>
-        <div class="card-back">
-          Psychologist
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          Creates computer programs and apps.
-        </div>
-        <div class="card-back">
-          Software Developer
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="flashcard" onclick="flipCard()">Click to reveal</div>
 
   <div class="buttons">
     <a href="flashcards.html">← Back to Flashcards</a>
     <a href="index.html">🏠 Home</a>
   </div>
 
-</body>
-</html>
+  <script>
+    const flashcards = [
+      ["Cleans buildings like schools, offices, and hospitals.", "Janitor / Cleaner"],
+      ["Cleans and maintains homes or hotel rooms.", "Housekeeper"],
+      ["Takes care of outdoor spaces like lawns, gardens, and parks.", "Landscaper / Groundskeeper"],
+      ["Prepares food in restaurants or cafeterias.", "Cook / Line Cook"],
+      ["Washes dishes, pots, and pans in kitchens.", "Dishwasher"],
+      ["Takes food orders and serves customers in restaurants.", "Server / Waiter / Waitress"],
+      ["Prepares and serves food in fast food restaurants.", "Fast Food Worker"],
+      ["Handles payments at a store or restaurant.", "Cashier"],
+      ["Helps customers find and buy items in a store.", "Sales Associate"],
+      ["Assists customers with questions or problems, often by phone or in person.", "Customer Service Representative"],
+      ["Builds houses]()
+

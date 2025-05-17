@@ -14,14 +14,31 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f0f4f8;
-      padding: 2rem;
       color: #333;
+    }
+
+    /* Navbar */
+    nav {
+      background-color: #2c3e50;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     h1 {
       text-align: center;
       font-size: 3rem;
-      margin-bottom: 2rem;
+      margin: 2rem 0;
       color: #2c3e50;
     }
 
@@ -30,7 +47,8 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 0 auto 4rem;
+      padding: 0 1rem;
     }
 
     .block {
@@ -39,6 +57,8 @@
       padding: 1.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: block;
     }
 
     .block:hover {
@@ -72,24 +92,33 @@
 </head>
 <body>
 
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
   <h1>Learn English Together</h1>
 
   <div class="container">
-    <div class="block flashcards">
+    <a href="flashcards.html" class="block flashcards">
       <h2>Learning Flashcards</h2>
       <p>Boost your vocabulary with interactive flashcards on various topics like food, travel, and more.</p>
-    </div>
+    </a>
 
-    <div class="block daily">
+    <a href="daily.html" class="block daily">
       <h2>Daily English</h2>
       <p>Practice real-life conversations and useful expressions for everyday situations.</p>
-    </div>
+    </a>
 
-    <div class="block grammar">
+    <a href="grammar.html" class="block grammar">
       <h2>Grammar Essentials</h2>
       <p>Understand key grammar rules with simple explanations and clear examples.</p>
-    </div>
+    </a>
   </div>
 
 </body>
 </html>
+

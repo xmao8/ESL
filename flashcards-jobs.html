@@ -123,34 +123,7 @@
   </div>
 
   <script>
-    const questions = [
-      {
-        description: "Cleans buildings like schools, offices, and hospitals.",
-        correct: "Janitor / Cleaner",
-        choices: ["Mechanic", "Janitor / Cleaner", "Doctor / Physician", "Financial Analyst"]
-      },
-      {
-        description: "Cleans and maintains homes or hotel rooms.",
-        correct: "Housekeeper",
-        choices: ["Housekeeper", "Janitor / Cleaner", "Scientist", "Principal"]
-      },
-      {
-        description: "Takes care of outdoor spaces like lawns, gardens, and parks.",
-        correct: "Landscaper / Groundskeeper",
-        choices: ["Social Worker", "Warehouse Worker", "Doctor / Physician", "Landscaper / Groundskeeper"]
-      },
-      {
-        description: "Prepares food in restaurants or cafeterias.",
-        correct: "Cook / Line Cook",
-        choices: ["Cook / Line Cook", "Doctor / Physician", "Childcare Worker", "Housekeeper"]
-      },
-      {
-        description: "Washes dishes, pots, and pans in kitchens.",
-        correct: "Dishwasher",
-        choices: ["Fast Food Worker", "Warehouse Worker", "Dishwasher", "Painter"]
-      },
-      // Add the rest of the 40 questions here as needed
-    ];
+    const questions = PLACEHOLDER_FOR_FULL_QUIZ_DATA;
 
     let current = 0;
 
@@ -193,15 +166,13 @@
         return;
       }
 
-      // Move to next after delay
       setTimeout(() => {
         current = (current + 1) % questions.length;
         showQuestion();
-      }, 1500);
+      }, 2000);
     }
 
     showQuestion();
   </script>
-
 </body>
 </html>

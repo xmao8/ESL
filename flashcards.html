@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Learn English Together / Flash Cards</title>
+  <title>Flashcards – Learn English Together</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -33,60 +33,66 @@
     h1 {
       text-align: center;
       font-size: 2.5rem;
-      margin-top: 2rem;
+      margin: 2rem 0 1rem;
       color: #2c3e50;
     }
 
     .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem 1rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
 
-    .card-link {
-      display: block;
-      background: linear-gradient(to right, #f7971e, #ffd200);
-      color: #2c3e50;
-      text-decoration: none;
+    .block {
+      background-color: white;
+      border-radius: 16px;
       padding: 1.5rem;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-
-    .card-link:hover {
-      transform: translateY(-4px);
-    }
-
-    .back-button {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background-color: #3498db;
-      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 1rem;
-      transition: background-color 0.3s;
+      display: block;
+      color: inherit;
     }
 
-    .back-button:hover {
-      background-color: #2980b9;
+    .block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     }
 
-    .back-container {
+    .block h2 {
+      margin-bottom: 0.5rem;
+      color: #3498db;
+    }
+
+    .block p {
+      font-size: 1rem;
+    }
+
+    .buttons {
       text-align: center;
       margin-top: 2rem;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .buttons a:hover {
+      background-color: #2980b9;
     }
   </style>
 </head>
 <body>
 
-  <!-- Nav Bar -->
   <nav>
     <a href="index.html">Home</a>
     <a href="flashcards.html">Flashcards</a>
@@ -94,14 +100,22 @@
     <a href="grammar.html">Grammar</a>
   </nav>
 
-  <h1>Flash Cards</h1>
+  <h1>Flashcards</h1>
 
   <div class="container">
-    <a href="flashcards-jobs.html" class="card-link">Job and Professional</a>
-    
-    <div class="back-container">
-      <a href="index.html" class="back-button">← Back to Home</a>
-    </div>
+    <a href="flashcards-jobs.html" class="block">
+      <h2>Job Flashcards</h2>
+      <p>Learn vocabulary for different jobs and professions. Flip to reveal the job title.</p>
+    </a>
+
+    <a href="flashcards-doctors.html" class="block">
+      <h2>Types of Doctors</h2>
+      <p>Practice doctor specialties and what they treat. With audio and flipping cards.</p>
+    </a>
+  </div>
+
+  <div class="buttons">
+    <a href="index.html">🏠 Back to Home</a>
   </div>
 
 </body>

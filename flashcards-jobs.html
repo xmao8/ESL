@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Job Flashcard Quiz – Learn English Together</title>
+  <title>Job Flashcards – Learn English Together</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
       margin: 0;
       padding: 0;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     nav {
       background-color: #2c3e50;
+      width: 100%;
       padding: 1rem;
+      text-align: center;
     }
 
     nav a {
@@ -32,68 +36,46 @@
     h1 {
       margin: 2rem 0 1rem;
       color: #2c3e50;
+      text-align: center;
     }
 
-    #quiz-container {
-      max-width: 600px;
-      margin: auto;
-      padding: 1rem;
-    }
-
-    #description {
-      font-size: 1.25rem;
-      background-color: #ffffff;
-      padding: 1.5rem;
+    #flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      height: 200px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .choice {
-      display: block;
-      margin: 1rem auto;
-      padding: 0.75rem 1rem;
-      width: 100%;
-      max-width: 400px;
-      border: none;
-      border-radius: 8px;
+    #flashcard.revealed {
       background-color: #3498db;
       color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    .choice:hover {
-      background-color: #2980b9;
-    }
-
-    .choice.correct {
-      background-color: #2ecc71;
-    }
-
-    .choice.wrong {
-      background-color: #e74c3c;
-    }
-
-    #feedback {
-      font-weight: bold;
-      margin-top: 1rem;
-      min-height: 1.5rem;
     }
 
     .buttons {
       margin-top: 2rem;
+      text-align: center;
     }
 
     .buttons a {
-      text-decoration: none;
-      margin: 0 0.5rem;
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
       background-color: #3498db;
       color: white;
-      padding: 0.7rem 1.2rem;
+      text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.3s ease;
     }
 
     .buttons a:hover {
@@ -106,16 +88,13 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="flashcards.html">Flashcards</a>
-    <a href="flashcards-jobs.html">Study Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
   </nav>
 
-  <h1>Job Flashcard Quiz</h1>
+  <h1>Job Flashcards</h1>
 
-  <div id="quiz-container">
-    <div id="description"></div>
-    <div id="choices"></div>
-    <div id="feedback"></div>
-  </div>
+  <div id="flashcard" onclick="flipCard()">Click to reveal</div>
 
   <div class="buttons">
     <a href="flashcards.html">← Back to Flashcards</a>
@@ -123,56 +102,72 @@
   </div>
 
   <script>
-    const questions = PLACEHOLDER_FOR_FULL_QUIZ_DATA;
+    const flashcards = [
+      ["Cleans buildings like schools, offices, and hospitals.", "Janitor / Cleaner"],
+      ["Cleans and maintains homes or hotel rooms.", "Housekeeper"],
+      ["Takes care of outdoor spaces like lawns, gardens, and parks.", "Landscaper / Groundskeeper"],
+      ["Prepares food in restaurants or cafeterias.", "Cook / Line Cook"],
+      ["Washes dishes, pots, and pans in kitchens.", "Dishwasher"],
+      ["Takes food orders and serves customers in restaurants.", "Server / Waiter / Waitress"],
+      ["Prepares and serves food in fast food restaurants.", "Fast Food Worker"],
+      ["Handles payments at a store or restaurant.", "Cashier"],
+      ["Helps customers find and buy items in a store.", "Sales Associate"],
+      ["Assists customers with questions or problems, often by phone or in person.", "Customer Service Representative"],
+      ["Builds houses, roads, and buildings.", "Construction Worker"],
+      ["Paints buildings, walls, and other surfaces.", "Painter"],
+      ["Fixes cars, trucks, or machines.", "Mechanic"],
+      ["Helps elderly or sick people with daily tasks at home.", "Home Health Aide"],
+      ["Assists nurses in caring for patients in hospitals or care homes.", "Nursing Assistant (CNA)"],
+      ["Supports doctors by taking vital signs, preparing exam rooms, and helping with paperwork.", "Medical Assistant"],
+      ["Assists teachers in the classroom, especially in early education.", "Teacher’s Aide"],
+      ["Cares for children in daycares or after-school programs.", "Childcare Worker"],
+      ["Delivers packages, food, or other items to homes and businesses.", "Delivery Driver"],
+      ["Packs, loads, and moves goods in storage or shipping facilities.", "Warehouse Worker"],
+      ["Teaches and conducts research at a college or university.", "Professor"],
+      ["Leads and manages a school.", "Principal"],
+      ["Helps students with academic, personal, or social challenges.", "School Counselor"],
+      ["Manages books and information resources in libraries.", "Librarian"],
+      ["Makes legal decisions in a court of law.", "Judge"],
+      ["Represents clients in legal matters.", "Lawyer / Attorney"],
+      ["Enforces laws and keeps communities safe.", "Police Officer"],
+      ["Supports individuals and families through social services.", "Social Worker"],
+      ["Diagnoses and treats illnesses.", "Doctor / Physician"],
+      ["Performs operations on patients.", "Surgeon"],
+      ["Treats teeth and oral health problems.", "Dentist"],
+      ["Prepares and gives medicine to patients.", "Pharmacist"],
+      ["Treats mental and emotional issues.", "Psychologist"],
+      ["Helps people cope with life challenges and mental health.", "Therapist / Counselor"],
+      ["Manages money and financial records for businesses or individuals.", "Accountant"],
+      ["Studies market trends to help businesses or clients invest wisely.", "Financial Analyst"],
+      ["Hires and supports employees in a company.", "Human Resources Manager"],
+      ["Designs and builds machines, structures, or systems.", "Engineer"],
+      ["Creates computer programs and apps.", "Software Developer"],
+      ["Researches and studies natural phenomena to gain knowledge or solve problems.", "Scientist"]
+    ];
 
-    let current = 0;
+    let index = 0;
+    let showingAnswer = false;
+    const card = document.getElementById("flashcard");
 
-    const descriptionEl = document.getElementById("description");
-    const choicesEl = document.getElementById("choices");
-    const feedbackEl = document.getElementById("feedback");
-
-    function speak(text) {
-      const msg = new SpeechSynthesisUtterance(text);
-      msg.lang = "en-US";
-      speechSynthesis.speak(msg);
+    function showCard() {
+      card.classList.remove("revealed");
+      card.textContent = flashcards[index][0];
+      showingAnswer = false;
     }
 
-    function showQuestion() {
-      const q = questions[current];
-      descriptionEl.textContent = q.description;
-      feedbackEl.textContent = "";
-      choicesEl.innerHTML = "";
-
-      q.choices.forEach(choice => {
-        const btn = document.createElement("button");
-        btn.className = "choice";
-        btn.textContent = choice;
-        btn.onclick = () => checkAnswer(btn, q.correct);
-        choicesEl.appendChild(btn);
-      });
-    }
-
-    function checkAnswer(button, correct) {
-      const buttons = document.querySelectorAll(".choice");
-      buttons.forEach(btn => btn.disabled = true);
-
-      if (button.textContent === correct) {
-        button.classList.add("correct");
-        feedbackEl.textContent = "✅ Correct!";
-        speak(correct);
+    function flipCard() {
+      if (!showingAnswer) {
+        card.classList.add("revealed");
+        card.textContent = flashcards[index][1];
+        showingAnswer = true;
       } else {
-        button.classList.add("wrong");
-        feedbackEl.textContent = "❌ Try again!";
-        return;
+        index = (index + 1) % flashcards.length;
+        showCard();
       }
-
-      setTimeout(() => {
-        current = (current + 1) % questions.length;
-        showQuestion();
-      }, 2000);
     }
 
-    showQuestion();
+    showCard();
   </script>
+
 </body>
 </html>

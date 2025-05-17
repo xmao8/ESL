@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Types of Doctors</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      background-color: #2c3e50;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+    }
+
+    #flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      height: 200px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      margin-bottom: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .buttons {
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .nav-buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .nav-buttons a:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>Types of Doctors</h1>
+
+  <div id="flashcard" onclick="flipCard()">Click to flip</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="flashcards.html">← Back to Flashcards</a>
+    <a href="index.html">🏠 Home</a>
+  </div>
+
+  <script>
+    const flashcards = [
+      ["A doctor who treats children.", "Pediatrician"],
+      ["A doctor who performs surgeries.", "Surgeon"],
+      ["A doctor who treats heart problems.", "Cardiologist"],
+      ["A doctor who treats skin conditions.", "Dermatologist"],
+      ["A doctor who helps with pregnancy and childbirth.", "Obstetrician"],
+      ["A doctor who treats diseases in women’s health.", "Gynecologist"],
+      ["A doctor who treats bones and joints.", "Orthopedic Surgeon"],
+      ["A doctor who helps with mental health and disorders.", "Psychiatrist"],
+      ["A doctor who examines eyes and vision.", "Ophthalmologist"],
+      ["A doctor who treats elderly patients.", "Geriatrician"],
+      ["A doctor who studies and treats the brain and nervous system.", "Neurologist"],
+      ["A general doctor who treats all kinds of everyday illnesses.", "Family Physician"]
+    ];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.textContent = flashcards[index][0];
+    }
+
+    function flipCard() {
+      if (flipped) {
+        card.textContent = flashcards[index][0];
+        card.classList.remove("flipped");
+      } else {
+        const answer = flashcards[index][1];
+        card.textContent = answer;
+        card.classList.add("flipped");
+        speak(answer);  // 🔊 SPEAK HERE
+      }
+      flipped = !flipped;
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+
+</body>
+</html>

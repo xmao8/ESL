@@ -51,24 +51,26 @@
       margin: 0.3rem 0;
     }
 
-    .buttons {
+    .buttons, .nav-buttons {
       margin-top: 1rem;
       display: flex;
       justify-content: center;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    button {
+    button, .nav-buttons a {
       padding: 0.6rem 1.2rem;
       background-color: #3498db;
       color: white;
       border: none;
       border-radius: 8px;
       font-weight: bold;
+      text-decoration: none;
       cursor: pointer;
     }
 
-    button:hover {
+    button:hover, .nav-buttons a:hover {
       background-color: #2980b9;
     }
 
@@ -98,7 +100,7 @@
     <a href="../grammar.html">Grammar</a>
   </nav>
 
-  <h1>1000 Most Common English Words</h1>
+  <h1>1000 Most Common English Words (Intermediate)</h1>
   <div><strong>Page 1 of 10</strong></div>
 
   <div id="flashcard" onclick="flipCard()">Loading...</div>
@@ -121,19 +123,19 @@
     <a href="commonwords-page10.html">10</a>
   </div>
 
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
   <script>
     const flashcards = [
-      { word: "the", part: "noun", definition: "Definition of 'the'.", example: "I often use the word 'the' in conversation." },
-      { word: "be", part: "verb", definition: "Definition of 'be'.", example: "I often use the word 'be' in conversation." },
-      { word: "to", part: "adjective", definition: "Definition of 'to'.", example: "I often use the word 'to' in conversation." },
-      { word: "of", part: "noun", definition: "Definition of 'of'.", example: "I often use the word 'of' in conversation." },
-      { word: "and", part: "verb", definition: "Definition of 'and'.", example: "I often use the word 'and' in conversation." },
-      { word: "a", part: "adjective", definition: "Definition of 'a'.", example: "I often use the word 'a' in conversation." },
-      { word: "in", part: "noun", definition: "Definition of 'in'.", example: "I often use the word 'in' in conversation." },
-      { word: "that", part: "verb", definition: "Definition of 'that'.", example: "I often use the word 'that' in conversation." },
-      { word: "have", part: "adjective", definition: "Definition of 'have'.", example: "I often use the word 'have' in conversation." },
-      { word: "I", part: "noun", definition: "Definition of 'I'.", example: "I often use the word 'I' in conversation." },
-      // ... continue with remaining real top 100 words ...
+      { word: "achieve", part: "verb", definition: "to succeed in doing something good or difficult", example: "She achieved her goal of running a marathon." },
+      { word: "analyze", part: "verb", definition: "to examine something carefully in order to understand it", example: "The scientist analyzed the data." },
+      { word: "arrange", part: "verb", definition: "to organize or plan something", example: "I arranged a meeting with the manager." },
+      { word: "attend", part: "verb", definition: "to go to an event or place", example: "She attended the conference last week." },
+      { word: "available", part: "adjective", definition: "able to be used or obtained", example: "The report is now available online." }
+      // ➕ Include the remaining 95 intermediate words here
     ];
 
     let index = 0;

@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 5</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 5 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page5.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "refer", part: "verb", definition: "to mention or direct attention to", example: "He referred to the manual for instructions." },
+  { word: "reflect", part: "verb", definition: "to bounce back or show an image", example: "The mirror reflected her face." },
+  { word: "refuse", part: "verb", definition: "to say no to something", example: "She refused the offer." },
+  { word: "regret", part: "verb", definition: "to feel sorry about something", example: "He regretted his decision." },
+  { word: "regular", part: "adjective", definition: "happening often or at even times", example: "He is a regular customer." },
+  { word: "reject", part: "verb", definition: "to refuse to accept", example: "They rejected the proposal." },
+  { word: "relate", part: "verb", definition: "to connect or associate with", example: "Can you relate to this idea?" },
+  { word: "release", part: "verb", definition: "to let go or make available", example: "The movie was released last week." },
+  { word: "relief", part: "noun", definition: "a feeling of comfort after stress", example: "He felt relief after the test." },
+  { word: "rely", part: "verb", definition: "to depend on someone or something", example: "You can rely on her." },
+  { word: "remain", part: "verb", definition: "to stay in the same state", example: "Only two cookies remained." },
+  { word: "remarkable", part: "adjective", definition: "worthy of attention or notice", example: "Her progress is remarkable." },
+  { word: "remind", part: "verb", definition: "to help someone remember", example: "Can you remind me to call?" },
+  { word: "repair", part: "verb", definition: "to fix something", example: "They repaired the broken chair." },
+  { word: "repeat", part: "verb", definition: "to say or do again", example: "Please repeat the question." },
+  { word: "replace", part: "verb", definition: "to put something new in place of old", example: "We replaced the batteries." },
+  { word: "reply", part: "verb", definition: "to answer", example: "She replied to the email." },
+  { word: "report", part: "noun", definition: "a written or spoken description of an event", example: "He wrote a weather report." },
+  { word: "require", part: "verb", definition: "to need or demand", example: "This job requires experience." },
+  { word: "rescue", part: "verb", definition: "to save someone from danger", example: "They rescued the trapped dog." },
+  { word: "research", part: "noun", definition: "study to learn new information", example: "She is doing research on cancer." },
+  { word: "respect", part: "noun", definition: "a feeling of admiration or regard", example: "He has great respect for his teacher." },
+  { word: "respond", part: "verb", definition: "to answer or react", example: "She responded quickly." },
+  { word: "responsible", part: "adjective", definition: "having a duty to do something", example: "He is responsible for the report." },
+  { word: "rest", part: "noun", definition: "a period of relaxing or doing nothing", example: "She took a short rest." },
+  { word: "result", part: "noun", definition: "the outcome or effect", example: "What was the result of the test?" },
+  { word: "return", part: "verb", definition: "to go back to a place", example: "He returned to school." },
+  { word: "review", part: "noun", definition: "an evaluation or look back at something", example: "The movie got great reviews." },
+  { word: "rich", part: "adjective", definition: "having a lot of money or value", example: "He is a rich businessman." },
+  { word: "ride", part: "verb", definition: "to sit and travel on something", example: "We rode the bus." },
+  { word: "risk", part: "noun", definition: "the chance of loss or harm", example: "There's a risk of infection." },
+  { word: "role", part: "noun", definition: "a part played by a person", example: "She played a major role." },
+  { word: "rough", part: "adjective", definition: "not smooth or gentle", example: "The road was rough." },
+  { word: "round", part: "adjective", definition: "shaped like a circle", example: "The table is round." },
+  { word: "rule", part: "noun", definition: "an official instruction", example: "There are strict rules here." },
+  { word: "run", part: "verb", definition: "to move quickly by foot", example: "He runs every morning." },
+  { word: "safe", part: "adjective", definition: "not in danger", example: "This area is safe." },
+  { word: "save", part: "verb", definition: "to keep from harm or store for later", example: "She saved the file." },
+  { word: "scale", part: "noun", definition: "a system of measurement or size", example: "The map shows scale in miles." },
+  { word: "scene", part: "noun", definition: "a part of a play or event", example: "The movie's final scene was dramatic." },
+  { word: "schedule", part: "noun", definition: "a plan of times for activities", example: "The train schedule changed." },
+  { word: "score", part: "noun", definition: "the number of points in a game or test", example: "His test score was high." },
+  { word: "search", part: "verb", definition: "to look for something", example: "They searched the room." },
+  { word: "season", part: "noun", definition: "one of the four parts of the year", example: "Spring is my favorite season." },
+  { word: "seat", part: "noun", definition: "a place to sit", example: "Please take a seat." },
+  { word: "second", part: "adjective", definition: "next after the first", example: "She finished in second place." },
+  { word: "secret", part: "noun", definition: "something kept hidden", example: "Don't share the secret." },
+  { word: "secure", part: "adjective", definition: "safe and protected", example: "Keep your password secure." },
+  { word: "select", part: "verb", definition: "to choose", example: "Please select a number." },
+  { word: "self", part: "noun", definition: "one's own person", example: "She found her true self." },
+  { word: "sell", part: "verb", definition: "to exchange something for money", example: "They sell fresh fruit." },
+  { word: "send", part: "verb", definition: "to cause to go to another place", example: "I sent you an email." },
+  { word: "sense", part: "noun", definition: "a physical feeling or understanding", example: "He has a strong sense of smell." },
+  { word: "separate", part: "verb", definition: "to divide into parts", example: "They separated the items." },
+  { word: "serious", part: "adjective", definition: "not joking; important", example: "He is a serious student." },
+  { word: "serve", part: "verb", definition: "to provide help or food", example: "Dinner was served at 7." },
+  { word: "service", part: "noun", definition: "work done to help or support", example: "Customer service was excellent." },
+  { word: "set", part: "verb", definition: "to place or fix something", example: "She set the table." },
+  { word: "settle", part: "verb", definition: "to come to rest or agreement", example: "They settled the argument." },
+  { word: "several", part: "adjective", definition: "more than two but not many", example: "I have several books." },
+  { word: "shade", part: "noun", definition: "an area out of the sun", example: "We sat in the shade." },
+  { word: "share", part: "verb", definition: "to give part to others", example: "They shared the prize." },
+  { word: "sharp", part: "adjective", definition: "having a thin edge or point", example: "Be careful, the knife is sharp." },
+  { word: "shave", part: "verb", definition: "to remove hair from the body", example: "He shaved his beard." },
+  { word: "shelter", part: "noun", definition: "a place that gives protection", example: "We found shelter from the rain." },
+  { word: "shine", part: "verb", definition: "to give off light", example: "The sun shines brightly." },
+  { word: "shock", part: "noun", definition: "a sudden surprise or upset", example: "The news was a shock." },
+  { word: "shoot", part: "verb", definition: "to fire a bullet or take a photo", example: "She shot the picture." },
+  { word: "shop", part: "verb", definition: "to buy things", example: "We went shopping." },
+  { word: "short", part: "adjective", definition: "not long or tall", example: "He gave a short speech." },
+  { word: "shoulder", part: "noun", definition: "the part between arm and neck", example: "She carried the bag on her shoulder." },
+  { word: "shout", part: "verb", definition: "to speak loudly", example: "He shouted for help." },
+  { word: "show", part: "verb", definition: "to display or reveal", example: "Show me the way." },
+  { word: "shut", part: "verb", definition: "to close something", example: "He shut the window." },
+  { word: "sick", part: "adjective", definition: "not healthy", example: "She feels sick today." },
+  { word: "side", part: "noun", definition: "a surface or edge of something", example: "The road has two sides." },
+  { word: "sign", part: "noun", definition: "a mark or notice", example: "I saw a stop sign." },
+  { word: "signal", part: "noun", definition: "a movement or sound to give information", example: "He gave a hand signal." },
+  { word: "silence", part: "noun", definition: "complete quiet", example: "There was silence after the speech." },
+  { word: "silent", part: "adjective", definition: "not making any sound", example: "The room was silent." },
+  { word: "simple", part: "adjective", definition: "easy to understand or do", example: "The instructions were simple." },
+  { word: "since", part: "preposition", definition: "from a time in the past until now", example: "I’ve lived here since 2010." },
+  { word: "sing", part: "verb", definition: "to produce musical sounds with the voice", example: "She sings well." },
+  { word: "single", part: "adjective", definition: "one only", example: "He bought a single ticket." },
+  { word: "sister", part: "noun", definition: "a female sibling", example: "My sister is older than me." },
+  { word: "situation", part: "noun", definition: "a set of conditions or events", example: "It's a strange situation." },
+  { word: "size", part: "noun", definition: "how big or small something is", example: "What size shirt do you wear?" },
+  { word: "skill", part: "noun", definition: "the ability to do something well", example: "She has great writing skills." },
+  { word: "skin", part: "noun", definition: "the outer layer of the body", example: "His skin is sensitive." },
+  { word: "sky", part: "noun", definition: "the space above the earth", example: "The sky is blue." },
+  { word: "sleep", part: "verb", definition: "to rest with eyes closed", example: "He sleeps eight hours." },
+  { word: "slide", part: "verb", definition: "to move smoothly along a surface", example: "The kids slid down the hill." },
+  { word: "slow", part: "adjective", definition: "not fast", example: "The internet is slow today." },
+  { word: "small", part: "adjective", definition: "not large", example: "She has small hands." },
+  { word: "smell", part: "verb", definition: "to detect a scent", example: "The flowers smell nice." },
+  { word: "smile", part: "verb", definition: "to show happiness with the mouth", example: "She smiled at me." },
+  { word: "smoke", part: "noun", definition: "visible gas from fire", example: "Smoke filled the room." },
+  { word: "smooth", part: "adjective", definition: "having an even surface", example: "The table is smooth." },
+  { word: "snake", part: "noun", definition: "a long, legless reptile", example: "We saw a snake in the garden." },
+  { word: "snow", part: "noun", definition: "frozen white flakes from the sky", example: "It started to snow." },
+  { word: "soft", part: "adjective", definition: "not hard", example: "This pillow is soft." },
+  { word: "solution", part: "noun", definition: "the answer to a problem", example: "He found a solution." },
+  { word: "solve", part: "verb", definition: "to find the answer", example: "She solved the puzzle." },
+  { word: "some", part: "determiner", definition: "an unspecified amount or number", example: "He has some friends." },
+  { word: "somebody", part: "pronoun", definition: "an unknown or unspecified person", example: "Somebody called you." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

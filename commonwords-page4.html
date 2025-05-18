@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 4</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 4 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page4.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "minor", part: "adjective", definition: "small or less important", example: "There was a minor error in the report." },
+  { word: "mirror", part: "noun", definition: "a surface that reflects images", example: "She looked at herself in the mirror." },
+  { word: "mix", part: "verb", definition: "to combine two or more things", example: "Mix the flour with water." },
+  { word: "model", part: "noun", definition: "a copy or example of something", example: "He built a model of the airplane." },
+  { word: "modern", part: "adjective", definition: "relating to the present time", example: "The house has a modern design." },
+  { word: "moment", part: "noun", definition: "a short period of time", example: "Please wait a moment." },
+  { word: "monitor", part: "verb", definition: "to watch or check something carefully", example: "They monitored the patient's condition." },
+  { word: "mood", part: "noun", definition: "a temporary state of mind or feeling", example: "She was in a good mood." },
+  { word: "motion", part: "noun", definition: "the act of moving", example: "The motion of the waves was calming." },
+  { word: "motivate", part: "verb", definition: "to inspire someone to act", example: "The coach motivated the team." },
+  { word: "movement", part: "noun", definition: "a group of people working for a goal or the act of moving", example: "The movement for equality grew." },
+  { word: "multiple", part: "adjective", definition: "many or several", example: "She has multiple responsibilities." },
+  { word: "mystery", part: "noun", definition: "something that is difficult to understand or explain", example: "The case remains a mystery." },
+  { word: "narrow", part: "adjective", definition: "not wide", example: "The path is narrow." },
+  { word: "nation", part: "noun", definition: "a country with its own government", example: "France is a European nation." },
+  { word: "native", part: "adjective", definition: "related to the place where someone was born", example: "She speaks her native language." },
+  { word: "natural", part: "adjective", definition: "existing in nature", example: "We prefer natural ingredients." },
+  { word: "necessary", part: "adjective", definition: "needed or required", example: "It is necessary to bring ID." },
+  { word: "neighbor", part: "noun", definition: "a person who lives nearby", example: "Our neighbor is friendly." },
+  { word: "nervous", part: "adjective", definition: "worried or afraid about something", example: "She felt nervous before the interview." },
+  { word: "network", part: "noun", definition: "a system of connections", example: "We built a strong network of contacts." },
+  { word: "notice", part: "verb", definition: "to see or become aware of something", example: "Did you notice the mistake?" },
+  { word: "object", part: "noun", definition: "a thing you can see or touch", example: "That object is valuable." },
+  { word: "observe", part: "verb", definition: "to watch carefully", example: "They observed the stars." },
+  { word: "occur", part: "verb", definition: "to happen", example: "The event occurred last night." },
+  { word: "offer", part: "verb", definition: "to present something for acceptance", example: "He offered to help." },
+  { word: "opposite", part: "adjective", definition: "completely different", example: "Hot and cold are opposites." },
+  { word: "option", part: "noun", definition: "a choice", example: "We have several options." },
+  { word: "order", part: "noun", definition: "a request for something", example: "She placed an online order." },
+  { word: "organize", part: "verb", definition: "to arrange things neatly", example: "We organized the files." },
+  { word: "original", part: "adjective", definition: "the first or earliest", example: "This is the original version." },
+  { word: "outcome", part: "noun", definition: "the result of an action", example: "The outcome was unexpected." },
+  { word: "outside", part: "preposition", definition: "not inside", example: "Let's go outside." },
+  { word: "overall", part: "adverb", definition: "generally or in total", example: "Overall, the project was a success." },
+  { word: "overcome", part: "verb", definition: "to succeed in dealing with a problem", example: "She overcame her fears." },
+  { word: "pain", part: "noun", definition: "physical or emotional suffering", example: "He felt pain in his leg." },
+  { word: "participate", part: "verb", definition: "to take part in something", example: "They participated in the race." },
+  { word: "partner", part: "noun", definition: "a person you do something with", example: "He is my business partner." },
+  { word: "passion", part: "noun", definition: "a strong feeling of enthusiasm", example: "She has a passion for art." },
+  { word: "patient", part: "adjective", definition: "able to wait without getting angry", example: "You need to be patient." },
+  { word: "pattern", part: "noun", definition: "a repeated design or sequence", example: "This dress has a nice pattern." },
+  { word: "peace", part: "noun", definition: "a state of calm or no war", example: "They signed a peace agreement." },
+  { word: "perform", part: "verb", definition: "to do or carry out", example: "The band will perform tonight." },
+  { word: "period", part: "noun", definition: "a length of time", example: "It was a difficult period." },
+  { word: "permit", part: "verb", definition: "to allow", example: "Smoking is not permitted." },
+  { word: "personal", part: "adjective", definition: "related to a particular person", example: "This is my personal opinion." },
+  { word: "perspective", part: "noun", definition: "a point of view", example: "Try to see it from my perspective." },
+  { word: "phrase", part: "noun", definition: "a group of words with meaning", example: "“In the end” is a common phrase." },
+  { word: "physical", part: "adjective", definition: "related to the body", example: "He needs physical therapy." },
+  { word: "pleasant", part: "adjective", definition: "enjoyable or nice", example: "We had a pleasant afternoon." },
+  { word: "plenty", part: "noun", definition: "a large amount", example: "We have plenty of time." },
+  { word: "popular", part: "adjective", definition: "liked by many people", example: "Soccer is a popular sport." },
+  { word: "positive", part: "adjective", definition: "hopeful or confident", example: "She has a positive attitude." },
+  { word: "possess", part: "verb", definition: "to have or own", example: "He possesses many skills." },
+  { word: "possible", part: "adjective", definition: "able to be done", example: "Is it possible to cancel?" },
+  { word: "powerful", part: "adjective", definition: "having great strength or influence", example: "He gave a powerful speech." },
+  { word: "practice", part: "noun", definition: "repeated activity to improve skill", example: "She needs more piano practice." },
+  { word: "predict", part: "verb", definition: "to say what will happen in the future", example: "Can you predict the outcome?" },
+  { word: "prefer", part: "verb", definition: "to like something more than another", example: "I prefer tea over coffee." },
+  { word: "prepare", part: "verb", definition: "to get ready", example: "She prepared for the test." },
+  { word: "present", part: "adjective", definition: "existing or happening now", example: "The present situation is stable." },
+  { word: "pressure", part: "noun", definition: "force or stress", example: "He feels pressure to succeed." },
+  { word: "prevent", part: "verb", definition: "to stop something from happening", example: "Exercise can prevent illness." },
+  { word: "previous", part: "adjective", definition: "earlier", example: "She had met him the previous day." },
+  { word: "primary", part: "adjective", definition: "main or most important", example: "Safety is our primary concern." },
+  { word: "principal", part: "noun", definition: "the head of a school", example: "The principal gave a speech." },
+  { word: "private", part: "adjective", definition: "for one person or group only", example: "This is a private room." },
+  { word: "probable", part: "adjective", definition: "likely to happen", example: "Rain is probable tomorrow." },
+  { word: "problem", part: "noun", definition: "something difficult to deal with", example: "We solved the problem." },
+  { word: "process", part: "noun", definition: "a series of actions toward a goal", example: "The hiring process is long." },
+  { word: "produce", part: "verb", definition: "to make or create", example: "The factory produces shoes." },
+  { word: "product", part: "noun", definition: "something made to be sold", example: "This is our newest product." },
+  { word: "progress", part: "noun", definition: "improvement or movement forward", example: "She made progress in school." },
+  { word: "promise", part: "verb", definition: "to say you will do something", example: "He promised to call." },
+  { word: "promote", part: "verb", definition: "to support or advance", example: "The ad promotes the product." },
+  { word: "proper", part: "adjective", definition: "correct or suitable", example: "Use the proper tools." },
+  { word: "protect", part: "verb", definition: "to keep safe", example: "They protect the environment." },
+  { word: "prove", part: "verb", definition: "to show something is true", example: "He proved his innocence." },
+  { word: "provide", part: "verb", definition: "to give or supply", example: "The company provides meals." },
+  { word: "public", part: "adjective", definition: "open to everyone", example: "This is a public library." },
+  { word: "publish", part: "verb", definition: "to prepare and issue for sale", example: "They published a new book." },
+  { word: "punish", part: "verb", definition: "to make someone suffer for wrongdoing", example: "The school punished him." },
+  { word: "purchase", part: "verb", definition: "to buy something", example: "She purchased a new dress." },
+  { word: "purpose", part: "noun", definition: "the reason something is done", example: "The purpose is to educate." },
+  { word: "quality", part: "noun", definition: "how good or bad something is", example: "This food is high quality." },
+  { word: "quantity", part: "noun", definition: "an amount or number", example: "They need a large quantity." },
+  { word: "question", part: "noun", definition: "a sentence asking for information", example: "May I ask a question?" },
+  { word: "quiet", part: "adjective", definition: "not noisy", example: "Please be quiet." },
+  { word: "range", part: "noun", definition: "the limits between two things", example: "The price range is wide." },
+  { word: "rapid", part: "adjective", definition: "very fast", example: "She made rapid progress." },
+  { word: "rare", part: "adjective", definition: "not common", example: "This bird is rare." },
+  { word: "reach", part: "verb", definition: "to arrive at a place", example: "We reached the top." },
+  { word: "react", part: "verb", definition: "to respond to something", example: "How did he react to the news?" },
+  { word: "real", part: "adjective", definition: "true and not imaginary", example: "Is this a real story?" },
+  { word: "realistic", part: "adjective", definition: "sensible and based on facts", example: "Be realistic with your goals." },
+  { word: "reason", part: "noun", definition: "a cause or explanation", example: "What’s the reason for your visit?" },
+  { word: "recall", part: "verb", definition: "to remember", example: "I can’t recall his name." },
+  { word: "receive", part: "verb", definition: "to get something", example: "Did you receive my message?" },
+  { word: "recognize", part: "verb", definition: "to identify someone or something", example: "I didn’t recognize her." },
+  { word: "recommend", part: "verb", definition: "to suggest something", example: "I recommend this restaurant." },
+  { word: "record", part: "noun", definition: "a written account or history", example: "She kept a record of events." },
+  { word: "reduce", part: "verb", definition: "to make smaller or fewer", example: "We must reduce waste." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 8</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 8 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page8.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "zero", part: "noun", definition: "the number 0", example: "He scored zero points." },
+  { word: "zone", part: "noun", definition: "an area or region", example: "This is a no-parking zone." },
+  { word: "zoo", part: "noun", definition: "a place where animals are kept for public viewing", example: "We visited the zoo last weekend." },
+  { word: "ability", part: "noun", definition: "the power or skill to do something", example: "She has the ability to solve problems." },
+  { word: "absent", part: "adjective", definition: "not present", example: "He was absent from class." },
+  { word: "absolutely", part: "adverb", definition: "completely or totally", example: "I absolutely agree with you." },
+  { word: "abuse", part: "noun", definition: "wrong or harmful treatment", example: "The law protects children from abuse." },
+  { word: "access", part: "noun", definition: "the ability to enter or use", example: "You need a password to access the files." },
+  { word: "accident", part: "noun", definition: "an unexpected event that causes harm", example: "He broke his leg in an accident." },
+  { word: "account", part: "noun", definition: "a record or report of money or activity", example: "I opened a bank account." },
+  { word: "accurately", part: "adverb", definition: "in a way that is correct", example: "She answered the questions accurately." },
+  { word: "achievement", part: "noun", definition: "something successfully done", example: "Graduating is a big achievement." },
+  { word: "acknowledge", part: "verb", definition: "to accept or admit", example: "She acknowledged the mistake." },
+  { word: "active", part: "adjective", definition: "doing many things; not passive", example: "She is active in the community." },
+  { word: "actual", part: "adjective", definition: "real or factual", example: "The actual cost was lower." },
+  { word: "adapt", part: "verb", definition: "to adjust to new conditions", example: "He adapted quickly to his new job." },
+  { word: "add", part: "verb", definition: "to put together with something else", example: "Add sugar to the mixture." },
+  { word: "additional", part: "adjective", definition: "extra or more", example: "We need additional support." },
+  { word: "address", part: "noun", definition: "the location of a place or person", example: "What’s your home address?" },
+  { word: "adjustment", part: "noun", definition: "a small change made to improve something", example: "We made an adjustment to the plan." },
+  { word: "administration", part: "noun", definition: "managing or organizing something", example: "The school administration set new rules." },
+  { word: "admire", part: "verb", definition: "to respect or look up to someone", example: "I admire her confidence." },
+  { word: "admit", part: "verb", definition: "to say something is true", example: "He admitted the error." },
+  { word: "adopt", part: "verb", definition: "to take as your own", example: "They adopted a child." },
+  { word: "adult", part: "noun", definition: "a fully grown person", example: "Adults pay full price." },
+  { word: "advance", part: "verb", definition: "to move forward or progress", example: "Technology is advancing quickly." },
+  { word: "advantage", part: "noun", definition: "something helpful or useful", example: "Being tall is an advantage in basketball." },
+  { word: "advice", part: "noun", definition: "suggestions about what to do", example: "She gave good advice." },
+  { word: "affair", part: "noun", definition: "a situation or event", example: "The meeting was a serious affair." },
+  { word: "afford", part: "verb", definition: "to be able to pay for", example: "I can’t afford that car." },
+  { word: "afraid", part: "adjective", definition: "feeling fear", example: "She is afraid of snakes." },
+  { word: "agency", part: "noun", definition: "an organization that provides a service", example: "She works for a travel agency." },
+  { word: "agenda", part: "noun", definition: "a list of things to be done or discussed", example: "Let’s look at the meeting agenda." },
+  { word: "aggressive", part: "adjective", definition: "ready to attack or confront", example: "His tone was aggressive." },
+  { word: "agree", part: "verb", definition: "to have the same opinion", example: "I agree with you." },
+  { word: "agreement", part: "noun", definition: "a shared decision or contract", example: "We signed the agreement." },
+  { word: "aid", part: "noun", definition: "help or support", example: "They sent aid to the flood victims." },
+  { word: "aim", part: "noun", definition: "a goal or purpose", example: "Her aim is to be a writer." },
+  { word: "airline", part: "noun", definition: "a company that flies passengers", example: "We booked tickets with that airline." },
+  { word: "airport", part: "noun", definition: "a place where planes take off and land", example: "The airport was crowded." },
+  { word: "alarm", part: "noun", definition: "a warning of danger or a device that makes sound", example: "The alarm went off at 6 a.m." },
+  { word: "alcohol", part: "noun", definition: "a drink that contains ethanol", example: "He doesn't drink alcohol." },
+  { word: "alive", part: "adjective", definition: "living, not dead", example: "The rescued dog was still alive." },
+  { word: "allow", part: "verb", definition: "to let someone do something", example: "They allowed us to enter." },
+  { word: "almost", part: "adverb", definition: "nearly", example: "She almost missed the train." },
+  { word: "alone", part: "adjective", definition: "without other people", example: "He sat alone in the room." },
+  { word: "along", part: "preposition", definition: "in a line next to", example: "We walked along the beach." },
+  { word: "already", part: "adverb", definition: "before now or earlier than expected", example: "I already did my homework." },
+  { word: "also", part: "adverb", definition: "in addition", example: "She speaks French and also Spanish." },
+  { word: "alter", part: "verb", definition: "to change something", example: "She altered her dress." },
+  { word: "alternative", part: "noun", definition: "a choice or option", example: "We need another alternative." },
+  { word: "although", part: "conjunction", definition: "despite the fact that", example: "Although it rained, we went out." },
+  { word: "amazing", part: "adjective", definition: "very surprising or impressive", example: "That’s an amazing idea." },
+  { word: "ambassador", part: "noun", definition: "a person who represents a country abroad", example: "He is the U.S. ambassador to Japan." },
+  { word: "amount", part: "noun", definition: "a quantity of something", example: "We need a small amount of flour." },
+  { word: "amuse", part: "verb", definition: "to make someone laugh or smile", example: "The joke amused the crowd." },
+  { word: "analysis", part: "noun", definition: "a detailed examination", example: "The report includes data analysis." },
+  { word: "ancestor", part: "noun", definition: "a family member from the past", example: "She researched her ancestors." },
+  { word: "anger", part: "noun", definition: "a strong feeling of displeasure", example: "He couldn’t control his anger." },
+  { word: "angle", part: "noun", definition: "the shape formed by two lines meeting", example: "The door was open at a sharp angle." },
+  { word: "animal", part: "noun", definition: "a living creature that is not a human or plant", example: "The lion is a wild animal." },
+  { word: "announce", part: "verb", definition: "to make something known publicly", example: "They announced the winner." },
+  { word: "annual", part: "adjective", definition: "happening once a year", example: "We hold an annual meeting." },
+  { word: "answer", part: "noun", definition: "a reply or solution", example: "What’s the answer to this question?" },
+  { word: "anxiety", part: "noun", definition: "nervousness or worry", example: "She suffers from anxiety." },
+  { word: "anyway", part: "adverb", definition: "in any case or regardless", example: "Anyway, let’s move on." },
+  { word: "apart", part: "adverb", definition: "separated by distance or time", example: "They live far apart." },
+  { word: "apologize", part: "verb", definition: "to say sorry", example: "She apologized for the mistake." },
+  { word: "appeal", part: "verb", definition: "to ask for help or to be attractive", example: "He appealed to the crowd." },
+  { word: "appearance", part: "noun", definition: "how someone or something looks", example: "Her appearance changed a lot." },
+  { word: "apple", part: "noun", definition: "a round fruit", example: "I ate an apple." },
+  { word: "application", part: "noun", definition: "a formal request or software program", example: "I submitted my job application." },
+  { word: "apply", part: "verb", definition: "to request or to put something on", example: "He applied for a job." },
+  { word: "appoint", part: "verb", definition: "to assign a duty or job", example: "They appointed a new manager." },
+  { word: "approach", part: "verb", definition: "to come near", example: "The car approached the intersection." },
+  { word: "appropriate", part: "adjective", definition: "suitable for a situation", example: "Wear appropriate clothes." },
+  { word: "approve", part: "verb", definition: "to accept or agree to", example: "The manager approved the plan." },
+  { word: "area", part: "noun", definition: "a space or part of something", example: "This area is restricted." },
+  { word: "argue", part: "verb", definition: "to disagree strongly", example: "They argued about politics." },
+  { word: "argument", part: "noun", definition: "a disagreement or reason for something", example: "They had a loud argument." },
+  { word: "arise", part: "verb", definition: "to come into being or notice", example: "Problems arose quickly." },
+  { word: "arrangement", part: "noun", definition: "a plan or agreement", example: "We made travel arrangements." },
+  { word: "arrest", part: "verb", definition: "to take someone to jail", example: "The police arrested the suspect." },
+  { word: "arrival", part: "noun", definition: "the act of coming to a place", example: "We awaited the arrival of the bus." },
+  { word: "article", part: "noun", definition: "a piece of writing or an object", example: "She read a news article." },
+  { word: "artist", part: "noun", definition: "someone who creates art", example: "The artist painted a portrait." },
+  { word: "artistic", part: "adjective", definition: "related to art", example: "She has artistic talent." },
+  { word: "ashamed", part: "adjective", definition: "feeling guilty or embarrassed", example: "He felt ashamed of his actions." },
+  { word: "aside", part: "adverb", definition: "to the side", example: "She stepped aside." },
+  { word: "ask", part: "verb", definition: "to request information", example: "He asked a question." },
+  { word: "aspect", part: "noun", definition: "a part of something", example: "This aspect is important." },
+  { word: "assess", part: "verb", definition: "to evaluate or judge", example: "We assessed the damage." },
+  { word: "assignment", part: "noun", definition: "a task or duty", example: "He completed the assignment." },
+  { word: "assist", part: "verb", definition: "to help", example: "The nurse assisted the doctor." },
+  { word: "associate", part: "verb", definition: "to connect in the mind or in work", example: "People associate summer with the beach." },
+  { word: "assume", part: "verb", definition: "to suppose something is true", example: "I assumed you were ready." },
+  { word: "assure", part: "verb", definition: "to promise or say something confidently", example: "He assured us everything was fine." },
+  { word: "atmosphere", part: "noun", definition: "the air around us or mood of a place", example: "The restaurant has a nice atmosphere." },
+  { word: "attach", part: "verb", definition: "to connect or fasten something", example: "Attach the file to the email." },
+  { word: "attempt", part: "verb", definition: "to try", example: "She attempted to solve the puzzle." },
+  { word: "attend", part: "verb", definition: "to go to or be present at", example: "They attended the meeting." },
+  { word: "attention", part: "noun", definition: "focused thinking or observation", example: "Pay attention to the teacher." },
+  { word: "attitude", part: "noun", definition: "a way of thinking or feeling", example: "She has a positive attitude." },
+  { word: "attract", part: "verb", definition: "to draw interest", example: "The event attracted a large crowd." },
+  { word: "attraction", part: "noun", definition: "something that draws attention or interest", example: "The Eiffel Tower is a top attraction." },
+  { word: "audience", part: "noun", definition: "people watching or listening", example: "The audience clapped." },
+  { word: "author", part: "noun", definition: "the writer of a book or article", example: "Who is the author of this book?" },
+  { word: "authority", part: "noun", definition: "power or right to make decisions", example: "The teacher has authority." },
+  { word: "automatic", part: "adjective", definition: "working by itself", example: "This car has an automatic transmission." },
+  { word: "available", part: "adjective", definition: "able to be used or obtained", example: "Tickets are still available." },
+  { word: "average", part: "noun", definition: "the usual or typical amount", example: "His score was above average." },
+  { word: "avoid", part: "verb", definition: "to stay away from something", example: "She avoids junk food." },
+  { word: "award", part: "noun", definition: "a prize for achievement", example: "He won an award for best actor." },
+  { word: "aware", part: "adjective", definition: "knowing about something", example: "I wasn’t aware of the change." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

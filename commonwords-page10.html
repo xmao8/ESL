@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 10</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 10 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page10.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "cell", part: "noun", definition: "the smallest part of a living thing", example: "The human body is made of cells." },
+  { word: "center", part: "noun", definition: "the middle point of something", example: "She stood at the center of the circle." },
+  { word: "century", part: "noun", definition: "a period of 100 years", example: "The 21st century began in 2001." },
+  { word: "ceremony", part: "noun", definition: "a formal event for a special occasion", example: "The wedding ceremony was beautiful." },
+  { word: "certain", part: "adjective", definition: "sure or confident", example: "I’m certain we’ll win." },
+  { word: "chain", part: "noun", definition: "a series of connected metal links", example: "She wore a gold chain." },
+  { word: "chair", part: "noun", definition: "a seat for one person", example: "He sat on the wooden chair." },
+  { word: "challenge", part: "noun", definition: "something difficult to do", example: "Climbing the mountain was a challenge." },
+  { word: "champion", part: "noun", definition: "a winner of a competition", example: "She is the chess champion." },
+  { word: "chance", part: "noun", definition: "a possibility or opportunity", example: "Give him a second chance." },
+  { word: "change", part: "verb", definition: "to make or become different", example: "You should change your clothes." },
+  { word: "charge", part: "noun", definition: "a price or responsibility", example: "They added a delivery charge." },
+  { word: "cheap", part: "adjective", definition: "not expensive", example: "These shoes were very cheap." },
+  { word: "check", part: "verb", definition: "to look at or examine", example: "Please check your answers." },
+  { word: "cheese", part: "noun", definition: "a food made from milk", example: "Would you like some cheese?" },
+  { word: "chemical", part: "noun", definition: "a substance used in science or industry", example: "The lab handles dangerous chemicals." },
+  { word: "choice", part: "noun", definition: "an option or decision", example: "That’s a good choice." },
+  { word: "choose", part: "verb", definition: "to select from options", example: "You can choose a color." },
+  { word: "church", part: "noun", definition: "a building for Christian worship", example: "They go to church on Sundays." },
+  { word: "circle", part: "noun", definition: "a round shape", example: "Draw a circle." },
+  { word: "citizen", part: "noun", definition: "a person who belongs to a country", example: "She is a U.S. citizen." },
+  { word: "city", part: "noun", definition: "a large town", example: "They moved to the city." },
+  { word: "class", part: "noun", definition: "a group or a lesson", example: "We have English class today." },
+  { word: "classic", part: "adjective", definition: "traditional and valued", example: "That movie is a classic." },
+  { word: "clean", part: "adjective", definition: "free from dirt", example: "Your hands are clean." },
+  { word: "clear", part: "adjective", definition: "easy to understand", example: "The instructions are clear." },
+  { word: "clerk", part: "noun", definition: "a person who works in an office or store", example: "The clerk helped me." },
+  { word: "clever", part: "adjective", definition: "smart or intelligent", example: "That was a clever idea." },
+  { word: "client", part: "noun", definition: "a customer or person receiving services", example: "The lawyer met with a client." },
+  { word: "climb", part: "verb", definition: "to go up", example: "We climbed the hill." },
+  { word: "clock", part: "noun", definition: "a device for telling time", example: "The clock is ticking." },
+  { word: "close", part: "verb", definition: "to shut something", example: "Close the door, please." },
+  { word: "cloth", part: "noun", definition: "fabric or material", example: "The cloth is soft." },
+  { word: "clothes", part: "noun", definition: "garments people wear", example: "Hang up your clothes." },
+  { word: "cloud", part: "noun", definition: "a mass of water in the sky", example: "Look at the clouds." },
+  { word: "club", part: "noun", definition: "a group of people with a shared interest", example: "He joined the music club." },
+  { word: "coach", part: "noun", definition: "a trainer or instructor", example: "She is the tennis coach." },
+  { word: "coal", part: "noun", definition: "a black rock used as fuel", example: "They burned coal for heat." },
+  { word: "coast", part: "noun", definition: "land by the sea", example: "We walked along the coast." },
+  { word: "coat", part: "noun", definition: "a piece of clothing for warmth", example: "Put on your coat." },
+  { word: "coffee", part: "noun", definition: "a drink made from roasted beans", example: "I need my morning coffee." },
+  { word: "coin", part: "noun", definition: "a small, flat, round piece of metal money", example: "He tossed a coin." },
+  { word: "cold", part: "adjective", definition: "having a low temperature", example: "It’s cold outside." },
+  { word: "collect", part: "verb", definition: "to gather or bring together", example: "She collects stamps." },
+  { word: "college", part: "noun", definition: "a school for higher learning", example: "He’s going to college." },
+  { word: "color", part: "noun", definition: "the appearance of an object", example: "What’s your favorite color?" },
+  { word: "combine", part: "verb", definition: "to bring together", example: "Combine flour and sugar." },
+  { word: "come", part: "verb", definition: "to move toward", example: "Come here, please." },
+  { word: "comfort", part: "noun", definition: "a state of ease and peace", example: "She found comfort in music." },
+  { word: "command", part: "noun", definition: "an order or instruction", example: "He gave a clear command." },
+  { word: "comment", part: "noun", definition: "a spoken or written opinion", example: "He made a rude comment." },
+  { word: "common", part: "adjective", definition: "happening often or shared", example: "It’s a common mistake." },
+  { word: "community", part: "noun", definition: "a group of people living together", example: "The community is strong." },
+  { word: "company", part: "noun", definition: "a business or group of people", example: "She works at a tech company." },
+  { word: "compare", part: "verb", definition: "to examine for similarities or differences", example: "Compare these prices." },
+  { word: "competition", part: "noun", definition: "a contest or rivalry", example: "She entered a cooking competition." },
+  { word: "complaint", part: "noun", definition: "a statement of dissatisfaction", example: "They filed a noise complaint." },
+  { word: "complete", part: "verb", definition: "to finish", example: "She completed the puzzle." },
+  { word: "complex", part: "adjective", definition: "complicated or not simple", example: "It was a complex issue." },
+  { word: "computer", part: "noun", definition: "a device for processing information", example: "I bought a new computer." },
+  { word: "concentrate", part: "verb", definition: "to focus attention", example: "Try to concentrate." },
+  { word: "condition", part: "noun", definition: "the state of something", example: "The car is in good condition." },
+  { word: "conference", part: "noun", definition: "a formal meeting for discussion", example: "He attended a tech conference." },
+  { word: "confirm", part: "verb", definition: "to prove something is true", example: "Can you confirm your booking?" },
+  { word: "conflict", part: "noun", definition: "a disagreement or fight", example: "There was a conflict at work." },
+  { word: "confuse", part: "verb", definition: "to make someone unsure or unclear", example: "These directions confuse me." },
+  { word: "congratulate", part: "verb", definition: "to praise someone for an achievement", example: "I congratulated her." },
+  { word: "connect", part: "verb", definition: "to join things", example: "Connect the wires." },
+  { word: "conscious", part: "adjective", definition: "awake and aware", example: "He remained conscious." },
+  { word: "consider", part: "verb", definition: "to think about carefully", example: "Please consider my idea." },
+  { word: "consist", part: "verb", definition: "to be made up of", example: "The team consists of 5 players." },
+  { word: "constant", part: "adjective", definition: "happening all the time", example: "There was constant noise." },
+  { word: "construct", part: "verb", definition: "to build", example: "They constructed a bridge." },
+  { word: "contact", part: "noun", definition: "communication or touching", example: "I lost contact with her." },
+  { word: "contain", part: "verb", definition: "to hold or include", example: "This box contains toys." },
+  { word: "content", part: "noun", definition: "what is included in something", example: "The book's content is deep." },
+  { word: "continue", part: "verb", definition: "to go on", example: "She continued her work." },
+  { word: "contract", part: "noun", definition: "a legal agreement", example: "He signed a new contract." },
+  { word: "control", part: "verb", definition: "to direct or manage", example: "He controls the budget." },
+  { word: "convince", part: "verb", definition: "to make someone believe something", example: "He convinced her to try." },
+  { word: "cook", part: "verb", definition: "to prepare food", example: "I like to cook pasta." },
+  { word: "cool", part: "adjective", definition: "not hot; stylish", example: "The room feels cool." },
+  { word: "copy", part: "verb", definition: "to make the same", example: "Copy the file." },
+  { word: "corner", part: "noun", definition: "where two lines or edges meet", example: "Put it in the corner." },
+  { word: "correct", part: "adjective", definition: "right or accurate", example: "That's the correct answer." },
+  { word: "cost", part: "noun", definition: "the price of something", example: "What is the cost?" },
+  { word: "cotton", part: "noun", definition: "a soft material from plants", example: "This shirt is made of cotton." },
+  { word: "could", part: "verb", definition: "used to show possibility or ability", example: "I could help you." },
+  { word: "council", part: "noun", definition: "a group that makes decisions", example: "The city council met today." },
+  { word: "count", part: "verb", definition: "to say numbers in order", example: "Can you count to 10?" },
+  { word: "country", part: "noun", definition: "a nation with land and government", example: "He lives in a big country." },
+  { word: "couple", part: "noun", definition: "two people or things", example: "The couple walked together." },
+  { word: "courage", part: "noun", definition: "bravery or strength in facing danger", example: "It takes courage to speak." },
+  { word: "course", part: "noun", definition: "a class or direction", example: "I'm taking a math course." },
+  { word: "court", part: "noun", definition: "a place for legal decisions", example: "The court found him guilty." },
+  { word: "cover", part: "verb", definition: "to place something over", example: "Cover the pot with a lid." },
+  { word: "cow", part: "noun", definition: "a farm animal that gives milk", example: "The cow grazed in the field." },
+  { word: "crack", part: "noun", definition: "a break or line on a surface", example: "There’s a crack in the wall." },
+  { word: "crash", part: "verb", definition: "to collide or fall suddenly", example: "The car crashed." },
+  { word: "create", part: "verb", definition: "to make something new", example: "She created a design." },
+  { word: "creature", part: "noun", definition: "a living being", example: "A strange creature appeared." },
+  { word: "credit", part: "noun", definition: "praise or trust for payment", example: "He got credit for his work." },
+  { word: "crime", part: "noun", definition: "an illegal act", example: "He was arrested for a crime." },
+  { word: "critic", part: "noun", definition: "a person who judges or reviews", example: "The critic gave a bad review." },
+  { word: "crop", part: "noun", definition: "plants grown for food", example: "This year’s crop was large." },
+  { word: "cross", part: "verb", definition: "to go across", example: "She crossed the street." },
+  { word: "crowd", part: "noun", definition: "a large group of people", example: "A crowd gathered." },
+  { word: "cry", part: "verb", definition: "to produce tears", example: "She cried with joy." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

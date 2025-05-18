@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 7</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 7 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page7.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "traffic", part: "noun", definition: "vehicles moving on roads", example: "The traffic was heavy this morning." },
+  { word: "train", part: "noun", definition: "a form of transport on tracks", example: "He takes the train to work." },
+  { word: "transfer", part: "verb", definition: "to move from one place to another", example: "She transferred to a new school." },
+  { word: "translate", part: "verb", definition: "to change words into another language", example: "Can you translate this sentence?" },
+  { word: "transport", part: "noun", definition: "a system of moving people or goods", example: "Public transport is available." },
+  { word: "travel", part: "verb", definition: "to go from one place to another", example: "I love to travel abroad." },
+  { word: "treat", part: "verb", definition: "to behave toward or give medical care", example: "The doctor treated the injury." },
+  { word: "tree", part: "noun", definition: "a tall plant with a trunk and branches", example: "We sat under the tree." },
+  { word: "trend", part: "noun", definition: "a general direction or pattern", example: "Fashion trends change quickly." },
+  { word: "trial", part: "noun", definition: "a legal case or a test", example: "The trial lasted two weeks." },
+  { word: "trust", part: "verb", definition: "to believe someone is honest", example: "I trust my best friend." },
+  { word: "truth", part: "noun", definition: "what is real or accurate", example: "He told the truth." },
+  { word: "try", part: "verb", definition: "to make an effort", example: "Try to do your best." },
+  { word: "turn", part: "verb", definition: "to move in a different direction", example: "Turn left at the corner." },
+  { word: "type", part: "noun", definition: "a category or kind", example: "What type of music do you like?" },
+  { word: "unable", part: "adjective", definition: "not able to do something", example: "He is unable to attend." },
+  { word: "uncle", part: "noun", definition: "the brother of your parent", example: "My uncle lives in Canada." },
+  { word: "under", part: "preposition", definition: "below something", example: "The shoes are under the bed." },
+  { word: "understand", part: "verb", definition: "to know what something means", example: "Do you understand the question?" },
+  { word: "unfortunately", part: "adverb", definition: "sadly or regrettably", example: "Unfortunately, we missed the bus." },
+  { word: "uniform", part: "noun", definition: "special clothes for a group", example: "The students wear uniforms." },
+  { word: "unique", part: "adjective", definition: "one of a kind", example: "Every fingerprint is unique." },
+  { word: "unit", part: "noun", definition: "a single part of something larger", example: "This apartment has two units." },
+  { word: "unite", part: "verb", definition: "to join together", example: "The community united for the event." },
+  { word: "universe", part: "noun", definition: "all of space and everything in it", example: "The universe is vast." },
+  { word: "unknown", part: "adjective", definition: "not known", example: "The author is unknown." },
+  { word: "unless", part: "conjunction", definition: "except if", example: "I won’t go unless you do." },
+  { word: "until", part: "preposition", definition: "up to the time of", example: "Wait until I arrive." },
+  { word: "unusual", part: "adjective", definition: "not common or ordinary", example: "That’s an unusual design." },
+  { word: "update", part: "verb", definition: "to bring something up to date", example: "We updated the software." },
+  { word: "upgrade", part: "verb", definition: "to improve to a better version", example: "She upgraded her phone." },
+  { word: "upset", part: "adjective", definition: "unhappy or worried", example: "He was upset after the game." },
+  { word: "urban", part: "adjective", definition: "related to cities", example: "They live in an urban area." },
+  { word: "urge", part: "verb", definition: "to strongly encourage", example: "I urge you to reconsider." },
+  { word: "use", part: "verb", definition: "to employ something for a purpose", example: "She used a pen to write." },
+  { word: "usual", part: "adjective", definition: "normal or expected", example: "He arrived at the usual time." },
+  { word: "vacation", part: "noun", definition: "a holiday or break from work", example: "We went on vacation to the beach." },
+  { word: "valuable", part: "adjective", definition: "worth a lot or very useful", example: "This necklace is valuable." },
+  { word: "value", part: "noun", definition: "the importance or worth of something", example: "Education has great value." },
+  { word: "variety", part: "noun", definition: "a range of different things", example: "The menu offers a variety of dishes." },
+  { word: "various", part: "adjective", definition: "different types", example: "We tried various methods." },
+  { word: "vehicle", part: "noun", definition: "a machine used for transport", example: "A car is a common vehicle." },
+  { word: "version", part: "noun", definition: "a particular form of something", example: "This is the latest version." },
+  { word: "very", part: "adverb", definition: "extremely or to a high degree", example: "She was very tired." },
+  { word: "victory", part: "noun", definition: "success in a contest or struggle", example: "The team celebrated their victory." },
+  { word: "video", part: "noun", definition: "a recording of moving images", example: "We watched a funny video." },
+  { word: "view", part: "noun", definition: "a sight or opinion", example: "The view from the top was amazing." },
+  { word: "village", part: "noun", definition: "a small group of houses in the country", example: "They live in a peaceful village." },
+  { word: "violence", part: "noun", definition: "behavior intended to hurt or damage", example: "They protested against violence." },
+  { word: "visit", part: "verb", definition: "to go see someone or something", example: "We visited our grandparents." },
+  { word: "voice", part: "noun", definition: "the sound made when speaking", example: "She has a beautiful voice." },
+  { word: "vote", part: "verb", definition: "to make a choice in an election", example: "Did you vote yet?" },
+  { word: "wait", part: "verb", definition: "to stay until something happens", example: "Wait here, please." },
+  { word: "wake", part: "verb", definition: "to stop sleeping", example: "She woke up early." },
+  { word: "walk", part: "verb", definition: "to move by putting one foot in front of the other", example: "We walked to the park." },
+  { word: "wall", part: "noun", definition: "a vertical structure that divides or supports", example: "The painting hangs on the wall." },
+  { word: "want", part: "verb", definition: "to desire something", example: "I want some coffee." },
+  { word: "warm", part: "adjective", definition: "a little hot", example: "The soup is warm." },
+  { word: "warn", part: "verb", definition: "to tell about a danger or problem", example: "They warned us about the storm." },
+  { word: "wash", part: "verb", definition: "to clean with water", example: "She washed the dishes." },
+  { word: "watch", part: "verb", definition: "to look at closely", example: "We watched a movie." },
+  { word: "water", part: "noun", definition: "a clear liquid we drink", example: "Drink plenty of water." },
+  { word: "wave", part: "verb", definition: "to move your hand to say hello or goodbye", example: "He waved goodbye." },
+  { word: "way", part: "noun", definition: "a method or route", example: "Do you know the way?" },
+  { word: "weak", part: "adjective", definition: "not strong", example: "He felt weak after the workout." },
+  { word: "wealth", part: "noun", definition: "a large amount of money or possessions", example: "The country has great wealth." },
+  { word: "wear", part: "verb", definition: "to have clothes or accessories on", example: "She wore a red dress." },
+  { word: "weather", part: "noun", definition: "the condition of the atmosphere", example: "The weather is sunny." },
+  { word: "web", part: "noun", definition: "a network of threads or internet", example: "I found it on the web." },
+  { word: "week", part: "noun", definition: "a period of seven days", example: "I’m busy next week." },
+  { word: "weigh", part: "verb", definition: "to measure how heavy something is", example: "She weighs the fruit." },
+  { word: "weight", part: "noun", definition: "how heavy something is", example: "This box has a lot of weight." },
+  { word: "welcome", part: "verb", definition: "to greet someone kindly", example: "They welcomed us warmly." },
+  { word: "well", part: "adverb", definition: "in a good or healthy way", example: "She sings well." },
+  { word: "west", part: "noun", definition: "the direction to the left on most maps", example: "They live in the west." },
+  { word: "wet", part: "adjective", definition: "covered with water or another liquid", example: "The floor is wet." },
+  { word: "what", part: "pronoun", definition: "used to ask for information", example: "What is your name?" },
+  { word: "wheel", part: "noun", definition: "a circular object that turns to move things", example: "The car has four wheels." },
+  { word: "when", part: "adverb", definition: "at what time", example: "When will you arrive?" },
+  { word: "where", part: "adverb", definition: "in what place", example: "Where do you live?" },
+  { word: "which", part: "pronoun", definition: "used to ask or show a choice", example: "Which color do you like?" },
+  { word: "while", part: "conjunction", definition: "during the time that", example: "I listened while he spoke." },
+  { word: "white", part: "adjective", definition: "having the color of snow", example: "She wore a white shirt." },
+  { word: "who", part: "pronoun", definition: "what person", example: "Who is calling me?" },
+  { word: "whole", part: "adjective", definition: "all of something", example: "I ate the whole cake." },
+  { word: "why", part: "adverb", definition: "for what reason", example: "Why are you late?" },
+  { word: "wide", part: "adjective", definition: "having a large distance across", example: "The river is wide." },
+  { word: "wife", part: "noun", definition: "a married woman", example: "His wife is a teacher." },
+  { word: "win", part: "verb", definition: "to be the best or first in a competition", example: "They won the game." },
+  { word: "wind", part: "noun", definition: "moving air", example: "The wind is strong today." },
+  { word: "window", part: "noun", definition: "an opening in a wall to let in light or air", example: "Open the window." },
+  { word: "wine", part: "noun", definition: "an alcoholic drink made from grapes", example: "He ordered red wine." },
+  { word: "wing", part: "noun", definition: "part of a bird or plane used to fly", example: "The bird has a broken wing." },
+  { word: "winter", part: "noun", definition: "the coldest season", example: "Winter is coming." },
+  { word: "wire", part: "noun", definition: "a thin, flexible metal strand", example: "The wire is connected." },
+  { word: "wise", part: "adjective", definition: "showing good judgment", example: "The old man is wise." },
+  { word: "wish", part: "verb", definition: "to want something to happen", example: "I wish you luck." },
+  { word: "with", part: "preposition", definition: "accompanied by", example: "I came with a friend." },
+  { word: "within", part: "preposition", definition: "inside or not beyond", example: "It’s within walking distance." },
+  { word: "without", part: "preposition", definition: "not having", example: "He left without his bag." },
+  { word: "woman", part: "noun", definition: "an adult female person", example: "She is a strong woman." },
+  { word: "wonder", part: "verb", definition: "to think curiously about something", example: "I wonder what’s inside." },
+  { word: "wood", part: "noun", definition: "material from trees", example: "The table is made of wood." },
+  { word: "word", part: "noun", definition: "a unit of language", example: "This word is hard to spell." },
+  { word: "work", part: "verb", definition: "to do a job", example: "She works at a bank." },
+  { word: "world", part: "noun", definition: "the earth and all people and places", example: "The world is changing." },
+  { word: "worry", part: "verb", definition: "to feel uneasy or anxious", example: "Don’t worry about it." },
+  { word: "worth", part: "adjective", definition: "having value", example: "The book is worth reading." },
+  { word: "would", part: "verb", definition: "used to show what might happen", example: "I would love to join." },
+  { word: "write", part: "verb", definition: "to use letters to form words", example: "She writes in a journal." },
+  { word: "wrong", part: "adjective", definition: "not correct or true", example: "That answer is wrong." },
+  { word: "yard", part: "noun", definition: "a piece of land near a building", example: "The kids played in the yard." },
+  { word: "year", part: "noun", definition: "a period of 12 months", example: "She graduated last year." },
+  { word: "yellow", part: "adjective", definition: "having the color of sunshine", example: "The sunflowers are yellow." },
+  { word: "yes", part: "adverb", definition: "used to agree", example: "Yes, I’ll help." },
+  { word: "yesterday", part: "noun", definition: "the day before today", example: "It rained yesterday." },
+  { word: "yet", part: "adverb", definition: "until now or nevertheless", example: "He hasn’t arrived yet." },
+  { word: "young", part: "adjective", definition: "not old", example: "They are a young couple." },
+  { word: "your", part: "determiner", definition: "belonging to you", example: "Your book is on the table." },
+  { word: "yourself", part: "pronoun", definition: "referring to you personally", example: "Take care of yourself." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

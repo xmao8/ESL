@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 1</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f8;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #2c3e50;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+    }
+
+    #flashcard {
+      background: white;
+      max-width: 500px;
+      margin: 1rem auto;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .info {
+      margin: 0.3rem 0;
+    }
+
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .page-nav {
+      margin-top: 2rem;
+    }
+
+    .page-nav a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      color: #3498db;
+      font-weight: bold;
+    }
+
+    .page-nav span {
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../daily.html">Daily English</a>
+    <a href="../grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words</h1>
+  <div><strong>Page 1 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html"><span>1</span></a>
+    <a href="commonwords-page2.html">2</a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <script>
+    const flashcards = [
+      { word: "word1", part: "verb", definition: "This is the definition of word1.", example: "Here is how you use word1 in a sentence." },
+      { word: "word2", part: "adjective", definition: "This is the definition of word2.", example: "Here is how you use word2 in a sentence." },
+      { word: "word3", part: "noun", definition: "This is the definition of word3.", example: "Here is how you use word3 in a sentence." },
+      { word: "word4", part: "verb", definition: "This is the definition of word4.", example: "Here is how you use word4 in a sentence." },
+      { word: "word5", part: "adjective", definition: "This is the definition of word5.", example: "Here is how you use word5 in a sentence." }
+      // Continue with real or mock data up to 100...
+    ];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+
+</body>
+</html>

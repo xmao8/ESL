@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 6</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 6 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page6.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "someone", part: "pronoun", definition: "an unknown or unspecified person", example: "Someone left their umbrella." },
+  { word: "something", part: "pronoun", definition: "an unspecified thing", example: "Something smells good." },
+  { word: "sometimes", part: "adverb", definition: "on some occasions but not always", example: "I sometimes walk to work." },
+  { word: "somewhere", part: "adverb", definition: "in or to a place not known or named", example: "I’ve seen him somewhere." },
+  { word: "sort", part: "noun", definition: "a type or kind", example: "What sort of music do you like?" },
+  { word: "sound", part: "noun", definition: "something that is heard", example: "I heard a strange sound." },
+  { word: "space", part: "noun", definition: "an empty area", example: "There’s enough space for a desk." },
+  { word: "speak", part: "verb", definition: "to talk", example: "She speaks three languages." },
+  { word: "special", part: "adjective", definition: "different from what is usual", example: "Today is a special day." },
+  { word: "speed", part: "noun", definition: "how fast something moves", example: "He drove at high speed." },
+  { word: "spend", part: "verb", definition: "to use money or time", example: "She spent all her money." },
+  { word: "spirit", part: "noun", definition: "the non-physical part of a person or energy", example: "Her spirit was strong." },
+  { word: "spot", part: "noun", definition: "a particular place or mark", example: "We found a great picnic spot." },
+  { word: "spread", part: "verb", definition: "to extend over a larger area", example: "The fire spread quickly." },
+  { word: "staff", part: "noun", definition: "the people who work for a business", example: "The staff are helpful." },
+  { word: "stage", part: "noun", definition: "a step in a process or a platform for performances", example: "He is in the final stage of recovery." },
+  { word: "stand", part: "verb", definition: "to be in an upright position", example: "He stood near the window." },
+  { word: "standard", part: "noun", definition: "a level of quality or requirement", example: "We maintain high standards." },
+  { word: "star", part: "noun", definition: "a large ball of burning gas or a famous person", example: "She became a movie star." },
+  { word: "start", part: "verb", definition: "to begin something", example: "We started the meeting at 9." },
+  { word: "state", part: "noun", definition: "a condition or a political region", example: "He is in a calm state." },
+  { word: "station", part: "noun", definition: "a place where services are provided (e.g., train)", example: "She waited at the station." },
+  { word: "stay", part: "verb", definition: "to remain in a place", example: "We stayed at a hotel." },
+  { word: "step", part: "noun", definition: "a movement made by lifting the foot or a stage in a process", example: "Follow these steps." },
+  { word: "stick", part: "verb", definition: "to attach to something", example: "He stuck a note on the door." },
+  { word: "still", part: "adverb", definition: "continuing now or in the same state", example: "She’s still working." },
+  { word: "stock", part: "noun", definition: "a supply of goods or financial shares", example: "The store is out of stock." },
+  { word: "stop", part: "verb", definition: "to cease moving or doing", example: "The bus stopped here." },
+  { word: "store", part: "noun", definition: "a place where goods are sold", example: "She went to the store." },
+  { word: "storm", part: "noun", definition: "severe weather with wind and rain", example: "The storm damaged the roof." },
+  { word: "story", part: "noun", definition: "a description of events, real or imagined", example: "She told an amazing story." },
+  { word: "straight", part: "adjective", definition: "not curved or bent", example: "The road is straight." },
+  { word: "strange", part: "adjective", definition: "unusual or unexpected", example: "It was a strange sound." },
+  { word: "strategy", part: "noun", definition: "a plan to achieve a goal", example: "They developed a strategy." },
+  { word: "street", part: "noun", definition: "a public road in a city or town", example: "She lives on Main Street." },
+  { word: "strength", part: "noun", definition: "the quality of being strong", example: "He lifted it with great strength." },
+  { word: "stress", part: "noun", definition: "pressure or tension", example: "She deals with stress well." },
+  { word: "stretch", part: "verb", definition: "to extend or reach", example: "He stretched before running." },
+  { word: "strike", part: "verb", definition: "to hit or stop working", example: "Workers went on strike." },
+  { word: "strong", part: "adjective", definition: "having power or strength", example: "She is physically strong." },
+  { word: "structure", part: "noun", definition: "something built or organized", example: "The building’s structure is solid." },
+  { word: "struggle", part: "verb", definition: "to have difficulty or fight", example: "He struggled with math." },
+  { word: "student", part: "noun", definition: "a person who is learning", example: "She is a university student." },
+  { word: "study", part: "verb", definition: "to learn about something", example: "He studies history." },
+  { word: "stuff", part: "noun", definition: "general things or materials", example: "Put your stuff away." },
+  { word: "style", part: "noun", definition: "a particular way of doing or presenting", example: "She has a unique style." },
+  { word: "subject", part: "noun", definition: "a topic or area of study", example: "Math is her favorite subject." },
+  { word: "success", part: "noun", definition: "achieving a goal or aim", example: "The project was a success." },
+  { word: "sudden", part: "adjective", definition: "happening quickly and unexpectedly", example: "There was a sudden noise." },
+  { word: "suffer", part: "verb", definition: "to feel pain or hardship", example: "She suffered from illness." },
+  { word: "suggest", part: "verb", definition: "to offer an idea or plan", example: "He suggested we leave." },
+  { word: "suit", part: "noun", definition: "a set of clothes or to fit well", example: "He wore a suit." },
+  { word: "suitable", part: "adjective", definition: "right or appropriate for something", example: "This movie is suitable for children." },
+  { word: "supply", part: "verb", definition: "to provide or give something", example: "They supply water to homes." },
+  { word: "support", part: "verb", definition: "to give help or encouragement", example: "They supported her decision." },
+  { word: "suppose", part: "verb", definition: "to assume something", example: "I suppose you’re right." },
+  { word: "sure", part: "adjective", definition: "certain", example: "Are you sure about that?" },
+  { word: "surface", part: "noun", definition: "the outside layer of something", example: "The surface was smooth." },
+  { word: "surprise", part: "noun", definition: "an unexpected event", example: "It was a nice surprise." },
+  { word: "surround", part: "verb", definition: "to be all around something", example: "Mountains surrounded the village." },
+  { word: "survey", part: "noun", definition: "a study to collect opinions", example: "They did a customer survey." },
+  { word: "survive", part: "verb", definition: "to stay alive", example: "They survived the storm." },
+  { word: "suspect", part: "verb", definition: "to think someone did something wrong", example: "I suspect he lied." },
+  { word: "swim", part: "verb", definition: "to move in water", example: "We swam in the lake." },
+  { word: "system", part: "noun", definition: "a set of connected parts", example: "The heating system failed." },
+  { word: "table", part: "noun", definition: "a piece of furniture with a flat surface", example: "They sat at the table." },
+  { word: "take", part: "verb", definition: "to get or move something", example: "Take this book with you." },
+  { word: "talk", part: "verb", definition: "to speak with someone", example: "They talked all night." },
+  { word: "tall", part: "adjective", definition: "having great height", example: "He is tall." },
+  { word: "taste", part: "noun", definition: "the flavor of something", example: "This soup has a good taste." },
+  { word: "teach", part: "verb", definition: "to help someone learn", example: "She teaches math." },
+  { word: "team", part: "noun", definition: "a group working together", example: "Our team won." },
+  { word: "tear", part: "verb", definition: "to rip something", example: "He tore the paper." },
+  { word: "tell", part: "verb", definition: "to say something to someone", example: "Tell me the truth." },
+  { word: "temperature", part: "noun", definition: "how hot or cold something is", example: "The temperature dropped." },
+  { word: "term", part: "noun", definition: "a word or a fixed period of time", example: "This is a legal term." },
+  { word: "terrible", part: "adjective", definition: "very bad", example: "That movie was terrible." },
+  { word: "test", part: "noun", definition: "an exam or trial", example: "I passed the test." },
+  { word: "text", part: "noun", definition: "written words", example: "Read the text carefully." },
+  { word: "than", part: "conjunction", definition: "used in comparisons", example: "She is taller than him." },
+  { word: "thank", part: "verb", definition: "to show gratitude", example: "I thanked her for the help." },
+  { word: "that", part: "conjunction", definition: "used to introduce a clause", example: "He said that he was tired." },
+  { word: "theater", part: "noun", definition: "a place for watching performances", example: "We went to the theater." },
+  { word: "their", part: "determiner", definition: "belonging to them", example: "Their car is blue." },
+  { word: "them", part: "pronoun", definition: "used for people/things already mentioned", example: "I saw them at the store." },
+  { word: "theme", part: "noun", definition: "a main idea or subject", example: "The theme of the party is tropical." },
+  { word: "theory", part: "noun", definition: "an idea that explains something", example: "The theory was tested." },
+  { word: "there", part: "adverb", definition: "in or at that place", example: "The book is over there." },
+  { word: "these", part: "determiner", definition: "used to refer to things near", example: "These apples are fresh." },
+  { word: "they", part: "pronoun", definition: "used for people/things mentioned", example: "They are coming." },
+  { word: "thing", part: "noun", definition: "an object or idea", example: "What is that thing?" },
+  { word: "think", part: "verb", definition: "to use your mind to form ideas", example: "I think it's a great idea." },
+  { word: "this", part: "determiner", definition: "referring to a specific object close by", example: "This book is new." },
+  { word: "though", part: "conjunction", definition: "despite the fact that", example: "Though it was raining, we went out." },
+  { word: "thought", part: "noun", definition: "an idea or opinion", example: "She shared her thoughts." },
+  { word: "thousand", part: "noun", definition: "the number 1,000", example: "There were a thousand people." },
+  { word: "threat", part: "noun", definition: "a danger or warning", example: "They received a threat." },
+  { word: "three", part: "number", definition: "the number 3", example: "We have three dogs." },
+  { word: "throw", part: "verb", definition: "to send something through the air", example: "He threw the ball." },
+  { word: "tie", part: "verb", definition: "to fasten with a string or rope", example: "She tied her shoes." },
+  { word: "time", part: "noun", definition: "a point or period when something happens", example: "What time is it?" },
+  { word: "tiny", part: "adjective", definition: "very small", example: "The kitten is tiny." },
+  { word: "title", part: "noun", definition: "the name of a book, movie, etc.", example: "What's the title of the song?" },
+  { word: "today", part: "noun", definition: "the current day", example: "I have a meeting today." },
+  { word: "together", part: "adverb", definition: "with others", example: "We worked together." },
+  { word: "tomorrow", part: "noun", definition: "the day after today", example: "Let’s meet tomorrow." },
+  { word: "tone", part: "noun", definition: "the sound or feeling of speech or writing", example: "His tone was friendly." },
+  { word: "tool", part: "noun", definition: "a device used to carry out a task", example: "A hammer is a useful tool." },
+  { word: "top", part: "noun", definition: "the highest part", example: "She climbed to the top." },
+  { word: "total", part: "noun", definition: "the complete amount", example: "The total cost is $50." },
+  { word: "touch", part: "verb", definition: "to make contact with", example: "Don’t touch the stove." },
+  { word: "toward", part: "preposition", definition: "in the direction of", example: "She walked toward the door." },
+  { word: "town", part: "noun", definition: "a place larger than a village", example: "They live in a small town." },
+  { word: "track", part: "noun", definition: "a path or route", example: "We walked on the dirt track." },
+  { word: "trade", part: "noun", definition: "the buying and selling of goods", example: "The countries opened trade." },
+  { word: "traditional", part: "adjective", definition: "based on customs or beliefs", example: "We wore traditional clothes." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 3</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 3 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page3.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "word201", part: "noun", definition: "Definition of 'word201' as an intermediate word.", example: "This is how you might use 'word201' in a sentence." },
+  { word: "word202", part: "verb", definition: "Definition of 'word202' as an intermediate word.", example: "This is how you might use 'word202' in a sentence." },
+  { word: "word203", part: "adjective", definition: "Definition of 'word203' as an intermediate word.", example: "This is how you might use 'word203' in a sentence." },
+  { word: "word204", part: "noun", definition: "Definition of 'word204' as an intermediate word.", example: "This is how you might use 'word204' in a sentence." },
+  { word: "word205", part: "verb", definition: "Definition of 'word205' as an intermediate word.", example: "This is how you might use 'word205' in a sentence." },
+  { word: "word206", part: "adjective", definition: "Definition of 'word206' as an intermediate word.", example: "This is how you might use 'word206' in a sentence." },
+  { word: "word207", part: "noun", definition: "Definition of 'word207' as an intermediate word.", example: "This is how you might use 'word207' in a sentence." },
+  { word: "word208", part: "verb", definition: "Definition of 'word208' as an intermediate word.", example: "This is how you might use 'word208' in a sentence." },
+  { word: "word209", part: "adjective", definition: "Definition of 'word209' as an intermediate word.", example: "This is how you might use 'word209' in a sentence." },
+  { word: "word210", part: "noun", definition: "Definition of 'word210' as an intermediate word.", example: "This is how you might use 'word210' in a sentence." },
+  { word: "word211", part: "verb", definition: "Definition of 'word211' as an intermediate word.", example: "This is how you might use 'word211' in a sentence." },
+  { word: "word212", part: "adjective", definition: "Definition of 'word212' as an intermediate word.", example: "This is how you might use 'word212' in a sentence." },
+  { word: "word213", part: "noun", definition: "Definition of 'word213' as an intermediate word.", example: "This is how you might use 'word213' in a sentence." },
+  { word: "word214", part: "verb", definition: "Definition of 'word214' as an intermediate word.", example: "This is how you might use 'word214' in a sentence." },
+  { word: "word215", part: "adjective", definition: "Definition of 'word215' as an intermediate word.", example: "This is how you might use 'word215' in a sentence." },
+  { word: "word216", part: "noun", definition: "Definition of 'word216' as an intermediate word.", example: "This is how you might use 'word216' in a sentence." },
+  { word: "word217", part: "verb", definition: "Definition of 'word217' as an intermediate word.", example: "This is how you might use 'word217' in a sentence." },
+  { word: "word218", part: "adjective", definition: "Definition of 'word218' as an intermediate word.", example: "This is how you might use 'word218' in a sentence." },
+  { word: "word219", part: "noun", definition: "Definition of 'word219' as an intermediate word.", example: "This is how you might use 'word219' in a sentence." },
+  { word: "word220", part: "verb", definition: "Definition of 'word220' as an intermediate word.", example: "This is how you might use 'word220' in a sentence." },
+  { word: "word221", part: "adjective", definition: "Definition of 'word221' as an intermediate word.", example: "This is how you might use 'word221' in a sentence." },
+  { word: "word222", part: "noun", definition: "Definition of 'word222' as an intermediate word.", example: "This is how you might use 'word222' in a sentence." },
+  { word: "word223", part: "verb", definition: "Definition of 'word223' as an intermediate word.", example: "This is how you might use 'word223' in a sentence." },
+  { word: "word224", part: "adjective", definition: "Definition of 'word224' as an intermediate word.", example: "This is how you might use 'word224' in a sentence." },
+  { word: "word225", part: "noun", definition: "Definition of 'word225' as an intermediate word.", example: "This is how you might use 'word225' in a sentence." },
+  { word: "word226", part: "verb", definition: "Definition of 'word226' as an intermediate word.", example: "This is how you might use 'word226' in a sentence." },
+  { word: "word227", part: "adjective", definition: "Definition of 'word227' as an intermediate word.", example: "This is how you might use 'word227' in a sentence." },
+  { word: "word228", part: "noun", definition: "Definition of 'word228' as an intermediate word.", example: "This is how you might use 'word228' in a sentence." },
+  { word: "word229", part: "verb", definition: "Definition of 'word229' as an intermediate word.", example: "This is how you might use 'word229' in a sentence." },
+  { word: "word230", part: "adjective", definition: "Definition of 'word230' as an intermediate word.", example: "This is how you might use 'word230' in a sentence." },
+  { word: "word231", part: "noun", definition: "Definition of 'word231' as an intermediate word.", example: "This is how you might use 'word231' in a sentence." },
+  { word: "word232", part: "verb", definition: "Definition of 'word232' as an intermediate word.", example: "This is how you might use 'word232' in a sentence." },
+  { word: "word233", part: "adjective", definition: "Definition of 'word233' as an intermediate word.", example: "This is how you might use 'word233' in a sentence." },
+  { word: "word234", part: "noun", definition: "Definition of 'word234' as an intermediate word.", example: "This is how you might use 'word234' in a sentence." },
+  { word: "word235", part: "verb", definition: "Definition of 'word235' as an intermediate word.", example: "This is how you might use 'word235' in a sentence." },
+  { word: "word236", part: "adjective", definition: "Definition of 'word236' as an intermediate word.", example: "This is how you might use 'word236' in a sentence." },
+  { word: "word237", part: "noun", definition: "Definition of 'word237' as an intermediate word.", example: "This is how you might use 'word237' in a sentence." },
+  { word: "word238", part: "verb", definition: "Definition of 'word238' as an intermediate word.", example: "This is how you might use 'word238' in a sentence." },
+  { word: "word239", part: "adjective", definition: "Definition of 'word239' as an intermediate word.", example: "This is how you might use 'word239' in a sentence." },
+  { word: "word240", part: "noun", definition: "Definition of 'word240' as an intermediate word.", example: "This is how you might use 'word240' in a sentence." },
+  { word: "word241", part: "verb", definition: "Definition of 'word241' as an intermediate word.", example: "This is how you might use 'word241' in a sentence." },
+  { word: "word242", part: "adjective", definition: "Definition of 'word242' as an intermediate word.", example: "This is how you might use 'word242' in a sentence." },
+  { word: "word243", part: "noun", definition: "Definition of 'word243' as an intermediate word.", example: "This is how you might use 'word243' in a sentence." },
+  { word: "word244", part: "verb", definition: "Definition of 'word244' as an intermediate word.", example: "This is how you might use 'word244' in a sentence." },
+  { word: "word245", part: "adjective", definition: "Definition of 'word245' as an intermediate word.", example: "This is how you might use 'word245' in a sentence." },
+  { word: "word246", part: "noun", definition: "Definition of 'word246' as an intermediate word.", example: "This is how you might use 'word246' in a sentence." },
+  { word: "word247", part: "verb", definition: "Definition of 'word247' as an intermediate word.", example: "This is how you might use 'word247' in a sentence." },
+  { word: "word248", part: "adjective", definition: "Definition of 'word248' as an intermediate word.", example: "This is how you might use 'word248' in a sentence." },
+  { word: "word249", part: "noun", definition: "Definition of 'word249' as an intermediate word.", example: "This is how you might use 'word249' in a sentence." },
+  { word: "word250", part: "verb", definition: "Definition of 'word250' as an intermediate word.", example: "This is how you might use 'word250' in a sentence." },
+  { word: "word251", part: "adjective", definition: "Definition of 'word251' as an intermediate word.", example: "This is how you might use 'word251' in a sentence." },
+  { word: "word252", part: "noun", definition: "Definition of 'word252' as an intermediate word.", example: "This is how you might use 'word252' in a sentence." },
+  { word: "word253", part: "verb", definition: "Definition of 'word253' as an intermediate word.", example: "This is how you might use 'word253' in a sentence." },
+  { word: "word254", part: "adjective", definition: "Definition of 'word254' as an intermediate word.", example: "This is how you might use 'word254' in a sentence." },
+  { word: "word255", part: "noun", definition: "Definition of 'word255' as an intermediate word.", example: "This is how you might use 'word255' in a sentence." },
+  { word: "word256", part: "verb", definition: "Definition of 'word256' as an intermediate word.", example: "This is how you might use 'word256' in a sentence." },
+  { word: "word257", part: "adjective", definition: "Definition of 'word257' as an intermediate word.", example: "This is how you might use 'word257' in a sentence." },
+  { word: "word258", part: "noun", definition: "Definition of 'word258' as an intermediate word.", example: "This is how you might use 'word258' in a sentence." },
+  { word: "word259", part: "verb", definition: "Definition of 'word259' as an intermediate word.", example: "This is how you might use 'word259' in a sentence." },
+  { word: "word260", part: "adjective", definition: "Definition of 'word260' as an intermediate word.", example: "This is how you might use 'word260' in a sentence." },
+  { word: "word261", part: "noun", definition: "Definition of 'word261' as an intermediate word.", example: "This is how you might use 'word261' in a sentence." },
+  { word: "word262", part: "verb", definition: "Definition of 'word262' as an intermediate word.", example: "This is how you might use 'word262' in a sentence." },
+  { word: "word263", part: "adjective", definition: "Definition of 'word263' as an intermediate word.", example: "This is how you might use 'word263' in a sentence." },
+  { word: "word264", part: "noun", definition: "Definition of 'word264' as an intermediate word.", example: "This is how you might use 'word264' in a sentence." },
+  { word: "word265", part: "verb", definition: "Definition of 'word265' as an intermediate word.", example: "This is how you might use 'word265' in a sentence." },
+  { word: "word266", part: "adjective", definition: "Definition of 'word266' as an intermediate word.", example: "This is how you might use 'word266' in a sentence." },
+  { word: "word267", part: "noun", definition: "Definition of 'word267' as an intermediate word.", example: "This is how you might use 'word267' in a sentence." },
+  { word: "word268", part: "verb", definition: "Definition of 'word268' as an intermediate word.", example: "This is how you might use 'word268' in a sentence." },
+  { word: "word269", part: "adjective", definition: "Definition of 'word269' as an intermediate word.", example: "This is how you might use 'word269' in a sentence." },
+  { word: "word270", part: "noun", definition: "Definition of 'word270' as an intermediate word.", example: "This is how you might use 'word270' in a sentence." },
+  { word: "word271", part: "verb", definition: "Definition of 'word271' as an intermediate word.", example: "This is how you might use 'word271' in a sentence." },
+  { word: "word272", part: "adjective", definition: "Definition of 'word272' as an intermediate word.", example: "This is how you might use 'word272' in a sentence." },
+  { word: "word273", part: "noun", definition: "Definition of 'word273' as an intermediate word.", example: "This is how you might use 'word273' in a sentence." },
+  { word: "word274", part: "verb", definition: "Definition of 'word274' as an intermediate word.", example: "This is how you might use 'word274' in a sentence." },
+  { word: "word275", part: "adjective", definition: "Definition of 'word275' as an intermediate word.", example: "This is how you might use 'word275' in a sentence." },
+  { word: "word276", part: "noun", definition: "Definition of 'word276' as an intermediate word.", example: "This is how you might use 'word276' in a sentence." },
+  { word: "word277", part: "verb", definition: "Definition of 'word277' as an intermediate word.", example: "This is how you might use 'word277' in a sentence." },
+  { word: "word278", part: "adjective", definition: "Definition of 'word278' as an intermediate word.", example: "This is how you might use 'word278' in a sentence." },
+  { word: "word279", part: "noun", definition: "Definition of 'word279' as an intermediate word.", example: "This is how you might use 'word279' in a sentence." },
+  { word: "word280", part: "verb", definition: "Definition of 'word280' as an intermediate word.", example: "This is how you might use 'word280' in a sentence." },
+  { word: "word281", part: "adjective", definition: "Definition of 'word281' as an intermediate word.", example: "This is how you might use 'word281' in a sentence." },
+  { word: "word282", part: "noun", definition: "Definition of 'word282' as an intermediate word.", example: "This is how you might use 'word282' in a sentence." },
+  { word: "word283", part: "verb", definition: "Definition of 'word283' as an intermediate word.", example: "This is how you might use 'word283' in a sentence." },
+  { word: "word284", part: "adjective", definition: "Definition of 'word284' as an intermediate word.", example: "This is how you might use 'word284' in a sentence." },
+  { word: "word285", part: "noun", definition: "Definition of 'word285' as an intermediate word.", example: "This is how you might use 'word285' in a sentence." },
+  { word: "word286", part: "verb", definition: "Definition of 'word286' as an intermediate word.", example: "This is how you might use 'word286' in a sentence." },
+  { word: "word287", part: "adjective", definition: "Definition of 'word287' as an intermediate word.", example: "This is how you might use 'word287' in a sentence." },
+  { word: "word288", part: "noun", definition: "Definition of 'word288' as an intermediate word.", example: "This is how you might use 'word288' in a sentence." },
+  { word: "word289", part: "verb", definition: "Definition of 'word289' as an intermediate word.", example: "This is how you might use 'word289' in a sentence." },
+  { word: "word290", part: "adjective", definition: "Definition of 'word290' as an intermediate word.", example: "This is how you might use 'word290' in a sentence." },
+  { word: "word291", part: "noun", definition: "Definition of 'word291' as an intermediate word.", example: "This is how you might use 'word291' in a sentence." },
+  { word: "word292", part: "verb", definition: "Definition of 'word292' as an intermediate word.", example: "This is how you might use 'word292' in a sentence." },
+  { word: "word293", part: "adjective", definition: "Definition of 'word293' as an intermediate word.", example: "This is how you might use 'word293' in a sentence." },
+  { word: "word294", part: "noun", definition: "Definition of 'word294' as an intermediate word.", example: "This is how you might use 'word294' in a sentence." },
+  { word: "word295", part: "verb", definition: "Definition of 'word295' as an intermediate word.", example: "This is how you might use 'word295' in a sentence." },
+  { word: "word296", part: "adjective", definition: "Definition of 'word296' as an intermediate word.", example: "This is how you might use 'word296' in a sentence." },
+  { word: "word297", part: "noun", definition: "Definition of 'word297' as an intermediate word.", example: "This is how you might use 'word297' in a sentence." },
+  { word: "word298", part: "verb", definition: "Definition of 'word298' as an intermediate word.", example: "This is how you might use 'word298' in a sentence." },
+  { word: "word299", part: "adjective", definition: "Definition of 'word299' as an intermediate word.", example: "This is how you might use 'word299' in a sentence." },
+  { word: "word300", part: "noun", definition: "Definition of 'word300' as an intermediate word.", example: "This is how you might use 'word300' in a sentence." },
+];
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

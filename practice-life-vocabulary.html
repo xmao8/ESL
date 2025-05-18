@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Life Vocabulary Practice</title>
+  <title>Practice – Life Vocabulary</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; color: #333; }
     nav { background-color: #2c3e50; padding: 1rem; text-align: center; }
     nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
     h1 { text-align: center; font-size: 2rem; margin: 2rem 0 1rem; color: #2c3e50; }
     .container { max-width: 900px; margin: auto; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .question { margin-bottom: 2rem; }
-    .answer { margin-top: 0.5rem; font-weight: bold; }
+    .question { margin-bottom: 1.5rem; }
+    input[type="text"] { border: none; border-bottom: 1px solid #aaa; padding: 4px 8px; font-size: 1rem; width: 200px; }
+    .feedback { font-weight: bold; margin-top: 0.5rem; }
     .correct { color: green; }
     .incorrect { color: red; }
     .buttons { text-align: center; margin-top: 2rem; }
-    .buttons a, .buttons button { text-decoration: none; margin: 0.5rem; background-color: #3498db; color: white; padding: 0.7rem 1.2rem; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .buttons a, .buttons button {
+      text-decoration: none; margin: 0.5rem;
+      background-color: #3498db; color: white;
+      padding: 0.7rem 1.2rem; border: none;
+      border-radius: 8px; font-weight: bold;
+      cursor: pointer;
+    }
     .buttons a:hover, .buttons button:hover { background-color: #2980b9; }
   </style>
 </head>
@@ -30,14 +37,32 @@
   </nav>
 
   <h1>Life Vocabulary Practice</h1>
-
   <div class="container">
-    <p><strong>Instructions:</strong> Choose the best word to complete each sentence.</p>
-<div class="question"><p>1. To become a successful personal trainer, you need a strong understanding of human ___________ and exercise physiology.</p><label><input type="radio" name="q1" value="biology"> biology</label><br><label><input type="radio" name="q1" value="anatomy"> anatomy</label><br><label><input type="radio" name="q1" value="chemistry"> chemistry</label><br><label><input type="radio" name="q1" value="physics"> physics</label><br><div class="answer" data-answer="anatomy"></div></div>
-<div class="question"><p>2. Many trainers work with clients to help them achieve their fitness ___________, such as weight loss or muscle gain.</p><label><input type="radio" name="q2" value="hobbies"> hobbies</label><br><label><input type="radio" name="q2" value="sports"> sports</label><br><label><input type="radio" name="q2" value="goals"> goals</label><br><label><input type="radio" name="q2" value="interests"> interests</label><br><div class="answer" data-answer="goals"></div></div>
-<div class="question"><p>3. Creating personalized workout ___________ is a key skill for a personal trainer.</p><label><input type="radio" name="q3" value="games"> games</label><br><label><input type="radio" name="q3" value="plans / routines"> plans / routines</label><br><label><input type="radio" name="q3" value="equipment"> equipment</label><br><label><input type="radio" name="q3" value="theories"> theories</label><br><div class="answer" data-answer="plans / routines"></div></div>
-<div class="question"><p>4. Good communication and ___________ skills are essential for building rapport with clients.</p><label><input type="radio" name="q4" value="technical"> technical</label><br><label><input type="radio" name="q4" value="artistic"> artistic</label><br><label><input type="radio" name="q4" value="interpersonal"> interpersonal</label><br><label><input type="radio" name="q4" value="mechanical"> mechanical</label><br><div class="answer" data-answer="interpersonal"></div></div>
-<div class="question"><p>5. Some personal trainers specialize in certain ___________ groups, like athletes or seniors.</p><label><input type="radio" name="q5" value="age"> age</label><br><label><input type="radio" name="q5" value="friend"> friend</label><br><label><input type="radio" name="q5" value="population"> population</label><br><label><input type="radio" name="q5" value="hobby"> hobby</label><br><div class="answer" data-answer="population"></div></div>
+    <p><strong>Instructions:</strong> Fill in the blank with the correct word. Then click "Check Answers."</p>
+<div class="question">1. To become a successful personal trainer, you need a strong understanding of human <input type='text' id='q1' data-answer='anatomy'> and exercise physiology.</div>
+<div class="question">2. Many trainers work with clients to help them achieve their fitness <input type='text' id='q2' data-answer='goals'>, such as weight loss or muscle gain.</div>
+<div class="question">3. Creating personalized workout <input type='text' id='q3' data-answer='plans'> is a key skill for a personal trainer.</div>
+<div class="question">4. Good communication and <input type='text' id='q4' data-answer='interpersonal'> skills are essential for building rapport with clients.</div>
+<div class="question">5. Some personal trainers specialize in certain <input type='text' id='q5' data-answer='population'> groups, like athletes or seniors.</div>
+<div class="question">6. Staying <input type='text' id='q6' data-answer='updated'> on the latest fitness trends and research is important for professional growth.</div>
+<div class="question">7. A personal trainer might assess a client's current fitness level through various <input type='text' id='q7' data-answer='assessments'> and measurements.</div>
+<div class="question">8. Providing motivation and <input type='text' id='q8' data-answer='encouragement'> is a crucial part of a trainer's role.</div>
+<div class="question">9. Choosing a fulfilling <input type='text' id='q9' data-answer='career'> path often involves considering your interests and skills.</div>
+<div class="question">10. Continuous <input type='text' id='q10' data-answer='learning'> and development can lead to career advancement.</div>
+<div class="question">11. Networking with professionals in your field can open up new <input type='text' id='q11' data-answer='doors'> and opportunities.</div>
+<div class="question">12. Setting clear <input type='text' id='q12' data-answer='career'> goals can help you stay focused and motivated in your career.</div>
+<div class="question">13. Maintaining a healthy <input type='text' id='q13' data-answer='work'>-life balance is important for overall well-being.</div>
+<div class="question">14. Adapting to changes in the job <input type='text' id='q14' data-answer='market'> is crucial for long-term success.</div>
+<div class="question">15. Strong <input type='text' id='q15' data-answer='problem'>-solving skills are valued in almost any profession.</div>
+<div class="question">16. Ethical behavior and <input type='text' id='q16' data-answer='integrity'> are fundamental to a positive work environment.</div>
+<div class="question">17. Spending quality <input type='text' id='q17' data-answer='time'> with family strengthens bonds and creates lasting memories.</div>
+<div class="question">18. Effective <input type='text' id='q18' data-answer='communication'> is key to resolving conflicts and maintaining healthy family relationships.</div>
+<div class="question">19. Supporting each other's <input type='text' id='q19' data-answer='dreams'> and aspirations is important in a family.</div>
+<div class="question">20. Creating family <input type='text' id='q20' data-answer='rituals'> and traditions can provide a sense of belonging and connection.</div>
+<div class="question">21. Balancing <input type='text' id='q21' data-answer='family'> responsibilities with work demands can be challenging.</div>
+<div class="question">22. Open and honest <input type='text' id='q22' data-answer='communication'> about feelings and needs is vital in a family.</div>
+<div class="question">23. Making time for <input type='text' id='q23' data-answer='shared'> activities together can enhance family unity.</div>
+<div class="question">24. Showing <input type='text' id='q24' data-answer='love'> and appreciation for family members fosters a positive atmosphere.</div>
 
     <div class="buttons">
       <button onclick="checkAnswers()">Check Answers</button>
@@ -48,24 +73,25 @@
 
   <script>
     function checkAnswers() {
-      const questions = document.querySelectorAll('.question');
-      questions.forEach(q => {
-        const correct = q.querySelector('.answer').dataset.answer;
-        const selected = q.querySelector('input[type="radio"]:checked');
-        const answerDisplay = q.querySelector('.answer');
-        if (selected) {
-          if (selected.value === correct) {
-            answerDisplay.textContent = 'Correct!';
-            answerDisplay.className = 'answer correct';
-          } else {
-            answerDisplay.textContent = `Incorrect. Correct answer: ${correct}`;
-            answerDisplay.className = 'answer incorrect';
-          }
-        } else {
-          answerDisplay.textContent = `Please select an answer. Correct: ${correct}`;
-          answerDisplay.className = 'answer incorrect';
+      for (let i = 1; i <= 24; i++) {
+        const input = document.getElementById('q' + i);
+        const correct = input.dataset.answer.trim().toLowerCase();
+        const user = input.value.trim().toLowerCase();
+        let feedback = document.getElementById('f' + i);
+        if (!feedback) {
+          feedback = document.createElement('div');
+          feedback.id = 'f' + i;
+          feedback.className = 'feedback';
+          input.parentNode.appendChild(feedback);
         }
-      });
+        if (user === correct) {
+          feedback.textContent = '✅ Correct';
+          feedback.className = 'feedback correct';
+        } else {
+          feedback.textContent = `❌ Incorrect. Correct answer: "${correct}"`;
+          feedback.className = 'feedback incorrect';
+        }
+      }
     }
   </script>
 </body>

@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common English Words – Page 9</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f0f8; margin: 0; padding: 0; text-align: center; }
+    nav { background-color: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0 1rem; color: #2c3e50; }
+    #flashcard { background: white; max-width: 500px; margin: 1rem auto; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 1.2rem; cursor: pointer; transition: background 0.3s ease; }
+    #flashcard.flipped { background-color: #3498db; color: white; }
+    .info { margin: 0.3rem 0; }
+    .buttons, .nav-buttons { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    button, .nav-buttons a { padding: 0.6rem 1.2rem; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; }
+    button:hover, .nav-buttons a:hover { background-color: #2980b9; }
+    .page-nav { margin-top: 2rem; }
+    .page-nav a { text-decoration: none; margin: 0 0.5rem; color: #3498db; font-weight: bold; }
+    .page-nav span { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+  </nav>
+
+  <h1>1000 Most Common English Words (Intermediate)</h1>
+  <div><strong>Page 9 of 10</strong></div>
+
+  <div id="flashcard" onclick="flipCard()">Loading...</div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <div class="page-nav">
+    <a href="commonwords-page1.html">1</a>
+    <a href="commonwords-page9.html"><span>2</span></a>
+    <a href="commonwords-page3.html">3</a>
+    <a href="commonwords-page4.html">4</a>
+    <a href="commonwords-page5.html">5</a>
+    <a href="commonwords-page6.html">6</a>
+    <a href="commonwords-page7.html">7</a>
+    <a href="commonwords-page8.html">8</a>
+    <a href="commonwords-page9.html">9</a>
+    <a href="commonwords-page10.html">10</a>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html">🏠 Home</a>
+    <a href="flashcards.html">← Back to Flashcards</a>
+  </div>
+
+  <script>
+const flashcards = [
+  { word: "background", part: "noun", definition: "the part behind something or someone", example: "The mountains were in the background." },
+  { word: "balance", part: "noun", definition: "a state where things are equal or stable", example: "Work-life balance is important." },
+  { word: "ban", part: "verb", definition: "to officially say something is not allowed", example: "They banned smoking indoors." },
+  { word: "bar", part: "noun", definition: "a place that serves drinks or a long piece of material", example: "We met at the bar." },
+  { word: "bare", part: "adjective", definition: "without covering or decoration", example: "He walked in with bare feet." },
+  { word: "bargain", part: "noun", definition: "a good deal or price", example: "These shoes were a real bargain." },
+  { word: "base", part: "noun", definition: "the bottom or foundation of something", example: "The base of the statue cracked." },
+  { word: "basic", part: "adjective", definition: "simple or most important", example: "She learned the basic rules." },
+  { word: "battle", part: "noun", definition: "a fight or struggle", example: "They won the final battle." },
+  { word: "beach", part: "noun", definition: "a shore beside a body of water", example: "We walked along the beach." },
+  { word: "beam", part: "noun", definition: "a long piece of wood or light", example: "Sunlight came through the beam." },
+  { word: "bear", part: "verb", definition: "to carry or support; also an animal", example: "I can’t bear the pain." },
+  { word: "beat", part: "verb", definition: "to win against or strike repeatedly", example: "Our team beat the champions." },
+  { word: "beauty", part: "noun", definition: "a quality of being attractive", example: "Her beauty is admired." },
+  { word: "become", part: "verb", definition: "to begin to be something", example: "He became a doctor." },
+  { word: "beg", part: "verb", definition: "to ask for something desperately", example: "The dog begged for food." },
+  { word: "beginning", part: "noun", definition: "the start of something", example: "The beginning was slow." },
+  { word: "behavior", part: "noun", definition: "the way someone acts", example: "Good behavior is rewarded." },
+  { word: "belief", part: "noun", definition: "something you think is true", example: "Her belief in justice is strong." },
+  { word: "belong", part: "verb", definition: "to be part of or owned by", example: "These books belong to me." },
+  { word: "belt", part: "noun", definition: "a strap worn around the waist", example: "His belt was too tight." },
+  { word: "benefit", part: "noun", definition: "an advantage or helpful effect", example: "Exercise has many benefits." },
+  { word: "beside", part: "preposition", definition: "next to", example: "She sat beside her friend." },
+  { word: "bet", part: "verb", definition: "to risk something on a prediction", example: "I bet it will rain tomorrow." },
+  { word: "beyond", part: "preposition", definition: "further than or outside of", example: "This task is beyond my skills." },
+  { word: "bill", part: "noun", definition: "a request for payment", example: "The electricity bill arrived." },
+  { word: "birth", part: "noun", definition: "the beginning of life", example: "She gave birth to a boy." },
+  { word: "bite", part: "verb", definition: "to cut with the teeth", example: "The dog bit his hand." },
+  { word: "blame", part: "verb", definition: "to say someone is responsible for something bad", example: "He blamed her for the mistake." },
+  { word: "blanket", part: "noun", definition: "a warm covering", example: "She covered herself with a blanket." },
+  { word: "blind", part: "adjective", definition: "unable to see", example: "The blind man used a cane." },
+  { word: "block", part: "verb", definition: "to stop something from passing", example: "The road was blocked." },
+  { word: "blood", part: "noun", definition: "the red liquid in the body", example: "He lost a lot of blood." },
+  { word: "blow", part: "verb", definition: "to move air or strike", example: "The wind blew all day." },
+  { word: "blue", part: "adjective", definition: "a color like the sky", example: "He wore a blue shirt." },
+  { word: "board", part: "noun", definition: "a flat, thin, rectangular object", example: "She wrote on the board." },
+  { word: "boil", part: "verb", definition: "to heat a liquid until it bubbles", example: "Boil the water for tea." },
+  { word: "bomb", part: "noun", definition: "a weapon that explodes", example: "They found an old bomb." },
+  { word: "bone", part: "noun", definition: "a hard part of the body", example: "He broke a bone in his arm." },
+  { word: "book", part: "noun", definition: "a set of written pages", example: "I’m reading a good book." },
+  { word: "border", part: "noun", definition: "a line between areas or countries", example: "We crossed the border." },
+  { word: "borrow", part: "verb", definition: "to take and return later", example: "Can I borrow your pen?" },
+  { word: "bother", part: "verb", definition: "to annoy or disturb", example: "Don’t bother me now." },
+  { word: "bottle", part: "noun", definition: "a container for liquids", example: "He drank a bottle of water." },
+  { word: "bottom", part: "noun", definition: "the lowest part", example: "Look at the bottom of the page." },
+  { word: "brain", part: "noun", definition: "the organ used for thinking", example: "Use your brain!" },
+  { word: "branch", part: "noun", definition: "a part of a tree or organization", example: "That branch is breaking." },
+  { word: "brave", part: "adjective", definition: "showing courage", example: "She made a brave choice." },
+  { word: "bread", part: "noun", definition: "a food made from flour and water", example: "I baked fresh bread." },
+  { word: "break", part: "verb", definition: "to separate into pieces or stop", example: "Let’s take a break." },
+  { word: "breathe", part: "verb", definition: "to take air into the lungs", example: "Just breathe deeply." },
+  { word: "brick", part: "noun", definition: "a block used in building", example: "They built a wall with bricks." },
+  { word: "bridge", part: "noun", definition: "a structure over water or a road", example: "We crossed the bridge." },
+  { word: "brief", part: "adjective", definition: "short in time", example: "Keep your answer brief." },
+  { word: "bright", part: "adjective", definition: "full of light or intelligence", example: "The sun is bright." },
+  { word: "bring", part: "verb", definition: "to take something to someone", example: "Please bring your ID." },
+  { word: "broad", part: "adjective", definition: "wide", example: "The river was broad." },
+  { word: "broken", part: "adjective", definition: "damaged and not working", example: "The lamp is broken." },
+  { word: "brother", part: "noun", definition: "a male sibling", example: "My brother is younger." },
+  { word: "brown", part: "adjective", definition: "a dark color like chocolate", example: "She has brown eyes." },
+  { word: "brush", part: "verb", definition: "to clean or arrange with a tool", example: "Brush your hair." },
+  { word: "build", part: "verb", definition: "to make something", example: "They built a new house." },
+  { word: "burn", part: "verb", definition: "to be on fire or get damaged by heat", example: "The toast is burned." },
+  { word: "burst", part: "verb", definition: "to break open suddenly", example: "The balloon burst." },
+  { word: "bury", part: "verb", definition: "to put something in the ground", example: "They buried the treasure." },
+  { word: "bus", part: "noun", definition: "a large vehicle for public transport", example: "He caught the bus." },
+  { word: "bush", part: "noun", definition: "a low plant with many branches", example: "They trimmed the bush." },
+  { word: "business", part: "noun", definition: "a company or trade", example: "She owns a small business." },
+  { word: "busy", part: "adjective", definition: "having many things to do", example: "I’m busy right now." },
+  { word: "butter", part: "noun", definition: "a soft yellow food made from milk", example: "Spread butter on the bread." },
+  { word: "button", part: "noun", definition: "a small object used to fasten clothes", example: "He pushed the button." },
+  { word: "buy", part: "verb", definition: "to get something by paying for it", example: "They bought a new car." },
+  { word: "cage", part: "noun", definition: "a container for animals", example: "The bird is in a cage." },
+  { word: "cake", part: "noun", definition: "a sweet baked food", example: "She made a chocolate cake." },
+  { word: "call", part: "verb", definition: "to say something loudly or phone someone", example: "Call me later." },
+  { word: "calm", part: "adjective", definition: "not angry or excited", example: "Stay calm." },
+  { word: "camera", part: "noun", definition: "a device for taking pictures", example: "He used a digital camera." },
+  { word: "camp", part: "noun", definition: "a place with tents or cabins", example: "We stayed at the camp." },
+  { word: "can", part: "verb", definition: "to be able to", example: "She can swim." },
+  { word: "cancel", part: "verb", definition: "to stop something from happening", example: "They canceled the event." },
+  { word: "cancer", part: "noun", definition: "a serious disease with uncontrolled cell growth", example: "He is being treated for cancer." },
+  { word: "cap", part: "noun", definition: "a soft flat hat", example: "He wore a baseball cap." },
+  { word: "capital", part: "noun", definition: "a city where the government is located", example: "Paris is the capital of France." },
+  { word: "captain", part: "noun", definition: "the leader of a ship or team", example: "The captain gave orders." },
+  { word: "car", part: "noun", definition: "a vehicle with four wheels", example: "She drives a red car." },
+  { word: "card", part: "noun", definition: "a flat piece of paper or plastic", example: "He gave her a birthday card." },
+  { word: "care", part: "noun", definition: "attention or concern", example: "She takes care of her pets." },
+  { word: "career", part: "noun", definition: "a long-term job path", example: "He has a career in finance." },
+  { word: "careful", part: "adjective", definition: "doing something with attention", example: "Be careful with that!" },
+  { word: "carpet", part: "noun", definition: "a floor covering made of fabric", example: "The carpet is soft." },
+  { word: "carry", part: "verb", definition: "to hold and move something", example: "Can you carry this bag?" },
+  { word: "cartoon", part: "noun", definition: "a funny drawing or animated film", example: "He watched a cartoon." },
+  { word: "case", part: "noun", definition: "an example or container", example: "This is a special case." },
+  { word: "cash", part: "noun", definition: "money in the form of coins or bills", example: "Do you have any cash?" },
+  { word: "castle", part: "noun", definition: "a large building from old times", example: "They visited a castle." },
+  { word: "cat", part: "noun", definition: "a small animal kept as a pet", example: "The cat is sleeping." },
+  { word: "catch", part: "verb", definition: "to get hold of something", example: "Can you catch the ball?" },
+  { word: "category", part: "noun", definition: "a group or class of things", example: "This falls into another category." },
+  { word: "cause", part: "noun", definition: "a reason for something", example: "What caused the accident?" },
+  { word: "cave", part: "noun", definition: "a large hole in the side of a hill or mountain", example: "They explored the cave." },
+  { word: "ceiling", part: "noun", definition: "the top inside surface of a room", example: "The ceiling is high." },
+  { word: "celebrate", part: "verb", definition: "to mark a special event with joy", example: "We celebrated her birthday." },
+];
+
+    let index = 0;
+    let flipped = false;
+    const card = document.getElementById("flashcard");
+
+    function showCard() {
+      card.classList.remove("flipped");
+      flipped = false;
+      card.innerHTML = `<div class="info">${flashcards[index].word}</div>`;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        const { word, part, definition, example } = flashcards[index];
+        card.innerHTML = `
+          <div class="info"><strong>${word}</strong></div>
+          <div class="info"><em>(${part})</em></div>
+          <div class="info">${definition}</div>
+          <div class="info"><small>${example}</small></div>
+        `;
+        card.classList.add("flipped");
+        speak(word);
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +10,9 @@
     nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
     h1 { text-align: center; font-size: 2rem; margin: 2rem 0 1rem; color: #2c3e50; }
     .container { max-width: 900px; margin: auto; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .question { margin-bottom: 1.5rem; }
+    .question { margin-bottom: 2rem; }
     input[type="text"] { border: none; border-bottom: 1px solid #aaa; padding: 4px 8px; font-size: 1rem; width: 200px; }
+    .choices { margin-top: 0.5rem; color: #555; font-size: 0.9rem; }
     .feedback { font-weight: bold; margin-top: 0.5rem; }
     .correct { color: green; }
     .incorrect { color: red; }
@@ -25,9 +25,10 @@
       cursor: pointer;
     }
     .buttons a:hover, .buttons button:hover { background-color: #2980b9; }
-  .word-bank { margin: 2rem 0; padding: 1rem; background: #eef6fb; border-left: 4px solid #3498db; border-radius: 4px; } .word-bank h3 { margin-top: 0; } </style>
+  </style>
 </head>
 <body>
+
   <nav>
     <a href="index.html">Home</a>
     <a href="flashcards.html">Flashcards</a>
@@ -37,32 +38,153 @@
   </nav>
 
   <h1>Life Vocabulary Practice</h1>
+
   <div class="container">
-    <p><strong>Instructions:</strong> Fill in the blank with the correct word. Then click "Check Answers."</p>
-<div class='word-bank'><h3>Word Bank</h3><p>anatomy, goals, plans, interpersonal, population, updated, assessments, encouragement, career, learning, doors, work, market, problem, integrity, time, communication, dreams, rituals, family, shared, love</p></div><div class="question">1. To become a successful personal trainer, you need a strong understanding of human <input type='text' id='q1' data-answer='anatomy'> and exercise physiology.</div>
-<div class="question">2. Many trainers work with clients to help them achieve their fitness <input type='text' id='q2' data-answer='goals'>, such as weight loss or muscle gain.</div>
-<div class="question">3. Creating personalized workout <input type='text' id='q3' data-answer='plans'> is a key skill for a personal trainer.</div>
-<div class="question">4. Good communication and <input type='text' id='q4' data-answer='interpersonal'> skills are essential for building rapport with clients.</div>
-<div class="question">5. Some personal trainers specialize in certain <input type='text' id='q5' data-answer='population'> groups, like athletes or seniors.</div>
-<div class="question">6. Staying <input type='text' id='q6' data-answer='updated'> on the latest fitness trends and research is important for professional growth.</div>
-<div class="question">7. A personal trainer might assess a client's current fitness level through various <input type='text' id='q7' data-answer='assessments'> and measurements.</div>
-<div class="question">8. Providing motivation and <input type='text' id='q8' data-answer='encouragement'> is a crucial part of a trainer's role.</div>
-<div class="question">9. Choosing a fulfilling <input type='text' id='q9' data-answer='career'> path often involves considering your interests and skills.</div>
-<div class="question">10. Continuous <input type='text' id='q10' data-answer='learning'> and development can lead to career advancement.</div>
-<div class="question">11. Networking with professionals in your field can open up new <input type='text' id='q11' data-answer='doors'> and opportunities.</div>
-<div class="question">12. Setting clear <input type='text' id='q12' data-answer='career'> goals can help you stay focused and motivated in your career.</div>
-<div class="question">13. Maintaining a healthy <input type='text' id='q13' data-answer='work'>-life balance is important for overall well-being.</div>
-<div class="question">14. Adapting to changes in the job <input type='text' id='q14' data-answer='market'> is crucial for long-term success.</div>
-<div class="question">15. Strong <input type='text' id='q15' data-answer='problem'>-solving skills are valued in almost any profession.</div>
-<div class="question">16. Ethical behavior and <input type='text' id='q16' data-answer='integrity'> are fundamental to a positive work environment.</div>
-<div class="question">17. Spending quality <input type='text' id='q17' data-answer='time'> with family strengthens bonds and creates lasting memories.</div>
-<div class="question">18. Effective <input type='text' id='q18' data-answer='communication'> is key to resolving conflicts and maintaining healthy family relationships.</div>
-<div class="question">19. Supporting each other's <input type='text' id='q19' data-answer='dreams'> and aspirations is important in a family.</div>
-<div class="question">20. Creating family <input type='text' id='q20' data-answer='rituals'> and traditions can provide a sense of belonging and connection.</div>
-<div class="question">21. Balancing <input type='text' id='q21' data-answer='family'> responsibilities with work demands can be challenging.</div>
-<div class="question">22. Open and honest <input type='text' id='q22' data-answer='communication'> about feelings and needs is vital in a family.</div>
-<div class="question">23. Making time for <input type='text' id='q23' data-answer='shared'> activities together can enhance family unity.</div>
-<div class="question">24. Showing <input type='text' id='q24' data-answer='love'> and appreciation for family members fosters a positive atmosphere.</div>
+    <p><strong>Instructions:</strong> Fill in the blank with the correct word. Choose from the four options given for each sentence.</p>
+
+    <div class="question">
+      1. To become a successful personal trainer, you need a strong understanding of human <input type="text" id="q1" data-answer="anatomy"> and exercise physiology.
+      <div class="choices">Choices: biology, anatomy, chemistry, physics</div>
+      <div id="f1" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      2. Many trainers work with clients to help them achieve their fitness <input type="text" id="q2" data-answer="goals">, such as weight loss or muscle gain.
+      <div class="choices">Choices: hobbies, sports, goals, interests</div>
+      <div id="f2" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      3. Creating personalized workout <input type="text" id="q3" data-answer="plans"> is a key skill for a personal trainer.
+      <div class="choices">Choices: games, plans, equipment, theories</div>
+      <div id="f3" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      4. Good communication and <input type="text" id="q4" data-answer="interpersonal"> skills are essential for building rapport with clients.
+      <div class="choices">Choices: technical, artistic, interpersonal, mechanical</div>
+      <div id="f4" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      5. Some personal trainers specialize in certain <input type="text" id="q5" data-answer="population"> groups, like athletes or seniors.
+      <div class="choices">Choices: age, friend, population, hobby</div>
+      <div id="f5" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      6. Staying <input type="text" id="q6" data-answer="updated"> on the latest fitness trends and research is important for professional growth.
+      <div class="choices">Choices: secret, outdated, updated, confused</div>
+      <div id="f6" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      7. A personal trainer might assess a client's current fitness level through various <input type="text" id="q7" data-answer="assessments"> and measurements.
+      <div class="choices">Choices: stories, assessments, guesses, opinions</div>
+      <div id="f7" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      8. Providing motivation and <input type="text" id="q8" data-answer="encouragement"> is a crucial part of a trainer's role.
+      <div class="choices">Choices: payment, equipment, encouragement, criticism</div>
+      <div id="f8" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      9. Choosing a fulfilling <input type="text" id="q9" data-answer="career"> path often involves considering your interests and skills.
+      <div class="choices">Choices: travel, career, hobby, sport</div>
+      <div id="f9" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      10. Continuous <input type="text" id="q10" data-answer="learning"> and development can lead to career advancement.
+      <div class="choices">Choices: resting, learning, delaying, ignoring</div>
+      <div id="f10" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      11. Networking with professionals in your field can open up new <input type="text" id="q11" data-answer="doors"> and opportunities.
+      <div class="choices">Choices: problems, doors, secrets, arguments</div>
+      <div id="f11" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      12. Setting clear <input type="text" id="q12" data-answer="career"> goals can help you stay focused and motivated in your career.
+      <div class="choices">Choices: financial, personal, career, travel</div>
+      <div id="f12" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      13. Maintaining a healthy <input type="text" id="q13" data-answer="work">-life balance is important for overall well-being.
+      <div class="choices">Choices: school, social, work, play</div>
+      <div id="f13" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      14. Adapting to changes in the job <input type="text" id="q14" data-answer="market"> is crucial for long-term success.
+      <div class="choices">Choices: market, weather, food, music</div>
+      <div id="f14" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      15. Strong <input type="text" id="q15" data-answer="problem">-solving skills are valued in almost any profession.
+      <div class="choices">Choices: cooking, cleaning, problem, artistic</div>
+      <div id="f15" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      16. Ethical behavior and <input type="text" id="q16" data-answer="integrity"> are fundamental to a positive work environment.
+      <div class="choices">Choices: dishonesty, lateness, integrity, rudeness</div>
+      <div id="f16" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      17. Spending quality <input type="text" id="q17" data-answer="time"> with family strengthens bonds and creates lasting memories.
+      <div class="choices">Choices: money, time, food, silence</div>
+      <div id="f17" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      18. Effective <input type="text" id="q18" data-answer="communication"> is key to resolving conflicts and maintaining healthy family relationships.
+      <div class="choices">Choices: fighting, communication, ignoring, hiding</div>
+      <div id="f18" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      19. Supporting each other's <input type="text" id="q19" data-answer="dreams"> and aspirations is important in a family.
+      <div class="choices">Choices: chores, secrets, dreams, complaints</div>
+      <div id="f19" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      20. Creating family <input type="text" id="q20" data-answer="rituals"> and traditions can provide a sense of belonging and connection.
+      <div class="choices">Choices: rules, arguments, rituals, problems</div>
+      <div id="f20" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      21. Balancing <input type="text" id="q21" data-answer="family"> responsibilities with work demands can be challenging.
+      <div class="choices">Choices: pet, car, family, friend</div>
+      <div id="f21" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      22. Open and honest <input type="text" id="q22" data-answer="communication"> about feelings and needs is vital in a family.
+      <div class="choices">Choices: avoidance, communication, guessing, blaming</div>
+      <div id="f22" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      23. Making time for <input type="text" id="q23" data-answer="shared"> activities together can enhance family unity.
+      <div class="choices">Choices: separate, individual, shared, secret</div>
+      <div id="f23" class="feedback"></div>
+    </div>
+
+    <div class="question">
+      24. Showing <input type="text" id="q24" data-answer="love"> and appreciation for family members fosters a positive atmosphere.
+      <div class="choices">Choices: disrespect, anger, love, jealousy</div>
+      <div id="f24" class="feedback"></div>
+    </div>
 
     <div class="buttons">
       <button onclick="checkAnswers()">Check Answers</button>
@@ -77,22 +199,17 @@
         const input = document.getElementById('q' + i);
         const correct = input.dataset.answer.trim().toLowerCase();
         const user = input.value.trim().toLowerCase();
-        let feedback = document.getElementById('f' + i);
-        if (!feedback) {
-          feedback = document.createElement('div');
-          feedback.id = 'f' + i;
-          feedback.className = 'feedback';
-          input.parentNode.appendChild(feedback);
-        }
+        const fb = document.getElementById('f' + i);
         if (user === correct) {
-          feedback.textContent = '✅ Correct';
-          feedback.className = 'feedback correct';
+          fb.textContent = '✅ Correct';
+          fb.className = 'feedback correct';
         } else {
-          feedback.textContent = `❌ Incorrect. Correct answer: "${correct}"`;
-          feedback.className = 'feedback incorrect';
+          fb.textContent = '❌ Incorrect. Correct: ' + correct;
+          fb.className = 'feedback incorrect';
         }
       }
     }
   </script>
+
 </body>
 </html>

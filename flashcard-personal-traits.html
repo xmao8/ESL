@@ -1,284 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flashcards – Personal Traits</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      color: #333;
-    }
-    nav {
-      background-color: #2c3e50;
-      padding: 1rem;
-    }
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    h1 {
-      margin: 1.5rem 0;
-      color: #2c3e50;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      max-width: 1000px;
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; }
+    nav { background: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0; color: #2c3e50; }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
       margin: auto;
-      padding: 1rem;
-    }
-    .card {
-      perspective: 1000px;
-    }
-    .card-inner {
-      position: relative;
-      width: 100%;
-      padding-top: 120%; /* aspect ratio */
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
-    .card.is-flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-face {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .card-front {
-      background-color: #3498db;
-      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       font-size: 1.2rem;
-      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-    .card-back {
-      background-color: #fff;
-      color: #333;
-      transform: rotateY(180deg);
-      text-align: left;
-      font-size: 0.9rem;
-      overflow-y: auto;
-    }
-    .card-back p {
-      margin: 0.5rem 0;
-    }
-    .buttons {
-      margin: 2rem 0 1rem;
-    }
-    .buttons a {
-      text-decoration: none;
-      margin: 0 0.5rem;
+    .flashcard.flipped {
       background-color: #3498db;
       color: white;
-      padding: 0.7rem 1.2rem;
+    }
+    .buttons { margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
       border-radius: 8px;
       font-weight: bold;
+      cursor: pointer;
     }
-    .buttons a:hover {
-      background-color: #2980b9;
-    }
+    button:hover { background: #2980b9; }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="flashcards.html">Flashcards</a>
-    <a href="practice.html">Practice</a>
-  </nav>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="flashcards.html">Flashcards</a>
+</nav>
 
-  <h1>Personal Traits Flashcards</h1>
+<h1>Personal Traits Flashcards</h1>
 
-  <div class="cards">
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">arrogant</div>
-        <div class="card-face card-back">
-          <strong>arrogant</strong><br>
-          Having an exaggerated sense of one’s own importance.<br>
-          <p>1. The arrogant applicant brushed off every question as if she already knew all the answers.</p>
-          <p>2. Tom’s arrogant tone made it difficult for his teammates to offer suggestions during the meeting.</p>
-        </div>
-      </div>
-    </div>
+<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">confident</div>
-        <div class="card-face card-back">
-          <strong>confident</strong><br>
-          Sure of oneself and one’s abilities; self-assured.<br>
-          <p>1. Maria spoke to the new patients with a confident tone that immediately put them at ease.</p>
-          <p>2. He felt confident about handling the scheduling system after just two days of training.</p>
-        </div>
-      </div>
-    </div>
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">friendly</div>
-        <div class="card-face card-back">
-          <strong>friendly</strong><br>
-          Pleasant, kind, and approachable; showing warmth.<br>
-          <p>1. The friendly receptionist greeted every patient with a smile and a “How are you today?”</p>
-          <p>2. Even under stress, Ana always maintains a friendly demeanor over the phone.</p>
-        </div>
-      </div>
-    </div>
+<script>
+const flashcards = [
+  { word: "Arrogant", definition: "Having an exaggerated sense of one’s own importance or abilities; overbearingly proud.", examples: "The arrogant applicant brushed off every question as if she already knew all the answers.\nTom’s arrogant tone made it difficult for his teammates to offer suggestions during the meeting." },
+  { word: "Confident", definition: "Sure of oneself and one’s abilities; having self-assurance.", examples: "Maria spoke to the new patients with a confident tone that immediately put them at ease.\nHe felt confident about handling the scheduling system after just two days of training." },
+  { word: "Friendly", definition: "Pleasant, kind, and approachable; showing warmth toward others.", examples: "The friendly receptionist greeted every patient with a smile and a “How are you today?”\nEven under stress, Ana always maintains a friendly demeanor over the phone." },
+  { word: "Helpful", definition: "Willing to assist or support others; providing aid or useful information.", examples: "When the IT system went down, she was the first to offer helpful tips to get colleagues back online.\nJohn was so helpful that he stayed late to fax the doctor’s referral forms." },
+  { word: "Intelligent", definition: "Having a quick, keen mind and the ability to learn and understand readily.", examples: "The intelligent candidate solved the complex billing issue in minutes.\nHer intelligent questions about the new software showed she’d researched it in advance." },
+  { word: "Sensitive", definition: "Aware of and responsive to the feelings of others; emotionally perceptive.", examples: "She was sensitive to Mrs. Chen’s anxiety and spoke in a calm, reassuring voice.\nBeing sensitive to cultural differences helps him communicate effectively with a diverse patient base." },
+  { word: "Thoughtful", definition: "Showing consideration for the needs of others; careful and deliberate.", examples: "It was thoughtful of Jamie to bring an extra cup of coffee for the late-night staff.\nShe left a thoughtful note on the doctor’s desk summarizing patient follow-ups." },
+  { word: "Careful", definition: "Taking pains to avoid mistakes or harm; attentive to detail.", examples: "The careful assistant triple-checked each patient’s file before the doctor’s rounds.\nWhen handling confidential records, she is always extremely careful." },
+  { word: "Enthusiastic", definition: "Showing intense and eager enjoyment or interest; very positive and energetic.", examples: "His enthusiastic greeting brightened every patient’s morning.\nShe tackled the new scheduling software with an enthusiastic 'Let’s try it!' attitude." },
+  { word: "Funny", definition: "Amusing or comical; able to make others laugh.", examples: "Her funny anecdotes during breaks helped reduce everyone’s stress.\nEven in a busy office, John’s funny jokes kept morale high." },
+  { word: "Honest", definition: "Truthful and trustworthy; free from deceit.", examples: "She was honest about a billing error and corrected it immediately.\nThe clinic values staff who are honest with patients about wait times." },
+  { word: "Motivated", definition: "Driven by a strong desire to achieve or succeed; highly proactive.", examples: "As a motivated team member, she volunteered to organize the new filing system.\nHis motivated approach meant fewer errors and smoother daily operations." },
+  { word: "Sneaky", definition: "Acting in a secretive or furtive way, often to deceive.", examples: "A sneaky coworker tried to take credit for her thorough patient intake reports.\nThe manager warned against any sneaky attempts to bypass the proper approval chain." },
+  { word: "Warm", definition: "Kind, affectionate, and welcoming in manner.", examples: "Her warm smile immediately comforted every nervous patient.\nHe spoke in a warm tone that made even complicated instructions feel reassuring." },
+];
+  let index = 0;
+  let flipped = false;
+  const card = document.getElementById("flashcard");
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">helpful</div>
-        <div class="card-face card-back">
-          <strong>helpful</strong><br>
-          Willing to assist or support others; providing aid.<br>
-          <p>1. When the IT system went down, she was the first to offer helpful tips to get colleagues back online.</p>
-          <p>2. John was so helpful that he stayed late to fax the doctor’s referral forms.</p>
-        </div>
-      </div>
-    </div>
+  function showCard() {
+    card.classList.remove("flipped");
+    flipped = false;
+    card.innerHTML = flashcards[index].word;
+  }
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">intelligent</div>
-        <div class="card-face card-back">
-          <strong>intelligent</strong><br>
-          Having a quick, keen mind; able to understand readily.<br>
-          <p>1. The intelligent candidate solved the complex billing issue in minutes.</p>
-          <p>2. Her intelligent questions about the new software showed she’d researched it in advance.</p>
-        </div>
-      </div>
-    </div>
+  function flipCard() {
+    if (!flipped) {
+      const { word, definition, examples } = flashcards[index];
+      card.innerHTML = `<strong>${word}</strong><br>${definition}<br><br><em>${examples.replace(/\n/g, "<br>")}</em>`;
+      card.classList.add("flipped");
+      speak(word);
+      flipped = true;
+    } else {
+      showCard();
+    }
+  }
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">sensitive</div>
-        <div class="card-face card-back">
-          <strong>sensitive</strong><br>
-          Aware of and responsive to the feelings of others.<br>
-          <p>1. She was sensitive to Mrs. Chen’s anxiety and spoke in a calm, reassuring voice.</p>
-          <p>2. Being sensitive to cultural differences helps him communicate effectively with a diverse patient base.</p>
-        </div>
-      </div>
-    </div>
+  function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    speechSynthesis.speak(utterance);
+  }
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">thoughtful</div>
-        <div class="card-face card-back">
-          <strong>thoughtful</strong><br>
-          Showing consideration for others; careful and deliberate.<br>
-          <p>1. It was thoughtful of Jamie to bring an extra cup of coffee for the late-night staff.</p>
-          <p>2. She left a thoughtful note on the doctor’s desk summarizing patient follow-ups.</p>
-        </div>
-      </div>
-    </div>
+  function nextCard() {
+    index = (index + 1) % flashcards.length;
+    showCard();
+  }
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">careful</div>
-        <div class="card-face card-back">
-          <strong>careful</strong><br>
-          Taking pains to avoid mistakes or harm; attentive to detail.<br>
-          <p>1. The careful assistant triple-checked each patient’s file before the doctor’s rounds.</p>
-          <p>2. When handling confidential records, she is always extremely careful.</p>
-        </div>
-      </div>
-    </div>
+  function prevCard() {
+    index = (index - 1 + flashcards.length) % flashcards.length;
+    showCard();
+  }
 
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">enthusiastic</div>
-        <div class="card-face card-back">
-          <strong>enthusiastic</strong><br>
-          Showing eager enjoyment or interest; very positive.<br>
-          <p>1. His enthusiastic greeting brightened every patient’s morning.</p>
-          <p>2. She tackled the new scheduling software with an enthusiastic “Let’s try it!” attitude.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">funny</div>
-        <div class="card-face card-back">
-          <strong>funny</strong><br>
-          Amusing or comical; able to make others laugh.<br>
-          <p>1. Her funny anecdotes during breaks helped reduce everyone’s stress.</p>
-          <p>2. Even in a busy office, John’s funny jokes kept morale high.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">honest</div>
-        <div class="card-face card-back">
-          <strong>honest</strong><br>
-          Truthful and trustworthy; free from deceit.<br>
-          <p>1. She was honest about a billing error and corrected it immediately.</p>
-          <p>2. The clinic values staff who are honest with patients about wait times.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">motivated</div>
-        <div class="card-face card-back">
-          <strong>motivated</strong><br>
-          Driven by a strong desire to achieve; proactive.<br>
-          <p>1. As a motivated team member, she volunteered to organize the new filing system.</p>
-          <p>2. His motivated approach meant fewer errors and smoother daily operations.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">sneaky</div>
-        <div class="card-face card-back">
-          <strong>sneaky</strong><br>
-          Acting in a secretive or furtive way, often to deceive.<br>
-          <p>1. A sneaky coworker tried to take credit for her thorough patient intake reports.</p>
-          <p>2. The manager warned against any sneaky attempts to bypass the proper approval chain.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-inner">
-        <div class="card-face card-front">warm</div>
-        <div class="card-face card-back">
-          <strong>warm</strong><br>
-          Kind, affectionate, and welcoming in manner.<br>
-          <p>1. Her warm smile immediately comforted every nervous patient.</p>
-          <p>2. He spoke in a warm tone that made even complicated instructions feel reassuring.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="buttons">
-    <a href="flashcards.html">← Back to Flashcards</a>
-    <a href="index.html">🏠 Home</a>
-  </div>
+  showCard();
+</script>
 
 </body>
 </html>

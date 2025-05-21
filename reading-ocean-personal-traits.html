@@ -1,132 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding the OCEAN Personality Traits</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading – OCEAN Personality Traits</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9fb;
+            margin: 0;
+            padding: 0;
             color: #333;
         }
-        h1, h2, h3 {
+        nav {
+            background-color: #2c3e50;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 2rem 0;
             color: #2c3e50;
         }
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        p {
-            margin-bottom: 10px;
+        p, ul {
+            line-height: 1.6;
+        }
+        ul.vocab {
+            list-style: none;
+            padding: 0;
+        }
+        ul.vocab > li {
+            margin-bottom: 1rem;
+        }
+        ul.vocab li ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+        }
+        .speaker {
+            cursor: pointer;
+            margin-left: 0.3rem;
+            color: #3498db;
+        }
+        .speaker:hover {
+            color: #2980b9;
+        }
+        .questions {
+            margin: 2rem 0;
+        }
+        .questions li {
+            margin-bottom: 0.8rem;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
         }
         .narrator {
             font-style: italic;
             color: #555;
         }
+        .trait-section h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #3498db;
+        }
+        .trait-section h3 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
     </style>
 </head>
 <body>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../daily.html">Daily English</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../practice.html">Practice</a>
+    </nav>
+
     <h1>Understanding the OCEAN Personality Traits</h1>
 
-    <p class="narrator">Would you know where to start if someone asked you to describe yourself? Personality is complicated, but psychologists have developed five key factors to assess it — represented by the acronym OCEAN:</p>
+    <div class="container">
+        <p class="narrator">Would you know where to start if someone asked you to describe yourself? Personality is complicated, but psychologists have developed five key factors to assess it — represented by the acronym OCEAN:</p>
 
-    <ul>
-        <li><strong>Openness</strong></li>
-        <li><strong>Conscientiousness</strong></li>
-        <li><strong>Extroversion</strong></li>
-        <li><strong>Agreeableness</strong></li>
-        <li><strong>Neuroticism</strong></li>
-    </ul>
+        <ul>
+            <li><strong>Openness</strong></li>
+            <li><strong>Conscientiousness</strong></li>
+            <li><strong>Extroversion</strong></li>
+            <li><strong>Agreeableness</strong></li>
+            <li><strong>Neuroticism</strong></li>
+        </ul>
 
-    <p class="narrator">Let’s explore each of these five personality traits and identify signs that show whether you score high or low in each area.</p>
+        <p class="narrator">Let’s explore each of these five personality traits and identify signs that show whether you score high or low in each area.</p>
 
-    <h2>1. Openness</h2>
-    <p>Do you enjoy creativity and new experiences?</p>
-    <h3>Signs of High Openness:</h3>
-    <ul>
-        <li>You prefer and embrace abstract concepts and thinking.</li>
-        <li>You enjoy creative endeavors and innovation.</li>
-        <li>You enjoy trying new activities and hobbies.</li>
-    </ul>
-    <h3>Signs of Low Openness:</h3>
-    <ul>
-        <li>You prefer solid facts over abstract ideas.</li>
-        <li>You value tradition and consistency.</li>
-        <li>You are rigid in your routines and practices.</li>
-    </ul>
+        <div class="trait-section">
+            <h2>1. Openness</h2>
+            <p>Do you enjoy creativity and new experiences?</p>
+            <h3>Signs of High Openness:</h3>
+            <ul>
+                <li>You prefer and embrace abstract concepts and thinking.</li>
+                <li>You enjoy creative endeavors and innovation.</li>
+                <li>You enjoy trying new activities and hobbies.</li>
+            </ul>
+            <h3>Signs of Low Openness:</h3>
+            <ul>
+                <li>You prefer solid facts over abstract ideas.</li>
+                <li>You value tradition and consistency.</li>
+                <li>You are rigid in your routines and practices.</li>
+            </ul>
+        </div>
 
-    <h2>2. Conscientiousness</h2>
-    <p>Are you organized, goal-focused, and responsible?</p>
-    <h3>Signs of High Conscientiousness:</h3>
-    <ul>
-        <li>You're schedule-oriented and focused on goals.</li>
-        <li>You pay attention to detail and manage the small stuff.</li>
-        <li>You plan for the future and prepare for challenges.</li>
-    </ul>
-    <h3>Signs of Low Conscientiousness:</h3>
-    <ul>
-        <li>You tend to be disorganized and cluttered.</li>
-        <li>You act carelessly and impulsively.</li>
-        <li>You procrastinate and leave things until the last minute.</li>
-    </ul>
+        <div class="trait-section">
+            <h2>2. Conscientiousness</h2>
+            <p>Are you organized, goal-focused, and responsible?</p>
+            <h3>Signs of High Conscientiousness:</h3>
+            <ul>
+                <li>You're schedule-oriented and focused on goals.</li>
+                <li>You pay attention to detail and manage the small stuff.</li>
+                <li>You plan for the future and prepare for challenges.</li>
+            </ul>
+            <h3>Signs of Low Conscientiousness:</h3>
+            <ul>
+                <li>You tend to be disorganized and cluttered.</li>
+                <li>You act carelessly and impulsively.</li>
+                <li>You procrastinate and leave things until the last minute.</li>
+            </ul>
+        </div>
 
-    <h2>3. Extroversion</h2>
-    <p>Do you thrive in social settings and enjoy being around others?</p>
-    <h3>Signs of High Extroversion:</h3>
-    <ul>
-        <li>You enjoy being the center of attention.</li>
-        <li>You're people-oriented in most situations.</li>
-        <li>You often speak before thinking.</li>
-    </ul>
-    <h3>Signs of Low Extroversion (Introversion):</h3>
-    <ul>
-        <li>You prefer solitude or small gatherings.</li>
-        <li>You're drained by too much socialization.</li>
-        <li>You think carefully before speaking.</li>
-    </ul>
+        <div class="trait-section">
+            <h2>3. Extroversion</h2>
+            <p>Do you thrive in social settings and enjoy being around others?</p>
+            <h3>Signs of High Extroversion:</h3>
+            <ul>
+                <li>You enjoy being the center of attention.</li>
+                <li>You're people-oriented in most situations.</li>
+                <li>You often speak before thinking.</li>
+            </ul>
+            <h3>Signs of Low Extroversion (Introversion):</h3>
+            <ul>
+                <li>You prefer solitude or small gatherings.</li>
+                <li>You're drained by too much socialization.</li>
+                <li>You think carefully before speaking.</li>
+            </ul>
+        </div>
 
-    <h2>4. Agreeableness</h2>
-    <p>Are you kind, compassionate, and cooperative with others?</p>
-    <h3>Signs of High Agreeableness:</h3>
-    <ul>
-        <li>You enjoy forming connections with others.</li>
-        <li>You're empathetic and compassionate.</li>
-        <li>You contribute positively to your community.</li>
-    </ul>
-    <h3>Signs of Low Agreeableness:</h3>
-    <ul>
-        <li>You're callous and indifferent to others.</li>
-        <li>You may be bitter or antisocial.</li>
-        <li>You manipulate others for personal gain.</li>
-    </ul>
+        <div class="trait-section">
+            <h2>4. Agreeableness</h2>
+            <p>Are you kind, compassionate, and cooperative with others?</p>
+            <h3>Signs of High Agreeableness:</h3>
+            <ul>
+                <li>You enjoy forming connections with others.</li>
+                <li>You're empathetic and compassionate.</li>
+                <li>You contribute positively to your community.</li>
+            </ul>
+            <h3>Signs of Low Agreeableness:</h3>
+            <ul>
+                <li>You're callous and indifferent to others.</li>
+                <li>You may be bitter or antisocial.</li>
+                <li>You manipulate others for personal gain.</li>
+            </ul>
+        </div>
 
-    <h2>5. Neuroticism</h2>
-    <p>How do you handle stress and emotional situations?</p>
-    <h3>Signs of High Neuroticism:</h3>
-    <ul>
-        <li>You're moody and emotionally reactive.</li>
-        <li>You have a low tolerance for stress.</li>
-        <li>You're often on high alert or anxious.</li>
-    </ul>
-    <h3>Signs of Low Neuroticism:</h3>
-    <ul>
-        <li>You're calm and collected, even under stress.</li>
-        <li>You're easygoing and relaxed.</li>
-        <li>You're emotionally and mentally stable.</li>
-    </ul>
+        <div class="trait-section">
+            <h2>5. Neuroticism</h2>
+            <p>How do you handle stress and emotional situations?</p>
+            <h3>Signs of High Neuroticism:</h3>
+            <ul>
+                <li>You're moody and emotionally reactive.</li>
+                <li>You have a low tolerance for stress.</li>
+                <li>You're often on high alert or anxious.</li>
+            </ul>
+            <h3>Signs of Low Neuroticism:</h3>
+            <ul>
+                <li>You're calm and collected, even under stress.</li>
+                <li>You're easygoing and relaxed.</li>
+                <li>You're emotionally and mentally stable.</li>
+            </ul>
+        </div>
 
-    <h2>Conclusion</h2>
-    <p>Personality is complex, but the OCEAN model offers a great starting point for self-reflection.</p>
-    <p>Ask yourself:</p>
-    <ul>
-        <li>Which areas do you score high or low in?</li>
-        <li>How does your personality affect your daily life?</li>
-    </ul>
-    <p>Everyone is unique, and your answers may vary.</p>
+        <h2>Conclusion</h2>
+        <p>Personality is complex, but the OCEAN model offers a great starting point for self-reflection.</p>
+        <ul class="questions">
+            <li>Which areas do you score high or low in?</li>
+            <li>How does your personality affect your daily life?</li>
+        </ul>
+        <p>Everyone is unique, and your answers may vary.</p>
+
+        <h2>Vocabulary List</h2>
+        <ul class="vocab">
+            <li>
+                <strong>personality</strong>
+                <span class="speaker" onclick="speak('personality')" title="Listen">&#128266;</span>: the combination of characteristics or qualities that form an individual's distinctive character.
+                <ul>
+                    <li>Example: She has a very outgoing personality.</li>
+                    <li>Example: Your personality traits can influence your career choice.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>acronym</strong>
+                <span class="speaker" onclick="speak('acronym')" title="Listen">&#128266;</span>: an abbreviation formed from the initial letters of other words and pronounced as a word.
+                <ul>
+                    <li>Example: NASA is an acronym for National Aeronautics and Space Administration.</li>
+                    <li>Example: OCEAN is an acronym for the five major personality traits.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>openness</strong>
+                <span class="speaker" onclick="speak('openness')" title="Listen">&#128266;</span>: the quality of being accessible or approachable; here, specifically referring to being open to new ideas and experiences.
+                <ul>
+                    <li>Example: Her openness to new ideas made her a great innovator.</li>
+                    <li>Example: High openness is often linked to creativity.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>conscientiousness</strong>
+                <span class="speaker" onclick="speak('conscientiousness')" title="Listen">&#128266;</span>: the quality of wishing to do one's work or duty well and thoroughly.
+                <ul>
+                    <li>Example: His conscientiousness helped him succeed in his studies.</li>
+                    <li>Example: Being organized is a sign of high conscientiousness.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>extroversion</strong>
+                <span class="speaker" onclick="speak('extroversion')" title="Listen">&#128266;</span>: the act, state, or habit of being predominantly concerned with and obtaining gratification from what is outside the self.
+                <ul>
+                    <li>Example: Her extroversion means she loves social gatherings.</li>
+                    <li>Example: People with high extroversion are often described as talkative.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>agreeableness</strong>
+                <span class="speaker" onclick="speak('agreeableness')" title="Listen">&#128266;</span>: the quality of being pleasant and willing to fit in with other people's wishes.
+                <ul>
+                    <li>Example: His agreeableness made him a popular team member.</li>
+                    <li>Example: Empathy is a key aspect of agreeableness.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>neuroticism</strong>
+                <span class="speaker" onclick="speak('neuroticism')" title="Listen">&#128266;</span>: a personality trait characterized by anxiety, moodiness, worry, envy, and jealousy.
+                <ul>
+                    <li>Example: High neuroticism can make it difficult to handle stress.</li>
+                    <li>Example: People with low neuroticism are usually calm and relaxed.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>abstract concepts</strong>
+                <span class="speaker" onclick="speak('abstract concepts')" title="Listen">&#128266;</span>: ideas that are not concrete or physical, but rather theoretical or imaginative.
+                <ul>
+                    <li>Example: Philosophy often deals with abstract concepts like justice and truth.</li>
+                    <li>Example: People with high openness enjoy exploring abstract concepts.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>procrastinate</strong>
+                <span class="speaker" onclick="speak('procrastinate')" title="Listen">&#128266;</span>: to delay or postpone action; put off doing something.
+                <ul>
+                    <li>Example: I always procrastinate when it comes to doing my taxes.</li>
+                    <li>Example: Low conscientiousness can lead to a tendency to procrastinate.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>solitude</strong>
+                <span class="speaker" onclick="speak('solitude')" title="Listen">&#128266;</span>: the state or situation of being alone.
+                <ul>
+                    <li>Example: She enjoys periods of solitude for reading and reflection.</li>
+                    <li>Example: Introverts often prefer solitude over large crowds.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>empathetic</strong>
+                <span class="speaker" onclick="speak('empathetic')" title="Listen">&#128266;</span>: showing an ability to understand and share the feelings of another.
+                <ul>
+                    <li>Example: An empathetic person can truly understand what others are going through.</li>
+                    <li>Example: Being empathetic is a sign of high agreeableness.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>callous</strong>
+                <span class="speaker" onclick="speak('callous')" title="Listen">&#128266;</span>: showing or having an insensitive and cruel disregard for others.
+                <ul>
+                    <li>Example: His callous remarks upset everyone.</li>
+                    <li>Example: A lack of empathy can make someone seem callous.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="buttons">
+            <a href="index.html">← Back to Reading</a>
+            <a href="../index.html">🏠 Home</a>
+        </div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'en-US';
+            speechSynthesis.speak(msg);
+        }
+    </script>
+
 </body>
 </html>

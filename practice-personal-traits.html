@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice – Personal Traits</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; margin: 0; padding: 0; color: #333; }
+    nav { background-color: #2c3e50; padding: 1rem; text-align: center; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { text-align: center; font-size: 2rem; margin: 2rem 0 1rem; color: #2c3e50; }
+    .container { max-width: 900px; margin: auto; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .question { margin-bottom: 2rem; }
+    .feedback { margin-top: 0.5rem; font-weight: bold; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    .buttons { text-align: center; margin-top: 2rem; }
+    .buttons a, .buttons button {
+      text-decoration: none; margin: 0.5rem;
+      background-color: #3498db; color: white;
+      padding: 0.7rem 1.2rem; border: none;
+      border-radius: 8px; font-weight: bold;
+      cursor: pointer;
+    }
+    .buttons a:hover, .buttons button:hover { background-color: #2980b9; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="daily.html">Daily English</a>
+    <a href="grammar.html">Grammar</a>
+    <a href="practice.html">Practice</a>
+  </nav>
+
+  <h1>Multiple Choice: Describing Personalities and Actions</h1>
+
+  <div class="container">
+    <p><strong>Instructions:</strong> Choose the best word or phrase from the options (a, b, c, or d) to fill the blank. Pay attention to whether you need an adjective, an adverb, or a noun.</p>
+
+    <div class="meta">
+      <div>Name: _________________________</div>
+      <div>Date: _________________________</div>
+    </div>
+<div class="question"><p>1. His ___________ attitude made him unpopular with his colleagues.</p>
+<label><input type="radio" name="q1" value="arrogant"> arrogant</label><br>
+<label><input type="radio" name="q1" value="arrogantly"> arrogantly</label><br>
+<label><input type="radio" name="q1" value="arrogance"> arrogance</label><br>
+<label><input type="radio" name="q1" value="arrogants"> arrogants</label><br>
+<div class="feedback" id="f1" data-answer="arrogant"></div></div>
+<div class="question"><p>2. Maria spoke to the new patients with a ___________ tone that immediately put them at ease.</p>
+<label><input type="radio" name="q2" value="confident"> confident</label><br>
+<label><input type="radio" name="q2" value="confidently"> confidently</label><br>
+<label><input type="radio" name="q2" value="confidence"> confidence</label><br>
+<label><input type="radio" name="q2" value="confide"> confide</label><br>
+<div class="feedback" id="f2" data-answer="confident"></div></div>
+<div class="question"><p>3. The new receptionist greeted every patient ___________ with a smile.</p>
+<label><input type="radio" name="q3" value="friendly"> friendly</label><br>
+<label><input type="radio" name="q3" value="friendlier"> friendlier</label><br>
+<label><input type="radio" name="q3" value="friendliness"> friendliness</label><br>
+<label><input type="radio" name="q3" value="in a friendly way"> in a friendly way</label><br>
+<div class="feedback" id="f3" data-answer="in a friendly way"></div></div>
+<div class="question"><p>4. When the IT system went down, she was the first to offer ___________ tips.</p>
+<label><input type="radio" name="q4" value="helpful"> helpful</label><br>
+<label><input type="radio" name="q4" value="helpfully"> helpfully</label><br>
+<label><input type="radio" name="q4" value="help"> help</label><br>
+<label><input type="radio" name="q4" value="helping"> helping</label><br>
+<div class="feedback" id="f4" data-answer="helpful"></div></div>
+<div class="question"><p>5. The ___________ candidate solved the complex billing issue in minutes.</p>
+<label><input type="radio" name="q5" value="intelligent"> intelligent</label><br>
+<label><input type="radio" name="q5" value="intelligently"> intelligently</label><br>
+<label><input type="radio" name="q5" value="intelligence"> intelligence</label><br>
+<label><input type="radio" name="q5" value="intelligencer"> intelligencer</label><br>
+<div class="feedback" id="f5" data-answer="intelligent"></div></div>
+<div class="question"><p>6. She reacted ___________ to the criticism and became upset.</p>
+<label><input type="radio" name="q6" value="sensitive"> sensitive</label><br>
+<label><input type="radio" name="q6" value="sensitively"> sensitively</label><br>
+<label><input type="radio" name="q6" value="sensitiveness"> sensitiveness</label><br>
+<label><input type="radio" name="q6" value="sensitivity"> sensitivity</label><br>
+<div class="feedback" id="f6" data-answer="sensitively"></div></div>
+<div class="question"><p>7. It was ___________ of Jamie to bring an extra cup of coffee for the staff.</p>
+<label><input type="radio" name="q7" value="thoughtful"> thoughtful</label><br>
+<label><input type="radio" name="q7" value="thoughtfully"> thoughtfully</label><br>
+<label><input type="radio" name="q7" value="thoughtfulness"> thoughtfulness</label><br>
+<label><input type="radio" name="q7" value="thinking"> thinking</label><br>
+<div class="feedback" id="f7" data-answer="thoughtful"></div></div>
+<div class="question"><p>8. When handling confidential records, she is always extremely ___________.</p>
+<label><input type="radio" name="q8" value="careful"> careful</label><br>
+<label><input type="radio" name="q8" value="carefully"> carefully</label><br>
+<label><input type="radio" name="q8" value="carefulness"> carefulness</label><br>
+<label><input type="radio" name="q8" value="caring"> caring</label><br>
+<div class="feedback" id="f8" data-answer="careful"></div></div>
+<div class="question"><p>9. She tackled the new project with great ___________.</p>
+<label><input type="radio" name="q9" value="enthusiastic"> enthusiastic</label><br>
+<label><input type="radio" name="q9" value="enthusiastically"> enthusiastically</label><br>
+<label><input type="radio" name="q9" value="enthusiasm"> enthusiasm</label><br>
+<label><input type="radio" name="q9" value="enjoy"> enjoy</label><br>
+<div class="feedback" id="f9" data-answer="enthusiasm"></div></div>
+<div class="question"><p>10. John’s ___________ jokes kept morale high in the busy office.</p>
+<label><input type="radio" name="q10" value="funny"> funny</label><br>
+<label><input type="radio" name="q10" value="funnily"> funnily</label><br>
+<label><input type="radio" name="q10" value="fun"> fun</label><br>
+<label><input type="radio" name="q10" value="humorously"> humorously</label><br>
+<div class="feedback" id="f10" data-answer="funny"></div></div>
+<div class="question"><p>11. The clinic values staff who are known for their ___________.</p>
+<label><input type="radio" name="q11" value="honest"> honest</label><br>
+<label><input type="radio" name="q11" value="honestly"> honestly</label><br>
+<label><input type="radio" name="q11" value="honesty"> honesty</label><br>
+<label><input type="radio" name="q11" value="honoring"> honoring</label><br>
+<div class="feedback" id="f11" data-answer="honesty"></div></div>
+<div class="question"><p>12. Her ___________ approach to learning new skills impressed the manager.</p>
+<label><input type="radio" name="q12" value="motivated"> motivated</label><br>
+<label><input type="radio" name="q12" value="motivation"> motivation</label><br>
+<label><input type="radio" name="q12" value="motivately"> motivately</label><br>
+<label><input type="radio" name="q12" value="motivator"> motivator</label><br>
+<div class="feedback" id="f12" data-answer="motivated"></div></div>
+<div class="question"><p>13. A ___________ coworker tried to take credit for her thorough patient reports.</p>
+<label><input type="radio" name="q13" value="sneaky"> sneaky</label><br>
+<label><input type="radio" name="q13" value="sneakily"> sneakily</label><br>
+<label><input type="radio" name="q13" value="sneakiness"> sneakiness</label><br>
+<label><input type="radio" name="q13" value="snaking"> snaking</label><br>
+<div class="feedback" id="f13" data-answer="sneaky"></div></div>
+<div class="question"><p>14. Her ___________ smile immediately comforted every nervous patient.</p>
+<label><input type="radio" name="q14" value="warm"> warm</label><br>
+<label><input type="radio" name="q14" value="warmly"> warmly</label><br>
+<label><input type="radio" name="q14" value="warmth"> warmth</label><br>
+<label><input type="radio" name="q14" value="warmed"> warmed</label><br>
+<div class="feedback" id="f14" data-answer="warm"></div></div>
+
+    <div class="buttons">
+      <button onclick="checkAnswers()">Check Answers</button>
+      <a href="practice.html">← Back to Practice</a>
+      <a href="index.html">🏠 Home</a>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      for (let i = 1; i <= 14; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const correct = document.getElementById(`f${i}`).dataset.answer;
+        const feedback = document.getElementById(`f${i}`);
+        if (selected) {
+          if (selected.value === correct) {
+            feedback.textContent = '✅ Correct';
+            feedback.className = 'feedback correct';
+          } else {
+            feedback.textContent = `❌ Incorrect. Correct answer: "${correct}"`;
+            feedback.className = 'feedback incorrect';
+          }
+        } else {
+          feedback.textContent = `❌ No answer selected. Correct: "${correct}"`;
+          feedback.className = 'feedback incorrect';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

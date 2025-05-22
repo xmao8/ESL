@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flashcards – Cooking & Recipe Words</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            margin: 2rem 0 1rem;
+            color: #2c3e50;
+        }
+
+        #flashcard {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            height: 200px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        #flashcard.flipped {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .buttons {
+            margin: 1rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="flashcards.html">Flashcards</a>
+        <a href="daily.html">Daily English</a>
+        <a href="grammar.html">Grammar</a>
+        <a href="reading.html">Reading</a>
+        <a href="practice.html">Practices</a>
+    </nav>
+
+    <h1>Cooking & Recipe Words</h1>
+
+    <div id="flashcard" onclick="flipCard()">Click to flip</div>
+
+    <div class="buttons">
+        <button onclick="prevCard()">⬅ Previous</button>
+        <button onclick="nextCard()">Next ➡</button>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="flashcards.html">← Back to Flashcards</a>
+        <a href="index.html">🏠 Home</a>
+    </div>
+
+    <script>
+        const flashcards = [
+            ["A set of instructions for preparing a dish.", "Recipe"],
+            ["All the food items needed for a dish.", "Ingredients"],
+            ["To cut food into small, irregularly shaped pieces.", "Chop"],
+            ["To cut food into small, uniform cubes.", "Dice"],
+            ["To cut food into thin, flat pieces.", "Slice"],
+            ["To remove the outer skin from fruits or vegetables.", "Peel"],
+            ["To put ingredients together and stir them until well blended.", "Mix / Combine"],
+            ["To move a spoon around in food to blend or prevent sticking.", "Stir"],
+            ["To beat rapidly with a whisk to incorporate air, for eggs or cream.", "Whisk"],
+            ["To cook food using dry heat, especially in an oven.", "Bake"],
+            ["To cook food (meat or vegetables) in an oven with dry heat, usually uncovered.", "Roast"],
+            ["To cook food in hot fat or oil.", "Fry"],
+            ["To heat a liquid until it bubbles rapidly; or to cook food in boiling liquid.", "Boil"],
+            ["To cook liquid or food gently at or just below the boiling point.", "Simmer"],
+            ["To add salt, pepper, herbs, or spices to food to enhance flavor.", "Season"],
+            ["To remove liquid from solid food, often using a colander.", "Drain"],
+            ["To present food or drink to someone, typically at a meal.", "Serve"],
+            ["To decorate a dish with a small amount of edible food.", "Garnish"],
+            ["To heat an oven or grill to a specific temperature before putting food in.", "Preheat"],
+            ["To test the flavor of food or drink by putting a small amount in your mouth.", "Taste"]
+        ];
+
+        let index = 0;
+        let flipped = false;
+        const card = document.getElementById("flashcard");
+
+        function showCard() {
+            card.classList.remove("flipped");
+            flipped = false;
+            card.textContent = flashcards[index][0];
+        }
+
+        function flipCard() {
+            if (flipped) {
+                card.textContent = flashcards[index][0];
+                card.classList.remove("flipped");
+            } else {
+                const answer = flashcards[index][1];
+                card.textContent = answer;
+                card.classList.add("flipped");
+                speak(answer); // 🔊 SPEAK HERE
+            }
+            flipped = !flipped;
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = "en-US";
+            speechSynthesis.speak(utterance);
+        }
+
+        function nextCard() {
+            index = (index + 1) % flashcards.length;
+            showCard();
+        }
+
+        function prevCard() {
+            index = (index - 1 + flashcards.length) % flashcards.length;
+            showCard();
+        }
+
+        // Initialize the first card on page load
+        showCard();
+    </script>
+
+</body>
+</html>

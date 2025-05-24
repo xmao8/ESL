@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards – Personality Adjectives</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; }
+    nav { background: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0; color: #2c3e50; }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      line-height: 1.4;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons { margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practices</a> 
+</nav>
+
+<h1>Personality Adjectives Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "ambitious",
+    pronunciation: "/æmˈbɪʃ.əs/",
+    definition: "Having a strong desire and determination to succeed.",
+    examples: "The ambitious student set high goals for the semester.\nShe launched an ambitious project to improve community health."
+  },
+  {
+    word: "courteous",
+    pronunciation: "/ˈkɜːr.t̬i.əs/",
+    definition: "Polite, respectful, or considerate in manner.",
+    examples: "The courteous nurse always greeted visitors with a smile.\nHe held the door open in a courteous gesture."
+  },
+  {
+    word: "demanding",
+    pronunciation: "/dɪˈmæn.dɪŋ/",
+    definition: "Requiring much effort, attention, or skill.",
+    examples: "The demanding schedule left little time for breaks.\nShe found the new software interface quite demanding to learn."
+  },
+  {
+    word: "friendly",
+    pronunciation: "/ˈfrɛn(d)li/",
+    definition: "Kind and pleasant in attitude or behavior.",
+    examples: "The friendly receptionist welcomed every guest warmly.\nEven under stress, she remained friendly on the phone."
+  },
+  {
+    word: "funny",
+    pronunciation: "/ˈfʌn.i/",
+    definition: "Causing laughter or amusement; humorous.",
+    examples: "His funny jokes brightened the team’s mood.\nShe told a funny story about her childhood mishap."
+  },
+  {
+    word: "hardworking",
+    pronunciation: "/ˈhɑːrdˌwɜːrk.ɪŋ/",
+    definition: "Putting a lot of effort and diligence into work.",
+    examples: "The hardworking intern stayed late to finish the report.\nHer hardworking attitude impressed the entire department."
+  },
+  {
+    word: "interesting",
+    pronunciation: "/ˈɪn.trə.stɪŋ/",
+    definition: "Holding or catching attention; engaging.",
+    examples: "He shared an interesting article about new medical research.\nThe lecture was so interesting that no one wanted it to end."
+  },
+  {
+    word: "patient",
+    pronunciation: "/ˈpeɪ.ʃənt/",
+    definition: "Able to accept delays or problems without frustration.",
+    examples: "The patient teacher explained the concept several times.\nShe remained patient when the system crashed repeatedly."
+  },
+  {
+    word: "quiet",
+    pronunciation: "/ˈkwaɪ.ət/",
+    definition: "Making little or no noise; calm or reserved.",
+    examples: "The quiet library was the perfect place to study.\nHe spoke in a quiet voice so as not to disturb others."
+  },
+  {
+    word: "respectful",
+    pronunciation: "/rɪˈspɛk.t.fəl/",
+    definition: "Showing polite regard or consideration.",
+    examples: "The students were respectful during the guest lecture.\nShe always listens in a respectful manner."
+  },
+  {
+    word: "serious",
+    pronunciation: "/ˈsɪə.ri.əs/",
+    definition: "Showing deep thought or sincerity; solemn.",
+    examples: "He had a serious expression during the meeting.\nThe nurse took her duties very seriously."
+  },
+  {
+    word: "strict",
+    pronunciation: "/strɪkt/",
+    definition: "Enforcing rules firmly; not allowing freedom.",
+    examples: "Their manager was known for being strict about deadlines.\nShe was strict with her study schedule every day."
+  }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = flashcards[index].word;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, pronunciation, definition, examples } = flashcards[index];
+    card.innerHTML = `<strong>${word}</strong><br><em>${pronunciation}</em><br>${definition}<br><br><em>${examples.replace(/\n/g, "<br>")}</em>`;
+    card.classList.add("flipped");
+    speak(word);
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  speechSynthesis.speak(utterance);
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">← Back to Flashcards</a>
+  <a href="../index.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">🏠 Home</a>
+</div>
+
+</body>
+</html>

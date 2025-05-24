@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice – Possessive Adjectives and Pronouns</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    nav {
+      background-color: #2c3e50;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 2rem;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .question {
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+
+    input[type="text"] {
+      border: none;
+      border-bottom: 1px solid #aaa;
+      padding: 4px 8px;
+      font-size: 1rem;
+      width: 180px;
+      margin: 0 0.5rem;
+    }
+
+    .choices {
+      color: #555;
+      font-style: italic;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practice</a>
+  </nav>
+
+  <h1>Possessive Adjectives and Pronouns Practice</h1>
+
+  <div class="container">
+    <p><strong>Instructions:</strong> Fill in the blank with the correct possessive adjective or possessive pronoun from the choices provided.</p>
+
+    <div class="meta">
+      <div>Name: _________________________</div>
+      <div>Date: _________________________</div>
+    </div>
+
+    <div class="question">1. She keeps <input type="text" /> <span class="choices">(her / hers)</span> work space very clean.</div>
+    <div class="question">2. She never eats at <input type="text" /> <span class="choices">(her / hers)</span> desk, but they always eat at <input type="text" /> <span class="choices">(their / theirs)</span>.</div>
+    <div class="question">3. That office is <input type="text" /> <span class="choices">(you / yours)</span>.</div>
+    <div class="question">4. <input type="text" /> <span class="choices">(Theirs / Their)</span> company has more employees than his.</div>
+    <div class="question">5. That's <input type="text" /> <span class="choices">(your / yours)</span> book. Where is <input type="text" /> <span class="choices">(my / mine)</span>?</div>
+    <div class="question">6. We will give you <input type="text" /> <span class="choices">(our / ours)</span> plan so you can compare it with <input type="text" /> <span class="choices">(your / yours)</span>.</div>
+    <div class="question">7. The dog loves <input type="text" /> <span class="choices">(its / it's)</span> new toy.</div>
+    <div class="question">8. Is this car <input type="text" /> <span class="choices">(your / yours)</span> or <input type="text" /> <span class="choices">(our / ours)</span>?</div>
+    <div class="question">9. <input type="text" /> <span class="choices">(His / Him)</span> report was more detailed than <input type="text" /> <span class="choices">(my / mine)</span>.</div>
+    <div class="question">10. They brought <input type="text" /> <span class="choices">(their / theirs)</span> own lunches, but we forgot <input type="text" /> <span class="choices">(our / ours)</span>.</div>
+    <div class="question">11. I think this jacket is <input type="text" /> <span class="choices">(her / hers)</span>.</div>
+    <div class="question">12. <input type="text" /> <span class="choices">(Whose / Who's)</span> pen is this? Is it <input type="text" /> <span class="choices">(your / yours)</span>?</div>
+    <div class="question">13. The cat chased <input type="text" /> <span class="choices">(its / it's)</span> tail.</div>
+    <div class="question">14. <input type="text" /> <span class="choices">(Our / Ours)</span> team played better than <input type="text" /> <span class="choices">(their / theirs)</span>.</div>
+    <div class="question">15. He shared <input type="text" /> <span class="choices">(his / him)</span> ideas, and I shared <input type="text" /> <span class="choices">(my / mine)</span>.</div>
+    <div class="question">16. The house lost <input type="text" /> <span class="choices">(its / it's)</span> roof in the storm.</div>
+    <div class="question">17. Don't touch that; it's <input type="text" /> <span class="choices">(my / mine)</span>!</div>
+    <div class="question">18. They finished <input type="text" /> <span class="choices">(their / theirs)</span> work early.</div>
+    <div class="question">19. This laptop is <input type="text" /> <span class="choices">(my / mine)</span>, but that one is <input type="text" /> <span class="choices">(her / hers)</span>.</div>
+    <div class="question">20. Do you know if this phone is <input type="text" /> <span class="choices">(her / hers)</span>?</div>
+
+    <div class="buttons">
+      <a href="../practice.html">← Back to Practice</a>
+      <a href="../index.html">🏠 Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

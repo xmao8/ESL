@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards – Personality Adjectives</title>
+  <title>Flashcards – Payroll Terms</title>
   <style>
     body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; }
     nav { background: #2c3e50; padding: 1rem; }
@@ -17,7 +17,7 @@
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
       line-height: 1.4;
@@ -50,7 +50,7 @@
   <a href="../practice.html">Practices</a> 
 </nav>
 
-<h1>Personality Adjectives Flashcards</h1>
+<h1>Payroll Terms Flashcards</h1>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
 
@@ -62,81 +62,92 @@
 <script>
 const flashcards = [
   {
-    word: "ambitious",
-    pronunciation: "/æmˈbɪʃ.əs/",
-    definition: "Having a strong desire and determination to succeed.",
-    examples: "The ambitious student set high goals for the semester.\nShe launched an ambitious project to improve community health."
+    word: "earnings",
+    pronunciation: "/ˈɜːr.nɪŋz/",
+    definition: "Money earned from work over a period.",
+    examples: "His earnings increased after the promotion.\nShe reviewed her earnings statement for accuracy."
   },
   {
-    word: "courteous",
-    pronunciation: "/ˈkɜːr.t̬i.əs/",
-    definition: "Polite, respectful, or considerate in manner.",
-    examples: "The courteous nurse always greeted visitors with a smile.\nHe held the door open in a courteous gesture."
+    word: "employee ID",
+    pronunciation: "/ɛmˈplɔɪ.i aɪˈdiː/",
+    definition: "Unique identification number assigned to an employee.",
+    examples: "Please enter your employee ID to access the portal.\nHer employee ID badge grants her entry to the building."
   },
   {
-    word: "demanding",
-    pronunciation: "/dɪˈmæn.dɪŋ/",
-    definition: "Requiring much effort, attention, or skill.",
-    examples: "The demanding schedule left little time for breaks.\nShe found the new software interface quite demanding to learn."
+    word: "federal income tax",
+    pronunciation: "/ˈfɛd.ər.əl ˈɪn.kʌm tæks/",
+    definition: "Tax levied by the federal government on personal income.",
+    examples: "Federal income tax is deducted from each paycheck.\nHe claimed fewer allowances to lower his federal income tax."
   },
   {
-    word: "friendly",
-    pronunciation: "/ˈfrɛn(d)li/",
-    definition: "Kind and pleasant in attitude or behavior.",
-    examples: "The friendly receptionist welcomed every guest warmly.\nEven under stress, she remained friendly on the phone."
+    word: "gross pay",
+    pronunciation: "/ˈɡroʊs peɪ/",
+    definition: "Total amount earned before any deductions.",
+    examples: "Gross pay does not account for deductions.\nHer gross pay before taxes was $3,000."
   },
   {
-    word: "funny",
-    pronunciation: "/ˈfʌn.i/",
-    definition: "Causing laughter or amusement; humorous.",
-    examples: "His funny jokes brightened the team’s mood.\nShe told a funny story about her childhood mishap."
+    word: "401K",
+    pronunciation: "/ˌfɔːr oʊ ˈwʌn ˈkeɪ/",
+    definition: "Employer-sponsored retirement savings plan.",
+    examples: "He contributed 5% of his salary to his 401K.\nThe company match on a 401K can boost retirement savings."
   },
   {
-    word: "hardworking",
-    pronunciation: "/ˈhɑːrdˌwɜːrk.ɪŋ/",
-    definition: "Putting a lot of effort and diligence into work.",
-    examples: "The hardworking intern stayed late to finish the report.\nHer hardworking attitude impressed the entire department."
+    word: "Medicare",
+    pronunciation: "/ˈmɛd.ɪ.kɛər/",
+    definition: "Federal health insurance program for seniors.",
+    examples: "Medicare benefits help cover medical expenses for seniors.\nShe enrolled in Medicare at age 65."
   },
   {
-    word: "interesting",
-    pronunciation: "/ˈɪn.trə.stɪŋ/",
-    definition: "Holding or catching attention; engaging.",
-    examples: "He shared an interesting article about new medical research.\nThe lecture was so interesting that no one wanted it to end."
+    word: "net pay",
+    pronunciation: "/nɛt peɪ/",
+    definition: "Take-home pay after all deductions.",
+    examples: "Net pay is what you take home after deductions.\nHer net pay was lower due to increased taxes."
   },
   {
-    word: "patient",
-    pronunciation: "/ˈpeɪ.ʃənt/",
-    definition: "Able to accept delays or problems without frustration.",
-    examples: "The patient teacher explained the concept several times.\nShe remained patient when the system crashed repeatedly."
+    word: "pay period",
+    pronunciation: "/peɪ ˈpɪə.ri.əd/",
+    definition: "Recurring time span for which employees are paid.",
+    examples: "The pay period runs from the 1st to the 15th of each month.\nShe submitted her hours before the end of the pay period."
   },
   {
-    word: "quiet",
-    pronunciation: "/ˈkwaɪ.ət/",
-    definition: "Making little or no noise; calm or reserved.",
-    examples: "The quiet library was the perfect place to study.\nHe spoke in a quiet voice so as not to disturb others."
+    word: "pre-tax deductions",
+    pronunciation: "/priː tæks dɪˈdʌk.ʃənz/",
+    definition: "Amounts withheld from gross pay before taxes.",
+    examples: "Pre-tax deductions include retirement contributions.\nReducing pre-tax deductions can increase your take-home pay."
   },
   {
-    word: "respectful",
-    pronunciation: "/rɪˈspɛk.t.fəl/",
-    definition: "Showing polite regard or consideration.",
-    examples: "The students were respectful during the guest lecture.\nShe always listens in a respectful manner."
+    word: "rate of pay",
+    pronunciation: "/reɪt əv peɪ/",
+    definition: "Amount of money paid per hour or period.",
+    examples: "Her rate of pay is $20 per hour.\nNegotiating the rate of pay can boost earnings."
   },
   {
-    word: "serious",
-    pronunciation: "/ˈsɪə.ri.əs/",
-    definition: "Showing deep thought or sincerity; solemn.",
-    examples: "He had a serious expression during the meeting.\nThe nurse took her duties very seriously."
+    word: "social security",
+    pronunciation: "/ˌsoʊʃəl sɪˈkjʊərɪti/",
+    definition: "Federal insurance program for retirees and disabled.",
+    examples: "Social security payments provide income to retirees.\nHe checks his social security statement annually."
   },
   {
-    word: "strict",
-    pronunciation: "/strɪkt/",
-    definition: "Enforcing rules firmly; not allowing freedom.",
-    examples: "Their manager was known for being strict about deadlines.\nShe was strict with her study schedule every day."
+    word: "state disability",
+    pronunciation: "/steɪt dɪsəˈbɪləti/",
+    definition: "State-sponsored income benefits for disabled workers.",
+    examples: "State disability offers temporary wage replacement.\nShe applied for state disability after her surgery."
+  },
+  {
+    word: "withholdings",
+    pronunciation: "/wɪðˈhoʊldɪŋz/",
+    definition: "Amounts taken from gross pay for taxes and benefits.",
+    examples: "Withholdings determine how much tax is taken each payday.\nHe adjusted his withholdings to get a larger refund."
+  },
+  {
+    word: "year-to-date (YTD)",
+    pronunciation: "/ˈjɪər tə deɪt/",
+    definition: "Period from the start of the year to today.",
+    examples: "Her year-to-date earnings are higher than last year's.\nThe YTD total includes all earnings since January."
   }
 ];
 
-let index = 0;
-let flipped = false;
+let index = 0, flipped = false;
 const card = document.getElementById("flashcard");
 
 function showCard() {
@@ -148,7 +159,7 @@ function showCard() {
 function flipCard() {
   if (!flipped) {
     const { word, pronunciation, definition, examples } = flashcards[index];
-    card.innerHTML = `<strong>${word}</strong><br><em>${pronunciation}</em><br>${definition}<br><br><em>${examples.replace(/\n/g, "<br>")}</em>`;
+    card.innerHTML = `<strong>${word}</strong><br><em>${pronunciation}</em><br>${definition}<br><br><em>${examples.replace(/\n/g, '<br>')}</em>`;
     card.classList.add("flipped");
     speak(word);
     flipped = true;
@@ -158,16 +169,15 @@ function flipCard() {
 }
 
 function speak(text) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  speechSynthesis.speak(utterance);
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  speechSynthesis.speak(u);
 }
 
 function nextCard() {
   index = (index + 1) % flashcards.length;
   showCard();
 }
-
 function prevCard() {
   index = (index - 1 + flashcards.length) % flashcards.length;
   showCard();

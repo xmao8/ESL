@@ -28,71 +28,41 @@
       color: #2c3e50;
       font-size: 2rem;
     }
-    .flashcards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      max-width: 1000px;
-      margin: 0 auto 2rem;
-      padding: 0 1rem;
-    }
-    .card {
-      width: 200px;
-      height: 140px;
-      perspective: 1000px;
-    }
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-      cursor: pointer;
-    }
-    .card:hover .card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+    .flashcard {
       background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .card-front {
+      width: 90%;
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       font-size: 1.2rem;
-      font-weight: bold;
-      color: #2c3e50;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+      line-height: 1.4;
     }
-    .card-back {
-      transform: rotateY(180deg);
-      font-size: 0.9rem;
-      color: #333;
-      text-align: left;
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
     }
     .buttons {
       margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
     }
-    .buttons a {
-      text-decoration: none;
-      margin: 0 0.5rem;
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
       background: #3498db;
       color: white;
-      padding: 0.7rem 1.2rem;
+      border: none;
       border-radius: 8px;
       font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
     }
-    .buttons a:hover {
-      background: #2980b9;
-    }
+    button:hover, .buttons a:hover { background: #2980b9; }
   </style>
 </head>
 <body>
@@ -108,38 +78,71 @@
 
   <h1>Travel Vocabulary Flashcards</h1>
 
-  <div class="flashcards-container">
-    <div class="card"><div class="card-inner"><div class="card-front">destination</div><div class="card-back"><strong>destination (n.)</strong><br>Place you plan to go.<br><em>Example: Our destination is Rome.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">itinerary</div><div class="card-back"><strong>itinerary (n.)</strong><br>Planned route or schedule.<br><em>Example: I received my travel itinerary by email.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">accommodation</div><div class="card-back"><strong>accommodation (n.)</strong><br>Place to stay during travel.<br><em>Example: We booked our accommodation near the beach.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">passport</div><div class="card-back"><strong>passport (n.)</strong><br>Official travel document.<br><em>Example: Don’t forget to renew your passport.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">visa</div><div class="card-back"><strong>visa (n.)</strong><br>Entry permit for a country.<br><em>Example: She applied for a tourist visa.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">luggage</div><div class="card-back"><strong>luggage (n.)</strong><br>Suitcases and bags.<br><em>Example: Your luggage is limited to one bag.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">reservation</div><div class="card-back"><strong>reservation (n.)</strong><br>Booking in advance.<br><em>Example: I made a reservation at the hotel.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">sightseeing</div><div class="card-back"><strong>sightseeing (n.)</strong><br>Visiting famous places.<br><em>Example: We went sightseeing in Paris.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">currency</div><div class="card-back"><strong>currency (n.)</strong><br>Money used in a country.<br><em>Example: Exchange currency before you travel.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">transportation</div><div class="card-back"><strong>transportation (n.)</strong><br>Means of travel.<br><em>Example: We used public transportation downtown.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">boarding pass</div><div class="card-back"><strong>boarding pass (n.)</strong><br>Ticket for boarding a plane.<br><em>Example: Keep your boarding pass handy.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">excursion</div><div class="card-back"><strong>excursion (n.)</strong><br>Short trip for pleasure.<br><em>Example: We took an excursion to the islands.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">guidebook</div><div class="card-back"><strong>guidebook (n.)</strong><br>Book of travel information.<br><em>Example: I bought a guidebook for Tokyo.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">backpacker</div><div class="card-back"><strong>backpacker (n.)</strong><br>Traveler with a backpack.<br><em>Example: She traveled Europe like a backpacker.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">landmark</div><div class="card-back"><strong>landmark (n.)</strong><br>Famous building or place.<br><em>Example: The Eiffel Tower is a landmark.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">adventure</div><div class="card-back"><strong>adventure (n.)</strong><br>Exciting experience.<br><em>Example: Our hiking trip was a great adventure.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">journey</div><div class="card-back"><strong>journey (n.)</strong><br>Travel from one place to another.<br><em>Example: The journey took all day.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">backpack</div><div class="card-back"><strong>backpack (v.& n.)</strong><br>Carry gear in a bag; the bag itself.<br><em>Example: He backpacked across Asia.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">trip</div><div class="card-back"><strong>trip (n.)</strong><br>Journey or excursion.<br><em>Example: We planned a weekend trip.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">tour</div><div class="card-back"><strong>tour (n.)</strong><br>Guided visit of a place.<br><em>Example: We took a city tour.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">cruise</div><div class="card-back"><strong>cruise (n.)</strong><br>Trip on a ship.<br><em>Example: They enjoyed a Caribbean cruise.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">check-in</div><div class="card-back"><strong>check-in (n.)</strong><br>Process of registering for travel.<br><em>Example: Check-in opens two hours before flight.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">departure</div><div class="card-back"><strong>departure (n.)</strong><br>When you leave a place.<br><em>Example: The departure was delayed.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">arrival</div><div class="card-back"><strong>arrival (n.)</strong><br>When you reach a place.<br><em>Example: Our arrival was on time.</em></div></div></div>
-    <div class="card"><div class="card-inner"><div class="card-front">souvenir</div><div class="card-back"><strong>souvenir (n.)</strong><br>Item to remember a place.<br><em>Example: She bought a souvenir magnet.</em></div></div></div>
-  </div>
-
+  <div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
   <div class="buttons">
-    <a href="../flashcards.html">← Back to Flashcards</a>
-    <a href="../index.html">🏠 Home</a>
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
   </div>
 
+  <script>
+    const cards = [
+      {front: 'destination', back: 'destination (n.) – Place you plan to go. Example: Our destination is Rome.'},
+      {front: 'itinerary', back: 'itinerary (n.) – Planned route or schedule. Example: I received my travel itinerary by email.'},
+      {front: 'accommodation', back: 'accommodation (n.) – Place to stay during travel. Example: We booked our accommodation near the beach.'},
+      {front: 'passport', back: 'passport (n.) – Official travel document. Example: Don’t forget to renew your passport.'},
+      {front: 'visa', back: 'visa (n.) – Entry permit for a country. Example: She applied for a tourist visa.'},
+      {front: 'luggage', back: 'luggage (n.) – Suitcases and bags. Example: Your luggage is limited to one bag.'},
+      {front: 'reservation', back: 'reservation (n.) – Booking in advance. Example: I made a reservation at the hotel.'},
+      {front: 'sightseeing', back: 'sightseeing (n.) – Visiting famous places. Example: We went sightseeing in Paris.'},
+      {front: 'currency', back: 'currency (n.) – Money used in a country. Example: Exchange currency before you travel.'},
+      {front: 'transportation', back: 'transportation (n.) – Means of travel. Example: We used public transportation downtown.'},
+      {front: 'boarding pass', back: 'boarding pass (n.) – Ticket for boarding a plane. Example: Keep your boarding pass handy.'},
+      {front: 'excursion', back: 'excursion (n.) – Short trip for pleasure. Example: We took an excursion to the islands.'},
+      {front: 'guidebook', back: 'guidebook (n.) – Book of travel information. Example: I bought a guidebook for Tokyo.'},
+      {front: 'backpacker', back: 'backpacker (n.) – Traveler with a backpack. Example: She traveled Europe like a backpacker.'},
+      {front: 'landmark', back: 'landmark (n.) – Famous building or place. Example: The Eiffel Tower is a landmark.'},
+      {front: 'adventure', back: 'adventure (n.) – Exciting experience. Example: Our hiking trip was a great adventure.'},
+      {front: 'journey', back: 'journey (n.) – Travel from one place to another. Example: The journey took all day.'},
+      {front: 'backpack', back: 'backpack (v. & n.) – Carry gear in a bag; the bag itself. Example: He backpacked across Asia.'},
+      {front: 'trip', back: 'trip (n.) – Journey or excursion. Example: We planned a weekend trip.'},
+      {front: 'tour', back: 'tour (n.) – Guided visit of a place. Example: We took a city tour.'},
+      {front: 'cruise', back: 'cruise (n.) – Trip on a ship. Example: They enjoyed a Caribbean cruise.'},
+      {front: 'check-in', back: 'check-in (n.) – Process of registering for travel. Example: Check-in opens two hours before flight.'},
+      {front: 'departure', back: 'departure (n.) – When you leave a place. Example: The departure was delayed.'},
+      {front: 'arrival', back: 'arrival (n.) – When you reach a place. Example: Our arrival was on time.'},
+      {front: 'souvenir', back: 'souvenir (n.) – Item to remember a place. Example: She bought a souvenir magnet.'}
+    ];
+    let index = 0;
+    let flipped = false;
+    const cardEl = document.getElementById('flashcard');
+
+    function showCard() {
+      flipped = false;
+      cardEl.classList.remove('flipped');
+      cardEl.textContent = cards[index].front;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        cardEl.classList.add('flipped');
+        cardEl.textContent = cards[index].back;
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function nextCard() {
+      index = (index + 1) % cards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + cards.length) % cards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
 </body>
 </html>

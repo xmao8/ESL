@@ -46,13 +46,13 @@
       background-color: #3498db;
       color: white;
     }
-    .buttons {
+    .buttons, .nav-buttons {
       margin: 1rem auto;
       display: flex;
       justify-content: center;
       gap: 1rem;
     }
-    button, .buttons a {
+    button, .buttons a, .nav-buttons a {
       padding: 0.6rem 1.2rem;
       background: #3498db;
       color: white;
@@ -62,7 +62,7 @@
       cursor: pointer;
       text-decoration: none;
     }
-    button:hover, .buttons a:hover { background: #2980b9; }
+    button:hover, .buttons a:hover, .nav-buttons a:hover { background: #2980b9; }
   </style>
 </head>
 <body>
@@ -144,5 +144,11 @@
 
     showCard();
   </script>
+
+  <div class="nav-buttons">
+    <a href="../flashcards.html">← Back to Flashcards</a>
+    <a href="../index.html">🏠 Home</a>
+  </div>
+
 </body>
 </html>

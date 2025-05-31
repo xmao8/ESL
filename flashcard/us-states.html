@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – U.S. States</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+      font-size: 2rem;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      line-height: 1.4;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons, .nav-buttons {
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a, .nav-buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    button:hover, .buttons a:hover, .nav-buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practice</a>
+  </nav>
+
+  <h1>U.S. States Flashcards</h1>
+
+  <div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <script>
+    const cards = [
+      {front: 'AL', back: 'Alabama – Located in the Southeastern US. Capital: Montgomery. Largest city: Birmingham.'},
+      {front: 'AK', back: 'Alaska – Northwestern North America. Capital: Juneau. Largest city: Anchorage.'},
+      {front: 'AZ', back: 'Arizona – Southwestern US. Capital: Phoenix. Largest city: Phoenix.'},
+      {front: 'AR', back: 'Arkansas – Southern US. Capital: Little Rock. Largest city: Little Rock.'},
+      {front: 'CA', back: 'California – West Coast. Capital: Sacramento. Largest city: Los Angeles.'},
+      {front: 'CO', back: 'Colorado – Mountain West. Capital: Denver. Largest city: Denver.'},
+      {front: 'CT', back: 'Connecticut – New England. Capital: Hartford. Largest city: Bridgeport.'},
+      {front: 'DE', back: 'Delaware – Mid-Atlantic. Capital: Dover. Largest city: Wilmington.'},
+      {front: 'FL', back: 'Florida – Southeastern US. Capital: Tallahassee. Largest city: Jacksonville.'},
+      {front: 'GA', back: 'Georgia – Southeastern US. Capital: Atlanta. Largest city: Atlanta.'},
+      {front: 'HI', back: 'Hawaii – Pacific Islands. Capital: Honolulu. Largest city: Honolulu.'},
+      {front: 'ID', back: 'Idaho – Pacific Northwest. Capital: Boise. Largest city: Boise.'},
+      {front: 'IL', back: 'Illinois – Midwest. Capital: Springfield. Largest city: Chicago.'},
+      {front: 'IN', back: 'Indiana – Midwest. Capital: Indianapolis. Largest city: Indianapolis.'},
+      {front: 'IA', back: 'Iowa – Midwest. Capital: Des Moines. Largest city: Des Moines.'},
+      {front: 'KS', back: 'Kansas – Midwest. Capital: Topeka. Largest city: Wichita.'},
+      {front: 'KY', back: 'Kentucky – Southeastern US. Capital: Frankfort. Largest city: Louisville.'},
+      {front: 'LA', back: 'Louisiana – Southern US. Capital: Baton Rouge. Largest city: New Orleans.'},
+      {front: 'ME', back: 'Maine – New England. Capital: Augusta. Largest city: Portland.'},
+      {front: 'MD', back: 'Maryland – Mid-Atlantic. Capital: Annapolis. Largest city: Baltimore.'},
+      {front: 'MA', back: 'Massachusetts – New England. Capital: Boston. Largest city: Boston.'},
+      {front: 'MI', back: 'Michigan – Midwest. Capital: Lansing. Largest city: Detroit.'},
+      {front: 'MN', back: 'Minnesota – Midwest. Capital: St. Paul. Largest city: Minneapolis.'},
+      {front: 'MS', back: 'Mississippi – Southern US. Capital: Jackson. Largest city: Jackson.'},
+      {front: 'MO', back: 'Missouri – Midwest. Capital: Jefferson City. Largest city: Kansas City.'},
+      {front: 'MT', back: 'Montana – Mountain West. Capital: Helena. Largest city: Billings.'},
+      {front: 'NE', back: 'Nebraska – Midwest. Capital: Lincoln. Largest city: Omaha.'},
+      {front: 'NV', back: 'Nevada – Western US. Capital: Carson City. Largest city: Las Vegas.'},
+      {front: 'NH', back: 'New Hampshire – New England. Capital: Concord. Largest city: Manchester.'},
+      {front: 'NJ', back: 'New Jersey – Mid-Atlantic. Capital: Trenton. Largest city: Newark.'},
+      {front: 'NM', back: 'New Mexico – Southwestern US. Capital: Santa Fe. Largest city: Albuquerque.'},
+      {front: 'NY', back: 'New York – Northeastern US. Capital: Albany. Largest city: New York City.'},
+      {front: 'NC', back: 'North Carolina – Southeastern US. Capital: Raleigh. Largest city: Charlotte.'},
+      {front: 'ND', back: 'North Dakota – Midwest. Capital: Bismarck. Largest city: Fargo.'},
+      {front: 'OH', back: 'Ohio – Midwest. Capital: Columbus. Largest city: Columbus.'},
+      {front: 'OK', back: 'Oklahoma – South Central US. Capital: Oklahoma City. Largest city: Oklahoma City.'},
+      {front: 'OR', back: 'Oregon – Pacific Northwest. Capital: Salem. Largest city: Portland.'},
+      {front: 'PA', back: 'Pennsylvania – Mid-Atlantic. Capital: Harrisburg. Largest city: Philadelphia.'},
+      {front: 'RI', back: 'Rhode Island – New England. Capital: Providence. Largest city: Providence.'},
+      {front: 'SC', back: 'South Carolina – Southeastern US. Capital: Columbia. Largest city: Charleston.'},
+      {front: 'SD', back: 'South Dakota – Midwest. Capital: Pierre. Largest city: Sioux Falls.'},
+      {front: 'TN', back: 'Tennessee – Southeastern US. Capital: Nashville. Largest city: Memphis.'},
+      {front: 'TX', back: 'Texas – South Central US. Capital: Austin. Largest city: Houston.'},
+      {front: 'UT', back: 'Utah – Western US. Capital: Salt Lake City. Largest city: Salt Lake City.'},
+      {front: 'VT', back: 'Vermont – New England. Capital: Montpelier. Largest city: Burlington.'},
+      {front: 'VA', back: 'Virginia – Mid-Atlantic US. Capital: Richmond. Largest city: Virginia Beach.'},
+      {front: 'WA', back: 'Washington – Pacific Northwest. Capital: Olympia. Largest city: Seattle.'},
+      {front: 'WV', back: 'West Virginia – Mid-Atlantic US. Capital: Charleston. Largest city: Charleston.'},
+      {front: 'WI', back: 'Wisconsin – Midwest. Capital: Madison. Largest city: Milwaukee.'},
+      {front: 'WY', back: 'Wyoming – Mountain West. Capital: Cheyenne. Largest city: Cheyenne.'}
+    ];
+    let index = 0;
+    let flipped = false;
+    const cardEl = document.getElementById('flashcard');
+
+    function showCard() {
+      flipped = false;
+      cardEl.classList.remove('flipped');
+      cardEl.textContent = cards[index].front;
+    }
+
+    function flipCard() {
+      if (!flipped) {
+        cardEl.classList.add('flipped');
+        cardEl.textContent = cards[index].back;
+        flipped = true;
+      } else {
+        showCard();
+      }
+    }
+
+    function nextCard() {
+      index = (index + 1) % cards.length;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + cards.length) % cards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+
+  <div class="nav-buttons">
+    <a href="../flashcards.html">← Back to Flashcards</a>
+    <a href="../index.html">🏠 Home</a>
+  </div>
+
+</body>
+</html>

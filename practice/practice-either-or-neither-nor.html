@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice – “Either…or…” vs. “Neither…nor…”</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    nav {
+      background-color: #2c3e50;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      line-height: 1.6;
+    }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    .meta input {
+      border: none;
+      border-bottom: 1px solid #aaa;
+      padding: 4px 8px;
+      font-size: 1rem;
+      width: 200px;
+    }
+    .instruction {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question span {
+      display: inline-block;
+      margin: 0 0.25rem;
+    }
+    .question input[type="text"] {
+      width: 100px;
+      border: none;
+      border-bottom: 1px solid #aaa;
+      padding: 4px 8px;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .feedback {
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+    #check-btn {
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    #check-btn:hover {
+      background-color: #2980b9;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practice</a>
+  </nav>
+
+  <h1>“Either...or...” vs. “Neither...nor...” Practice</h1>
+  <div class="container">
+    <p class="instruction"><strong>Instructions:</strong> Complete each sentence by choosing the correct pair of words: <strong>"either...or..."</strong> or <strong>"neither...nor..."</strong>. Pay attention to the meaning of the sentence and how the verb should agree with the closest subject.</p>
+
+    <div class="meta">
+      <div>Name:<br><input type="text" id="username" placeholder="Your name"></div>
+      <div>Date:<br><input type="date" id="date"></div>
+    </div>
+
+    <!-- 1 -->
+    <div class="question">
+      <span>1.</span> A government's primary role is to provide
+      <input type="text" id="q1a"> security
+      <input type="text" id="q1b"> essential services for its citizens.
+      <span class="feedback" id="f1"></span>
+    </div>
+
+    <!-- 2 -->
+    <div class="question">
+      <span>2.</span> In many countries, public healthcare is funded by
+      <input type="text" id="q2a"> taxes
+      <input type="text" id="q2b"> private donations.
+      <span class="feedback" id="f2"></span>
+    </div>
+
+    <!-- 3 -->
+    <div class="question">
+      <span>3.</span> The proposed new law will benefit
+      <input type="text" id="q3a"> big businesses
+      <input type="text" id="q3b"> small companies. It will help only individuals.
+      <span class="feedback" id="f3"></span>
+    </div>
+
+    <!-- 4 -->
+    <div class="question">
+      <span>4.</span> Citizens can
+      <input type="text" id="q4a"> vote in elections
+      <input type="text" id="q4b"> participate in public forums to influence policy.
+      <span class="feedback" id="f4"></span>
+    </div>
+
+    <!-- 5 -->
+    <div class="question">
+      <span>5.</span>
+      <input type="text" id="q5a"> the legislative branch
+      <input type="text" id="q5b"> the executive branch was able to pass the bill without compromise.
+      <span class="feedback" id="f5"></span>
+    </div>
+
+    <!-- 6 -->
+    <div class="question">
+      <span>6.</span> A fair justice system should
+      <input type="text" id="q6a"> protect the innocent
+      <input type="text" id="q6b"> punish the guilty.
+      <span class="feedback" id="f6"></span>
+    </div>
+
+    <!-- 7 -->
+    <div class="question">
+      <span>7.</span> The city council needs to decide on
+      <input type="text" id="q7a"> improving public transportation
+      <input type="text" id="q7b"> building new parks.
+      <span class="feedback" id="f7"></span>
+    </div>
+
+    <!-- 8 -->
+    <div class="question">
+      <span>8.</span> Economic stability was achieved by
+      <input type="text" id="q8a"> controlling inflation
+      <input type="text" id="q8b"> creating more jobs.
+      <span class="feedback" id="f8"></span>
+    </div>
+
+    <!-- 9 -->
+    <div class="question">
+      <span>9.</span>
+      <input type="text" id="q9a"> the mayor
+      <input type="text" id="q9b"> the council members agreed on the budget cut. They all disagreed.
+      <span class="feedback" id="f9"></span>
+    </div>
+
+    <!-- 10 -->
+    <div class="question">
+      <span>10.</span> Governments must defend their borders
+      <input type="text" id="q10a"> through military strength
+      <input type="text" id="q10b"> through diplomacy.
+      <span class="feedback" id="f10"></span>
+    </div>
+
+    <!-- 11 -->
+    <div class="question">
+      <span>11.</span> The new education reforms pleased
+      <input type="text" id="q11a"> parents
+      <input type="text" id="q11b"> teachers. Everyone was unhappy.
+      <span class="feedback" id="f11"></span>
+    </div>
+
+    <!-- 12 -->
+    <div class="question">
+      <span>12.</span> Public services include
+      <input type="text" id="q12a"> roads
+      <input type="text" id="q12b"> libraries.
+      <span class="feedback" id="f12"></span>
+    </div>
+
+    <button id="check-btn" onclick="checkAnswers()">Check Answers</button>
+
+    <div class="buttons">
+      <a href="../practice.html">← Back to Practice</a>
+      <a href="../index.html">🏠 Home</a>
+    </div>
+  </div>
+
+  <script>
+    const answers = {
+      1: ["either", "or"],
+      2: ["either", "or"],
+      3: ["neither", "nor"],
+      4: ["either", "or"],
+      5: ["neither", "nor"],
+      6: ["either", "or"],
+      7: ["either", "or"],
+      8: ["either", "or"],
+      9: ["neither", "nor"],
+      10: ["either", "or"],
+      11: ["neither", "nor"],
+      12: ["either", "or"]
+    };
+
+    function checkAnswers() {
+      for (let i = 1; i <= 12; i++) {
+        const inputA = document.getElementById(`q${i}a`).value.trim().toLowerCase();
+        const inputB = document.getElementById(`q${i}b`).value.trim().toLowerCase();
+        const feedback = document.getElementById(`f${i}`);
+        if (inputA === answers[i][0] && inputB === answers[i][1]) {
+          feedback.textContent = "✓ Correct";
+          feedback.style.color = "green";
+        } else {
+          feedback.textContent = `✗ Incorrect (Answer: ${answers[i][0]} ... ${answers[i][1]})`;
+          feedback.style.color = "red";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

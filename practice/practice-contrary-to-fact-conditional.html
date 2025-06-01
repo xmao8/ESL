@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice – Type 2 Conditional</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    nav {
+      background-color: #2c3e50;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      line-height: 1.6;
+    }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    .meta input {
+      border: none;
+      border-bottom: 1px solid #aaa;
+      padding: 4px 8px;
+      font-size: 1rem;
+      width: 200px;
+    }
+    .instruction {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question span {
+      display: inline-block;
+      margin: 0 0.25rem;
+    }
+    .question input[type="text"] {
+      width: 120px;
+      border: none;
+      border-bottom: 1px solid #aaa;
+      padding: 4px 8px;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .feedback {
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+    #check-btn {
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    #check-btn:hover {
+      background-color: #2980b9;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practice</a>
+  </nav>
+
+  <h1>Contrary-to-Fact Conditional Practice</h1>
+  <div class="container">
+    <p class="instruction"><strong>Instructions:</strong> Complete each sentence using the correct form of the verbs in parentheses to create a contrary-to-fact Conditional statement. Remember to use "were" for the verb "to be" in the 'if' clause.</p>
+
+    <div class="meta">
+      <div>Name:<br><input type="text" id="username" placeholder="Your name"></div>
+      <div>Date:<br><input type="date" id="date"></div>
+    </div>
+
+    <!--1-->    
+    <div class="question">
+      <span>1.</span> If I <input type="text" id="q1a"> (have) a million dollars, I <input type="text" id="q1b"> (buy) a private jet.
+      <span class="feedback" id="f1"></span>
+    </div>
+
+    <!--2-->    
+    <div class="question">
+      <span>2.</span> If she <input type="text" id="q2a"> (be) taller, she <input type="text" id="q2b"> (reach) the top shelf.
+      <span class="feedback" id="f2"></span>
+    </div>
+
+    <!--3-->    
+    <div class="question">
+      <span>3.</span> If we <input type="text" id="q3a"> (live) in a warmer country, we <input type="text" id="q3b"> (go) to the beach every day.
+      <span class="feedback" id="f3"></span>
+    </div>
+
+    <!--4-->    
+    <div class="question">
+      <span>4.</span> If he <input type="text" id="q4a"> (know) how to cook, he <input type="text" id="q4b"> (make) dinner for us.
+      <span class="feedback" id="f4"></span>
+    </div>
+
+    <!--5-->    
+    <div class="question">
+      <span>5.</span> If they <input type="text" id="q5a"> (not have) to work, they <input type="text" id="q5b"> (travel) more.
+      <span class="feedback" id="f5"></span>
+    </div>
+
+    <!--6-->    
+    <div class="question">
+      <span>6.</span> If I <input type="text" id="q6a"> (be) you, I <input type="text" id="q6b"> (accept) that job offer.
+      <span class="feedback" id="f6"></span>
+    </div>
+
+    <!--7-->    
+    <div class="question">
+      <span>7.</span> If it <input type="text" id="q7a"> (snow) tomorrow, we <input type="text" id="q7b"> (not go) to school.
+      <span class="feedback" id="f7"></span>
+    </div>
+
+    <!--8-->    
+    <div class="question">
+      <span>8.</span> If she <input type="text" id="q8a"> (speak) English fluently, she <input type="text" id="q8b"> (get) a better job.
+      <span class="feedback" id="f8"></span>
+    </div>
+
+    <!--9-->    
+    <div class="question">
+      <span>9.</span> If I <input type="text" id="q9a"> (find) a lost wallet, I <input type="text" id="q9b"> (return) it to the owner.
+      <span class="feedback" id="f9"></span>
+    </div>
+
+    <!--10-->    
+    <div class="question">
+      <span>10.</span> If we <input type="text" id="q10a"> (have) more time, we <input type="text" id="q10b"> (visit) the museum.
+      <span class="feedback" id="f10"></span>
+    </div>
+
+    <!--11-->    
+    <div class="question">
+      <span>11.</span> If he <input type="text" id="q11a"> (not be) so shy, he <input type="text" id="q11b"> (make) more friends.
+      <span class="feedback" id="f11"></span>
+    </div>
+
+    <!--12-->    
+    <div class="question">
+      <span>12.</span> If I <input type="text" id="q12a"> (win) the lottery, I <input type="text" id="q12b"> (donate) a lot to charity.
+      <span class="feedback" id="f12"></span>
+    </div>
+
+    <button id="check-btn" onclick="checkAnswers()">Check Answers</button>
+
+    <div class="buttons">
+      <a href="../practice.html">← Back to Practice</a>
+      <a href="../index.html">🏠 Home</a>
+    </div>
+  </div>
+
+  <script>
+    const answers = {
+      1: ['had', 'would buy'],
+      2: ['were', 'could reach'],
+      3: ['lived', 'would go'],
+      4: ['knew', 'would make'],
+      5: ["didn't have", 'would travel'],
+      6: ['were', 'would accept'],
+      7: ['snowed', "wouldn't go"],
+      8: ['spoke', 'would get'],
+      9: ['found', 'would return'],
+      10: ['had', 'would visit'],
+      11: ['weren't', 'would make'],
+      12: ['won', 'would donate']
+    };
+
+    function checkAnswers() {
+      for (let i = 1; i <= 12; i++) {
+        const inputA = document.getElementById(`q${i}a`).value.trim().toLowerCase();
+        const inputB = document.getElementById(`q${i}b`).value.trim().toLowerCase();
+        const feedback = document.getElementById(`f${i}`);
+        const [ansA, ansB] = answers[i];
+        if (inputA === ansA && inputB === ansB) {
+          feedback.textContent = '✓ Correct';
+          feedback.style.color = 'green';
+        } else {
+          feedback.textContent = `✗ Incorrect (Answer: ${ansA}, ${ansB})`;
+          feedback.style.color = 'red';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

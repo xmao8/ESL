@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Computer Vocabulary</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; color: #333; }
+    nav { background: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0; color: #2c3e50; }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word { font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem; }
+    .definition { margin-bottom: 1rem; }
+    .example { font-style: italic; }
+    .buttons { margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practice</a>
+</nav>
+
+<h1>Computer Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">
+  <div class="word">Click to Flip</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Computer", definition: "An electronic device for processing data.", example: "I use my computer to write reports every day." },
+  { word: "Hardware", definition: "The physical components of a computer.", example: "I installed new hardware in my desktop to improve performance." },
+  { word: "Software", definition: "Programs and applications that run on a computer.", example: "She downloaded new software to edit photos." },
+  { word: "Monitor", definition: "A screen that displays computer output.", example: "The monitor shows the results of your work." },
+  { word: "Keyboard", definition: "A set of keys used to type input into a computer.", example: "Please type your password using the keyboard." },
+  { word: "Mouse", definition: "A pointing device used to interact with the computer screen.", example: "Move the cursor by sliding the mouse." },
+  { word: "CPU", definition: "Central Processing Unit, the brain of the computer.", example: "The CPU handles all calculations and tasks." },
+  { word: "Memory", definition: "The component (RAM) that stores data temporarily.", example: "More memory helps your computer run multiple programs smoothly." },
+  { word: "Storage", definition: "Where data is kept long-term, like a hard drive or SSD.", example: "I saved the document on my computer's storage drive." },
+  { word: "Hard Drive", definition: "A device that stores large amounts of data on magnetic disks.", example: "The hard drive holds all of my files and photos." },
+  { word: "SSD", definition: "Solid State Drive, a faster storage device without moving parts.", example: "Upgrading to an SSD made my computer start much quicker." },
+  { word: "Internet", definition: "A global network connecting millions of computers.", example: "I search for information on the internet every day." },
+  { word: "Browser", definition: "Software used to access websites on the Internet.", example: "I opened my browser to check the news." },
+  { word: "Network", definition: "A group of connected computers sharing resources.", example: "The office network allows files to be shared easily." },
+  { word: "Router", definition: "A device that directs data traffic between networks.", example: "I reset the router when the Wi-Fi was slow." },
+  { word: "Server", definition: "A computer that provides services or data to other computers.", example: "Our email server went down last night." },
+  { word: "Client", definition: "A computer or program that accesses services from a server.", example: "Each client connects to the server to retrieve data." },
+  { word: "Operating System", definition: "The software that manages computer hardware and provides a user interface.", example: "Windows, macOS, and Linux are popular operating systems." },
+  { word: "Application", definition: "A program designed for end users to perform specific tasks.", example: "I use a word processing application to write documents." },
+  { word: "Program", definition: "A set of instructions that tells a computer what to do.", example: "She wrote a program to calculate expenses." },
+  { word: "Code", definition: "Text written by programmers in a programming language.", example: "He wrote code to develop a mobile app." },
+  { word: "Algorithm", definition: "A step-by-step procedure for solving a problem.", example: "The search engine uses an algorithm to rank websites." },
+  { word: "File", definition: "A container in a computer system used to store data.", example: "Save the file before you close the program." },
+  { word: "Folder", definition: "A virtual container that holds files and other folders.", example: "I organized my pictures into a folder." },
+  { word: "Download", definition: "To transfer data from the Internet to your computer.", example: "I need to download the new update." },
+  { word: "Upload", definition: "To send data from your computer to the Internet.", example: "She will upload the photo to her online album." },
+  { word: "Email", definition: "Electronic mail used to send messages over the Internet.", example: "I received an email from my professor." },
+  { word: "Website", definition: "A collection of web pages hosted on the Internet.", example: "I visited a website for online shopping." },
+  { word: "URL", definition: "Uniform Resource Locator, the address of a web page.", example: "Type the URL into the browser to visit the site." },
+  { word: "Link", definition: "A clickable element that directs you to another web page.", example: "Click the link to read the full article." },
+  { word: "Graphics", definition: "Images or visual elements displayed by a computer.", example: "The game has excellent graphics." },
+  { word: "Printer", definition: "A device that produces a paper copy of digital documents.", example: "I need to print my report before the meeting." },
+  { word: "Scanner", definition: "A device that converts physical documents into digital form.", example: "He scanned the contract and emailed it to me." },
+  { word: "Antivirus", definition: "Software that protects a computer from viruses.", example: "Install antivirus software to keep your computer safe." },
+  { word: "Firewall", definition: "A security system that controls incoming and outgoing network traffic.", example: "The firewall blocked the suspicious connection." },
+  { word: "Cloud", definition: "Remote servers accessed over the Internet for storage and services.", example: "I store my backups in the cloud." },
+  { word: "Data", definition: "Facts, figures, and information stored or processed by a computer.", example: "The survey collects user data for analysis." },
+  { word: "Backup", definition: "A copy of data stored separately to prevent loss.", example: "Remember to backup your files regularly." },
+  { word: "Bug", definition: "An error or flaw in software that causes it to malfunction.", example: "The app crashed because of a bug." },
+  { word: "Debugging", definition: "The process of finding and fixing errors in code.", example: "He spent the afternoon debugging the program." },
+  { word: "User Interface", definition: "The visual elements and controls that let users interact with a program.", example: "The app’s user interface is very intuitive." },
+  { word: "GUI", definition: "Graphical User Interface, a type of interface using visuals like icons and windows.", example: "Most operating systems use a GUI instead of a command line." },
+  { word: "Command Line", definition: "A text-based interface where commands are typed to control the computer.", example: "Advanced users often use the command line for tasks." },
+  { word: "Laptop", definition: "A portable computer with a built-in screen and keyboard.", example: "I take my laptop to work every day." },
+  { word: "Desktop", definition: "A non-portable computer designed to sit on a desk.", example: "The desktop PC is faster than my laptop." },
+  { word: "Tablet", definition: "A portable touchscreen computer, smaller than a laptop.", example: "I read books on my tablet during my commute." },
+  { word: "Smartphone", definition: "A handheld device combining a phone with computer features.", example: "I check my email on my smartphone." },
+  { word: "Chipset", definition: "A group of integrated circuits that manage data flow between components.", example: "The motherboard’s chipset affects performance." },
+  { word: "USB", definition: "Universal Serial Bus, a standard for connecting peripherals.", example: "Use a USB drive to transfer files between computers." },
+  { word: "Bluetooth", definition: "Wireless technology for exchanging data over short distances.", example: "I connect my headphones to my phone via Bluetooth." },
+  { word: "Wi-Fi", definition: "Wireless networking technology for Internet access.", example: "The café offers free Wi-Fi to all customers." },
+  { word: "Network Card", definition: "Hardware that allows a computer to connect to a network.", example: "He replaced the old network card to get better speeds." },
+  { word: "Graphics Card", definition: "Hardware that renders images and video on a screen.", example: "Gaming requires a powerful graphics card for high performance." },
+  { word: "Motherboard", definition: "The main circuit board that holds the CPU, memory, and other components.", example: "Upgrading the motherboard allowed for more RAM." },
+  { word: "Power Supply", definition: "Component that provides power to the computer’s components.", example: "The new power supply can handle more powerful hardware." },
+  { word: "Peripheral", definition: "An external device that connects to and works with the computer.", example: "The printer is a common peripheral for home offices." },
+  { word: "Keyboard Shortcut", definition: "A combination of keys that performs a specific function.", example: "Press Ctrl+C as a keyboard shortcut to copy text." },
+  { word: "Malware", definition: "Software designed to harm or exploit a computer system.", example: "The antivirus detected and removed the malware." },
+  { word: "Encryption", definition: "The process of converting data into a coded form to prevent unauthorized access.", example: "They use encryption to secure all online transactions." },
+  { word: "Password", definition: "A secret word or phrase that must be used to gain access to something.", example: "Choose a strong password to protect your account." },
+  { word: "Login", definition: "To enter a username and password to access a computer or service.", example: "You must login to your account before checking your email." },
+  { word: "Logout", definition: "To exit from a computer or service by ending a session.", example: "Remember to logout of the website when you’re done." },
+  { word: "Recycle Bin", definition: "A folder where deleted files are temporarily stored.", example: "I restored the file from the Recycle Bin after deleting it by mistake." },
+  { word: "Desktop Shortcut", definition: "An icon on the desktop that links to a program or file.", example: "I created a desktop shortcut for my favorite game." },
+  { word: "Toolbar", definition: "A row of icons or buttons that give quick access to functions.", example: "The toolbar in the browser lets you quickly navigate to bookmarks." },
+  { word: "Task Manager", definition: "A system monitor tool that shows running programs and system performance.", example: "Open Task Manager to see which program is using too much memory." },
+  { word: "Spreadsheet", definition: "A document that stores data in tables where you can perform calculations.", example: "I use a spreadsheet to manage my budget." },
+  { word: "Database", definition: "A structured collection of data stored electronically.", example: "The customer database contains all sales records." }
+];
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  const { word } = flashcards[index];
+  card.innerHTML = `<div class="word">${word}</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, example } = flashcards[index];
+    card.innerHTML = `<div class="word">${word}</div><div class="definition">${definition}</div><div class="example">"${example}"</div>`;
+    card.classList.add("flipped");
+    speak(word);
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  speechSynthesis.speak(utterance);
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">← Back to Flashcards</a>
+  <a href="../index.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">🏠 Home</a>
+</div>
+
+</body>
+</html>

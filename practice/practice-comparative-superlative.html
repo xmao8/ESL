@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Practice – Comparative and Superlative (Shopping)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9fb;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 2rem;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta input[type="text"] {
+            width: 150px; /* Adjust width for name/date inputs */
+        }
+
+        .question {
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            position: relative; /* Needed for absolute positioning of feedback */
+        }
+
+        .question span.feedback {
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .question span.correct {
+            color: #27ae60; /* Green for correct */
+        }
+
+        .question span.incorrect {
+            color: #e74c3c; /* Red for incorrect */
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 1px solid #aaa;
+            padding: 4px 8px;
+            font-size: 1rem;
+            width: 180px; /* Adjust width as needed for longer answers */
+            margin: 0 0.5rem;
+            box-sizing: border-box; /* Include padding/border in width */
+        }
+
+        .choices {
+            color: #555;
+            font-style: italic;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .buttons a, .buttons button {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none; /* Remove default button border */
+            cursor: pointer; /* Indicate it's clickable */
+            font-size: 1rem; /* Match font size */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        .buttons a:hover, .buttons button:hover {
+            background-color: #2980b9;
+        }
+
+        #score-display {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../practice.html">Practice</a>
+    </nav>
+
+    <h1>Comparative and Superlative Practice: Shopping Spree!</h1>
+
+    <div class="container">
+        <p><strong>Instructions:</strong> Read each sentence about shopping. Choose the correct comparative or superlative form of the adjective or adverb in parentheses ( ). Write your answer in the blank.</p>
+
+        <div class="meta">
+            <div>Name: <input type="text" id="studentName" /></div>
+            <div>Date: <input type="text" id="currentDate" /></div>
+        </div>
+
+        <!-- Each input has a data-question-id to link to answers -->
+        <div class="question">1. My old phone was good, but my new one is much <input type="text" data-question-id="q1" /> <span class="choices">(good)</span>.</div>
+        <div class="question">2. The red dress is pretty, but the blue dress is <input type="text" data-question-id="q2" /> <span class="choices">(pretty)</span> of all the dresses in the store.</div>
+        <div class="question">3. Online shopping is usually <input type="text" data-question-id="q3" /> <span class="choices">(convenient)</span> than going to a physical store.</div>
+        <div class="question">4. This jacket is <input type="text" data-question-id="q4" /> <span class="choices">(expensive)</span> item in the whole boutique. I can't afford it!</div>
+        <div class="question">5. I need a backpack that is <input type="text" data-question-id="q5" /> <span class="choices">(big)</span> than my current one. It's too small for my books.</div>
+        <div class="question">6. Of all the electronics stores, "Tech Giant" has <input type="text" data-question-id="q6" /> <span class="choices">(cheap)</span> prices.</div>
+        <div class="question">7. She always shops <input type="text" data-question-id="q7" /> <span class="choices">(carefully)</span> than her husband; she checks every price.</div>
+        <div class="question">8. The queue at the supermarket was <input type="text" data-question-id="q8" /> <span class="choices">(long)</span> than the one at the bakery.</div>
+        <div class="question">9. This is <input type="text" data-question-id="q9" /> <span class="choices">(bad)</span> customer service I've ever experienced. I'm very unhappy.</div>
+        <div class="question">10. My new running shoes feel <input type="text" data-question-id="q10" /> <span class="choices">(comfortable)</span> than my old ones.</div>
+        <div class="question">11. He arrives <input type="text" data-question-id="q11" /> <span class="choices">(early)</span> for sales than anyone else to get the best deals.</div>
+        <div class="question">12. For fresh vegetables, the farmers' market is <input type="text" data-question-id="q12" /> <span class="choices">(good)</span> place to go.</div>
+        <div class="question">13. Learning about discounts makes shopping <input type="text" data-question-id="q13" /> <span class="choices">(easy)</span>.</div>
+        <div class="question">14. Small local shops are often <input type="text" data-question-id="q14" /> <span class="choices">(friendly)</span> than large chain stores.</div>
+        <div class="question">15. This new coffee machine works <input type="text" data-question-id="q15" /> <span class="choices">(efficiently)</span> than our old one.</div>
+        <div class="question">16. The traffic near the mall on Saturday is <input type="text" data-question-id="q16" /> <span class="choices">(heavy)</span> in the entire city.</div>
+        <div class="question">17. I spend <input type="text" data-question-id="q17" /> <span class="choices">(much)</span> money on groceries than on clothes every month.</div>
+        <div class="question">18. Of all the departments, the toy section is always <input type="text" data-question-id="q18" /> <span class="choices">(noisy)</span>.</div>
+        <div class="question">19. My little sister picks out clothes <input type="text" data-question-id="q19" /> <span class="choices">(quickly)</span> than I do.</div>
+        <div class="question">20. This year, the holiday sales are <input type="text" data-question-id="q20" /> <span class="choices">(good)</span> we've seen in a long time.</div>
+
+        <div class="buttons">
+            <button id="checkAnswersBtn">Check Answers</button>
+            <a href="../practice.html">← Back to Practice</a>
+            <a href="../index.html">🏠 Home</a>
+        </div>
+
+        <div id="score-display"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set today's date automatically
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').value = today.toLocaleDateString('en-US', options);
+
+            // Correct answers for each question (case-insensitive checking)
+            const correctAnswers = {
+                q1: "better",
+                q2: "the prettiest",
+                q3: "more convenient",
+                q4: "the most expensive",
+                q5: "bigger",
+                q6: "the cheapest",
+                q7: "more carefully",
+                q8: "longer",
+                q9: "the worst",
+                q10: "more comfortable",
+                q11: "earlier",
+                q12: "the best",
+                q13: "easier",
+                q14: "friendlier",
+                q15: "more efficiently",
+                q16: "the heaviest",
+                q17: "more",
+                q18: "the noisiest",
+                q19: "more quickly",
+                q20: "the best"
+            };
+
+            const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+            const scoreDisplay = document.getElementById('score-display');
+            const questionInputs = document.querySelectorAll('.question input[type="text"]');
+
+            checkAnswersBtn.addEventListener('click', () => {
+                let correctCount = 0;
+                let totalQuestions = questionInputs.length; // Each input is a separate question/blank for this exercise
+
+                // Clear previous feedback
+                document.querySelectorAll('.feedback').forEach(el => el.remove());
+
+                questionInputs.forEach(input => {
+                    const questionId = input.dataset.questionId; // Get the unique ID for the question
+                    const userAnswer = input.value.trim().toLowerCase();
+                    const correctAnswer = correctAnswers[questionId].toLowerCase();
+
+                    // Create feedback span
+                    const feedbackSpan = document.createElement('span');
+                    feedbackSpan.classList.add('feedback');
+
+                    if (userAnswer === correctAnswer) {
+                        feedbackSpan.textContent = '✔️ Correct!';
+                        feedbackSpan.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        feedbackSpan.textContent = `❌ Incorrect. Correct: ${correctAnswer}`;
+                        feedbackSpan.classList.add('incorrect');
+                    }
+                    input.insertAdjacentElement('afterend', feedbackSpan); // Insert feedback next to the input
+                });
+
+                scoreDisplay.textContent = `You scored ${correctCount} out of ${totalQuestions} questions correctly!`;
+            });
+        });
+    </script>
+</body>
+</html>

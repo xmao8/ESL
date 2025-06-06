@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flashcards – Shopping Vocabulary</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            margin: 2rem 0 1rem;
+            color: #2c3e50;
+        }
+
+        #flashcard {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            height: 220px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+            white-space: pre-line;
+        }
+
+        #flashcard.flipped {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .buttons {
+            margin: 1rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+       <a href="../index.html">Home</a>
+       <a href="../flashcards.html">Flashcards</a>
+       <a href="../conversation.html">Conversations</a>
+       <a href="../grammar.html">Grammar</a>
+       <a href="../reading.html">Reading</a>
+       <a href="../practice.html">Practices</a> 
+    </nav>
+
+    <h1>Shopping Vocabulary Flashcards</h1>
+
+    <div id="flashcard" onclick="flipCard()">Click to flip</div>
+
+    <div class="buttons">
+        <button onclick="prevCard()">⬅ Previous</button>
+        <button onclick="nextCard()">Next ➡</button>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="../flashcards.html">← Back to Flashcards</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+
+    <script>
+        const flashcards = [
+            [
+              "An item sold at a lower price than usual; a good deal.",
+              "Bargain",
+              "I found a great bargain on winter coats at the outlet store."
+            ],
+            [
+              "The place or process where you pay for your items in a store.",
+              "Checkout",
+              "The line at the checkout was long, but the cashier was very friendly."
+            ],
+            [
+              "A document proving payment for goods or services.",
+              "Receipt",
+              "Keep your receipt in case you need to return or exchange the item."
+            ],
+            [
+              "Money returned to a customer for a returned or unsatisfactory item.",
+              "Refund",
+              "After noticing the defect, she asked for a full refund on her blender."
+            ],
+            [
+              "Giving back an item and receiving a different size, color, or product.",
+              "Exchange",
+              "I need to exchange these shoes for a larger size because they’re too tight."
+            ],
+            [
+              "An event or period when prices are reduced to attract customers.",
+              "Sale",
+              "The store is having a sale this weekend with up to 50% off select items."
+            ],
+            [
+              "A reduction in the usual price of an item or service.",
+              "Discount",
+              "Students can show their ID at the register to receive a 10% discount."
+            ],
+            [
+              "A voucher that provides a discount or special offer on a purchase.",
+              "Coupon",
+              "I clipped a coupon for 20% off my next purchase of kitchenware."
+            ],
+            [
+              "A large indoor shopping center with many stores under one roof.",
+              "Mall",
+              "Let’s head to the mall this afternoon to buy school supplies."
+            ],
+            [
+              "The front exterior of a store, often displaying merchandise to attract shoppers.",
+              "Storefront",
+              "The storefront was decorated with holiday lights and festive window displays."
+            ],
+            [
+              "The sale of goods directly to the public, usually in small quantities.",
+              "Retail",
+              "She works in retail at that new clothing boutique downtown."
+            ],
+            [
+              "The sale of goods in large quantities, typically to retailers rather than consumers.",
+              "Wholesale",
+              "They buy inventory at wholesale prices so they can sell it at a profit."
+            ],
+            [
+              "The complete list of goods and products a store has in stock.",
+              "Inventory",
+              "Before the promotion, the manager checked the inventory to see what needed restocking."
+            ],
+            [
+              "A person who purchases goods or services from a store or business.",
+              "Customer",
+              "The customer asked if they could try on the sweater before deciding to buy it."
+            ],
+            [
+              "A person responsible for handling payments at the checkout counter.",
+              "Cashier",
+              "The cashier scanned each item quickly and correctly entered all discounts."
+            ],
+            [
+              "The act of buying something; the item that has been bought.",
+              "Purchase",
+              "My purchase today included a new laptop and a protective case."
+            ],
+            [
+              "Taking back a purchased item to the store for a refund or exchange.",
+              "Return",
+              "Since the jacket didn’t fit, I went back to the store to return it."
+            ],
+            [
+              "A cart or basket used by customers to hold items while shopping.",
+              "Shopping Cart",
+              "I pushed the shopping cart down the aisle as I selected groceries for dinner."
+            ],
+            [
+              "A private area in a clothing store where customers try on garments before buying.",
+              "Fitting Room",
+              "She headed into the fitting room to see if the dress fit comfortably."
+            ],
+            [
+              "Looking at items in store windows or online without intending to buy immediately.",
+              "Window Shopping",
+              "Even though I wasn’t planning to buy anything, I enjoyed some window shopping at the new mall."
+            ],
+            [
+              "A name, term, design, or symbol that identifies a product and distinguishes it from others.",
+              "Brand",
+              "Nike is a popular brand for athletic shoes because they’re so durable."
+            ],
+            [
+              "A tag attached to a product that gives information like price, size, or brand.",
+              "Label",
+              "The label on this shirt says it’s made of 100% organic cotton."
+            ],
+            [
+              "A promotional message designed to encourage consumers to purchase a product or service.",
+              "Advertisement",
+              "The advertisement on TV showed the new smartphone and its advanced camera features."
+            ],
+            [
+              "A small tag attached to an item showing its cost.",
+              "Price Tag",
+              "I checked the price tag before realizing the jacket was on clearance."
+            ],
+            [
+              "The passage between rows of shelves in a store.",
+              "Aisle",
+              "I walked down the aisle to find the spaghetti and tomato sauce I needed."
+            ]
+        ];
+
+        let index = 0;
+        let flipped = false;
+        const card = document.getElementById("flashcard");
+
+        function showCard() {
+            card.classList.remove("flipped");
+            flipped = false;
+            // Show definition on front
+            card.textContent = flashcards[index][0];
+        }
+
+        function flipCard() {
+            if (flipped) {
+                // Flip back to definition
+                card.textContent = flashcards[index][0];
+                card.classList.remove("flipped");
+            } else {
+                // Show term + example when flipped
+                const word = flashcards[index][1];
+                const example = flashcards[index][2];
+                card.textContent = word + "\n\nExample: " + example;
+                card.classList.add("flipped");
+                speak(word);
+            }
+            flipped = !flipped;
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = "en-US";
+            speechSynthesis.speak(utterance);
+        }
+
+        function nextCard() {
+            index = (index + 1) % flashcards.length;
+            showCard();
+        }
+
+        function prevCard() {
+            index = (index - 1 + flashcards.length) % flashcards.length;
+            showCard();
+        }
+
+        // Initialize the first card on page load
+        showCard();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards – Computer &amp; Internet</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; }
+    nav { background: #2c3e50; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    h1 { margin: 2rem 0; color: #2c3e50; }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons { margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practices</a> 
+</nav>
+
+<h1>Computer &amp; Internet Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Browser", definition: "A software application used to access and view websites on the Internet.", examples: "She opened her browser to check the latest news online.\nAlways update your browser to improve security and speed." },
+  { word: "Download", definition: "To transfer data or a file from the Internet or another computer to your own device.", examples: "I need to download the software update before it expires.\nHe downloaded a new game onto his tablet last night." },
+  { word: "Upload", definition: "To transfer data or a file from your device to the Internet or another computer.", examples: "Please upload your assignment to the online portal before midnight.\nShe uploaded vacation photos to her social media account." },
+  { word: "Software", definition: "Programs and applications that run on a computer or mobile device.", examples: "He installed new photo-editing software to improve his pictures.\nThe company purchased software to manage customer information." },
+  { word: "Hardware", definition: "The physical components of a computer system, like the keyboard, monitor, and processor.", examples: "The technician replaced the faulty hardware to fix the computer.\nBuilding a custom PC requires choosing compatible hardware parts." },
+  { word: "Network", definition: "A group of computers and devices connected together to share resources and information.", examples: "The office network was down, so we couldn’t access the server.\nShe joined the home network via Wi-Fi to print documents." },
+  { word: "Server", definition: "A powerful computer that provides data, resources, or services to other computers on a network.", examples: "The website’s files are stored on a remote server.\nOur email may be delayed if the server is busy." },
+  { word: "Password", definition: "A secret word or phrase used to gain access to a computer, account, or system.", examples: "Choose a strong password with letters, numbers, and symbols.\nNever share your password with anyone to keep your information safe." },
+  { word: "Email", definition: "Electronic mail; a method of sending digital messages over the Internet.", examples: "She sent an email to her teacher with her homework attached.\nCheck your email inbox frequently for important updates." },
+  { word: "Website", definition: "A collection of related web pages under a single domain, accessible through a browser.", examples: "He visits the company website to read the latest blog post.\nThe teacher asked students to build a simple website for class." },
+  { word: "URL", definition: "Uniform Resource Locator; the web address used to locate a resource on the Internet.", examples: "Type the URL into the address bar to go directly to the page.\nShe copied the URL to share the article with her friends." },
+  { word: "Link", definition: "A clickable element (text or image) that directs you to another web page or resource.", examples: "Click the link to download the PDF guide.\nHe sent a link to the online form for everyone to fill out." },
+  { word: "Application", definition: "A software program designed to perform a specific task, also called an app.", examples: "She uses a language learning application to practice English.\nThe new banking application lets you check your balance on mobile." },
+  { word: "Install", definition: "To set up software or hardware on a device so that it is ready to be used.", examples: "I will install the antivirus program on my laptop tonight.\nMake sure to install the printer driver before connecting the printer." },
+  { word: "Uninstall", definition: "To remove software or an application from a device.", examples: "He decided to uninstall the game because it was taking too much space.\nIf the app crashes, try uninstalling and reinstalling it." },
+  { word: "Update", definition: "To bring software, apps, or systems to the latest version for improvements or fixes.", examples: "Your phone will automatically prompt you to update the operating system.\nAfter the update, your device should run faster and more securely." },
+  { word: "Virus", definition: "A malicious program that can damage files or take control of your computer.", examples: "Install antivirus software to protect your computer from viruses.\nThe computer got a virus after clicking on a suspicious email link." },
+  { word: "Malware", definition: "Software designed with harmful intentions, such as stealing data or damaging systems.", examples: "He learned how to recognize malware to avoid downloading it by accident.\nRegular scans help detect and remove malware from your device." },
+  { word: "Firewall", definition: "A security system that controls incoming and outgoing network traffic based on rules.", examples: "Enable the firewall to block unauthorized access to your computer.\nThe company’s firewall prevented hackers from entering the network." },
+  { word: "Encryption", definition: "The process of converting information into code to prevent unauthorized access.", examples: "Your messages are protected by encryption so only the recipient can read them.\nUse encryption when sending sensitive information over public Wi-Fi." },
+  { word: "Cloud", definition: "Internet-based storage and services where data is stored remotely rather than on a local device.", examples: "She saved her documents to the cloud to access them from any device.\nMany companies use cloud services to back up important data." },
+  { word: "Backup", definition: "A copy of data stored separately to prevent loss in case of failure or accident.", examples: "Remember to backup your photos before resetting your phone.\nAutomatic cloud backups run every night to save new files." },
+  { word: "Database", definition: "An organized collection of information stored electronically for easy access and management.", examples: "The restaurant uses a database to track customer orders and reservations.\nLearning basic database queries can help manage large sets of data." },
+  { word: "Search", definition: "To look for information on the Internet using keywords or phrases, often via a search engine.", examples: "Type 'best Italian restaurants' into the search bar to find options nearby.\nShe used a search engine to research her project on renewable energy." },
+  { word: "Streaming", definition: "To play audio or video content in real time over the Internet without downloading it first.", examples: "He enjoys streaming music on his smartphone during his commute.\nStreaming movies can use a lot of data, so watch on Wi-Fi if possible." },
+  { word: "Social Media", definition: "Websites and apps that allow users to create and share content or participate in social networking.", examples: "She checks social media every morning to see updates from friends.\nTeachers sometimes use social media groups to share classroom resources." },
+  { word: "Blog", definition: "A regularly updated website or web page, typically run by an individual or small group, written in an informal style.", examples: "He writes a blog about healthy cooking and posts new recipes every week.\nStudents often start a blog to practice writing in English." },
+  { word: "Forum", definition: "An online discussion site where people can hold conversations in the form of posted messages.", examples: "She asked for advice on a language learning forum and received many tips.\nVisit the tech support forum if you have questions about your device." },
+  { word: "Wi-Fi", definition: "A wireless networking technology that allows devices to connect to the Internet without cables.", examples: "Connect to the café’s free Wi-Fi to check your email while you wait.\nMake sure your Wi-Fi password is strong to keep your home network secure." },
+  { word: "Bluetooth", definition: "A short-range wireless technology used to exchange data between devices over short distances.", examples: "He paired his headphones with his phone using Bluetooth.\nUse Bluetooth to transfer pictures from your camera to your computer." },
+  { word: "Router", definition: "A networking device that forwards data packets between computer networks, directing traffic on the Internet.", examples: "He reset the router to fix the slow Internet connection at home.\nThe router assigned IP addresses to each device on the network automatically." },
+  { word: "Modem", definition: "A device that modulates and demodulates signals for communication overtelephone or cable lines.", examples: "The technician connected the modem to the wall outlet to establish Internet service.\nWithout a working modem, you can’t access your Internet connection." },
+  { word: "Domain", definition: "The unique name that identifies a website’s address on the Internet, like example.com.", examples: "She purchased a domain for her new business website.\nType the domain into the browser to visit the company’s online store." },
+  { word: "IP Address", definition: "A numerical label assigned to each device connected to a computer network that uses the Internet Protocol.", examples: "He checked his IP address to troubleshoot network issues.\nWeb servers log the IP addresses of visitors for security and analytics." },
+  { word: "Cache", definition: "A component that stores data temporarily to speed up future requests.", examples: "Clear your browser’s cache if pages aren’t loading correctly.\nThe browser stored the image in its cache to load the page faster next time." },
+  { word: "Cookie", definition: "A small piece of data stored on a user’s computer by their web browser while browsing a website.", examples: "Accept or decline cookies based on your privacy preferences.\nThe website used a cookie to remember her login information." },
+  { word: "Bandwidth", definition: "The maximum rate of data transfer across a given path, measuring how much data can be sent over a network.", examples: "Streaming high-definition video requires a lot of bandwidth.\nIf multiple people use the network at once, bandwidth can become limited." },
+  { word: "Protocol", definition: "A set of rules that dictate how data is transmitted and received over a network.", examples: "HTTP is a protocol used for transferring web pages.\nThe router follows specific protocols to direct traffic efficiently." },
+  { word: "HTTP", definition: "Hypertext Transfer Protocol; the foundation of data communication for the World Wide Web.", examples: "When you type http:// before a domain, you’re using the HTTP protocol.\nHTTP transfers the HTML file from the server to your browser." },
+  { word: "HTTPS", definition: "Secure Hypertext Transfer Protocol; an encrypted version of HTTP used for secure communication over a network.", examples: "Enter https:// to access the secure version of the website.\nOnline banking sites always use HTTPS to protect user data." },
+  { word: "HTML", definition: "Hypertext Markup Language; the standard markup language used to create web pages.", examples: "He learned HTML to build the structure of his personal webpage.\nEvery webpage uses HTML elements to display content in the browser." },
+  { word: "CSS", definition: "Cascading Style Sheets; a style sheet language used for describing the presentation of a document written in HTML.", examples: "Use CSS to change the font and color of your webpage text.\nShe created a stylesheet to make her website look consistent on all pages." },
+  { word: "JavaScript", definition: "A programming language commonly used to create interactive effects within web browsers.", examples: "He used JavaScript to add a slideshow feature to his website.\nJavaScript can update content on the page without reloading it." },
+  { word: "Login", definition: "The act of signing into a system or service by entering credentials like username and password.", examples: "Please login to your account to view your grades.\nIf you forget your login details, use the password reset option." },
+  { word: "Logout", definition: "The act of signing out of a system or service to end a session securely.", examples: "Always logout of public computers to protect your account.\nAfter checking her email, she clicked logout to ensure no one else could access it." },
+  { word: "Username", definition: "A unique identifier chosen by a user to access a system, often paired with a password.", examples: "Create a username that is easy to remember but hard for others to guess.\nYour username will appear whenever you post comments online." },
+  { word: "Antivirus", definition: "Software designed to detect and remove malicious programs from a computer system.", examples: "Install antivirus software to scan your computer for threats regularly.\nThe antivirus alerted her when it detected a suspicious file." }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = flashcards[index].word;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, examples } = flashcards[index];
+    card.innerHTML = `<strong>${word}</strong><br>${definition}<br><br><em>${examples.replace(/\n/g, "<br>")}</em>`;
+    card.classList.add("flipped");
+    speak(word);
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  speechSynthesis.speak(utterance);
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">← Back to Flashcards</a>
+  <a href="../index.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">🏠 Home</a>
+</div>
+</body>
+</html>

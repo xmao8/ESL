@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Dining Out Vocabulary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practices</a>
+</nav>
+
+<h1>Dining Out Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Reservation", definition: "An arrangement made in advance to have a table available at a restaurant.", examples: "I made a reservation for two at 7 PM.\nWe forgot to confirm our reservation and had to wait." },
+  { word: "Menu", definition: "A list of dishes and beverages offered by a restaurant.", examples: "Could I see the menu, please?\nThe chef’s special is highlighted on the menu." },
+  { word: "Appetizer", definition: "A small dish served before the main course.", examples: "We shared a shrimp cocktail appetizer.\nThe bruschetta appetizer was delicious." },
+  { word: "Main course", definition: "The primary dish in a meal, often more substantial.", examples: "For my main course, I’ll have the grilled salmon.\nThe steak is the most popular main course here." },
+  { word: "Dessert", definition: "A sweet course served at the end of a meal.", examples: "Chocolate mousse is my favorite dessert.\nWould you like dessert or coffee?" },
+  { word: "Beverage", definition: "A drink, especially one other than water.", examples: "What beverage would you like with your meal?\nThey offer a variety of hot and cold beverages." },
+  { word: "Server", definition: "The person who takes orders and brings food to your table.", examples: "Our server was very attentive.\nAsk the server for today’s specials." },
+  { word: "Waiter", definition: "A male server in a restaurant.", examples: "The waiter recommended the soup of the day.\nI signaled the waiter for the check." },
+  { word: "Waitress", definition: "A female server in a restaurant.", examples: "The waitress brought our drinks quickly.\nWe asked the waitress for extra napkins." },
+  { word: "Hostess", definition: "The person who greets and seats customers.", examples: "The hostess showed us to our booth.\nPlease wait to be seated by the hostess." },
+  { word: "Table", definition: "The piece of furniture where customers sit to eat.", examples: "We prefer a table by the window.\nOur table is reserved under my name." },
+  { word: "Booth", definition: "A seating area with benches on either side of a table.", examples: "Booths are more private and cozy.\nWe fit four people comfortably in that booth." },
+  { word: "Counter", definition: "A high surface where customers can sit or place orders.", examples: "He sat at the counter to watch the chef cook.\nThe bakery has a display and counter for ordering." },
+  { word: "Bill", definition: "A statement of what you owe for your meal.", examples: "Could we have the bill, please?\nThe bill included a 10% service charge." },
+  { word: "Check", definition: "Another term for the bill.", examples: "May I get the check, please?\nI reviewed the check before paying." },
+  { word: "Tip", definition: "An extra amount of money given for good service.", examples: "We left a 20% tip for our server.\nIt’s customary to tip after dining out." },
+  { word: "Gratuity", definition: "The formal term for a tip.", examples: "A gratuity of 18% is added for large parties.\nCheck your bill to see if gratuity is included." },
+  { word: "Order", definition: "A request for food or drink from the menu.", examples: "I’d like to order the Caesar salad.\nOur order arrived sooner than expected." },
+  { word: "Daily special", definition: "A dish offered only on that day.", examples: "Ask about the daily special for a discount.\nThe daily special today is lobster bisque." },
+  { word: "Side dish", definition: "A small dish served alongside the main course.", examples: "I’ll have mashed potatoes as a side dish.\nThe side dish of roasted vegetables was fresh." },
+  { word: "Utensils", definition: "Tools like forks, knives, and spoons used to eat.", examples: "Could you bring extra utensils?\nThe utensils were neatly arranged on the table." },
+  { word: "Napkin", definition: "A piece of cloth or paper used to wipe one’s mouth or hands.", examples: "I need a clean napkin, please.\nShe tucked the napkin into her collar." },
+  { word: "Condiments", definition: "Sauces or seasonings added to food for flavor.", examples: "The table has salt, pepper, and other condiments.\nHe asked for extra condiments for his fries." },
+  { word: "To-go", definition: "Food packaged for eating elsewhere.", examples: "Can I get my meal to-go?\nThey gave us a to-go box for the leftovers." },
+  { word: "Dine-in", definition: "Eating at the restaurant itself.", examples: "Do you want to dine-in or take out?\nThey prefer dine-in service on weekends." },
+  { word: "Cuisine", definition: "A style or type of cooking, often of a specific region.", examples: "We’re trying Italian cuisine tonight.\nThis restaurant specializes in French cuisine." },
+  { word: "Allergy", definition: "A medical condition causing a reaction to certain foods.", examples: "I have a peanut allergy.\nPlease inform the server about any allergies." },
+  { word: "Vegan", definition: "A person who does not eat animal products.", examples: "They offer several vegan options.\nMy friend is vegan, so we chose that restaurant." },
+  { word: "Vegetarian", definition: "A person who does not eat meat.", examples: "The soup is vegetarian-friendly.\nShe’s been a vegetarian for five years." },
+  { word: "Gluten-free", definition: "Food that does not contain gluten, a protein in wheat.", examples: "I need a gluten-free pasta.\nThey have a separate gluten-free menu." }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = flashcards[index].word;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, examples } = flashcards[index];
+    card.innerHTML = `<strong>${word}</strong><br>${definition}<br><br><em>${examples.replace(/\n/g, "<br>")}</em>`;
+    card.classList.add("flipped");
+    speak(word);
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  speechSynthesis.speak(utterance);
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">← Back to Flashcards</a>
+  <a href="../index.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">🏠 Home</a>
+</div>
+
+</body>
+</html>

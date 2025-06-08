@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Conversation – Learn English Together</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -12,21 +13,16 @@
       margin: 0;
       padding: 0;
       color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
+    /* NAVBAR */
     nav {
-      background-color: #2c3e50;
+      background-color: #124076; /* updated color */
       padding: 0.8rem 1rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      display: flex;
       align-items: center;
     }
-    /* logo on the left */
     nav .logo {
-      grid-column: 1;
       display: flex;
       align-items: center;
     }
@@ -41,10 +37,8 @@
       color: #ff9800;
       font-weight: 700;
     }
-    /* center the links */
     nav .nav-links {
-      grid-column: 2;
-      justify-self: center;
+      margin: 0 auto; /* center the links */
       display: flex;
       gap: 1rem;
     }
@@ -59,6 +53,7 @@
       text-decoration: underline;
     }
 
+    /* PAGE TITLE */
     h1 {
       text-align: center;
       font-size: 2.5rem;
@@ -66,13 +61,12 @@
       color: #2c3e50;
     }
 
+    /* CONTENT */
     .container {
       max-width: 800px;
       margin: auto;
       padding: 2rem 1rem;
-      flex: 1;
     }
-
     .label-link {
       display: block;
       background: white;
@@ -85,16 +79,15 @@
       color: #2c3e50;
       transition: background 0.3s;
     }
-
     .label-link:hover {
       background: #e0f3ff;
     }
 
+    /* BACK BUTTON */
     .buttons {
       text-align: center;
       margin: 2rem 0;
     }
-
     .buttons a {
       text-decoration: none;
       margin: 0 0.5rem;
@@ -105,27 +98,24 @@
       font-weight: bold;
       transition: background-color 0.2s;
     }
-
     .buttons a:hover {
       background-color: #2980b9;
     }
 
+    /* MOBILE */
     @media (max-width: 600px) {
-      nav {
-        grid-template-columns: auto 1fr;
+      nav .site-name {
+        font-size: 1.1rem;
       }
       nav .nav-links {
         gap: 0.5rem;
-      }
-      nav .site-name {
-        font-size: 1.1rem;
+        flex-wrap: wrap;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
@@ -162,7 +152,6 @@
     <a class="label-link" href="conversation/daily-office.html">In the Office – The Coffee Conspiracy</a>
     <a class="label-link" href="conversation/daily-would-rather.html">Would Rather – Daily Dialogue</a>
     <a class="label-link" href="conversation/the-mom-mug.html">The "Best Plant Mom" Mug</a>
-    <!-- Add more labels below as needed -->
   </div>
 
   <div class="buttons">

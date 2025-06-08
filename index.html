@@ -25,7 +25,7 @@
       display: flex;
       align-items: center;
     }
-    /* logo + site name container */
+    /* logo on the left */
     nav .logo {
       display: flex;
       align-items: center;
@@ -38,11 +38,16 @@
     }
     nav .site-name {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.3rem;       /* increased size */
-      color: #ff9800;          /* accent color */
+      font-size: 1.3rem;
+      color: #ff9800;
       font-weight: 700;
     }
-
+    /* center the links */
+    nav .nav-links {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
     nav a {
       color: white;
       margin: 0 0.8rem;
@@ -99,7 +104,6 @@
       box-shadow: 0 6px 16px rgba(32, 115, 199, 0.15);
     }
 
-    /* One color gradient per block */
     .flashcards {
       background: linear-gradient(135deg, #6ec6ff 0%, #2073c7 100%);
     }
@@ -158,12 +162,14 @@
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
       <span class="site-name">ESLnote</span>
     </div>
-    <a href="index.html">Home</a>
-    <a href="flashcards.html">Flashcards</a>
-    <a href="conversation.html">Conversations</a>
-    <a href="grammar.html">Grammar</a>
-    <a href="reading.html">Reading</a>
-    <a href="practice.html">Practices</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="conversation.html">Conversations</a>
+      <a href="grammar.html">Grammar</a>
+      <a href="reading.html">Reading</a>
+      <a href="practice.html">Practices</a>
+    </div>
   </nav>
 
   <!-- Page Title -->

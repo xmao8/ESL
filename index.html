@@ -19,18 +19,18 @@
       flex-direction: column;
     }
 
+    /* Use CSS Grid to center nav-links and keep logo left */
     nav {
-      position: relative;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
     }
-    /* logo on the left */
     nav .logo {
+      grid-column: 1;
       display: flex;
       align-items: center;
-      z-index: 1;
     }
     nav .logo-img {
       width: 32px;
@@ -43,14 +43,10 @@
       color: #ff9800;
       font-weight: 700;
     }
-    /* center the links */
     nav .nav-links {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      grid-column: 2;
       display: flex;
       gap: 0.8rem;
-      z-index: 1;
     }
     nav .nav-links a {
       color: white;

@@ -21,18 +21,37 @@
 
     nav {
       background-color: #124076;
-      padding: 1rem;
-      text-align: center;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
     }
+    /* logo + site name container */
+    nav .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;       /* increased size */
+      color: #ff9800;          /* accent color */
+      font-weight: 700;
+    }
+
     nav a {
       color: white;
-      margin: 0 1rem;
+      margin: 0 0.8rem;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
     }
     nav a:hover {
-      color: #ff9800;
+      color: #ffbb33;
       text-decoration: underline;
     }
 
@@ -100,7 +119,6 @@
     }
     .blank-block {
       background: linear-gradient(135deg, #e3eaf5 0%, #bbdefb 100%);
-      /* no border, no content */
       min-height: 120px;
       pointer-events: none;
       user-select: none;
@@ -115,17 +133,6 @@
       color: inherit;
     }
 
-    .copyright-bar {
-      width: 100%;
-      background: #124076;
-      color: #fff;
-      text-align: center;
-      padding: 0.6rem 0;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      margin-top: auto;
-    }
-
     @media (max-width: 600px) {
       .container {
         padding: 0 .5rem;
@@ -138,12 +145,19 @@
         font-size: 2rem;
         margin: 1.5rem 0;
       }
+      nav .site-name {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
     <a href="index.html">Home</a>
     <a href="flashcards.html">Flashcards</a>
     <a href="conversation.html">Conversations</a>
@@ -181,7 +195,7 @@
     </div>
   </main>
 
-  <footer class="copyright-bar">
+  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0; font-size:0.95rem; letter-spacing:0.02em;">
     &copy; 2025 ESLnote.com. All rights reserved.
   </footer>
 </body>

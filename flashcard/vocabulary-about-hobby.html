@@ -1,27 +1,269 @@
-Here is a list of 25 words related to hobbies, suitable for ESL adult intermediate students:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Hobbies Vocabulary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
 
-1.  **Hobby** (n.): An activity done regularly in one's leisure time for pleasure.
-2.  **Leisure** (n.): Free time; time when you are not working.
-3.  **Pastime** (n.): An activity that you enjoy doing when you are not working.
-4.  **Passion** (n.): A very strong feeling of enthusiasm for something.
-5.  **Interest** (n.): Something that you enjoy doing or learning about.
-6.  **Creative** (adj.): Involving the use of imagination or original ideas to create something.
-7.  **Active** (adj.): Involving physical movement or activity.
-8.  **Intellectual** (adj.): Involving thought and reason; appealing to the mind.
-9.  **Collecting** (n.): The activity of gathering items of a particular type.
-10. **Crafts** (n.): Activities involving making things with your hands (e.g., knitting, pottery).
-11. **Skill** (n.): The ability to do something well.
-12. **Practice** (v.): To do an activity regularly so that you can improve.
-13. **Explore** (v.): To travel through an unfamiliar area to learn about it.
-14. **Develop** (v.): To grow or cause to grow and become more advanced.
-15. **Relaxation** (n.): The state of being free from tension and anxiety.
-16. **De-stress** (v.): To help someone relax and become less anxious.
-17. **Community** (n.): A group of people living in the same place or having a particular characteristic in common.
-18. **Enthusiasm** (n.): Intense and eager enjoyment, interest, or approval.
-19. **Pursuit** (n.): An activity or hobby.
-20. **Self-expression** (n.): The expression of one's own personality, feelings, or ideas, especially through art or creative activity.
-21. **Fulfilling** (adj.): Providing personal satisfaction.
-22. **Dedication** (n.): The quality of being devoted to a task or purpose.
-23. **Mastery** (n.): Comprehensive knowledge or skill in a subject or accomplishment.
-24. **Engagement** (n.): The state of being involved in something.
-25. **Variety** (n.): The quality or state of being different or diverse.
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practices</a>
+</nav>
+
+<h1>Hobbies Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { 
+    word: "Hobby", 
+    definition: "An activity done regularly in one's leisure time for pleasure.", 
+    example: "Her favorite hobby is painting landscapes on weekends."
+  },
+  { 
+    word: "Leisure", 
+    definition: "Free time; time when you are not working.", 
+    example: "He spends his leisure reading adventure novels." 
+  },
+  { 
+    word: "Pastime", 
+    definition: "An activity that you enjoy doing when you are not working.", 
+    example: "Gardening is a relaxing pastime for many people." 
+  },
+  { 
+    word: "Passion", 
+    definition: "A very strong feeling of enthusiasm for something.", 
+    example: "She has a passion for cooking new recipes every evening." 
+  },
+  { 
+    word: "Interest", 
+    definition: "Something that you enjoy doing or learning about.", 
+    example: "His interest in astronomy led him to join a star-gazing club." 
+  },
+  { 
+    word: "Creative", 
+    definition: "Involving the use of imagination or original ideas to create something.", 
+    example: "She used her creative skills to design a handmade card." 
+  },
+  { 
+    word: "Active", 
+    definition: "Involving physical movement or activity.", 
+    example: "He stays active by going cycling every morning." 
+  },
+  { 
+    word: "Intellectual", 
+    definition: "Involving thought and reason; appealing to the mind.", 
+    example: "Chess is an intellectual game that challenges the mind." 
+  },
+  { 
+    word: "Collecting", 
+    definition: "The activity of gathering items of a particular type.", 
+    example: "Collecting vintage stamps has been her hobby for years." 
+  },
+  { 
+    word: "Crafts", 
+    definition: "Activities involving making things with your hands (e.g., knitting, pottery).", 
+    example: "They enjoy doing crafts like knitting scarves for charity." 
+  },
+  { 
+    word: "Skill", 
+    definition: "The ability to do something well.", 
+    example: "With practice, he improved his skill at playing the guitar." 
+  },
+  { 
+    word: "Practice", 
+    definition: "To do an activity regularly so that you can improve.", 
+    example: "She practices yoga every evening to increase her flexibility." 
+  },
+  { 
+    word: "Explore", 
+    definition: "To travel through an unfamiliar area to learn about it.", 
+    example: "They plan to explore the nearby forest this weekend." 
+  },
+  { 
+    word: "Develop", 
+    definition: "To grow or cause to grow and become more advanced.", 
+    example: "He wants to develop his photography skills with a new camera." 
+  },
+  { 
+    word: "Relaxation", 
+    definition: "The state of being free from tension and anxiety.", 
+    example: "Listening to music provides her with pure relaxation." 
+  },
+  { 
+    word: "De-stress", 
+    definition: "To help someone relax and become less anxious.", 
+    example: "A hot bath after work helps him de-stress." 
+  },
+  { 
+    word: "Community", 
+    definition: "A group of people living in the same place or having a particular characteristic in common.", 
+    example: "She joined a gardening community to meet new friends." 
+  },
+  { 
+    word: "Enthusiasm", 
+    definition: "Intense and eager enjoyment, interest, or approval.", 
+    example: "His enthusiasm for cooking is contagious at family dinners." 
+  },
+  { 
+    word: "Pursuit", 
+    definition: "An activity or hobby.", 
+    example: "Painting is her favorite creative pursuit." 
+  },
+  { 
+    word: "Self-expression", 
+    definition: "The expression of one's own personality, feelings, or ideas.", 
+    example: "Blogging gives him a platform for self-expression." 
+  },
+  { 
+    word: "Fulfilling", 
+    definition: "Providing personal satisfaction.", 
+    example: "Volunteering at the animal shelter is very fulfilling for her." 
+  },
+  { 
+    word: "Dedication", 
+    definition: "The quality of being devoted to a task or purpose.", 
+    example: "His dedication to learning Spanish paid off quickly." 
+  },
+  { 
+    word: "Mastery", 
+    definition: "Comprehensive knowledge or skill in a subject or accomplishment.", 
+    example: "After years of practice, she achieved mastery in ballet." 
+  },
+  { 
+    word: "Engagement", 
+    definition: "The state of being involved in something.", 
+    example: "The workshop increased students’ engagement with science." 
+  },
+  { 
+    word: "Variety", 
+    definition: "The quality or state of being different or diverse.", 
+    example: "He enjoys a variety of hobbies, from painting to hiking." 
+  }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = flashcards[index].word;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, example } = flashcards[index];
+    card.innerHTML = `
+      <strong>${word}</strong><br>
+      ${definition}<br><br>
+      <em>Example: ${example}</em>
+    `;
+    card.classList.add("flipped");
+    speak(word);
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  speechSynthesis.speak(utterance);
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

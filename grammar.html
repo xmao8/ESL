@@ -1,124 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Grammar Essentials – Learn English Together</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* Base & layout */
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
-      margin: 0;
-      padding: 0;
       color: #333;
     }
-
-    nav {
-      background-color: #2c3e50;
-      padding: 1rem;
-      text-align: center;
+    main {
+      flex: 1;
     }
 
-    nav a {
+    /* NAVBAR */
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #124076;
+      padding: 0.8rem 1rem;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: 700;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
       color: white;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.2s;
     }
-
-    nav a:hover {
+    nav .nav-links a:hover {
+      color: #ffbb33;
       text-decoration: underline;
     }
 
+    /* PAGE TITLE */
     h1 {
       text-align: center;
       font-size: 2.5rem;
-      margin: 2rem 0 1rem;
+      margin: 2rem 0 0.5rem; /* smaller bottom margin */
       color: #2c3e50;
     }
 
+    /* CONTENT LINKS */
     .container {
       max-width: 800px;
       margin: auto;
-      padding: 2rem 1rem;
+      padding: 1rem;
     }
-
     .label-link {
       display: block;
       background: white;
       padding: 1rem 1.5rem;
-      margin: 1rem 0;
+      margin: 0.75rem 0;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-decoration: none;
       color: #2c3e50;
       transition: background 0.3s;
     }
-
     .label-link:hover {
       background: #e0f3ff;
     }
 
+    /* BACK BUTTON */
     .buttons {
       text-align: center;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
-
     .buttons a {
       text-decoration: none;
       margin: 0 0.5rem;
       background-color: #3498db;
       color: white;
-      padding: 0.7rem 1.2rem;
+      padding: 0.6rem 1rem;
       border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.2s;
     }
-
     .buttons a:hover {
       background-color: #2980b9;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav .site-name {
+        font-size: 1.1rem;
+      }
+      nav .nav-links {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="flashcards.html">Flashcards</a>
-    <a href="conversation.html">Conversations</a>
-    <a href="grammar.html">Grammar</a>
-    <a href="reading.html">Reading</a>
-    <a href="practice.html">Practice</a>
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="conversation.html">Conversations</a>
+      <a href="grammar.html">Grammar</a>
+      <a href="reading.html">Reading</a>
+      <a href="practice.html">Practice</a>
+    </div>
   </nav>
 
   <h1>Grammar Essentials</h1>
 
-  <div class="container">
-
-   <a class="label-link" href="grammar/introduction-to-ipa.html">Introduction to the International Phonetic Alphabet (IPA)</a>       
-   <a class="label-link" href="grammar/would-you-rather.html">“Would You Rather...” Questions</a>     
-   <a class="label-link" href="grammar/contrary-to-fact-conditional.html">Contrary to Fact Conditionals</a>   
-   <a class="label-link" href="grammar/either-or-neither-nor.html">Either...or... & Neither...nor...</a>  
-   <a class="label-link" href="grammar/but-and-however.html">"But" vs. "However"</a>  
-   <a class="label-link" href="grammar/both-and-and-neither-nor.html">Both...and... & Neither...nor...</a> 
-   <a class="label-link" href="grammar/talk-about-the-future.html">Introduction to English Tenses: Talking About the Future</a> 
-   <a class="label-link" href="grammar/present-progressive-and-past-progressive.html">Introduction to English Tenses: Present Progressive and Past Progressive</a>
-   <a class="label-link" href="grammar/past-perfect-tense.html">Introduction to English Tenses: Past Perfect</a>
-   <a class="label-link" href="grammar/present-perfect-tense.html">Introduction to English Tenses: Present Perfect</a>
-   <a class="label-link" href="grammar/simple-present-and-simple-past-tense.html">Introduction to English Tenses: Simple Present and Simple Past</a>
-   <a class="label-link" href="grammar/could-might.html">Could and Might</a> 
-   <a class="label-link" href="grammar/grammar-pronouns.html">Introduction of English Pronouns</a>
-   <a class="label-link" href="grammar/grammar-possessive-adjectives-and-possessive-pronouns.html">Possessive Adjectives and Possessive Pronouns</a> 
-   <a class="label-link" href="grammar/grammar-wh.html">Basic Rules of WH- Questions</a>
-   <a class="label-link" href="grammar/comparative-superlative.html">Comparative & Superlative Forms</a>     
-   <a class="label-link" href="grammar/grammar-er-est.html">Rules for adding "-er" (comparative) and "-est" (superlative)</a>
-   <a class="label-link" href="grammar/grammar-infinitives-gerunds.html">Infinitives and Gerunds</a>
-   <a class="label-link" href="grammar/grammar-talk-about-past-events.html">Talking About Past Events</a>
-   <a class="label-link" href="grammar/adjectives_adverbs.html">Adjectives and manner adverbs</a>
-   <a class="label-link" href="grammar/grammar-conjunctions.html">Conjunctions</a>
-   <a class="label-link" href="grammar/grammar-yes-no-questions.html">Basic Rule of Yes/No Questions</a> 
-
-  </div>
+  <main>
+    <div class="container">
+      <a class="label-link" href="grammar/introduction-to-ipa.html">
+        Introduction to the International Phonetic Alphabet (IPA)
+      </a>
+      <a class="label-link" href="grammar/would-you-rather.html">
+        “Would You Rather...” Questions
+      </a>
+      <a class="label-link" href="grammar/contrary-to-fact-conditional.html">
+        Contrary-to-Fact Conditionals
+      </a>
+      <a class="label-link" href="grammar/either-or-neither-nor.html">
+        Either…or… & Neither…nor…
+      </a>
+      <a class="label-link" href="grammar/but-and-however.html">
+        “But” vs. “However”
+      </a>
+      <a class="label-link" href="grammar/both-and-and-neither-nor.html">
+        Both…and… & Neither…nor…
+      </a>
+      <a class="label-link" href="grammar/talk-about-the-future.html">
+        Talking About the Future (Tenses)
+      </a>
+      <a class="label-link" href="grammar/present-progressive-and-past-progressive.html">
+        Present & Past Progressive
+      </a>
+      <a class="label-link" href="grammar/past-perfect-tense.html">
+        Past Perfect Tense
+      </a>
+      <a class="label-link" href="grammar/present-perfect-tense.html">
+        Present Perfect Tense
+      </a>
+      <a class="label-link" href="grammar/simple-present-and-simple-past-tense.html">
+        Simple Present & Simple Past
+      </a>
+      <a class="label-link" href="grammar/could-might.html">
+        Could & Might
+      </a>
+      <a class="label-link" href="grammar/grammar-pronouns.html">
+        Introduction to Pronouns
+      </a>
+      <a class="label-link" href="grammar/grammar-possessive-adjectives-and-possessive-pronouns.html">
+        Possessive Adjectives vs. Pronouns
+      </a>
+      <a class="label-link" href="grammar/grammar-wh.html">
+        Basic Rules of WH-Questions
+      </a>
+      <a class="label-link" href="grammar/comparative-superlative.html">
+        Comparative & Superlative Forms
+      </a>
+      <a class="label-link" href="grammar/grammar-er-est.html">
+        Adding “-er” & “-est”
+      </a>
+      <a class="label-link" href="grammar/grammar-infinitives-gerunds.html">
+        Infinitives & Gerunds
+      </a>
+      <a class="label-link" href="grammar/grammar-talk-about-past-events.html">
+        Talking About Past Events
+      </a>
+      <a class="label-link" href="grammar/adjectives_adverbs.html">
+        Adjectives & Manner Adverbs
+      </a>
+      <a class="label-link" href="grammar/grammar-conjunctions.html">
+        Conjunctions
+      </a>
+      <a class="label-link" href="grammar/grammar-yes-no-questions.html">
+        Yes/No Question Rules
+      </a>
+    </div>
+  </main>
 
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>

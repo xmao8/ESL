@@ -4,25 +4,32 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Conversation – Learn English Together</title>
+  <title>Daily Conversations – Learn English Together</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
       color: #333;
     }
 
-    /* NAVBAR */
+    /* NAVBAR: logo absolute on left, links centered */
     nav {
-      background-color: #124076; /* updated color */
-      padding: 0.8rem 1rem;
+      position: relative;
       display: flex;
+      justify-content: center;
       align-items: center;
+      background-color: #124076;
+      padding: 0.8rem 1rem;
     }
     nav .logo {
+      position: absolute;
+      left: 1rem;
       display: flex;
       align-items: center;
     }
@@ -38,7 +45,6 @@
       font-weight: 700;
     }
     nav .nav-links {
-      margin: 0 auto; /* center the links */
       display: flex;
       gap: 1rem;
     }
@@ -57,15 +63,18 @@
     h1 {
       text-align: center;
       font-size: 2.5rem;
-      margin: 2rem 0 1rem;
+      margin: 2rem 0 0.5rem; /* reduced bottom margin */
       color: #2c3e50;
     }
 
-    /* CONTENT */
+    /* MAIN CONTENT expands */
+    main {
+      flex: 1;
+    }
     .container {
       max-width: 800px;
       margin: auto;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem; /* reduced top padding */
     }
     .label-link {
       display: block;
@@ -133,26 +142,28 @@
 
   <h1>Daily Conversations</h1>
 
-  <div class="container">
-    <a class="label-link" href="conversation/weekend-plan.html">Weekend Plan</a>
-    <a class="label-link" href="conversation/conversation-about-hobby.html">Morning Hobbies Chat</a>
-    <a class="label-link" href="conversation/safe-online.html">Safe Online</a>
-    <a class="label-link" href="conversation/breakfast-chat-weekend-plan.html">Breakfast Chat: Weekend Plans</a>
-    <a class="label-link" href="conversation/the-internets-wonders.html">The Internet's Wonders</a>
-    <a class="label-link" href="conversation/online-balance.html">Online Balance</a>
-    <a class="label-link" href="conversation/a-slice-of-america.html">A Slice of America</a>
-    <a class="label-link" href="conversation/the-travel-plan.html">The Travel Plan</a>
-    <a class="label-link" href="conversation/me-too-and-me-neither.html">Travel Preference: Me Too or Me Neither</a>
-    <a class="label-link" href="conversation/hometown.html">The Memory of Hometown</a>
-    <a class="label-link" href="conversation/office-project.html">The Project Pitch Puzzle</a>
-    <a class="label-link" href="conversation/daily-doctor.html">In the Doctor's Office</a>
-    <a class="label-link" href="conversation/restaurant-the-wrong-order.html">In a Restaurant: “The Wrong Order”</a>
-    <a class="label-link" href="conversation/daily-restaurant-lost-order.html">In a Restaurant: The Lost Order</a>
-    <a class="label-link" href="conversation/dining-at-a-restaurant.html">Dining at a Restaurant</a>
-    <a class="label-link" href="conversation/daily-office.html">In the Office – The Coffee Conspiracy</a>
-    <a class="label-link" href="conversation/daily-would-rather.html">Would Rather – Daily Dialogue</a>
-    <a class="label-link" href="conversation/the-mom-mug.html">The "Best Plant Mom" Mug</a>
-  </div>
+  <main>
+    <div class="container">
+      <a class="label-link" href="conversation/weekend-plan.html">Weekend Plan</a>
+      <a class="label-link" href="conversation/conversation-about-hobby.html">Morning Hobbies Chat</a>
+      <a class="label-link" href="conversation/safe-online.html">Safe Online</a>
+      <a class="label-link" href="conversation/breakfast-chat-weekend-plan.html">Breakfast Chat: Weekend Plans</a>
+      <a class="label-link" href="conversation/the-internets-wonders.html">The Internet's Wonders</a>
+      <a class="label-link" href="conversation/online-balance.html">Online Balance</a>
+      <a class="label-link" href="conversation/a-slice-of-america.html">A Slice of America</a>
+      <a class="label-link" href="conversation/the-travel-plan.html">The Travel Plan</a>
+      <a class="label-link" href="conversation/me-too-and-me-neither.html">Travel Preference: Me Too or Me Neither</a>
+      <a class="label-link" href="conversation/hometown.html">The Memory of Hometown</a>
+      <a class="label-link" href="conversation/office-project.html">The Project Pitch Puzzle</a>
+      <a class="label-link" href="conversation/daily-doctor.html">In the Doctor's Office</a>
+      <a class="label-link" href="conversation/restaurant-the-wrong-order.html">In a Restaurant: “The Wrong Order”</a>
+      <a class="label-link" href="conversation/daily-restaurant-lost-order.html">In a Restaurant: The Lost Order</a>
+      <a class="label-link" href="conversation/dining-at-a-restaurant.html">Dining at a Restaurant</a>
+      <a class="label-link" href="conversation/daily-office.html">In the Office – The Coffee Conspiracy</a>
+      <a class="label-link" href="conversation/daily-would-rather.html">Would Rather – Daily Dialogue</a>
+      <a class="label-link" href="conversation/the-mom-mug.html">The "Best Plant Mom" Mug</a>
+    </div>
+  </main>
 
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>

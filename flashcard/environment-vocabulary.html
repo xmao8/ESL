@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Environment Vocabulary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #124076;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #124076;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: left;
+      line-height: 1.4;
+    }
+    .flashcard.flipped {
+      background-color: #124076;
+      color: white;
+    }
+    .flashcard .word {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .flashcard .pronunciation {
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .flashcard .definition {
+      margin-bottom: 1rem;
+    }
+    .flashcard .example {
+      font-style: italic;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #124076;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #0e315d;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practices</a>
+</nav>
+
+<h1>Environment Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">
+  Click to flip
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Environment", pronunciation:"/ɪnˈvaɪrənmənt/", definition:"Everything around us, including air, water, and land.", example:"We must protect the environment for future generations." },
+  { word: "Pollution", pronunciation:"/pəˈluːʃən/", definition:"Harmful substances in air, water, or land.", example:"Air pollution makes the city air hard to breathe." },
+  { word: "Recycle", pronunciation:"/riːˈsaɪkəl/", definition:"To process materials to use them again.", example:"Please recycle your plastic bottles and cans." },
+  { word: "Waste", pronunciation:"/weɪst/", definition:"Unwanted materials or garbage.", example:"Don’t let food go to waste; use leftovers wisely." },
+  { word: "Climate change", pronunciation:"/ˈklaɪmət tʃeɪndʒ/", definition:"Long-term changes in Earth's weather patterns.", example:"Climate change causes more severe weather events." },
+  { word: "Greenhouse gas", pronunciation:"/ˈɡriːnˌhaʊs ɡæs/", definition:"A gas that traps heat in the atmosphere.", example:"Cars emit greenhouse gases that heat the planet." },
+  { word: "Reduce", pronunciation:"/rɪˈduːs/", definition:"To make something smaller or less.", example:"We need to reduce our use of single-use plastics." },
+  { word: "Energy-saving", pronunciation:"/ˈɛnərdʒi ˈseɪvɪŋ/", definition:"Using less energy to perform the same task.", example:"Energy-saving light bulbs use less electricity." },
+  { word: "Clean energy", pronunciation:"/kliːn ˈɛnərdʒi/", definition:"Energy from renewable, non-polluting sources.", example:"Wind turbines generate clean energy." },
+  { word: "Planting", pronunciation:"/ˈplæntɪŋ/", definition:"Putting seeds or plants in the ground to grow.", example:"She is planting flowers in her garden this spring." },
+  { word: "Littering", pronunciation:"/ˈlɪtərɪŋ/", definition:"Dropping trash in public places instead of bins.", example:"Littering in parks can harm wildlife." },
+  { word: "Invest", pronunciation:"/ɪnˈvɛst/", definition:"To put money into something for future benefit.", example:"The government will invest in renewable energy projects." },
+  { word: "Law", pronunciation:"/lɔː/", definition:"A rule made by a government.", example:"The new law bans single-use plastic bags." },
+  { word: "Impact", pronunciation:"/ˈɪmpækt/", definition:"A strong effect or influence.", example:"Your choices have an impact on the planet." },
+  { word: "Sustainable", pronunciation:"/səˈsteɪnəbəl/", definition:"Able to continue without harming the environment.", example:"They grow food in a sustainable way." },
+  { word: "Biodiversity", pronunciation:"/ˌbaɪoʊdaɪˈvɜːrsəti/", definition:"The variety of life in a specific area.", example:"Protecting forests maintains biodiversity." },
+  { word: "Conservation", pronunciation:"/ˌkɒnsərˈveɪʃən/", definition:"Protection and careful use of natural resources.", example:"Wildlife conservation is essential for endangered species." },
+  { word: "Ecosystem", pronunciation:"/ˈiːkoʊˌsɪstəm/", definition:"A community of living organisms and their environment.", example:"Coral reefs are a delicate marine ecosystem." },
+  { word: "Renewable energy", pronunciation:"/rɪˈnuːəbl̩ ˈɛnərdʒi/", definition:"Energy from sources that are naturally replaced.", example:"Solar panels produce renewable energy." },
+  { word: "Solar power", pronunciation:"/ˈsoʊlər ˈpaʊər/", definition:"Energy from the sun.", example:"Our house runs on solar power." },
+  { word: "Wind power", pronunciation:"/wɪnd ˈpaʊər/", definition:"Energy from the wind.", example:"Offshore wind power is becoming more common." },
+  { word: "Carbon footprint", pronunciation:"/ˈkɑːrbən ˈfʊtprɪnt/", definition:"Total greenhouse gas emissions caused by an activity.", example:"Flying less can lower your carbon footprint." },
+  { word: "Compost", pronunciation:"/ˈkɒmpɒst/", definition:"Decayed organic matter used to fertilize soil.", example:"We compost kitchen scraps to enrich the soil." },
+  { word: "Biodegradable", pronunciation:"/ˌbaɪoʊdɪˈɡreɪdəbəl/", definition:"Capable of being broken down by natural processes.", example:"Biodegradable packaging breaks down naturally." },
+  { word: "Deforestation", pronunciation:"/ˌdiːˌfɔːrɪˈsteɪʃən/", definition:"Removal of trees from a forested area.", example:"Deforestation destroys animal habitats." },
+  { word: "Habitat", pronunciation:"/ˈhæbɪtæt/", definition:"The natural home of a plant or animal.", example:"Bees are losing their natural habitat." },
+  { word: "Emissions", pronunciation:"/ɪˈmɪʃənz/", definition:"Substances released into the air.", example:"Factories must cut harmful emissions." },
+  { word: "Ozone layer", pronunciation:"/ˈoʊzoʊn ˈleɪər/", definition:"The part of the atmosphere that protects from UV rays.", example:"The ozone layer protects us from UV rays." },
+  { word: "Endangered", pronunciation:"/ɪnˈdeɪndʒərd/", definition:"At risk of becoming extinct.", example:"Tigers are an endangered species." },
+  { word: "Preservation", pronunciation:"/ˌprɛzərˈveɪʃən/", definition:"Protecting something from harm or destruction.", example:"Historic site preservation preserves cultural heritage." }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = `<div class="word">${flashcards[index].word}</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, pronunciation, definition, example } = flashcards[index];
+    card.innerHTML = `
+      <div class="word">${word}</div>
+      <div class="pronunciation">${pronunciation}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">Example: ${example}</div>
+    `;
+    card.classList.add("flipped");
+    speakWord(word);
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function speakWord(text) {
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = 0.9;
+  speechSynthesis.speak(utter);
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+// initialize
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

@@ -20,6 +20,7 @@
     }
 
     nav {
+      position: relative;
       background-color: #124076;
       padding: 0.8rem 1rem;
       display: flex;
@@ -29,7 +30,7 @@
     nav .logo {
       display: flex;
       align-items: center;
-      margin-right: 2rem;
+      z-index: 1;
     }
     nav .logo-img {
       width: 32px;
@@ -44,18 +45,20 @@
     }
     /* center the links */
     nav .nav-links {
-      flex: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      justify-content: center;
+      gap: 0.8rem;
+      z-index: 1;
     }
-    nav a {
+    nav .nav-links a {
       color: white;
-      margin: 0 0.8rem;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
     }
-    nav a:hover {
+    nav .nav-links a:hover {
       color: #ffbb33;
       text-decoration: underline;
     }

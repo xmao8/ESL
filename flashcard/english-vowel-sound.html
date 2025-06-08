@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – English Vowel Sounds</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practices</a>
+</nav>
+
+<h1>English Vowel Sounds Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { sound: "/iː/", description: "Long 'ee' sound (monophthong)", examples: ["sheep","feet","sleep","key"] },
+  { sound: "/ɪ/", description: "Short 'i' sound (monophthong)", examples: ["ship","sit","pig","English"] },
+  { sound: "/e/", description: "Short 'e' sound (monophthong)", examples: ["bed","red","friend","bread"] },
+  { sound: "/æ/", description: "Short 'a' sound (monophthong)", examples: ["cat","hat","back","fat"] },
+  { sound: "/ʌ/", description: "Short 'u' sound (monophthong)", examples: ["cup","sun","love","enough"] },
+  { sound: "/ɒ/", description: "Short 'o' sound (monophthong, British)", examples: ["hot","dog","wash","what"] },
+  { sound: "/ɑː/", description: "Long 'ah' sound (monophthong, American)", examples: ["car","father","half","dance"] },
+  { sound: "/ʊ/", description: "Short 'oo' sound (monophthong)", examples: ["book","put","could","woman"] },
+  { sound: "/uː/", description: "Long 'oo' sound (monophthong)", examples: ["moon","blue","fruit","school"] },
+  { sound: "/ɜː/", description: "Long 'er' sound (r-controlled monophthong)", examples: ["bird","her","work","journey"] },
+  { sound: "/ə/", description: "Schwa (unstressed 'uh' sound)", examples: ["about","teacher","comma","problem"] },
+  { sound: "/ɔː/", description: "Long 'aw' sound (monophthong)", examples: ["door","board","saw","tall"] },
+  { sound: "/aɪ/", description: "Glide 'ah' to 'ee' (diphthong)", examples: ["my","buy","time","high"] },
+  { sound: "/oʊ/", description: "Glide 'oh' to 'oo' (diphthong, American)", examples: ["boat","know","home","snow"] },
+  { sound: "/aʊ/", description: "Glide 'ah' to 'oo' (diphthong)", examples: ["cow","how","cloud","town"] },
+  { sound: "/ɔɪ/", description: "Glide 'aw' to 'ee' (diphthong)", examples: ["boy","noise","joy","coin"] },
+  { sound: "/eɪ/", description: "Glide 'eh' to 'ee' (diphthong)", examples: ["face","day","rain","great"] },
+  { sound: "/ɪə/", description: "Glide 'ee' to 'uh' (diphthong, British)", examples: ["near","here","idea"] },
+  { sound: "/eə/", description: "Glide 'eh' to 'uh' (diphthong, British)", examples: ["hair","care","there"] },
+  { sound: "/ʊə/", description: "Glide 'oo' to 'uh' (diphthong, British)", examples: ["tourist","poor","sure"] }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = flashcards[index].sound;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { sound, description, examples } = flashcards[index];
+    card.innerHTML = `
+      <strong>${sound}</strong><br>
+      ${description}<br><br>
+      <em>Examples: ${examples.join(", ")}</em>
+    `;
+    card.classList.add("flipped");
+    pronounceExamples();
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function pronounceExamples() {
+  const { examples } = flashcards[index];
+  examples.forEach(word => {
+    const utter = new SpeechSynthesisUtterance(word);
+    utter.lang = "en-US";
+    utter.rate = 0.9;
+    speechSynthesis.speak(utter);
+  });
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Minimal Pairs: Vowel Sounds</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .pairs {
+      text-align: left;
+      margin: 0 auto;
+      display: inline-block;
+    }
+    .pairs li {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../flashcards.html">Flashcards</a>
+  <a href="../conversation.html">Conversations</a>
+  <a href="../grammar.html">Grammar</a>
+  <a href="../reading.html">Reading</a>
+  <a href="../practice.html">Practices</a>
+</nav>
+
+<h1>Minimal Pairs: Vowel Sounds</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">
+  Click to Flip
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    ipa: "/iː/ vs /ɪ/",
+    pairs: [
+      "sheep /ʃiːp/ – ship /ʃɪp/",
+      "leave /liːv/ – live /lɪv/",
+      "green /ɡriːn/ – grin /ɡrɪn/",
+      "feet /fiːt/ – fit /fɪt/"
+    ]
+  },
+  {
+    ipa: "/ɪ/ vs /e/",
+    pairs: [
+      "sit /sɪt/ – set /set/",
+      "pin /pɪn/ – pen /pen/",
+      "list /lɪst/ – lest /lest/",
+      "did /dɪd/ – dead /ded/"
+    ]
+  },
+  {
+    ipa: "/e/ vs /æ/",
+    pairs: [
+      "bed /bed/ – bad /bæd/",
+      "men /men/ – man /mæn/",
+      "said /sed/ – sad /sæd/",
+      "red /red/ – rad /ræd/"
+    ]
+  },
+  {
+    ipa: "/æ/ vs /ʌ/",
+    pairs: [
+      "cat /kæt/ – cut /kʌt/",
+      "bag /bæɡ/ – bug /bʌɡ/",
+      "ran /ræn/ – run /rʌn/",
+      "hat /hæt/ – hut /hʌt/"
+    ]
+  },
+  {
+    ipa: "/ʌ/ vs /ɑː/",
+    pairs: [
+      "cup /kʌp/ – carp /kɑːrp/",
+      "duck /dʌk/ – dark /dɑːrk/",
+      "fun /fʌn/ – farn /fɑːrn/"
+    ]
+  },
+  {
+    ipa: "/ʊ/ vs /uː/",
+    pairs: [
+      "look /lʊk/ – Luke /luːk/",
+      "pull /pʊl/ – pool /puːl/",
+      "could /kʊd/ – cooled /kuːld/"
+    ]
+  },
+  {
+    ipa: "/ɒ/ vs /ɑː/",
+    pairs: [
+      "cot /kɒt/ – cart /kɑːrt/",
+      "shot /ʃɒt/ – shart /ʃɑːrt/"
+    ]
+  },
+  {
+    ipa: "/eɪ/ vs /e/",
+    pairs: [
+      "dayt /deɪt/ – debt /det/",
+      "sayl /seɪl/ – sell /sel/",
+      "gate /ɡeɪt/ – get /ɡet/"
+    ]
+  },
+  {
+    ipa: "/aɪ/ vs /ɔɪ/",
+    pairs: [
+      "buy /baɪ/ – boy /bɔɪ/",
+      "tile /taɪl/ – toil /tɔɪl/",
+      "like /laɪk/ – loin /lɔɪn/"
+    ]
+  },
+  {
+    ipa: "/oʊ/ vs /aʊ/",
+    pairs: [
+      "road /roʊd/ – roud /raʊd/",
+      "not /noʊt/ – nout /naʊt/",
+      "howl /haʊl/ – hole /hoʊl/"
+    ]
+  },
+  {
+    ipa: "/uː/ vs /juː/",
+    pairs: [
+      "loot /luːt/ – lute /ljuːt/",
+      "toon /tuːn/ – tune /tjuːn/"
+    ]
+  }
+];
+
+let index = 0;
+let flipped = false;
+const card = document.getElementById("flashcard");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = `<div class="ipa">${flashcards[index].ipa}</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { ipa, pairs } = flashcards[index];
+    card.innerHTML = `
+      <div class="ipa">${ipa}</div>
+      <ul class="pairs">
+        ${pairs.map(p => `<li>${p}</li>`).join("")}
+      </ul>
+    `;
+    card.classList.add("flipped");
+    pronounceSamples();
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function pronounceSamples() {
+  const { pairs } = flashcards[index];
+  pairs.forEach(pair => {
+    // split into two words before the IPA slash
+    const [left, right] = pair.split(' – ');
+    const word1 = left.split(' ')[0];
+    const word2 = right.split(' ')[0];
+    [word1, word2].forEach(word => {
+      const u = new SpeechSynthesisUtterance(word);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      speechSynthesis.speak(u);
+    });
+  });
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+// initialize
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

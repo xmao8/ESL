@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Conversation – Learn English Together</title>
@@ -11,22 +12,50 @@
       margin: 0;
       padding: 0;
       color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     nav {
       background-color: #2c3e50;
-      padding: 1rem;
-      text-align: center;
+      padding: 0.8rem 1rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
     }
-
-    nav a {
+    /* logo on the left */
+    nav .logo {
+      grid-column: 1;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: 700;
+    }
+    /* center the links */
+    nav .nav-links {
+      grid-column: 2;
+      justify-self: center;
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
       color: white;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.2s;
     }
-
-    nav a:hover {
+    nav .nav-links a:hover {
+      color: #ffbb33;
       text-decoration: underline;
     }
 
@@ -41,6 +70,7 @@
       max-width: 800px;
       margin: auto;
       padding: 2rem 1rem;
+      flex: 1;
     }
 
     .label-link {
@@ -62,7 +92,7 @@
 
     .buttons {
       text-align: center;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
 
     .buttons a {
@@ -73,50 +103,66 @@
       padding: 0.7rem 1.2rem;
       border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.2s;
     }
 
     .buttons a:hover {
       background-color: #2980b9;
     }
+
+    @media (max-width: 600px) {
+      nav {
+        grid-template-columns: auto 1fr;
+      }
+      nav .nav-links {
+        gap: 0.5rem;
+      }
+      nav .site-name {
+        font-size: 1.1rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="flashcards.html">Flashcards</a>
-    <a href="conversation.html">Conversations</a>
-    <a href="grammar.html">Grammar</a>
-    <a href="reading.html">Reading</a>
-    <a href="practice.html">Practice</a>
+  <!-- Navigation Bar -->
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="conversation.html">Conversations</a>
+      <a href="grammar.html">Grammar</a>
+      <a href="reading.html">Reading</a>
+      <a href="practice.html">Practice</a>
+    </div>
   </nav>
 
   <h1>Daily Conversations</h1>
 
   <div class="container">
-    
-    <a class="label-link" href="conversation/weekend-plan.html">Weeken Plan</a>  
-    <a class="label-link" href="conversation/conversation-about-hobby.html">Morning Hobbies Chat</a>  
-    <a class="label-link" href="conversation/safe-online.html">Safe Online</a>  
-    <a class="label-link" href="conversation/breakfast-chat-weekend-plan.html">Breakfast Chat: Weekend Plans</a>     
+    <a class="label-link" href="conversation/weekend-plan.html">Weekend Plan</a>
+    <a class="label-link" href="conversation/conversation-about-hobby.html">Morning Hobbies Chat</a>
+    <a class="label-link" href="conversation/safe-online.html">Safe Online</a>
+    <a class="label-link" href="conversation/breakfast-chat-weekend-plan.html">Breakfast Chat: Weekend Plans</a>
     <a class="label-link" href="conversation/the-internets-wonders.html">The Internet's Wonders</a>
-    <a class="label-link" href="conversation/online-balance.html">Oline Balance</a>
+    <a class="label-link" href="conversation/online-balance.html">Online Balance</a>
     <a class="label-link" href="conversation/a-slice-of-america.html">A Slice of America</a>
     <a class="label-link" href="conversation/the-travel-plan.html">The Travel Plan</a>
-    <a class="label-link" href="conversation/me-too-and-me-neither.html">Travel Preference: Me too or Me Neither</a>
+    <a class="label-link" href="conversation/me-too-and-me-neither.html">Travel Preference: Me Too or Me Neither</a>
     <a class="label-link" href="conversation/hometown.html">The Memory of Hometown</a>
     <a class="label-link" href="conversation/office-project.html">The Project Pitch Puzzle</a>
     <a class="label-link" href="conversation/daily-doctor.html">In the Doctor's Office</a>
     <a class="label-link" href="conversation/restaurant-the-wrong-order.html">In a Restaurant: “The Wrong Order”</a>
     <a class="label-link" href="conversation/daily-restaurant-lost-order.html">In a Restaurant: The Lost Order</a>
-    <a class="label-link" href="conversation/dining-at-a-restaurant.html">Dining at a Restaurant</a>    
+    <a class="label-link" href="conversation/dining-at-a-restaurant.html">Dining at a Restaurant</a>
     <a class="label-link" href="conversation/daily-office.html">In the Office – The Coffee Conspiracy</a>
     <a class="label-link" href="conversation/daily-would-rather.html">Would Rather – Daily Dialogue</a>
     <a class="label-link" href="conversation/the-mom-mug.html">The "Best Plant Mom" Mug</a>
-
     <!-- Add more labels below as needed -->
-    <!-- <a class="label-link" href="daily-store.html">At the Store</a> -->
-    <!-- <a class="label-link" href="daily-phone.html">On the Phone</a> -->
   </div>
 
   <div class="buttons">

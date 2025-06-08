@@ -1,34 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Practice – Learn English Together</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* PAGE SETUP */
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
-      margin: 0;
-      padding: 0;
       color: #333;
     }
+    main { flex: 1; }
+
+    /* NAVBAR */
     nav {
-      background-color: #2c3e50;
-      padding: 1rem;
-      text-align: center;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #124076;
+      padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
     }
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
       font-weight: bold;
     }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+
+    /* PAGE TITLE */
     h1 {
       text-align: center;
       font-size: 2.5rem;
       margin: 2rem 0 1rem;
       color: #2c3e50;
     }
+
+    /* PRACTICE GRID */
     .container {
       max-width: 1000px;
       margin: auto;
@@ -44,7 +85,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-decoration: none;
       color: inherit;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .block:hover {
       transform: translateY(-5px);
@@ -54,9 +95,15 @@
       margin-bottom: 0.5rem;
       color: #3498db;
     }
+    .block p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
+    }
+
+    /* BACK BUTTON */
     .buttons {
       text-align: center;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
     .buttons a {
       text-decoration: none;
@@ -66,127 +113,139 @@
       padding: 0.7rem 1.2rem;
       border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.2s;
     }
     .buttons a:hover {
       background-color: #2980b9;
+    }
+
+    /* TABLET: wrap links */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+    }
+    /* PHONE: tighten spacing */
+    @media (max-width: 600px) {
+      nav .site-name { font-size: 1.1rem; }
+      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+      h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
+      .container { padding: 1rem; gap: 1rem; }
+      .block { padding: 1.2rem; }
+      .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="flashcards.html">Flashcards</a>
-    <a href="conversation.html">Conversations</a>
-    <a href="grammar.html">Grammar</a>
-    <a href="reading.html">Reading</a>
-    <a href="practice.html">Practice</a>
+  <!-- NAVIGATION -->
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="conversation.html">Conversations</a>
+      <a href="grammar.html">Grammar</a>
+      <a href="reading.html">Reading</a>
+      <a href="practice.html">Practice</a>
+    </div>
   </nav>
 
+  <!-- PAGE TITLE -->
   <h1>Practice Activities</h1>
 
-  <div class="container">
+  <!-- PRACTICE CONTENT -->
+  <main>
+    <div class="container">
+      <a href="practice/practice-talk-about-future.html" class="block">
+        <h2>Talk about Future in Daily Life</h2>
+        <p>Part 1: Choose the Best Future Form &amp; Part 2: Fill in the Blanks with the correct future form.</p>
+      </a>
+      <a href="practice/practice-would-you-rather.html" class="block">
+        <h2>“Would You Rather…?” Worksheet: Shopping Edition</h2>
+        <p>Read each question and choose the option you would rather do when it comes to shopping.</p>
+      </a>
+      <a href="practice/practice-contrary-to-fact-conditional.html" class="block">
+        <h2>Contrary-to-Fact Conditional Practice</h2>
+        <p>Complete each sentence using the correct form of the verbs in parentheses to create a contrary-to-fact conditional statement.</p>
+      </a>
+      <a href="practice/practice-either-or-neither-nor.html" class="block">
+        <h2>“Either...or...” vs. “Neither...nor...” Practice</h2>
+        <p>Fill in blanks with Either ...or ... or Neither ... nor ....</p>
+      </a>
+      <a href="practice/practice-but-and-however.html" class="block">
+        <h2>"But" vs. "However" Practice</h2>
+        <p>Fill in blanks with but or however.</p>
+      </a>
+      <a href="practice/practice-both-and-and-neither-nor.html" class="block">
+        <h2>Using "Both...and..." & "Neither...nor..."</h2>
+        <p>Rewrite the sentences using "Both...and..." and "Neither...nor...".</p>
+      </a>
+      <a href="practice/yes-no-question.html" class="block">
+        <h2>Yes/No Questions and Short Answers: Health &amp; Lifestyle</h2>
+        <p>Rewrite the statement into a Yes/No question and provide a short answer.</p>
+      </a>
+      <a href="practice/past-progressive-tense.html" class="block">
+        <h2>Past Progressive Tense Practice</h2>
+        <p>Combine each pair of sentences using when or while and the past progressive.</p>
+      </a>
+      <a href="practice/simple-past-vs-present-perfect.html" class="block">
+        <h2>Simple Past vs. Present Perfect: Daily Life</h2>
+        <p>Use correct verb forms to fill in the blank.</p>
+      </a>
+      <a href="practice/simple-present-present-progressive.html" class="block">
+        <h2>Simple Present vs. Present Progressive: Jobs, Careers, and Workplaces</h2>
+        <p>Use correct verb forms to fill in the blank.</p>
+      </a>
+      <a href="practice/practice-could-might.html" class="block">
+        <h2>Could and Might Practice</h2>
+        <p>Use Could or Might to fill in the blank.</p>
+      </a>
+      <a href="practice/practice-pronouns.html" class="block">
+        <h2>Pronouns Practice</h2>
+        <p>Choose the correct word to fill in the blanks.</p>
+      </a>
+      <a href="practice/possessive-adjectives-and-pronouns.html" class="block">
+        <h2>Possessive Adjectives and Pronouns</h2>
+        <p>Choose the correct word to fill in the blanks.</p>
+      </a>
+      <a href="practice/practice–computer-vocabulary.html" class="block">
+        <h2>Computer Vocabulary Practice</h2>
+        <p>Match words with meanings.</p>
+      </a>
+      <a href="practice/practice-infinitives-gerunds.html" class="block">
+        <h2>Infinitives and Gerunds Practice</h2>
+        <p>Fill in the blanks with the correct form: to + verb or -ing.</p>
+      </a>
+      <a href="practice/practice-life-vocabulary.html" class="block">
+        <h2>Life Vocabulary – Personal Training, Career, and Family</h2>
+        <p>Choose the best word to complete each sentence across three everyday topics.</p>
+      </a>
+      <a href="practice/practice-comparative-superlative.html" class="block">
+        <h2>Comparative &amp; Superlative Practice: Shopping Spree!</h2>
+        <p>Choose the best form of the word to fill in the blank.</p>
+      </a>
+      <a href="practice/practice-adjective-adverb.html" class="block">
+        <h2>Adjectives & Manner Adverbs – Health and Social Care</h2>
+        <p>Fill in the blanks with the correct adjective or adverb based on the context of each sentence.</p>
+      </a>
+      <a href="practice/practice-personal-traits.html" class="block">
+        <h2>Personal Traits – Multiple Choice</h2>
+        <p>Choose the best word to complete each sentence. Practice using adjectives, adverbs, and nouns to describe people and actions accurately.</p>
+      </a>
+    </div>
+  </main>
 
-   <a href="practice/practice-talk-about-future.html" class="block">
-      <h2>Talk about Future in Daily Life</h2>
-      <p>Part 1: Choose the Best Future Form & Part 2: Fill in the Blanks with correct future form.</p>
-    </a>    
-        
-
-   <a href="practice/practice-would-you-rather.html" class="block">
-      <h2>“Would You Rather…?” Worksheet: Shopping Edition</h2>
-      <p>Read each question and choose the option you would rather do when it comes to shopping. </p>
-    </a>    
-    
-   <a href="practice/practice-contrary-to-fact-conditional.html" class="block">
-      <h2>Contrary-to-Fact Conditional Practice</h2>
-      <p>Complete each sentence using the correct form of the verbs in parentheses to create a contrary-to-fact conditional statement</p>
-    </a>    
-
-     <a href="practice/practice-either-or-neither-nor.html" class="block">
-      <h2>“Either...or...” vs. “Neither...nor...” Practice</h2>
-      <p>Fill in blanks with Either ...or ... or Neither ... nor ..."</p>
-    </a>    
-
-    <a href="practice/practice-but-and-however.html" class="block">
-      <h2>"But" vs. "However" Practice"</h2>
-      <p>Fill in blanks with but or however"</p>
-    </a> 
-
-    <a href="practice/practice-both-and-and-neither-nor.html" class="block">
-      <h2>Using "Both...and..." and "Neither...nor..."</h2>
-      <p>Rewrite the sentences Using "Both...and..." and "Neither...nor..."</p>
-    </a> 
-
-    <a href="practice/yes-no-question.html" class="block">
-      <h2>Yes/No Questions and Short Answers: Health & Lifestyle</h2>
-      <p>Rewrite the Statement into a Yes/No question and Provide a short answer</p>
-    </a>  
-
-    <a href="practice/past-progressive-tense.html" class="block">
-      <h2>Past Progressive Tense Practice</h2>
-      <p>Combine each pair of sentences using when or while and the past progressive.</p>
-    </a>     
-    
-    <a href="practice/simple-past-vs-present-perfect.html" class="block">
-      <h2>Simple Past vs. Present Perfect: Daily Life</h2>
-      <p>Use Correct verb forms to Fill in the Blank</p>
-    </a>      
-
-    <a href="practice/simple-present-present-progressive.html" class="block">
-      <h2>Simple Present vs. Present Progressive: Jobs, Careers, and Workplaces</h2>
-      <p>Use Correct verb forms to Fill in the Blank</p>
-    </a>  
-
-    <a href="practice/practice-could-might.html" class="block">
-      <h2>Could and Might Practice</h2>
-      <p>Use Could or Might to Fill in the Blank</p>
-    </a>  
-
-    <a href="practice/practice-pronouns.html" class="block">
-      <h2>Pronouns Practice</h2>
-      <p>Choose The Correct Word to Fill in the Blanks</p>
-    </a>  
-    
-    <a href="practice/possessive-adjectives-and-pronouns.html" class="block">
-      <h2>Possessive Adjectives and Pronouns</h2>
-      <p>Choose The Correct Word to Fill in the Blanks</p>
-    </a>  
-        
-    <a href="practice/practice–computer-vocabulary.html" class="block">
-      <h2>Computer Vocabulary Practice</h2>
-      <p>Match Words with meanings</p>
-    </a>   
-    
-    <a href="practice/practice-infinitives-gerunds.html" class="block">
-      <h2>Infinitives and Gerunds Practice</h2>
-      <p>Fill in the blanks with the correct form: to + verb or -ing.</p>
-    </a>
-
-    <a href="practice/practice-life-vocabulary.html" class="block">
-      <h2>Life Vocabulary – Personal Training, Career, and Family</h2>
-      <p>Choose the best word to complete each sentence across three everyday topics.</p>
-    </a>
-
-     <a href="practice/practice-comparative-superlative.html" class="block">
-      <h2>Comparative and Superlative Practice: Shopping Spree!</h2>
-      <p>Choose the best form of the word to fill in the blank.</p>
-    </a>
-
-    
-    <a href="practice/practice-adjective-adverb.html" class="block">
-      <h2>Adjectives and Manner Adverbs – Health and Social Care</h2>
-      <p>Fill in the blanks with the correct adjective or adverb based on the context of each sentence.</p>
-    </a>
-
-    <a href="practice/practice-personal-traits.html" class="block">
-     <h2>Personal Traits – Multiple Choice</h2>
-     <p>Choose the best word to complete each sentence. Practice using adjectives, adverbs, and nouns to describe people and actions accurately.</p>
-   </a>
-
-
-  </div>
-
+  <!-- BACK TO HOME -->
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>
   </div>

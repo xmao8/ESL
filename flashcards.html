@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flashcards – Learn English Together</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -11,25 +13,53 @@
       margin: 0;
       padding: 0;
       color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
+    /* NAVBAR */
     nav {
-      background-color: #2c3e50;
-      padding: 1rem;
-      text-align: center;
+      position: relative;
+      background-color: #124076;  /* updated color */
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-
-    nav a {
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: 700;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
       color: white;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.2s;
     }
-
-    nav a:hover {
+    nav .nav-links a:hover {
+      color: #ffbb33;
       text-decoration: underline;
     }
 
+    /* PAGE TITLE */
     h1 {
       text-align: center;
       font-size: 2.5rem;
@@ -37,6 +67,7 @@
       color: #2c3e50;
     }
 
+    /* FLASHCARDS GRID */
     .container {
       max-width: 1000px;
       margin: auto;
@@ -44,6 +75,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
+      flex: 1;
     }
 
     .block {
@@ -56,26 +88,23 @@
       display: block;
       color: inherit;
     }
-
     .block:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     }
-
     .block h2 {
       margin-bottom: 0.5rem;
       color: #3498db;
     }
-
     .block p {
       font-size: 1rem;
     }
 
+    /* BACK BUTTON */
     .buttons {
       text-align: center;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
-
     .buttons a {
       text-decoration: none;
       margin: 0 0.5rem;
@@ -84,8 +113,8 @@
       padding: 0.7rem 1.2rem;
       border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.2s;
     }
-
     .buttons a:hover {
       background-color: #2980b9;
     }
@@ -93,107 +122,98 @@
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="flashcards.html">Flashcards</a>
-    <a href="conversation.html">Conversations</a>
-    <a href="grammar.html">Grammar</a>
-    <a href="reading.html">Reading</a>
-    <a href="practice.html">Practice</a>
+  <!-- Navigation Bar -->
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="conversation.html">Conversations</a>
+      <a href="grammar.html">Grammar</a>
+      <a href="reading.html">Reading</a>
+      <a href="practice.html">Practice</a>
+    </div>
   </nav>
 
+  <!-- Page Title -->
   <h1>Flashcards</h1>
 
+  <!-- Flashcards Links -->
   <div class="container">
-
     <a href="flashcard/environment-vocabulary.html" class="block">
-     <h2>Environment Vocabulary Flashcards</h2>
-     <p>Learn 30 words about environment</p>
-    </a>  
-
+      <h2>Environment Vocabulary Flashcards</h2>
+      <p>Learn 30 words about the environment.</p>
+    </a>
     <a href="flashcard/english-vowel-sound-minimal-pairs.html" class="block">
-     <h2>Minimal Pairs: Vowel Sounds</h2>
-     <p>Practice English Vowel sounds with Minimal Pairs</p>
-    </a>  
-    
+      <h2>Minimal Pairs: Vowel Sounds</h2>
+      <p>Practice English vowel sounds with minimal pairs.</p>
+    </a>
     <a href="flashcard/english-vowel-sound.html" class="block">
-     <h2>English Vowel Sounds Flashcards</h2>
-     <p>English Vowel sounds with Examples</p>
-    </a>  
-
+      <h2>English Vowel Sounds Flashcards</h2>
+      <p>English vowel sounds with examples.</p>
+    </a>
     <a href="flashcard/vocabulary-about-hobby.html" class="block">
-     <h2>Hobbies Vocabulary Flashcards</h2>
-     <p>Learn 25 words about hobby</p>
-    </a>     
-
+      <h2>Hobbies Vocabulary Flashcards</h2>
+      <p>Learn 25 words about hobbies.</p>
+    </a>
     <a href="flashcard/restaurant-words.html" class="block">
-     <h2>Dining Out Vocabulary Flashcards</h2>
-     <p>Learn common English words for for eating at a restaurant</p>
-    </a> 
-    
+      <h2>Dining Out Vocabulary Flashcards</h2>
+      <p>Common words for eating at a restaurant.</p>
+    </a>
     <a href="flashcard/words-about-computer-and-internet.html" class="block">
-     <h2>Computer & Internet Vocabulary Flashcards</h2>
-     <p>Learn common English words about Computer & Internet</p>
-    </a> 
-
+      <h2>Computer & Internet Vocabulary</h2>
+      <p>Common English words about computers & the internet.</p>
+    </a>
     <a href="flashcard/words-about-shopping.html" class="block">
-     <h2>Shopping Vocabulary Flashcards</h2>
-     <p>Learn some common English words about shopping</p>
+      <h2>Shopping Vocabulary Flashcards</h2>
+      <p>Common words about shopping.</p>
     </a>
-
     <a href="flashcard/computer-vocabulary.html" class="block">
-     <h2>Computer Vocabulary</h2>
-     <p>Learn the most common English words about computer</p>
+      <h2>Computer Vocabulary</h2>
+      <p>Most common English words about computers.</p>
     </a>
-
-    
     <a href="flashcard/us-states.html" class="block">
-     <h2>Abbreviations of the US States</h2>
-     <p>Learn abbreviations of the US states with short information about the state.</p>
+      <h2>US States Abbreviations</h2>
+      <p>Abbreviations of US states with short info.</p>
     </a>
-
-    
     <a href="flashcard/flashcard-travel.html" class="block">
-     <h2>Vocabulary About Travel</h2>
-     <p>Practice vocabulary about Travel with definitions and example sentences on flip-cards.</p>
+      <h2>Travel Vocabulary</h2>
+      <p>Practice travel vocabulary with definitions & examples.</p>
     </a>
-    
     <a href="flashcard/payroll.html" class="block">
-     <h2>Vocabulary About Payroll</h2>
-     <p>Practice vocabulary about payroll with definitions and example sentences on flip-cards.</p>
+      <h2>Payroll Vocabulary</h2>
+      <p>Practice payroll terms with definitions & examples.</p>
     </a>
-    
     <a href="flashcard/manager-traits-words.html" class="block">
-     <h2>Vocabulary About Manager's Traits</h2>
-     <p>Practice vocabulary about manager's traits with definitions and example sentences on flip-cards.</p>
+      <h2>Manager Traits Vocabulary</h2>
+      <p>Traits of a manager with definitions & examples.</p>
     </a>
-    
     <a href="flashcard/flashcard-cooking.html" class="block">
-     <h2>Vocabulary About Cooking</h2>
-     <p>Practice common vocabulary about cooking with definitions and example sentences on flip-cards.</p>
+      <h2>Cooking Vocabulary</h2>
+      <p>Common cooking terms with definitions & examples.</p>
     </a>
-    
     <a href="flashcard/flashcard-personal-traits.html" class="block">
-     <h2>Personal Traits</h2>
-     <p>Practice key personality traits with definitions and example sentences on flip-cards.</p>
+      <h2>Personal Traits</h2>
+      <p>Key personality traits with definitions & examples.</p>
     </a>
-    
     <a href="flashcard/flashcards-jobs.html" class="block">
       <h2>Job Flashcards</h2>
-      <p>Learn vocabulary for different jobs and professions. Flip to reveal the job title.</p>
+      <p>Vocabulary for different jobs & professions.</p>
     </a>
-
     <a href="flashcard/flashcards-doctors.html" class="block">
       <h2>Types of Doctors</h2>
-      <p>Practice doctor specialties and what they treat. With audio and flipping cards.</p>
+      <p>Doctor specialties with descriptions & audio.</p>
     </a>
-
     <a href="flashcard/commonwords-page1.html" class="block">
       <h2>1000 Most Common Words</h2>
-      <p>Practice essential English vocabulary one word at a time. Includes audio and example sentences.</p>
+      <p>Essential English vocabulary with audio & examples.</p>
     </a>
   </div>
 
+  <!-- Back to Home -->
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>
   </div>

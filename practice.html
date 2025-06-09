@@ -4,10 +4,10 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reading – Learn English Together</title>
+  <title>Practice – Learn English Together</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* Base styles */
+    /* PAGE SETUP */
     body {
       display: flex;
       flex-direction: column;
@@ -21,20 +21,25 @@
 
     /* NAVBAR */
     nav {
-      position: relative; /* ensure absolute children are positioned relative */
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
     }
     nav .logo {
-      display: flex;
-      align-items: center;
       position: absolute;
       left: 1rem;
+      display: flex;
+      align-items: center;
     }
-    nav .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
     nav .site-name {
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
@@ -64,27 +69,35 @@
       color: #2c3e50;
     }
 
-    /* READING LINKS (desktop default) */
+    /* PRACTICE GRID */
     .container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
-      padding: 1rem;
+      padding: 2rem 1rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
-    .label-link {
-      display: block;
-      margin: 1rem 0;
-      padding: 1rem;
+    .block {
       background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-decoration: none;
-      color: #2c3e50;
-      font-size: 1.1rem;
-      transition: background-color 0.2s, transform 0.2s;
+      color: inherit;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .label-link:hover {
-      background-color: #eef6fb;
-      transform: translateY(-2px);
+    .block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+    .block h2 {
+      margin-bottom: 0.5rem;
+      color: #3498db;
+    }
+    .block p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
     }
 
     /* BACK BUTTON */
@@ -106,7 +119,7 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: wrap nav items vertically */
+    /* TABLET: two columns for practice grid, wrap nav */
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;
@@ -121,17 +134,15 @@
         flex-direction: column;
         align-items: center;
         gap: 0.8rem;
+        margin-top: 0.5rem;
       }
-      /* two-column layout for reading links */
       .container {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 1.5rem;
       }
-      .label-link { margin: 0; }
     }
 
-    /* PHONE: single-column nav & links */
+    /* PHONE: single column grid, column nav */
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
@@ -151,21 +162,31 @@
         width: 100%;
         text-align: center;
       }
-      nav .site-name { font-size: 1.2rem; }
-      h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
-      .container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
+      nav .site-name {
+        font-size: 1.2rem;
       }
-      .label-link { font-size: 1rem; padding: 0.8rem 1rem; }
-      .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+      h1 {
+        font-size: 2rem;
+        margin: 1.5rem 0 0.5rem;
+      }
+      .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+      }
+      .block {
+        padding: 1.2rem;
+      }
+      .buttons a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- NAVIGATION -->
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
@@ -181,58 +202,96 @@
     </div>
   </nav>
 
-  <h1>Reading Activities</h1>
+  <!-- PAGE TITLE -->
+  <h1>Practice Activities</h1>
 
+  <!-- PRACTICE CONTENT -->
   <main>
     <div class="container">
-      <a class="label-link" href="reading/protecting-the-environment.html">
-        Protecting the Environment: What We Can Do
+      <a href="practice/practice-would-could-might.html" class="block">
+        <h2>English Modals Worksheet: Would, Could and Might (theme on Our Environment)</h2>
+        <p>Use Would, Could or Might to fill in the blank.</p>
       </a>
-      <a class="label-link" href="reading/reading-about-hobby.html">
-        Discovering the Joy of Hobbies
+      <a href="practice/practice-talk-about-future.html" class="block">
+        <h2>Talk about Future in Daily Life</h2>
+        <p>Part 1: Choose the best future form & Part 2: Fill in the blanks with the correct future form.</p>
       </a>
-      <a class="label-link" href="reading/staying-safe-online.html">
-        Staying Safe Online: A Basic Guide
+      <a href="practice/practice-would-you-rather.html" class="block">
+        <h2>“Would You Rather…?” Worksheet: Shopping Edition</h2>
+        <p>Read each question and choose the option you would rather do when it comes to shopping.</p>
       </a>
-      <a class="label-link" href="reading/a-true-story-about-the-declaration-of-independence.html">
-        The Step Towards Freedom: A True Story of the Declaration of Independence
+      <a href="practice/practice-contrary-to-fact-conditional.html" class="block">
+        <h2>Contrary-to-Fact Conditional Practice</h2>
+        <p>Complete each sentence using the correct form of the verbs in parentheses to create a contrary-to-fact conditional statement.</p>
       </a>
-      <a class="label-link" href="reading/the-story-of-rosa-parks.html">
-        The Story of Rosa Parks
+      <a href="practice/practice-either-or-neither-nor.html" class="block">
+        <h2>“Either…or…” vs. “Neither…nor…” Practice</h2>
+        <p>Fill in blanks with Either…or… or Neither…nor….</p>
       </a>
-      <a class="label-link" href="reading/the-great-escape-artist.html">
-        The Great Escape Artist: Harry Houdini
+      <a href="practice/practice-but-and-however.html" class="block">
+        <h2>"But" vs. "However" Practice</h2>
+        <p>Fill in blanks with but or however.</p>
       </a>
-      <a class="label-link" href="reading/the-journey-of-lewis-and-clark.html">
-        The Journey of Lewis and Clark: Exploring the Unknown
+      <a href="practice/practice-both-and-and-neither-nor.html" class="block">
+        <h2>Using "Both…and…" & "Neither…nor…"</h2>
+        <p>Rewrite the sentences using Both…and… and Neither…nor….</p>
       </a>
-      <a class="label-link" href="reading/reading-power-of-say-no.html">
-        The Simple Power of Saying "No"
+      <a href="practice/yes-no-question.html" class="block">
+        <h2>Yes/No Questions and Short Answers: Health &amp; Lifestyle</h2>
+        <p>Rewrite the statement into a Yes/No question and provide a short answer.</p>
       </a>
-      <a class="label-link" href="reading/benefits-being-a-beginner.html">
-        The Unexpected Benefits of Being a Beginner Again
+      <a href="practice/past-progressive-tense.html" class="block">
+        <h2>Past Progressive Tense Practice</h2>
+        <p>Combine each pair of sentences using when or while and the past progressive.</p>
       </a>
-      <a class="label-link" href="reading/daily-routine.html">
-        The Power of a Daily Routine
+      <a href="practice/simple-past-vs-present-perfect.html" class="block">
+        <h2>Simple Past vs. Present Perfect: Daily Life</h2>
+        <p>Use correct verb forms to fill in the blank.</p>
       </a>
-      <a class="label-link" href="reading/active-listening.html">
-        The Power of Active Listening
+      <a href="practice/simple-present-present-progressive.html" class="block">
+        <h2>Simple Present vs. Present Progressive: Jobs, Careers, and Workplaces</h2>
+        <p>Use correct verb forms to fill in the blank.</p>
       </a>
-      <a class="label-link" href="reading/reading-understand-computer.html">
-        Understanding Your Computer: A Primary Guide
+      <a href="practice/practice-could-might.html" class="block">
+        <h2>Could and Might Practice</h2>
+        <p>Use Could or Might to fill in the blank.</p>
       </a>
-      <a class="label-link" href="reading/reading-recipe-sample.html">
-        Favorite Recipe Sample: Classic Spaghetti Carbonara
+      <a href="practice/practice-pronouns.html" class="block">
+        <h2>Pronouns Practice</h2>
+        <p>Choose the correct word to fill in the blanks.</p>
       </a>
-      <a class="label-link" href="reading/reading-memorial-day.html">
-        Remembering Heroes on Memorial Day
+      <a href="practice/possessive-adjectives-and-pronouns.html" class="block">
+        <h2>Possessive Adjectives and Pronouns</h2>
+        <p>Choose the correct word to fill in the blanks.</p>
       </a>
-      <a class="label-link" href="reading/reading-ocean-personal-traits.html">
-        Understanding the OCEAN Personality Traits
+      <a href="practice/practice–computer-vocabulary.html" class="block">
+        <h2>Computer Vocabulary Practice</h2>
+        <p>Match words with meanings.</p>
+      </a>
+      <a href="practice/practice-infinitives-gerunds.html" class="block">
+        <h2>Infinitives and Gerunds Practice</h2>
+        <p>Fill in the blanks with the correct form: to + verb or -ing.</p>
+      </a>
+      <a href="practice/practice-life-vocabulary.html" class="block">
+        <h2>Life Vocabulary – Personal Training, Career, and Family</h2>
+        <p>Choose the best word to complete each sentence across three everyday topics.</p>
+      </a>
+      <a href="practice/practice-comparative-superlative.html" class="block">
+        <h2>Comparative &amp; Superlative Practice: Shopping Spree!</h2>
+        <p>Choose the best form of the word to fill in the blank.</p>
+      </a>
+      <a href="practice/practice-adjective-adverb.html" class="block">
+        <h2>Adjectives &amp; Manner Adverbs – Health and Social Care</h2>
+        <p>Fill in the blanks with the correct adjective or adverb based on the context of each sentence.</p>
+      </a>
+      <a href="practice/practice-personal-traits.html" class="block">
+        <h2>Personal Traits – Multiple Choice</h2>
+        <p>Choose the best word to complete each sentence. Practice using adjectives, adverbs, and nouns to describe people and actions accurately.</p>
       </a>
     </div>
   </main>
 
+  <!-- BACK TO HOME -->
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>
   </div>

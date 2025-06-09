@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Green Initiative – ESL Dialogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    main {
+      flex: 1;
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #124076;
+      padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: bold;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      nav .site-name { font-size: 1.1rem; }
+      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 2rem 0 0.5rem;
+      color: #2c3e50;
+    }
+
+    .characters {
+      background: #e3edf9;
+      padding: 0.7rem 1.2rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.07rem;
+      box-shadow: 0 1px 5px rgba(44,62,80,0.06);
+      display: inline-block;
+    }
+    .characters ul {
+      margin: 0.2rem 0 0.8rem 1.5rem;
+      padding: 0;
+    }
+
+    .stage {
+      text-align: center;
+      color: #546e7a;
+      margin: 1.2rem 0 2rem 0;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    .conversation {
+      margin: 2rem 0 1.5rem 0;
+    }
+    .line {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.1rem;
+    }
+    .name {
+      min-width: 70px;
+      font-weight: bold;
+      color: #124076;
+      margin-right: 0.7rem;
+      flex-shrink: 0;
+    }
+    .bubble {
+      background-color: #fff;
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.05);
+      padding: 0.8rem 1.2rem;
+      max-width: 70vw;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      border: 1px solid #e0e7ef;
+    }
+
+    .vocab {
+      margin-top: 2rem;
+    }
+    .vocab h2 {
+      color: #124076;
+      margin-top: 1.5rem;
+    }
+    .vocab ul {
+      text-align: left;
+      margin: 0.5rem 0 1rem 1.5rem;
+      padding: 0;
+    }
+    .vocab li {
+      margin: 0.3rem 0;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .buttons a {
+      text-decoration: none;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </nav>
+
+  <h1>The Green Initiative</h1>
+  <main>
+    <div class="characters">
+      <strong>Characters:</strong>
+      <ul>
+        <li><strong>LENA:</strong> Enthusiastic and passionate about the environment.</li>
+        <li><strong>BEN:</strong> A bit skeptical at first, but open to learning.</li>
+        <li><strong>SARAH:</strong> Knowledgeable and practical.</li>
+      </ul>
+    </div>
+
+    <div class="stage">(Setting: A community park entrance on a sunny Saturday morning.)</div>
+
+    <div class="conversation">
+      <div class="line">
+        <span class="name">LENA:</span>
+        <span class="bubble">(Sighs) So much litter...</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">(Notices Lena) Hey, Lena! What's up? Enjoying the beautiful day?</span>
+      </div>
+      <div class="line">
+        <span class="name">LENA:</span>
+        <span class="bubble">It <strong>would</strong> be beautiful if there wasn't so much trash everywhere. Look at all this <strong>plastic</strong>! It’s really sad for our local <strong>wildlife</strong>.</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">Yeah, it's a shame. People should just use the bins. But what can you do? I <strong>couldn't</strong> imagine trying to clean all this up by myself.</span>
+      </div>
+      <div class="line">
+        <span class="name">LENA:</span>
+        <span class="bubble">We <strong>could</strong> do something! I was thinking of organizing a community cleanup. Get people to <strong>volunteer</strong> an hour or two.</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">A cleanup? Hmm. I'm not sure if people <strong>would</strong> show up. Everyone's so busy. And it feels like such a big <strong>challenge</strong>.</span>
+      </div>
+      <div class="line">
+        <span class="name">SARAH:</span>
+        <span class="bubble">(Walks over, holding a reusable bottle) What's this about a cleanup? I overheard you, Lena. I think it’s a great idea! Our park is suffering from a lot of <strong>pollution</strong>. It's harmful to the <strong>environment</strong> and our health.</span>
+      </div>
+      <div class="line">
+        <span class="name">LENA:</span>
+        <span class="bubble">Exactly, Sarah! We have a <strong>responsibility</strong> to keep our shared spaces clean. We <strong>might</strong> not clean everything today, but every bit helps.</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">But is it really that important? I mean, it's just a park.</span>
+      </div>
+      <div class="line">
+        <span class="name">SARAH:</span>
+        <span class="bubble">It is important, Ben. All this waste, especially the plastic, takes hundreds of years to break down. It affects the soil, the water, and the animals. We need to think about <strong>conservation</strong> and more <strong>sustainable</strong> ways to live. My nephew loves playing here, and I <strong>wouldn't</strong> want him playing among trash.</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">Hmm. You know, you're right. It <strong>could</strong> be a good thing. What would we actually do? Just pick up trash?</span>
+      </div>
+      <div class="line">
+        <span class="name">LENA:</span>
+        <span class="bubble">Yes! We'd get bags, gloves. We could separate recyclables too, like glass and plastic bottles. We <strong>might</strong> even inspire others to join later.</span>
+      </div>
+      <div class="line">
+        <span class="name">SARAH:</span>
+        <span class="bubble">And it also raises awareness. When people see us cleaning, they <strong>might</strong> think twice before littering next time. Even a small <strong>contribution</strong> helps. The current trash <strong>disposal</strong> methods aren't enough if people don't use them.</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">It feels overwhelming alone, but if we all work together, it <strong>could</strong> make a real difference. I'll help, Lena. What time do we start? This <strong>precious</strong> green space needs our <strong>effort</strong>.</span>
+      </div>
+      <div class="line">
+        <span class="name">LENA:</span>
+        <span class="bubble">(Smiling) Fantastic! Let's aim for next Saturday morning, 9 AM. I'll put up some signs and get supplies. Thank you both so much. This is our chance to make our park truly green again!</span>
+      </div>
+      <div class="line">
+        <span class="name">SARAH:</span>
+        <span class="bubble">Count me in!</span>
+      </div>
+      <div class="line">
+        <span class="name">BEN:</span>
+        <span class="bubble">Me too. For the park!</span>
+      </div>
+    </div>
+
+    <div class="vocab">
+      <h2>Vocabulary List (Hard to Pronounce)</h2>
+      <ul>
+        <li><strong>Plastic</strong> /ˈplæs.tɪk/</li>
+        <li><strong>Wildlife</strong> /ˈwaɪld.laɪf/</li>
+        <li><strong>Volunteer</strong> /ˌvɒl.ənˈtɪr/</li>
+        <li><strong>Challenge</strong> /ˈtʃæl.ɪndʒ/</li>
+        <li><strong>Pollution</strong> /pəˈluː.ʃən/</li>
+        <li><strong>Environment</strong> /ɪnˈvaɪər.ən.mənt/</li>
+        <li><strong>Responsibility</strong> /rɪˌspɒn.səˈbɪl.ɪ.ti/</li>
+        <li><strong>Conservation</strong> /ˌkɒn.sərˈveɪ.ʃən/</li>
+        <li><strong>Sustainable</strong> /səˈsteɪ.nə.bəl/</li>
+        <li><strong>Disposal</strong> /dɪˈspoʊ.zəl/</li>
+        <li><strong>Effort</strong> /ˈef.ərt/</li>
+        <li><strong>Contribution</strong> /ˌkɒn.trɪˈbjuː.ʃən/</li>
+        <li><strong>Precious</strong> /ˈpreʃ.əs/</li>
+        <li><strong>Community</strong> /kəˈmjuː.nɪ.ti/</li>
+        <li><strong>Overwhelming</strong> /ˌoʊ.vərˈwel.mɪŋ/</li>
+      </ul>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="index.html">🏠 Back to Home</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – Minimal Pairs: Consonant Sounds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #124076;
+      padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: bold;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      nav .site-name { font-size: 1.1rem; }
+      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+    }
+
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .pairs {
+      text-align: left;
+      margin: 0 auto;
+      display: inline-block;
+    }
+    .pairs li {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="logo">
+    <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+    <span class="site-name">ESLnote</span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practices</a>
+  </div>
+</nav>
+
+<h1>Minimal Pairs: Consonant Sounds</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()">
+  <div class="ipa">Click to Flip</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    ipa: "/p/ vs /b/",
+    pairs: [
+      "pat /pæt/ – bat /bæt/",
+      "pig /pɪɡ/ – big /bɪɡ/",
+      "pan /pæn/ – ban /bæn/"
+    ]
+  },
+  {
+    ipa: "/t/ vs /d/",
+    pairs: [
+      "tip /tɪp/ – dip /dɪp/",
+      "ten /tɛn/ – den /dɛn/",
+      "tie /taɪ/ – die /daɪ/"
+    ]
+  },
+  {
+    ipa: "/k/ vs /g/",
+    pairs: [
+      "coat /koʊt/ – goat /ɡoʊt/",
+      "cap /kæp/ – gap /ɡæp/",
+      "kill /kɪl/ – gill /ɡɪl/"
+    ]
+  },
+  {
+    ipa: "/f/ vs /v/",
+    pairs: [
+      "fan /fæn/ – van /væn/",
+      "safe /seɪf/ – save /seɪv/",
+      "leaf /liːf/ – leave /liːv/"
+    ]
+  },
+  {
+    ipa: "/θ/ vs /ð/",
+    pairs: [
+      "thin /θɪn/ – then /ðɛn/",
+      "bath /bæθ/ – bathe /beɪð/",
+      "think /θɪŋk/ – this /ðɪs/"
+    ]
+  },
+  {
+    ipa: "/s/ vs /z/",
+    pairs: [
+      "sip /sɪp/ – zip /zɪp/",
+      "bus /bʌs/ – buzz /bʌz/",
+      "rice /raɪs/ – rise /raɪz/"
+    ]
+  },
+  {
+    ipa: "/ʃ/ vs /tʃ/",
+    pairs: [
+      "ship /ʃɪp/ – chip /tʃɪp/",
+      "shin /ʃɪn/ – chin /tʃɪn/",
+      "shoes /ʃuːz/ – choose /tʃuːz/"
+    ]
+  },
+  {
+    ipa: "/tʃ/ vs /dʒ/",
+    pairs: [
+      "chin /tʃɪn/ – gin /dʒɪn/",
+      "chance /tʃæns/ – dance /dæns/",
+      "choke /tʃoʊk/ – joke /dʒoʊk/"
+    ]
+  },
+  {
+    ipa: "/l/ vs /r/",
+    pairs: [
+      "light /laɪt/ – right /raɪt/",
+      "lead /liːd/ – read /riːd/",
+      "play /pleɪ/ – pray /preɪ/"
+    ]
+  },
+  {
+    ipa: "/m/ vs /ŋ/",
+    pairs: [
+      "rim /rɪm/ – ring /rɪŋ/",
+      "sum /sʌm/ – sung /sʌŋ/",
+      "room /ruːm/ – rune /ruːn/"
+    ]
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+function showCard() {
+  const card = document.getElementById("flashcard");
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = `<div class="ipa">${flashcards[index].ipa}</div>`;
+}
+
+function flipCard() {
+  const card = document.getElementById("flashcard");
+  if (!flipped) {
+    const { ipa, pairs } = flashcards[index];
+    card.innerHTML = `
+      <div class="ipa">${ipa}</div>
+      <ul class="pairs">
+        ${pairs.map(p => `<li>${p}</li>`).join("")}
+      </ul>
+    `;
+    card.classList.add("flipped");
+    pronounceSamples();
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function pronounceSamples() {
+  const { pairs } = flashcards[index];
+  pairs.forEach(pair => {
+    const [left, right] = pair.split(' – ');
+    const word1 = left.split(' ')[0];
+    const word2 = right.split(' ')[0];
+    [word1, word2].forEach(w => {
+      const u = new SpeechSynthesisUtterance(w);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      speechSynthesis.speak(u);
+    });
+  });
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+// initialize
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

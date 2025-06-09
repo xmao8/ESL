@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Conversation – ESL Dialogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    main {
+      flex: 1;
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #124076;
+      padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: bold;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+
+    /* Page title */
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 2rem 0 0.5rem;
+      color: #2c3e50;
+    }
+
+    h2 {
+      color: #124076;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      margin: 1rem 0 0.5rem;
+      font-style: italic;
+      color: #2c3e50;
+    }
+
+    /* Conversation bubbles */
+    .conversation {
+      margin: 2rem 0 1.5rem 0;
+    }
+    .line {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.1rem;
+    }
+    .name {
+      min-width: 70px;
+      font-weight: bold;
+      color: #124076;
+      margin-right: 0.7rem;
+      flex-shrink: 0;
+    }
+    .bubble {
+      background-color: #fff;
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.05);
+      padding: 0.8rem 1.2rem;
+      max-width: 70vw;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      border: 1px solid #e0e7ef;
+    }
+    .stage {
+      text-align: center;
+      color: #546e7a;
+      margin: 1.2rem 0 2rem 0;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    /* Character Key */
+    .characters {
+      background: #e3edf9;
+      padding: 0.7rem 1.2rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.07rem;
+      box-shadow: 0 1px 5px rgba(44,62,80,0.06);
+      display: inline-block;
+    }
+    ul {
+      margin: 0.2rem 0 0.8rem 1.5rem;
+    }
+
+    /* Back button */
+    .buttons {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .buttons a {
+      text-decoration: none;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+      .bubble { max-width: 90vw; }
+    }
+    @media (max-width: 600px) {
+      nav .site-name { font-size: 1.1rem; }
+      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+      h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
+      .characters { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </nav>
+
+  <h1>Talk about Weather</h1>
+  <main>
+    <div class="characters">
+      <strong>Characters:</strong>
+      <ul>
+        <li><strong>Maria:</strong> From a country with four seasons and cold winters</li>
+        <li><strong>Juan:</strong> From a country with a warm, tropical, or desert climate</li>
+      </ul>
+    </div>
+
+    <div class="stage">(Setting: A break room or cafeteria. Maria is looking out the window.)</div>
+
+    <div class="conversation">
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">Oh, look! It's so cloudy today.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">(Walks over to the window) Yes, it is. Do you think it will rain?</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">Hmm, maybe. The air feels a little heavy. I hope not. I walked here today.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">Oh, me too! I forgot my umbrella. What's the weather usually like here in June?</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">Well, June is usually warm and sunny. We get a lot of sunshine. But sometimes we have a few rainy days, especially in the early part of the month.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">That's interesting. Where I'm from, it's always hot. We have a rainy season and a dry season, but it's never really cold.</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">Wow, never cold? That's hard for me to imagine! In my country, we have four seasons. Winter is very cold, sometimes with snow.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">Snow! I've only seen snow in movies. Is it nice?</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">It can be very beautiful, especially when it first falls. But it also makes driving difficult, and it can be very, very cold. I prefer spring.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">Why spring?</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">Because the weather is mild. It's not too hot, not too cold. The flowers start to bloom, and the days get longer. It's lovely.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">Sounds nice. I like warm weather. For me, the perfect day is sunny and about 25 degrees Celsius.</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">Yes, that's a good temperature. Today, it's only about 18 degrees. A bit cool for June, I think.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">Yes, a little cool. But it's good for studying, not too hot to focus.</span>
+      </div>
+      <div class="line">
+        <span class="name">Maria:</span>
+        <span class="bubble">True! Maybe the sun will come out later.</span>
+      </div>
+      <div class="line">
+        <span class="name">Juan:</span>
+        <span class="bubble">I hope so!</span>
+      </div>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="index.html">🏠 Back to Home</a>
+  </div>
+
+</body>
+</html>

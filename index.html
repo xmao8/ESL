@@ -19,7 +19,7 @@
       flex-direction: column;
     }
 
-    /* Use CSS Grid to center nav-links and keep logo left */
+    /* NAVBAR */
     nav {
       background-color: #124076;
       padding: 0.8rem 1rem;
@@ -71,7 +71,6 @@
     }
 
     main {
-      width: 100%;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -94,68 +93,88 @@
       transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none;
       display: block;
-      color: white;
       min-height: 120px;
+      color: white;
     }
-
     .block:hover:not(.blank-block) {
       transform: translateY(-5px);
       box-shadow: 0 6px 16px rgba(32, 115, 199, 0.15);
     }
 
-    .flashcards {
-      background: linear-gradient(135deg, #6ec6ff 0%, #2073c7 100%);
-    }
-    .conversation {
-      background: linear-gradient(135deg, #ffd180 0%, #ff9800 100%);
-      color: #874200;
-    }
-    .grammar {
-      background: linear-gradient(135deg, #e3f0ff 0%, #2073c7 100%);
-    }
-    .reading {
-      background: linear-gradient(135deg, #ffe0b2 0%, #ff9800 100%);
-      color: #874200;
-    }
-    .practices {
-      background: linear-gradient(135deg, #bbdefb 0%, #2073c7 100%);
-    }
+    .flashcards { background: linear-gradient(135deg, #6ec6ff 0%, #2073c7 100%); }
+    .conversation { background: linear-gradient(135deg, #ffd180 0%, #ff9800 100%); color: #874200; }
+    .grammar { background: linear-gradient(135deg, #e3f0ff 0%, #2073c7 100%); color: #124076; }
+    .reading { background: linear-gradient(135deg, #ffe0b2 0%, #ff9800 100%); color: #874200; }
+    .practices { background: linear-gradient(135deg, #bbdefb 0%, #2073c7 100%); }
     .blank-block {
       background: linear-gradient(135deg, #e3eaf5 0%, #bbdefb 100%);
-      min-height: 120px;
       pointer-events: none;
       user-select: none;
       box-shadow: 0 4px 12px rgba(18, 64, 118, 0.04);
     }
-    .block h2 {
-      margin-bottom: 1rem;
-      color: inherit;
-    }
-    .block p {
-      font-size: 1rem;
-      color: inherit;
+
+    .block h2 { margin-bottom: 1rem; }
+    .block p { font-size: 1rem; margin: 0; }
+
+    /* TABLET */
+    @media (max-width: 768px) {
+      nav {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 0.6rem 1rem;
+      }
+      nav .logo {
+        grid-row: 1;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        grid-row: 2;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 0 1rem;
+      }
     }
 
+    /* PHONE */
     @media (max-width: 600px) {
+      .homepage-title {
+        font-size: 2rem;
+        margin: 1.5rem 0;
+      }
+      nav {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 0.5rem 1rem;
+      }
+      nav .logo {
+        justify-content: center;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      nav .site-name { font-size: 1.1rem; }
       .container {
-        padding: 0 .5rem;
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
         gap: 1rem;
       }
       .block {
         padding: 1rem;
       }
-      .homepage-title {
-        font-size: 2rem;
-        margin: 1.5rem 0;
-      }
-      nav .site-name {
-        font-size: 1.1rem;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
+  <!-- NAVIGATION -->
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
@@ -171,7 +190,7 @@
     </div>
   </nav>
 
-  <!-- Page Title -->
+  <!-- PAGE TITLE -->
   <h1 class="homepage-title">Learn English Together</h1>
 
   <main>
@@ -196,11 +215,11 @@
         <h2>Practices</h2>
         <p>Interactive grammar and vocabulary exercises to boost your English skills.</p>
       </a>
-      <div class="block blank-block" aria-label="Coming Soon" tabindex="-1"></div>
+      <div class="block blank-block" aria-label="Coming Soon"></div>
     </div>
   </main>
 
-  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0; font-size:0.95rem; letter-spacing:0.02em;">
+  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0; font-size:0.95rem;">
     &copy; 2025 ESLnote.com. All rights reserved.
   </footer>
 </body>

@@ -18,7 +18,7 @@
       color: #333;
     }
 
-    /* NAVBAR: logo absolute on left, links centered */
+    /* NAVBAR */
     nav {
       position: relative;
       display: flex;
@@ -63,24 +63,24 @@
     h1 {
       text-align: center;
       font-size: 2.5rem;
-      margin: 2rem 0 0.5rem; /* reduced bottom margin */
+      margin: 2rem 0 0.5rem;
       color: #2c3e50;
     }
 
-    /* MAIN CONTENT expands */
-    main {
-      flex: 1;
-    }
+    /* MAIN CONTENT */
+    main { flex: 1; }
     .container {
       max-width: 800px;
       margin: auto;
-      padding: 1rem 1rem; /* reduced top padding */
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
     .label-link {
       display: block;
       background: white;
       padding: 1rem 1.5rem;
-      margin: 1rem 0;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
       font-size: 1.2rem;
@@ -111,14 +111,69 @@
       background-color: #2980b9;
     }
 
-    /* MOBILE */
-    @media (max-width: 600px) {
-      nav .site-name {
-        font-size: 1.1rem;
+    /* TABLET (≤768px): two-column grid, wrap nav */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
       }
       nav .nav-links {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+      }
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1rem;
+      }
+    }
+
+    /* PHONE (≤600px): single-column, compact nav */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        flex-direction: column;
         gap: 0.5rem;
-        flex-wrap: wrap;
+        width: 100%;
+      }
+      nav .nav-links a {
+        width: 100%;
+        text-align: center;
+      }
+      nav .site-name {
+        font-size: 1.2rem;
+      }
+      h1 {
+        font-size: 2rem;
+        margin: 1.5rem 0 0.5rem;
+      }
+      .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+      }
+      .label-link {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+      }
+      .buttons a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -144,7 +199,6 @@
 
   <main>
     <div class="container">
-
       <a class="label-link" href="conversation/conversation-about-environments.html">Environments Drama: The Green Initiative</a>
       <a class="label-link" href="conversation/talk-about-weather.html">Talk about Weather</a>
       <a class="label-link" href="conversation/weekend-plan.html">Weekend Plan</a>

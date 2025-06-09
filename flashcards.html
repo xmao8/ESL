@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flashcards – Learn English Together</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -27,33 +27,26 @@
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      flex-wrap: nowrap;
     }
-    /* logo on left, removed from flex-centering */
     nav .logo {
       position: absolute;
       left: 1rem;
       display: flex;
       align-items: center;
     }
-    nav .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
+    nav .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
     nav .site-name {
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
       font-weight: bold;
     }
-    /* links centered */
     nav .nav-links {
       display: flex;
       gap: 1rem;
     }
     nav .nav-links a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
@@ -81,12 +74,12 @@
       gap: 2rem;
     }
     .block {
-      background-color: white;
+      background: #fff;
       border-radius: 16px;
       padding: 1.5rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-decoration: none;
-      color: inherit;
+      color: #333;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .block:hover {
@@ -97,9 +90,7 @@
       margin-bottom: 0.5rem;
       color: #3498db;
     }
-    .block p {
-      font-size: 1rem;
-    }
+    .block p { font-size: 1rem; }
 
     /* BACK BUTTON */
     .buttons {
@@ -110,32 +101,28 @@
       text-decoration: none;
       margin: 0 0.5rem;
       background-color: #3498db;
-      color: white;
+      color: #fff;
       padding: 0.7rem 1.2rem;
       border-radius: 8px;
       font-weight: bold;
       transition: background-color 0.2s;
     }
-    .buttons a:hover {
-      background-color: #2980b9;
+    .buttons a:hover { background-color: #2980b9; }
+
+    /* TABLET (≤768px): wrap navbar & center links */
+    @media (max-width: 768px) {
+      nav { flex-wrap: wrap; padding: 0.6rem 1rem; }
+      nav .logo { position: static; margin-bottom: 0.5rem; }
+      nav .nav-links { width: 100%; flex-direction: column; align-items: center; gap: 0.8rem; margin-top: 0.5rem; }
     }
 
-    /* TABLET (≤768px): wrap and center links block */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        padding: 0.6rem 1rem;
-      }
-      nav .nav-links {
-        width: 100%;
-        justify-content: center;
-        margin-top: 0.5rem;
-      }
-    }
-    /* PHONE (≤600px): tighten spacing */
+    /* PHONE (≤600px): single-column nav & tighter grid */
     @media (max-width: 600px) {
-      nav .site-name { font-size: 1.1rem; }
-      nav .nav-links { gap: 0.5rem; }
+      nav { flex-direction: column; padding: 0.5rem 1rem; }
+      nav .logo { position: static; margin-bottom: 0.5rem; }
+      nav .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; }
+      nav .nav-links a { width: 100%; text-align: center; }
+      nav .site-name { font-size: 1.2rem; }
       h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
       .container { padding: 1rem; gap: 1rem; }
       .block { padding: 1.2rem; }
@@ -144,7 +131,6 @@
   </style>
 </head>
 <body>
-
   <!-- Navigation Bar -->
   <nav aria-label="Main navigation">
     <div class="logo">
@@ -161,13 +147,10 @@
     </div>
   </nav>
 
-  <!-- Page Title -->
   <h1>Flashcards</h1>
 
-  <!-- Flashcards Links -->
   <main>
     <div class="container">
-      
       <a href="flashcard/environment-vocabulary.html" class="block">
         <h2>Environment Vocabulary Flashcards</h2>
         <p>Learn 30 words about the environment.</p>
@@ -175,11 +158,11 @@
       <a href="flashcard/english-consonant-sounds-mimimal-pairs.html" class="block">
         <h2>Minimal Pairs: Consonant Sounds</h2>
         <p>Practice English Consonant sounds with minimal pairs.</p>
-      </a>       
+      </a>
       <a href="flashcard/english-consonants.html" class="block">
         <h2>English Consonants</h2>
         <p>English consonants with examples.</p>
-      </a>     
+      </a>
       <a href="flashcard/english-vowel-sound-minimal-pairs.html" class="block">
         <h2>Minimal Pairs: Vowel Sounds</h2>
         <p>Practice English vowel sounds with minimal pairs.</p>
@@ -251,6 +234,5 @@
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>
   </div>
-
 </body>
 </html>

@@ -7,7 +7,7 @@
   <title>Reading – Learn English Together</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* make page stretch full height */
+    /* Base styles */
     body {
       display: flex;
       flex-direction: column;
@@ -27,27 +27,20 @@
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      flex-wrap: nowrap;
     }
-    /* logo left */
     nav .logo {
       position: absolute;
       left: 1rem;
       display: flex;
       align-items: center;
     }
-    nav .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
+    nav .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
     nav .site-name {
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
       font-weight: bold;
     }
-    /* centered links */
     nav .nav-links {
       display: flex;
       gap: 1rem;
@@ -71,7 +64,7 @@
       color: #2c3e50;
     }
 
-    /* READING LINKS */
+    /* READING LINKS (desktop default) */
     .container {
       max-width: 800px;
       margin: auto;
@@ -113,7 +106,7 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: wrap links */
+    /* TABLET: two-column layout for links */
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;
@@ -124,12 +117,26 @@
         justify-content: center;
         margin-top: 0.5rem;
       }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .label-link {
+        margin: 0;
+      }
     }
-    /* PHONE: tighten spacing */
+
+    /* PHONE: single-column compact */
     @media (max-width: 600px) {
       nav .site-name { font-size: 1.1rem; }
       nav .nav-links { gap: 0.5rem; }
       h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
       .label-link { font-size: 1rem; padding: 0.8rem 1rem; }
       .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
     }
@@ -202,7 +209,6 @@
       <a class="label-link" href="reading/reading-ocean-personal-traits.html">
         Understanding the OCEAN Personality Traits
       </a>
-      <!-- add more reading topics here -->
     </div>
   </main>
 

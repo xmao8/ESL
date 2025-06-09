@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards – English Consonant Sounds</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #124076;
+      padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
+      margin-bottom: 0;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: bold;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      nav .site-name { font-size: 1.1rem; }
+      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+    }
+
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .buttons {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="logo">
+    <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+    <span class="site-name">ESLnote</span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practices</a>
+  </div>
+</nav>
+
+<h1>English Consonant Sounds Flashcards</h1>
+
+<div id="flashcard" class="flashcard">Click to Flip</div>
+
+<div class="buttons">
+  <button id="prevBtn">⬅ Previous</button>
+  <button id="nextBtn">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { sound: "/p/", description: "Unvoiced, as in 'pet'", examples: ["pen", "apple", "hop"] },
+  { sound: "/b/", description: "Voiced, as in 'bat'", examples: ["bat", "cab", "robe"] },
+  { sound: "/t/", description: "Unvoiced, as in 'top'", examples: ["top", "water", "cat"] },
+  { sound: "/d/", description: "Voiced, as in 'dog'", examples: ["dog", "add", "mad"] },
+  { sound: "/k/", description: "Unvoiced, as in 'cat'", examples: ["cat", "back", "cake"] },
+  { sound: "/g/", description: "Voiced, as in 'go'", examples: ["go", "big", "bag"] },
+  { sound: "/f/", description: "Unvoiced, as in 'fish'", examples: ["fish", "coffee", "leaf"] },
+  { sound: "/v/", description: "Voiced, as in 'van'", examples: ["van", "love", "move"] },
+  { sound: "/θ/", description: "Unvoiced, as in 'think'", examples: ["think", "bath", "math"] },
+  { sound: "/ð/", description: "Voiced, as in 'this'", examples: ["this", "mother", "bathe"] },
+  { sound: "/s/", description: "Unvoiced, as in 'see'", examples: ["see", "rice", "class"] },
+  { sound: "/z/", description: "Voiced, as in 'zoo'", examples: ["zoo", "nose", "lazy"] },
+  { sound: "/ʃ/", description: "Unvoiced, as in 'shoe'", examples: ["shoe", "she", "dish"] },
+  { sound: "/ʒ/", description: "Voiced, as in 'measure'", examples: ["measure", "vision", "decision"] },
+  { sound: "/tʃ/", description: "Unvoiced, as in 'chop'", examples: ["chop", "teacher", "watch"] },
+  { sound: "/dʒ/", description: "Voiced, as in 'jump'", examples: ["jump", "judge", "orange"] },
+  { sound: "/m/", description: "Nasal, as in 'man'", examples: ["man", "lemon", "drum"] },
+  { sound: "/n/", description: "Nasal, as in 'no'", examples: ["no", "nine", "run"] },
+  { sound: "/ŋ/", description: "Nasal, as in 'sing'", examples: ["sing", "song", "long"] },
+  { sound: "/h/", description: "Unvoiced, as in 'hat'", examples: ["hat", "ahead", "hello"] },
+  { sound: "/l/", description: "Lateral, as in 'light'", examples: ["light", "bell", "milk"] },
+  { sound: "/r/", description: "Approximant, as in 'red'", examples: ["red", "car", "rabbit"] },
+  { sound: "/w/", description: "Approximant, as in 'we'", examples: ["we", "water", "window"] },
+  { sound: "/j/", description: "Approximant, as in 'yes'", examples: ["yes", "yellow", "yogurt"] },
+];
+
+let index = 0;
+let flipped = false;
+
+const card = document.getElementById("flashcard");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+function showCard() {
+  card.classList.remove("flipped");
+  flipped = false;
+  card.innerHTML = flashcards[index].sound;
+}
+
+function flipCardHandler() {
+  if (!flipped) {
+    const { sound, description, examples } = flashcards[index];
+    card.innerHTML = `
+      <strong>${sound}</strong><br>
+      ${description}<br><br>
+      <em>Examples: ${examples.join(", ")}</em>
+    `;
+    card.classList.add("flipped");
+    pronounceExamples();
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function pronounceExamples() {
+  const { examples } = flashcards[index];
+  examples.forEach(word => {
+    const utter = new SpeechSynthesisUtterance(word);
+    utter.lang = "en-US";
+    utter.rate = 0.9;
+    speechSynthesis.speak(utter);
+  });
+}
+
+function nextCardHandler() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCardHandler() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+// Attach all event listeners after DOM is ready
+card.addEventListener("click", flipCardHandler);
+nextBtn.addEventListener("click", nextCardHandler);
+prevBtn.addEventListener("click", prevCardHandler);
+
+// Show the first card on load
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

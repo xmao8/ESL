@@ -19,16 +19,18 @@
       flex-direction: column;
     }
 
-    /* NAVBAR */
+    /* NAVBAR - consistent flex style */
     nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
     }
     nav .logo {
-      grid-column: 1;
+      position: absolute;
+      left: 1rem;
       display: flex;
       align-items: center;
     }
@@ -44,7 +46,6 @@
       font-weight: 700;
     }
     nav .nav-links {
-      grid-column: 2;
       display: flex;
       gap: 0.8rem;
     }
@@ -119,20 +120,18 @@
     /* TABLET */
     @media (max-width: 768px) {
       nav {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        flex-wrap: wrap;
         padding: 0.6rem 1rem;
       }
       nav .logo {
-        grid-row: 1;
-        justify-content: center;
+        position: static;
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        grid-row: 2;
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
         gap: 0.8rem;
+        margin-top: 0.5rem;
       }
       .container {
         grid-template-columns: repeat(2, 1fr);
@@ -148,18 +147,22 @@
         margin: 1.5rem 0;
       }
       nav {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        flex-direction: column;
+        align-items: center;
         padding: 0.5rem 1rem;
       }
       nav .logo {
-        justify-content: center;
+        position: static;
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 0.5rem;
+        width: 100%;
+      }
+      nav .nav-links a {
+        width: 100%;
+        text-align: center;
       }
       nav .site-name { font-size: 1.1rem; }
       .container {
@@ -167,9 +170,7 @@
         padding: 0 0.5rem;
         gap: 1rem;
       }
-      .block {
-        padding: 1rem;
-      }
+      .block { padding: 1rem; }
     }
   </style>
 </head>
@@ -219,7 +220,7 @@
     </div>
   </main>
 
-  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0; font-size:0.95rem;">
+  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0;">
     &copy; 2025 ESLnote.com. All rights reserved.
   </footer>
 </body>

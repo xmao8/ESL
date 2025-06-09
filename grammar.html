@@ -27,27 +27,20 @@
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      flex-wrap: nowrap;
     }
-    /* logo on left */
     nav .logo {
       position: absolute;
       left: 1rem;
       display: flex;
       align-items: center;
     }
-    nav .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
+    nav .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
     nav .site-name {
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
       font-weight: bold;
     }
-    /* links in center column */
     nav .nav-links {
       display: flex;
       gap: 1rem;
@@ -71,7 +64,7 @@
       color: #2c3e50;
     }
 
-    /* CONTENT LINKS */
+    /* CONTENT LINKS (desktop) */
     .container {
       max-width: 800px;
       margin: auto;
@@ -112,24 +105,60 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: allow wrapping & center the links block */
+    /* TABLET: wrap nav & two-column content */
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;
         padding: 0.6rem 1rem;
       }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
       nav .nav-links {
         width: 100%;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
         margin-top: 0.5rem;
       }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: auto;
+      }
+      .label-link { margin: 0; }
     }
-    /* PHONE: tighten spacing */
+
+    /* PHONE: single-column nav & content */
     @media (max-width: 600px) {
-      nav .site-name { font-size: 1.1rem; }
-      nav .nav-links { gap: 0.5rem; }
+      nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      nav .nav-links a {
+        width: 100%;
+        text-align: center;
+      }
+      nav .site-name { font-size: 1.2rem; }
       h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
+      .container {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
       .label-link { font-size: 1rem; padding: 0.8rem 1rem; }
+      .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -155,7 +184,6 @@
 
   <main>
     <div class="container">
-
       <a class="label-link" href="grammar/would-could-might.html">Would, Could, & Might</a>
       <a class="label-link" href="grammar/introduction-to-ipa.html">Introduction to IPA</a>
       <a class="label-link" href="grammar/would-you-rather.html">“Would You Rather...” Questions</a>

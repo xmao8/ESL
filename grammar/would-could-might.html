@@ -98,11 +98,16 @@
       width: 100%;
       border-collapse: collapse;
       margin: 1rem 0;
+      /* Ensure table can scroll horizontally on small screens if content overflows */
+      display: block; 
+      overflow-x: auto;
+      white-space: nowrap; /* Prevent content from wrapping inside cells */
     }
     table th, table td {
       border: 1px solid #ddd;
       padding: 0.5rem;
       text-align: left;
+      white-space: normal; /* Allow text to wrap within cells */
     }
     table th {
       background-color: #124076;
@@ -127,23 +132,97 @@
       background-color: #2980b9;
     }
 
-    /* Tablet wrap */
+    /* Tablet adjustments (max-width: 768px) */
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;
         padding: 0.6rem 1rem;
+        /* Adjust logo position to be less absolute, more fluid */
+        justify-content: space-between; /* Space out logo and links */
+      }
+      nav .logo {
+        position: static; /* Remove absolute positioning */
+        margin-bottom: 0.5rem; /* Add space below logo before links wrap */
       }
       nav .nav-links {
         width: 100%;
         justify-content: center;
         margin-top: 0.5rem;
+        flex-wrap: wrap; /* Allow links to wrap to the next line */
+        gap: 0.8rem; /* Slightly reduce gap for better fit */
+      }
+      main {
+        padding: 0.8rem; /* Slightly reduce padding on main content */
+      }
+      h1 {
+        font-size: 2.2rem; /* Slightly reduce heading size */
+        margin: 1.8rem 0 0.5rem;
+      }
+      table {
+        /* Ensure table overflow is still handled for tablets */
+        display: block;
+        overflow-x: auto;
       }
     }
-    /* Phone adjustments */
+
+    /* Phone adjustments (max-width: 600px) */
     @media (max-width: 600px) {
-      nav .site-name { font-size: 1.1rem; }
-      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
-      h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
+      nav {
+        flex-direction: column; /* Stack logo and nav links vertically */
+        padding: 0.5rem 0.5rem; /* Reduce padding even more */
+      }
+      nav .logo {
+        margin-bottom: 0.5rem; /* Space between logo and nav links */
+        justify-content: center; /* Center logo on smaller screens */
+        width: 100%; /* Make logo take full width to center it */
+      }
+      nav .site-name { 
+        font-size: 1.1rem; 
+      }
+      nav .nav-links { 
+        gap: 0.5rem; 
+        flex-wrap: wrap; 
+        justify-content: center; /* Center nav links */
+      }
+      nav .nav-links a {
+        padding: 0.3rem 0.5rem; /* Add some padding to nav links for easier tapping */
+      }
+      h1 { 
+        font-size: 1.8rem; /* Further reduce heading size for phones */
+        margin: 1rem 0 0.5rem; 
+      }
+      h2 {
+        font-size: 1.3rem; /* Adjust h2 for phones */
+      }
+      h3 {
+        font-size: 1.1rem; /* Adjust h3 for phones */
+      }
+      p, ul, ol, table {
+        font-size: 0.95rem; /* Slightly reduce font size for body text and lists */
+      }
+      main {
+        padding: 0.5rem; /* Minimal padding on main content for small screens */
+      }
+      /* Ensure table cells are readable on phones */
+      table th, table td {
+        padding: 0.4rem; /* Reduce padding in table cells */
+        font-size: 0.85rem; /* Reduce font size within table cells */
+      }
+      .buttons a {
+        padding: 0.6rem 1rem; /* Adjust button padding for smaller screens */
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Extra small phone adjustments (optional, for very narrow screens) */
+    @media (max-width: 380px) {
+      nav .nav-links a {
+        font-size: 0.8rem; /* Further reduce link font size if needed */
+        padding: 0.2rem 0.4rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
@@ -153,14 +232,14 @@
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
       <span class="site-name">ESLnote</span>
-  </div>
-  <div class="nav-links">
-    <a href="../index.html">Home</a>
-    <a href="../flashcards.html">Flashcards</a>
-    <a href="../conversation.html">Conversations</a>
-    <a href="../grammar.html">Grammar</a>
-    <a href="../reading.html">Reading</a>
-    <a href="../practice.html">Practices</a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
     </div>
   </nav>
 

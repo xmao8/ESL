@@ -27,7 +27,6 @@
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      flex-wrap: nowrap;
     }
     nav .logo {
       position: absolute;
@@ -119,10 +118,12 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: two columns for practice grid, wrap nav */
+    /* TABLET: stack nav & wrap links */
     @media (max-width: 768px) {
       nav {
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 0.6rem 1rem;
       }
       nav .logo {
@@ -130,9 +131,9 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.8rem;
         margin-top: 0.5rem;
       }
@@ -142,7 +143,7 @@
       }
     }
 
-    /* PHONE: single column grid, column nav */
+    /* PHONE: single-column grid & nav full-width */
     @media (max-width: 600px) {
       nav {
         flex-direction: column;

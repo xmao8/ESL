@@ -21,6 +21,7 @@
 
     /* NAVBAR */
     nav {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -86,7 +87,7 @@
       transform: translateY(-2px);
     }
 
-    /* BACK BUTTON */
+    /* BACK BUTTONS */
     .buttons {
       text-align: center;
       margin: 2rem 0;
@@ -105,33 +106,32 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: wrap nav items vertically */
+    /* TABLET: two-column links, stacked nav */
     @media (max-width: 768px) {
       nav {
-        flex-wrap: wrap;
+        flex-direction: column;
         padding: 0.6rem 1rem;
-        position: relative;
       }
       nav .logo {
         position: static;
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        width: 100%;
         flex-direction: column;
         align-items: center;
         gap: 0.8rem;
+        width: 100%;
       }
-      /* two-column layout for reading links */
       .container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+        padding: 1rem;
       }
       .label-link { margin: 0; }
     }
 
-    /* PHONE: single-column nav & links */
+    /* PHONE: single-column grid & nav full-width */
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
@@ -154,12 +154,18 @@
       nav .site-name { font-size: 1.2rem; }
       h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
       .container {
-        display: grid;
         grid-template-columns: 1fr;
         gap: 0.5rem;
+        padding: 0.5rem;
       }
-      .label-link { font-size: 1rem; padding: 0.8rem 1rem; }
-      .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+      .label-link {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+      }
+      .buttons a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>

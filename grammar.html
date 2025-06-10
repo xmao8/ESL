@@ -105,10 +105,12 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: wrap nav & two-column content */
+    /* TABLET: stack nav & wrap links, two-column content */
     @media (max-width: 768px) {
       nav {
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 0.6rem 1rem;
       }
       nav .logo {
@@ -116,17 +118,18 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.8rem;
         margin-top: 0.5rem;
+        width: 100%;
       }
       .container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-        margin: auto;
+        padding: 1rem;
       }
       .label-link { margin: 0; }
     }
@@ -156,6 +159,7 @@
       .container {
         grid-template-columns: 1fr;
         gap: 0.5rem;
+        padding: 0.5rem;
       }
       .label-link { font-size: 1rem; padding: 0.8rem 1rem; }
       .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
@@ -180,8 +184,10 @@
     </div>
   </nav>
 
+  <!-- PAGE TITLE -->
   <h1>Grammar Essentials</h1>
 
+  <!-- CONTENT -->
   <main>
     <div class="container">
       <a class="label-link" href="grammar/would-could-might.html">Would, Could, & Might</a>
@@ -210,6 +216,7 @@
     </div>
   </main>
 
+  <!-- BACK BUTTON -->
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>
   </div>

@@ -21,7 +21,7 @@
       flex: 1;
       max-width: 800px;
       margin: auto;
-      padding: 1rem;
+      padding: 1rem; /* Base padding for larger screens */
     }
 
     /* NAVBAR */
@@ -98,21 +98,60 @@
       width: 100%;
       border-collapse: collapse;
       margin: 1rem 0;
-      /* Ensure table can scroll horizontally on small screens if content overflows */
-      display: block; 
+      /* Crucial for responsive tables: Allows horizontal scrolling */
+      display: block;
       overflow-x: auto;
-      white-space: nowrap; /* Prevent content from wrapping inside cells */
+      -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+      white-space: nowrap; /* Prevent content from wrapping inside cells for initial fit */
+    }
+    table thead, table tbody, table tr {
+        display: block; /* Make table elements behave like blocks */
     }
     table th, table td {
       border: 1px solid #ddd;
       padding: 0.5rem;
       text-align: left;
-      white-space: normal; /* Allow text to wrap within cells */
+      white-space: normal; /* Allow text to wrap within cells once display is block */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
     }
     table th {
       background-color: #124076;
       color: white;
     }
+    /* Style for mobile tables */
+    @media (max-width: 600px) {
+        table thead {
+            display: none; /* Hide table headers on small screens */
+        }
+        table tr {
+            margin-bottom: 1rem; /* Add space between rows */
+            border: 1px solid #ddd; /* Add a border around each "row" to distinguish them */
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+        }
+        table td {
+            border: none; /* Remove individual cell borders */
+            position: relative;
+            padding-left: 50%; /* Make space for the "label" (pseudo-element) */
+            text-align: right;
+        }
+        table td::before {
+            /* Create a pseudo-element for the "header" of each cell */
+            content: attr(data-label); /* Get the content from the data-label attribute */
+            position: absolute;
+            left: 0.5rem;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: bold;
+            text-align: left;
+            color: #124076;
+        }
+    }
+
 
     /* Back button */
     .buttons {
@@ -137,59 +176,67 @@
       nav {
         flex-wrap: wrap;
         padding: 0.6rem 1rem;
-        /* Adjust logo position to be less absolute, more fluid */
-        justify-content: space-between; /* Space out logo and links */
+        justify-content: space-between;
       }
       nav .logo {
-        position: static; /* Remove absolute positioning */
-        margin-bottom: 0.5rem; /* Add space below logo before links wrap */
+        position: static;
+        margin-bottom: 0.5rem;
       }
       nav .nav-links {
         width: 100%;
         justify-content: center;
         margin-top: 0.5rem;
-        flex-wrap: wrap; /* Allow links to wrap to the next line */
-        gap: 0.8rem; /* Slightly reduce gap for better fit */
+        flex-wrap: wrap;
+        gap: 0.8rem;
       }
       main {
-        padding: 0.8rem; /* Slightly reduce padding on main content */
+        padding: 0.8rem; /* Slightly reduce padding on main content for tablets */
       }
       h1 {
         font-size: 2.2rem; /* Slightly reduce heading size */
         margin: 1.8rem 0 0.5rem;
       }
+      h2 {
+        font-size: 1.6rem; /* Adjust h2 for tablets */
+      }
+      h3 {
+        font-size: 1.3rem; /* Adjust h3 for tablets */
+      }
+      p, ul, ol {
+        font-size: 1rem; /* Ensure standard font size for text */
+      }
+      /* Tablet specific table adjustments (if needed, otherwise inherit from base) */
       table {
-        /* Ensure table overflow is still handled for tablets */
-        display: block;
-        overflow-x: auto;
+        white-space: normal; /* Allow text to wrap within table cells on tablets if it fits */
+        overflow-x: auto; /* Keep scroll for tablets if content is wide */
       }
     }
 
     /* Phone adjustments (max-width: 600px) */
     @media (max-width: 600px) {
       nav {
-        flex-direction: column; /* Stack logo and nav links vertically */
-        padding: 0.5rem 0.5rem; /* Reduce padding even more */
+        flex-direction: column;
+        padding: 0.5rem 0.5rem;
       }
       nav .logo {
-        margin-bottom: 0.5rem; /* Space between logo and nav links */
-        justify-content: center; /* Center logo on smaller screens */
-        width: 100%; /* Make logo take full width to center it */
+        margin-bottom: 0.5rem;
+        justify-content: center;
+        width: 100%;
       }
-      nav .site-name { 
-        font-size: 1.1rem; 
+      nav .site-name {
+        font-size: 1.1rem;
       }
-      nav .nav-links { 
-        gap: 0.5rem; 
-        flex-wrap: wrap; 
-        justify-content: center; /* Center nav links */
+      nav .nav-links {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
       }
       nav .nav-links a {
-        padding: 0.3rem 0.5rem; /* Add some padding to nav links for easier tapping */
+        padding: 0.3rem 0.5rem;
       }
-      h1 { 
+      h1 {
         font-size: 1.8rem; /* Further reduce heading size for phones */
-        margin: 1rem 0 0.5rem; 
+        margin: 1rem 0 0.5rem;
       }
       h2 {
         font-size: 1.3rem; /* Adjust h2 for phones */
@@ -197,19 +244,15 @@
       h3 {
         font-size: 1.1rem; /* Adjust h3 for phones */
       }
-      p, ul, ol, table {
+      p, ul, ol {
         font-size: 0.95rem; /* Slightly reduce font size for body text and lists */
       }
       main {
         padding: 0.5rem; /* Minimal padding on main content for small screens */
       }
-      /* Ensure table cells are readable on phones */
-      table th, table td {
-        padding: 0.4rem; /* Reduce padding in table cells */
-        font-size: 0.85rem; /* Reduce font size within table cells */
-      }
+      /* Buttons */
       .buttons a {
-        padding: 0.6rem 1rem; /* Adjust button padding for smaller screens */
+        padding: 0.6rem 1rem;
         font-size: 0.9rem;
       }
     }
@@ -217,7 +260,7 @@
     /* Extra small phone adjustments (optional, for very narrow screens) */
     @media (max-width: 380px) {
       nav .nav-links a {
-        font-size: 0.8rem; /* Further reduce link font size if needed */
+        font-size: 0.8rem;
         padding: 0.2rem 0.4rem;
       }
       h1 {
@@ -337,28 +380,28 @@
       </thead>
       <tbody>
         <tr>
-          <td>Main Focus</td>
-          <td>Hypothetical results, willingness, polite requests, past habits</td>
-          <td>Ability, general possibility, polite requests/suggestions</td>
-          <td>Weaker/remote possibility, speculation</td>
+          <td data-label="Feature">Main Focus</td>
+          <td data-label="Would">Hypothetical results, willingness, polite requests, past habits</td>
+          <td data-label="Could">Ability, general possibility, polite requests/suggestions</td>
+          <td data-label="Might">Weaker/remote possibility, speculation</td>
         </tr>
         <tr>
-          <td>Certainty</td>
-          <td>Higher if condition met</td>
-          <td>General possibility</td>
-          <td>Lower, more tentative</td>
+          <td data-label="Feature">Certainty</td>
+          <td data-label="Would">Higher if condition met</td>
+          <td data-label="Could">General possibility</td>
+          <td data-label="Might">Lower, more tentative</td>
         </tr>
         <tr>
-          <td>Conditionality</td>
-          <td>Tied to if-clauses</td>
-          <td>Can be conditional or general</td>
-          <td>Often speculation without if</td>
+          <td data-label="Feature">Conditionality</td>
+          <td data-label="Would">Tied to if-clauses</td>
+          <td data-label="Could">Can be conditional or general</td>
+          <td data-label="Might">Often speculation without if</td>
         </tr>
         <tr>
-          <td>Politeness</td>
-          <td>Very polite for requests/offers</td>
-          <td>Polite for requests/suggestions</td>
-          <td>Very gentle suggestions</td>
+          <td data-label="Feature">Politeness</td>
+          <td data-label="Would">Very polite for requests/offers</td>
+          <td data-label="Could">Polite for requests/suggestions</td>
+          <td data-label="Might">Very gentle suggestions</td>
         </tr>
       </tbody>
     </table>

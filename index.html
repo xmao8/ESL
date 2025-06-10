@@ -27,6 +27,7 @@
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
+      flex-wrap: nowrap; /* Prevent immediate wrapping on larger screens */
     }
     nav .logo {
       position: absolute;
@@ -54,10 +55,13 @@
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
+      padding: 0.4rem 0.6rem; /* Add padding for easier tapping */
+      border-radius: 4px; /* Slightly rounded corners for links */
     }
     nav .nav-links a:hover {
       color: #ffbb33;
       text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.1); /* Subtle hover background */
     }
 
     .homepage-title {
@@ -69,12 +73,14 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 1px 1px 2px rgba(32, 115, 199, 0.10);
+      padding: 0 1rem; /* Add horizontal padding to prevent text from touching screen edges */
     }
 
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
+      justify-content: center; /* Center content vertically if there's extra space */
     }
 
     .container {
@@ -82,8 +88,8 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       max-width: 1000px;
-      margin: 0 auto 4rem;
-      padding: 0 1rem;
+      margin: 0 auto 4rem; /* Maintain bottom margin for footer space */
+      padding: 0 1rem; /* Base padding for larger screens */
       width: 100%;
     }
 
@@ -95,13 +101,17 @@
       text-decoration: none;
       display: block;
       min-height: 120px;
-      color: white;
+      color: white; /* Default for blocks like flashcards, practices */
+      display: flex; /* Use flexbox for block content alignment */
+      flex-direction: column;
+      justify-content: space-between; /* Push h2 and p to ends of block */
     }
     .block:hover:not(.blank-block) {
       transform: translateY(-5px);
       box-shadow: 0 6px 16px rgba(32, 115, 199, 0.15);
     }
 
+    /* Specific block colors and text colors */
     .flashcards { background: linear-gradient(135deg, #6ec6ff 0%, #2073c7 100%); }
     .conversation { background: linear-gradient(135deg, #ffd180 0%, #ff9800 100%); color: #874200; }
     .grammar { background: linear-gradient(135deg, #e3f0ff 0%, #2073c7 100%); color: #124076; }
@@ -113,69 +123,142 @@
       user-select: none;
       box-shadow: 0 4px 12px rgba(18, 64, 118, 0.04);
     }
+    .blank-block h2, .blank-block p {
+        color: #777; /* Dim the text for the blank block */
+    }
 
-    .block h2 { margin-bottom: 1rem; }
-    .block p { font-size: 1rem; margin: 0; }
 
-    /* TABLET */
+    .block h2 { 
+      margin-bottom: 0.5rem; /* Reduce margin for h2 within blocks */
+      font-size: 1.5rem; /* Adjust base font size for block titles */
+    }
+    .block p { 
+      font-size: 0.95rem; /* Slightly smaller base font size for block descriptions */
+      margin: 0; 
+      line-height: 1.4; /* Adjust line height for better readability */
+    }
+
+    /* FOOTER */
+    footer {
+        background:#124076;
+        color:#fff;
+        text-align:center;
+        padding:0.6rem 0;
+        font-size: 0.9rem; /* Smaller font size for footer */
+    }
+
+    /* --- TABLET Adjustments (max-width: 768px) --- */
     @media (max-width: 768px) {
+      /* Navbar adjustments (as previously discussed, kept consistent) */
       nav {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Allow links to wrap to the next line */
         padding: 0.6rem 1rem;
+        justify-content: space-between; /* Push logo and links to ends */
       }
       nav .logo {
-        position: static;
-        margin-bottom: 0.5rem;
+        position: static; /* Remove absolute positioning */
+        margin-bottom: 0.5rem; /* Space below logo when links wrap */
       }
       nav .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
+        flex-direction: row; /* Keep links in a row but allow wrapping */
+        flex-wrap: wrap;
+        width: 100%; /* Take full width to center links */
+        justify-content: center; /* Center the links */
         margin-top: 0.5rem;
+        gap: 0.6rem; /* Slightly reduce gap for tighter fit */
       }
+      nav .nav-links a {
+        padding: 0.3rem 0.5rem; /* Smaller padding for nav links on tablet */
+        font-size: 0.95rem; /* Slightly smaller font size */
+      }
+
+      .homepage-title {
+        font-size: 2.8rem; /* Scale down title for tablets */
+        margin: 1.5rem 0;
+      }
+
       .container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        padding: 0 1rem;
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+        gap: 1.5rem; /* Reduce gap between blocks */
+        padding: 0 1.5rem; /* Adjust container padding for tablets */
+        margin-bottom: 2rem; /* Reduce bottom margin as screen height might be less */
+      }
+      .block {
+        padding: 1.2rem; /* Slightly reduce padding inside blocks */
+        min-height: 110px; /* Adjust min-height for blocks */
+      }
+      .block h2 {
+        font-size: 1.4rem; /* Scale down block title font size */
+      }
+      .block p {
+        font-size: 0.9rem; /* Scale down block description font size */
       }
     }
 
-    /* PHONE */
+    /* --- PHONE Adjustments (max-width: 600px) --- */
     @media (max-width: 600px) {
-      .homepage-title {
-        font-size: 2rem;
-        margin: 1.5rem 0;
-      }
+      /* Navbar adjustments (as previously discussed, kept consistent) */
       nav {
-        flex-direction: column;
+        flex-direction: column; /* Stack logo and nav links vertically */
         align-items: center;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.5rem;
       }
       nav .logo {
-        position: static;
         margin-bottom: 0.5rem;
+        justify-content: center; /* Center logo when stacked */
+        width: 100%; /* Make logo take full width to help centering */
+      }
+      nav .site-name { 
+        font-size: 1.1rem; 
       }
       nav .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: column; /* Stack nav links vertically */
+        gap: 0.4rem; /* Smaller gap between stacked links */
         width: 100%;
       }
       nav .nav-links a {
-        width: 100%;
+        width: calc(100% - 1rem); /* Take full width minus padding for links */
         text-align: center;
+        padding: 0.5rem; /* Increase padding for better tap target */
+        font-size: 0.9rem; /* Further reduce font size for phone nav links */
       }
-      nav .site-name { font-size: 1.1rem; }
+
+      .homepage-title {
+        font-size: 2rem; /* Significantly scale down title for phones */
+        margin: 1rem 0; /* Reduce vertical margin */
+        padding: 0 0.5rem; /* Tighter horizontal padding */
+      }
+
       .container {
-        grid-template-columns: 1fr;
-        padding: 0 0.5rem;
-        gap: 1rem;
+        grid-template-columns: 1fr; /* Single column on phones */
+        padding: 0 1rem; /* Adjust container padding for phones */
+        gap: 1rem; /* Reduce gap between stacked blocks */
+        margin-bottom: 1.5rem; /* Adjust bottom margin */
       }
-      .block { padding: 1rem; }
+      .block {
+        padding: 1rem; /* Reduce padding inside blocks for phones */
+        min-height: 100px; /* Adjust min-height for blocks */
+      }
+      .block h2 {
+        font-size: 1.3rem; /* Further scale down block title font size */
+      }
+      .block p {
+        font-size: 0.85rem; /* Further scale down block description font size */
+      }
+    }
+
+    /* --- Extra small phone adjustments (e.g., iPhone SE) --- */
+    @media (max-width: 375px) {
+      .homepage-title {
+        font-size: 1.8rem; /* Even smaller for very narrow screens */
+      }
+      nav .nav-links a {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- NAVIGATION -->
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
@@ -191,7 +274,6 @@
     </div>
   </nav>
 
-  <!-- PAGE TITLE -->
   <h1 class="homepage-title">Learn English Together</h1>
 
   <main>
@@ -216,11 +298,13 @@
         <h2>Practices</h2>
         <p>Interactive grammar and vocabulary exercises to boost your English skills.</p>
       </a>
-      <div class="block blank-block" aria-label="Coming Soon"></div>
+      <div class="block blank-block" aria-label="Coming Soon">
+        <h2>More Coming Soon!</h2> <p>New activities and resources are on their way to help you learn even more.</p>
+      </div>
     </div>
   </main>
 
-  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0;">
+  <footer>
     &copy; 2025 ESLnote.com. All rights reserved.
   </footer>
 </body>

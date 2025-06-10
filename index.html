@@ -19,18 +19,22 @@
       flex-direction: column;
     }
 
-    /* NAVBAR - Adjusted to match previous working version */
+    /* NAVBAR */
+    /* NAVBAR - consistent flex style */
     nav {
       position: relative;
       display: flex;
-      justify-content: center; /* Center nav links on desktop */
+      justify-content: center;
       align-items: center;
       background-color: #124076;
       padding: 0.8rem 1rem;
-      flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
     }
     nav .logo {
-      position: absolute; /* Absolute positioning for logo on desktop */
+      grid-column: 1;
+      position: absolute;
       left: 1rem;
       display: flex;
       align-items: center;
@@ -47,20 +51,19 @@
       font-weight: 700;
     }
     nav .nav-links {
+      grid-column: 2;
       display: flex;
-      gap: 1rem; /* Reverted gap to 1rem as in previous working nav */
+      gap: 0.8rem;
     }
     nav .nav-links a {
       color: white;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
-      /* Removed extra padding/border-radius from base for consistency with previous nav */
     }
     nav .nav-links a:hover {
       color: #ffbb33;
       text-decoration: underline;
-      /* Removed background-color hover for consistency with previous nav */
     }
 
     .homepage-title {
@@ -72,14 +75,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 1px 1px 2px rgba(32, 115, 199, 0.10);
-      padding: 0 1rem;
     }
 
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
     }
 
     .container {
@@ -101,9 +102,6 @@
       display: block;
       min-height: 120px;
       color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
     .block:hover:not(.blank-block) {
       transform: translateY(-5px);
@@ -121,139 +119,84 @@
       user-select: none;
       box-shadow: 0 4px 12px rgba(18, 64, 118, 0.04);
     }
-    .blank-block h2, .blank-block p {
-        color: #777;
-    }
 
-    .block h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-    }
-    .block p {
-      font-size: 0.95rem;
-      margin: 0;
-      line-height: 1.4;
-    }
+    .block h2 { margin-bottom: 1rem; }
+    .block p { font-size: 1rem; margin: 0; }
 
-    /* FOOTER */
-    footer {
-        background:#124076;
-        color:#fff;
-        text-align:center;
-        padding:0.6rem 0;
-        font-size: 0.9rem;
-    }
-
-    /* --- TABLET Adjustments (max-width: 768px) --- */
+    /* TABLET */
     @media (max-width: 768px) {
-      /* NAVBAR Adjustments for Tablet - Consistent with previous page */
       nav {
-        flex-wrap: wrap; /* Allow links to wrap to the next line */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        flex-wrap: wrap;
         padding: 0.6rem 1rem;
-        justify-content: center; /* Center entire nav content on tablet */
       }
       nav .logo {
-        position: static; /* Remove absolute positioning */
-        margin-bottom: 0.5rem; /* Add space below logo when links wrap */
+        grid-row: 1;
+        justify-content: center;
+        position: static;
+        margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        width: 100%; /* Make nav links take full width */
-        justify-content: center; /* Center the links within their full width */
+        grid-row: 2;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
         margin-top: 0.5rem;
-        /* No explicit flex-direction change as it's default row, but flex-wrap handles multiple lines */
-        gap: 0.8rem; /* Slightly reduce gap for better fit on tablets */
       }
-      /* No specific nav-links a styles for tablets in previous working version */
-
-      .homepage-title {
-        font-size: 2.8rem;
-        margin: 1.5rem 0;
-      }
-
       .container {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
-        padding: 0 1.5rem;
-        margin-bottom: 2rem;
-      }
-      .block {
-        padding: 1.2rem;
-        min-height: 110px;
-      }
-      .block h2 {
-        font-size: 1.4rem;
-      }
-      .block p {
-        font-size: 0.9rem;
+        padding: 0 1rem;
       }
     }
 
-    /* --- PHONE Adjustments (max-width: 600px) --- */
+    /* PHONE */
     @media (max-width: 600px) {
-      /* NAVBAR Adjustments for Phone - Consistent with previous page */
-      nav {
-        flex-direction: column; /* Stack logo and nav links vertically */
-        align-items: center; /* Center content horizontally */
-        padding: 0.5rem 0.5rem;
-      }
-      nav .logo {
-        position: static; /* Ensure static position */
-        margin-bottom: 0.5rem;
-        justify-content: center;
-        width: 100%;
-      }
-      nav .site-name {
-        font-size: 1.1rem;
-      }
-      nav .nav-links {
-        flex-direction: column; /* Stack nav links vertically */
-        gap: 0.5rem; /* Consistent gap for stacked links */
-        width: 100%; /* Make links take full width of nav */
-        /* justify-content: center; not needed here as flex-direction is column */
-      }
-      nav .nav-links a {
-        width: calc(100% - 1rem); /* Take full width minus padding for links */
-        text-align: center;
-        padding: 0.5rem; /* Increase padding for better tap target */
-        font-size: 0.9rem; /* Further reduce font size for phone nav links */
-      }
-
       .homepage-title {
         font-size: 2rem;
-        margin: 1rem 0;
-        padding: 0 0.5rem;
+        margin: 1.5rem 0;
       }
-
+      nav {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 1rem;
+      }
+      nav .logo {
+        justify-content: center;
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      nav .nav-links a {
+        width: 100%;
+        text-align: center;
+      }
+      nav .site-name { font-size: 1.1rem; }
       .container {
         grid-template-columns: 1fr;
-        padding: 0 1rem;
+        padding: 0 0.5rem;
         gap: 1rem;
-        margin-bottom: 1.5rem;
       }
       .block {
         padding: 1rem;
-        min-height: 100px;
       }
-      .block h2 {
-        font-size: 1.3rem;
-      }
-      .block p {
-        font-size: 0.85rem;
-      }
-    }
-
-    /* --- Extra small phone adjustments (e.g., iPhone SE) --- */
-    @media (max-width: 375px) {
-      .homepage-title {
-        font-size: 1.8rem;
-      }
-      nav .nav-links a {
-        font-size: 0.85rem;
-      }
+      .block { padding: 1rem; }
     }
   </style>
 </head>
 <body>
+  <!-- NAVIGATION -->
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
@@ -269,6 +212,7 @@
     </div>
   </nav>
 
+  <!-- PAGE TITLE -->
   <h1 class="homepage-title">Learn English Together</h1>
 
   <main>
@@ -293,14 +237,12 @@
         <h2>Practices</h2>
         <p>Interactive grammar and vocabulary exercises to boost your English skills.</p>
       </a>
-      <div class="block blank-block" aria-label="Coming Soon">
-        <h2>More Coming Soon!</h2>
-        <p>New activities and resources are on their way to help you learn even more.</p>
-      </div>
+      <div class="block blank-block" aria-label="Coming Soon"></div>More actions
     </div>
   </main>
 
-  <footer>
+  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0; font-size:0.95rem;">
+  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0;">
     &copy; 2025 ESLnote.com. All rights reserved.
   </footer>
 </body>

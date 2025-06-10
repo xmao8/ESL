@@ -93,65 +93,27 @@
       margin: 0.5rem 0 1rem 1.5rem;
     }
 
-    /* Table */
+    /* Table - Base styles (for desktop and potentially tablet if content is wide) */
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 1rem 0;
-      /* Crucial for responsive tables: Allows horizontal scrolling */
-      display: block;
-      overflow-x: auto;
+      /* Allows horizontal scrolling for wide tables */
+      display: block; /* Make table behave like a block element */
+      overflow-x: auto; /* Enable horizontal scrolling when content overflows */
       -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
-      white-space: nowrap; /* Prevent content from wrapping inside cells for initial fit */
-    }
-    table thead, table tbody, table tr {
-        display: block; /* Make table elements behave like blocks */
+      white-space: normal; /* Allow text to wrap within cells by default */
     }
     table th, table td {
       border: 1px solid #ddd;
       padding: 0.5rem;
       text-align: left;
-      white-space: normal; /* Allow text to wrap within cells once display is block */
       box-sizing: border-box; /* Include padding and border in the element's total width and height */
     }
     table th {
       background-color: #124076;
       color: white;
     }
-    /* Style for mobile tables */
-    @media (max-width: 600px) {
-        table thead {
-            display: none; /* Hide table headers on small screens */
-        }
-        table tr {
-            margin-bottom: 1rem; /* Add space between rows */
-            border: 1px solid #ddd; /* Add a border around each "row" to distinguish them */
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-        }
-        table td {
-            border: none; /* Remove individual cell borders */
-            position: relative;
-            padding-left: 50%; /* Make space for the "label" (pseudo-element) */
-            text-align: right;
-        }
-        table td::before {
-            /* Create a pseudo-element for the "header" of each cell */
-            content: attr(data-label); /* Get the content from the data-label attribute */
-            position: absolute;
-            left: 0.5rem;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: bold;
-            text-align: left;
-            color: #124076;
-        }
-    }
-
 
     /* Back button */
     .buttons {
@@ -205,11 +167,8 @@
       p, ul, ol {
         font-size: 1rem; /* Ensure standard font size for text */
       }
-      /* Tablet specific table adjustments (if needed, otherwise inherit from base) */
-      table {
-        white-space: normal; /* Allow text to wrap within table cells on tablets if it fits */
-        overflow-x: auto; /* Keep scroll for tablets if content is wide */
-      }
+      /* Table styles for tablets will inherit from base unless specified */
+      /* If you want different table display for tablets, add rules here */
     }
 
     /* Phone adjustments (max-width: 600px) */
@@ -254,6 +213,50 @@
       .buttons a {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
+      }
+
+      /* Mobile-specific table styles: Make rows stack as cards */
+      table {
+          width: 100%; /* Ensure table takes full width of its container */
+          border-collapse: collapse; /* Keep collapse for internal borders on desktop */
+          margin: 1rem 0;
+          display: block; /* Make table behave like a block element on mobile */
+          overflow-x: hidden; /* Hide horizontal scroll on mobile when stacked */
+      }
+      table thead, table tbody, table tr {
+          display: block; /* Make table elements behave like blocks on mobile */
+      }
+      table thead {
+          display: none; /* Hide table headers on small screens when rows are stacked */
+      }
+      table tr {
+          margin-bottom: 1rem; /* Add space between rows when stacked */
+          border: 1px solid #ddd; /* Add a border around each "row" to distinguish them */
+          display: flex; /* Use flexbox for vertical layout of cells within a row */
+          flex-direction: column;
+          padding: 0.5rem;
+      }
+      table td {
+          border: none; /* Remove individual cell borders on mobile */
+          position: relative;
+          padding-left: 50%; /* Make space for the "label" (pseudo-element) */
+          text-align: right;
+          white-space: normal; /* Allow text to wrap within cells */
+          box-sizing: border-box; /* Include padding and border in the element's total width and height */
+      }
+      table td::before {
+          /* Create a pseudo-element for the "header" of each cell */
+          content: attr(data-label); /* Get the content from the data-label attribute */
+          position: absolute;
+          left: 0.5rem;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: bold;
+          text-align: left;
+          color: #124076;
       }
     }
 
@@ -359,7 +362,7 @@
       <li><strong>Polite Suggestions (less common):</strong>
         <ul>
           <li><em>You <strong>might</strong> want to consider his advice.</em></li>
-        </ul>
+          </ul>
       </li>
       <li><strong>Past Possibility (Might have):</strong>
         <ul>

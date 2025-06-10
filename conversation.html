@@ -111,10 +111,12 @@
       background-color: #2980b9;
     }
 
-    /* TABLET (≤768px): two-column grid, wrap nav */
+    /* TABLET: two-column grid, stack nav */
     @media (max-width: 768px) {
       nav {
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 0.6rem 1rem;
       }
       nav .logo {
@@ -122,22 +124,25 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.8rem;
         margin-top: 0.5rem;
+        width: 100%;
       }
       .container {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
         padding: 1rem;
       }
     }
 
-    /* PHONE (≤600px): single-column, compact nav */
+    /* PHONE: single-column, compact nav */
     @media (max-width: 600px) {
       nav {
+        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.5rem 1rem;
@@ -147,6 +152,7 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
+        display: flex;
         flex-direction: column;
         gap: 0.5rem;
         width: 100%;
@@ -180,6 +186,7 @@
 </head>
 <body>
 
+  <!-- NAVIGATION -->
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
@@ -222,6 +229,7 @@
     </div>
   </main>
 
+  <!-- BACK TO HOME -->
   <div class="buttons">
     <a href="index.html">🏠 Back to Home</a>
   </div>

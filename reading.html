@@ -106,10 +106,12 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: two-column links, stacked nav */
+    /* TABLET: wrap nav items vertically & two-column grid */
     @media (max-width: 768px) {
       nav {
+        display: flex;
         flex-direction: column;
+        align-items: center;
         padding: 0.6rem 1rem;
       }
       nav .logo {
@@ -117,10 +119,11 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.8rem;
-        width: 100%;
+        margin-top: 0.5rem;
       }
       .container {
         display: grid;

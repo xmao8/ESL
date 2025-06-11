@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Practice – Present Tense vs Present Progressive: Our Environment</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -12,6 +12,7 @@
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
       color: #333;
@@ -32,7 +33,11 @@
       display: flex;
       align-items: center;
     }
-    nav .logo img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    nav .logo img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
     nav .site-name {
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
@@ -51,12 +56,13 @@
     }
     nav .nav-links a:hover {
       color: #ffbb33;
+      text-decoration: underline;
     }
-    /* TITLE */
+    /* PAGE TITLE */
     h1 {
       text-align: center;
       font-size: 2.5rem;
-      margin: 2rem 0 1rem;
+      margin: 2rem 0 0.5rem;
       color: #2c3e50;
     }
     /* CONTAINER */
@@ -64,8 +70,8 @@
       flex: 1;
       max-width: 700px;
       margin: 0 auto 2rem;
-      padding: 1rem;
       background-color: white;
+      padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
@@ -131,12 +137,33 @@
     }
     /* TABLET */
     @media (max-width: 768px) {
-      nav { flex-direction: column; align-items: center; padding: 0.6rem 1rem; }
-      nav .logo { position: static; margin-bottom: 0.5rem; }
-      nav .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; gap: 0.8rem; margin-top: 0.5rem; }
-      h1 { font-size: 2rem; }
-      .container { padding: 1.5rem; }
-      .student-info label { flex: 1 1 100%; }
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.6rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 1.5rem;
+      }
+      .student-info label {
+        flex: 1 1 100%;
+      }
     }
     /* PHONE */
     @media (max-width: 600px) {
@@ -144,16 +171,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0.4rem 1rem;
+        padding: 0.5rem 1rem;
       }
       nav .logo {
         position: static;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.5rem;
       }
       nav .nav-links {
         display: flex;
         flex-direction: column;
-        gap: 0.4rem;
+        gap: 0.5rem;
         width: 100%;
       }
       nav .nav-links a {
@@ -165,7 +192,7 @@
       }
       h1 {
         font-size: 1.75rem;
-        margin: 1rem 0;
+        margin: 1rem 0 0.5rem;
       }
       .container {
         padding: 1rem;
@@ -178,24 +205,17 @@
       }
       .buttons a {
         display: block;
-        width: 100%;
-        margin: 0.3rem 0;
+        width: 90%;
+        max-width: 700px;
+        margin: 0.5rem auto;
       }
-    }
-      nav .logo { position: static; margin-bottom: 0.5rem; }
-      nav .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; }
-      nav .nav-links a { width: 100%; text-align: center; }
-      h1 { font-size: 1.75rem; margin: 1rem 0; }
-      .container { padding: 1rem; }
-      .student-info { flex-direction: column; }
-      .buttons a { display: block; width: 100%; margin: 0.5rem 0; }
     }
   </style>
 </head>
 <body>
   <nav aria-label="Main navigation">
     <div class="logo">
-      <img src="../favicon.png" alt="ESLnote Logo">
+      <img src="/favicon.png" alt="ESLnote Logo">
       <span class="site-name">ESLnote</span>
     </div>
     <div class="nav-links">
@@ -215,7 +235,9 @@
       <label>Name:<input type="text" name="student-name" placeholder="Your name"></label>
       <label>Date:<input type="date" name="date"></label>
     </div>
+
     <p class="instructions">Choose the correct form (present simple or present progressive) to complete each sentence.</p>
+
     <ol>
       <li><div class="sentence-pair">Many scientists around the world ___ (study) climate change.</div><input class="answer" placeholder="study / are studying"></li>
       <li><div class="sentence-pair">The Earth's average temperature ___ (rise) steadily every year.</div><input class="answer" placeholder="rises / is rising"></li>

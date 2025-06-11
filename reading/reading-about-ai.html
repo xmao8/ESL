@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artificial Intelligence: Reshaping Our World - ESLnote</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+<style>
+  /* Reset & base */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #f4f4f9;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  h1, h2 {
+    color: #124076;
+  }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #124076;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    z-index: 1000;
+  }
+  nav .container {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    display: flex;
+    align-items: center;
+    color: #ff9800;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+  nav .logo img {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5rem;
+  }
+  nav .nav-links {
+    display: flex;
+    gap: 1.2rem;
+  }
+  nav .nav-links a {
+    color: white;
+    font-weight: 700;
+    transition: color 0.2s ease;
+  }
+  nav .nav-links a:hover,
+  nav .nav-links a:focus {
+    color: #ffbb33;
+    outline: none;
+  }
+
+  /* Mobile nav toggle */
+  nav .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  nav .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* Responsive nav */
+  @media (max-width: 768px) {
+    nav .nav-links {
+      position: fixed;
+      top: 56px;
+      right: 0;
+      background: #124076;
+      flex-direction: column;
+      width: 180px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      border-radius: 0 0 0 8px;
+      padding: 1rem;
+      gap: 1rem;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+    nav .nav-links.active {
+      transform: translateX(0);
+    }
+    nav .menu-toggle {
+      display: flex;
+    }
+  }
+
+  /* Page container */
+  main {
+    max-width: 900px;
+    margin: 80px auto 3rem;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Article styling */
+  article p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  article strong {
+    color: #124076;
+  }
+
+  /* Vocabulary section */
+  section.vocab {
+    margin-top: 2.5rem;
+  }
+  section.vocab h2 {
+    margin-bottom: 1rem;
+  }
+  section.vocab dl {
+    display: grid;
+    grid-template-columns: minmax(150px, 250px) 1fr;
+    gap: 0.5rem 2rem;
+  }
+  dt {
+    font-weight: 700;
+    color: #3498db;
+    margin-top: 1rem;
+  }
+  dd {
+    margin: 0;
+    font-style: normal;
+  }
+  dd.example {
+    margin-top: 0.3rem;
+    font-style: italic;
+    color: #555;
+  }
+
+  /* Comprehension Questions */
+  section.questions {
+    margin-top: 3rem;
+  }
+  section.questions h2 {
+    margin-bottom: 1rem;
+  }
+  section.questions ol {
+    padding-left: 1.2rem;
+  }
+  section.questions li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  /* Footer nav links */
+  .footer-links {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .footer-links a {
+    margin: 0 1rem;
+    color: #124076;
+    font-weight: 700;
+  }
+  .footer-links a:hover,
+  .footer-links a:focus {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" />
+      ESLnote
+    </a>
+
+    <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <h1>Artificial Intelligence: Reshaping Our World</h1>
+
+  <article>
+    <p><strong>Artificial Intelligence (AI)</strong> is no longer a concept confined to science fiction; it's a rapidly evolving field that is fundamentally transforming our daily lives and industries worldwide. At its core, AI refers to computer systems designed to perform tasks that typically require human intelligence, such as learning, problem-solving, decision-making, understanding language, and recognizing patterns.</p>
+
+    <p>The widespread integration of AI is evident in countless applications. From the personalized recommendations on streaming platforms and online shopping sites to the intelligent voice assistants in our smartphones and homes, AI enhances our convenience and experiences. In healthcare, AI assists in diagnosing diseases, accelerating drug discovery, and personalizing treatment plans. Self-driving cars, powered by sophisticated AI algorithms, promise safer and more efficient transportation. Industries from manufacturing to finance leverage AI for automation, fraud detection, predictive analytics, and optimizing complex operations.</p>
+
+    <p>The benefits of AI are vast. It offers unprecedented efficiency by automating repetitive tasks, freeing up human workers to focus on more creative and strategic endeavors. AI's ability to process and analyze massive datasets at incredible speeds leads to improved decision-making and deeper insights. It can also enhance accessibility for individuals with disabilities through assistive technologies and provides 24/7 availability for services like customer support. Furthermore, AI systems can operate in dangerous environments, reducing risks to human life.</p>
+
+    <p>However, the rapid advancement of AI also presents significant challenges. Concerns include job displacement as automation increases, ethical dilemmas surrounding data privacy, bias in algorithms that can lead to unfair outcomes, and the high initial costs of implementation. Ensuring the responsible and ethical development of AI, along with establishing clear regulations, is crucial to mitigate these potential downsides.</p>
+
+    <p>Looking ahead, AI is poised for even greater impact. Experts predict continuous growth in its capabilities, leading to more sophisticated autonomous systems and even more profound changes in various sectors. As AI becomes smarter and more integrated, understanding its potential and navigating its challenges will be essential for individuals and societies alike to harness its power for positive global advancement.</p>
+  </article>
+
+  <section class="vocab" aria-labelledby="vocab-title">
+    <h2 id="vocab-title">AI Vocabulary List</h2>
+    <dl>
+      <dt>Artificial Intelligence (AI): (n)</dt>
+      <dd>When machines can think and learn like humans.</dd>
+      <dd class="example">Example: Many companies are investing in Artificial Intelligence for their products.</dd>
+
+      <dt>Transforming: (v)</dt>
+      <dd>Changing something completely, usually to improve it.</dd>
+      <dd class="example">Example: Technology is transforming how we communicate.</dd>
+
+      <dt>Confined: (adj)</dt>
+      <dd>Kept within certain limits; not able to go beyond a specific area.</dd>
+      <dd class="example">Example: In the past, AI was mostly confined to scientific research.</dd>
+
+      <dt>Evolving: (v)</dt>
+      <dd>Developing gradually, especially from a simple to a more complex form.</dd>
+      <dd class="example">Example: The internet is constantly evolving with new features.</dd>
+
+      <dt>Algorithms: (n)</dt>
+      <dd>A set of rules or instructions that a computer follows to solve a problem or perform a task.</dd>
+      <dd class="example">Example: Search engines use complex algorithms to show us results.</dd>
+
+      <dt>Integration: (n)</dt>
+      <dd>The act or process of combining two or more things so that they work together effectively.</dd>
+      <dd class="example">Example: The integration of smart devices into homes is increasing.</dd>
+
+      <dt>Personalized: (adj)</dt>
+      <dd>Made or changed to suit a particular person.</dd>
+      <dd class="example">Example: Many apps offer personalized content based on your interests.</dd>
+
+      <dt>Assists: (v)</dt>
+      <dd>Helps or aids someone or something.</dd>
+      <dd class="example">Example: A voice assistant assists you with daily tasks.</dd>
+
+      <dt>Automating: (v)</dt>
+      <dd>Using machines or technology to do work automatically.</dd>
+      <dd class="example">Example: Factories are automating many processes to increase production.</dd>
+
+      <dt>Efficiency: (n)</dt>
+      <dd>The ability to do something well without wasting time or money.</dd>
+      <dd class="example">Example: New software can improve the efficiency of your work.</dd>
+
+      <dt>Unprecedented: (adj)</dt>
+      <dd>Never done or known before.</dd>
+      <dd class="example">Example: The speed of AI development is unprecedented.</dd>
+
+      <dt>Insights: (n)</dt>
+      <dd>A clear, deep, and sometimes sudden understanding of a complicated problem or situation.</dd>
+      <dd class="example">Example: Data analysis can provide valuable insights for businesses.</dd>
+
+      <dt>Mitigate: (v)</dt>
+      <dd>To make something less severe, serious, or painful.</dd>
+      <dd class="example">Example: We need to take steps to mitigate climate change.</dd>
+
+      <dt>Responsible: (adj)</dt>
+      <dd>Having control over or care for someone or something, as part of one's job or role. Also, acting in a way that shows good judgment.</dd>
+      <dd class="example">Example: It is important to use new technology in a responsible way.</dd>
+
+      <dt>Autonomous: (adj)</dt>
+      <dd>(especially of a vehicle or robot) operating independently without human control.</dd>
+      <dd class="example">Example: Many companies are developing autonomous vehicles.</dd>
+    </dl>
+  </section>
+
+  <section class="questions" aria-labelledby="questions-title">
+    <h2 id="questions-title">AI Comprehension Questions</h2>
+    <ol>
+      <li>According to the article, how is Artificial Intelligence (AI) defined?</li>
+      <li>Can you name three everyday examples or applications of AI mentioned in the text?</li>
+      <li>What are some of the key benefits that AI brings to individuals and industries? Name at least two.</li>
+      <li>What are two significant challenges or concerns associated with the advancement of AI?</li>
+      <li>Why does the article emphasize the importance of "responsible and ethical development of AI"?</li>
+    </ol>
+  </section>
+
+  <div class="footer-links">
+    <a href="../flashcards.html">← Back to Flashcards</a>
+    <a href="../index.html">🏠 Home</a>
+  </div>
+</main>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+
+  // Close menu when clicking a nav link (mobile)
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

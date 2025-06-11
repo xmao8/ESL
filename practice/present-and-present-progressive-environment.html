@@ -140,7 +140,48 @@
     }
     /* PHONE */
     @media (max-width: 600px) {
-      nav { flex-direction: column; align-items: center; padding: 0.5rem 1rem; }
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.4rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.3rem;
+      }
+      nav .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        width: 100%;
+      }
+      nav .nav-links a {
+        width: 100%;
+        text-align: center;
+      }
+      nav .site-name {
+        font-size: 1.2rem;
+      }
+      h1 {
+        font-size: 1.75rem;
+        margin: 1rem 0;
+      }
+      .container {
+        padding: 1rem;
+      }
+      .student-info {
+        flex-direction: column;
+      }
+      .student-info label {
+        flex: 1 1 100%;
+      }
+      .buttons a {
+        display: block;
+        width: 100%;
+        margin: 0.3rem 0;
+      }
+    }
       nav .logo { position: static; margin-bottom: 0.5rem; }
       nav .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; }
       nav .nav-links a { width: 100%; text-align: center; }

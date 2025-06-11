@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Practice – Combine Sentences with When/While</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* Base Styles */
     body {
+      margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
       color: #333;
+      line-height: 1.6;
     }
 
     /* NAVBAR */
@@ -42,11 +42,14 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
-      font-weight: 700;
+      font-weight: bold;
     }
     nav .nav-links {
       display: flex;
       gap: 1rem;
+      width: 90%;
+      max-width: 700px;
+      margin: 0 auto;
     }
     nav .nav-links a {
       color: white;
@@ -62,39 +65,40 @@
     /* PAGE TITLE */
     h1 {
       text-align: center;
-      font-size: 2.5rem;
-      margin: 2rem 0 0.5rem;
+      margin: 2rem 0 1rem;
+      font-size: 2rem;
       color: #2c3e50;
     }
 
-    /* CONTENT */
+    /* CONTENT CONTAINER */
     .container {
       flex: 1;
+      width: 90%;
       max-width: 700px;
-      margin: auto;
-      padding: 1rem;
-      background: white;
+      margin: 0 auto 2rem;
+      background-color: white;
+      padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .student-info {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 1rem;
       margin-bottom: 1rem;
-      flex-wrap: wrap;
     }
     .student-info label {
-      font-size: 1rem;
       flex: 1 1 45%;
       display: flex;
       flex-direction: column;
+      font-size: 1rem;
     }
     .student-info input {
-      padding: 0.4rem 0.6rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 4px;
-      margin-top: 0.5rem;
       font-size: 1rem;
     }
     .instructions {
@@ -113,13 +117,14 @@
     input.answer {
       display: block;
       width: 100%;
-      padding: 0.5rem;
       margin-top: 0.5rem;
+      padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
     }
 
+    /* BUTTONS */
     .buttons {
       text-align: center;
       margin: 2rem 0;
@@ -138,10 +143,9 @@
       background-color: #2980b9;
     }
 
-    /* TABLET: two-column grid, stack nav */
+    /* TABLET: ≤768px */
     @media (max-width: 768px) {
       nav {
-        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.6rem 1rem;
@@ -151,19 +155,25 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.8rem;
-        margin-top: 0.5rem;
         width: 100%;
+        max-width: none;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      .container {
+        padding: 1.5rem;
+      }
+      .student-info label {
+        flex: 1 1 100%;
       }
     }
 
-    /* PHONE: single-column, compact nav */
+    /* PHONE: ≤600px */
     @media (max-width: 600px) {
       nav {
-        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.5rem 1rem;
@@ -173,24 +183,21 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        width: 100%;
+        width: 90%;
+        max-width: 700px;
       }
       nav .nav-links a {
         width: 100%;
         text-align: center;
       }
-      nav .site-name {
-        font-size: 1.2rem;
-      }
       h1 {
-        font-size: 2rem;
-        margin: 1.5rem 0 0.5rem;
+        font-size: 1.5rem;
+        margin: 1rem 0;
       }
       .container {
-        padding: 0.8rem 1rem;
+        padding: 1rem;
       }
       .student-info {
         flex-direction: column;
@@ -200,8 +207,9 @@
       }
       .buttons a {
         display: block;
-        width: 100%;
-        margin: 0.3rem 0;
+        width: 90%;
+        max-width: 700px;
+        margin: 0.5rem auto;
       }
     }
   </style>
@@ -210,7 +218,7 @@
 
   <nav aria-label="Main navigation">
     <div class="logo">
-      <img src="../favicon.png" alt="ESLnote Logo" class="logo-img">
+      <img src="../favicon.png" alt="ESLnote Logo">
       <span class="site-name">ESLnote</span>
     </div>
     <div class="nav-links">

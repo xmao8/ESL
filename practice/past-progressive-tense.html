@@ -25,7 +25,7 @@
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       background-color: #124076;
-      padding: 0.8rem 1rem;
+      padding: 0.8rem 0;
     }
     nav .logo {
       grid-column: 1;
@@ -50,6 +50,9 @@
       display: flex;
       gap: 1rem;
       justify-content: center;
+      width: 90%;
+      max-width: 700px;
+      margin: 0 auto;
     }
     nav .nav-links a {
       color: white;
@@ -157,6 +160,7 @@
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
+        max-width: none;
         gap: 0.8rem;
       }
       .container {
@@ -178,6 +182,7 @@
       nav .nav-links {
         flex-direction: column;
         gap: 0.5rem;
+        width: 100%;
       }
       nav .nav-links a {
         width: 100%;

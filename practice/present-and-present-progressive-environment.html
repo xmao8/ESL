@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Practice – Present Tense vs Present Progressive: Our Environment</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -12,7 +12,6 @@
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
       color: #333;
@@ -42,7 +41,7 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
-      font-weight: 700;
+      font-weight: bold;
     }
     nav .nav-links {
       display: flex;
@@ -56,7 +55,6 @@
     }
     nav .nav-links a:hover {
       color: #ffbb33;
-      text-decoration: underline;
     }
     /* PAGE TITLE */
     h1 {
@@ -65,13 +63,13 @@
       margin: 2rem 0 0.5rem;
       color: #2c3e50;
     }
-    /* CONTAINER */
+    /* CONTENT CONTAINER */
     .container {
       flex: 1;
       max-width: 700px;
       margin: 0 auto 2rem;
-      background-color: white;
       padding: 2rem;
+      background-color: white;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
@@ -101,6 +99,7 @@
     }
     ol {
       margin-left: 1.2rem;
+      padding: 0;
     }
     li {
       margin: 1rem 0;
@@ -138,7 +137,6 @@
     /* TABLET */
     @media (max-width: 768px) {
       nav {
-        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.6rem 1rem;
@@ -148,7 +146,6 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.8rem;
@@ -168,7 +165,6 @@
     /* PHONE */
     @media (max-width: 600px) {
       nav {
-        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.5rem 1rem;
@@ -178,7 +174,6 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        display: flex;
         flex-direction: column;
         gap: 0.5rem;
         width: 100%;
@@ -205,14 +200,14 @@
       }
       .buttons a {
         display: block;
-        width: 90%;
-        max-width: 700px;
-        margin: 0.5rem auto;
+        width: 100%;
+        margin: 0.5rem 0;
       }
     }
   </style>
 </head>
 <body>
+
   <nav aria-label="Main navigation">
     <div class="logo">
       <img src="/favicon.png" alt="ESLnote Logo">
@@ -232,33 +227,33 @@
 
   <div class="container">
     <div class="student-info">
-      <label>Name:<input type="text" name="student-name" placeholder="Your name"></label>
-      <label>Date:<input type="date" name="date"></label>
+      <label>Name:<input type="text" name="student-name" placeholder=""></label>
+      <label>Date:<input type="date" name="date" placeholder=""></label>
     </div>
 
     <p class="instructions">Choose the correct form (present simple or present progressive) to complete each sentence.</p>
 
     <ol>
-      <li><div class="sentence-pair">Many scientists around the world ___ (study) climate change.</div><input class="answer" placeholder="study / are studying"></li>
-      <li><div class="sentence-pair">The Earth's average temperature ___ (rise) steadily every year.</div><input class="answer" placeholder="rises / is rising"></li>
-      <li><div class="sentence-pair">Right now, environmental groups ___ (organize) protests against deforestation.</div><input class="answer" placeholder="organize / are organizing"></li>
-      <li><div class="sentence-pair">Water pollution ___ (affect) marine life significantly.</div><input class="answer" placeholder="affects / is affecting"></li>
-      <li><div class="sentence-pair">What ___ (you / do) to reduce your carbon footprint these days?</div><input class="answer" placeholder="do you do / are you doing"></li>
-      <li><div class="sentence-pair">The government often ___ (implement) new policies to protect natural resources.</div><input class="answer" placeholder="implements / is implementing"></li>
-      <li><div class="sentence-pair">Look! The factory ___ (release) dark smoke into the air again.</div><input class="answer" placeholder="releases / is releasing"></li>
-      <li><div class="sentence-pair">Every day, we ___ (see) more plastic waste in our oceans.</div><input class="answer" placeholder="see / are seeing"></li>
-      <li><div class="sentence-pair">Biodiversity ___ (decrease) rapidly due to habitat loss.</div><input class="answer" placeholder="decreases / is decreasing"></li>
-      <li><div class="sentence-pair">At this moment, many volunteers ___ (clean up) the local park.</div><input class="answer" placeholder="clean up / are cleaning up"></li>
-      <li><div class="sentence-pair">The sun ___ (shine) brightly, but the air quality ___ (get) worse.</div><input class="answer" placeholder="shines / is shining, gets / is getting"></li>
-      <li><div class="sentence-pair">Renewable energy sources ___ (become) more popular worldwide.</div><input class="answer" placeholder="become / are becoming"></li>
-      <li><div class="sentence-pair">Why ___ (the polar ice caps / melt) so quickly?</div><input class="answer" placeholder="do the polar ice caps melt / are the polar ice caps melting"></li>
-      <li><div class="sentence-pair">Usually, my family ___ (recycle) all our waste.</div><input class="answer" placeholder="recycles / is recycling"></li>
-      <li><div class="sentence-pair">This week, our class ___ (learn) about sustainable living.</div><input class="answer" placeholder="learns / is learning"></li>
-      <li><div class="sentence-pair">The global population ___ (grow), which puts more pressure on resources.</div><input class="answer" placeholder="grows / is growing"></li>
-      <li><div class="sentence-pair">Do you know that bees ___ (play) a crucial role in pollination?</div><input class="answer" placeholder="play / are playing"></li>
-      <li><div class="sentence-pair">Right now, environmental activists ___ (try) to raise awareness about plastic pollution.</div><input class="answer" placeholder="try / are trying"></li>
-      <li><div class="sentence-pair">Air pollution ___ (cause) many respiratory problems in cities.</div><input class="answer" placeholder="causes / is causing"></li>
-      <li><div class="sentence-pair">More and more companies ___ (develop) eco-friendly products.</div><input class="answer" placeholder="develop / are developing"></li>
+      <li><div class="sentence-pair">Many scientists around the world ___ (study) climate change.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">The Earth's average temperature ___ (rise) steadily every year.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Right now, environmental groups ___ (organize) protests against deforestation.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Water pollution ___ (affect) marine life significantly.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">What ___ (you / do) to reduce your carbon footprint these days?</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">The government often ___ (implement) new policies to protect natural resources.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Look! The factory ___ (release) dark smoke into the air again.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Every day, we ___ (see) more plastic waste in our oceans.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Biodiversity ___ (decrease) rapidly due to habitat loss.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">At this moment, many volunteers ___ (clean up) the local park.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">The sun ___ (shine) brightly, but the air quality ___ (get) worse.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Renewable energy sources ___ (become) more popular worldwide.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Why ___ (the polar ice caps / melt) so quickly?</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Usually, my family ___ (recycle) all our waste.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">This week, our class ___ (learn) about sustainable living.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">The global population ___ (grow), which puts more pressure on resources.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Do you know that bees ___ (play) a crucial role in pollination?</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Right now, environmental activists ___ (try) to raise awareness about plastic pollution.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">Air pollution ___ (cause) many respiratory problems in cities.</div><input class="answer" placeholder="Your answer here"></li>
+      <li><div class="sentence-pair">More and more companies ___ (develop) eco-friendly products.</div><input class="answer" placeholder="Your answer here"></li>
     </ol>
   </div>
 

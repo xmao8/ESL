@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards – AI Vocabulary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0; padding: 0;
+    }
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #124076;
+      padding: 0.8rem 1rem;
+      flex-wrap: nowrap;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: bold;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      nav .site-name { font-size: 1.1rem; }
+      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+    }
+
+    h1 {
+      margin: 2rem 0;
+      color: #2c3e50;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="logo">
+    <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+    <span class="site-name">ESLnote</span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../flashcards.html">Flashcards</a>
+    <a href="../conversation.html">Conversations</a>
+    <a href="../grammar.html">Grammar</a>
+    <a href="../reading.html">Reading</a>
+    <a href="../practice.html">Practices</a>
+  </div>
+</nav>
+
+<h1>AI Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Algorithm",
+    ipa: "/ˈælɡəˌrɪðəm/",
+    definition: "A set of rules or steps used by computers to solve problems or perform tasks.",
+    example: "The search engine uses a complex algorithm to find the best results."
+  },
+  {
+    word: "Automation",
+    ipa: "/ˌɔːtəˈmeɪʃən/",
+    definition: "The use of machines or computers to do work without human help.",
+    example: "Factories use automation to speed up production."
+  },
+  {
+    word: "Data",
+    ipa: "/ˈdeɪtə/",
+    definition: "Facts or information collected for analysis.",
+    example: "AI systems learn from large amounts of data."
+  },
+  {
+    word: "Machine Learning",
+    ipa: "/məˈʃiːn ˈlɜːrnɪŋ/",
+    definition: "A type of AI that allows computers to learn from data and improve.",
+    example: "Machine learning helps recommend movies you might like."
+  },
+  {
+    word: "Neural Network",
+    ipa: "/ˈnjʊrəl ˈnɛtwɜːrk/",
+    definition: "A computer system modeled on the human brain’s network of neurons.",
+    example: "Neural networks are used for image and speech recognition."
+  },
+  {
+    word: "Robot",
+    ipa: "/ˈroʊˌbɑːt/",
+    definition: "A machine that can do tasks automatically, often controlled by AI.",
+    example: "Robots can work in dangerous environments where humans cannot."
+  },
+  {
+    word: "Artificial Intelligence",
+    ipa: "/ˌɑːrtəˈfɪʃəl ɪnˈtɛlɪdʒəns/",
+    definition: "The ability of machines to perform tasks that usually need human intelligence.",
+    example: "Artificial intelligence is used in many modern technologies."
+  },
+  {
+    word: "Smart",
+    ipa: "/smɑːrt/",
+    definition: "Able to think, learn, or understand quickly and clearly.",
+    example: "Smart devices can adjust to your preferences automatically."
+  },
+  {
+    word: "Virtual Assistant",
+    ipa: "/ˈvɜːrtʃuəl əˈsɪstənt/",
+    definition: "A software agent that can perform tasks or services for a person.",
+    example: "Siri and Alexa are popular virtual assistants."
+  },
+  {
+    word: "Recognize",
+    ipa: "/ˈrɛkəɡˌnaɪz/",
+    definition: "To identify someone or something from previous knowledge or experience.",
+    example: "AI can recognize faces in photos."
+  },
+  {
+    word: "Big Data",
+    ipa: "/bɪɡ ˈdeɪtə/",
+    definition: "Very large sets of data analyzed by computers to find patterns.",
+    example: "Companies use big data to understand customer behavior."
+  },
+  {
+    word: "Chatbot",
+    ipa: "/ˈtʃætˌbɑːt/",
+    definition: "A computer program that simulates human conversation.",
+    example: "Many websites use chatbots to answer customer questions."
+  },
+  {
+    word: "Self-driving Car",
+    ipa: "/ˌsɛlf ˈdraɪvɪŋ kɑːr/",
+    definition: "A car that can drive itself without a human driver.",
+    example: "Self-driving cars use sensors and AI to navigate roads."
+  },
+  {
+    word: "Deep Learning",
+    ipa: "/diːp ˈlɜːrnɪŋ/",
+    definition: "A type of machine learning using large neural networks.",
+    example: "Deep learning helps computers understand complex data like images."
+  },
+  {
+    word: "ChatGPT",
+    ipa: "/ˈtʃæt dʒiː piː tiː/",
+    definition: "An AI language model that can understand and generate human-like text.",
+    example: "ChatGPT helps people practice English and answer questions."
+  },
+  {
+    word: "Prediction",
+    ipa: "/prɪˈdɪkʃən/",
+    definition: "A statement about what will happen in the future.",
+    example: "AI makes predictions about weather or stock prices."
+  },
+  {
+    word: "Data Scientist",
+    ipa: "/ˈdeɪtə ˈsaɪəntɪst/",
+    definition: "A person who analyzes and interprets complex data.",
+    example: "Data scientists work with AI to find useful information."
+  },
+  {
+    word: "Intelligent",
+    ipa: "/ɪnˈtɛlɪdʒənt/",
+    definition: "Having the ability to learn and understand.",
+    example: "Intelligent machines can solve difficult problems."
+  },
+  {
+    word: "Computer Vision",
+    ipa: "/kəmˈpjuːtər ˈvɪʒən/",
+    definition: "A field of AI that trains computers to understand images and videos.",
+    example: "Computer vision is used in facial recognition systems."
+  },
+  {
+    word: "Artificial Neural Network",
+    ipa: "/ˌɑːrtəˈfɪʃəl ˈnjʊrəl ˈnɛtwɜːrk/",
+    definition: "A computer system designed to mimic the human brain's neuron connections.",
+    example: "Artificial neural networks help computers learn complex patterns."
+  },
+  {
+    word: "Supervised Learning",
+    ipa: "/ˈsuːpərvaɪzd ˈlɜːrnɪŋ/",
+    definition: "A type of machine learning where the model is trained with labeled data.",
+    example: "Supervised learning is used to classify emails as spam or not spam."
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                         <div class="ipa">${flashcards[index].ipa}</div>
+                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

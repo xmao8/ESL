@@ -8,24 +8,23 @@
   <style>
     /* Base Styles */
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f9;
-      color: #2c3e50;
       margin: 0;
-      padding: 0;
-      line-height: 1.6;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      color: #2c3e50;
+      line-height: 1.6;
     }
     /* NAVBAR */
     nav {
       position: relative;
-      background: #2c3e50;
-      padding: 1rem;
+      background: #124076;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0.8rem 1rem;
     }
     nav .logo {
       position: absolute;
@@ -38,11 +37,11 @@
       height: 32px;
       margin-right: 0.5rem;
     }
-    nav .logo span {
-      color: #fff;
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      color: #ff9800;
       font-size: 1.3rem;
       font-weight: bold;
-      font-family: 'Poppins', sans-serif;
     }
     nav .nav-links {
       display: flex;
@@ -58,45 +57,48 @@
       color: #ffbb33;
       text-decoration: underline;
     }
+    /* Page Title */
     h1 {
       text-align: center;
-      margin: 2rem 0 1rem;
-      color: #2c3e50;
+      margin: 1.5rem 0;
     }
-    /* CONTAINER */
+    /* Container */
     .container {
+      flex: 1;
       width: 90%;
       max-width: 700px;
-      margin: auto;
+      margin: 0 auto 2rem;
       background: white;
       padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-      flex: 1;
     }
     .student-info {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      gap: 1rem;
     }
     .student-info label {
+      flex: 1 1 45%;
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      flex-direction: column;
+      font-size: 0.9rem;
     }
     .student-info input {
-      padding: 0.4rem 0.6rem;
+      margin-top: 0.3rem;
+      padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
     }
     .instructions {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     ol {
       margin-left: 1.2rem;
+      padding: 0;
     }
     li {
       margin: 1rem 0;
@@ -105,10 +107,9 @@
       font-style: italic;
     }
     input.answer {
-      display: block;
       width: 100%;
-      padding: 0.5rem;
       margin-top: 0.5rem;
+      padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
@@ -116,27 +117,26 @@
     .buttons {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin: 1rem 0 2rem;
     }
     .buttons a {
-      text-decoration: none;
       background: #3498db;
       color: white;
+      text-decoration: none;
       padding: 0.7rem 1.2rem;
       border-radius: 8px;
       font-weight: bold;
-      transition: background-color 0.2s;
+      transition: background 0.2s;
     }
     .buttons a:hover {
       background: #2980b9;
     }
-
-    /* TABLET: ≤768px */
+    /* Tablet */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
-        align-items: center;
         padding: 0.6rem 1rem;
       }
       nav .logo {
@@ -144,54 +144,33 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.8rem;
-        margin-top: 0.5rem;
         width: 100%;
+        gap: 0.8rem;
       }
       .container {
-        width: 95%;
         padding: 1.5rem;
       }
-      .student-info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+      .student-info label {
+        flex: 1 1 100%;
       }
     }
-    /* PHONE: ≤600px */
+    /* Phone */
     @media (max-width: 600px) {
       nav {
-        flex-direction: column;
-        align-items: center;
         padding: 0.5rem 1rem;
       }
-      nav .logo {
-        position: static;
-        margin-bottom: 0.5rem;
-      }
-      nav .nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        width: 100%;
-      }
-      nav .nav-links a {
-        width: 100%;
-        text-align: center;
-      }
       h1 {
-        font-size: 2rem;
-        margin: 1.5rem 0;
+        font-size: 1.5rem;
+        margin: 1rem 0;
       }
       .container {
         width: 100%;
         padding: 1rem;
       }
-      .student-info input {
-        width: 100%;
+      .student-info {
+        gap: 0.5rem;
       }
       .buttons {
         flex-direction: column;
@@ -205,11 +184,10 @@
   </style>
 </head>
 <body>
-
   <nav>
     <div class="logo">
       <img src="../favicon.png" alt="ESLnote Logo">
-      <span>ESLnote</span>
+      <span class="site-name">ESLnote</span>
     </div>
     <div class="nav-links">
       <a href="../index.html">Home</a>
@@ -217,85 +195,78 @@
       <a href="../conversation.html">Conversations</a>
       <a href="../grammar.html">Grammar</a>
       <a href="../reading.html">Reading</a>
-      <a href="../practice.html">Practices</a>
+      <a href="../practice.html">Practice</a>
     </div>
   </nav>
-
   <h1>Practice: Combine Sentences with <em>when</em> / <em>while</em></h1>
-
   <div class="container">
     <div class="student-info">
       <label>
-        Name:
+        Name
         <input type="text" name="student-name" placeholder="Your name">
       </label>
       <label>
-        Date:
+        Date
         <input type="date" name="date">
       </label>
     </div>
-
     <p class="instructions">
-      Combine each pair of sentences using <strong>when</strong> or <strong>while</strong> and the past progressive (was/were + –ing).<br>
-      Write your combined sentence in the box below each pair.
+      Combine each pair of sentences using <strong>when</strong> or <strong>while</strong> and the past progressive (was/were + –ing). Write your combined sentence below each pair.
     </p>
-
     <ol>
       <li>
-        <div class="sentence-pair">I browsed the clothes. &nbsp; My phone rang.</div>
+        <div class="sentence-pair">I browsed the clothes.  My phone rang.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">She tried on a dress. &nbsp; The salesperson asked if she needed help.</div>
+        <div class="sentence-pair">She tried on a dress.  The salesperson asked if she needed help.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">We waited in line. &nbsp; Someone tried to cut in front of us.</div>
+        <div class="sentence-pair">We waited in line.  Someone tried to cut in front of us.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">He paid for his items. &nbsp; His credit card was declined.</div>
+        <div class="sentence-pair">He paid for his items.  His credit card was declined.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">They walked through the electronics section. &nbsp; They heard a store announcement.</div>
+        <div class="sentence-pair">They walked through the electronics section.  They heard a store announcement.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">I left the store. &nbsp; I suddenly saw an old friend.</div>
+        <div class="sentence-pair">I left the store.  I suddenly saw an old friend.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">She unpacked the groceries. &nbsp; She realized she had forgotten the milk.</div>
+        <div class="sentence-pair">She unpacked the groceries.  She realized she had forgotten the milk.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">He compared prices for a new TV. &nbsp; The store announced it was closing.</div>
+        <div class="sentence-pair">He compared prices for a new TV.  The store announced it was closing.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">We walked through the mall. &nbsp; A colorful display in a window caught our eye.</div>
+        <div class="sentence-pair">We walked through the mall.  A colorful display in a window caught our eye.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">She talked to her friend about a purchase. &nbsp; She accidentally knocked over a display.</div>
+        <div class="sentence-pair">She talked to her friend about a purchase.  She accidentally knocked over a display.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">I pushed my shopping cart. &nbsp; One of the wheels suddenly got stuck.</div>
+        <div class="sentence-pair">I pushed my shopping cart.  One of the wheels suddenly got stuck.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
       <li>
-        <div class="sentence-pair">They looked for the last box of cereal. &nbsp; Another customer grabbed it.</div>
+        <div class="sentence-pair">They looked for the last box of cereal.  Another customer grabbed it.</div>
         <input type="text" class="answer" placeholder="Your answer here">
       </li>
     </ol>
   </div>
-
   <div class="buttons">
-    <a href="../practice.html">← Back to Practices</a>
+    <a href="../practice.html">← Back to Practice</a>
     <a href="../index.html">🏠 Home</a>
   </div>
-
 </body>
 </html>

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practice – Present Tense vs Present Progressive: Our Environment</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Conversations – Learn English Together</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,11 +12,12 @@
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
       color: #333;
-      line-height: 1.6;
     }
+
     /* NAVBAR */
     nav {
       position: relative;
@@ -32,7 +33,7 @@
       display: flex;
       align-items: center;
     }
-    nav .logo img {
+    nav .logo-img {
       width: 32px;
       height: 32px;
       margin-right: 0.5rem;
@@ -41,7 +42,7 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
-      font-weight: bold;
+      font-weight: 700;
     }
     nav .nav-links {
       display: flex;
@@ -55,7 +56,9 @@
     }
     nav .nav-links a:hover {
       color: #ffbb33;
+      text-decoration: underline;
     }
+
     /* PAGE TITLE */
     h1 {
       text-align: center;
@@ -63,60 +66,33 @@
       margin: 2rem 0 0.5rem;
       color: #2c3e50;
     }
-    /* CONTENT CONTAINER */
+
+    /* MAIN CONTENT */
+    main { flex: 1; }
     .container {
-      flex: 1;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      padding: 2rem;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .student-info {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 1rem;
-      margin-bottom: 1rem;
     }
-    .student-info label {
-      flex: 1 1 45%;
-      display: flex;
-      flex-direction: column;
-      font-size: 1rem;
-    }
-    .student-info input {
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-    .instructions {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    ol {
-      margin-left: 1.2rem;
-      padding: 0;
-    }
-    li {
-      margin: 1rem 0;
-    }
-    .sentence-pair {
-      font-style: italic;
-    }
-    input.answer {
+    .label-link {
       display: block;
-      width: 100%;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #2c3e50;
+      transition: background 0.3s;
     }
-    /* BUTTONS */
+    .label-link:hover {
+      background: #e0f3ff;
+    }
+
+    /* BACK BUTTON */
     .buttons {
       text-align: center;
       margin: 2rem 0;
@@ -134,9 +110,11 @@
     .buttons a:hover {
       background-color: #2980b9;
     }
-    /* TABLET */
+
+    /* TABLET: two-column grid, stack nav */
     @media (max-width: 768px) {
       nav {
+        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.6rem 1rem;
@@ -146,25 +124,25 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.8rem;
         margin-top: 0.5rem;
         width: 100%;
       }
-      h1 {
-        font-size: 2rem;
-      }
       .container {
-        padding: 1.5rem;
-      }
-      .student-info label {
-        flex: 1 1 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1rem;
       }
     }
-    /* PHONE */
+
+    /* PHONE: single-column, compact nav */
     @media (max-width: 600px) {
       nav {
+        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0.5rem 1rem;
@@ -174,6 +152,7 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
+        display: flex;
         flex-direction: column;
         gap: 0.5rem;
         width: 100%;
@@ -186,22 +165,21 @@
         font-size: 1.2rem;
       }
       h1 {
-        font-size: 1.75rem;
-        margin: 1rem 0 0.5rem;
+        font-size: 2rem;
+        margin: 1.5rem 0 0.5rem;
       }
       .container {
+        grid-template-columns: 1fr;
         padding: 1rem;
+        gap: 1rem;
       }
-      .student-info {
-        flex-direction: column;
-      }
-      .student-info label {
-        flex: 1 1 100%;
+      .label-link {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
       }
       .buttons a {
-        display: block;
-        width: 100%;
-        margin: 0.5rem 0;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
       }
     }
   </style>

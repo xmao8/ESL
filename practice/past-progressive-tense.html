@@ -6,12 +6,12 @@
   <title>Practice – Combine Sentences with When/While</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* Base Styles */
     body {
-      margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f4f8;
       color: #333;
@@ -42,14 +42,11 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
-      font-weight: bold;
+      font-weight: 700;
     }
     nav .nav-links {
       display: flex;
       gap: 1rem;
-      width: 90%;
-      max-width: 700px;
-      margin: 0 auto;
     }
     nav .nav-links a {
       color: white;
@@ -65,19 +62,18 @@
     /* PAGE TITLE */
     h1 {
       text-align: center;
+      font-size: 2.5rem;
       margin: 2rem 0 1rem;
-      font-size: 2rem;
       color: #2c3e50;
     }
 
     /* CONTENT CONTAINER */
     .container {
       flex: 1;
-      width: 90%;
       max-width: 700px;
       margin: 0 auto 2rem;
+      padding: 1rem;
       background-color: white;
-      padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
@@ -107,6 +103,7 @@
     }
     ol {
       margin-left: 1.2rem;
+      padding: 0;
     }
     li {
       margin: 1rem 0;
@@ -124,7 +121,7 @@
       font-size: 1rem;
     }
 
-    /* BUTTONS */
+    /* BACK BUTTONS */
     .buttons {
       text-align: center;
       margin: 2rem 0;
@@ -155,13 +152,15 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
         width: 100%;
-        max-width: none;
       }
       h1 {
-        font-size: 1.75rem;
+        font-size: 2rem;
       }
       .container {
         padding: 1.5rem;
@@ -183,18 +182,21 @@
         margin-bottom: 0.5rem;
       }
       nav .nav-links {
+        display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        width: 90%;
-        max-width: 700px;
+        width: 100%;
       }
       nav .nav-links a {
         width: 100%;
         text-align: center;
       }
+      nav .site-name {
+        font-size: 1.2rem;
+      }
       h1 {
-        font-size: 1.5rem;
-        margin: 1rem 0;
+        font-size: 1.75rem;
+        margin: 1.5rem 0 1rem;
       }
       .container {
         padding: 1rem;
@@ -207,9 +209,8 @@
       }
       .buttons a {
         display: block;
-        width: 90%;
-        max-width: 700px;
-        margin: 0.5rem auto;
+        width: 100%;
+        margin: 0.5rem 0;
       }
     }
   </style>
@@ -305,5 +306,6 @@
     <a href="../practice.html">← Back to Practice</a>
     <a href="../index.html">🏠 Home</a>
   </div>
+
 </body>
 </html>

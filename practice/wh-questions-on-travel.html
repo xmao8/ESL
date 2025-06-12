@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice – WH-Questions: Travel Adventures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; /* Consistent background */
+            color: #333; /* Consistent text color */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevents horizontal scroll from fixed nav on mobile */
+        }
+        main {
+            flex: 1; /* Allows main content to grow and push the footer down */
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2 {
+            color: #124076; /* Consistent heading color */
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem; /* Default padding for nav */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between; /* Logo left, links/toggle right */
+            align-items: center;
+            max-width: 1100px; /* Max width for nav content */
+            margin: 0 auto; /* Center the nav content */
+            padding: 0;
+        }
+
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* Remove underline from logo link */
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap; /* Prevent site name from wrapping */
+        }
+
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem; /* Default gap for desktop links */
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus { /* Added focus state for accessibility */
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none; /* Remove default focus outline */
+        }
+
+        /* Hamburger menu button (hidden by default) */
+        .menu-toggle {
+            display: none; /* Hidden on desktop and tablet */
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000; /* Ensure it's above the menu when active */
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* PAGE TITLE */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem; /* Consistent margin */
+            color: #2c3e50;
+            max-width: 800px; /* Limit width to align with main content */
+            padding: 0 1rem; /* Add horizontal padding */
+        }
+
+        /* CONTENT CONTAINER */
+        .container {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto 2rem; /* Adjusted margin-top to allow for h1 margin */
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem; /* Slightly more space */
+        }
+        .student-info label {
+            flex: 1 1 calc(50% - 0.5rem); /* Adjust for gap */
+            display: flex;
+            flex-direction: column;
+            font-size: 1rem;
+            font-weight: bold; /* Make labels bold */
+            color: #555;
+        }
+        .student-info input[type="text"],
+        .student-info input[type="date"] {
+            margin-top: 0.5rem;
+            padding: 0.6rem 0.8rem; /* Slightly more padding */
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Slightly more rounded */
+            font-size: 1rem;
+            width: 100%; /* Ensure full width within label */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+        }
+        .instructions {
+            margin-bottom: 1.5rem; /* More space below instructions */
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #444;
+            font-style: italic;
+        }
+        ol {
+            margin-left: 1.2rem;
+            padding: 0;
+        }
+        li {
+            margin: 1.2rem 0; /* More vertical space between list items */
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        .sentence-prompt {
+            font-style: italic; /* Keeps the prompt italic like previous worksheet for consistency */
+            display: block; /* Ensures it takes full line */
+        }
+        input.answer {
+            display: inline-block; /* Make it flow with text */
+            width: 140px; /* Fixed width for consistency, adjust as needed */
+            padding: 0.4rem 0.6rem; /* Smaller padding for inline fit */
+            margin: 0 5px; /* Small margin to separate from text */
+            vertical-align: middle; /* Align with surrounding text */
+            text-align: center; /* Center placeholder text */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input.answer:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        /* Feedback for answers */
+        .feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            display: block; /* Ensure it's on its own line after the entire sentence-pair */
+            min-height: 1.2em; /* Ensure consistent spacing even if no text */
+        }
+        .correct {
+            border-color: #27ae60 !important; /* Green border for correct */
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2) !important;
+        }
+        .incorrect {
+            border-color: #e74c3c !important; /* Red border for incorrect */
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
+        }
+        .correct-text {
+            color: #27ae60;
+            font-size: 0.9em;
+            /* margin-left: 0.5em; no need if display block */
+        }
+        .incorrect-text {
+            color: #e74c3c;
+            font-size: 0.9em;
+            /* margin-left: 0.5em; no need if display block */
+        }
+        .score-display {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #124076;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* BUTTONS */
+        .buttons {
+            text-align: center;
+            margin: 3rem auto; /* Consistent margin for buttons below main content */
+            max-width: 700px; /* Align with container max-width */
+            padding: 0 1rem;
+        }
+        .buttons .check-button { /* New button for checking answers */
+            background-color: #28a745; /* A distinct color for check answers */
+            margin-right: 0.7rem;
+            color: white;
+            padding: 0.8rem 1.4rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.2s;
+            display: inline-block;
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+        }
+        .buttons .check-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .buttons .check-button:active {
+            transform: translateY(0);
+        }
+
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.7rem; /* Slightly more margin between buttons */
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.4rem; /* Larger padding for buttons */
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.2s;
+            display: inline-block;
+            font-size: 1.05rem; /* Slightly larger text */
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px); /* Subtle lift effect */
+        }
+
+        /* --- Media Queries --- */
+
+        /* Tablet Layout (min-width: 601px and max-width: 900px) */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row; /* Logo and links in a row */
+                justify-content: space-between;
+                padding: 0.8rem 1.5rem; /* More padding for tablet nav */
+            }
+            .nav-container .nav-links {
+                gap: 1.2rem; /* Slightly smaller gap than desktop */
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            .container {
+                padding: 1.8rem; /* Adjusted padding for tablet content */
+            }
+            .student-info label {
+                flex: 1 1 calc(50% - 0.5rem); /* Maintain 2 columns */
+            }
+            li {
+                font-size: 1rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+            input.answer {
+                width: 120px; /* Adjust width for tablet */
+                padding: 0.3rem 0.5rem;
+            }
+        }
+
+        /* Phone Layout (max-width: 600px) */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row; /* Keep logo and toggle in a row */
+                justify-content: space-between; /* Push logo left, toggle right */
+                padding: 0.6rem 0.8rem; /* Tighter padding for phones */
+            }
+            .nav-container .logo {
+                margin-bottom: 0; /* No bottom margin on logo */
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            /* Hamburger menu specific styles */
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            .nav-container .nav-links {
+                position: fixed; /* Position fixed relative to viewport */
+                top: 56px; /* Adjust based on your nav height */
+                right: 0;
+                background: #124076;
+                flex-direction: column; /* Stack links vertically */
+                width: 100%; /* Full width menu */
+                height: calc(100vh - 56px); /* Full height minus nav bar */
+                padding: 1.5rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%); /* Start off-screen */
+                transition: transform 0.3s ease-out;
+                z-index: 998; /* Below toggle, above content */
+                align-items: flex-start; /* Align links to the left inside the menu */
+                border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0); /* Slide in */
+            }
+            .nav-container .nav-links a {
+                width: auto; /* Allow links to naturally size */
+                text-align: left; /* Align text to left */
+                padding: 0.5rem 0; /* Add vertical padding */
+            }
+
+            h1 {
+                font-size: 1.75rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            .container {
+                padding: 1rem;
+                margin-top: 0; /* Reset margin-top for better flow after h1 */
+            }
+            .student-info label {
+                flex: 1 1 100%; /* Stack info fields on phones */
+            }
+            li {
+                font-size: 0.95rem;
+            }
+            .buttons {
+                padding: 0 0.8rem;
+            }
+            .buttons a, .buttons .check-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin: 0.5rem 0; /* Stack buttons vertically */
+                display: block; /* Make buttons block level */
+            }
+            input.answer {
+                width: 100px; /* Adjust width for phone */
+                padding: 0.2rem 0.4rem;
+            }
+        </style>
+</head>
+<body>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>WH-Questions: Travel Adventures</h1>
+
+    <main class="container">
+        <div class="student-info">
+            <label>Name:<input type="text" name="student-name" placeholder="Your Name"></label>
+            <label>Date:<input type="date" name="date"></label>
+        </div>
+
+        <p class="instructions">Complete each question by typing the correct WH-word (Who, What, Where, When, Why, How, Which, Whose) in the blank.</p>
+
+        <ol id="questions-list">
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="What" placeholder="WH-word"> do you usually pack when you go on vacation?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Where" placeholder="WH-word"> did you travel for your last holiday?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="When" placeholder="WH-word"> are you planning your next trip?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Who" placeholder="WH-word"> is your favorite person to travel with?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Why" placeholder="WH-word"> do people enjoy exploring new cultures?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="How" placeholder="WH-word"> do you prefer to travel: by plane, train, or car?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Which" placeholder="WH-word"> country would you like to visit the most?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Whose" placeholder="WH-word"> passport is this? It's on the table.</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="What" placeholder="WH-word"> kind of souvenirs do you usually buy when you travel?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Where" placeholder="WH-word"> would you recommend for a relaxing beach vacation?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="When" placeholder="WH-word"> is the best time to visit Tokyo, Japan?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Who" placeholder="WH-word"> designed the famous Eiffel Tower in Paris?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Why" placeholder="WH-word"> is travel sometimes stressful?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="How" placeholder="WH-word"> long does it take to fly from New York to London?</div>
+                <span class="feedback"></span>
+            </li>
+            <li>
+                <div class="sentence-prompt"><input class="answer" type="text" data-correct-answer="Which" placeholder="WH-word"> airline offers the best in-flight entertainment, in your opinion?</div>
+                <span class="feedback"></span>
+            </li>
+        </ol>
+
+        <div class="score-display" style="display: none;">
+            Your Score: <span id="current-score">0</span> / <span id="total-questions">15</span>
+        </div>
+
+    </main>
+
+    <div class="buttons">
+        <button class="check-button" id="checkAnswersBtn">Check Answers</button>
+        <a href="../practice.html">← Back to Practice</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        // Check if menuToggle and navLinks exist before adding event listeners
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (useful for single-page apps or when navigating)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // --- Worksheet Check Answers Logic ---
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+        const answerInputs = document.querySelectorAll('ol#questions-list .answer');
+        const scoreDisplay = document.querySelector('.score-display');
+        const currentScoreSpan = document.getElementById('current-score');
+        const totalQuestionsSpan = document.getElementById('total-questions');
+        totalQuestionsSpan.textContent = answerInputs.length;
+
+
+        checkAnswersBtn.addEventListener('click', () => {
+            let score = 0;
+            let allAnswered = true;
+
+            answerInputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.correctAnswer.toLowerCase(); // Get correct answer from data attribute
+                const feedbackSpan = input.closest('li').querySelector('.feedback');
+
+
+                // Clear previous feedback
+                input.classList.remove('correct', 'incorrect');
+                if (feedbackSpan) {
+                    feedbackSpan.textContent = '';
+                    feedbackSpan.classList.remove('correct-text', 'incorrect-text');
+                }
+
+
+                if (userAnswer === '') {
+                    input.classList.add('incorrect');
+                    if (feedbackSpan) {
+                        feedbackSpan.textContent = 'Please provide an answer.';
+                        feedbackSpan.classList.add('incorrect-text');
+                    }
+                    allAnswered = false;
+                } else if (userAnswer === correctAnswer) {
+                    input.classList.add('correct');
+                    if (feedbackSpan) {
+                        feedbackSpan.textContent = 'Correct!';
+                        feedbackSpan.classList.add('correct-text');
+                    }
+                    score++;
+                } else {
+                    input.classList.add('incorrect');
+                    if (feedbackSpan) {
+                        feedbackSpan.textContent = `Incorrect. Correct answer: ${input.dataset.correctAnswer}`;
+                        feedbackSpan.classList.add('incorrect-text');
+                    }
+                }
+            });
+
+            currentScoreSpan.textContent = score;
+            scoreDisplay.style.display = 'block';
+
+            // Optional: Disable inputs and button after submission if all answered
+            if (allAnswered) {
+                 answerInputs.forEach(input => input.disabled = true);
+                 checkAnswersBtn.disabled = true;
+                 checkAnswersBtn.textContent = 'Submitted';
+                 scoreDisplay.style.color = '#124076'; // Reset score color
+            } else {
+                scoreDisplay.textContent = `Your Score: ${score} / ${answerInputs.length}. Please complete all questions.`;
+                scoreDisplay.style.color = '#e74c3c'; // Highlight incomplete submission
+            }
+        });
+
+        // To clear feedback when user starts typing again
+        answerInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                scoreDisplay.style.display = 'none'; // Hide score message when typing
+                scoreDisplay.style.color = '#124076'; // Reset score color
+                input.classList.remove('correct', 'incorrect'); // Remove feedback classes immediately
+
+                const feedbackSpan = input.closest('li').querySelector('.feedback');
+                if (feedbackSpan) {
+                    feedbackSpan.textContent = ''; // Clear feedback text
+                    feedbackSpan.classList.remove('correct-text', 'incorrect-text');
+                }
+
+                checkAnswersBtn.disabled = false; // Re-enable check button if user modifies answers
+                checkAnswersBtn.textContent = 'Check Answers';
+                answerInputs.forEach(inp => inp.disabled = false); // Re-enable all inputs
+            });
+        });
+
+    </script>
+</body>
+</html>

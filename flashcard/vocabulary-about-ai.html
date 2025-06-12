@@ -13,59 +13,87 @@
       margin: 0; padding: 0;
     }
     nav {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background: #124076;
-      padding: 0.8rem 1rem;
-      flex-wrap: nowrap;
     }
-    nav .logo {
-      position: absolute;
-      left: 1rem;
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
       display: flex;
       align-items: center;
+      justify-content: space-between;
     }
-    nav .logo-img {
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
       width: 32px;
       height: 32px;
       margin-right: 0.5rem;
     }
-    nav .site-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.3rem;
-      color: #ff9800;
-      font-weight: bold;
-    }
-    nav .nav-links {
+    .nav-links {
       display: flex;
       gap: 1rem;
     }
-    nav .nav-links a {
+    .nav-links a {
       color: white;
+      font-weight: 700;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
+      transition: color 0.2s ease;
     }
-    nav .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a:focus {
       color: #ffbb33;
-      text-decoration: underline;
+      outline: none;
     }
+
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* Responsive nav */
     @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        padding: 0.6rem 1rem;
+      .nav-links {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 180px;
+        height: calc(100vh - 56px);
+        padding: 1rem;
+        gap: 1rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 8px;
+        z-index: 999;
       }
-      nav .nav-links {
-        width: 100%;
-        justify-content: center;
-        margin-top: 0.5rem;
+      .nav-links.active {
+        transform: translateX(0);
       }
-    }
-    @media (max-width: 600px) {
-      nav .site-name { font-size: 1.1rem; }
-      nav .nav-links { gap: 0.5rem; flex-wrap: wrap; }
+      .menu-toggle {
+        display: flex;
+      }
     }
 
     h1 {
@@ -150,17 +178,26 @@
 <body>
 
 <nav aria-label="Main navigation">
-  <div class="logo">
-    <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-    <span class="site-name">ESLnote</span>
-  </div>
-  <div class="nav-links">
-    <a href="../index.html">Home</a>
-    <a href="../flashcards.html">Flashcards</a>
-    <a href="../conversation.html">Conversations</a>
-    <a href="../grammar.html">Grammar</a>
-    <a href="../reading.html">Reading</a>
-    <a href="../practice.html">Practices</a>
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
   </div>
 </nav>
 
@@ -377,6 +414,27 @@ showCard();
   <a href="../flashcards.html">← Back to Flashcards</a>
   <a href="../index.html">🏠 Home</a>
 </div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

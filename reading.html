@@ -25,7 +25,7 @@
         }
         main {
             flex: 1; /* Allows main content to grow and push the footer down */
-            /* Margin to clear fixed navbar, consistent with reading.html's main layout */
+            /* Added margin-top to clear fixed navbar, consistent with reading.html */
             margin-top: 80px; /* Adjust based on your nav height */
         }
 
@@ -113,12 +113,12 @@
             max-width: 800px;
             margin: 0 auto 4rem; /* Center and add bottom margin */
             padding: 1rem; /* Consistent with reading.html */
-            display: block; /* Consistent with reading.html */
+            /* Removed display: grid and gap as we are using margin for spacing */
         }
         .label-link {
             display: block;
             /* Using margin for spacing, consistent with reading.html */
-            margin: 1rem 0; /* Consistent with reading.html */
+            margin: 1rem 0; /* Creates vertical space between labels */
             padding: 1rem 1.5rem;
             background: white;
             border-radius: 10px;
@@ -180,13 +180,13 @@
                 padding: 0 1.5rem;
             }
             .container {
-                /* Changed to block for consistency with reading.html */
-                display: block;
+                /* For tablets, using display: block with margins is simpler for a single column */
+                /* If you want two columns on tablet, you would need grid here like before */
+                display: block; /* Consistent with reading.html's tablet layout */
                 padding: 1.5rem; /* Adjust padding for tablet container */
             }
             .label-link {
-                /* Using margin for spacing, consistent with reading.html */
-                margin: 1rem 0; /* Consistent with reading.html */
+                margin: 1rem 0; /* Consistent with reading.html's tablet layout */
                 font-size: 1.05rem; /* Adjust font size for tablet */
                 padding: 0.9rem 1.2rem;
             }
@@ -246,11 +246,10 @@
             .container {
                 /* Changed to block for consistency with reading.html */
                 display: block;
-                padding: 0.8rem; /* Adjust padding for phone container */
+                padding: 0.8rem; /* Adjust padding for phone container, consistent with reading.html */
             }
             .label-link {
-                /* Using margin for spacing, consistent with reading.html */
-                margin: 0.8rem 0; /* Consistent with reading.html */
+                margin: 0.8rem 0; /* Consistent with reading.html's phone layout */
                 font-size: 1rem;
                 padding: 0.8rem 1rem;
             }

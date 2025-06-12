@@ -110,16 +110,18 @@
 
         /* --- MAIN CONTENT LINKS --- */
         .container {
-           max-width: 800px;
-           margin: auto;
-           padding: 2rem;
-           display: block;
+            max-width: 800px;
+            margin: 0 auto 4rem; /* Center and add bottom margin */
+            padding: 2rem 1rem 3rem; /* Default padding for container */
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column */
+            gap: 2rem; /* FIXED: Set to 2rem for consistent spacing between labels */
         }
         .label-link {
             display: block;
             background: white;
             padding: 1rem 1.5rem;
-            /* Removed margin as grid gap handles spacing now */
+            /* REMOVED: margin is now handled by the grid's gap property */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             font-size: 1.1rem;
@@ -180,13 +182,13 @@
             }
             .container {
                 grid-template-columns: repeat(2, 1fr); /* Two columns */
-                gap: 1.5rem;
+                gap: 2rem; /* Set to 2rem for consistency with desktop */
                 padding: 1.5rem; /* Adjust padding for tablet container */
             }
             .label-link {
                 font-size: 1.05rem; /* Adjust font size for tablet */
                 padding: 1rem 1.2rem;
-                /* margin: 0; */ /* Already removed in base for tablet */
+                /* margin: 0; */ /* Already removed */
             }
             .buttons {
                 padding: 0 1.5rem;
@@ -249,7 +251,7 @@
             .label-link {
                 font-size: 1rem;
                 padding: 0.8rem 1rem;
-                /* margin: 0; */ /* Already removed in base for phone */
+                /* margin: 0; */ /* Already removed */
             }
             .buttons {
                 padding: 0 0.8rem;

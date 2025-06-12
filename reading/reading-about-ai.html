@@ -1,316 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards – Learn English Together</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <style>
-    /* Universal Box-Sizing */
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artificial Intelligence: Reshaping Our World - ESLnote</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+<style>
+  /* Reset & base */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #f4f4f9;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  h1, h2 {
+    color: #124076;
+  }
 
-    /* PAGE SETUP */
-    body {
-      display: flex;
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #124076;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    z-index: 1000;
+  }
+  nav .container {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    display: flex;
+    align-items: center;
+    color: #ff9800;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+  nav .logo img {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5rem;
+  }
+  nav .nav-links {
+    display: flex;
+    gap: 1.2rem;
+  }
+  nav .nav-links a {
+    color: white;
+    font-weight: 700;
+    transition: color 0.2s ease;
+  }
+  nav .nav-links a:hover,
+  nav .nav-links a:focus {
+    color: #ffbb33;
+    outline: none;
+  }
+
+  /* Mobile nav toggle */
+  nav .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  nav .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* Responsive nav */
+  @media (max-width: 768px) {
+    nav .nav-links {
+      position: fixed;
+      top: 56px;
+      right: 0;
+      background: #124076;
       flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
-      color: #333;
-      overflow-x: hidden; /* Prevents horizontal scroll from fixed nav on mobile */
+      width: 180px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      border-radius: 0 0 0 8px;
+      padding: 1rem;
+      gap: 1rem;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
     }
-    main {
-      flex: 1; /* Allows main content to grow and push the footer down */
+    nav .nav-links.active {
+      transform: translateX(0);
     }
-
-    /* --- NAVBAR --- */
-    nav {
-      background-color: #124076;
-      width: 100%;
-      padding: 0.8rem 1rem; /* Default padding for nav */
-    }
-
-    .nav-container {
+    nav .menu-toggle {
       display: flex;
-      justify-content: space-between; /* Logo left, links/toggle right */
-      align-items: center;
-      max-width: 1100px; /* Max width for nav content */
-      margin: 0 auto; /* Center the nav content */
     }
+  }
 
-    .nav-container .logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none; /* Remove underline from logo link */
-    }
-    .nav-container .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
-    .nav-container .site-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.3rem;
-      color: #ff9800;
-      font-weight: 700;
-      white-space: nowrap; /* Prevent site name from wrapping */
-    }
+  /* Page container */
+  main {
+    max-width: 900px;
+    margin: 80px auto 3rem;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
 
-    .nav-container .nav-links {
-      display: flex;
-      gap: 1.5rem; /* Default gap for desktop links */
-    }
-    .nav-container .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    .nav-container .nav-links a:hover,
-    .nav-container .nav-links a:focus { /* Added focus state for accessibility */
-      color: #ffbb33;
-      text-decoration: underline;
-      outline: none; /* Remove default focus outline */
-    }
+  /* Article styling */
+  article p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  article strong {
+    color: #124076;
+  }
 
-    /* Hamburger menu button (hidden by default) */
-    .menu-toggle {
-      display: none; /* Hidden on desktop and tablet */
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1000; /* Ensure it's above the menu when active */
-    }
-    .menu-toggle .bar {
-      width: 25px;
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: all 0.3s ease-in-out;
-    }
+  /* Vocabulary section */
+  section.vocab {
+    margin-top: 2.5rem;
+  }
+  section.vocab h2 {
+    margin-bottom: 1rem;
+  }
+  section.vocab dl {
+    margin: 0;
+    padding: 0;
+  }
+  dt {
+    font-weight: 700;
+    color: #3498db;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  dd {
+    margin-left: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-style: normal;
+  }
+  dd.example {
+    font-style: italic;
+    color: #555;
+    margin-left: 1.5rem;
+    margin-top: -0.4rem;
+  }
 
-    /* --- TITLE --- */
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin: 2rem auto 1rem; /* Center with auto margins */
-      padding: 0 1rem; /* Add padding for smaller screens */
-      max-width: 900px; /* Limit width for readability */
-      color: #2c3e50;
-    }
+  /* Comprehension Questions */
+  section.questions {
+    margin-top: 3rem;
+  }
+  section.questions h2 {
+    margin-bottom: 1rem;
+  }
+  section.questions ol {
+    padding-left: 1.2rem;
+  }
+  section.questions li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
 
-    /* --- FLASHCARDS GRID --- */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto 4rem; /* Center and add bottom margin */
-      padding: 2rem 1rem 3rem; /* Default padding for container */
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .block {
-      background: #fff;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: #333;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex; /* Use flex for content alignment within block */
-      flex-direction: column;
-      justify-content: space-between; /* Push h2 up, p down */
-      min-height: 140px; /* Ensures consistent height for blocks */
-    }
-    .block:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-    .block h2 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-      color: #3498db;
-      font-size: 1.5rem; /* Ensure consistent heading size */
-    }
-    .block p {
-      font-size: 1rem;
-      margin: 0;
-      line-height: 1.4;
-      color: #555; /* Slightly softer color for paragraph text */
-    }
-
-    /* --- BACK BUTTON --- */
-    .buttons {
-      text-align: center;
-      margin: 2rem auto; /* Center buttons */
-      max-width: 900px;
-      padding: 0 1rem; /* Add padding for smaller screens */
-    }
-    .buttons a {
-      text-decoration: none;
-      margin: 0 0.5rem;
-      background-color: #3498db;
-      color: #fff;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.2s;
-      display: inline-block; /* Ensure padding works correctly */
-    }
-    .buttons a:hover {
-      background-color: #2980b9;
-    }
-
-    /* --- Media Queries --- */
-
-    /* Tablet Layout (min-width: 601px and max-width: 900px) */
-    @media (min-width: 601px) and (max-width: 900px) {
-      .nav-container {
-        flex-direction: row; /* Logo and links in a row */
-        justify-content: space-between;
-        padding: 0.8rem 1.5rem; /* More padding for tablet nav */
-      }
-      .nav-container .nav-links {
-        gap: 1.2rem; /* Slightly smaller gap than desktop */
-      }
-      .nav-container .site-name {
-        font-size: 1.25rem;
-      }
-      .menu-toggle {
-        display: none; /* Hide hamburger on tablets */
-      }
-      h1 {
-        font-size: 2.2rem;
-        margin: 1.8rem auto 0.8rem;
-        padding: 0 1.5rem;
-      }
-      .container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
-        gap: 1.5rem;
-        padding: 1.5rem; /* Adjust padding for tablet container */
-      }
-      .block {
-        padding: 1.2rem;
-        min-height: 130px; /* Adjust min-height for tablet */
-      }
-      .block h2 {
-        font-size: 1.4rem;
-      }
-      .buttons {
-        padding: 0 1.5rem;
-      }
-    }
-
-    /* Phone Layout (max-width: 600px) */
-    @media (max-width: 600px) {
-      .nav-container {
-        flex-direction: row; /* Keep logo and toggle in a row */
-        justify-content: space-between; /* Push logo left, toggle right */
-        padding: 0.6rem 0.8rem; /* Tighter padding for phones */
-      }
-      .nav-container .logo {
-        margin-bottom: 0; /* No bottom margin on logo */
-      }
-      .nav-container .site-name {
-        font-size: 1.2rem;
-      }
-      /* Hamburger menu specific styles */
-      .menu-toggle {
-        display: flex; /* Show hamburger on phones */
-      }
-      .nav-container .nav-links {
-        position: fixed; /* Position fixed relative to viewport */
-        top: 56px; /* Adjust based on your nav height */
-        right: 0;
-        background: #124076;
-        flex-direction: column; /* Stack links vertically */
-        width: 100%; /* Full width menu */
-        height: calc(100vh - 56px); /* Full height minus nav bar */
-        padding: 1.5rem 1.5rem;
-        gap: 1rem;
-        overflow-y: auto;
-        transform: translateX(100%); /* Start off-screen */
-        transition: transform 0.3s ease-out;
-        z-index: 998; /* Below toggle, above content */
-        align-items: flex-start; /* Align links to the left inside the menu */
-        border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
-      }
-      .nav-container .nav-links.active {
-        transform: translateX(0); /* Slide in */
-      }
-      .nav-container .nav-links a {
-        width: auto; /* Allow links to naturally size */
-        text-align: left; /* Align text to left */
-        padding: 0.5rem 0; /* Add vertical padding */
-      }
-
-      h1 {
-        font-size: 2rem;
-        margin: 1.5rem auto 0.5rem;
-        padding: 0 0.8rem;
-      }
-      .container {
-        grid-template-columns: 1fr; /* Single column for phones */
-        padding: 1rem; /* Adjust padding for phone container */
-        gap: 1rem;
-      }
-      .block {
-        padding: 1rem;
-        min-height: 120px; /* Adjust min-height for phone */
-      }
-      .block h2 {
-        font-size: 1.3rem;
-      }
-      .block p {
-        font-size: 0.95rem;
-      }
-      .buttons {
-        padding: 0 0.8rem;
-      }
-      .buttons a {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-        margin: 0 0.3rem;
-      }
-    }
-  </style>
+  /* Footer nav links */
+  .footer-links {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .footer-links a {
+    margin: 0 1rem;
+    color: #124076;
+    font-weight: 700;
+  }
+  .footer-links a:hover,
+  .footer-links a:focus {
+    text-decoration: underline;
+  }
+</style>
 </head>
 <body>
-  <nav aria-label="Main navigation">
-    <div class="nav-container">
-      <a href="index.html" class="logo" aria-label="ESLnote Home">
-        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
-        <span class="site-name">ESLnote</span>
-      </a>
 
-      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
+<nav role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" />
+      ESLnote
+    </a>
 
-      <div class="nav-links" id="primary-navigation">
-        <a href="index.html">Home</a>
-        <a href="flashcards.html">Flashcards</a>
-        <a href="conversation.html">Conversations</a>
-        <a href="grammar.html">Grammar</a>
-        <a href="reading.html">Reading</a>
-        <a href="practice.html">Practice</a>
-      </div>
+    <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <h1>Learning Flashcards</h1>
-  <main>
-    <div class="container">
-   
-    <h1>Artificial Intelligence: Reshaping Our World</h1>
+<main>
+  <h1>Artificial Intelligence: Reshaping Our World</h1>
 
   <article>
     <p><strong>Artificial Intelligence (AI)</strong> is no longer a concept confined to science fiction; it's a rapidly evolving field that is fundamentally transforming our daily lives and industries worldwide. At its core, AI refers to computer systems designed to perform tasks that typically require human intelligence, such as learning, problem-solving, decision-making, understanding language, and recognizing patterns.</p>
@@ -399,35 +306,34 @@
       <li>Why does the article emphasize the importance of "responsible and ethical development of AI"?</li>
     </ol>
   </section>
-      
-     </div>
-    
- </main>
+
   <div class="footer-links">
-    <a href="../reading.html">← Back to Reading</a>
+    <a href="../flashcards.html">← Back to Flashcards</a>
     <a href="../index.html">🏠 Home</a>
   </div>
+</main>
 
-  <script>
-    // Mobile nav toggle script
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('primary-navigation');
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
 
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+
+  // Close menu when clicking a nav link (mobile)
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
     });
+  });
+</script>
 
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
-  </script>
 </body>
 </html>

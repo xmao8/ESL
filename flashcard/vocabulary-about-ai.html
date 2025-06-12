@@ -13,7 +13,8 @@
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
       text-align: center;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
     }
     nav {
@@ -77,6 +78,9 @@
 
     /* ---- Responsive Nav & Content Block ---- */
     @media (max-width: 600px) { /* Phone styles */
+      body {
+        padding: 0 3vw;
+      }
       .nav-links {
         position: fixed;
         top: 56px;
@@ -101,16 +105,12 @@
       .menu-toggle {
         display: flex;
       }
-      /* Make main content padded for phone */
-      h1,
-      .flashcard,
-      .buttons {
-        margin-left: 1.5vw !important;
-        margin-right: 1.5vw !important;
-      }
     }
 
     @media (min-width: 601px) and (max-width: 900px) { /* Tablet styles */
+      body {
+        padding: 0 4vw;
+      }
       .nav-links {
         position: static;
         flex-direction: row;
@@ -130,15 +130,12 @@
       .nav-container {
         flex-wrap: wrap;
       }
-      h1,
-      .flashcard,
-      .buttons {
-        margin-left: 2vw !important;
-        margin-right: 2vw !important;
-      }
     }
 
     @media (min-width: 901px) {
+      body {
+        padding: 0;
+      }
       .nav-links {
         position: static;
         flex-direction: row;
@@ -165,7 +162,7 @@
       background: white;
       width: 90%;
       max-width: 600px;
-      margin: auto;
+      margin: 2rem auto;
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);

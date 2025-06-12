@@ -1,217 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="/favicon.png" type="image/png">
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Artificial Intelligence: Reshaping Our World - ESLnote</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
 <style>
-  /* Reset & base */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    background: #f4f4f9;
-    color: #2c3e50;
-    line-height: 1.6;
-  }
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  h1, h2 {
-    color: #124076;
-  }
-
-  /* Navbar */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #124076;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    z-index: 1000;
-  }
-  nav .container {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  nav .logo {
-    display: flex;
-    align-items: center;
-    color: #ff9800;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-  }
-  nav .logo img {
-    width: 32px;
-    height: 32px;
-    margin-right: 0.5rem;
-  }
-  nav .nav-links {
-    display: flex;
-    gap: 1.2rem;
-  }
-  nav .nav-links a {
-    color: white;
-    font-weight: 700;
-    transition: color 0.2s ease;
-  }
-  nav .nav-links a:hover,
-  nav .nav-links a:focus {
-    color: #ffbb33;
-    outline: none;
-  }
-
-  /* Mobile nav toggle */
-  nav .menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-  }
-  nav .menu-toggle div {
-    width: 25px;
-    height: 3px;
-    background: white;
-    border-radius: 2px;
-  }
-
-  /* Responsive nav */
-  @media (max-width: 768px) {
-    nav .nav-links {
-      position: fixed;
-      top: 56px;
-      right: 0;
-      background: #124076;
-      flex-direction: column;
-      width: 180px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      border-radius: 0 0 0 8px;
-      padding: 1rem;
-      gap: 1rem;
-      height: calc(100vh - 56px);
-      overflow-y: auto;
+    /* Universal Box-Sizing */
+    * {
+      box-sizing: border-box;
     }
-    nav .nav-links.active {
-      transform: translateX(0);
-    }
-    nav .menu-toggle {
+
+    /* PAGE SETUP */
+    body {
       display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8; /* Consistent background */
+      color: #333; /* Consistent text color */
+      line-height: 1.6;
+      overflow-x: hidden; /* Prevents horizontal scroll from fixed nav on mobile */
     }
-  }
+    main {
+      flex: 1; /* Allows main content to grow and push the footer down */
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    h1, h2 {
+      color: #124076; /* Consistent heading color */
+    }
 
-  /* Page container */
-  main {
-    max-width: 900px;
-    margin: 80px auto 3rem;
-    background: white;
-    padding: 2rem 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
+    /* --- NAVBAR --- */
+    nav {
+      background-color: #124076;
+      width: 100%;
+      padding: 0.8rem 1rem; /* Default padding for nav */
+      /* Removed position: fixed from here, managed by nav-container flex */
+    }
 
-  /* Article styling */
-  article p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-  article strong {
-    color: #124076;
-  }
+    .nav-container { /* Renamed from .container for clarity and consistency */
+      display: flex;
+      justify-content: space-between; /* Logo left, links/toggle right */
+      align-items: center;
+      max-width: 1100px; /* Max width for nav content */
+      margin: 0 auto; /* Center the nav content */
+    }
 
-  /* Vocabulary section */
-  section.vocab {
-    margin-top: 2.5rem;
-  }
-  section.vocab h2 {
-    margin-bottom: 1rem;
-  }
-  section.vocab dl {
-    margin: 0;
-    padding: 0;
-  }
-  dt {
-    font-weight: 700;
-    color: #3498db;
-    margin-top: 1rem;
-    margin-bottom: 0.3rem;
-  }
-  dd {
-    margin-left: 1.2rem;
-    margin-bottom: 0.8rem;
-    font-style: normal;
-  }
-  dd.example {
-    font-style: italic;
-    color: #555;
-    margin-left: 1.5rem;
-    margin-top: -0.4rem;
-  }
+    .nav-container .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none; /* Remove underline from logo link */
+    }
+    .nav-container .logo-img { /* Renamed img to logo-img for consistency */
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-container .site-name { /* Added site-name class for consistency */
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: 700;
+      white-space: nowrap; /* Prevent site name from wrapping */
+    }
 
-  /* Comprehension Questions */
-  section.questions {
-    margin-top: 3rem;
-  }
-  section.questions h2 {
-    margin-bottom: 1rem;
-  }
-  section.questions ol {
-    padding-left: 1.2rem;
-  }
-  section.questions li {
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-  }
+    .nav-container .nav-links {
+      display: flex;
+      gap: 1.5rem; /* Default gap for desktop links */
+    }
+    .nav-container .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    .nav-container .nav-links a:hover,
+    .nav-container .nav-links a:focus { /* Added focus state for accessibility */
+      color: #ffbb33;
+      text-decoration: underline;
+      outline: none; /* Remove default focus outline */
+    }
 
-  /* Footer nav links */
-  .footer-links {
-    text-align: center;
-    margin-top: 3rem;
-  }
-  .footer-links a {
-    margin: 0 1rem;
-    color: #124076;
-    font-weight: 700;
-  }
-  .footer-links a:hover,
-  .footer-links a:focus {
-    text-decoration: underline;
-  }
+    /* Hamburger menu button (hidden by default) */
+    .menu-toggle {
+      display: none; /* Hidden on desktop and tablet */
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1000; /* Ensure it's above the menu when active */
+    }
+    .menu-toggle .bar { /* Renamed 'div' to 'bar' for consistency */
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* --- PAGE CONTENT CONTAINER --- */
+    main {
+      max-width: 900px;
+      margin: 80px auto 3rem; /* Margin to clear fixed nav, center content */
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+    }
+    h1 {
+      text-align: center;
+      margin-top: 0; /* Already handled by main's margin-top */
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem; /* Consistent H1 size */
+    }
+
+    /* Article styling */
+    article p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    article strong {
+      color: #124076;
+    }
+
+    /* Vocabulary section */
+    section.vocab {
+      margin-top: 2.5rem;
+    }
+    section.vocab h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem; /* Consistent H2 size */
+    }
+    section.vocab dl {
+      margin: 0;
+      padding: 0;
+    }
+    dt {
+      font-weight: 700;
+      color: #3498db;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    dd {
+      margin-left: 1.2rem;
+      margin-bottom: 0.8rem;
+      font-style: normal;
+    }
+    dd.example {
+      font-style: italic;
+      color: #555;
+      margin-left: 1.5rem;
+      margin-top: -0.4rem;
+    }
+
+    /* Comprehension Questions */
+    section.questions {
+      margin-top: 3rem;
+    }
+    section.questions h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem; /* Consistent H2 size */
+    }
+    section.questions ol {
+      padding-left: 1.2rem;
+    }
+    section.questions li {
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+
+    /* --- BACK BUTTONS (Footer) --- */
+    .buttons { /* Renamed from .footer-links for consistency */
+      text-align: center;
+      margin: 3rem auto; /* Consistent margin */
+      max-width: 900px;
+      padding: 0 1rem;
+    }
+    .buttons a { /* Renamed from .footer-links a */
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db; /* Consistent button style */
+      color: #fff; /* Consistent button text color */
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+      display: inline-block;
+    }
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+
+    /* --- Media Queries --- */
+
+    /* Tablet Layout (min-width: 601px and max-width: 900px) */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        flex-direction: row; /* Logo and links in a row */
+        justify-content: space-between;
+        padding: 0.8rem 1.5rem; /* More padding for tablet nav */
+      }
+      .nav-container .nav-links {
+        gap: 1.2rem; /* Slightly smaller gap than desktop */
+      }
+      .nav-container .site-name {
+        font-size: 1.25rem;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1 {
+        font-size: 2.2rem;
+        margin: 1.8rem auto 0.8rem;
+        padding: 0 1.5rem;
+      }
+      main {
+        padding: 1.8rem 2rem; /* Adjusted padding for tablet content */
+      }
+      article p,
+      section.questions li {
+        font-size: 1.05rem;
+      }
+      section.vocab h2,
+      section.questions h2 {
+        font-size: 1.6rem;
+      }
+      .buttons {
+        padding: 0 1.5rem;
+      }
+    }
+
+    /* Phone Layout (max-width: 600px) */
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: row; /* Keep logo and toggle in a row */
+        justify-content: space-between; /* Push logo left, toggle right */
+        padding: 0.6rem 0.8rem; /* Tighter padding for phones */
+      }
+      .nav-container .logo {
+        margin-bottom: 0; /* No bottom margin on logo */
+      }
+      .nav-container .site-name {
+        font-size: 1.2rem;
+      }
+      /* Hamburger menu specific styles */
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      .nav-container .nav-links {
+        position: fixed; /* Position fixed relative to viewport */
+        top: 56px; /* Adjust based on your nav height */
+        right: 0;
+        background: #124076;
+        flex-direction: column; /* Stack links vertically */
+        width: 100%; /* Full width menu */
+        height: calc(100vh - 56px); /* Full height minus nav bar */
+        padding: 1.5rem 1.5rem;
+        gap: 1rem;
+        overflow-y: auto;
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 0.3s ease-out;
+        z-index: 998; /* Below toggle, above content */
+        align-items: flex-start; /* Align links to the left inside the menu */
+        border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+      }
+      .nav-container .nav-links.active {
+        transform: translateX(0); /* Slide in */
+      }
+      .nav-container .nav-links a {
+        width: auto; /* Allow links to naturally size */
+        text-align: left; /* Align text to left */
+        padding: 0.5rem 0; /* Add vertical padding */
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin: 1.5rem auto 0.5rem;
+        padding: 0 0.8rem;
+      }
+      main {
+        padding: 1rem; /* Adjusted padding for phone content */
+        margin-top: 70px; /* Adjusted to account for nav height on phone */
+      }
+      article p,
+      section.questions li {
+        font-size: 1rem;
+      }
+      section.vocab h2,
+      section.questions h2 {
+        font-size: 1.5rem;
+      }
+      dt {
+        font-size: 0.95rem;
+      }
+      dd, dd.example {
+        font-size: 0.9rem;
+      }
+      .buttons {
+        padding: 0 0.8rem;
+      }
+      .buttons a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        margin: 0 0.3rem;
+      }
+    }
 </style>
 </head>
 <body>
 
 <nav role="navigation" aria-label="Main navigation">
-  <div class="container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" />
-      ESLnote
+  <div class="nav-container">
+    <a href="index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
     </a>
 
     <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
-      <div></div>
-      <div></div>
-      <div></div>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
     <div class="nav-links" id="primary-navigation">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../practice.html">Practices</a>
+      <a href="index.html">Home</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="conversation.html">Conversations</a>
+      <a href="grammar.html">Grammar</a>
+      <a href="reading.html">Reading</a>
+      <a href="practice.html">Practice</a>
     </div>
   </div>
 </nav>
@@ -307,9 +431,9 @@
     </ol>
   </section>
 
-  <div class="footer-links">
-    <a href="../flashcards.html">← Back to Flashcards</a>
-    <a href="../index.html">🏠 Home</a>
+  <div class="buttons">
+    <a href="reading.html">← Back to Reading</a>
+    <a href="index.html">🏠 Home</a>
   </div>
 </main>
 

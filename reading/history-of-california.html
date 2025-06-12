@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>History of California – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; /* Consistent background */
+            color: #333; /* Consistent text color */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevents horizontal scroll from fixed nav on mobile */
+        }
+        main {
+            flex: 1; /* Allows main content to grow and push the footer down */
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2 {
+            color: #124076; /* Consistent heading color */
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem; /* Default padding for nav */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between; /* Logo left, links/toggle right */
+            align-items: center;
+            max-width: 1100px; /* Max width for nav content */
+            margin: 0 auto; /* Center the nav content */
+            padding: 0;
+        }
+
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* Remove underline from logo link */
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap; /* Prevent site name from wrapping */
+        }
+
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem; /* Default gap for desktop links */
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus { /* Added focus state for accessibility */
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none; /* Remove default focus outline */
+        }
+
+        /* Hamburger menu button (hidden by default) */
+        .menu-toggle {
+            display: none; /* Hidden on desktop and tablet */
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000; /* Ensure it's above the menu when active */
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- PAGE CONTENT CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem; /* Adjusted margin to ensure consistency and responsiveness with other pages */
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem; /* Consistent H1 size */
+            color: #2c3e50; /* Ensure page title has this color */
+            padding: 0; /* Remove internal padding if inherited */
+        }
+
+        /* Article styling */
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        article strong {
+            color: #124076;
+        }
+
+        /* Vocabulary section */
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem; /* Consistent H2 size */
+        }
+        section.vocab dl {
+            margin: 0;
+            padding: 0;
+        }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        dd {
+            margin-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+
+        /* Comprehension Questions */
+        section.questions {
+            margin-top: 3rem;
+        }
+        section.questions h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem; /* Consistent H2 size */
+        }
+        section.questions ol {
+            padding-left: 1.2rem;
+            margin-left: 0; /* Remove default margin */
+        }
+        section.questions li {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- BACK BUTTONS (Footer) --- */
+        .buttons {
+            text-align: center;
+            margin: 3rem auto; /* Consistent margin */
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db; /* Consistent button style */
+            color: #fff; /* Consistent button text color */
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Media Queries --- */
+
+        /* Tablet Layout (min-width: 601px and max-width: 900px) */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row; /* Logo and links in a row */
+                justify-content: space-between;
+                padding: 0.8rem 1.5rem; /* More padding for tablet nav */
+            }
+            .nav-container .nav-links {
+                gap: 1.2rem; /* Slightly smaller gap than desktop */
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            .container {
+                padding: 1.8rem 2rem; /* Adjusted padding for tablet content */
+            }
+            article p,
+            section.questions li {
+                font-size: 1.05rem;
+            }
+            section.vocab h2,
+            section.questions h2 {
+                font-size: 1.6rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Phone Layout (max-width: 600px) */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row; /* Keep logo and toggle in a row */
+                justify-content: space-between; /* Push logo left, toggle right */
+                padding: 0.6rem 0.8rem; /* Tighter padding for phones */
+            }
+            .nav-container .logo {
+                margin-bottom: 0; /* No bottom margin on logo */
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            /* Hamburger menu specific styles */
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            .nav-container .nav-links {
+                position: fixed; /* Position fixed relative to viewport */
+                top: 56px; /* Adjust based on your nav height */
+                right: 0;
+                background: #124076;
+                flex-direction: column; /* Stack links vertically */
+                width: 100%; /* Full width menu */
+                height: calc(100vh - 56px); /* Full height minus nav bar */
+                padding: 1.5rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%); /* Start off-screen */
+                transition: transform 0.3s ease-out;
+                z-index: 998; /* Below toggle, above content */
+                align-items: flex-start; /* Align links to the left inside the menu */
+                border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0); /* Slide in */
+            }
+            .nav-container .nav-links a {
+                width: auto; /* Allow links to naturally size */
+                text-align: left; /* Align text to left */
+                padding: 0.5rem 0; /* Add vertical padding */
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            .container {
+                padding: 1rem;
+                margin-top: 2rem; /* Adjusted to reset margin-top for consistency */
+            }
+            article p,
+            section.questions li {
+                font-size: 1rem;
+            }
+            section.vocab h2,
+            section.questions h2 {
+                font-size: 1.5rem;
+            }
+            dt {
+                font-size: 0.95rem;
+            }
+            dd, dd.example {
+                font-size: 0.9rem;
+            }
+            .buttons {
+                padding: 0 0.8rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin: 0 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>The Golden State: A Brief History of California</h1>
+
+    <article>
+        <p>California, often called the "Golden State," is known today for its innovative technology, beautiful beaches, and vibrant culture. But its rich history is as diverse and dynamic as its landscape. Understanding California's past helps us appreciate its unique character and global influence.</p>
+
+        <p>Before European explorers arrived, California was home to hundreds of thousands of **indigenous** people, living in many different tribes and speaking over 100 languages. These Native Americans had complex societies, rich spiritual traditions, and sustainable ways of life, adapting to California's varied environments, from its long coastline to its vast deserts and high mountains.</p>
+
+        <p>The first Europeans to explore California were the Spanish. Juan Rodríguez Cabrillo was the first to sail along its coast in 1542, but permanent Spanish settlement didn't begin until the late 18th century. Starting in 1769, Spain established a chain of 21 **missions** along the coast, from San Diego to Sonoma. These missions, along with military forts called **presidios** and large land grants for cattle ranches known as **ranchos**, aimed to colonize the land and convert Native Americans to Christianity. This **colonial** period brought significant changes and hardships for the indigenous population, including forced labor and disease.</p>
+
+        <p>In 1821, Mexico gained independence from Spain, and California became part of the new Mexican Republic. During this **Mexican Rule** period, the missions were **secularized**, meaning their lands were given to Mexican citizens (Californios) as large ranchos. This era saw an increase in trade and a growing presence of American settlers.</p>
+
+        <p>However, Mexican rule was short-lived. In 1846, the Mexican-American War began, and by 1848, with the Treaty of Guadalupe Hidalgo, California was **annexed** by the United States. Just days before this treaty was signed, something happened that would forever change California: gold was discovered at Sutter's Mill in January 1848. This discovery triggered the famous **Gold Rush**, attracting hundreds of thousands of **migrants** from around the world who hoped to strike it rich. This massive **boom** in population led to rapid development and, in 1850, California officially became the 31st U.S. state.</p>
+
+        <p>The 20th century was a time of immense growth and **innovation** for California. Agriculture flourished in the Central Valley, making the state a major food producer. The entertainment industry, particularly Hollywood, rose to global prominence. After World War II, the rise of technology and defense industries, especially in what became known as Silicon Valley, transformed the state into a world leader in computers and software. This period also saw significant population growth and increased **diversity**.</p>
+
+        <p>California's history is a story of continuous change, marked by waves of migration, economic transformations, and a constant drive for new ideas. Its ability to adapt and lead in various sectors, from agriculture to technology and culture, reflects its enduring **resilience**. From its ancient indigenous roots to its modern status as a global powerhouse, California has played a **pivotal** role in shaping both American and world history.</p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <dl>
+            <dt>1. Diverse (adj.):</dt>
+            <dd>Including people or things from a range of different types.</dd>
+            <dd class="example">Example: California has a very <strong>diverse</strong> population with people from all over the world.</dd>
+
+            <dt>2. Indigenous (adj.):</dt>
+            <dd>Originating or occurring naturally in a particular place; native.</dd>
+            <dd class="example">Example: The <strong>indigenous</strong> people lived on this land for thousands of years before colonists arrived.</dd>
+
+            <dt>3. Colonial (adj.):</dt>
+            <dd>Relating to a colony or colonialism.</dd>
+            <dd class="example">Example: The <strong>colonial</strong> period in California was marked by Spanish influence.</dd>
+
+            <dt>4. Missions (n.):</dt>
+            <dd>Religious outposts established by Spanish Catholic priests to spread Christianity and expand Spanish territory.</dd>
+            <dd class="example">Example: The old Spanish <strong>missions</strong> are now historic sites you can visit.</dd>
+
+            <dt>5. Presidios (n.):</dt>
+            <dd>Fortified military bases established by the Spanish in colonial America.</dd>
+            <dd class="example">Example: Spanish soldiers lived in the <strong>presidios</strong> to protect the missions.</dd>
+
+            <dt>6. Ranchos (n.):</dt>
+            <dd>Large land grants given by the Spanish and later Mexican governments in California for cattle raising.</dd>
+            <dd class="example">Example: Life on the <strong>ranchos</strong> revolved around cattle and farming.</dd>
+
+            <dt>7. Secularized (v.):</dt>
+            <dd>To change from religious to non-religious ownership or control.</dd>
+            <dd class="example">Example: After Mexico gained independence, the missions were <strong>secularized</strong>, and their lands were redistributed.</dd>
+
+            <dt>8. Annexed (v.):</dt>
+            <dd>To take control of a territory and add it to one's own country, typically by force.</dd>
+            <dd class="example">Example: Texas was <strong>annexed</strong> by the United States in 1845.</dd>
+
+            <dt>9. Boom (n.):</dt>
+            <dd>A period of rapid economic growth or popularity.</dd>
+            <dd class="example">Example: The discovery of oil led to an economic <strong>boom</strong> in the region.</dd>
+
+            <dt>10. Gold Rush (n.):</dt>
+            <dd>A rapid movement of people to a newly discovered goldfield.</dd>
+            <dd class="example">Example: The California <strong>Gold Rush</strong> brought many people to the state in search of fortune.</dd>
+
+            <dt>11. Migrants (n.):</dt>
+            <dd>People who move from one place to another, especially to find work or better living conditions.</dd>
+            <dd class="example">Example: Many <strong>migrants</strong> came to California during the Gold Rush hoping for a new life.</dd>
+
+            <dt>12. Agriculture (n.):</dt>
+            <dd>The practice of farming, including growing crops and raising animals.</dd>
+            <dd class="example">Example: <strong>Agriculture</strong> is very important in the Central Valley of California.</dd>
+
+            <dt>13. Innovation (n.):</dt>
+            <dd>The introduction of new ideas, methods, or devices.</dd>
+            <dd class="example">Example: Silicon Valley is famous for its technological <strong>innovation</strong>.</dd>
+
+            <dt>14. Pivotal (adj.):</dt>
+            <dd>Of crucial importance in relation to the development or success of something else.</dd>
+            <dd class="example">Example: The invention of the internet was a <strong>pivotal</strong> moment in modern history.</dd>
+
+            <dt>15. Resilience (n.):</dt>
+            <dd>The capacity to recover quickly from difficulties; toughness.</dd>
+            <dd class="example">Example: Despite many challenges, the community showed great <strong>resilience</strong>.</dd>
+        </dl>
+    </section>
+
+    <section class="questions" aria-labelledby="questions-title">
+        <h2 id="questions-title">Comprehension Questions</h2>
+        <ol>
+            <li>Before European explorers arrived, what groups of people lived in California?</li>
+            <li>What was the main goal of the Spanish missions established in California?</li>
+            <li>How did California become a part of the United States?</li>
+            <li>What major event in 1848 led to a huge increase in California's population?</li>
+            <li>Besides gold, name at least two major industries or sectors that developed in California during the 20th century.</li>
+            <li>Based on the article, what are some key characteristics that describe California's historical development?</li>
+        </ol>
+    </section>
+
+    <div class="buttons">
+        <a href="reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    // Check if menuToggle and navLinks exist before adding event listeners
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked (useful for single-page apps or when navigating)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

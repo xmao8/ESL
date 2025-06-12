@@ -7,6 +7,11 @@
   <title>Learn English Together</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* Universal Box-Sizing */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f6f8fa;
@@ -16,75 +21,104 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden; /* Prevents horizontal scroll from fixed nav on mobile */
     }
 
-    /* NAVBAR */
-    nav {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      background-color: #124076;
-      padding: 0.8rem 1rem;
+    main {
+      flex: 1; /* Allows main content to grow and push the footer down */
     }
-    nav .logo {
-      grid-column: 1;
-      position: absolute;
-      left: 1rem;
+
+    /* --- NAVBAR --- */
+    nav {
+      background-color: #124076;
+      width: 100%;
+      padding: 0.8rem 1rem; /* Default padding for nav */
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between; /* Logo left, links/toggle right */
+      align-items: center;
+      max-width: 1100px; /* Max width for nav content */
+      margin: 0 auto; /* Center the nav content */
+    }
+
+    .nav-container .logo {
       display: flex;
       align-items: center;
+      text-decoration: none; /* Remove underline from logo link */
     }
-    nav .logo-img {
+    .nav-container .logo-img {
       width: 32px;
       height: 32px;
       margin-right: 0.5rem;
     }
-    nav .site-name {
+    .nav-container .site-name {
       font-family: 'Poppins', sans-serif;
       font-size: 1.3rem;
       color: #ff9800;
       font-weight: 700;
+      white-space: nowrap; /* Prevent site name from wrapping */
     }
-    nav .nav-links {
-      grid-column: 2;
+
+    .nav-container .nav-links {
       display: flex;
-      gap: 0.8rem;
+      gap: 1.5rem; /* Default gap for desktop links */
     }
-    nav .nav-links a {
+    .nav-container .nav-links a {
       color: white;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
     }
-    nav .nav-links a:hover {
+    .nav-container .nav-links a:hover,
+    .nav-container .nav-links a:focus { /* Added focus state for accessibility */
       color: #ffbb33;
       text-decoration: underline;
+      outline: none; /* Remove default focus outline */
     }
 
+    /* Hamburger menu button (hidden by default) */
+    .menu-toggle {
+      display: none; /* Hidden on desktop and tablet */
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1000; /* Ensure it's above the menu when active */
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* --- Homepage Title --- */
     .homepage-title {
       font-family: 'Poppins', sans-serif;
       font-size: 3.2rem;
       text-align: center;
-      margin: 2rem 0;
+      margin: 2rem auto; /* Center with auto margins */
+      padding: 0 1rem; /* Add padding for smaller screens */
+      max-width: 900px; /* Limit width for readability */
       background: linear-gradient(to right, #2073c7, #ff9800);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 1px 1px 2px rgba(32, 115, 199, 0.10);
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
+    /* --- Main Content Container --- */
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       max-width: 1000px;
-      margin: 0 auto 4rem;
-      padding: 0 1rem;
+      margin: 0 auto 4rem; /* Center and add bottom margin */
+      padding: 0 1rem; /* Add padding for smaller screens */
       width: 100%;
     }
 
@@ -94,8 +128,10 @@
       box-shadow: 0 4px 12px rgba(18, 64, 118, 0.08);
       transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none;
-      display: block;
-      min-height: 120px;
+      display: flex; /* Use flex for content alignment within block */
+      flex-direction: column;
+      justify-content: space-between; /* Push h2 up, p down */
+      min-height: 140px; /* Increased min-height for better balance */
       color: white;
     }
     .block:hover:not(.blank-block) {
@@ -110,91 +146,161 @@
     .practices { background: linear-gradient(135deg, #bbdefb 0%, #2073c7 100%); }
     .blank-block {
       background: linear-gradient(135deg, #e3eaf5 0%, #bbdefb 100%);
-      pointer-events: none;
-      user-select: none;
+      pointer-events: none; /* Make it non-clickable */
+      user-select: none; /* Prevent text selection */
       box-shadow: 0 4px 12px rgba(18, 64, 118, 0.04);
     }
 
-    .block h2 { margin-bottom: 1rem; }
-    .block p { font-size: 1rem; margin: 0; }
+    .block h2 {
+      margin-top: 0; /* Remove default top margin */
+      margin-bottom: 0.5rem; /* Adjust space below heading */
+      font-size: 1.5rem; /* Ensure consistent heading size */
+    }
+    .block p {
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.4; /* Improve readability */
+    }
 
-    /* TABLET */
-    @media (max-width: 768px) {
-      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0.6rem 1rem;
+    /* --- Footer --- */
+    footer {
+      background: #124076;
+      color: #fff;
+      text-align: center;
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+      margin-top: auto; /* Pushes footer to the bottom */
+    }
+
+    /* --- Media Queries --- */
+
+    /* Tablet Layout (min-width: 601px and max-width: 900px) */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        flex-direction: row; /* Logo and links in a row */
+        justify-content: space-between;
+        padding: 0.8rem 1.5rem; /* More padding for tablet nav */
       }
-      nav .logo {
-        position: static;
-        margin-bottom: 0.5rem;
+      .nav-container .nav-links {
+        gap: 1.2rem; /* Slightly smaller gap than desktop */
       }
-      nav .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.8rem;
-        margin-top: 0.5rem;
+      .nav-container .site-name {
+        font-size: 1.25rem;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      .homepage-title {
+        font-size: 2.8rem;
+        margin: 1.8rem auto;
+        padding: 0 1.5rem;
       }
       .container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
         gap: 1.5rem;
-        padding: 0 1rem;
+        padding: 0 1.5rem; /* More padding for tablet container */
+      }
+      .block {
+        padding: 1.2rem;
+        min-height: 130px; /* Adjust min-height for tablet */
+      }
+      .block h2 {
+        font-size: 1.4rem;
       }
     }
 
-    /* PHONE */
+    /* Phone Layout (max-width: 600px) */
     @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: row; /* Keep logo and toggle in a row */
+        justify-content: space-between; /* Push logo left, toggle right */
+        padding: 0.6rem 0.8rem; /* Tighter padding for phones */
+      }
+      .nav-container .logo {
+        margin-bottom: 0; /* No bottom margin on logo */
+      }
+      .nav-container .site-name {
+        font-size: 1.2rem;
+      }
+      /* Hamburger menu specific styles */
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      .nav-container .nav-links {
+        position: fixed; /* Position fixed relative to viewport */
+        top: 56px; /* Adjust based on your nav height */
+        right: 0;
+        background: #124076;
+        flex-direction: column; /* Stack links vertically */
+        width: 100%; /* Full width menu */
+        height: calc(100vh - 56px); /* Full height minus nav bar */
+        padding: 1.5rem 1.5rem;
+        gap: 1rem;
+        overflow-y: auto;
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 0.3s ease-out;
+        z-index: 998; /* Below toggle, above content */
+        align-items: flex-start; /* Align links to the left inside the menu */
+        border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+      }
+      .nav-container .nav-links.active {
+        transform: translateX(0); /* Slide in */
+      }
+      .nav-container .nav-links a {
+        width: auto; /* Allow links to naturally size */
+        text-align: left; /* Align text to left */
+        padding: 0.5rem 0; /* Add vertical padding */
+      }
+
       .homepage-title {
-        font-size: 2rem;
-        margin: 1.5rem 0;
-      }
-      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0.5rem 1rem;
-      }
-      nav .logo {
-        position: static;
-        margin-bottom: 0.5rem;
-      }
-      nav .nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        width: 100%;
-      }
-      nav .nav-links a {
-        width: 100%;
-        text-align: center;
-        font-size: 0.95rem;
+        font-size: 2.2rem;
+        margin: 1.5rem auto;
+        padding: 0 0.8rem;
       }
       .container {
-        grid-template-columns: 1fr;
-        padding: 0 0.5rem;
+        grid-template-columns: 1fr; /* Single column for phones */
+        padding: 0 0.8rem; /* Tighter padding for phone container */
         gap: 1rem;
       }
       .block {
         padding: 1rem;
+        min-height: 120px; /* Adjust min-height for phone */
+      }
+      .block h2 {
+        font-size: 1.3rem;
+      }
+      .block p {
+        font-size: 0.95rem;
+      }
+      footer {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
   <nav aria-label="Main navigation">
-    <div class="logo">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
-      <span class="site-name">ESLnote</span>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="flashcards.html">Flashcards</a>
-      <a href="conversation.html">Conversations</a>
-      <a href="grammar.html">Grammar</a>
-      <a href="reading.html">Reading</a>
-      <a href="practice.html">Practices</a>
+    <div class="nav-container">
+      <a href="index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <div class="nav-links" id="primary-navigation">
+        <a href="index.html">Home</a>
+        <a href="flashcards.html">Flashcards</a>
+        <a href="conversation.html">Conversations</a>
+        <a href="grammar.html">Grammar</a>
+        <a href="reading.html">Reading</a>
+        <a href="practice.html">Practices</a>
+      </div>
     </div>
   </nav>
 
@@ -222,12 +328,37 @@
         <h2>Practices</h2>
         <p>Interactive grammar and vocabulary exercises to boost your English skills.</p>
       </a>
-      <div class="block blank-block" aria-label="Coming Soon"></div>
+      <div class="block blank-block" aria-label="Coming Soon">
+        <h2>Coming Soon</h2>
+        <p>More exciting content is on the way!</p>
+      </div>
     </div>
   </main>
 
-  <footer style="background:#124076; color:#fff; text-align:center; padding:0.6rem 0; font-size:0.95rem;">
+  <footer>
     &copy; 2025 ESLnote.com. All rights reserved.
   </footer>
+
+  <script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

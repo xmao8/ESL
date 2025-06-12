@@ -6,19 +6,20 @@
   <title>Flashcards – AI Vocabulary</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
       text-align: center;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
     nav {
       background: #124076;
-      width: 100vw;
-      min-width: 0;
+      /* Remove width: 100vw; and min-width: 0; - nav is block and takes 100% naturally */
       margin: 0;
       padding: 0;
     }
@@ -27,8 +28,9 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      margin: 0;
-      padding: 0;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
       box-sizing: border-box;
     }
     .logo {
@@ -78,18 +80,18 @@
     }
 
     /* Responsive Nav & Content Block */
-    @media (max-width: 600px) {
-      body {
-        padding: 0 3vw;
+    @media (max-width: 900px) { /* Combined mobile and tablet into one for simplicity initially */
+      .nav-container {
+        padding: 0.8rem 1rem; /* Ensure consistent padding on smaller screens */
       }
       .nav-links {
         position: fixed;
-        top: 56px;
+        top: 56px; /* Adjust if your nav height is different */
         right: 0;
         background: #124076;
         flex-direction: column;
-        width: 100vw;
-        height: calc(100vh - 56px);
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
         padding: 1rem 1.5rem 2rem 1.5rem;
         gap: 1.2rem;
         overflow-y: auto;
@@ -106,40 +108,19 @@
       .menu-toggle {
         display: flex;
       }
-    }
-    @media (min-width: 601px) and (max-width: 900px) {
-      body {
-        padding: 0 4vw;
-      }
-      .nav-links {
-        position: static;
-        flex-direction: row;
-        background: none;
-        height: auto;
-        width: auto;
-        padding: 0;
-        gap: 1.3rem;
-        transform: none !important;
-        border-radius: 0;
-        align-items: center;
-        overflow: visible;
-      }
-      .menu-toggle {
-        display: none;
-      }
-      .nav-container {
-        flex-wrap: wrap;
+      /* Ensure main content has padding on smaller screens */
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
       }
     }
+
     @media (min-width: 901px) {
-      body {
-        padding: 0;
-      }
+      /* Reset specific styles for larger screens if necessary */
       .nav-container {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 0.8rem 1rem;
-        width: 100%;
+        padding: 0.8rem 1rem; /* Consistent padding */
       }
       .nav-links {
         position: static;
@@ -157,11 +138,19 @@
       .menu-toggle {
         display: none;
       }
+      /* Remove any specific padding on body that might conflict */
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
     }
 
     h1 {
-      margin: 2rem 0;
+      margin: 2rem auto; /* Center h1 on smaller screens too */
       color: #2c3e50;
+      max-width: 600px; /* Constrain width for better readability */
     }
     .flashcard {
       background: white;
@@ -195,6 +184,9 @@
       font-size: 1.4rem;
       color: #666;
     }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0; /* Adjust IPA color when flipped */
+    }
     .definition {
       margin: 1rem 0 0.5rem 0;
       font-size: 1.1rem;
@@ -220,6 +212,7 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
+      max-width: 600px; /* Constrain button width */
     }
     button, .buttons a {
       padding: 0.6rem 1.2rem;
@@ -268,6 +261,7 @@
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
   <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div> <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">

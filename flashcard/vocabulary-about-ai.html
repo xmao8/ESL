@@ -19,7 +19,6 @@
     }
     nav {
       background: #124076;
-      /* Remove width: 100vw; and min-width: 0; - nav is block and takes 100% naturally */
       margin: 0;
       padding: 0;
     }
@@ -79,11 +78,8 @@
       border-radius: 2px;
     }
 
-    /* Responsive Nav & Content Block */
-    @media (max-width: 900px) { /* Combined mobile and tablet into one for simplicity initially */
-      .nav-container {
-        padding: 0.8rem 1rem; /* Ensure consistent padding on smaller screens */
-      }
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
       .nav-links {
         position: fixed;
         top: 56px; /* Adjust if your nav height is different */
@@ -106,21 +102,47 @@
         transform: translateX(0);
       }
       .menu-toggle {
-        display: flex;
+        display: flex; /* Show hamburger on phones */
       }
-      /* Ensure main content has padding on smaller screens */
       h1, .flashcard, .buttons {
         padding: 0 1rem; /* Add horizontal padding to main content */
         box-sizing: border-box;
       }
     }
 
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
     @media (min-width: 901px) {
-      /* Reset specific styles for larger screens if necessary */
       .nav-container {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 0.8rem 1rem; /* Consistent padding */
+        padding: 0.8rem 1rem;
       }
       .nav-links {
         position: static;
@@ -136,9 +158,8 @@
         overflow: visible;
       }
       .menu-toggle {
-        display: none;
+        display: none; /* Hide hamburger on desktop */
       }
-      /* Remove any specific padding on body that might conflict */
       body {
         padding: 0;
       }
@@ -148,9 +169,9 @@
     }
 
     h1 {
-      margin: 2rem auto; /* Center h1 on smaller screens too */
+      margin: 2rem auto;
       color: #2c3e50;
-      max-width: 600px; /* Constrain width for better readability */
+      max-width: 600px;
     }
     .flashcard {
       background: white;
@@ -185,7 +206,7 @@
       color: #666;
     }
     .flashcard.flipped .ipa {
-      color: #e0e0e0; /* Adjust IPA color when flipped */
+      color: #e0e0e0;
     }
     .definition {
       margin: 1rem 0 0.5rem 0;
@@ -212,7 +233,7 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
-      max-width: 600px; /* Constrain button width */
+      max-width: 600px;
     }
     button, .buttons a {
       padding: 0.6rem 1.2rem;
@@ -261,7 +282,8 @@
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
   <div class="word">Click to Flip</div>
-  <div class="ipa" style="color: #666;"></div> <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">

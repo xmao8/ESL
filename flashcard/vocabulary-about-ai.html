@@ -6,11 +6,15 @@
   <title>Flashcards – AI Vocabulary</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
       text-align: center;
       margin: 0; padding: 0;
+      overflow-x: hidden;
     }
     nav {
       background: #124076;
@@ -22,6 +26,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      box-sizing: border-box;
     }
     .logo {
       display: flex;
@@ -70,29 +75,85 @@
       border-radius: 2px;
     }
 
-    /* Responsive nav */
-    @media (max-width: 768px) {
+    /* ---- Responsive Nav & Content Block ---- */
+    @media (max-width: 600px) { /* Phone styles */
       .nav-links {
         position: fixed;
         top: 56px;
         right: 0;
         background: #124076;
         flex-direction: column;
-        width: 180px;
+        width: 100vw;
         height: calc(100vh - 56px);
-        padding: 1rem;
-        gap: 1rem;
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
         overflow-y: auto;
         transform: translateX(100%);
         transition: transform 0.3s ease;
-        border-radius: 0 0 0 8px;
+        border-radius: 0 0 0 10px;
         z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
       }
       .nav-links.active {
         transform: translateX(0);
       }
       .menu-toggle {
         display: flex;
+      }
+      /* Make main content padded for phone */
+      h1,
+      .flashcard,
+      .buttons {
+        margin-left: 1.5vw !important;
+        margin-right: 1.5vw !important;
+      }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) { /* Tablet styles */
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+      h1,
+      .flashcard,
+      .buttons {
+        margin-left: 2vw !important;
+        margin-right: 2vw !important;
+      }
+    }
+
+    @media (min-width: 901px) {
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none;
       }
     }
 

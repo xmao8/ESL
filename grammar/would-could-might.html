@@ -1,446 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Would, Could, &amp; Might – Grammar Essentials</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <style>
-    /* Base layout */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
-      color: #333;
-    }
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: auto;
-      padding: 1rem; /* Base padding for larger screens */
-    }
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Would, Could, &amp; Might – Grammar Essentials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Base layout */
+        * {
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll issues */
+        }
+        main {
+            flex: 1; /* Allows main content to grow and push the footer down */
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem; /* Base padding for larger screens */
+        }
 
-    /* NAVBAR */
-    nav {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #124076;
-      padding: 0.8rem 1rem;
-      flex-wrap: nowrap;
-    }
-    nav .logo {
-      position: absolute;
-      left: 1rem;
-      display: flex;
-      align-items: center;
-    }
-    nav .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
-    nav .site-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.3rem;
-      color: #ff9800;
-      font-weight: bold;
-    }
-    nav .nav-links {
-      display: flex;
-      gap: 1rem;
-    }
-    nav .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    nav .nav-links a:hover {
-      color: #ffbb33;
-      text-decoration: underline;
-    }
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%; /* Ensure nav takes full width */
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between; /* Puts logo on left, links on right by default */
+            align-items: center;
+            max-width: 1100px; /* Max width for desktop nav content */
+            margin: 0 auto; /* Center the nav content */
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap; /* Prevent site name from wrapping */
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem; /* Larger gap for desktop */
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
 
-    /* Page title */
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin: 2rem 0 0.5rem;
-      color: #2c3e50;
-    }
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none; /* Hidden on desktop and tablet */
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000; /* Ensure it's above the menu when active */
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
 
-    /* Headings */
-    h2 {
-      color: #124076;
-      margin-top: 1.5rem;
-    }
-    h3 {
-      margin: 1rem 0 0.5rem;
-      font-style: italic;
-    }
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
 
-    /* Text and lists */
-    p {
-      line-height: 1.5;
-      margin: 0.5rem 0;
-    }
-    ul, ol {
-      margin: 0.5rem 0 1rem 1.5rem;
-    }
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
 
-    /* Table - Base styles (for desktop and potentially tablet if content is wide) */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      /* Allows horizontal scrolling for wide tables */
-      display: block; /* Make table behave like a block element */
-      overflow-x: auto; /* Enable horizontal scrolling when content overflows */
-      -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
-      white-space: normal; /* Allow text to wrap within cells by default */
-    }
-    table th, table td {
-      border: 1px solid #ddd;
-      padding: 0.5rem;
-      text-align: left;
-      box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    }
-    table th {
-      background-color: #124076;
-      color: white;
-    }
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0; /* Remove default padding for lists */
+        }
+        ul li, ol li {
+            margin-bottom: 0.3rem;
+        }
 
-    /* Back button */
-    .buttons {
-      text-align: center;
-      margin: 2rem 0;
-    }
-    .buttons a {
-      text-decoration: none;
-      background-color: #3498db;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.2s;
-    }
-    .buttons a:hover {
-      background-color: #2980b9;
-    }
+        /* Table - Base styles (for desktop and potentially tablet if content is wide) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            /* Allows horizontal scrolling for wide tables */
+            display: block; /* Make table behave like a block element */
+            overflow-x: auto; /* Enable horizontal scrolling when content overflows */
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+            white-space: normal; /* Allow text to wrap within cells by default */
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        table th {
+            background-color: #124076;
+            color: white;
+        }
 
-    /* Tablet adjustments (max-width: 768px) */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        padding: 0.6rem 1rem;
-        justify-content: space-between;
-      }
-      nav .logo {
-        position: static;
-        margin-bottom: 0.5rem;
-      }
-      nav .nav-links {
-        width: 100%;
-        justify-content: center;
-        margin-top: 0.5rem;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-      main {
-        padding: 0.8rem; /* Slightly reduce padding on main content for tablets */
-      }
-      h1 {
-        font-size: 2.2rem; /* Slightly reduce heading size */
-        margin: 1.8rem 0 0.5rem;
-      }
-      h2 {
-        font-size: 1.6rem; /* Adjust h2 for tablets */
-      }
-      h3 {
-        font-size: 1.3rem; /* Adjust h3 for tablets */
-      }
-      p, ul, ol {
-        font-size: 1rem; /* Ensure standard font size for text */
-      }
-      /* Table styles for tablets will inherit from base unless specified */
-      /* If you want different table display for tablets, add rules here */
-    }
+        /* Back button */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
 
-    /* Phone adjustments (max-width: 600px) */
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        padding: 0.5rem 0.5rem;
-      }
-      nav .logo {
-        margin-bottom: 0.5rem;
-        justify-content: center;
-        width: 100%;
-      }
-      nav .site-name {
-        font-size: 1.1rem;
-      }
-      nav .nav-links {
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      nav .nav-links a {
-        padding: 0.3rem 0.5rem;
-      }
-      h1 {
-        font-size: 1.8rem; /* Further reduce heading size for phones */
-        margin: 1rem 0 0.5rem;
-      }
-      h2 {
-        font-size: 1.3rem; /* Adjust h2 for phones */
-      }
-      h3 {
-        font-size: 1.1rem; /* Adjust h3 for phones */
-      }
-      p, ul, ol {
-        font-size: 0.95rem; /* Slightly reduce font size for body text and lists */
-      }
-      main {
-        padding: 0.5rem; /* Minimal padding on main content for small screens */
-      }
-      /* Buttons */
-      .buttons a {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-      }
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row; /* Keep logo and links in a row */
+                justify-content: space-between; /* Space between logo and links */
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0; /* No margin below logo */
+            }
+            .nav-container .nav-links {
+                flex-wrap: wrap; /* Allow links to wrap */
+                justify-content: flex-end; /* Align links to the right */
+                gap: 1rem; /* Adjust gap for tablets */
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
 
-      /* Mobile-specific table styles: Make rows stack as cards */
-      table {
-          width: 100%; /* Ensure table takes full width of its container */
-          border-collapse: collapse; /* Keep collapse for internal borders on desktop */
-          margin: 1rem 0;
-          display: block; /* Make table behave like a block element on mobile */
-          overflow-x: hidden; /* Hide horizontal scroll on mobile when stacked */
-      }
-      table thead, table tbody, table tr {
-          display: block; /* Make table elements behave like blocks on mobile */
-      }
-      table thead {
-          display: none; /* Hide table headers on small screens when rows are stacked */
-      }
-      table tr {
-          margin-bottom: 1rem; /* Add space between rows when stacked */
-          border: 1px solid #ddd; /* Add a border around each "row" to distinguish them */
-          display: flex; /* Use flexbox for vertical layout of cells within a row */
-          flex-direction: column;
-          padding: 0.5rem;
-      }
-      table td {
-          border: none; /* Remove individual cell borders on mobile */
-          position: relative;
-          padding-left: 50%; /* Make space for the "label" (pseudo-element) */
-          text-align: right;
-          white-space: normal; /* Allow text to wrap within cells */
-          box-sizing: border-box; /* Include padding and border in the element's total width and height */
-      }
-      table td::before {
-          /* Create a pseudo-element for the "header" of each cell */
-          content: attr(data-label); /* Get the content from the data-label attribute */
-          position: absolute;
-          left: 0.5rem;
-          width: 45%;
-          padding-right: 10px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font-weight: bold;
-          text-align: left;
-          color: #124076;
-      }
-    }
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            main {
+                padding: 1.5rem; /* Adjust padding for tablet main content */
+            }
+            h2 {
+                font-size: 1.6rem; /* Adjust h2 for tablets */
+            }
+            h3 {
+                font-size: 1.3rem; /* Adjust h3 for tablets */
+            }
+            p, ul, ol {
+                font-size: 1rem; /* Ensure standard font size for text */
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
 
-    /* Extra small phone adjustments (optional, for very narrow screens) */
-    @media (max-width: 380px) {
-      nav .nav-links a {
-        font-size: 0.8rem;
-        padding: 0.2rem 0.4rem;
-      }
-      h1 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row; /* Keep logo and toggle in a row */
+                justify-content: space-between; /* Push logo left, toggle right */
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .nav-container .nav-links {
+                position: fixed; /* Position fixed relative to viewport */
+                top: 56px; /* Adjust based on your nav height */
+                right: 0;
+                background: #124076;
+                flex-direction: column; /* Stack links vertically */
+                width: 100%; /* Full width menu */
+                height: calc(100vh - 56px); /* Full height minus nav bar */
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%); /* Start off-screen */
+                transition: transform 0.3s ease;
+                z-index: 998; /* Below toggle, above content */
+                align-items: flex-start; /* Align links to the left inside the menu */
+                border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0); /* Slide in */
+            }
+            .nav-container .nav-links a {
+                width: auto; /* Allow links to naturally size */
+                text-align: left; /* Align text to left */
+                padding: 0.5rem 0; /* Add vertical padding */
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+
+            h1 {
+                font-size: 1.8rem; /* Further reduce heading size for phones */
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            main {
+                padding: 0.8rem; /* Minimal padding on main content for small screens */
+            }
+            h2 {
+                font-size: 1.3rem; /* Adjust h2 for phones */
+            }
+            h3 {
+                font-size: 1.1rem; /* Adjust h3 for phones */
+            }
+            p, ul, ol {
+                font-size: 0.95rem; /* Slightly reduce font size for body text and lists */
+            }
+            /* Buttons */
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Mobile-specific table styles: Make rows stack as cards */
+            table {
+                width: 100%; /* Ensure table takes full width of its container */
+                border-collapse: collapse; /* Keep collapse for internal borders on desktop */
+                margin: 1rem 0;
+                display: block; /* Make table behave like a block element on mobile */
+                overflow-x: hidden; /* Hide horizontal scroll on mobile when stacked */
+            }
+            table thead, table tbody, table tr {
+                display: block; /* Make table elements behave like blocks on mobile */
+            }
+            table thead {
+                display: none; /* Hide table headers on small screens when rows are stacked */
+            }
+            table tr {
+                margin-bottom: 1rem; /* Add space between rows when stacked */
+                border: 1px solid #ddd; /* Add a border around each "row" to distinguish them */
+                display: flex; /* Use flexbox for vertical layout of cells within a row */
+                flex-direction: column;
+                padding: 0.5rem;
+            }
+            table td {
+                border: none; /* Remove individual cell borders on mobile */
+                position: relative;
+                padding-left: 50%; /* Make space for the "label" (pseudo-element) */
+                text-align: right;
+                white-space: normal; /* Allow text to wrap within cells */
+                box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            }
+            table td::before {
+                /* Create a pseudo-element for the "header" of each cell */
+                content: attr(data-label); /* Get the content from the data-label attribute */
+                position: absolute;
+                left: 0.5rem;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: bold;
+                text-align: left;
+                color: #124076;
+            }
+        }
+
+        /* Extra small phone adjustments (optional, for very narrow screens) */
+        @media (max-width: 380px) {
+            .nav-container .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <nav aria-label="Main navigation">
-    <div class="logo">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
-      <span class="site-name">ESLnote</span>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Would, Could, &amp; Might</h1>
+
+    <main>
+        <p><strong>"Would," "could," and "might"</strong> are all modal verbs that can express possibility, but they do so with different nuances regarding **certainty, conditionality, and politeness.** Understanding these differences is key to using them accurately.</p>
+
+        <p>Here's a breakdown of their primary distinctions:</p>
+
+        <h2>1. Would</h2>
+        <p><em>"Would"</em> is primarily associated with **hypothetical or conditional situations, willingness, and polite requests.** It often implies a greater degree of certainty _if_ the condition is met, or it refers to something that is imagined.</p>
+        <ul>
+            <li><strong>Hypothetical / Conditional:</strong> central to second and third conditional sentences.
+                <ul>
+                    <li><em>If I won the lottery, I **would** travel the world.</em></li>
+                    <li><em>If he had studied harder, he **would** have passed the exam.</em></li>
+                </ul>
+            </li>
+            <li><strong>Willingness / Offers:</strong>
+                <ul>
+                    <li><em>I **would** be happy to help you with that.</em></li>
+                    <li><em>He **would** never lie to you.</em></li>
+                </ul>
+            </li>
+            <li><strong>Polite Requests:</strong>
+                <ul>
+                    <li><em>**Would** you please pass the salt?</em></li>
+                </ul>
+            </li>
+            <li><strong>Habitual Past (less common):</strong>
+                <ul>
+                    <li><em>Every summer, we **would** go to the beach.</em></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>2. Could</h2>
+        <p><em>"Could"</em> primarily expresses **ability, possibility, and polite permission/suggestions.** When used for possibility, it often implies a _general_ or _less certain_ potential.</p>
+        <ul>
+            <li><strong>Ability (Past of "Can"):</strong>
+                <ul>
+                    <li><em>When I was younger, I **could** run much faster.</em></li>
+                </ul>
+            </li>
+            <li><strong>Possibility (General/Less Certain):</strong>
+                <ul>
+                    <li><em>It **could** rain later.</em></li>
+                    <li><em>We **could** go to the park, or we **could** stay home.</em></li>
+                </ul>
+            </li>
+            <li><strong>Polite Permission / Requests / Suggestions:</strong>
+                <ul>
+                    <li><em>**Could** I borrow your book?</em></li>
+                    <li><em>You **could** try calling him.</em></li>
+                </ul>
+            </li>
+            <li><strong>Unrealized Past Possibility:</strong>
+                <ul>
+                    <li><em>I **could have** gone to the party, but I was too tired.</em></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>3. Might</h2>
+        <p><em>"Might"</em> is generally used to express a **weaker or more remote possibility/speculation.** It often conveys a sense of uncertainty.</p>
+        <ul>
+            <li><strong>Weaker Possibility / Speculation:</strong>
+                <ul>
+                    <li><em>I **might** go to the gym later, but I haven't decided yet.</em></li>
+                    <li><em>The company **might** make a profit this quarter.</em></li>
+                </ul>
+            </li>
+            <li><strong>Polite Suggestions (less common):</strong>
+                <ul>
+                    <li><em>You **might** want to consider his advice.</em></li>
+                </ul>
+            </li>
+            <li><strong>Past Possibility (Might have):</strong>
+                <ul>
+                    <li><em>She **might have** left her keys in the car.</em></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Key Differences Summarized</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Would</th>
+                    <th>Could</th>
+                    <th>Might</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Feature">Main Focus</td>
+                    <td data-label="Would">Hypothetical results, willingness, polite requests, past habits</td>
+                    <td data-label="Could">Ability, general possibility, polite requests/suggestions</td>
+                    <td data-label="Might">Weaker/remote possibility, speculation</td>
+                </tr>
+                <tr>
+                    <td data-label="Feature">Certainty</td>
+                    <td data-label="Would">Higher if condition met</td>
+                    <td data-label="Could">General possibility</td>
+                    <td data-label="Might">Lower, more tentative</td>
+                </tr>
+                <tr>
+                    <td data-label="Feature">Conditionality</td>
+                    <td data-label="Would">Tied to if-clauses</td>
+                    <td data-label="Could">Can be conditional or general</td>
+                    <td data-label="Might">Often speculation without if</td>
+                </tr>
+                <tr>
+                    <td data-label="Feature">Politeness</td>
+                    <td data-label="Would">Very polite for requests/offers</td>
+                    <td data-label="Could">Polite for requests/suggestions</td>
+                    <td data-label="Might">Very gentle suggestions</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Examples to Illustrate the Nuances</h2>
+        <ol>
+            <li>
+                <strong>Possibility:</strong>
+                <ul>
+                    <li><em>It **could** rain tomorrow.</em></li>
+                    <li><em>It **might** rain tomorrow.</em></li>
+                    <li><em>If the sky looks like that, it **would** rain.</em></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Suggestions:</strong>
+                <ul>
+                    <li><em>You **could** try calling him.</em></li>
+                    <li><em>You **might** try calling him.</em></li>
+                    <li><em>If I were you, I **would** call him.</em></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Hypotheticals:</strong>
+                <ul>
+                    <li><em>If I had time, I **would** visit.</em></li>
+                    <li><em>If I had time, I **could** visit.</em></li>
+                    <li><em>If I had time, I **might** visit.</em></li>
+                </ul>
+            </li>
+        </ol>
+    </main>
+
+    <div class="buttons">
+        <a href="index.html">🏠 Back to Home</a>
     </div>
-    <div class="nav-links">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../practice.html">Practices</a>
-    </div>
-  </nav>
 
-  <h1>Would, Could, &amp; Might</h1>
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
 
-  <main>
-    <p><strong>"Would," "could," and "might"</strong> are all modal verbs that can express possibility, but they do so with different nuances regarding <strong>certainty, conditionality, and politeness.</strong> Understanding these differences is key to using them accurately.</p>
+        // Check if menuToggle and navLinks exist before adding event listeners
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
 
-    <p>Here's a breakdown of their primary distinctions:</p>
-
-    <h2>1. Would</h2>
-    <p><em>"Would"</em> is primarily associated with <strong>hypothetical or conditional situations, willingness, and polite requests.</strong> It often implies a greater degree of certainty <em>if</em> the condition is met, or it refers to something that is imagined.</p>
-    <ul>
-      <li><strong>Hypothetical / Conditional:</strong> central to second and third conditional sentences.
-        <ul>
-          <li><em>If I won the lottery, I <strong>would</strong> travel the world.</em></li>
-          <li><em>If he had studied harder, he <strong>would</strong> have passed the exam.</em></li>
-        </ul>
-      </li>
-      <li><strong>Willingness / Offers:</strong>
-        <ul>
-          <li><em>I <strong>would</strong> be happy to help you with that.</em></li>
-          <li><em>He <strong>would</strong> never lie to you.</em></li>
-        </ul>
-      </li>
-      <li><strong>Polite Requests:</strong>
-        <ul>
-          <li><em><strong>Would</strong> you please pass the salt?</em></li>
-        </ul>
-      </li>
-      <li><strong>Habitual Past (less common):</strong>
-        <ul>
-          <li><em>Every summer, we <strong>would</strong> go to the beach.</em></li>
-        </ul>
-      </li>
-    </ul>
-
-    <h2>2. Could</h2>
-    <p><em>"Could"</em> primarily expresses <strong>ability, possibility, and polite permission/suggestions.</strong> When used for possibility, it often implies a <em>general</em> or <em>less certain</em> potential.</p>
-    <ul>
-      <li><strong>Ability (Past of "Can"):</strong>
-        <ul>
-          <li><em>When I was younger, I <strong>could</strong> run much faster.</em></li>
-        </ul>
-      </li>
-      <li><strong>Possibility (General/Less Certain):</strong>
-        <ul>
-          <li><em>It <strong>could</strong> rain later.</em></li>
-          <li><em>We <strong>could</strong> go to the park, or we <strong>could</strong> stay home.</em></li>
-        </ul>
-      </li>
-      <li><strong>Polite Permission / Requests / Suggestions:</strong>
-        <ul>
-          <li><em><strong>Could</strong> I borrow your book?</em></li>
-          <li><em>You <strong>could</strong> try calling him.</em></li>
-        </ul>
-      </li>
-      <li><strong>Unrealized Past Possibility:</strong>
-        <ul>
-          <li><em>I <strong>could have</strong> gone to the party, but I was too tired.</em></li>
-        </ul>
-      </li>
-    </ul>
-
-    <h2>3. Might</h2>
-    <p><em>"Might"</em> is generally used to express a <strong>weaker or more remote possibility/speculation.</strong> It often conveys a sense of uncertainty.</p>
-    <ul>
-      <li><strong>Weaker Possibility / Speculation:</strong>
-        <ul>
-          <li><em>I <strong>might</strong> go to the gym later, but I haven't decided yet.</em></li>
-          <li><em>The company <strong>might</strong> make a profit this quarter.</em></li>
-        </ul>
-      </li>
-      <li><strong>Polite Suggestions (less common):</strong>
-        <ul>
-          <li><em>You <strong>might</strong> want to consider his advice.</em></li>
-          </ul>
-      </li>
-      <li><strong>Past Possibility (Might have):</strong>
-        <ul>
-          <li><em>She <strong>might have</strong> left her keys in the car.</em></li>
-        </ul>
-      </li>
-    </ul>
-
-    <h2>Key Differences Summarized</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Would</th>
-          <th>Could</th>
-          <th>Might</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Feature">Main Focus</td>
-          <td data-label="Would">Hypothetical results, willingness, polite requests, past habits</td>
-          <td data-label="Could">Ability, general possibility, polite requests/suggestions</td>
-          <td data-label="Might">Weaker/remote possibility, speculation</td>
-        </tr>
-        <tr>
-          <td data-label="Feature">Certainty</td>
-          <td data-label="Would">Higher if condition met</td>
-          <td data-label="Could">General possibility</td>
-          <td data-label="Might">Lower, more tentative</td>
-        </tr>
-        <tr>
-          <td data-label="Feature">Conditionality</td>
-          <td data-label="Would">Tied to if-clauses</td>
-          <td data-label="Could">Can be conditional or general</td>
-          <td data-label="Might">Often speculation without if</td>
-        </tr>
-        <tr>
-          <td data-label="Feature">Politeness</td>
-          <td data-label="Would">Very polite for requests/offers</td>
-          <td data-label="Could">Polite for requests/suggestions</td>
-          <td data-label="Might">Very gentle suggestions</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2>Examples to Illustrate the Nuances</h2>
-    <ol>
-      <li>
-        <strong>Possibility:</strong>
-        <ul>
-          <li><em>It <strong>could</strong> rain tomorrow.</em></li>
-          <li><em>It <strong>might</strong> rain tomorrow.</em></li>
-          <li><em>If the sky looks like that, it <strong>would</strong> rain.</em></li>
-        </ul>
-      </li>
-      <li>
-        <strong>Suggestions:</strong>
-        <ul>
-          <li><em>You <strong>could</strong> try calling him.</em></li>
-          <li><em>You <strong>might</strong> try calling him.</em></li>
-          <li><em>If I were you, I <strong>would</strong> call him.</em></li>
-        </ul>
-      </li>
-      <li>
-        <strong>Hypotheticals:</strong>
-        <ul>
-          <li><em>If I had time, I <strong>would</strong> visit.</em></li>
-          <li><em>If I had time, I <strong>could</strong> visit.</em></li>
-          <li><em>If I had time, I <strong>might</strong> visit.</em></li>
-        </ul>
-      </li>
-    </ol>
-  </main>
-
-  <div class="buttons">
-    <a href="index.html">🏠 Back to Home</a>
-  </div>
-
+            // Close menu when a link is clicked (useful for single-page apps or when navigating)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 </html>

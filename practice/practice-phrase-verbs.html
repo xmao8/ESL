@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phrasal Verbs Worksheet – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+
+    .exercise-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+
+    /* Matching Exercise */
+    .matching-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        align-items: start;
+        margin-top: 1rem;
+    }
+    .matching-grid .item {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+    .matching-grid .item:nth-child(odd) { text-align: right; font-weight: bold; }
+    .matching-grid .item:nth-child(even) { text-align: left; }
+    .matching-grid .answer {
+        color: #28a745;
+        font-weight: bold;
+        display: none; /* Hidden by default */
+    }
+
+    /* Fill-in-the-blanks / Multiple Choice */
+    .question-list ol {
+        padding-left: 20px;
+    }
+    .question-list li {
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+    }
+    .question-list input[type="text"] {
+        width: 150px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    .options label {
+        display: block;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+    .options input[type="radio"] {
+        margin-right: 5px;
+    }
+    .correct-answer {
+        color: #28a745;
+        font-weight: bold;
+        margin-left: 10px;
+        display: none; /* Hidden by default */
+    }
+    .incorrect-answer {
+        color: #dc3545;
+        font-weight: bold;
+        margin-left: 10px;
+        display: none; /* Hidden by default */
+    }
+
+    /* Check Answers Button */
+    #checkAnswersBtn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+        background-color: #0056b3;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+    /* Styles for dynamic feedback */
+    .feedback {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      display: none; /* Hidden by default */
+    }
+    .feedback.correct {
+      color: #28a745;
+    }
+    .feedback.incorrect {
+      color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Phrasal Verbs Worksheet</h1>
+
+<div class="content-container">
+  <p>Practice your understanding of common English phrasal verbs with these exercises. Remember that phrasal verbs often have meanings that are different from the individual words.</p>
+
+  <div class="exercise-section">
+    <h2>Exercise 1: Matching</h2>
+    <h3>Match the phrasal verb to its correct meaning.</h3>
+    <div class="matching-grid">
+      <div class="item">1. Call off</div>
+      <div class="item" id="match-1"></div>
+
+      <div class="item">2. Look up</div>
+      <div class="item" id="match-2"></div>
+
+      <div class="item">3. Give up</div>
+      <div class="item" id="match-3"></div>
+
+      <div class="item">4. Break down</div>
+      <div class="item" id="match-4"></div>
+
+      <div class="item">5. Pick up</div>
+      <div class="item" id="match-5"></div>
+    </div>
+  </div>
+
+  <div class="exercise-section">
+    <h2>Exercise 2: Fill in the Blanks</h2>
+    <h3>Complete the sentences with the correct phrasal verb from the box.</h3>
+    <p><em>(Use: turn off, look after, come across, end up, get along with)</em></p>
+    <div class="question-list">
+      <ol>
+        <li>Can you please <input type="text" id="fill-1" /> the lights when you leave the room?</li>
+        <li>I need someone to <input type="text" id="fill-2" /> my plants while I'm on vacation.</li>
+        <li>I was cleaning the attic and <input type="text" id="fill-3" /> some old letters.</li>
+        <li>They started arguing and decided to <input type="text" id="fill-4" /> their friendship.</li>
+        <li>After many detours, we <input type="text" id="fill-5" /> in a small village far from the city.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="exercise-section">
+    <h2>Exercise 3: Choose the Best Phrasal Verb</h2>
+    <h3>Choose the best phrasal verb to complete each sentence.</h3>
+    <div class="question-list">
+      <ol>
+        <li>My old car often _____. I need to buy a new one.
+          <div class="options" id="mc-1">
+            <label><input type="radio" name="q1" value="a"> turns on</label>
+            <label><input type="radio" name="q1" value="b"> breaks down</label>
+            <label><input type="radio" name="q1" value="c"> looks for</label>
+          </div>
+          <span class="correct-answer" id="mc-answer-1">Correct: breaks down</span>
+        </li>
+        <li>She needs to _____ sugar if she wants to be healthier.
+          <div class="options" id="mc-2">
+            <label><input type="radio" name="q2" value="a"> take off</label>
+            <label><input type="radio" name="q2" value="b"> put on</label>
+            <label><input type="radio" name="q2" value="c"> cut down on</label>
+          </div>
+          <span class="correct-answer" id="mc-answer-2">Correct: cut down on</span>
+        </li>
+        <li>I can't _____ this math problem. It's too difficult.
+          <div class="options" id="mc-3">
+            <label><input type="radio" name="q3" value="a"> figure out</label>
+            <label><input type="radio" name="q3" value="b"> hold on</label>
+            <label><input type="radio" name="q3" value="c"> come up with</label>
+          </div>
+          <span class="correct-answer" id="mc-answer-3">Correct: figure out</span>
+        </li>
+        <li>Could you please _____ the music? It's too loud.
+          <div class="options" id="mc-4">
+            <label><input type="radio" name="q4" value="a"> turn up</label>
+            <label><input type="radio" name="q4" value="b"> turn down</label>
+            <label><input type="radio" name="q4" value="c"> turn on</label>
+          </div>
+          <span class="correct-answer" id="mc-answer-4">Correct: turn down</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // --- Worksheet Logic ---
+  const matchingAnswers = {
+    "Call off": "To cancel something.",
+    "Look up": "To find information (in a dictionary, online, etc.).",
+    "Give up": "To stop trying; to quit a habit.",
+    "Break down": "To stop functioning (for a machine); to lose emotional control.",
+    "Pick up": "To learn something quickly; to collect someone.",
+  };
+
+  const fillInBlanksAnswers = {
+    "fill-1": "turn off",
+    "fill-2": "look after",
+    "fill-3": "came across",
+    "fill-4": "break up", // Assuming 'break up' for ending a friendship, 'get along with' means to have good relationship
+    "fill-5": "ended up"
+  };
+
+  const multipleChoiceAnswers = {
+    "q1": "b", // breaks down
+    "q2": "c", // cut down on
+    "q3": "a", // figure out
+    "q4": "b"  // turn down
+  };
+
+  // Populate matching exercise with shuffled meanings
+  function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+  }
+
+  const matchingMeanings = Object.values(matchingAnswers);
+  const shuffledMeanings = shuffleArray([...matchingMeanings]); // Create a shuffled copy
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const matchingDivs = document.querySelectorAll('.matching-grid .item:nth-child(even)');
+    matchingDivs.forEach((div, index) => {
+      div.textContent = shuffledMeanings[index];
+    });
+  });
+
+
+  function checkAnswers() {
+    // Exercise 1: Matching
+    const matchingGridItems = document.querySelectorAll('.matching-grid .item');
+    const phrasalVerbs = [
+        "Call off",
+        "Look up",
+        "Give up",
+        "Break down",
+        "Pick up"
+    ];
+
+    matchingGridItems.forEach((item, index) => {
+        if (index % 2 === 0) { // This is a phrasal verb (odd-indexed item in the HTML is first child, so even index here)
+            const verb = item.textContent;
+            const meaningDiv = matchingGridItems[index + 1];
+            const correctMeaning = matchingAnswers[verb];
+
+            if (meaningDiv.textContent.trim() === correctMeaning.trim()) {
+                meaningDiv.innerHTML = `<span class="answer" style="display:block; color:#28a745;">${correctMeaning} (Correct!)</span>`;
+            } else {
+                meaningDiv.innerHTML = `<span class="answer" style="display:block; color:#dc3545;">${meaningDiv.textContent} (Incorrect, correct is: ${correctMeaning})</span>`;
+            }
+        }
+    });
+
+
+    // Exercise 2: Fill in the Blanks
+    for (const id in fillInBlanksAnswers) {
+      const input = document.getElementById(id);
+      const feedback = document.createElement('span');
+      feedback.classList.add('feedback');
+      feedback.style.display = 'inline';
+
+      if (input.value.trim().toLowerCase() === fillInBlanksAnswers[id].toLowerCase()) {
+        feedback.textContent = ' (Correct!)';
+        feedback.classList.add('correct');
+      } else {
+        feedback.textContent = ` (Incorrect, correct: ${fillInBlanksAnswers[id]})`;
+        feedback.classList.add('incorrect');
+      }
+      // Remove existing feedback before adding new
+      if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+        input.nextElementSibling.remove();
+      }
+      input.parentNode.appendChild(feedback);
+    }
+
+    // Exercise 3: Multiple Choice
+    for (const qName in multipleChoiceAnswers) {
+      const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
+      const correctAnswerSpan = document.getElementById(`mc-answer-${qName}`);
+
+      if (selectedOption && selectedOption.value === multipleChoiceAnswers[qName]) {
+        correctAnswerSpan.style.display = 'inline';
+        correctAnswerSpan.style.color = '#28a745';
+        correctAnswerSpan.textContent = 'Correct!';
+      } else {
+        correctAnswerSpan.style.display = 'inline';
+        correctAnswerSpan.style.color = '#dc3545';
+        const correctValue = multipleChoiceAnswers[qName];
+        const correctLabel = document.querySelector(`input[name="${qName}"][value="${correctValue}"]`).parentNode.textContent;
+        correctAnswerSpan.textContent = `Incorrect, correct: ${correctLabel.trim()}`;
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Politics Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Politics Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Protest",
+    ipa: "/ˈproʊtɛst/",
+    definition: "A public expression of strong disagreement or approval.",
+    example: "The students organized a **protest** against the new school rules."
+  },
+  {
+    word: "Significant",
+    ipa: "/sɪɡˈnɪfɪkənt/",
+    definition: "Important and meaningful.",
+    example: "The decision had a **significant** impact on the community."
+  },
+  {
+    word: "Constitution",
+    ipa: "/ˌkɑːnstɪˈtuːʃən/",
+    definition: "The supreme law of the U.S., outlining government structure and rights.",
+    example: "The U.S. **Constitution** protects many freedoms for citizens."
+  },
+  {
+    word: "First Amendment",
+    ipa: "/fɜːrst əˈmɛndmənt/",
+    definition: "Part of the Constitution protecting basic freedoms.",
+    example: "Freedom of speech is guaranteed by the **First Amendment**."
+  },
+  {
+    word: "Assemble peacefully",
+    ipa: "/əˈsɛmbəl ˈpiːsfəli/",
+    definition: "To gather together without violence.",
+    example: "Citizens have the right to **assemble peacefully** in public places."
+  },
+  {
+    word: "Petition",
+    ipa: "/pəˈtɪʃən/",
+    definition: "To make a formal request to an authority.",
+    example: "They decided to **petition** the city council for a new park."
+  },
+  {
+    word: "Marches",
+    ipa: "/mɑːrtʃɪz/",
+    definition: "Organized walks by a large group of people to protest.",
+    example: "Many people participated in the **marches** for civil rights."
+  },
+  {
+    word: "Rallies",
+    ipa: "/ˈræliz/",
+    definition: "Large public meetings held to support a cause.",
+    example: "Political **rallies** are common before elections."
+  },
+  {
+    word: "Signs",
+    ipa: "/saɪnz/",
+    definition: "Posters with written messages carried by protestors.",
+    example: "The protestors carried **signs** with their messages."
+  },
+  {
+    word: "Slogans",
+    ipa: "/ˈsloʊɡənz/",
+    definition: "Short, memorable phrases used in advertising or protests.",
+    example: "“Peace Now!” was a popular **slogan** during the protest."
+  },
+  {
+    word: "Awareness",
+    ipa: "/əˈwɛrnəs/",
+    definition: "Knowledge or perception of a situation or fact.",
+    example: "The campaign aims to raise **awareness** about environmental issues."
+  },
+  {
+    word: "Lawmakers",
+    ipa: "/ˈlɔːmeɪkərz/",
+    definition: "People who create laws.",
+    example: "Citizens can influence **lawmakers** through protests."
+  },
+  {
+    word: "Unlimited",
+    ipa: "/ʌnˈlɪmɪtɪd/",
+    definition: "Not restricted or limited.",
+    example: "The right to protest is strong, but it is not **unlimited**."
+  },
+  {
+    word: "Permits",
+    ipa: "/ˈpɜːrmɪts/",
+    definition: "Official documents giving permission to do something.",
+    example: "You need a **permit** to hold a large public event."
+  },
+  {
+    word: "Crucial",
+    ipa: "/ˈkruːʃəl/",
+    definition: "Extremely important.",
+    example: "Clean water is **crucial** for public health."
+  },
+  {
+    word: "Democracy",
+    ipa: "/dɪˈmɑːkrəsi/",
+    definition: "A system of government by the whole population or all the eligible members of a state, typically through elected representatives.",
+    example: "In a **democracy**, citizens have the right to vote."
+  },
+  {
+    word: "Election",
+    ipa: "/ɪˈlɛkʃən/",
+    definition: "A formal and organized choice by vote of a person for a political office or other position.",
+    example: "The presidential **election** happens every four years."
+  },
+  {
+    word: "Vote",
+    ipa: "/voʊt/",
+    definition: "To formally express your choice or opinion.",
+    example: "It's important to **vote** in every election."
+  },
+  {
+    word: "Candidate",
+    ipa: "/ˈkændɪdət/",
+    definition: "A person who is nominated for election.",
+    example: "There are several **candidates** running for mayor."
+  },
+  {
+    word: "Policy",
+    ipa: "/ˈpɑːləsi/",
+    definition: "A course or principle of action adopted or proposed by a government, party, business, or individual.",
+    example: "The new education **policy** will affect many students."
+  },
+  {
+    word: "Government",
+    ipa: "/ˈɡʌvərnmənt/",
+    definition: "The governing body of a nation, state, or community.",
+    example: "The **government** makes decisions for the country."
+  },
+  {
+    word: "Legislation",
+    ipa: "/ˌlɛdʒɪsˈleɪʃən/",
+    definition: "Laws, considered collectively.",
+    example: "New **legislation** was passed to protect the environment."
+  },
+  {
+    word: "Debate",
+    ipa: "/dɪˈbeɪt/",
+    definition: "A formal discussion on a particular topic in a public meeting or legislative assembly, in which opposing arguments are put forward.",
+    example: "The candidates will **debate** the issues on television."
+  },
+  {
+    word: "Citizen",
+    ipa: "/ˈsɪtɪzn/",
+    definition: "A legally recognized subject or national of a state or commonwealth, either native or naturalized.",
+    example: "Every **citizen** has rights and responsibilities."
+  },
+  {
+    word: "Rights",
+    ipa: "/raɪts/",
+    definition: "Moral or legal entitlements to have or obtain something or to act in a certain way.",
+    example: "Human **rights** protect all people."
+  },
+  {
+    word: "Freedom",
+    ipa: "/ˈfriːdəm/",
+    definition: "The power or right to act, speak, or think as one wants without hindrance or restraint.",
+    example: "**Freedom** of the press is essential in a democracy."
+  },
+  {
+    word: "Political Party",
+    ipa: "/pəˈlɪtɪkəl ˈpɑːrti/",
+    definition: "An organized group of people with at least roughly similar political aims and opinions, that seeks to influence public policy by getting its candidates elected to public office.",
+    example: "The two main **political parties** in the U.S. are the Democrats and the Republicans."
+  },
+  {
+    word: "Public Opinion",
+    ipa: "/ˌpʌblɪk əˈpɪnjən/",
+    definition: "The views prevalent among the general public.",
+    example: "**Public opinion** can strongly influence political decisions."
+  },
+  {
+    word: "Representative",
+    ipa: "/ˌrɛprɪˈzɛntətɪv/",
+    definition: "A person chosen or appointed to act or speak for another or others.",
+    example: "Citizens elect their **representatives** to speak for them in government."
+  },
+  {
+    word: "Advocate",
+    ipa: "/ˈædvəkət/ (n.), /ˈædvəkeɪt/ (v.)",
+    definition: "To publicly recommend or support (v.); A person who publicly supports or recommends a particular cause or policy (n.).",
+    example: "Many groups **advocate** for stricter gun control laws. She is an **advocate** for children's rights."
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

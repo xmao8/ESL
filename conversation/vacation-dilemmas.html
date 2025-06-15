@@ -170,8 +170,9 @@
             margin-top: 1rem;
             margin-bottom: 0.3rem;
             cursor: pointer; /* Make definition term clickable */
-            display: inline-block; /* Allow padding/margin for click area */
-            padding-right: 5px; /* Small padding for better click area */
+            display: flex; /* Use flexbox to align text and icon */
+            align-items: center; /* Center items vertically */
+            gap: 8px; /* Space between word and icon */
             border-bottom: 1px dotted #3498db; /* Dotted underline for clickable words */
             transition: color 0.2s, border-bottom-color 0.2s;
         }
@@ -179,6 +180,11 @@
             color: #ff9800; /* Hover color for clickable word */
             border-bottom-color: #ff9800;
             outline: none; /* Remove default focus outline */
+        }
+        .speaker-icon {
+            font-size: 0.9em; /* Smaller icon */
+            color: #555;
+            flex-shrink: 0; /* Prevent icon from shrinking */
         }
         dd {
             margin-left: 1.2rem;
@@ -190,23 +196,6 @@
             color: #555;
             margin-left: 1.5rem;
             margin-top: -0.4rem;
-        }
-
-        /* Comprehension Questions */
-        section.questions {
-            margin-top: 3rem;
-        }
-        section.questions h2 {
-            margin-bottom: 1rem;
-            font-size: 1.8rem; /* Consistent H2 size */
-        }
-        section.questions ol {
-            padding-left: 1.2rem;
-            margin-left: 0; /* Remove default margin */
-        }
-        section.questions li {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
         }
 
         /* --- BACK BUTTONS (Footer) --- */
@@ -426,71 +415,63 @@
         <p class="scene-direction">(They all lean over the laptop again, now with a shared goal, but still with their individual preferences subtly influencing the decision.)</p>
     </article>
 
+    ---
+
     <section class="vocab" aria-labelledby="vocab-title">
         <h2 id="vocab-title">Vocabulary List</h2>
         <p>Click on each vocabulary term to hear its pronunciation!</p>
         <dl>
-            <dt class="vocab-term" data-word="Breathtaking">Breathtaking /ˌbrɛθˈteɪkɪŋ/</dt>
+            <dt class="vocab-term" data-word="Breathtaking" tabindex="0">Breathtaking /ˌbrɛθˈteɪkɪŋ/ <span class="speaker-icon">🔊</span></dt>
             <dd>(adjective) Extremely impressive or beautiful.</dd>
             <dd class="example">Example: The view from the mountain top was breathtaking.</dd>
 
-            <dt class="vocab-term" data-word="Cocktail">Cocktail /ˈkɒkteɪl/</dt>
+            <dt class="vocab-term" data-word="Cocktail" tabindex="0">Cocktail /ˈkɒkteɪl/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun) An alcoholic drink consisting of a spirit or spirits mixed with other ingredients.</dd>
             <dd class="example">Example: I'd love a refreshing cocktail by the pool.</dd>
 
-            <dt class="vocab-term" data-word="Unwind">Unwind /ʌnˈwaɪnd/</dt>
+            <dt class="vocab-term" data-word="Unwind" tabindex="0">Unwind /ʌnˈwaɪnd/ <span class="speaker-icon">🔊</span></dt>
             <dd>(verb) To relax after a period of work or tension.</dd>
             <dd class="example">Example: After a long week, I just want to unwind.</dd>
 
-            <dt class="vocab-term" data-word="Accomplishment">Accomplishment /əˈkɒmplɪʃmənt/</dt>
+            <dt class="vocab-term" data-word="Accomplishment" tabindex="0">Accomplishment /əˈkɒmplɪʃmənt/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun) Something that has been achieved successfully.</dd>
             <dd class="example">Example: Finishing the marathon was a huge accomplishment.</dd>
 
-            <dt class="vocab-term" data-word="Logistics">Logistics /ləˈdʒɪstɪks/</dt>
+            <dt class="vocab-term" data-word="Logistics" tabindex="0">Logistics /ləˈdʒɪstɪks/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun) The detailed organization and implementation of a complex operation.</dd>
             <dd class="example">Example: Planning a big trip involves a lot of logistics.</dd>
 
-            <dt class="vocab-term" data-word="Attire">Attire /əˈtaɪər/</dt>
+            <dt class="vocab-term" data-word="Attire" tabindex="0">Attire /əˈtaɪər/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun) Clothes, especially fine or formal ones.</dd>
             <dd class="example">Example: You'll need appropriate attire for hiking in the mountains.</dd>
 
-            <dt class="vocab-term" data-word="Catered">Catered /ˈkeɪtərd/</dt>
+            <dt class="vocab-term" data-word="Catered" tabindex="0">Catered /ˈkeɪtərd/ <span class="speaker-icon">🔊</span></dt>
             <dd>(verb, past participle) Provided with food and drink for a social event, or more generally, provided with everything needed.</dd>
             <dd class="example">Example: At an all-inclusive resort, everything is catered for.</dd>
 
-            <dt class="vocab-term" data-word="Bliss">Bliss /blɪs/</dt>
+            <dt class="vocab-term" data-word="Bliss" tabindex="0">Bliss /blɪs/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun) Perfect happiness; great joy.</dd>
             <dd class="example">Example: Lying on the beach was pure bliss.</dd>
 
-            <dt class="vocab-term" data-word="Conquering">Conquering /ˈkɒŋkərɪŋ/</dt>
+            <dt class="vocab-term" data-word="Conquering" tabindex="0">Conquering /ˈkɒŋkərɪŋ/ <span class="speaker-icon">🔊</span></dt>
             <dd>(verb, -ing form) Successfully overcoming a problem or weakness; or gaining control of a place or people by military force (figuratively used here for overcoming a challenge like a mountain).</dd>
             <dd class="example">Example: He dreams of conquering Mount Everest.</dd>
 
-            <dt class="vocab-term" data-word="Sloths">Sloths /slɒθs/</dt>
+            <dt class="vocab-term" data-word="Sloths" tabindex="0">Sloths /slɒθs/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun, plural) Slow-moving tropical American mammals (figuratively used here to mean lazy people).</dd>
             <dd class="example">Example: After our long journey, we were all behaving like sloths.</dd>
 
-            <dt class="vocab-term" data-word="Boutiques">Boutiques /buːˈtiːks/</dt>
+            <dt class="vocab-term" data-word="Boutiques" tabindex="0">Boutiques /buːˈtiːks/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun, plural) Small shops selling fashionable clothes or accessories.</dd>
             <dd class="example">Example: She loves shopping at the little boutiques in the city center.</dd>
 
-            <dt class="vocab-term" data-word="Glint">Glint /ɡlɪnt/</dt>
+            <dt class="vocab-term" data-word="Glint" tabindex="0">Glint /ɡlɪnt/ <span class="speaker-icon">🔊</span></dt>
             <dd>(noun) A flash or sparkle of light, or a brief flash of an emotion in someone's eyes.</dd>
             <dd class="example">Example: There was a glint of excitement in her eyes.</dd>
         </dl>
     </section>
 
-    <section class="questions" aria-labelledby="questions-title">
-        <h2 id="questions-title">Comprehension Questions</h2>
-        <ol>
-            <li>What kind of vacation does Anna initially want?</li>
-            <li>What is Ben's preferred type of vacation?</li>
-            <li>What does Chloe suggest as a compromise?</li>
-            <li>Name two things Anna likes about the idea of a city break.</li>
-            <li>Name two things Ben likes about the idea of a city break.</li>
-            <li>What is the final decision regarding their vacation?</li>
-        </ol>
-    </section>
+    ---
 
     <div class="buttons">
         <a href="reading.html">← Back to Reading</a>
@@ -542,7 +523,7 @@
             event.preventDefault(); // Prevent default link/button behavior if any
             // Extract only the word for pronunciation from the text content (before '/')
             const fullText = this.textContent;
-            const wordToSpeak = fullText.split('/')[0].trim().replace(/^\d+\.\s*/, ''); // Removes number like "1. " and text after '/'
+            const wordToSpeak = fullText.split('/')[0].trim().replace(/^\d+\.\s*/, '').replace(' 🔊', ''); // Clean up numbers, slashes, and icon
             if (wordToSpeak) { // Ensure data-word attribute exists
                 speakWord(wordToSpeak);
             }
@@ -552,7 +533,7 @@
             if (event.key === 'Enter' || event.key === ' ') { // Trigger on Enter or Space key
                 event.preventDefault(); // Prevent default scroll behavior for spacebar
                 const fullText = this.textContent;
-                const wordToSpeak = fullText.split('/')[0].trim().replace(/^\d+\.\s*/, ''); // Removes number like "1. " and text after '/'
+                const wordToSpeak = fullText.split('/')[0].trim().replace(/^\d+\.\s*/, '').replace(' 🔊', ''); // Clean up numbers, slashes, and icon
                 if (wordToSpeak) {
                     speakWord(wordToSpeak);
                 }

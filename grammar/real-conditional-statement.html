@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Real Conditional Statements – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .content-container strong {
+      color: #2c3e50;
+    }
+    .content-container em {
+      font-style: italic;
+      color: #555;
+    }
+    .grammar-box {
+        background-color: #e6f3ff;
+        border-left: 5px solid #3498db;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+    }
+    .grammar-box strong {
+        color: #124076;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>English Grammar: Real Conditional Statements</h1>
+
+<div class="content-container">
+  <p>In English grammar, a **real conditional statement** (also often referred to as a **factual conditional** or, more commonly, broken down into **Zero Conditional** and **First Conditional**) talks about situations that are real, possible, or generally true. They express a cause-and-effect relationship where the "if" clause presents a condition and the main clause presents the result.</p>
+
+  <p>There are two main types of "real" conditionals:</p>
+
+  ---
+
+  <h2>1. Zero Conditional (General Truths/Facts)</h2>
+  <p>This type of real conditional is used to talk about **general truths, scientific facts, habits, or things that always happen** under a certain condition. The condition *always* leads to the same result.</p>
+
+  <div class="grammar-box">
+    <strong>Structure:</strong> If + Present Simple, Present Simple<br>
+    <strong>Meaning:</strong> If X happens, then Y always happens.
+  </div>
+
+  <h3>Examples:</h3>
+  <ul>
+    <li>If you **heat** ice, it **melts**. <em>(Scientific fact)</em></li>
+    <li>If I **eat** too much sugar, I **feel** sick. <em>(General truth/personal habit)</em></li>
+    <li>If it **rains**, the ground **gets** wet. <em>(Natural consequence)</em></li>
+    <li>If you **mix** blue and yellow, you **get** green. <em>(General truth)</em></li>
+  </ul>
+  <p><strong>Key Points:</strong></p>
+  <ul>
+    <li>Both clauses use the **Present Simple** tense.</li>
+    <li>"When" can often replace "if" without changing the meaning in zero conditionals.
+        <em>Example: *When* you heat ice, it melts.</em></li>
+  </ul>
+
+  ---
+
+  <h2>2. First Conditional (Future Possible Situations)</h2>
+  <p>This type of real conditional is used to talk about **possible situations in the future and their likely results**. The condition is realistic and probable.</p>
+
+  <div class="grammar-box">
+    <strong>Structure:</strong> If + Present Simple, Will + Base Form (or other modal verbs like <em>can, may, might, should, must</em>)<br>
+    <strong>Meaning:</strong> If X happens (or is true) in the future, then Y will probably happen.
+  </div>
+
+  <h3>Examples:</h3>
+  <ul>
+    <li>If it **rains** tomorrow, we **will stay** home. <em>(Possible future situation)</em></li>
+    <li>If she **studies** hard, she **will pass** the exam. <em>(Realistic future outcome)</em></li>
+    <li>If I **find** your keys, I **can give** them to you. <em>(Using a modal verb)</em></li>
+    <li>If they **don't arrive** soon, we **might miss** the beginning of the movie. <em>(Using a modal verb)</em></li>
+    <li>If you **have** any questions, you **should ask** me. <em>(Using a modal verb)</em></li>
+  </ul>
+  <p><strong>Key Points:</strong></p>
+  <ul>
+    <li>The "if" clause describes a condition using the **Present Simple** (even though it refers to the future).</li>
+    <li>The main clause uses "**will**" + base verb to describe the likely future result. Other modal verbs can be used to express different degrees of certainty, possibility, or obligation.</li>
+  </ul>
+
+  ---
+
+  <h2>Punctuation (for both types)</h2>
+  <ul>
+    <li>When the "if" clause comes first, use a **comma** before the main clause.
+        <em>Example: If I go to the store, I will buy milk.</em></li>
+    <li>When the main clause comes first, **no comma** is typically needed.
+        <em>Example: I will buy milk if I go to the store.</em></li>
+  </ul>
+
+  <p>In summary, real conditional statements describe situations and their outcomes that are either universally true (Zero Conditional) or realistically possible in the future (First Conditional).</p>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

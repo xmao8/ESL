@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Culture & History Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Culture & History Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Archaeology",
+    ipa: "/ˌɑːrkiˈɑːlədʒi/",
+    definition: "The study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains.",
+    example: "Modern **archaeology** often uses advanced technology to discover ancient sites."
+  },
+  {
+    word: "Tradition",
+    ipa: "/trəˈdɪʃən/",
+    definition: "The transmission of customs or beliefs from generation to generation, or the fact of being passed on in this way.",
+    example: "It's a long-standing family **tradition** to have a big dinner on Sundays."
+  },
+  {
+    word: "Heritage",
+    ipa: "/ˈhɛrɪtɪdʒ/",
+    definition: "Something inherited from the past; values, customs, artifacts, etc., that have been passed down from previous generations.",
+    example: "The ancient ruins are part of our cultural **heritage**."
+  },
+  {
+    word: "Civilization",
+    ipa: "/ˌsɪvɪlɪˈzeɪʃən/",
+    definition: "The stage of human social and cultural development and organization that is considered most advanced.",
+    example: "Ancient Roman **civilization** left a lasting impact on the world."
+  },
+  {
+    word: "Dynasty",
+    ipa: "/ˈdaɪnəsti/",
+    definition: "A line of hereditary rulers of a country.",
+    example: "The Ming **dynasty** ruled China for nearly 300 years."
+  },
+  {
+    word: "Mythology",
+    ipa: "/mɪˈθɑːlədʒi/",
+    definition: "A collection of myths, especially one belonging to a particular sacred or religious tradition.",
+    example: "Greek **mythology** is full of gods, goddesses, and heroes."
+  },
+  {
+    word: "Folklore",
+    ipa: "/ˈfoʊklɔːr/",
+    definition: "The traditional beliefs, customs, and stories of a community, passed through the generations by word of mouth.",
+    example: "Local **folklore** includes tales of a mysterious creature in the forest."
+  },
+  {
+    word: "Artifact",
+    ipa: "/ˈɑːrtɪfækt/",
+    definition: "An object made by a human being, typically an item of cultural or historical interest.",
+    example: "Archaeologists found many ancient **artifacts** at the excavation site."
+  },
+  {
+    word: "Chronicle",
+    ipa: "/ˈkrɑːnɪkəl/",
+    definition: "A factual written account of important or historical events in the order of their occurrence.",
+    example: "The book provides a detailed **chronicle** of the events of the last century."
+  },
+  {
+    word: "Empire",
+    ipa: "/ˈɛmpaɪər/",
+    definition: "An extensive group of states or countries under a single supreme authority, formerly especially an emperor or empress.",
+    example: "The British **Empire** once spanned a quarter of the globe."
+  },
+  {
+    word: "Ritual",
+    ipa: "/ˈrɪtʃuəl/",
+    definition: "A religious or solemn ceremony consisting of a series of actions performed according to a prescribed order.",
+    example: "The tribe performed an ancient **ritual** to welcome the spring."
+  },
+  {
+    word: "Custom",
+    ipa: "/ˈkʌstəm/",
+    definition: "A traditional and widely accepted way of behaving or doing something specific to a particular society, place, or time.",
+    example: "It's a local **custom** to bring a small gift when visiting someone's home."
+  },
+  {
+    word: "Society",
+    ipa: "/səˈsaɪəti/",
+    definition: "The aggregate of people living together in a more or less ordered community.",
+    example: "Education plays a vital role in the progress of a **society**."
+  },
+  {
+    word: "Evolution",
+    ipa: "/ˌiːvəˈluːʃən/",
+    definition: "The gradual development of something, especially from a simple to a more complex form.",
+    example: "The **evolution** of human language is a complex topic."
+  },
+  {
+    word: "Genealogy",
+    ipa: "/ˌdʒiːniˈɑːlədʒi/",
+    definition: "A line of descent traced continuously from an ancestor.",
+    example: "She spent years researching her family's **genealogy**."
+  },
+  {
+    word: "Narrative",
+    ipa: "/ˈnærətɪv/",
+    definition: "A spoken or written account of connected events; a story.",
+    example: "History is often presented as a compelling **narrative** of past events."
+  },
+  {
+    word: "Preservation",
+    ipa: "/ˌprɛzərˈveɪʃən/",
+    definition: "The action of preserving something; the state of being preserved.",
+    example: "The **preservation** of historical buildings is important for future generations."
+  },
+  {
+    word: "Legacy",
+    ipa: "/ˈlɛɡəsi/",
+    definition: "Something transmitted by or received from an ancestor or predecessor or from the past.",
+    example: "The artist left behind a rich **legacy** of beautiful paintings."
+  },
+  {
+    word: "Indigenous",
+    ipa: "/ɪnˈdɪdʒənəs/",
+    definition: "Originating or occurring naturally in a particular place; native.",
+    example: "The **indigenous** people of the region have a deep connection to the land."
+  },
+  {
+    word: "Renaissance",
+    ipa: "/ˈrɛnəsɑːns/",
+    definition: "The revival of art and literature under the influence of classical models in the 14th–16th centuries.",
+    example: "The Italian **Renaissance** was a period of great artistic and intellectual flourishing."
+  },
+  {
+    word: "Enlightenment",
+    ipa: "/ɪnˈlaɪtnmənt/",
+    definition: "A European intellectual movement of the 17th and 18th centuries emphasizing reason and individualism rather than tradition.",
+    example: "The Age of **Enlightenment** brought new ideas about governance and human rights."
+  },
+  {
+    word: "Revolution",
+    ipa: "/ˌrɛvəˈluːʃən/",
+    definition: "A forcible overthrow of a government or social order, in favor of a new system.",
+    example: "The Industrial **Revolution** dramatically changed society and economy."
+  },
+  {
+    word: "Colonization",
+    ipa: "/ˌkɑːlənəˈzeɪʃən/",
+    definition: "The action or process of settling among and establishing control over the indigenous people of an area.",
+    example: "The history of many nations is shaped by periods of **colonization**."
+  },
+  {
+    word: "Diaspora",
+    ipa: "/daɪˈæspərə/",
+    definition: "The dispersion of any people from their original homeland.",
+    example: "The African **diaspora** has had a profound impact on global culture."
+  },
+  {
+    word: "Anthropology",
+    ipa: "/ˌænθrəˈpɑːlədʒi/",
+    definition: "The study of humanity, encompassing the evolution of humans, their distinct characteristics, and their relationship with the environment.",
+    example: "**Anthropology** helps us understand diverse human cultures."
+  },
+  {
+    word: "Ethnography",
+    ipa: "/ɛθˈnɑːɡrəfi/",
+    definition: "The scientific description of peoples and cultures with their customs, habits, and mutual differences.",
+    example: "An **ethnography** of the remote tribe provided insights into their unique way of life."
+  },
+  {
+    word: "Iconography",
+    ipa: "/ˌaɪkəˈnɑːɡrəfi/",
+    definition: "The traditional or conventional images or symbols associated with a subject and especially a religious or legendary subject.",
+    example: "The painting's **iconography** reveals its religious significance."
+  },
+  {
+    word: "Oral history",
+    ipa: "/ˈɔːrəl ˈhɪstəri/",
+    definition: "Historical information gathered by spoken interviews.",
+    example: "Researchers collected **oral history** accounts from survivors of the war."
+  },
+  {
+    word: "Paradigm",
+    ipa: "/ˈpærədaɪm/",
+    definition: "A typical example or pattern of something; a model.",
+    example: "The invention of the internet marked a **paradigm** shift in communication."
+  },
+  {
+    word: "Taboo",
+    ipa: "/təˈbuː/",
+    definition: "A social or religious custom prohibiting or forbidding discussion of a particular practice or forbidding association with a particular person, place, or thing.",
+    example: "In some cultures, it is a **taboo** to discuss money openly."
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Find Someone Who – Hobbies Edition (Two Names)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif; /* Fallback to Arial, consistent with ESLnote */
+            background-color: #f0f4f8; /* Consistent background from ESLnote example */
+            color: #333; /* Consistent text color from ESLnote example */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main[role="main"] { /* Target main specifically for content area */
+            flex: 1;
+            padding: 2rem 1rem; /* Adjust padding for overall page content */
+            max-width: 900px; /* Limits width of main content */
+            margin: 2rem auto 3rem; /* Centers main content and adds vertical spacing */
+            background: white; /* White background for the main content area */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2, h3 {
+            color: #124076; /* Consistent heading color from ESLnote example */
+            font-family: 'Poppins', sans-serif; /* Apply Poppins to headings */
+            font-weight: 700;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+
+        /* Hamburger menu button styles */
+        .menu-toggle {
+            display: none; /* Hidden on desktop and tablet by default */
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- Page Specific Content Styling --- */
+        main[role="main"] h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 0; /* Remove top margin as main has padding */
+            margin-bottom: 1.5rem;
+            color: #124076;
+            padding: 0 1rem;
+        }
+
+        main[role="main"] h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50; /* Darker heading for sections */
+            text-align: left; /* Ensure H2 titles are left-aligned */
+            padding-left: 1rem; /* Indent H2 to match instructions text */
+        }
+
+        .instructions-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            padding: 0 1rem; /* Add padding to instructions for better alignment */
+            text-align: left; /* Align instructions text to left */
+        }
+
+        /* Styles for each "Find Someone Who" item */
+        .hobby-item {
+            background-color: #fcfcfc; /* Very subtle off-white for individual items */
+            border: 1px solid #e0e7ed; /* Light border */
+            border-radius: 8px;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1rem; /* Space between items */
+            display: grid; /* Use grid for columns */
+            /* Default for desktop/larger tablets: Question, Name 1, Name 2 */
+            grid-template-columns: 2fr 1.5fr 1.5fr; /* Adjusted proportions for two name fields */
+            gap: 15px; /* Gap between columns */
+            align-items: center; /* Vertically align content in grid cells */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Very subtle shadow */
+        }
+
+        .hobby-question {
+            font-weight: bold;
+            color: #2c3e50; /* Darker text for the question part */
+            font-size: 1.15rem; /* Base font size for questions */
+            line-height: 1.4;
+        }
+
+        /* Unified style for both name fields */
+        .hobby-name-field {
+            display: flex;
+            flex-direction: column; /* Stack label and input */
+            font-size: 0.95rem; /* Smaller font for labels/placeholders */
+        }
+
+        .hobby-name-field label {
+            font-weight: 600;
+            color: #124076; /* Label color matches primary blue */
+            margin-bottom: 0.3rem; /* Space between label and input */
+        }
+
+        .hobby-name-field input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            background-color: #f8fbfd; /* Slightly different background for inputs */
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hobby-name-field input:focus {
+            border-color: #3498db; /* Blue focus border */
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        /* Style for placeholder text */
+        .hobby-name-field input::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+
+        /* --- BACK BUTTONS --- */
+        .buttons {
+            text-align: center;
+            margin: 3rem auto; /* Consistent margin, pushes content down from main */
+            max-width: 900px; /* Matches main container width */
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Media Queries --- */
+
+        /* Tablet Layout (min-width: 601px and max-width: 900px) */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-container .nav-links {
+                flex-wrap: nowrap;
+                justify-content: flex-end;
+                gap: 1.2rem;
+                font-size: 0.95rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            main[role="main"] {
+                padding: 2rem;
+                margin: 1.8rem auto 2.5rem;
+            }
+            main[role="main"] h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1.2rem;
+            }
+            main[role="main"] h2 {
+                font-size: 1.6rem;
+                margin-top: 1.5rem;
+                margin-bottom: 0.8rem;
+                padding-left: 0.8rem; /* Adjust H2 padding for tablet */
+            }
+            .instructions-text {
+                font-size: 1.05rem;
+                padding: 0 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+            .hobby-item {
+                padding: 1rem 1.5rem;
+                font-size: 1.05rem;
+                margin-bottom: 0.8rem;
+                /* Keep 3 columns but adjust proportions for tablet */
+                grid-template-columns: 2fr 1.5fr 1.5fr; /* Ensure even distribution for names */
+                gap: 10px; /* Smaller gap on tablet */
+            }
+            .hobby-question {
+                font-size: 1.05rem;
+            }
+            .hobby-name-field input {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.95rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Phone Layout (max-width: 600px) */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-container .nav-links a {
+                width: auto;
+                text-align: left;
+                padding: 0.5rem 0;
+            }
+
+            main[role="main"] {
+                padding: 1.5rem 1rem;
+                margin: 1.5rem auto 2rem;
+            }
+            main[role="main"] h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            main[role="main"] h2 {
+                font-size: 1.5rem;
+                margin-top: 1.2rem;
+                margin-bottom: 0.6rem;
+                padding-left: 0.5rem; /* Adjust H2 padding for phone */
+            }
+            .instructions-text {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+                margin-bottom: 1rem;
+            }
+            .hobby-item {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+                margin-bottom: 0.6rem;
+                /* Stack vertically on phone */
+                grid-template-columns: 1fr; /* Single column */
+                gap: 8px; /* Slightly smaller gap between stacked elements */
+            }
+            .hobby-question {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            /* Both name fields will now follow this rule */
+            .hobby-name-field {
+                flex-direction: row; /* Make labels and inputs inline on phone */
+                align-items: center;
+                gap: 0.5rem; /* Gap between label and input */
+                margin-bottom: 0.8rem;
+            }
+            .hobby-name-field:last-of-type { /* Target the very last name field in the item */
+                margin-bottom: 0; /* Remove bottom margin if it's the last element in the item */
+            }
+            .hobby-name-field label {
+                margin-bottom: 0;
+                width: 55px; /* Give labels a fixed width to align inputs */
+                flex-shrink: 0; /* Prevent label from shrinking */
+            }
+            .hobby-name-field input {
+                flex-grow: 1; /* Allow input to take remaining space */
+                padding: 0.4rem 0.6rem;
+                font-size: 0.9rem;
+            }
+            .buttons {
+                padding: 0 1rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin: 0 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practice</a>
+                <a href="../activities.html">Activities</a>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        <h1>Find Someone Who: Hobbies Edition</h1>
+
+        <p class="instructions-text">Walk around the class and ask your classmates questions. Try to find someone who matches each hobby. Write their name in the blank. You can only use each person once!</p>
+
+        <h2>Find someone who...</h2>
+
+        <div class="hobby-items-grid">
+            <div class="hobby-item">
+                <div class="hobby-question">...plays a musical instrument</div>
+                <div class="hobby-name-field">
+                    <label for="name-instrument-1">Name 1:</label>
+                    <input type="text" id="name-instrument-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-instrument-2">Name 2:</label>
+                    <input type="text" id="name-instrument-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...likes painting or drawing</div>
+                <div class="hobby-name-field">
+                    <label for="name-painting-1">Name 1:</label>
+                    <input type="text" id="name-painting-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-painting-2">Name 2:</label>
+                    <input type="text" id="name-painting-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...enjoys hiking or going for walks</div>
+                <div class="hobby-name-field">
+                    <label for="name-hiking-1">Name 1:</label>
+                    <input type="text" id="name-hiking-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-hiking-2">Name 2:</label>
+                    <input type="text" id="name-hiking-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...plays a sport regularly</div>
+                <div class="hobby-name-field">
+                    <label for="name-sport-1">Name 1:</label>
+                    <input type="text" id="name-sport-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-sport-2">Name 2:</label>
+                    <input type="text" id="name-sport-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...reads books in their free time</div>
+                <div class="hobby-name-field">
+                    <label for="name-reading-1">Name 1:</label>
+                    <input type="text" id="name-reading-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-reading-2">Name 2:</label>
+                    <input type="text" id="name-reading-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...enjoys cooking or baking</div>
+                <div class="hobby-name-field">
+                    <label for="name-cooking-1">Name 1:</label>
+                    <input type="text" id="name-cooking-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-cooking-2">Name 2:</label>
+                    <input type="text" id="name-cooking-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...has a collection (e.g. stamps, coins, etc.)</div>
+                <div class="hobby-name-field">
+                    <label for="name-collection-1">Name 1:</label>
+                    <input type="text" id="name-collection-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-collection-2">Name 2:</label>
+                    <input type="text" id="name-collection-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...likes playing video games</div>
+                <div class="hobby-name-field">
+                    <label for="name-videogames-1">Name 1:</label>
+                    <input type="text" id="name-videogames-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-videogames-2">Name 2:</label>
+                    <input type="text" id="name-videogames-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...writes stories or poems</div>
+                <div class="hobby-name-field">
+                    <label for="name-writing-1">Name 1:</label>
+                    <input type="text" id="name-writing-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-writing-2">Name 2:</label>
+                    <input type="text" id="name-writing-2" placeholder="Write name here">
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-question">...knows how to knit, sew, or crochet</div>
+                <div class="hobby-name-field">
+                    <label for="name-crafts-1">Name 1:</label>
+                    <input type="text" id="name-crafts-1" placeholder="Write name here">
+                </div>
+                <div class="hobby-name-field">
+                    <label for="name-crafts-2">Name 2:</label>
+                    <input type="text" id="name-crafts-2" placeholder="Write name here">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../activities.html">← Back to Activities</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (useful for single-page apps or when navigating)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

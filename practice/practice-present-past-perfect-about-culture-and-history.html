@@ -1,0 +1,459 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Present Perfect & Past Perfect Worksheet – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+
+    .exercise-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+
+    /* Fill-in-the-blanks */
+    .question-list ol {
+        padding-left: 20px;
+    }
+    .question-list li {
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+    }
+    .question-list input[type="text"] {
+        width: 250px; /* Increased width for longer answers */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    .correct-answer-text {
+        color: #28a745;
+        font-weight: bold;
+        margin-left: 10px;
+        display: none; /* Hidden by default */
+    }
+    .incorrect-answer-text {
+        color: #dc3545;
+        font-weight: bold;
+        margin-left: 10px;
+        display: none; /* Hidden by default */
+    }
+
+    /* Check Answers Button */
+    #checkAnswersBtn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+        background-color: #0056b3;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>English Grammar Worksheet: Culture & History</h1>
+
+<div class="content-container">
+  <p>**Instructions:** Choose the correct form of the verb (Present Perfect or Past Perfect) to complete each sentence.</p>
+
+  <div class="exercise-section">
+    <h2>Exercise: Fill in the Blanks</h2>
+    <div class="question-list">
+      <ol>
+        <li>Before they built the new museum, the city <input type="text" id="q1" /> (never / have) such a large collection of ancient artifacts.
+          <span class="correct-answer-text" id="a1"></span>
+        </li>
+        <li>Archaeologists <input type="text" id="q2" /> (just / discover) a new Roman villa near the old city walls.
+          <span class="correct-answer-text" id="a2"></span>
+        </li>
+        <li>By the time the conquerors arrived, the indigenous people <input type="text" id="q3" /> (already / establish) a complex writing system.
+          <span class="correct-answer-text" id="a3"></span>
+        </li>
+        <li>Since its opening last year, the exhibit on ancient Egypt <input type="text" id="q4" /> (attract) thousands of visitors.
+          <span class="correct-answer-text" id="a4"></span>
+        </li>
+        <li>Many historians believe that the decline of the empire <input type="text" id="q5" /> (begin) long before the final invasion.
+          <span class="correct-answer-text" id="a5"></span>
+        </li>
+        <li>Until recently, scholars <input type="text" id="q6" /> (not / fully understand) the purpose of these mysterious stone circles.
+          <span class="correct-answer-text" id="a6"></span>
+        </li>
+        <li>She <input type="text" id="q7" /> (already / visit) three historical sites today, and it's only lunchtime.
+          <span class="correct-answer-text" id="a7"></span>
+        </li>
+        <li>The Silk Road <input type="text" id="q8" /> (connect) different cultures for centuries before the age of modern shipping.
+          <span class="correct-answer-text" id="a8"></span>
+        </li>
+        <li>When the explorers landed, they realized that the local population <input type="text" id="q9" /> (never / see) Europeans before.
+          <span class="correct-answer-text" id="a9"></span>
+        </li>
+        <li>The government <input type="text" id="q10" /> (invest) a lot of money in cultural preservation projects in the past decade.
+          <span class="correct-answer-text" id="a10"></span>
+        </li>
+        <li>Before the advent of printing, monks <input type="text" id="q11" /> (meticulously / copy) manuscripts by hand for centuries.
+          <span class="correct-answer-text" id="a11"></span>
+        </li>
+        <li>I <input type="text" id="q12" /> (always / be) fascinated by the history of ancient civilizations.
+          <span class="correct-answer-text" id="a12"></span>
+        </li>
+        <li>By the time the artist completed his masterpiece, he <input type="text" id="q13" /> (work) on it for over ten years.
+          <span class="correct-answer-text" id="a13"></span>
+        </li>
+        <li>The local community <input type="text" id="q14" /> (celebrate) this traditional festival every year since the 18th century.
+          <span class="correct-answer-text" id="a14"></span>
+        </li>
+        <li>He couldn't enter the archive because he <input type="text" id="q15" /> (forget) his identification.
+          <span class="correct-answer-text" id="a15"></span>
+        </li>
+        <li>Since the fall of the Berlin Wall, Germany <input type="text" id="q16" /> (undergo) significant cultural and political changes.
+          <span class="correct-answer-text" id="a16"></span>
+        </li>
+        <li>The curator explained that they <input type="text" id="q17" /> (restore) the painting carefully before it went on display.
+          <span class="correct-answer-text" id="a17"></span>
+        </li>
+        <li>For generations, the family <input type="text" id="q18" /> (pass down) this valuable heirloom.
+          <span class="correct-answer-text" id="a18"></span>
+        </li>
+        <li>We were surprised because we <input type="text" id="q19" /> (not / hear) about the new historical discovery until yesterday.
+          <span class="correct-answer-text" id="a19"></span>
+        </li>
+        <li>The internet <input type="text" id="q20" /> (revolutionize) the way we access historical information and cultural knowledge.
+          <span class="correct-answer-text" id="a20"></span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // --- Worksheet Logic ---
+  const answers = {
+    "q1": "had never had",
+    "q2": "have just discovered",
+    "q3": "had already established",
+    "q4": "has attracted",
+    "q5": "had begun",
+    "q6": "had not fully understood",
+    "q7": "has already visited",
+    "q8": "had connected",
+    "q9": "had never seen",
+    "q10": "has invested",
+    "q11": "had meticulously copied",
+    "q12": "have always been",
+    "q13": "had worked",
+    "q14": "has celebrated",
+    "q15": "had forgotten",
+    "q16": "has undergone",
+    "q17": "had restored",
+    "q18": "has passed down",
+    "q19": "had not heard",
+    "q20": "has revolutionized"
+  };
+
+  function checkAnswers() {
+    for (let i = 1; i <= 20; i++) {
+      const inputId = `q${i}`;
+      const answerId = `a${i}`;
+      const inputElement = document.getElementById(inputId);
+      const answerElement = document.getElementById(answerId);
+      const userAnswer = inputElement.value.trim().toLowerCase();
+      const correctAnswer = answers[inputId].toLowerCase();
+
+      answerElement.style.display = 'inline'; // Show the answer feedback
+
+      if (userAnswer === correctAnswer) {
+        answerElement.textContent = `Correct!`;
+        answerElement.className = 'correct-answer-text';
+      } else {
+        answerElement.textContent = `Incorrect. Correct: ${answers[inputId]}`;
+        answerElement.className = 'incorrect-answer-text';
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
+```

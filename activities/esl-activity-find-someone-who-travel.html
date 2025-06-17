@@ -47,15 +47,15 @@
         nav {
             background-color: #124076;
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 0.8rem 1rem; /* Base padding for desktop and wider screens */
         }
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1100px;
+            max-width: 1100px; /* Max width for desktop nav content */
             margin: 0 auto;
-            padding: 0;
+            padding: 0; /* Padding handled by parent nav */
         }
         .nav-container .logo {
             display: flex;
@@ -76,7 +76,7 @@
         }
         .nav-container .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.5rem; /* Standard gap for desktop */
         }
         .nav-container .nav-links a {
             color: white;
@@ -223,13 +223,16 @@
         /* Tablet Layout (min-width: 601px and max-width: 900px) */
         @media (min-width: 601px) and (max-width: 900px) {
             .nav-container {
-                padding: 0.8rem 1.5rem;
+                /* Ensured nav container doesn't exceed main content width on tablets */
+                max-width: 900px; /* Aligns with main content */
+                padding: 0.8rem 0.8rem; /* Adjusted from 1.5rem */
             }
             .nav-container .nav-links {
                 flex-wrap: nowrap;
                 justify-content: flex-end;
-                gap: 1.2rem;
-                font-size: 0.95rem;
+                /* Adjusted gap and font size to prevent wrapping on tablets */
+                gap: 0.6rem; /* Reduced from 0.7rem */
+                font-size: 0.85rem; /* Reduced from 0.88rem */
             }
             .nav-container .site-name {
                 font-size: 1.25rem;
@@ -260,9 +263,8 @@
                 padding: 1rem 1.5rem;
                 font-size: 1.05rem;
                 margin-bottom: 0.8rem;
-                /* Keep 3 columns but adjust proportions for tablet */
-                grid-template-columns: 2fr 1.5fr 1.5fr; /* Ensure even distribution for names */
-                gap: 10px; /* Smaller gap on tablet */
+                grid-template-columns: 2fr 1.5fr 1.5fr;
+                gap: 10px;
             }
             .hobby-question {
                 font-size: 1.05rem;
@@ -279,8 +281,6 @@
         /* Phone Layout (max-width: 600px) */
         @media (max-width: 600px) {
             .nav-container {
-                flex-direction: row;
-                justify-content: space-between;
                 padding: 0.6rem 0.8rem;
             }
             .nav-container .site-name {
@@ -301,7 +301,7 @@
                 gap: 1rem;
                 overflow-y: auto;
                 transform: translateX(100%);
-                transition: transform 0.3s ease;
+                transition: transform 0.3s ease-out;
                 z-index: 998;
                 align-items: flex-start;
                 border-radius: 0 0 0 10px;
@@ -338,31 +338,29 @@
                 padding: 0.8rem 1.2rem;
                 font-size: 1rem;
                 margin-bottom: 0.6rem;
-                /* Stack vertically on phone */
-                grid-template-columns: 1fr; /* Single column */
-                gap: 8px; /* Slightly smaller gap between stacked elements */
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
             .hobby-question {
                 font-size: 1rem;
                 margin-bottom: 0.5rem;
             }
-            /* Both name fields will now follow this rule */
             .hobby-name-field {
-                flex-direction: row; /* Make labels and inputs inline on phone */
+                flex-direction: row;
                 align-items: center;
-                gap: 0.5rem; /* Gap between label and input */
+                gap: 0.5rem;
                 margin-bottom: 0.8rem;
             }
-            .hobby-name-field:last-of-type { /* Target the very last name field in the item */
-                margin-bottom: 0; /* Remove bottom margin if it's the last element in the item */
+            .hobby-name-field:last-of-type {
+                margin-bottom: 0;
             }
             .hobby-name-field label {
                 margin-bottom: 0;
-                width: 55px; /* Give labels a fixed width to align inputs */
-                flex-shrink: 0; /* Prevent label from shrinking */
+                width: 55px;
+                flex-shrink: 0;
             }
             .hobby-name-field input {
-                flex-grow: 1; /* Allow input to take remaining space */
+                flex-grow: 1;
                 padding: 0.4rem 0.6rem;
                 font-size: 0.9rem;
             }

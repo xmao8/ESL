@@ -148,18 +148,13 @@
         /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
         @media (min-width: 601px) and (max-width: 900px) {
             .nav-container {
-                flex-direction: row; /* Keep logo and links in a row */
-                justify-content: space-between; /* Space between logo and links */
-                align-items: center;
-                padding: 0.8rem 1rem;
-            }
-            .nav-container .logo {
-                margin-bottom: 0; /* No margin below logo */
+                padding: 0.8rem 1.5rem; /* Slightly more horizontal padding for tablets */
             }
             .nav-container .nav-links {
-                flex-wrap: wrap; /* Allow links to wrap */
-                justify-content: flex-end; /* Align links to the right */
-                gap: 1rem; /* Adjust gap for tablets */
+                /* Ensured they stay in a row and adjusted gap */
+                flex-wrap: nowrap; /* Prevent links from wrapping to the next line */
+                justify-content: flex-end; /* Keep links aligned to the right */
+                gap: 1.2rem; /* Slightly reduced gap for more space */
             }
             .nav-container .site-name {
                 font-size: 1.25rem;
@@ -278,8 +273,7 @@
                 <a href="grammar.html">Grammar</a>
                 <a href="reading.html">Reading</a>
                 <a href="practice.html">Practice</a>
-                <a href="activities.html">Activities</a>
-            </div>
+                <a href="activities.html">Activities</a> </div>
         </div>
     </nav>
 
@@ -290,7 +284,6 @@
             <a class="label-link" href="grammar/introduction-of-phrase-verbs.html">Introduction to Phrasal Verbs in English</a>
             <a class="label-link" href="grammar/would-could-might.html">Would, Could, & Might</a>
             <a class="label-link" href="grammar/introduction-to-ipa.html">Introduction to IPA</a>
-        
         </div>
     </main>
 

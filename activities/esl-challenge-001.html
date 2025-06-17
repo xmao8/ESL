@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ELS Challenge 001 – Learn English Together</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll issues */
+        }
+        main {
+            flex: 1; /* Allows main content to grow and push the footer down */
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%; /* Ensure nav takes full width */
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between; /* Puts logo on left, links on right by default */
+            align-items: center;
+            max-width: 1100px; /* Max width for desktop nav content */
+            margin: 0 auto; /* Center the nav content */
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap; /* Prevent site name from wrapping */
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem; /* Larger gap for desktop */
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none; /* Hidden on desktop and tablet */
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000; /* Ensure it's above the menu when active */
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* PAGE TITLE */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* GRAMMAR LINKS */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+            display: block;
+        }
+        .label-link {
+            display: block;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .label-link:hover {
+            background-color: #eef6fb;
+            transform: translateY(-2px);
+        }
+
+        /* BACK BUTTONS */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.2rem; /* Slightly less padding on edges to give more room */
+            }
+            .nav-container .nav-links {
+                flex-wrap: nowrap; /* CRUCIAL: Prevent links from wrapping */
+                justify-content: flex-end; /* Align links to the right */
+                gap: 0.8rem; /* **Adjusted for tighter fit** */
+                font-size: 0.95rem; /* **Slightly smaller font-size for links** */
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            .container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            .label-link {
+                margin: 0;
+                font-size: 1.05rem;
+                padding: 0.9rem 1.2rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row; /* Keep logo and toggle in a row */
+                justify-content: space-between; /* Push logo left, toggle right */
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .nav-container .nav-links {
+                position: fixed; /* Position fixed relative to viewport */
+                top: 56px; /* Adjust based on your nav height */
+                right: 0;
+                background: #124076;
+                flex-direction: column; /* Stack links vertically */
+                width: 100%; /* Full width menu */
+                height: calc(100vh - 56px); /* Full height minus nav bar */
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%); /* Start off-screen */
+                transition: transform 0.3s ease;
+                z-index: 998; /* Below toggle, above content */
+                align-items: flex-start; /* Align links to the left inside the menu */
+                border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0); /* Slide in */
+            }
+            .nav-container .nav-links a {
+                width: auto; /* Allow links to naturally size */
+                text-align: left; /* Align text to left */
+                padding: 0.5rem 0; /* Add vertical padding */
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            .container {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding: 0.8rem;
+            }
+            .label-link {
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
+            }
+            .buttons {
+                padding: 0 0.8rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin: 0 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="index.html">Home</a>
+                <a href="flashcards.html">Flashcards</a>
+                <a href="conversation.html">Conversations</a>
+                <a href="grammar.html">Grammar</a>
+                <a href="reading.html">Reading</a>
+                <a href="practice.html">Practice</a>
+                <a href="activities.html">Activities</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+         <main class="game-container"> <h1>ESL Challenge</h1> <div id="scores">
+            <div>Team A: <span id="scoreA">0</span></div>
+            <div>Team B: <span id="scoreB">0</span></div>
+        </div>
+
+        <div class="board" id="board"></div>
+
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <h2 id="question">Question</h2>
+                <p id="answerBlock" style="display:none;"><strong>Answer:</strong> <span id="answer">...</span></p>
+                <div>
+                    <button id="showAnswerButton">Show Answer</button>
+                    <button onclick="claimPoints('A')">Team A Correct</button>
+                    <button onclick="claimPoints('B')">Team B Correct</button>
+                    <button onclick="closeModal(true)">Close</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <audio id="clickSound" src="click.mp3"></audio>
+    <audio id="correctSound" src="correct.mp3"></audio>
+
+    <script>
+        // Changed category names to be generic
+        const categories = [
+            "Grammar Fun 100",
+            "Grammar Fun 200",
+            "Grammar Fun 300",
+            "Grammar Fun 400",
+            "Grammar Fun 500"
+        ];
+        const questions = {
+            "Grammar Fun 100": [
+                ["Complete: She ___ (go) to school every day.", "goes"],
+                ["What is the past simple of 'eat'?", "Ate"],
+                ["Complete: Tomorrow, I ___ (will / call) you.", "will call"],
+                ["Correct the error: 'I am often watch TV.'", "I often watch TV."],
+                ["What is the future continuous form of 'travel'?", "will be traveling"]
+            ],
+            "Grammar Fun 200": [
+                ["When do we use the simple present tense?", "For habits, routines, facts, and scheduled events."],
+                ["Complete: Yesterday, I ___ (walk) to the park.", "walked"],
+                ["Complete: I ___ (already / finish) my homework.", "have already finished"],
+                ["Correct the error: 'He did not went to the party.'", "He did not go to the party."],
+                ["What tense describes an action happening over a period in the past that was interrupted?", "Past continuous (or past progressive)"]
+            ],
+            "Grammar Fun 300": [
+                ["Form a question in present continuous: 'They are playing soccer.'", "Are they playing soccer?"],
+                ["When do we typically use 'going to' for future actions?", "For plans/intentions or predictions based on current evidence."],
+                ["What is the past perfect form of 'see'?", "had seen"],
+                ["Form a negative sentence in past simple: 'They won the game.'", "They did not win the game."],
+                ["Complete: While I ___ (cook), my phone ___ (ring).", "was cooking, rang"]
+            ],
+            "Grammar Fun 400": [
+                ["When do we use the present perfect tense?", "For actions that started in the past and continue to the present, or completed actions with a present result."],
+                ["Use 'will' to express a spontaneous decision: 'I'm thirsty!'", "I will get a glass of water."],
+                ["Correct the error: 'They have went to London.'", "They have gone to London."],
+                ["Identify the tense: 'They had been waiting for hours before he arrived.'", "Past perfect continuous and Past simple"],
+                ["Form a question in present perfect: 'She read that book.'", "Has she read that book?"]
+            ],
+            "Grammar Fun 500": [
+                ["Complete: By this time next year, I ___ (live) in a new city.", "will be living"],
+                ["If I ___ (know) the answer, I would tell you. (Conditional Type 2)", "knew"],
+                ["Which tense is used for an action that will be completed before another future action?", "Future perfect"],
+                ["What is the present continuous form of 'study'?", "is studying / am studying / are studying"],
+                ["Explain the difference between 'I have lived here for 5 years' and 'I lived here for 5 years'.", "'I have lived here for 5 years' means I still live here. 'I lived here for 5 years' means I no longer live here."]
+            ]
+        };
+
+        let scoreA = 0;
+        let scoreB = 0;
+        let currentCell = null;
+        let currentQuestionData = null;
+
+        const board = document.getElementById('board');
+        const modal = document.getElementById('modal');
+        const questionEl = document.getElementById('question');
+        const answerEl = document.getElementById('answer');
+        const answerBlock = document.getElementById('answerBlock');
+        const scoreAEl = document.getElementById('scoreA');
+        const scoreBEl = document.getElementById('scoreB');
+        const clickSound = document.getElementById('clickSound');
+        const correctSound = document.getElementById('correctSound');
+
+        const showAnswerBtn = document.getElementById('showAnswerButton');
+        const teamA_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'A\')"]');
+        const teamB_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'B\')"]');
+        const closeBtn = document.querySelector('.modal-content button[onclick*="closeModal"]');
+
+        showAnswerBtn.addEventListener('click', showAnswer);
+
+        // --- Initialize Board ---
+        // Clear existing content if re-initializing
+        board.innerHTML = '';
+
+        categories.forEach(cat => {
+            const cell = document.createElement('div');
+            cell.className = 'cell category';
+            cell.innerText = cat;
+            board.appendChild(cell);
+        });
+
+        for (let row = 0; row < 5; row++) {
+            categories.forEach((cat, col) => {
+                const key = `${cat}-${row}`;
+                const [q, a] = questions[cat][row];
+                const value = (row + 1) * 100;
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.innerText = value;
+                cell.dataset.key = key;
+                cell.dataset.value = value;
+
+                cell.addEventListener('click', () => {
+                    if (cell.classList.contains('disabled')) return;
+
+                    clickSound.play();
+                    currentCell = cell;
+                    currentQuestionData = { q, a, value };
+
+                    questionEl.innerText = currentQuestionData.q;
+                    answerEl.innerText = currentQuestionData.a;
+                    answerBlock.style.display = 'none';
+
+                    showAnswerBtn.style.display = 'inline-block';
+                    teamA_CorrectBtn.style.display = 'none';
+                    teamB_CorrectBtn.style.display = 'none';
+
+                    modal.classList.add('show');
+                });
+
+                board.appendChild(cell);
+            });
+        }
+
+        // --- Game Logic Functions ---
+        function showAnswer() {
+            answerBlock.style.display = 'block';
+            showAnswerBtn.style.display = 'none';
+            teamA_CorrectBtn.style.display = 'inline-block';
+            teamB_CorrectBtn.style.display = 'inline-block';
+        }
+
+        function claimPoints(team) {
+            if (!currentCell || currentCell.classList.contains('disabled')) return;
+
+            const points = parseInt(currentCell.dataset.value);
+            if (team === 'A') {
+                scoreA += points;
+                scoreAEl.textContent = scoreA;
+            } else {
+                scoreB += points;
+                scoreBEl.textContent = scoreB;
+            }
+
+            correctSound.play();
+            currentCell.classList.add('disabled');
+            currentCell.textContent = "";
+            closeModal(false);
+        }
+
+        function closeModal(disableCell) {
+            modal.classList.remove('show');
+            if (currentCell && disableCell) {
+                currentCell.classList.add('disabled');
+                currentCell.textContent = "";
+            }
+            currentCell = null;
+            currentQuestionData = null;
+        }
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

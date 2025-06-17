@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Crossing Cultures – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2 {
+            color: #124076;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- PAGE CONTENT CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            padding: 0;
+        }
+
+        /* Article styling */
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #124076;
+            margin-top: 1em;
+            display: block;
+        }
+        .dialogue {
+            margin-left: 1.5em;
+            margin-bottom: 0.5em;
+            font-style: italic;
+        }
+        .setting-info {
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+
+        /* Vocabulary section */
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        dl {
+            margin: 0;
+            padding: 0;
+        }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dotted #3498db;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        dt:hover, dt:focus {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+            outline: none;
+        }
+        .speaker-icon {
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
+        }
+        dd {
+            margin-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+
+        /* Buttons */
+        .buttons {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            .container { padding: 1.8rem 2rem; }
+            article p { font-size: 1.05rem; }
+            section.vocab h2 { font-size: 1.6rem; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            h1 { font-size: 2rem; padding: 0 0.8rem; }
+            .container { padding: 1rem; margin-top: 2rem; }
+            article p { font-size: 1rem; }
+            section.vocab h2 { font-size: 1.5rem; }
+            dt { font-size: 0.95rem; }
+            dd, dd.example { font-size: 0.9rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>Crossing Cultures</h1>
+
+    <article>
+        <p class="scene-direction">Characters:</p>
+        <p><strong>Emily:</strong> A Canadian exchange student experiencing adjustment issues.<br>
+           <strong>Rina:</strong> A thoughtful Japanese student who's been abroad for a semester.<br>
+           <strong>Luis:</strong> A Mexican student who adapts quickly and loves socializing.</p>
+        <p class="setting-info">Setting: International student lounge.</p>
+
+        <p class="scene-direction">(Emily stares out the window, arms crossed. Rina enters and notices her.)</p>
+
+        <p><span class="character-name">Rina:</span> <span class="dialogue">Hey, Emily. You look deep in thought.</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Oh… hi, Rina. I’m just feeling out of place. Everything here is unfamiliar.</span></p>
+        <p><span class="character-name">Rina:</span> <span class="dialogue">I understand. Adjusting takes time. The first few weeks were overwhelming for me too.</span></p>
+
+        <p class="scene-direction">(Luis walks in with a coffee and overhears them.)</p>
+
+        <p><span class="character-name">Luis:</span> <span class="dialogue">Let me guess—culture shock? Been there, done that.</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Is it that obvious? I feel disconnected—from the people, the food, even the way people talk.</span></p>
+        <p><span class="character-name">Luis:</span> <span class="dialogue">That’s normal. When I arrived, I misinterpreted half of what people said. Slang, gestures… it was a mystery.</span></p>
+        <p><span class="character-name">Rina:</span> <span class="dialogue">I once gave my professor a small gift and he looked so confused. I didn’t know it’s unusual here.</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Exactly! Back home, I felt competent and confident. Here, even ordering lunch feels like a challenge.</span></p>
+        <p><span class="character-name">Luis:</span> <span class="dialogue">You're navigating a new system. It takes courage. I started by observing others and asking questions.</span></p>
+        <p><span class="character-name">Rina:</span> <span class="dialogue">Joining student groups helped me a lot. It reduced my isolation.</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Isolation is the right word. I didn’t think I’d struggle this much socially.</span></p>
+        <p><span class="character-name">Luis:</span> <span class="dialogue">You're not alone. Most of us go through a transitional phase. But it gets better, seriously.</span></p>
+        <p><span class="character-name">Rina:</span> <span class="dialogue">And don't be afraid to make mistakes. They become great stories later.</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Maybe I need to stop retreating into my room and start participating more.</span></p>
+        <p><span class="character-name">Luis:</span> <span class="dialogue">Exactly! We're organizing an international potluck this Friday. Bring something Canadian!</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Hmm… poutine, maybe?</span></p>
+        <p><span class="character-name">Luis:</span> <span class="dialogue">Perfect! And bring your sarcasm too—people will love it.</span></p>
+        <p><span class="character-name">Rina:</span> <span class="dialogue">You belong here, Emily. Just give yourself time to adapt.</span></p>
+        <p><span class="character-name">Emily:</span> <span class="dialogue">Thanks, both of you. I needed this talk more than I realized.</span></p>
+        <p class="scene-direction">(They share a smile and walk off together to the dining area.)</p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <p>Click on each term to hear pronunciation!</p>
+        <dl>
+            <dt class="vocab-term" tabindex="0">Out of place <span class="speaker-icon">🔊</span></dt>
+            <dd>Feeling like you don’t belong.</dd>
+            <dd class="example">Example: I felt out of place at the big party.</dd>
+
+            <dt class="vocab-term" tabindex="0">Unfamiliar <span class="speaker-icon">🔊</span></dt>
+            <dd>Not known or recognized.</dd>
+            <dd class="example">Example: The street signs were all unfamiliar to me.</dd>
+
+            <dt class="vocab-term" tabindex="0">Overwhelming <span class="speaker-icon">🔊</span></dt>
+            <dd>Too much to handle emotionally or mentally.</dd>
+            <dd class="example">Example: The heavy workload felt overwhelming.</dd>
+
+            <dt class="vocab-term" tabindex="0">Disconnected <span class="speaker-icon">🔊</span></dt>
+            <dd>Feeling separate or isolated from others.</dd>
+            <dd class="example">Example: He felt disconnected in the new city.</dd>
+
+            <dt class="vocab-term" tabindex="0">Misinterpret <span class="speaker-icon">🔊</span></dt>
+            <dd>To understand something incorrectly.</dd>
+            <dd class="example">Example: I misinterpreted their tone as anger.</dd>
+
+            <dt class="vocab-term" tabindex="0">Gestures <span class="speaker-icon">🔊</span></dt>
+            <dd>Movements of the hands or body to express ideas.</dd>
+            <dd class="example">Example: His gestures helped clarify his meaning.</dd>
+
+            <dt class="vocab-term" tabindex="0">Competent <span class="speaker-icon">🔊</span></dt>
+            <dd>Capable; having the necessary skill.</dd>
+            <dd class="example">Example: She is competent at using new software.</dd>
+
+            <dt class="vocab-term" tabindex="0">Navigate <span class="speaker-icon">🔊</span></dt>
+            <dd>To find your way through a difficult situation.</dd>
+            <dd class="example">Example: He learned to navigate city streets quickly.</dd>
+
+            <dt class="vocab-term" tabindex="0">Isolation <span class="speaker-icon">🔊</span></dt>
+            <dd>Being alone or separated from others.</dd>
+            <dd class="example">Example: The long winter led to feelings of isolation.</dd>
+
+            <dt class="vocab-term" tabindex="0">Transitional phase <span class="speaker-icon">🔊</span></dt>
+            <dd>A period of change between two stages.</dd>
+            <dd class="example">Example: Moving abroad is a major transitional phase.</dd>
+
+            <dt class="vocab-term" tabindex="0">Sarcasm <span class="speaker-icon">🔊</span></dt>
+            <dd>Saying the opposite of what you mean, often humorously.</dd>
+            <dd class="example">Example: His sarcasm made the joke funnier.</dd>
+
+            <dt class="vocab-term" tabindex="0">Confident <span class="speaker-icon">🔊</span></dt>
+            <dd>Sure of yourself.</dd>
+            <dd class="example">Example: She felt confident during the presentation.</dd>
+
+            <dt class="vocab-term" tabindex="0">Adapt <span class="speaker-icon">🔊</span></dt>
+            <dd>To adjust to new conditions.</dd>
+            <dd class="example">Example: It took time to adapt to the climate.</dd>
+
+            <dt class="vocab-term" tabindex="0">Retreat <span class="speaker-icon">🔊</span></dt>
+            <dd>To move away or withdraw.</dd>
+            <dd class="example">Example: He would retreat to his room when stressed.</dd>
+
+            <dt class="vocab-term" tabindex="0">Participate <span class="speaker-icon">🔊</span></dt>
+            <dd>To take part in an activity.</dd>
+            <dd class="example">Example: She decided to participate in the workshop.</dd>
+
+            <dt class="vocab-term" tabindex="0">Observe <span class="speaker-icon">🔊</span></dt>
+            <dd>To watch carefully.</dd>
+            <dd class="example">Example: I observed local customs to learn quickly.</dd>
+
+            <dt class="vocab-term" tabindex="0">Socialize <span class="speaker-icon">🔊</span></dt>
+            <dd>To interact with others in a friendly way.</dd>
+            <dd class="example">Example: He tried to socialize at the coffee hour.</dd>
+
+            <dt class="vocab-term" tabindex="0">Unusual <span class="speaker-icon">🔊</span></dt>
+            <dd>Not common or expected.</dd>
+            <dd class="example">Example: The afternoon schedule was unusual.</dd>
+
+            <dt class="vocab-term" tabindex="0">Potluck <span class="speaker-icon">🔊</span></dt>
+            <dd>A shared meal where everyone brings a dish.</dd>
+            <dd class="example">Example: The international potluck was a hit.</dd>
+        </dl>
+    </section>
+
+    <div class="buttons">
+        <a href="reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utt = new SpeechSynthesisUtterance(word);
+            utt.lang = 'en-US';
+            window.speechSynthesis.speak(utt);
+        } else {
+            alert("Text-to-speech not supported.");
+        }
+    }
+    document.querySelectorAll('.vocab-term').forEach(item => {
+        item.addEventListener('click', () => {
+            const word = item.textContent.replace('🔊','').trim();
+            speakWord(word);
+        });
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const word = item.textContent.replace('🔊','').trim();
+                speakWord(word);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Summer Plans Up in the Air – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2 {
+            color: #124076;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- PAGE CONTENT CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            padding: 0;
+        }
+
+        /* Article styling */
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #124076;
+            margin-top: 1em;
+            display: block;
+        }
+        .dialogue {
+            margin-left: 1.5em;
+            margin-bottom: 0.5em;
+            font-style: italic;
+        }
+        .setting-info {
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+
+        /* Vocabulary section */
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        dl {
+            margin: 0;
+            padding: 0;
+        }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dotted #3498db;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        dt:hover, dt:focus {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+            outline: none;
+        }
+        .speaker-icon {
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
+        }
+        dd {
+            margin-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+
+        /* Buttons */
+        .buttons {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            .container { padding: 1.8rem 2rem; }
+            article p { font-size: 1.05rem; }
+            section.vocab h2 { font-size: 1.6rem; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            h1 { font-size: 2rem; padding: 0 0.8rem; }
+            .container { padding: 1rem; margin-top: 2rem; }
+            article p { font-size: 1rem; }
+            section.vocab h2 { font-size: 1.5rem; }
+            dt { font-size: 0.95rem; }
+            dd, dd.example { font-size: 0.9rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>Summer Plans Up in the Air</h1>
+
+    <article>
+        <p class="scene-direction">**Characters:**</p>
+        <p><strong>MARIA:</strong> (40s) Enthusiastic and a bit of a dreamer.<br>
+        <strong>DAVID:</strong> (40s) Practical and slightly reserved.<br>
+        <strong>CHLOE:</strong> (20s) Energetic and social.</p>
+        <p class="setting-info">**Setting:** A community center common room. Empty coffee cups and a few scattered magazines are on a table.</p>
+
+        <p class="scene-direction">(MARIA is excitedly looking at a travel brochure. DAVID enters, looking a bit tired.)</p>
+
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">Morning, Maria. What’s got you so engrossed? Planning a world tour?</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">(Beaming) Even better! I’m planning my summer. Look at these pictures of Lake Arrowhead! Imagine, fresh air, hiking, maybe even renting a little cabin…</span></p>
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">(Sighs) Sounds lovely. Expensive, too. My summer plans involve a lot of extra hours at work to pay for the *last* summer’s expenses.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">Oh, David, don’t be such a pessimist! There are always ways. Maybe we could carpool, share a cabin… You need a break! You always work so hard.</span></p>
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">I appreciate the thought, Maria, but I just don’t see it happening this year. Besides, I promised my sister I’d help her paint her house. That’s my summer adventure.</span></p>
+
+        <p class="scene-direction">(CHLOE bounces in, phone in hand.)</p>
+
+        <p><span class="character-name">CHLOE:</span> <span class="dialogue">Hey, guys! Guess what? My friends and I are organizing a big beach day next month! We’re going to Bolsa Chica. We’ll play volleyball, have a barbecue, maybe even try paddleboarding! You two should totally come!</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">(Eyes wide) A beach day? That sounds fantastic, Chloe! I haven't been to the beach in ages. My swimsuit might be a little… dusty.</span></p>
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">(Chuckles) Mine too. A beach day, huh? That’s much more realistic than a mountain retreat. But I’m not sure about paddleboarding. I’m more of a "sit-in-the-sand-and-read-a-book" kind of guy.</span></p>
+        <p><span class="character-name">CHLOE:</span> <span class="dialogue">No problem! Just come and hang out. The more, the merrier! We’re thinking of going on a Saturday, so it won't interfere with work for you, David.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">See, David? Options! We could pack a big picnic, listen to music… It sounds so relaxing. And no painting houses!</span></p>
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">(Smiling slightly) Well, it does sound a lot more appealing than scraping old paint. What about food? Are you guys doing a potluck?</span></p>
+        <p><span class="character-name">CHLOE:</span> <span class="dialogue">Yeah, totally! Everyone brings something. My friend, Leo, makes amazing guacamole. And I’m going to bake a ton of cookies.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">I can make my famous potato salad! It’s always a big hit.</span></p>
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">Potato salad and guacamole on the beach? Alright, you two, you’re convincing me. It’s certainly more budget-friendly than Lake Arrowhead, Maria.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">(Grinning) One step at a time, David. Maybe next year we’ll conquer the mountains. But for now, the beach sounds perfect! Thank you, Chloe!</span></p>
+        <p><span class="character-name">CHLOE:</span> <span class="dialogue">Awesome! I'll send you both the details later. It’s going to be epic!</span></p>
+
+        <p class="scene-direction">(CHLOE exits, still on her phone. MARIA and DAVID exchange a look.)</p>
+
+        <p><span class="character-name">DAVID:</span> <span class="dialogue">Potato salad, huh? Don’t disappoint me.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">Never! See? Summer isn't so bad after all.</span></p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <p>Click on each term to hear pronunciation!</p>
+        <dl>
+            <dt class="vocab-term" tabindex="0">Engrossed <span class="speaker-icon">🔊</span></dt>
+            <dd>Having all one's attention or interest absorbed by something.</dd>
+            <dd class="example">Example: "What’s got you so **engrossed**? Planning a world tour?"</dd>
+
+            <dt class="vocab-term" tabindex="0">Pessimist <span class="speaker-icon">🔊</span></dt>
+            <dd>A person who tends to see the worst aspect of things or believe that the worst will happen.</dd>
+            <dd class="example">Example: "Oh, David, don’t be such a **pessimist**!"</dd>
+
+            <dt class="vocab-term" tabindex="0">Bounces in <span class="speaker-icon">🔊</span></dt>
+            <dd>Enters a place with a lively, energetic, and often bouncy movement.</dd>
+            <dd class="example">Example: "(CHLOE **bounces in**, phone in hand.)"</dd>
+
+            <dt class="vocab-term" tabindex="0">Paddleboarding <span class="speaker-icon">🔊</span></dt>
+            <dd>The sport of standing or kneeling on a board and propelling oneself with a paddle.</dd>
+            <dd class="example">Example: "We’ll play volleyball, have a barbecue, maybe even try **paddleboarding**!"</dd>
+
+            <dt class="vocab-term" tabindex="0">Ages <span class="speaker-icon">🔊</span></dt>
+            <dd>A very long time (informal).</dd>
+            <dd class="example">Example: "I haven't been to the beach in **ages**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Dusty <span class="speaker-icon">🔊</span></dt>
+            <dd>Covered with or containing dust; also used informally to mean old or unused.</dd>
+            <dd class="example">Example: "My swimsuit might be a little… **dusty**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Realistic <span class="speaker-icon">🔊</span></dt>
+            <dd>Having or showing a sensible and practical idea of what can be achieved or expected.</dd>
+            <dd class="example">Example: "That’s much more **realistic** than a mountain retreat."</dd>
+
+            <dt class="vocab-term" tabindex="0">Appealing <span class="speaker-icon">🔊</span></dt>
+            <dd>Attractive or interesting.</dd>
+            <dd class="example">Example: "Well, it does sound a lot more **appealing** than scraping old paint."</dd>
+
+            <dt class="vocab-term" tabindex="0">Potluck <span class="speaker-icon">🔊</span></dt>
+            <dd>A communal meal where guests bring food to share.</dd>
+            <dd class="example">Example: "What about food? Are you guys doing a **potluck**?"</dd>
+
+            <dt class="vocab-term" tabindex="0">Guacamole <span class="speaker-icon">🔊</span></dt>
+            <dd>A dish of mashed avocado, typically seasoned with salt, lime juice, and cilantro, served as a dip or spread.</dd>
+            <dd class="example">Example: "My friend, Leo, makes amazing **guacamole**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Budget-friendly <span class="speaker-icon">🔊</span></dt>
+            <dd>Inexpensive; not costing a lot of money.</dd>
+            <dd class="example">Example: "It’s certainly more **budget-friendly** than Lake Arrowhead, Maria."</dd>
+
+            <dt class="vocab-term" tabindex="0">Conquer <span class="speaker-icon">🔊</span></dt>
+            <dd>Successfully overcome a problem or weakness; to gain victory over (here, used metaphorically for visiting and enjoying the mountains).</dd>
+            <dd class="example">Example: "Maybe next year we’ll **conquer** the mountains."</dd>
+
+            <dt class="vocab-term" tabindex="0">Epic <span class="speaker-icon">🔊</span></dt>
+            <dd>Very impressive or great (informal).</dd>
+            <dd class="example">Example: "It’s going to be **epic**!"</dd>
+
+            <dt class="vocab-term" tabindex="0">Disappoint <span class="speaker-icon">🔊</span></dt>
+            <dd>Fail to fulfill the hopes or expectations of (someone).</dd>
+            <dd class="example">Example: "Potato salad, huh? Don’t **disappoint** me."</dd>
+
+            <dt class="vocab-term" tabindex="0">Retreat <span class="speaker-icon">🔊</span></dt>
+            <dd>A place of refuge, seclusion, or privacy; a quiet or secluded place in which to relax. (Used here to refer to the mountain trip).</dd>
+            <dd class="example">Example: "That’s much more realistic than a mountain **retreat**."</dd>
+        </dl>
+    </section>
+
+    <div class="buttons">
+        <a href="reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utt = new SpeechSynthesisUtterance(word);
+            utt.lang = 'en-US';
+            window.speechSynthesis.speak(utt);
+        } else {
+            alert("Text-to-speech not supported.");
+        }
+    }
+    document.querySelectorAll('.vocab-term').forEach(item => {
+        item.addEventListener('click', () => {
+            const word = item.textContent.replace('🔊','').trim();
+            speakWord(word);
+        });
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const word = item.textContent.replace('🔊','').trim();
+                speakWord(word);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

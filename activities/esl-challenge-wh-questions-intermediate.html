@@ -525,3 +525,126 @@
         };
 
         let scoreA = 0;
+        let scoreB = 0;
+        let currentCell = null;
+        let currentQuestionData = null;
+
+        const board = document.getElementById('board');
+        const modal = document.getElementById('modal');
+        const questionEl = document.getElementById('question');
+        const answerEl = document.getElementById('answer');
+        const answerBlock = document.getElementById('answerBlock');
+        const scoreAEl = document.getElementById('scoreA');
+        const scoreBEl = document.getElementById('scoreB');
+        const clickSound = document.getElementById('clickSound');
+        const correctSound = document.getElementById('correctSound');
+
+        const showAnswerBtn = document.getElementById('showAnswerButton');
+        const teamA_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'A\')"]');
+        const teamB_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'B\')"]');
+        const closeBtn = document.querySelector('.modal-content button[onclick*="closeModal"]');
+
+        showAnswerBtn.addEventListener('click', showAnswer);
+
+        // --- Initialize Board ---
+        // Clear existing content if re-initializing
+        board.innerHTML = '';
+
+        categories.forEach(cat => {
+            const cell = document.createElement('div');
+            cell.className = 'cell category';
+            cell.innerText = cat;
+            board.appendChild(cell);
+        });
+
+        for (let row = 0; row < 5; row++) {
+            categories.forEach((cat, col) => {
+                const key = `${cat}-${row}`;
+                const [q, a] = questions[cat][row];
+                const value = (row + 1) * 100;
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.innerText = value;
+                cell.dataset.key = key;
+                cell.dataset.value = value;
+
+                cell.addEventListener('click', () => {
+                    if (cell.classList.contains('disabled')) return;
+
+                    clickSound.play();
+                    currentCell = cell;
+                    currentQuestionData = { q, a, value };
+
+                    questionEl.innerText = currentQuestionData.q;
+                    answerEl.innerText = currentQuestionData.a;
+                    answerBlock.style.display = 'none';
+
+                    showAnswerBtn.style.display = 'inline-block';
+                    teamA_CorrectBtn.style.display = 'none';
+                    teamB_CorrectBtn.style.display = 'none';
+
+                    modal.classList.add('show');
+                });
+
+                board.appendChild(cell);
+            });
+        }
+
+        // --- Game Logic Functions ---
+        function showAnswer() {
+            answerBlock.style.display = 'block';
+            showAnswerBtn.style.display = 'none';
+            teamA_CorrectBtn.style.display = 'inline-block';
+            teamB_CorrectBtn.style.display = 'inline-block';
+        }
+
+        function claimPoints(team) {
+            if (!currentCell || currentCell.classList.contains('disabled')) return;
+
+            const points = parseInt(currentCell.dataset.value);
+            if (team === 'A') {
+                scoreA += points;
+                scoreAEl.textContent = scoreA;
+            } else {
+                scoreB += points;
+                scoreBEl.textContent = scoreB;
+            }
+
+            correctSound.play();
+            currentCell.classList.add('disabled');
+            currentCell.textContent = "";
+            closeModal(false);
+        }
+
+        function closeModal(disableCell) {
+            modal.classList.remove('show');
+            if (currentCell && disableCell) {
+                currentCell.classList.add('disabled');
+                currentCell.textContent = "";
+            }
+            currentCell = null;
+            currentQuestionData = null;
+        }
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

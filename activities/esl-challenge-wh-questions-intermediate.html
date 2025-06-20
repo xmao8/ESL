@@ -150,9 +150,9 @@
         .cell {
             background: #124076; /* Dark blue for cells, matching nav */
             border: 1px solid #0d9ddb; /* Lighter blue border */
-            padding: 20px;
-            font-size: 1.8rem; /* Large font for points */
-            min-height: 120px;
+            padding: 15px; /* Reduced padding slightly to allow more text */
+            font-size: 1.6rem; /* Slightly smaller default font */
+            min-height: 100px; /* Adjust min-height if needed */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -163,6 +163,7 @@
             border-radius: 6px; /* Slightly rounded corners */
             transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            word-break: break-word; /* Ensure long words wrap */
         }
 
         .cell:hover:not(.disabled):not(.category) {
@@ -184,9 +185,11 @@
             background: #2c3e50; /* Darker blue-gray for categories, matching example h1 */
             font-weight: bold;
             color: white;
-            font-size: 1.4rem; /* Smaller than point values, but still clear */
+            font-size: 1.2rem; /* Further reduced category font size */
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            padding: 12px 10px; /* Adjusted category padding */
+            word-break: break-word; /* Ensure long category names wrap */
         }
 
         /* Modal Styling */
@@ -320,12 +323,13 @@
                 gap: 3rem;
             }
             .cell {
-                font-size: 1.6rem;
-                min-height: 100px;
-                padding: 15px;
+                font-size: 1.4rem; /* Further adjust font for tablets */
+                min-height: 90px;
+                padding: 10px;
             }
             .category {
-                font-size: 1.2rem;
+                font-size: 1rem; /* Further adjust category font for tablets */
+                padding: 10px 8px;
             }
             .modal-content {
                 padding: 2.5rem;
@@ -399,12 +403,13 @@
                 padding: 8px;
             }
             .cell {
-                font-size: 1.3rem;
-                min-height: 80px;
-                padding: 10px;
+                font-size: 1.2rem; /* Further adjust font for mobile */
+                min-height: 70px;
+                padding: 8px;
             }
             .category {
-                font-size: 1rem;
+                font-size: 0.9rem; /* Further adjust category font for mobile */
+                padding: 8px 5px;
             }
             .modal-content {
                 padding: 1.5rem;

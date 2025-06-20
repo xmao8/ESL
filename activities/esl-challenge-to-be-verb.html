@@ -186,6 +186,8 @@
             font-size: 1.4rem; /* Smaller than point values, but still clear */
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            /* Ensure categories take up the full column width in the grid */
+            grid-column: span 1; 
         }
 
         /* Modal Styling */
@@ -447,14 +449,14 @@
                 <a href="../grammar.html">Grammar</a>
                 <a href="../reading.html">Reading</a>
                 <a href="../practice.html">Practice</a>
-                <a href="../activities.html">Activities</a>
+                <a href="../activities.html">Activities</a>
             </div>
         </div>
     </nav>
 
     <main class="game-container">
-        <h1>To Be Verb Challenge</h1>
-        <div id="scores">
+        <h1>To Be Verb Challenge</h1>
+        <div id="scores">
             <div>Team A: <span id="scoreA">0</span></div>
             <div>Team B: <span id="scoreB">0</span></div>
         </div>
@@ -479,51 +481,51 @@
     <audio id="correctSound" src="correct.mp3"></audio>
 
     <script>
-        // NEW CONTENT FOR TO BE VERB GAME
-        const categories = [
-            "Present Simple 'To Be'",
-            "Past Simple 'To Be'",
-            "Future 'To Be'",
-            "Mixed Tenses 'To Be'",
-            "To Be: Advanced"
-        ];
-        const questions = {
-            "Present Simple 'To Be'": [
-                ["Complete: I ___ happy.", "am"],
-                ["Complete: She ___ a student.", "is"],
-                ["Complete: They ___ in the park.", "are"],
-                ["What is the negative form of 'He is tall'?", "He is not tall."],
-                ["Form a question: 'You are ready.'", "Are you ready?"]
-            ],
-            "Past Simple 'To Be'": [
-                ["Complete: Yesterday, I ___ tired.", "was"],
-                ["Complete: We ___ at home last night.", "were"],
-                ["What is the past form of 'He is busy'?", "He was busy."],
-                ["Correct: 'They was here.'", "They were here."],
-                ["Form a negative question: 'She was laughing.'", "Wasn't she laughing? / Was she not laughing?"]
-            ],
-            "Future 'To Be'": [
-                ["Complete: Tomorrow, it ___ sunny.", "will be"],
-                ["Complete: I ___ a doctor in 10 years.", "will be"],
-                ["What is the negative future form of 'We are late'?", "We will not be late."],
-                ["Form a question using 'be': 'He will be there.'", "Will he be there?"],
-                ["Complete: By next year, she ___ finished her degree. (Hint: future perfect)", "will have been"]
-            ],
-            "Mixed Tenses 'To Be'": [
-                ["Complete: Right now, I ___ studying.", "am"],
-                ["Complete: Last year, they ___ travelling.", "were"],
-                ["Complete: Next week, my parents ___ visiting.", "will be"],
-                ["What is the correct form: 'He ___ sad yesterday, but today he ___ happy.'", "was, is"],
-                ["Complete: Before the party, I ___ very busy. (Past Perfect)", "had been"]
-            ],
-            "To Be: Advanced": [
-                ["Explain the difference: 'He is being rude' vs. 'He is rude'.", "'He is being rude' describes temporary behavior. 'He is rude' describes a permanent characteristic."],
-                ["Complete: If I ___ taller, I would play basketball. (Conditional)", "were"],
-                ["Identify the error: 'They have been working here since two years ago.'", "They have been working here for two years."],
-                ["Rewrite using passive voice: 'Someone built this house in 1900.'", "This house was built in 1900."],
-                ["What is the infinitive form of 'is'?", "To be"]
-            ]
-        };
+        // NEW CONTENT FOR TO BE VERB GAME
+        const categories = [
+            "Present Simple 'To Be'",
+            "Past Simple 'To Be'",
+            "Future 'To Be'",
+            "Mixed Tenses 'To Be'",
+            "To Be: Advanced"
+        ];
+        const questions = {
+            "Present Simple 'To Be'": [
+                ["Complete: I ___ happy.", "am"],
+                ["Complete: She ___ a student.", "is"],
+                ["Complete: They ___ in the park.", "are"],
+                ["What is the negative form of 'He is tall'?", "He is not tall."],
+                ["Form a question: 'You are ready.'", "Are you ready?"]
+            ],
+            "Past Simple 'To Be'": [
+                ["Complete: Yesterday, I ___ tired.", "was"],
+                ["Complete: We ___ at home last night.", "were"],
+                ["What is the past form of 'He is busy'?", "He was busy."],
+                ["Correct: 'They was here.'", "They were here."],
+                ["Form a negative question: 'She was laughing.'", "Wasn't she laughing? / Was she not laughing?"]
+            ],
+            "Future 'To Be'": [
+                ["Complete: Tomorrow, it ___ sunny.", "will be"],
+                ["Complete: I ___ a doctor in 10 years.", "will be"],
+                ["What is the negative future form of 'We are late'?", "We will not be late."],
+                ["Form a question using 'be': 'He will be there.'", "Will he be there?"],
+                ["Complete: By next year, she ___ finished her degree. (Hint: future perfect)", "will have been"]
+            ],
+            "Mixed Tenses 'To Be'": [
+                ["Complete: Right now, I ___ studying.", "am"],
+                ["Complete: Last year, they ___ travelling.", "were"],
+                ["Complete: Next week, my parents ___ visiting.", "will be"],
+                ["What is the correct form: 'He ___ sad yesterday, but today he ___ happy.'", "was, is"],
+                ["Complete: Before the party, I ___ very busy. (Past Perfect)", "had been"]
+            ],
+            "To Be: Advanced": [
+                ["Explain the difference: 'He is being rude' vs. 'He is rude'.", "'He is being rude' describes temporary behavior. 'He is rude' describes a permanent characteristic."],
+                ["Complete: If I ___ taller, I would play basketball. (Conditional)", "were"],
+                ["Identify the error: 'They have been working here since two years ago.'", "They have been working here for two years."],
+                ["Rewrite using passive voice: 'Someone built this house in 1900.'", "This house was built in 1900."],
+                ["What is the infinitive form of 'is'?", "To be"]
+            ]
+        };
 
         let scoreA = 0;
         let scoreB = 0;
@@ -551,22 +553,25 @@
         // Clear existing content if re-initializing
         board.innerHTML = '';
 
-        categories.forEach(cat => {
+        // Add category row
+        categories.forEach(cat => {
             const cell = document.createElement('div');
             cell.className = 'cell category';
             cell.innerText = cat;
             board.appendChild(cell);
         });
 
-        for (let row = 0; row < 5; row++) {
-            categories.forEach((cat, col) => {
-                const key = `${cat}-${row}`;
-                const [q, a] = questions[cat][row];
-                const value = (row + 1) * 100;
+        // Add question rows
+        for (let row = 0; row < 5; row++) { // 5 rows for questions
+            categories.forEach((cat, colIndex) => { // For each category (column)
+                const [q, a] = questions[cat][row]; // Get the question for this row and category
+                const value = (row + 1) * 100; // Point value
+
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 cell.innerText = value;
-                cell.dataset.key = key;
+                cell.dataset.category = cat; // Store category for easy access
+                cell.dataset.rowIndex = row; // Store row index
                 cell.dataset.value = value;
 
                 cell.addEventListener('click', () => {
@@ -584,68 +589,4 @@
                     teamA_CorrectBtn.style.display = 'none';
                     teamB_CorrectBtn.style.display = 'none';
 
-                    modal.classList.add('show');
-                });
-
-                board.appendChild(cell);
-            });
-        }
-
-        // --- Game Logic Functions ---
-        function showAnswer() {
-            answerBlock.style.display = 'block';
-            showAnswerBtn.style.display = 'none';
-            teamA_CorrectBtn.style.display = 'inline-block';
-            teamB_CorrectBtn.style.display = 'inline-block';
-        }
-
-        function claimPoints(team) {
-            if (!currentCell || currentCell.classList.contains('disabled')) return;
-
-            const points = parseInt(currentCell.dataset.value);
-            if (team === 'A') {
-                scoreA += points;
-                scoreAEl.textContent = scoreA;
-            } else {
-                scoreB += points;
-                scoreBEl.textContent = scoreB;
-            }
-
-            correctSound.play();
-            currentCell.classList.add('disabled');
-            currentCell.textContent = "";
-            closeModal(false);
-        }
-
-        function closeModal(disableCell) {
-            modal.classList.remove('show');
-            if (currentCell && disableCell) {
-                currentCell.classList.add('disabled');
-                currentCell.textContent = "";
-            }
-            currentCell = null;
-            currentQuestionData = null;
-        }
-
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('primary-navigation');
-
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-                menuToggle.setAttribute('aria-expanded', !expanded);
-                navLinks.classList.toggle('active');
-            });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if(navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', false);
-                    }
-                });
-            });
-        }
-    </script>
-</body>
-</html>
+                    modal.classList.add('

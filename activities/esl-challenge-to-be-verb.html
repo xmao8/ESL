@@ -1,592 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ESL Grammar Challenge – ESLnote Style</title> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <style>
-        /* Universal Box-Sizing */
-        * {
-            box-sizing: border-box;
-        }
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>To Be Verbs Challenge – ESLnote Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
 
-        /* PAGE SETUP */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif; /* Fallback to Arial, consistent with example */
-            background-color: #f0f4f8; /* Consistent background from example */
-            color: #333; /* Consistent text color from example */
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        main {
-            flex: 1;
-            padding: 2rem 1rem; /* Adjust padding for overall page content */
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        h1, h2, h3 { /* Include h3 for potential future use */
-            color: #124076; /* Consistent heading color from example */
-            font-family: 'Poppins', sans-serif; /* Apply Poppins to headings */
-            font-weight: 700;
-        }
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif; /* Fallback to Arial, consistent with example */
+            background-color: #f0f4f8; /* Consistent background from example */
+            color: #333; /* Consistent text color from example */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            padding: 2rem 1rem; /* Adjust padding for overall page content */
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2, h3 { /* Include h3 for potential future use */
+            color: #124076; /* Consistent heading color from example */
+            font-family: 'Poppins', sans-serif; /* Apply Poppins to headings */
+            font-weight: 700;
+        }
 
-        /* --- NAVBAR (Copied from example) --- */
-        nav {
-            background-color: #124076;
-            width: 100%;
-            padding: 0.8rem 1rem;
-        }
+        /* --- NAVBAR (Copied from example) --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0;
-        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
 
-        .nav-container .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        .nav-container .logo-img {
-            width: 32px;
-            height: 32px;
-            margin-right: 0.5rem;
-        }
-        .nav-container .site-name {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            color: #ff9800;
-            font-weight: 700;
-            white-space: nowrap;
-        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
 
-        .nav-container .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .nav-container .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
-        }
-        .nav-container .nav-links a:hover,
-        .nav-container .nav-links a:focus {
-            color: #ffbb33;
-            text-decoration: underline;
-            outline: none;
-        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1000;
-        }
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
 
-        /* --- Main Content Container (adapted for game) --- */
-        .game-container {
-            max-width: 1050px; /* Adjusted for the 5-column board */
-            margin: 2rem auto 3rem;
-            background: white;
-            padding: 2.5rem; /* Increased padding from example .container */
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+        /* --- Main Content Container (adapted for game) --- */
+        .game-container {
+            max-width: 1050px; /* Adjusted for the 5-column board */
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2.5rem; /* Increased padding from example .container */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-        /* --- Game Specific Styles --- */
-        .game-container h1 { /* Override generic h1 for game title within container */
-            font-size: 2.8rem; /* Larger for the main game title */
-            margin-top: 0;
-            margin-bottom: 2rem;
-            color: #124076; /* Consistent with example H1 color */
-            text-align: center;
-            letter-spacing: 1px;
-        }
+        /* --- Game Specific Styles --- */
+        .game-container h1 { /* Override generic h1 for game title within container */
+            font-size: 2.8rem; /* Larger for the main game title */
+            margin-top: 0;
+            margin-bottom: 2rem;
+            color: #124076; /* Consistent with example H1 color */
+            text-align: center;
+            letter-spacing: 1px;
+        }
 
-        #scores {
-            display: flex;
-            justify-content: center;
-            gap: 4rem; /* More space for scores */
-            font-size: 1.6rem; /* Larger score font */
-            margin-bottom: 2rem; /* More space below scores */
-            font-weight: bold;
-            color: #2c3e50; /* Darker score text for readability */
-        }
+        #scores {
+            display: flex;
+            justify-content: center;
+            gap: 4rem; /* More space for scores */
+            font-size: 1.6rem; /* Larger score font */
+            margin-bottom: 2rem; /* More space below scores */
+            font-weight: bold;
+            color: #2c3e50; /* Darker score text for readability */
+        }
 
-        .board {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px; /* More prominent gaps */
-            padding: 15px; /* Padding around the grid */
-            background: #e0e7ed; /* Light gray-blue background for the board */
-            border-radius: 8px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1); /* Subtle inner shadow */
-        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px; /* More prominent gaps */
+            padding: 15px; /* Padding around the grid */
+            background: #e0e7ed; /* Light gray-blue background for the board */
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1); /* Subtle inner shadow */
+        }
 
-        .cell {
-            background: #124076; /* Dark blue for cells, matching nav */
-            border: 1px solid #0d9ddb; /* Lighter blue border */
-            padding: 20px;
-            font-size: 1.8rem; /* Large font for points */
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            text-align: center;
-            color: white; /* White text on blue cells */
-            font-weight: bold;
-            border-radius: 6px; /* Slightly rounded corners */
-            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-        }
+        .cell {
+            background: #124076; /* Dark blue for cells, matching nav */
+            border: 1px solid #0d9ddb; /* Lighter blue border */
+            padding: 20px;
+            font-size: 1.8rem; /* Large font for points */
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-align: center;
+            color: white; /* White text on blue cells */
+            font-weight: bold;
+            border-radius: 6px; /* Slightly rounded corners */
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        }
 
-        .cell:hover:not(.disabled):not(.category) {
-            background: #0d9ddb; /* Lighter blue on hover */
-            transform: translateY(-3px); /* Lift effect on hover */
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
+        .cell:hover:not(.disabled):not(.category) {
+            background: #0d9ddb; /* Lighter blue on hover */
+            transform: translateY(-3px); /* Lift effect on hover */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
 
-        .cell.disabled {
-            background: #95a5a6; /* Muted gray for disabled cells */
-            color: #e0e7ed; /* Very light text for disabled cells */
-            pointer-events: none;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
-            cursor: default;
-            transform: none; /* Remove transform on disabled */
-        }
+        .cell.disabled {
+            background: #95a5a6; /* Muted gray for disabled cells */
+            color: #e0e7ed; /* Very light text for disabled cells */
+            pointer-events: none;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+            cursor: default;
+            transform: none; /* Remove transform on disabled */
+        }
 
-        .category {
-            background: #2c3e50; /* Darker blue-gray for categories, matching example h1 */
-            font-weight: bold;
-            color: white;
-            font-size: 1.4rem; /* Smaller than point values, but still clear */
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            /* Ensure categories take up the full column width in the grid */
-            grid-column: span 1; 
-        }
+        .category {
+            background: #2c3e50; /* Darker blue-gray for categories, matching example h1 */
+            font-weight: bold;
+            color: white;
+            font-size: 1.4rem; /* Smaller than point values, but still clear */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-        /* Modal Styling */
-        .modal {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
+        /* Modal Styling */
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
 
-        .modal.show {
-            display: flex;
-        }
+        .modal.show {
+            display: flex;
+        }
 
-        .modal-content {
-            background: white;
-            color: #333;
-            padding: 3rem; /* Increased padding */
-            max-width: 650px; /* Wider modal */
-            border-radius: 12px; /* More rounded corners */
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Stronger shadow */
-            animation: fadeIn 0.3s ease-out;
-            border: 1px solid #ddd; /* Subtle border */
-        }
+        .modal-content {
+            background: white;
+            color: #333;
+            padding: 3rem; /* Increased padding */
+            max-width: 650px; /* Wider modal */
+            border-radius: 12px; /* More rounded corners */
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Stronger shadow */
+            animation: fadeIn 0.3s ease-out;
+            border: 1px solid #ddd; /* Subtle border */
+        }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-        .modal-content h2#question { /* Target question specifically */
-            font-size: 2.2rem;
-            margin-bottom: 1.8rem;
-            color: #124076;
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.4;
-        }
+        .modal-content h2#question { /* Target question specifically */
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
+            color: #124076;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.4;
+        }
 
-        .modal-content p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            color: #555; /* Slightly lighter text for answer block */
-        }
+        .modal-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            color: #555; /* Slightly lighter text for answer block */
+        }
 
-        .modal-content strong {
-            color: #124076; /* Bold text in answer uses main blue */
-        }
+        .modal-content strong {
+            color: #124076; /* Bold text in answer uses main blue */
+        }
 
-        .modal-content button {
-            margin: 1rem 0.8rem;
-            padding: 14px 28px; /* Even larger buttons */
-            font-size: 1.15rem;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px; /* More rounded button corners */
-            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-            font-weight: bold; /* Make button text bold */
-        }
+        .modal-content button {
+            margin: 1rem 0.8rem;
+            padding: 14px 28px; /* Even larger buttons */
+            font-size: 1.15rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px; /* More rounded button corners */
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            font-weight: bold; /* Make button text bold */
+        }
 
-        .modal-content button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-        }
+        .modal-content button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
 
-        /* Button specific colors */
-        #showAnswerButton {
-            background-color: #ff9800; /* Orange, like site name */
-            color: white;
-        }
-        #showAnswerButton:hover {
-            background-color: #e68900; /* Darker orange on hover */
-        }
+        /* Button specific colors */
+        #showAnswerButton {
+            background-color: #ff9800; /* Orange, like site name */
+            color: white;
+        }
+        #showAnswerButton:hover {
+            background-color: #e68900; /* Darker orange on hover */
+        }
 
-        .modal-content button[onclick*="claimPoints('A')"] {
-            background-color: #28a745; /* Green */
-            color: white;
-        }
-        .modal-content button[onclick*="claimPoints('A')"]:hover {
-            background-color: #218838;
-        }
+        .modal-content button[onclick*="claimPoints('A')"] {
+            background-color: #28a745; /* Green */
+            color: white;
+        }
+        .modal-content button[onclick*="claimPoints('A')"]:hover {
+            background-color: #218838;
+        }
 
-        .modal-content button[onclick*="claimPoints('B')"] {
-            background-color: #007bff; /* Standard Blue */
-            color: white;
-        }
-        .modal-content button[onclick*="claimPoints('B')"]:hover {
-            background-color: #0056b3;
-        }
+        .modal-content button[onclick*="claimPoints('B')"] {
+            background-color: #007bff; /* Standard Blue */
+            color: white;
+        }
+        .modal-content button[onclick*="claimPoints('B')"]:hover {
+            background-color: #0056b3;
+        }
 
-        .modal-content button[onclick*="closeModal"] {
-            background-color: #6c757d; /* Gray */
-            color: white;
-        }
-        .modal-content button[onclick*="closeModal"]:hover {
-            background-color: #5a6268;
-        }
+        .modal-content button[onclick*="closeModal"] {
+            background-color: #6c757d; /* Gray */
+            color: white;
+        }
+        .modal-content button[onclick*="closeModal"]:hover {
+            background-color: #5a6268;
+        }
 
 
-        /* --- Media Queries (adapted from example) --- */
+        /* --- Media Queries (adapted from example) --- */
 
-        /* Tablet Layout (min-width: 601px and max-width: 991px for board adjustment) */
-        @media (min-width: 601px) and (max-width: 991px) {
-            .nav-container {
-                padding: 0.8rem 1.5rem;
-            }
-            .nav-container .nav-links {
-                gap: 1.2rem;
-            }
-            .nav-container .site-name {
-                font-size: 1.25rem;
-            }
-            .menu-toggle {
-                display: none;
-            }
-            .game-container {
-                padding: 2rem;
-                margin: 1.8rem auto 2.5rem;
-            }
-            .game-container h1 {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
-            #scores {
-                font-size: 1.5rem;
-                gap: 3rem;
-            }
-            .cell {
-                font-size: 1.6rem;
-                min-height: 100px;
-                padding: 15px;
-            }
-            .category {
-                font-size: 1.2rem;
-            }
-            .modal-content {
-                padding: 2.5rem;
-                max-width: 550px;
-            }
-            .modal-content h2#question {
-                font-size: 2rem;
-            }
-            .modal-content p {
-                font-size: 1.2rem;
-            }
-            .modal-content button {
-                padding: 12px 20px;
-                font-size: 1.05rem;
-            }
-        }
+        /* Tablet Layout (min-width: 601px and max-width: 991px for board adjustment) */
+        @media (min-width: 601px) and (max-width: 991px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-container .nav-links {
+                gap: 1.2rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            .game-container {
+                padding: 2rem;
+                margin: 1.8rem auto 2.5rem;
+            }
+            .game-container h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+            #scores {
+                font-size: 1.5rem;
+                gap: 3rem;
+            }
+            .cell {
+                font-size: 1.6rem;
+                min-height: 100px;
+                padding: 15px;
+            }
+            .category {
+                font-size: 1.2rem;
+            }
+            .modal-content {
+                padding: 2.5rem;
+                max-width: 550px;
+            }
+            .modal-content h2#question {
+                font-size: 2rem;
+            }
+            .modal-content p {
+                font-size: 1.2rem;
+            }
+            .modal-content button {
+                padding: 12px 20px;
+                font-size: 1.05rem;
+            }
+        }
 
-        /* Phone Layout (max-width: 600px) */
-        @media (max-width: 600px) {
-            .nav-container {
-                padding: 0.6rem 0.8rem;
-            }
-            .nav-container .site-name {
-                font-size: 1.2rem;
-            }
-            .menu-toggle {
-                display: flex;
-            }
-            .nav-container .nav-links {
-                position: fixed;
-                top: 56px; /* Adjust based on your nav height */
-                right: 0;
-                background: #124076;
-                flex-direction: column;
-                width: 100%;
-                height: calc(100vh - 56px);
-                padding: 1.5rem 1.5rem;
-                gap: 1rem;
-                overflow-y: auto;
-                transform: translateX(100%);
-                transition: transform 0.3s ease-out;
-                z-index: 998;
-                align-items: flex-start;
-                border-radius: 0 0 0 10px;
-            }
-            .nav-container .nav-links.active {
-                transform: translateX(0);
-            }
-            .nav-container .nav-links a {
-                width: auto;
-                text-align: left;
-                padding: 0.5rem 0;
-            }
+        /* Phone Layout (max-width: 600px) */
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust based on your nav height */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-container .nav-links a {
+                width: auto;
+                text-align: left;
+                padding: 0.5rem 0;
+            }
 
-            .game-container {
-                padding: 1rem;
-                margin-top: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-            .game-container h1 {
-                font-size: 2.2rem;
-                margin-bottom: 1rem;
-            }
-            #scores {
-                font-size: 1.3rem;
-                gap: 2rem;
-                margin-bottom: 1.5rem;
-            }
-            .board {
-                gap: 5px; /* Smaller gap on mobile */
-                padding: 8px;
-            }
-            .cell {
-                font-size: 1.3rem;
-                min-height: 80px;
-                padding: 10px;
-            }
-            .category {
-                font-size: 1.0rem; /* Adjusted for even smaller text on mobile categories */
-            }
-            .modal-content {
-                padding: 1.5rem;
-                max-width: 90%; /* Responsive width for modal */
-            }
-            .modal-content h2#question {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-            .modal-content p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            .modal-content button {
-                padding: 10px 15px;
-                font-size: 0.95rem;
-                margin: 0.5rem 0.3rem;
-            }
-        }
-    </style>
+            .game-container {
+                padding: 1rem;
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .game-container h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            #scores {
+                font-size: 1.3rem;
+                gap: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            .board {
+                gap: 5px; /* Smaller gap on mobile */
+                padding: 8px;
+            }
+            .cell {
+                font-size: 1.3rem;
+                min-height: 80px;
+                padding: 10px;
+            }
+            .category {
+                font-size: 1rem;
+            }
+            .modal-content {
+                padding: 1.5rem;
+                max-width: 90%; /* Responsive width for modal */
+            }
+            .modal-content h2#question {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .modal-content p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .modal-content button {
+                padding: 10px 15px;
+                font-size: 0.95rem;
+                margin: 0.5rem 0.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <nav role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="../index.html" class="logo" aria-label="ESLnote Home">
-                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-                <span class="site-name">ESLnote</span>
-            </a>
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+                <span class="site-name">ESLnote</span>
+            </a>
 
-            <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
 
-            <div class="nav-links" id="primary-navigation">
-                <a href="../index.html">Home</a>
-                <a href="../flashcards.html">Flashcards</a>
-                <a href="../conversation.html">Conversations</a>
-                <a href="../grammar.html">Grammar</a>
-                <a href="../reading.html">Reading</a>
-                <a href="../practice.html">Practice</a>
-                <a href="../activities.html">Activities</a>
-            </div>
-        </div>
-    </nav>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
 
-    <main class="game-container">
-        <h1>To Be Verb Challenge</h1>
-        <div id="scores">
-            <div>Team A: <span id="scoreA">0</span></div>
-            <div>Team B: <span id="scoreB">0</span></div>
-        </div>
+    <main class="game-container">
+        <h1>To Be Verbs Challenge</h1>
+        <div id="scores">
+            <div>Team A: <span id="scoreA">0</span></div>
+            <div>Team B: <span id="scoreB">0</span></div>
+        </div>
 
-        <div class="board" id="board"></div>
+        <div class="board" id="board"></div>
 
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <h2 id="question">Question</h2>
-                <p id="answerBlock" style="display:none;"><strong>Answer:</strong> <span id="answer">...</span></p>
-                <div>
-                    <button id="showAnswerButton">Show Answer</button>
-                    <button onclick="claimPoints('A')">Team A Correct</button>
-                    <button onclick="claimPoints('B')">Team B Correct</button>
-                    <button onclick="closeModal(true)">Close</button>
-                </div>
-            </div>
-        </div>
-    </main>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <h2 id="question">Question</h2>
+                <p id="answerBlock" style="display:none;"><strong>Answer:</strong> <span id="answer">...</span></p>
+                <div>
+                    <button id="showAnswerButton">Show Answer</button>
+                    <button onclick="claimPoints('A')">Team A Correct</button>
+                    <button onclick="claimPoints('B')">Team B Correct</button>
+                    <button onclick="closeModal(true)">Close</button>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <audio id="clickSound" src="click.mp3"></audio>
-    <audio id="correctSound" src="correct.mp3"></audio>
+    <audio id="clickSound" src="click.mp3"></audio>
+    <audio id="correctSound" src="correct.mp3"></audio>
 
-    <script>
-        // NEW CONTENT FOR TO BE VERB GAME
-        const categories = [
-            "Present Simple 'To Be'",
-            "Past Simple 'To Be'",
-            "Future 'To Be'",
-            "Mixed Tenses 'To Be'",
-            "To Be: Advanced"
-        ];
-        const questions = {
-            "Present Simple 'To Be'": [
-                ["Complete: I ___ happy.", "am"],
-                ["Complete: She ___ a student.", "is"],
-                ["Complete: They ___ in the park.", "are"],
-                ["What is the negative form of 'He is tall'?", "He is not tall."],
-                ["Form a question: 'You are ready.'", "Are you ready?"]
-            ],
-            "Past Simple 'To Be'": [
-                ["Complete: Yesterday, I ___ tired.", "was"],
-                ["Complete: We ___ at home last night.", "were"],
-                ["What is the past form of 'He is busy'?", "He was busy."],
-                ["Correct: 'They was here.'", "They were here."],
-                ["Form a negative question: 'She was laughing.'", "Wasn't she laughing? / Was she not laughing?"]
-            ],
-            "Future 'To Be'": [
-                ["Complete: Tomorrow, it ___ sunny.", "will be"],
-                ["Complete: I ___ a doctor in 10 years.", "will be"],
-                ["What is the negative future form of 'We are late'?", "We will not be late."],
-                ["Form a question using 'be': 'He will be there.'", "Will he be there?"],
-                ["Complete: By next year, she ___ finished her degree. (Hint: future perfect)", "will have been"]
-            ],
-            "Mixed Tenses 'To Be'": [
-                ["Complete: Right now, I ___ studying.", "am"],
-                ["Complete: Last year, they ___ travelling.", "were"],
-                ["Complete: Next week, my parents ___ visiting.", "will be"],
-                ["What is the correct form: 'He ___ sad yesterday, but today he ___ happy.'", "was, is"],
-                ["Complete: Before the party, I ___ very busy. (Past Perfect)", "had been"]
-            ],
-            "To Be: Advanced": [
-                ["Explain the difference: 'He is being rude' vs. 'He is rude'.", "'He is being rude' describes temporary behavior. 'He is rude' describes a permanent characteristic."],
-                ["Complete: If I ___ taller, I would play basketball. (Conditional)", "were"],
-                ["Identify the error: 'They have been working here since two years ago.'", "They have been working here for two years."],
-                ["Rewrite using passive voice: 'Someone built this house in 1900.'", "This house was built in 1900."],
-                ["What is the infinitive form of 'is'?", "To be"]
-            ]
-        };
+    <script>
+        const categories = [
+            "Present Simple",
+            "Past Simple",
+            "Questions",
+            "Negative Forms",
+            "Mixed Tenses"
+        ];
+        const questions = {
+            "Present Simple": [
+                ["Complete: I ___ (be) a student.", "am"],
+                ["Complete: She ___ (be) happy.", "is"],
+                ["Complete: They ___ (be) friends.", "are"],
+                ["Complete: The cat ___ (be) on the mat.", "is"],
+                ["Complete: We ___ (be) in the classroom.", "are"]
+            ],
+            "Past Simple": [
+                ["Complete: Yesterday, I ___ (be) tired.", "was"],
+                ["Complete: He ___ (be) at home last night.", "was"],
+                ["Complete: They ___ (be) on vacation last week.", "were"],
+                ["Complete: The weather ___ (be) cold yesterday.", "was"],
+                ["Complete: You ___ (be) busy this morning.", "were"]
+            ],
+            "Questions": [
+                ["Form a question: 'She is tall.'", "Is she tall?"],
+                ["Form a question: 'They were late.'", "Were they late?"],
+                ["Form a question: 'You are ready.'", "Are you ready?"],
+                ["Form a question: 'He was here.'", "Was he here?"],
+                ["Form a question: 'I am wrong.'", "Am I wrong?"]
+            ],
+            "Negative Forms": [
+                ["Make negative: 'I am hungry.'", "I am not hungry."],
+                ["Make negative: 'She was sad.'", "She was not sad. / She wasn't sad."],
+                ["Make negative: 'We are ready.'", "We are not ready. / We aren't ready."],
+                ["Make negative: 'It is hot.'", "It is not hot. / It isn't hot."],
+                ["Make negative: 'They were happy.'", "They were not happy. / They weren't happy."]
+            ],
+            "Mixed Tenses": [
+                ["Complete: Tomorrow, I ___ (be) at the library.", "will be"],
+                ["If I ___ (be) you, I would study harder. (Conditional)", "were"],
+                ["Complete: By this time next year, I ___ (be) living abroad.", "will be"],
+                ["Identify the error: 'He were strong.'", "He was strong."],
+                ["Complete: Before she arrived, I ___ (be) waiting for an hour.", "had been"]
+            ]
+        };
 
-        let scoreA = 0;
-        let scoreB = 0;
-        let currentCell = null;
-        let currentQuestionData = null;
+        let scoreA = 0;
+        let scoreB = 0;
+        let currentCell = null;
+        let currentQuestionData = null;
 
-        const board = document.getElementById('board');
-        const modal = document.getElementById('modal');
-        const questionEl = document.getElementById('question');
-        const answerEl = document.getElementById('answer');
-        const answerBlock = document.getElementById('answerBlock');
-        const scoreAEl = document.getElementById('scoreA');
-        const scoreBEl = document.getElementById('scoreB');
-        const clickSound = document.getElementById('clickSound');
-        const correctSound = document.getElementById('correctSound');
+        const board = document.getElementById('board');
+        const modal = document.getElementById('modal');
+        const questionEl = document.getElementById('question');
+        const answerEl = document.getElementById('answer');
+        const answerBlock = document.getElementById('answerBlock');
+        const scoreAEl = document.getElementById('scoreA');
+        const scoreBEl = document.getElementById('scoreB');
+        const clickSound = document.getElementById('clickSound');
+        const correctSound = document.getElementById('correctSound');
 
-        const showAnswerBtn = document.getElementById('showAnswerButton');
-        const teamA_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'A\')"]');
-        const teamB_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'B\')"]');
-        const closeBtn = document.querySelector('.modal-content button[onclick*="closeModal"]');
+        const showAnswerBtn = document.getElementById('showAnswerButton');
+        const teamA_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'A\')"]');
+        const teamB_CorrectBtn = document.querySelector('.modal-content button[onclick*="claimPoints(\'B\')"]');
+        const closeBtn = document.querySelector('.modal-content button[onclick*="closeModal"]');
 
-        showAnswerBtn.addEventListener('click', showAnswer);
+        showAnswerBtn.addEventListener('click', showAnswer);
 
-        // --- Initialize Board ---
-        // Clear existing content if re-initializing
-        board.innerHTML = '';
+        // --- Initialize Board ---
+        // Clear existing content if re-initializing
+        board.innerHTML = '';
 
-        // Add category row
         categories.forEach(cat => {
-            const cell = document.createElement('div');
-            cell.className = 'cell category';
-            cell.innerText = cat;
-            board.appendChild(cell);
-        });
+            const cell = document.createElement('div');
+            cell.className = 'cell category';
+            cell.innerText = cat;
+            board.appendChild(cell);
+        });
 
-        // Add question rows
-        for (let row = 0; row < 5; row++) { // 5 rows for questions
-            categories.forEach((cat, colIndex) => { // For each category (column)
-                const [q, a] = questions[cat][row]; // Get the question for this row and category
-                const value = (row + 1) * 100; // Point value
+        for (let row = 0; row < 5; row++) {
+            categories.forEach((cat, col) => {
+                const key = `${cat}-${row}`;
+                const [q, a] = questions[cat][row];
+                const value = (row + 1) * 100;
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.innerText = value;
+                cell.dataset.key = key;
+                cell.dataset.value = value;
 
-                const cell = document.createElement('div');
-                cell.className = 'cell';
-                cell.innerText = value;
-                cell.dataset.category = cat; // Store category for easy access
-                cell.dataset.rowIndex = row; // Store row index
-                cell.dataset.value = value;
+                cell.addEventListener('click', () => {
+                    if (cell.classList.contains('disabled')) return;
 
-                cell.addEventListener('click', () => {
-                    if (cell.classList.contains('disabled')) return;
+                    clickSound.play();
+                    currentCell = cell;
+                    currentQuestionData = { q, a, value };
 
-                    clickSound.play();
-                    currentCell = cell;
-                    currentQuestionData = { q, a, value };
+                    questionEl.innerText = currentQuestionData.q;
+                    answerEl.innerText = currentQuestionData.a;
+                    answerBlock.style.display = 'none';
 
-                    questionEl.innerText = currentQuestionData.q;
-                    answerEl.innerText = currentQuestionData.a;
-                    answerBlock.style.display = 'none';
+                    showAnswerBtn.style.display = 'inline-block';
+                    teamA_CorrectBtn.style.display = 'none';
+                    teamB_CorrectBtn.style.display = 'none';
 
-                    showAnswerBtn.style.display = 'inline-block';
-                    teamA_CorrectBtn.style.display = 'none';
-                    teamB_CorrectBtn.style.display = 'none';
+                    modal.classList.add('show');
+                });
 
-                    modal.classList.add('
+                board.appendChild(cell);
+            });
+        }
+
+        // --- Game Logic Functions ---
+        function showAnswer() {
+            answerBlock.style.display = 'block';
+            showAnswerBtn.style.display = 'none';
+            teamA_CorrectBtn.style.display = 'inline-block';
+            teamB_CorrectBtn.style.display = 'inline-block';
+        }
+
+        function claimPoints(team) {
+            if (!currentCell || currentCell.classList.contains('disabled')) return;
+
+            const points = parseInt(currentCell.dataset.value);
+            if (team === 'A') {
+                scoreA += points;
+                scoreAEl.textContent = scoreA;
+            } else {
+                scoreB += points;
+                scoreBEl.textContent = scoreB;
+            }
+
+            correctSound.play();
+            currentCell.classList.add('disabled');
+            currentCell.textContent = "";
+            closeModal(false);
+        }
+
+        function closeModal(disableCell) {
+            modal.classList.remove('show');
+            if (currentCell && disableCell) {
+                currentCell.classList.add('disabled');
+                currentCell.textContent = "";
+            }
+            currentCell = null;
+            currentQuestionData = null;
+        }
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

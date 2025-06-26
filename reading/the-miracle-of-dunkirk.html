@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Miracle of Dunkirk - ESLnote</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="your-shared-styles.css" />
+  <style>
+    .speak-icon {
+      cursor: pointer;
+      margin-left: 6px;
+      font-size: 1rem;
+      color: #3498db;
+    }
+    .speak-icon:hover {
+      color: #1d6fa5;
+    }
+  </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practice</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <h1>The Miracle of Dunkirk</h1>
+
+  <article>
+    <p>In <strong>1940</strong>, German soldiers moved quickly through Europe during World War II. Many British and French soldiers were trapped in a small town called <strong>Dunkirk</strong> in France. They could not escape by land because the German army was too strong. Their only way out was by sea.</p>
+
+    <p>There were not enough navy ships to save them. So the British government asked <strong>regular people with boats</strong> to help. These boats were called <strong>“The Little Ships.”</strong> They were small fishing boats, sailboats, and even family boats.</p>
+
+    <p>From <strong>May 26 to June 4</strong>, these boats crossed the sea between England and France. It was dangerous. German planes dropped bombs. But the little boats were brave. They helped save over <strong>338,000 soldiers</strong>.</p>
+
+    <p>People called it the <strong>“Miracle of Dunkirk.”</strong> It was a surprise that so many men were rescued. The soldiers lost their weapons, but their lives were saved. Later, the British leader <strong>Winston Churchill</strong> gave a speech. He said, “We shall never surrender.”</p>
+
+    <p>This story shows that ordinary people can do great things in hard times. It also shows the power of <strong>teamwork and courage</strong>.</p>
+  </article>
+
+  <section class="vocab" aria-labelledby="vocab-title">
+    <h2 id="vocab-title">Vocabulary</h2>
+    <dl>
+      <dt>Evacuation <span class="speak-icon" onclick="speakWord('Evacuation')">🔊</span></dt>
+      <dd>The act of leaving a dangerous place.</dd>
+
+      <dt>Rescue <span class="speak-icon" onclick="speakWord('Rescue')">🔊</span></dt>
+      <dd>To save someone from danger.</dd>
+
+      <dt>Surrender <span class="speak-icon" onclick="speakWord('Surrender')">🔊</span></dt>
+      <dd>To stop fighting and give up.</dd>
+
+      <dt>Channel <span class="speak-icon" onclick="speakWord('Channel')">🔊</span></dt>
+      <dd>A narrow sea between two pieces of land.</dd>
+
+      <dt>Miracle <span class="speak-icon" onclick="speakWord('Miracle')">🔊</span></dt>
+      <dd>A surprising and lucky event that saves people.</dd>
+    </dl>
+  </section>
+
+  <section class="questions" aria-labelledby="questions-title">
+    <h2 id="questions-title">Comprehension Questions</h2>
+    <ol>
+      <li>Where were the soldiers trapped?</li>
+      <li>Why couldn’t the soldiers leave by land?</li>
+      <li>What kinds of boats helped rescue the soldiers?</li>
+      <li>How many soldiers were saved?</li>
+      <li>What message does the story of Dunkirk give us?</li>
+    </ol>
+  </section>
+
+  <div class="buttons">
+    <a href="reading.html">← Back to Reading</a>
+    <a href="index.html">🏠 Home</a>
+  </div>
+</main>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  // Word pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+    } else {
+      alert("Sorry, your browser doesn't support speech.");
+    }
+  }
+</script>
+
+</body>
+</html>

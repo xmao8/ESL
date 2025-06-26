@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Café Conundrum – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Universal Box-Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2 {
+            color: #124076;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- PAGE CONTENT CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            padding: 0;
+        }
+
+        /* Article styling */
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #124076;
+            margin-top: 1em;
+            display: block;
+        }
+        .dialogue {
+            margin-left: 1.5em;
+            margin-bottom: 0.5em;
+            font-style: italic;
+        }
+        .setting-info {
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+
+        /* Vocabulary section */
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        dl {
+            margin: 0;
+            padding: 0;
+        }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dotted #3498db;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        dt:hover, dt:focus {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+            outline: none;
+        }
+        .speaker-icon {
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
+        }
+        dd {
+            margin-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+
+        /* Buttons */
+        .buttons {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            .container { padding: 1.8rem 2rem; }
+            article p { font-size: 1.05rem; }
+            section.vocab h2 { font-size: 1.6rem; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            h1 { font-size: 2rem; padding: 0 0.8rem; }
+            .container { padding: 1rem; margin-top: 2rem; }
+            article p { font-size: 1rem; }
+            section.vocab h2 { font-size: 1.5rem; }
+            dt { font-size: 0.95rem; }
+            dd, dd.example { font-size: 0.9rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>The Café Conundrum</h1>
+
+    <article>
+        <p class="scene-direction">**Characters:**</p>
+        <p><strong>ANNA (A):</strong> A friendly café owner.<br>
+        <strong>MARK (M):</strong> A customer trying to book a special event.<br>
+        <strong>LIAM (L):</strong> Mark’s friend, who sometimes gets confused.</p>
+        <p class="setting-info">**Setting:** Inside a cozy but busy café. Anna is behind the counter. Mark and Liam enter.</p>
+
+        <p class="scene-direction">(SCENE START)</p>
+
+        <p><span class="character-name">MARK:</span> <span class="dialogue">(To Liam, a bit flustered) Are you sure this is the place? It looks busy.</span></p>
+        <p><span class="character-name">LIAM:</span> <span class="dialogue">(Looking around confidently) Yes, this is "The Daily Grind"! My friend said their coffee is amazing. And they do private parties, right?</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">(Approaching the counter) Excuse me, are you Anna?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">(Smiling warmly) That’s me! Welcome to The Daily Grind. What can I get for you two?</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">We’re not here for coffee just yet. My name is Mark, and this is Liam. I called last week about booking your back room for a small birthday gathering.</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">Oh, yes, Mark! The 40th birthday for your wife, wasn’t it? I remember. Please, come in. It’s a bit noisy out here.</span></p>
+        <p class="scene-direction">(Anna gestures them to a quieter spot near the counter.)</p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">Thanks. So, I wanted to finalize the reservation. We’re expecting about fifteen people.</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">Great! For the back room, we usually require a minimum of ten. Fifteen is perfect. What date were you thinking of again?</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">We were hoping for **Saturday, July 20th**. In the evening, around 7 PM.</span></p>
+        <p><span class="character-name">LIAM:</span> <span class="dialogue">(Interjecting) Oh, wait, Mark! My calendar says July **22nd**. Are you sure it's the 20th?</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">(Sighs, checking his phone) Liam, we discussed this! It’s definitely the 20th. July 22nd is a Monday. Nobody wants a birthday party on a Monday.</span></p>
+        <p><span class="character-name">LIAM:</span> <span class="dialogue">(Muttering) Right, Mondays are terrible for parties. My mistake.</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">(Chuckling) No problem at all! Let me just check my booking system… (She types on a tablet) Okay, yes, the back room is **available** on Saturday, July 20th, from 7 PM. How long do you think you’ll need the room for?</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">Probably about three hours. We’d like to have some light appetizers and drinks. Can you tell me about your catering options?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">Absolutely! For private events, we have a few set menus, or we can customize something. Our most popular is the "Evening Bites" package – it includes mini quiches, spring rolls, and a selection of local cheeses. It’s very popular.</span></p>
+        <p><span class="character-name">LIAM:</span> <span class="dialogue">(Eyes wide) Mini quiches! Are they… mini?</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">(Ignoring Liam) That sounds perfect, Anna. What’s the cost per person for that package?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">For fifteen people, the "Evening Bites" would be $25 per person, plus a 15% service charge. That includes unlimited soft drinks, and you can add a limited bar option for an extra $10 per person.</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">That’s reasonable. Let’s go with the "Evening Bites" and the limited bar. So, to confirm, that’s Saturday, July 20th, 7 PM, for fifteen people, for three hours, in the back room.</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">(Smiling) That’s correct, Mark! I’ll send you a confirmation email with all the details and a small deposit request. We just ask for a 20% deposit to secure the booking.</span></p>
+        <p><span class="character-name">MARK:</span> <span class="dialogue">Excellent! Thank you so much, Anna. We’re really looking forward to it.</span></p>
+        <p><span class="character-name">LIAM:</span> <span class="dialogue">(Patting Mark on the back) Great job, Mark! Now, can we finally get some of that amazing coffee?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">Of course! What can I get for you two?</span></p>
+
+        <p class="scene-direction">(SCENE END)</p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <p>Click on each term to hear pronunciation!</p>
+        <dl>
+            <dt class="vocab-term" tabindex="0">Flustered <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Confused, agitated, or nervous, especially by a minor problem or unexpected situation.</dd>
+            <dd class="example">Example: "(To Liam, a bit **flustered**) Are you sure this is the place?"</dd>
+
+            <dt class="vocab-term" tabindex="0">Interject <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To interrupt a conversation or a speaker with a comment or question.</dd>
+            <dd class="example">Example: "(Liam **interjecting**) Oh, wait, Mark! My calendar says July 22nd."</dd>
+
+            <dt class="vocab-term" tabindex="0">Mutter <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To say something in a low or barely audible voice, often to oneself, especially when expressing annoyance or embarrassment.</dd>
+            <dd class="example">Example: "Liam (**muttering**) Right, Mondays are terrible for parties."</dd>
+
+            <dt class="vocab-term" tabindex="0">Sighs <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To let out a long, deep, audible breath expressing tiredness, relief, sadness, or exasperation/annoyance.</dd>
+            <dd class="example">Example: "(Mark **sighs**, checking his phone) Liam, we discussed this!"</dd>
+
+            <dt class="vocab-term" tabindex="0">Chuckle <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To laugh quietly or inwardly.</dd>
+            <dd class="example">Example: "Anna (**chuckling**) No problem at all! Let me just check my booking system…"</dd>
+
+            <dt class="vocab-term" tabindex="0">Customize <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To modify (something) to suit a particular individual or task.</dd>
+            <dd class="example">Example: "For private events, we have a few set menus, or we can **customize** something."</dd>
+
+            <dt class="vocab-term" tabindex="0">Secure <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To succeed in obtaining something, especially something difficult to get; to make certain of something.</dd>
+            <dd class="example">Example: "We just ask for a 20% deposit to **secure** the booking."</dd>
+
+            <dt class="vocab-term" tabindex="0">Conundrum <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A confusing and difficult problem or question.</dd>
+            <dd class="example">Example: "The Café **Conundrum**"</dd>
+
+            <dt class="vocab-term" tabindex="0">Cozy <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Giving a feeling of comfort, warmth, and relaxation.</dd>
+            <dd class="example">Example: "Inside a **cozy** but busy café."</dd>
+
+            <dt class="vocab-term" tabindex="0">Appetizers <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Small dishes served before the main course of a meal.</dd>
+            <dd class="example">Example: "We’d like to have some light **appetizers** and drinks."</dd>
+
+            <dt class="vocab-term" tabindex="0">Quiches <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A baked flan or tart with a savory filling thickened with eggs and cream.</dd>
+            <dd class="example">Example: "Our most popular is the 'Evening Bites' package – it includes mini **quiches**..."</dd>
+
+            <dt class="vocab-term" tabindex="0">Spring Rolls <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A savory Chinese pancake roll with a chopped filling, usually of mixed vegetables, fried golden.</dd>
+            <dd class="example">Example: "...spring **rolls**, and a selection of local cheeses."</dd>
+
+            <dt class="vocab-term" tabindex="0">Selection <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A range of choices or options.</dd>
+            <dd class="example">Example: "...and a **selection** of local cheeses."</dd>
+
+            <dt class="vocab-term" tabindex="0">Service Charge <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>An additional fee added to a bill for services rendered, often in hospitality.</dd>
+            <dd class="example">Example: "...plus a 15% **service charge**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Deposit Request <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A formal asking for an initial payment, often refundable, to secure a booking or purchase.</dd>
+            <dd class="example">Example: "I’ll send you a confirmation email with all the details and a small **deposit request**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Confidently <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>In a self-assured or certain way.</dd>
+            <dd class="example">Example: "(Looking around **confidently**) Yes, this is 'The Daily Grind'!"</dd>
+
+            <dt class="vocab-term" tabindex="0">Warmly <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>In a friendly, kind, or affectionate manner.</dd>
+            <dd class="example">Example: "(Smiling **warmly**) That’s me! Welcome to The Daily Grind."</dd>
+
+            <dt class="vocab-term" tabindex="0">Reasonable <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Fair and sensible; not too high or expensive.</dd>
+            <dd class="example">Example: "That’s **reasonable**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Get Confused <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To be unable to understand or distinguish between things; to become muddled.</dd>
+            <dd class="example">Example: "...Liam, who sometimes **gets confused**."</dd>
+
+            <dt class="vocab-term" tabindex="0">Looking Forward To <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To feel pleased and excited about something that is going to happen.</dd>
+            <dd class="example">Example: "We’re really **looking forward to** it."</dd>
+        </dl>
+    </section>
+
+    <div class="buttons">
+        <a href="../reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utt = new SpeechSynthesisUtterance(word);
+            utt.lang = 'en-US';
+            window.speechSynthesis.speak(utt);
+        } else {
+            alert("Text-to-speech not supported.");
+        }
+    }
+    document.querySelectorAll('.vocab-term').forEach(item => {
+        item.addEventListener('click', () => {
+            const word = item.textContent.replace(/ 🔊$/, '').trim(); // Remove the speaker icon
+            speakWord(word);
+        });
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const word = item.textContent.replace(/ 🔊$/, '').trim(); // Remove the speaker icon
+                speakWord(word);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

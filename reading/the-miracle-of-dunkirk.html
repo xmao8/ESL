@@ -1,120 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Miracle of Dunkirk - ESLnote</title>
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="your-shared-styles.css" />
-  <style>
-    .speak-icon {
-      cursor: pointer;
-      margin-left: 6px;
-      font-size: 1rem;
-      color: #3498db;
-    }
-    .speak-icon:hover {
-      color: #1d6fa5;
-    }
-  </style>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Miracle of Dunkirk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0;
+        }
+        ul li, ol li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Article & Questions Specific Styles */
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Vocabulary List Specific Styles */
+        .vocabulary-list ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: flex-start; /* Align items to the top if text wraps */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            margin-right: 8px;
+            font-size: 1.1em;
+            flex-shrink: 0; /* Prevent the word from shrinking */
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-top: 2px; /* Slight adjustment for vertical alignment with text */
+        }
+        .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list li .definition {
+            flex-grow: 1; /* Allow definition to take up remaining space */
+        }
+        .vocabulary-list li .example {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Back button */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .nav-links {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            main {
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            p, ul, ol {
+                font-size: 1rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-container .nav-links a {
+                width: auto;
+                text-align: left;
+                padding: 0.5rem 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            main {
+                padding: 0.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p, ul, ol {
+                font-size: 0.95rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Adjust vocabulary list for smaller screens */
+            .vocabulary-list li {
+                flex-direction: column; /* Stack word, icon, and definition vertically */
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-list li strong {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+            .speaker-icon {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+            .vocabulary-list li .definition {
+                font-size: 0.9em;
+            }
+            .vocabulary-list li .example {
+                font-size: 0.85em;
+            }
+        }
+
+        /* Extra small phone adjustments (optional, for very narrow screens) */
+        @media (max-width: 380px) {
+            .nav-container .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav role="navigation" aria-label="Main navigation">
-  <div class="nav-container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-      <span class="site-name">ESLnote</span>
-    </a>
-    <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-    <div class="nav-links" id="primary-navigation">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../practice.html">Practice</a>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>The Miracle of Dunkirk</h1>
+
+    <main>
+        <div class="content-section">
+
+            <p>In the spring of 1940, World War II was spreading fast. German soldiers moved quickly through Europe. They were trying to take control of France. Many French and British soldiers were fighting against them, but they were losing the battle.</p>
+
+            <p>Soon, more than 300,000 soldiers were trapped in a small town called Dunkirk, in northern France. They were stuck between the sea and the German army. There was no way out by land. The soldiers had no choice. They had to leave by sea, or they would be killed or captured.</p>
+
+            <p>This became known as the **Dunkirk evacuation**.</p>
+
+            <p>The British government made a brave and unusual plan. They asked regular people with boats to help rescue the soldiers. These people were fishermen, sailors, and even families who owned small boats for fun. Their boats were called “The Little Ships.”</p>
+
+            <p>From May 26 to June 4, 1940, hundreds of these small boats crossed the English Channel, the sea between France and England. It was very dangerous. German airplanes dropped bombs, and the sea was rough. But the little boats kept going.</p>
+
+            <p>The boats worked together with the British Navy. Some boats picked up soldiers from the beaches. Others helped carry soldiers from the big ships back to the shore. Over nine days, about 338,000 soldiers were rescued and brought safely back to England.</p>
+
+            <p>This event became known as the "Miracle of Dunkirk." People called it a miracle because so many soldiers were saved. No one expected such a large rescue to succeed.</p>
+
+            <p>Winston Churchill, the British leader at the time, gave a famous speech after the evacuation. He said, “We shall fight on the beaches... we shall never surrender.” His words gave people hope and courage.</p>
+
+            <p>Even though the British army lost many weapons and equipment at Dunkirk, the soldiers were safe. This helped Britain stay strong and continue the fight against Nazi Germany.</p>
+
+            <p>Today, the story of Dunkirk reminds us that ordinary people can do great things. It also shows the power of teamwork and bravery in times of crisis.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are 10 important words from the article that can help you understand it better. Try to guess their meaning from the story first, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>Spreading</strong> <i class="fas fa-volume-up speaker-icon" data-word="Spreading" aria-label="Pronounce Spreading"></i>
+                    <div class="definition">Extending over a large or increasing area.</div>
+                    <div class="example"><em>Example: The news was **spreading** quickly across the country.</em></div>
+                </li>
+                <li>
+                    <strong>Trapped</strong> <i class="fas fa-volume-up speaker-icon" data-word="Trapped" aria-label="Pronounce Trapped"></i>
+                    <div class="definition">Unable to escape from a place or situation.</div>
+                    <div class="example"><em>Example: The animal was **trapped** in the cage.</em></div>
+                </li>
+                <li>
+                    <strong>Evacuation</strong> <i class="fas fa-volume-up speaker-icon" data-word="Evacuation" aria-label="Pronounce Evacuation"></i>
+                    <div class="definition">The action of evacuating a person or place; moving people from a dangerous place to a safer one.</div>
+                    <div class="example"><em>Example: The fire alarm led to the quick **evacuation** of the building.</em></div>
+                </li>
+                <li>
+                    <strong>Unusual</strong> <i class="fas fa-volume-up speaker-icon" data-word="Unusual" aria-label="Pronounce Unusual"></i>
+                    <div class="definition">Not common or ordinary; remarkable.</div>
+                    <div class="example"><em>Example: It was **unusual** to see snow in April.</em></div>
+                </li>
+                <li>
+                    <strong>Rescue</strong> <i class="fas fa-volume-up speaker-icon" data-word="Rescue" aria-label="Pronounce Rescue"></i>
+                    <div class="definition">The action of saving someone from a dangerous or difficult situation.</div>
+                    <div class="example"><em>Example: The firefighters performed a daring **rescue** of the cat from the tree.</em></div>
+                </li>
+                <li>
+                    <strong>Channel</strong> <i class="fas fa-volume-up speaker-icon" data-word="Channel" aria-label="Pronounce Channel"></i>
+                    <div class="definition">A length of water wider than a strait, joining two larger areas of water.</div>
+                    <div class="example"><em>Example: They sailed across the narrow **channel** to the island.</em></div>
+                </li>
+                <li>
+                    <strong>Rough</strong> <i class="fas fa-volume-up speaker-icon" data-word="Rough" aria-label="Pronounce Rough"></i>
+                    <div class="definition">Having an uneven or irregular surface; also, violent or turbulent (for weather/sea).</div>
+                    <div class="example"><em>Example: The boat struggled in the **rough** seas.</em></div>
+                </li>
+                <li>
+                    <strong>Succeed</strong> <i class="fas fa-volume-up speaker-icon" data-word="Succeed" aria-label="Pronounce Succeed"></i>
+                    <div class="definition">Achieve the desired aim or result.</div>
+                    <div class="example"><em>Example: She worked hard and was determined to **succeed** in her career.</em></div>
+                </li>
+                <li>
+                    <strong>Surrender</strong> <i class="fas fa-volume-up speaker-icon" data-word="Surrender" aria-label="Pronounce Surrender"></i>
+                    <div class="definition">Stop resisting an enemy or opponent and submit to their authority.</div>
+                    <div class="example"><em>Example: The soldiers decided to **surrender** after being surrounded.</em></div>
+                </li>
+                <li>
+                    <strong>Crisis</strong> <i class="fas fa-volume-up speaker-icon" data-word="Crisis" aria-label="Pronounce Crisis"></i>
+                    <div class="definition">A time of intense difficulty, trouble, or danger.</div>
+                    <div class="example"><em>Example: The country faced an economic **crisis**.</em></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the article "The Miracle of Dunkirk."</p>
+            <ol>
+                <li>Where were more than 300,000 soldiers trapped in 1940?</li>
+                <li>Why were the soldiers unable to escape by land?</li>
+                <li>What was the "unusual plan" the British government made to rescue the soldiers?</li>
+                <li>What were "The Little Ships," and what dangers did they face crossing the English Channel?</li>
+                <li>Approximately how many soldiers were rescued during the Dunkirk evacuation, and over how many days?</li>
+                <li>According to the article, why was this event called the "Miracle of Dunkirk," and what important lesson does it teach us today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
     </div>
-  </div>
-</nav>
 
-<main>
-  <h1>The Miracle of Dunkirk</h1>
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
 
-  <article>
-    <p>In <strong>1940</strong>, German soldiers moved quickly through Europe during World War II. Many British and French soldiers were trapped in a small town called <strong>Dunkirk</strong> in France. They could not escape by land because the German army was too strong. Their only way out was by sea.</p>
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
 
-    <p>There were not enough navy ships to save them. So the British government asked <strong>regular people with boats</strong> to help. These boats were called <strong>“The Little Ships.”</strong> They were small fishing boats, sailboats, and even family boats.</p>
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
 
-    <p>From <strong>May 26 to June 4</strong>, these boats crossed the sea between England and France. It was dangerous. German planes dropped bombs. But the little boats were brave. They helped save over <strong>338,000 soldiers</strong>.</p>
+        // Text-to-speech functionality for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
 
-    <p>People called it the <strong>“Miracle of Dunkirk.”</strong> It was a surprise that so many men were rescued. The soldiers lost their weapons, but their lives were saved. Later, the British leader <strong>Winston Churchill</strong> gave a speech. He said, “We shall never surrender.”</p>
-
-    <p>This story shows that ordinary people can do great things in hard times. It also shows the power of <strong>teamwork and courage</strong>.</p>
-  </article>
-
-  <section class="vocab" aria-labelledby="vocab-title">
-    <h2 id="vocab-title">Vocabulary</h2>
-    <dl>
-      <dt>Evacuation <span class="speak-icon" onclick="speakWord('Evacuation')">🔊</span></dt>
-      <dd>The act of leaving a dangerous place.</dd>
-
-      <dt>Rescue <span class="speak-icon" onclick="speakWord('Rescue')">🔊</span></dt>
-      <dd>To save someone from danger.</dd>
-
-      <dt>Surrender <span class="speak-icon" onclick="speakWord('Surrender')">🔊</span></dt>
-      <dd>To stop fighting and give up.</dd>
-
-      <dt>Channel <span class="speak-icon" onclick="speakWord('Channel')">🔊</span></dt>
-      <dd>A narrow sea between two pieces of land.</dd>
-
-      <dt>Miracle <span class="speak-icon" onclick="speakWord('Miracle')">🔊</span></dt>
-      <dd>A surprising and lucky event that saves people.</dd>
-    </dl>
-  </section>
-
-  <section class="questions" aria-labelledby="questions-title">
-    <h2 id="questions-title">Comprehension Questions</h2>
-    <ol>
-      <li>Where were the soldiers trapped?</li>
-      <li>Why couldn’t the soldiers leave by land?</li>
-      <li>What kinds of boats helped rescue the soldiers?</li>
-      <li>How many soldiers were saved?</li>
-      <li>What message does the story of Dunkirk give us?</li>
-    </ol>
-  </section>
-
-  <div class="buttons">
-    <a href="reading.html">← Back to Reading</a>
-    <a href="index.html">🏠 Home</a>
-  </div>
-</main>
-
-<script>
-  // Mobile nav toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-    });
-  }
-
-  // Word pronunciation
-  function speakWord(word) {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'en-US';
-      speechSynthesis.speak(utterance);
-    } else {
-      alert("Sorry, your browser doesn't support speech.");
-    }
-  }
-</script>
-
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US'; // Set language to English (US)
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            console.warn("Text-to-speech not supported in this browser.");
+            // Optionally, hide speaker icons or show a message to the user
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
 </body>
 </html>

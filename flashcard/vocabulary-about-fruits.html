@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fruit Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Fruit Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Apple",
+    ipa: "/ˈæpəl/",
+    definition: "A round fruit with crisp flesh and a green, red, or yellow skin.",
+    example: "An **apple** a day keeps the doctor away."
+  },
+  {
+    word: "Banana",
+    ipa: "/bəˈnænə/",
+    definition: "A long curved fruit which grows in clusters and has a soft pulpy flesh and a yellowish skin when ripe.",
+    example: "He had a **banana** for breakfast."
+  },
+  {
+    word: "Orange",
+    ipa: "/ˈɔːrɪndʒ/",
+    definition: "A round, sweet, juicy citrus fruit with a tough, reddish-yellow rind.",
+    example: "I squeezed a fresh **orange** for juice."
+  },
+  {
+    word: "Grapes",
+    ipa: "/ɡreɪps/",
+    definition: "A berry, typically green, purple, red, or black, growing in clusters on a vine.",
+    example: "She bought a bunch of **grapes** at the market."
+  },
+  {
+    word: "Strawberry",
+    ipa: "/ˈstrɔːbəri/",
+    definition: "A sweet soft red fruit with a seed-studded surface.",
+    example: "I love fresh **strawberries** with cream."
+  },
+  {
+    word: "Blueberry",
+    ipa: "/ˈbluːbəri/",
+    definition: "A small, sweet, blue-black berry.",
+    example: "He added **blueberries** to his morning oatmeal."
+  },
+  {
+    word: "Raspberry",
+    ipa: "/ˈræzbəri/",
+    definition: "An edible aggregate fruit, typically red, consisting of a cluster of drupelets.",
+    example: "**Raspberries** are great for making jam."
+  },
+  {
+    word: "Cherry",
+    ipa: "/ˈtʃɛri/",
+    definition: "A small, soft, round stone fruit that is typically bright or dark red.",
+    example: "Be careful of the pits when eating **cherries**."
+  },
+  {
+    word: "Pineapple",
+    ipa: "/ˈpaɪnˌæpəl/",
+    definition: "A large juicy tropical fruit consisting of an aggregate of berries developing from a spike of flowers.",
+    example: "I enjoyed a slice of fresh **pineapple** on the beach."
+  },
+  {
+    word: "Mango",
+    ipa: "/ˈmæŋɡoʊ/",
+    definition: "A fleshy, oval, yellowish-red tropical fruit that is eaten ripe or used green for pickles or chutneys.",
+    example: "**Mango** salsa is a delicious topping for fish."
+  },
+  {
+    word: "Watermelon",
+    ipa: "/ˈwɑːtərˌmɛlən/",
+    definition: "A large, green-skinned fruit with sweet, red or pink flesh and many seeds.",
+    example: "**Watermelon** is very refreshing on a hot day."
+  },
+  {
+    word: "Melon",
+    ipa: "/ˈmɛlən/",
+    definition: "A large, round, sweet fruit with a hard rind and juicy flesh.",
+    example: "Cantaloupe is a type of **melon**."
+  },
+  {
+    word: "Peach",
+    ipa: "/piːtʃ/",
+    definition: "A round stone fruit with juicy yellow flesh and downy red-yellow skin.",
+    example: "I made a homemade **peach** pie."
+  },
+  {
+    word: "Nectarine",
+    ipa: "/ˈnɛktəriːn/",
+    definition: "A variety of peach having a smooth skin and richer flavor.",
+    example: "**Nectarines** are great in summer salads."
+  },
+  {
+    word: "Plum",
+    ipa: "/plʌm/",
+    definition: "An oval fleshy fruit which is purple, reddish, or yellow when ripe, containing a flattened stone.",
+    example: "These **plums** are very juicy."
+  },
+  {
+    word: "Apricot",
+    ipa: "/ˈæprɪˌkɑːt/",
+    definition: "A juicy, soft fruit, resembling a small peach, of an orange-yellow color.",
+    example: "Dried **apricots** are a healthy snack."
+  },
+  {
+    word: "Pear",
+    ipa: "/pɛər/",
+    definition: "A sweet, juicy, edible fruit that is narrow at the stalk and wider towards the base.",
+    example: "A perfectly ripe **pear** is very soft."
+  },
+  {
+    word: "Kiwi",
+    ipa: "/ˈkiːwiː/",
+    definition: "A fruit with a fuzzy brown skin, bright green flesh, and tiny black seeds.",
+    example: "Add some sliced **kiwi** to your fruit salad."
+  },
+  {
+    word: "Lemon",
+    ipa: "/ˈlɛmən/",
+    definition: "A yellow, oval citrus fruit with thick skin and fragrant, acidic juice.",
+    example: "I like a slice of **lemon** in my water."
+  },
+  {
+    word: "Lime",
+    ipa: "/laɪm/",
+    definition: "A round, green, citrus fruit with an acidic juice.",
+    example: "Many Mexican dishes use **lime** juice."
+  },
+  {
+    word: "Grapefruit",
+    ipa: "/ˈɡreɪpˌfruːt/",
+    definition: "A large, round, yellowish-orange citrus fruit.",
+    example: "Some people eat half a **grapefruit** for breakfast."
+  },
+  {
+    word: "Avocado",
+    ipa: "/ˌævəˈkɑːdoʊ/",
+    definition: "A pear-shaped fruit with a large stone and rich, buttery flesh.",
+    example: "Guacamole is made from **avocado**."
+  },
+  {
+    word: "Fig",
+    ipa: "/fɪɡ/",
+    definition: "A soft, sweet fruit with many small seeds, growing on a tree.",
+    example: "**Figs** are often eaten fresh or dried."
+  },
+  {
+    word: "Date",
+    ipa: "/deɪt/",
+    definition: "A sweet, sticky, dark brown fruit with a stone, that grows on a palm tree.",
+    example: "**Dates** are a popular snack in the Middle East."
+  },
+  {
+    word: "Pomegranate",
+    ipa: "/ˈpɑːmɪˌɡrænɪt/",
+    definition: "A round fruit with a tough, reddish skin and many small, juicy, red seeds.",
+    example: "**Pomegranate** seeds are great on salads."
+  },
+  {
+    word: "Passion fruit",
+    ipa: "/ˈpæʃən fruːt/",
+    definition: "A small, round or oval tropical fruit with a tough outer rind and juicy, aromatic, seed-filled center.",
+    example: "**Passion fruit** has a unique, tangy flavor."
+  },
+  {
+    word: "Dragon fruit",
+    ipa: "/ˈdræɡən fruːt/",
+    definition: "A tropical fruit with bright pink skin and white or red flesh speckled with tiny black seeds.",
+    example: "**Dragon fruit** is beautiful and mildly sweet."
+  },
+  {
+    word: "Lychee",
+    ipa: "/ˈlaɪtʃiː/",
+    definition: "A small, round, white-fleshed fruit with a rough, red skin and a large stone.",
+    example: "**Lychees** are very sweet and juicy."
+  },
+  {
+    word: "Guava",
+    ipa: "/ˈɡwɑːvə/",
+    definition: "A round or oval tropical fruit with a sweet, musky taste and a strong, characteristic scent.",
+    example: "**Guava** juice is common in tropical regions."
+  },
+  {
+    word: "Papaya",
+    ipa: "/pəˈpaɪə/",
+    definition: "A large, elongated, yellowish-orange tropical fruit with sweet, pulpy flesh and black seeds.",
+    example: "**Papaya** is often eaten for breakfast in tropical countries."
+  },
+  {
+    word: "Coconut",
+    ipa: "/ˈkoʊkənʌt/",
+    definition: "A large, oval, brown seed of a tropical palm, containing a white, edible flesh and a clear liquid.",
+    example: "**Coconut** water is a natural electrolyte."
+  },
+  {
+    word: "Star fruit",
+    ipa: "/stɑːr fruːt/",
+    definition: "A yellow-green fruit with five longitudinal ridges, yielding star-shaped slices when cut across.",
+    example: "**Star fruit** is often used as a garnish."
+  },
+  {
+    word: "Persimmon",
+    ipa: "/pərˈsɪmən/",
+    definition: "An edible, orange, tomato-shaped fruit that is very sweet when ripe.",
+    example: "Make sure the **persimmon** is very soft before eating it."
+  },
+  {
+    word: "Quince",
+    ipa: "/kwɪns/",
+    definition: "A hard, yellow-fleshed fruit similar to an apple, used for jams and jellies.",
+    example: "**Quince** is too hard to eat raw, but makes great preserves."
+  },
+  {
+    word: "Date palm",
+    ipa: "/deɪt pɑːm/",
+    definition: "A tree that produces dates.",
+    example: "**Date palms** thrive in desert climates."
+  },
+  {
+    word: "Orchard",
+    ipa: "/ˈɔːrtʃərd/",
+    definition: "A piece of land planted with fruit trees.",
+    example: "We went apple picking in the **orchard**."
+  },
+  {
+    word: "Grove",
+    ipa: "/ɡroʊv/",
+    definition: "A small wood, or group of trees, without undergrowth.",
+    example: "The citrus **grove** smelled wonderful in the spring."
+  },
+  {
+    word: "Citrus",
+    ipa: "/ˈsɪtrəs/",
+    definition: "Fruits such as oranges, lemons, limes, and grapefruits, that are rich in vitamin C.",
+    example: "**Citrus** fruits are known for their tangy flavor."
+  },
+  {
+    word: "Berry",
+    ipa: "/ˈbɛri/",
+    definition: "A small, pulpy, and often edible fruit, typically juicy, rounded, and brightly colored.",
+    example: "Strawberries, blueberries, and raspberries are all types of **berries**."
+  },
+  {
+    word: "Stone fruit",
+    ipa: "/stoʊn fruːt/",
+    definition: "A fleshy fruit with a thin skin and a central stone containing the seed, e.g., a plum, cherry, or peach.",
+    example: "Peaches and apricots are popular **stone fruits**."
+  },
+  {
+    word: "Flesh",
+    ipa: "/flɛʃ/",
+    definition: "The soft part of a fruit or vegetable that is eaten.",
+    example: "The **flesh** of the mango was sweet and juicy."
+  },
+  {
+    word: "Peel/Rind",
+    ipa: "/piːl/ /raɪnd/",
+    definition: "The outer skin of a fruit.",
+    example: "You can use the lemon **peel** in baking."
+  },
+  {
+    word: "Seed",
+    ipa: "/siːd/",
+    definition: "A small, embryonic plant enclosed in a covering called the seed coat, usually with some stored food.",
+    example: "Be careful not to swallow the **seeds** of the watermelon."
+  },
+  {
+    word: "Pit/Stone",
+    ipa: "/pɪt/ /stoʊn/",
+    definition: "The hard, woody, inner part of a stone fruit, containing the seed.",
+    example: "Remove the **pit** from the cherry before eating."
+  },
+  {
+    word: "Juicy",
+    ipa: "/ˈdʒuːsi/",
+    definition: "Full of juice; succulent.",
+    example: "This orange is incredibly **juicy**."
+  },
+  {
+    word: "Sweet",
+    ipa: "/swiːt/",
+    definition: "Having the taste of sugar.",
+    example: "These grapes are perfectly **sweet**."
+  },
+  {
+    word: "Tart/Sour",
+    ipa: "/tɑːrt/ /saʊər/",
+    definition: "Having a sharp, acidic taste.",
+    example: "Lemons are very **tart**."
+  },
+  {
+    word: "Ripe",
+    ipa: "/raɪp/",
+    definition: "Fully developed and ready to be eaten.",
+    example: "Make sure the avocado is **ripe** before you cut it."
+  },
+  {
+    word: "Unripe",
+    ipa: "/ʌnˈraɪp/",
+    definition: "Not yet fully developed or ready to be eaten.",
+    example: "The green banana is still **unripe**."
+  },
+  {
+    word: "Overripe",
+    ipa: "/ˌoʊvərˈraɪp/",
+    definition: "Too ripe; past its best.",
+    example: "The **overripe** peaches can be used for a smoothie."
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

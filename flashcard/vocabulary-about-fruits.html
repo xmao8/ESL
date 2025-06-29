@@ -219,6 +219,11 @@
       font-size: 1rem;
       margin-top: 0.3rem;
     }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
     .speaker {
       cursor: pointer;
       font-size: 1.6rem;
@@ -298,301 +303,401 @@ const flashcards = [
     word: "Apple",
     ipa: "/ˈæpəl/",
     definition: "A round fruit with crisp flesh and a green, red, or yellow skin.",
-    example: "An **apple** a day keeps the doctor away."
+    example: "An **apple** a day keeps the doctor away.",
+    chinese: "苹果 (Píngguǒ)",
+    spanish: "Manzana"
   },
   {
     word: "Banana",
     ipa: "/bəˈnænə/",
     definition: "A long curved fruit which grows in clusters and has a soft pulpy flesh and a yellowish skin when ripe.",
-    example: "He had a **banana** for breakfast."
+    example: "He had a **banana** for breakfast.",
+    chinese: "香蕉 (Xiāngjiāo)",
+    spanish: "Plátano / Banana"
   },
   {
     word: "Orange",
     ipa: "/ˈɔːrɪndʒ/",
     definition: "A round, sweet, juicy citrus fruit with a tough, reddish-yellow rind.",
-    example: "I squeezed a fresh **orange** for juice."
+    example: "I squeezed a fresh **orange** for juice.",
+    chinese: "橙子 (Chéngzi)",
+    spanish: "Naranja"
   },
   {
     word: "Grapes",
     ipa: "/ɡreɪps/",
     definition: "A berry, typically green, purple, red, or black, growing in clusters on a vine.",
-    example: "She bought a bunch of **grapes** at the market."
+    example: "She bought a bunch of **grapes** at the market.",
+    chinese: "葡萄 (Pútáo)",
+    spanish: "Uvas"
   },
   {
     word: "Strawberry",
     ipa: "/ˈstrɔːbəri/",
     definition: "A sweet soft red fruit with a seed-studded surface.",
-    example: "I love fresh **strawberries** with cream."
+    example: "I love fresh **strawberries** with cream.",
+    chinese: "草莓 (Cǎoméi)",
+    spanish: "Fresa"
   },
   {
     word: "Blueberry",
     ipa: "/ˈbluːbəri/",
     definition: "A small, sweet, blue-black berry.",
-    example: "He added **blueberries** to his morning oatmeal."
+    example: "He added **blueberries** to his morning oatmeal.",
+    chinese: "蓝莓 (Lánméi)",
+    spanish: "Arándano azul"
   },
   {
     word: "Raspberry",
     ipa: "/ˈræzbəri/",
     definition: "An edible aggregate fruit, typically red, consisting of a cluster of drupelets.",
-    example: "**Raspberries** are great for making jam."
+    example: "**Raspberries** are great for making jam.",
+    chinese: "覆盆子 (Fùpénzi)",
+    spanish: "Frambuesa"
   },
   {
     word: "Cherry",
     ipa: "/ˈtʃɛri/",
     definition: "A small, soft, round stone fruit that is typically bright or dark red.",
-    example: "Be careful of the pits when eating **cherries**."
+    example: "Be careful of the pits when eating **cherries**.",
+    chinese: "樱桃 (Yīngtáo)",
+    spanish: "Cereza"
   },
   {
     word: "Pineapple",
     ipa: "/ˈpaɪnˌæpəl/",
     definition: "A large juicy tropical fruit consisting of an aggregate of berries developing from a spike of flowers.",
-    example: "I enjoyed a slice of fresh **pineapple** on the beach."
+    example: "I enjoyed a slice of fresh **pineapple** on the beach.",
+    chinese: "菠萝 (Bōluó)",
+    spanish: "Piña"
   },
   {
     word: "Mango",
     ipa: "/ˈmæŋɡoʊ/",
     definition: "A fleshy, oval, yellowish-red tropical fruit that is eaten ripe or used green for pickles or chutneys.",
-    example: "**Mango** salsa is a delicious topping for fish."
+    example: "**Mango** salsa is a delicious topping for fish.",
+    chinese: "芒果 (Mángguǒ)",
+    spanish: "Mango"
   },
   {
     word: "Watermelon",
     ipa: "/ˈwɑːtərˌmɛlən/",
     definition: "A large, green-skinned fruit with sweet, red or pink flesh and many seeds.",
-    example: "**Watermelon** is very refreshing on a hot day."
+    example: "**Watermelon** is very refreshing on a hot day.",
+    chinese: "西瓜 (Xīguā)",
+    spanish: "Sandía"
   },
   {
     word: "Melon",
     ipa: "/ˈmɛlən/",
     definition: "A large, round, sweet fruit with a hard rind and juicy flesh.",
-    example: "Cantaloupe is a type of **melon**."
+    example: "Cantaloupe is a type of **melon**.",
+    chinese: "甜瓜 (Tiánguā)",
+    spanish: "Melón"
   },
   {
     word: "Peach",
     ipa: "/piːtʃ/",
     definition: "A round stone fruit with juicy yellow flesh and downy red-yellow skin.",
-    example: "I made a homemade **peach** pie."
+    example: "I made a homemade **peach** pie.",
+    chinese: "桃子 (Táozi)",
+    spanish: "Melocotón / Durazno"
   },
   {
     word: "Nectarine",
     ipa: "/ˈnɛktəriːn/",
     definition: "A variety of peach having a smooth skin and richer flavor.",
-    example: "**Nectarines** are great in summer salads."
+    example: "**Nectarines** are great in summer salads.",
+    chinese: "油桃 (Yóutáo)",
+    spanish: "Nectarina"
   },
   {
     word: "Plum",
     ipa: "/plʌm/",
     definition: "An oval fleshy fruit which is purple, reddish, or yellow when ripe, containing a flattened stone.",
-    example: "These **plums** are very juicy."
+    example: "These **plums** are very juicy.",
+    chinese: "李子 (Lǐzi)",
+    spanish: "Ciruela"
   },
   {
     word: "Apricot",
     ipa: "/ˈæprɪˌkɑːt/",
     definition: "A juicy, soft fruit, resembling a small peach, of an orange-yellow color.",
-    example: "Dried **apricots** are a healthy snack."
+    example: "Dried **apricots** are a healthy snack.",
+    chinese: "杏子 (Xìngzi)",
+    spanish: "Albaricoque / Chabacano"
   },
   {
     word: "Pear",
     ipa: "/pɛər/",
     definition: "A sweet, juicy, edible fruit that is narrow at the stalk and wider towards the base.",
-    example: "A perfectly ripe **pear** is very soft."
+    example: "A perfectly ripe **pear** is very soft.",
+    chinese: "梨 (Lí)",
+    spanish: "Pera"
   },
   {
     word: "Kiwi",
     ipa: "/ˈkiːwiː/",
     definition: "A fruit with a fuzzy brown skin, bright green flesh, and tiny black seeds.",
-    example: "Add some sliced **kiwi** to your fruit salad."
+    example: "Add some sliced **kiwi** to your fruit salad.",
+    chinese: "奇异果 (Qíyìguǒ)",
+    spanish: "Kiwi"
   },
   {
     word: "Lemon",
     ipa: "/ˈlɛmən/",
     definition: "A yellow, oval citrus fruit with thick skin and fragrant, acidic juice.",
-    example: "I like a slice of **lemon** in my water."
+    example: "I like a slice of **lemon** in my water.",
+    chinese: "柠檬 (Níngméng)",
+    spanish: "Limón"
   },
   {
     word: "Lime",
     ipa: "/laɪm/",
     definition: "A round, green, citrus fruit with an acidic juice.",
-    example: "Many Mexican dishes use **lime** juice."
+    example: "Many Mexican dishes use **lime** juice.",
+    chinese: "青柠 (Qīngníng)",
+    spanish: "Lima"
   },
   {
     word: "Grapefruit",
     ipa: "/ˈɡreɪpˌfruːt/",
     definition: "A large, round, yellowish-orange citrus fruit.",
-    example: "Some people eat half a **grapefruit** for breakfast."
+    example: "Some people eat half a **grapefruit** for breakfast.",
+    chinese: "葡萄柚 (Pútáoyòu)",
+    spanish: "Toronja / Pomelo"
   },
   {
     word: "Avocado",
     ipa: "/ˌævəˈkɑːdoʊ/",
     definition: "A pear-shaped fruit with a large stone and rich, buttery flesh.",
-    example: "Guacamole is made from **avocado**."
+    example: "Guacamole is made from **avocado**.",
+    chinese: "牛油果 (Niúyóuguǒ)",
+    spanish: "Aguacate / Palta"
   },
   {
     word: "Fig",
     ipa: "/fɪɡ/",
     definition: "A soft, sweet fruit with many small seeds, growing on a tree.",
-    example: "**Figs** are often eaten fresh or dried."
+    example: "**Figs** are often eaten fresh or dried.",
+    chinese: "无花果 (Wúhuāguǒ)",
+    spanish: "Higo"
   },
   {
     word: "Date",
     ipa: "/deɪt/",
     definition: "A sweet, sticky, dark brown fruit with a stone, that grows on a palm tree.",
-    example: "**Dates** are a popular snack in the Middle East."
+    example: "**Dates** are a popular snack in the Middle East.",
+    chinese: "枣 (Zǎo)",
+    spanish: "Dátil"
   },
   {
     word: "Pomegranate",
     ipa: "/ˈpɑːmɪˌɡrænɪt/",
     definition: "A round fruit with a tough, reddish skin and many small, juicy, red seeds.",
-    example: "**Pomegranate** seeds are great on salads."
+    example: "**Pomegranate** seeds are great on salads.",
+    chinese: "石榴 (Shíliu)",
+    spanish: "Granada"
   },
   {
     word: "Passion fruit",
     ipa: "/ˈpæʃən fruːt/",
     definition: "A small, round or oval tropical fruit with a tough outer rind and juicy, aromatic, seed-filled center.",
-    example: "**Passion fruit** has a unique, tangy flavor."
+    example: "**Passion fruit** has a unique, tangy flavor.",
+    chinese: "百香果 (Bǎixiāngguǒ)",
+    spanish: "Maracuyá / Fruta de la pasión"
   },
   {
     word: "Dragon fruit",
     ipa: "/ˈdræɡən fruːt/",
     definition: "A tropical fruit with bright pink skin and white or red flesh speckled with tiny black seeds.",
-    example: "**Dragon fruit** is beautiful and mildly sweet."
+    example: "**Dragon fruit** is beautiful and mildly sweet.",
+    chinese: "火龙果 (Huǒlóngguǒ)",
+    spanish: "Pitaia / Pitahaya"
   },
   {
     word: "Lychee",
     ipa: "/ˈlaɪtʃiː/",
     definition: "A small, round, white-fleshed fruit with a rough, red skin and a large stone.",
-    example: "**Lychees** are very sweet and juicy."
+    example: "**Lychees** are very sweet and juicy.",
+    chinese: "荔枝 (Lìzhī)",
+    spanish: "Lichi"
   },
   {
     word: "Guava",
     ipa: "/ˈɡwɑːvə/",
     definition: "A round or oval tropical fruit with a sweet, musky taste and a strong, characteristic scent.",
-    example: "**Guava** juice is common in tropical regions."
+    example: "**Guava** juice is common in tropical regions.",
+    chinese: "番石榴 (Fānshíliu)",
+    spanish: "Guayaba"
   },
   {
     word: "Papaya",
     ipa: "/pəˈpaɪə/",
     definition: "A large, elongated, yellowish-orange tropical fruit with sweet, pulpy flesh and black seeds.",
-    example: "**Papaya** is often eaten for breakfast in tropical countries."
+    example: "**Papaya** is often eaten for breakfast in tropical countries.",
+    chinese: "木瓜 (Mùguā)",
+    spanish: "Papaya"
   },
   {
     word: "Coconut",
     ipa: "/ˈkoʊkənʌt/",
     definition: "A large, oval, brown seed of a tropical palm, containing a white, edible flesh and a clear liquid.",
-    example: "**Coconut** water is a natural electrolyte."
+    example: "**Coconut** water is a natural electrolyte.",
+    chinese: "椰子 (Yēzi)",
+    spanish: "Coco"
   },
   {
     word: "Star fruit",
     ipa: "/stɑːr fruːt/",
     definition: "A yellow-green fruit with five longitudinal ridges, yielding star-shaped slices when cut across.",
-    example: "**Star fruit** is often used as a garnish."
+    example: "**Star fruit** is often used as a garnish.",
+    chinese: "杨桃 (Yángtáo)",
+    spanish: "Carambola / Fruta estrella"
   },
   {
     word: "Persimmon",
     ipa: "/pərˈsɪmən/",
     definition: "An edible, orange, tomato-shaped fruit that is very sweet when ripe.",
-    example: "Make sure the **persimmon** is very soft before eating it."
+    example: "Make sure the **persimmon** is very soft before eating it.",
+    chinese: "柿子 (Shìzi)",
+    spanish: "Caqui"
   },
   {
     word: "Quince",
     ipa: "/kwɪns/",
     definition: "A hard, yellow-fleshed fruit similar to an apple, used for jams and jellies.",
-    example: "**Quince** is too hard to eat raw, but makes great preserves."
+    example: "**Quince** is too hard to eat raw, but makes great preserves.",
+    chinese: "榅桲 (Wēnbó)",
+    spanish: "Membrillo"
   },
   {
     word: "Date palm",
     ipa: "/deɪt pɑːm/",
     definition: "A tree that produces dates.",
-    example: "**Date palms** thrive in desert climates."
+    example: "**Date palms** thrive in desert climates.",
+    chinese: "枣椰树 (Zǎoyēshù)",
+    spanish: "Palmera datilera"
   },
   {
     word: "Orchard",
     ipa: "/ˈɔːrtʃərd/",
     definition: "A piece of land planted with fruit trees.",
-    example: "We went apple picking in the **orchard**."
+    example: "We went apple picking in the **orchard**.",
+    chinese: "果园 (Guǒyuán)",
+    spanish: "Huerto / Frutales"
   },
   {
     word: "Grove",
     ipa: "/ɡroʊv/",
     definition: "A small wood, or group of trees, without undergrowth.",
-    example: "The citrus **grove** smelled wonderful in the spring."
+    example: "The citrus **grove** smelled wonderful in the spring.",
+    chinese: "树林 (Shùlín)",
+    spanish: "Arboleda / Bosquecillo"
   },
   {
     word: "Citrus",
     ipa: "/ˈsɪtrəs/",
     definition: "Fruits such as oranges, lemons, limes, and grapefruits, that are rich in vitamin C.",
-    example: "**Citrus** fruits are known for their tangy flavor."
+    example: "**Citrus** fruits are known for their tangy flavor.",
+    chinese: "柑橘 (Gānjú)",
+    spanish: "Cítricos"
   },
   {
     word: "Berry",
     ipa: "/ˈbɛri/",
     definition: "A small, pulpy, and often edible fruit, typically juicy, rounded, and brightly colored.",
-    example: "Strawberries, blueberries, and raspberries are all types of **berries**."
+    example: "Strawberries, blueberries, and raspberries are all types of **berries**.",
+    chinese: "浆果 (Jiāngguǒ)",
+    spanish: "Baya"
   },
   {
     word: "Stone fruit",
     ipa: "/stoʊn fruːt/",
     definition: "A fleshy fruit with a thin skin and a central stone containing the seed, e.g., a plum, cherry, or peach.",
-    example: "Peaches and apricots are popular **stone fruits**."
+    example: "Peaches and apricots are popular **stone fruits**.",
+    chinese: "核果 (Héguǒ)",
+    spanish: "Fruta de hueso"
   },
   {
     word: "Flesh",
     ipa: "/flɛʃ/",
     definition: "The soft part of a fruit or vegetable that is eaten.",
-    example: "The **flesh** of the mango was sweet and juicy."
+    example: "The **flesh** of the mango was sweet and juicy.",
+    chinese: "果肉 (Guǒròu)",
+    spanish: "Pulpa"
   },
   {
     word: "Peel/Rind",
     ipa: "/piːl/ /raɪnd/",
     definition: "The outer skin of a fruit.",
-    example: "You can use the lemon **peel** in baking."
+    example: "You can use the lemon **peel** in baking.",
+    chinese: "果皮 (Guǒpí)",
+    spanish: "Piel / Cáscara"
   },
   {
     word: "Seed",
     ipa: "/siːd/",
     definition: "A small, embryonic plant enclosed in a covering called the seed coat, usually with some stored food.",
-    example: "Be careful not to swallow the **seeds** of the watermelon."
+    example: "Be careful not to swallow the **seeds** of the watermelon.",
+    chinese: "籽 (Zǐ)",
+    spanish: "Semilla"
   },
   {
     word: "Pit/Stone",
     ipa: "/pɪt/ /stoʊn/",
     definition: "The hard, woody, inner part of a stone fruit, containing the seed.",
-    example: "Remove the **pit** from the cherry before eating."
+    example: "Remove the **pit** from the cherry before eating.",
+    chinese: "核 (Hé)",
+    spanish: "Hueso"
   },
   {
     word: "Juicy",
     ipa: "/ˈdʒuːsi/",
     definition: "Full of juice; succulent.",
-    example: "This orange is incredibly **juicy**."
+    example: "This orange is incredibly **juicy**.",
+    chinese: "多汁的 (Duōzhīde)",
+    spanish: "Jugoso/a"
   },
   {
     word: "Sweet",
     ipa: "/swiːt/",
     definition: "Having the taste of sugar.",
-    example: "These grapes are perfectly **sweet**."
+    example: "These grapes are perfectly **sweet**.",
+    chinese: "甜的 (Tiánde)",
+    spanish: "Dulce"
   },
   {
     word: "Tart/Sour",
     ipa: "/tɑːrt/ /saʊər/",
     definition: "Having a sharp, acidic taste.",
-    example: "Lemons are very **tart**."
+    example: "Lemons are very **tart**.",
+    chinese: "酸的 (Suānde)",
+    spanish: "Ácido/a / Agrio/a"
   },
   {
     word: "Ripe",
     ipa: "/raɪp/",
     definition: "Fully developed and ready to be eaten.",
-    example: "Make sure the avocado is **ripe** before you cut it."
+    example: "Make sure the avocado is **ripe** before you cut it.",
+    chinese: "成熟的 (Chéngshúde)",
+    spanish: "Maduro/a"
   },
   {
     word: "Unripe",
     ipa: "/ʌnˈraɪp/",
     definition: "Not yet fully developed or ready to be eaten.",
-    example: "The green banana is still **unripe**."
+    example: "The green banana is still **unripe**.",
+    chinese: "未成熟的 (Wèi chéngshúde)",
+    spanish: "Inmaduro/a"
   },
   {
     word: "Overripe",
     ipa: "/ˌoʊvərˈraɪp/",
     definition: "Too ripe; past its best.",
-    example: "The **overripe** peaches can be used for a smoothie."
+    example: "The **overripe** peaches can be used for a smoothie.",
+    chinese: "过熟的 (Guòshúde)",
+    spanish: "Muy maduro/a"
   }
 ];
 
@@ -612,7 +717,7 @@ function showCard() {
 
 function flipCard() {
   if (!flipped) {
-    const { word, ipa, definition, example } = flashcards[index];
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
     flashcard.innerHTML = `
       <div class="word">
         ${word}
@@ -621,6 +726,8 @@ function flipCard() {
       <div class="ipa">${ipa}</div>
       <div class="definition">${definition}</div>
       <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
       <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
     flashcard.classList.add("flipped");

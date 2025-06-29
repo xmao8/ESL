@@ -219,6 +219,11 @@
       font-size: 1rem;
       margin-top: 0.3rem;
     }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
     .speaker {
       cursor: pointer;
       font-size: 1.6rem;
@@ -298,301 +303,401 @@ const flashcards = [
     word: "Carrot",
     ipa: "/ˈkærət/",
     definition: "A tapering orange-colored root eaten as a vegetable.",
-    example: "Rabbits love to eat **carrots**."
+    example: "Rabbits love to eat **carrots**.",
+    chinese: "胡萝卜 (Húluóbo)",
+    spanish: "Zanahoria"
   },
   {
     word: "Broccoli",
     ipa: "/ˈbrɑːkəli/",
     definition: "A cultivated variety of cabbage bearing heads of green or purplish flower buds.",
-    example: "**Broccoli** is a very healthy vegetable, often steamed."
+    example: "**Broccoli** is a very healthy vegetable, often steamed.",
+    chinese: "西兰花 (Xīlánhuā)",
+    spanish: "Brócoli"
   },
   {
     word: "Spinach",
     ipa: "/ˈspɪnɪdʒ/",
     definition: "A leafy green vegetable, rich in iron.",
-    example: "Popeye the Sailor Man got his strength from **spinach**."
+    example: "Popeye the Sailor Man got his strength from **spinach**.",
+    chinese: "菠菜 (Bōcài)",
+    spanish: "Espinaca"
   },
   {
     word: "Lettuce",
     ipa: "/ˈlɛtɪs/",
     definition: "A leafy green vegetable, typically used in salads.",
-    example: "Make sure to wash the **lettuce** thoroughly before making a salad."
+    example: "Make sure to wash the **lettuce** thoroughly before making a salad.",
+    chinese: "生菜 (Shēngcài)",
+    spanish: "Lechuga"
   },
   {
     word: "Tomato",
     ipa: "/təˈmeɪtoʊ/",
     definition: "A soft, red or yellow, pulpy fruit eaten as a vegetable.",
-    example: "Is a **tomato** a fruit or a vegetable? (Botanically, it's a fruit, culinarily, a vegetable!)"
+    example: "Is a **tomato** a fruit or a vegetable? (Botanically, it's a fruit, culinarily, a vegetable!)",
+    chinese: "西红柿 (Xīhóngshì)",
+    spanish: "Tomate"
   },
   {
     word: "Cucumber",
     ipa: "/ˈkjuːkʌmbər/",
     definition: "A long, green-skinned fruit with watery flesh, usually eaten raw in salads.",
-    example: "I like slices of **cucumber** in my water for refreshment."
+    example: "I like slices of **cucumber** in my water for refreshment.",
+    chinese: "黄瓜 (Huángguā)",
+    spanish: "Pepino"
   },
   {
     word: "Onion",
     ipa: "/ˈʌnjən/",
     definition: "An edible bulb with a pungent taste and smell, composed of several concentric layers.",
-    example: "Chopping **onions** often makes your eyes water."
+    example: "Chopping **onions** often makes your eyes water.",
+    chinese: "洋葱 (Yángcōng)",
+    spanish: "Cebolla"
   },
   {
     word: "Garlic",
     ipa: "/ˈɡɑːrlɪk/",
     definition: "A strong-smelling, pungent-tasting bulb, used as a flavoring in cooking.",
-    example: "**Garlic** is a key ingredient in Italian cuisine."
+    example: "**Garlic** is a key ingredient in Italian cuisine.",
+    chinese: "大蒜 (Dàsuàn)",
+    spanish: "Ajo"
   },
   {
     word: "Potato",
     ipa: "/pəˈteɪtoʊ/",
     definition: "A starchy plant tuber which is widely cultivated as a staple food.",
-    example: "French fries are made from **potatoes**."
+    example: "French fries are made from **potatoes**.",
+    chinese: "土豆 (Tǔdòu)",
+    spanish: "Patata / Papa"
   },
   {
     word: "Sweet potato",
     ipa: "/swiːt pəˈteɪtoʊ/",
     definition: "A starchy, sweet-tasting root vegetable, typically orange or purple.",
-    example: "Roasted **sweet potatoes** are a popular side dish."
+    example: "Roasted **sweet potatoes** are a popular side dish.",
+    chinese: "红薯 (Hóngshǔ)",
+    spanish: "Boniato / Camote"
   },
   {
     word: "Bell pepper",
     ipa: "/bɛl ˈpɛpər/",
     definition: "A hollow, often bell-shaped, fruit eaten as a vegetable, typically green, yellow, orange, or red.",
-    example: "Red **bell peppers** add a nice crunch to stir-fries."
+    example: "Red **bell peppers** add a nice crunch to stir-fries.",
+    chinese: "甜椒 (Tiánjiāo)",
+    spanish: "Pimiento"
   },
   {
     word: "Mushroom",
     ipa: "/ˈmʌʃruːm/",
     definition: "A fleshy, spore-bearing fruiting body of a fungus, typically produced above ground on soil or on its food source.",
-    example: "Some people forage for wild **mushrooms**."
+    example: "Some people forage for wild **mushrooms**.",
+    chinese: "蘑菇 (Mógu)",
+    spanish: "Champiñón / Seta"
   },
   {
     word: "Zucchini",
     ipa: "/zuːˈkiːni/",
     definition: "A green variety of summer squash, typically elongated and cylindrical.",
-    example: "Grilled **zucchini** is a simple and delicious side."
+    example: "Grilled **zucchini** is a simple and delicious side.",
+    chinese: "西葫芦 (Xīhúlu)",
+    spanish: "Calabacín"
   },
   {
     word: "Eggplant",
     ipa: "/ˈɛɡplænt/",
     definition: "A plant of the nightshade family, bearing a large, dark purple, edible fruit.",
-    example: "Baba ghanoush is a dip made from **eggplant**."
+    example: "Baba ghanoush is a dip made from **eggplant**.",
+    chinese: "茄子 (Qiézi)",
+    spanish: "Berenjena"
   },
   {
     word: "Cabbage",
     ipa: "/ˈkæbɪdʒ/",
     definition: "A leafy green, red, or white biennial plant, grown for its dense, leafy heads.",
-    example: "Coleslaw is made with shredded **cabbage**."
+    example: "Coleslaw is made with shredded **cabbage**.",
+    chinese: "卷心菜 (Juǎnxīncài)",
+    spanish: "Repollo"
   },
   {
     word: "Cauliflower",
     ipa: "/ˈkɑːlɪˌflaʊər/",
     definition: "A cultivated variety of cabbage bearing a large, white flower head.",
-    example: "Roasted **cauliflower** can be a good substitute for mashed potatoes."
+    example: "Roasted **cauliflower** can be a good substitute for mashed potatoes.",
+    chinese: "花椰菜 (Huāyēcài)",
+    spanish: "Coliflor"
   },
   {
     word: "Brussels sprout",
     ipa: "/ˌbrʌsəlz ˈspraʊt/",
     definition: "A small cabbage-like bud eaten as a vegetable.",
-    example: "Many people don't like **Brussels sprouts**, but I enjoy them roasted."
+    example: "Many people don't like **Brussels sprouts**, but I enjoy them roasted.",
+    chinese: "抱子甘蓝 (Bàozǐ gānlán)",
+    spanish: "Coles de Bruselas"
   },
   {
     word: "Asparagus",
     ipa: "/əˈspærəɡəs/",
     definition: "A long, slender, green stalk, typically steamed or roasted.",
-    example: "**Asparagus** is a sign of spring."
+    example: "**Asparagus** is a sign of spring.",
+    chinese: "芦笋 (Lúsǔn)",
+    spanish: "Espárrago"
   },
   {
     word: "Celery",
     ipa: "/ˈsɛləri/",
     definition: "A plant of the parsley family with long, crisp leaf stalks, eaten as a vegetable.",
-    example: "I put **celery** in my tuna salad for extra crunch."
+    example: "I put **celery** in my tuna salad for extra crunch.",
+    chinese: "芹菜 (Qíncài)",
+    spanish: "Apio"
   },
   {
     word: "Corn",
     ipa: "/kɔːrn/",
     definition: "A cereal plant that yields large kernels, usually yellow, on a cob, widely cultivated as a food crop.",
-    example: "**Corn** on the cob is a summer favorite."
+    example: "**Corn** on the cob is a summer favorite.",
+    chinese: "玉米 (Yùmǐ)",
+    spanish: "Maíz"
   },
   {
     word: "Peas",
     ipa: "/piːz/",
     definition: "Small, spherical green seeds eaten as a vegetable.",
-    example: "Green **peas** are often served with fish and chips."
+    example: "Green **peas** are often served with fish and chips.",
+    chinese: "豌豆 (Wāndòu)",
+    spanish: "Guisantes / Chicharos"
   },
   {
     word: "Green beans",
     ipa: "/ɡriːn biːnz/",
     definition: "The immature green pods of the common bean, eaten as a vegetable.",
-    example: "Steamed **green beans** are a simple and healthy side."
+    example: "Steamed **green beans** are a simple and healthy side.",
+    chinese: "四季豆 (Sìjìdòu)",
+    spanish: "Judías verdes / Ejotes"
   },
   {
     word: "Artichoke",
     ipa: "/ˈɑːrtɪtʃoʊk/",
     definition: "A large, thistle-like plant whose edible flower head has spiny bracts and a fleshy base.",
-    example: "Eating an **artichoke** can be a bit tricky, but it's delicious."
+    example: "Eating an **artichoke** can be a bit tricky, but it's delicious.",
+    chinese: "朝鲜蓟 (Cháoxiǎnjì)",
+    spanish: "Alcachofa"
   },
   {
     word: "Leek",
     ipa: "/liːk/",
     definition: "A plant related to the onion, with a long, white, edible bulb that is thicker than an onion.",
-    example: "**Leek** and potato soup is a classic comfort food."
+    example: "**Leek** and potato soup is a classic comfort food.",
+    chinese: "韭葱 (Jiǔcōng)",
+    spanish: "Puerro"
   },
   {
     word: "Kale",
     ipa: "/keɪl/",
     definition: "A hardy cabbage with coarse curly leaves, which do not form a compact head.",
-    example: "**Kale** is a superfood, often used in smoothies or salads."
+    example: "**Kale** is a superfood, often used in smoothies or salads.",
+    chinese: "羽衣甘蓝 (Yǔyī gānlán)",
+    spanish: "Col rizada"
   },
   {
     word: "Collard greens",
     ipa: "/ˈkɑːlərd ɡriːnz/",
     definition: "A type of leafy green vegetable, popular in Southern US cuisine.",
-    example: "**Collard greens** are often cooked with smoked meats."
+    example: "**Collard greens** are often cooked with smoked meats.",
+    chinese: "芥蓝 (Jièlán)",
+    spanish: "Berza"
   },
   {
     word: "Beet",
     ipa: "/biːt/",
     definition: "A deep red root vegetable, often eaten boiled or pickled.",
-    example: "The vibrant color of **beets** can stain your hands."
+    example: "The vibrant color of **beets** can stain your hands.",
+    chinese: "甜菜 (Tiáncài)",
+    spanish: "Remolacha / Betabel"
   },
   {
     word: "Radish",
     ipa: "/ˈrædɪʃ/",
     definition: "A small, pungent, fleshy root vegetable, usually red.",
-    example: "**Radishes** add a peppery bite to salads."
+    example: "**Radishes** add a peppery bite to salads.",
+    chinese: "小萝卜 (Xiǎoluóbo)",
+    spanish: "Rábano"
   },
   {
     word: "Turnip",
     ipa: "/ˈtɜːrnɪp/",
     definition: "A round, white or cream-colored root vegetable.",
-    example: "**Turnips** can be roasted or added to stews."
+    example: "**Turnips** can be roasted or added to stews.",
+    chinese: "芜菁 (Wújīng)",
+    spanish: "Nabo"
   },
   {
     word: "Parsnip",
     ipa: "/ˈpɑːrsnɪp/",
     definition: "A long, cream-colored root vegetable, similar to a carrot but sweeter.",
-    example: "Roasted **parsnips** are a delicious alternative to potatoes."
+    example: "Roasted **parsnips** are a delicious alternative to potatoes.",
+    chinese: "欧洲防风 (Ōuzhōu fángfēng)",
+    spanish: "Chirivía"
   },
   {
     word: "Pumpkin",
     ipa: "/ˈpʌmpkɪn/",
     definition: "A large, round, orange-yellow fruit with a thick rind and flesh, often used for pies or carving.",
-    example: "We carved a spooky face into the **pumpkin** for Halloween."
+    example: "We carved a spooky face into the **pumpkin** for Halloween.",
+    chinese: "南瓜 (Nánguā)",
+    spanish: "Calabaza"
   },
   {
     word: "Squash",
     ipa: "/skwɑːʃ/",
     definition: "A gourd-like fruit, typically eaten as a vegetable, with a hard rind and fleshy interior.",
-    example: "Butternut **squash** makes a wonderful soup."
+    example: "Butternut **squash** makes a wonderful soup.",
+    chinese: "西葫芦 (Xīhúlu)", // Often refers to types of squash
+    spanish: "Calabaza"
   },
   {
     word: "Okra",
     ipa: "/ˈoʊkrə/",
     definition: "A green, ridged pod containing small, edible seeds, often used in stews or fried.",
-    example: "**Okra** is a common ingredient in gumbo."
+    example: "**Okra** is a common ingredient in gumbo.",
+    chinese: "秋葵 (Qiūkuí)",
+    spanish: "Okra / Quimbombó"
   },
   {
     word: "Arugula",
     ipa: "/əˈruːɡjələ/",
     definition: "A leafy green vegetable with a slightly bitter, peppery taste, used in salads.",
-    example: "**Arugula** adds a fresh, spicy note to pizza."
+    example: "**Arugula** adds a fresh, spicy note to pizza.",
+    chinese: "芝麻菜 (Zhīmacài)",
+    spanish: "Rúcula"
   },
   {
     word: "Endive",
     ipa: "/ˈɛndaɪv/",
     definition: "A leafy vegetable with a slightly bitter taste, often used in salads.",
-    example: "**Endive** can be used as a scoop for dips."
+    example: "**Endive** can be used as a scoop for dips.",
+    chinese: "菊苣 (Jújù)",
+    spanish: "Endibia"
   },
   {
     word: "Fennel",
     ipa: "/ˈfɛnl/",
     definition: "A plant with a swollen, white, bulb-like base, green stalks, and feathery leaves, with a mild anise flavor.",
-    example: "Roasted **fennel** becomes sweet and tender."
+    example: "Roasted **fennel** becomes sweet and tender.",
+    chinese: "茴香 (Huíxiāng)",
+    spanish: "Hinojo"
   },
   {
     word: "Ginger",
     ipa: "/ˈdʒɪndʒər/",
     definition: "A pungent, spicy rhizome used as a spice and for flavoring.",
-    example: "**Ginger** is often used in Asian cuisine and for upset stomachs."
+    example: "**Ginger** is often used in Asian cuisine and for upset stomachs.",
+    chinese: "姜 (Jiāng)",
+    spanish: "Jengibre"
   },
   {
     word: "Horseradish",
     ipa: "/ˈhɔːrsˌrædɪʃ/",
     definition: "A cultivated plant with a large, white, pungent root, used as a relish or condiment.",
-    example: "**Horseradish** sauce is a classic accompaniment to roast beef."
+    example: "**Horseradish** sauce is a classic accompaniment to roast beef.",
+    chinese: "辣根 (Làgēn)",
+    spanish: "Rábano picante"
   },
   {
     word: "Jicama",
     ipa: "/ˈhɪkəmə/",
     definition: "A crisp, sweet, edible root vegetable, resembling a turnip.",
-    example: "**Jicama** is great sliced into sticks for a refreshing snack."
+    example: "**Jicama** is great sliced into sticks for a refreshing snack.",
+    chinese: "豆薯 (Dòushǔ)",
+    spanish: "Jícama"
   },
   {
     word: "Kohlrabi",
     ipa: "/ˈkoʊlrɑːbi/",
     definition: "A variety of cabbage that has a turnip-like edible stem.",
-    example: "**Kohlrabi** can be eaten raw or cooked."
+    example: "**Kohlrabi** can be eaten raw or cooked.",
+    chinese: "大头菜 (Dàtóucài)",
+    spanish: "Colinabo"
   },
   {
     word: "Parsley",
     ipa: "/ˈpɑːrsli/",
     definition: "A biennial plant with crinkly or flat leaves, widely used as a culinary herb.",
-    example: "Garnish the soup with fresh **parsley**."
+    example: "Garnish the soup with fresh **parsley**.",
+    chinese: "欧芹 (Ōuqín)",
+    spanish: "Perejil"
   },
   {
     word: "Cilantro",
     ipa: "/sɪˈlɑːntroʊ/",
     definition: "The leaves of the coriander plant, used as an herb, especially in Mexican and Asian cuisine.",
-    example: "Some people love **cilantro**, others think it tastes like soap."
+    example: "Some people love **cilantro**, others think it tastes like soap.",
+    chinese: "香菜 (Xiāngcài)",
+    spanish: "Cilantro"
   },
   {
     word: "Dill",
     ipa: "/dɪl/",
     definition: "An aromatic herb with feathery green leaves, used as a seasoning.",
-    example: "**Dill** is commonly used with fish and in pickles."
+    example: "**Dill** is commonly used with fish and in pickles.",
+    chinese: "莳萝 (Shíluó)",
+    spanish: "Eneldo"
   },
   {
     word: "Chives",
     ipa: "/tʃaɪvz/",
     definition: "A small, slender bulbous plant of the onion family, used as a culinary herb.",
-    example: "Sprinkle chopped **chives** over your baked potato."
+    example: "Sprinkle chopped **chives** over your baked potato.",
+    chinese: "细香葱 (Xìxiāngcōng)",
+    spanish: "Cebollino"
   },
   {
     word: "Mint",
     ipa: "/mɪnt/",
     definition: "An aromatic plant whose leaves are used as a culinary herb and for flavoring.",
-    example: "**Mint** is refreshing in tea or added to desserts."
+    example: "**Mint** is refreshing in tea or added to desserts.",
+    chinese: "薄荷 (Bòhe)",
+    spanish: "Menta"
   },
   {
     word: "Rosemary",
     ipa: "/ˈroʊzmɛri/",
     definition: "An aromatic evergreen shrub, whose leaves are used as a culinary herb.",
-    example: "**Rosemary** pairs well with roasted chicken."
+    example: "**Rosemary** pairs well with roasted chicken.",
+    chinese: "迷迭香 (Mídiéxiāng)",
+    spanish: "Romero"
   },
   {
     word: "Thyme",
     ipa: "/taɪm/",
     definition: "An aromatic evergreen herb with tiny leaves, used as a seasoning.",
-    example: "**Thyme** is a classic herb for soups and stews."
+    example: "**Thyme** is a classic herb for soups and stews.",
+    chinese: "百里香 (Bǎilǐxiāng)",
+    spanish: "Tomillo"
   },
   {
     word: "Scallion/Green onion",
     ipa: "/ˈskæliən/ /ɡriːn ˈʌnjən/",
     definition: "A long, thin onion, typically used raw or lightly cooked, including its green leaves.",
-    example: "Chop some **scallions** for a topping on your ramen."
+    example: "Chop some **scallions** for a topping on your ramen.",
+    chinese: "大葱 (Dàcōng)",
+    spanish: "Cebolleta / Cebolla de verdeo"
   },
   {
     word: "Shallot",
     ipa: "/ˈʃælət/",
     definition: "A small bulbous plant of the onion family, with a mild onion flavor.",
-    example: "**Shallots** are often preferred over onions for their milder taste."
+    example: "**Shallots** are often preferred over onions for their milder taste.",
+    chinese: "小葱 (Xiǎocōng)",
+    spanish: "Chalota"
   },
   {
     word: "Vegetable garden",
     ipa: "/ˈvɛdʒtəbəl ˈɡɑːrdən/",
     definition: "A plot of ground where vegetables are grown.",
-    example: "My grandmother loves spending time in her **vegetable garden**."
+    example: "My grandmother loves spending time in her **vegetable garden**.",
+    chinese: "菜园 (Càiyuán)",
+    spanish: "Huerto"
   }
 ];
 
@@ -612,7 +717,7 @@ function showCard() {
 
 function flipCard() {
   if (!flipped) {
-    const { word, ipa, definition, example } = flashcards[index];
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
     flashcard.innerHTML = `
       <div class="word">
         ${word}
@@ -621,6 +726,8 @@ function flipCard() {
       <div class="ipa">${ipa}</div>
       <div class="definition">${definition}</div>
       <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
       <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
     flashcard.classList.add("flipped");

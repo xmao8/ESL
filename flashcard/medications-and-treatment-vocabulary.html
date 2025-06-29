@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medications & Treatment Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Medications & Treatment Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Medicine",
+    ipa: "/ˈmɛdɪsɪn/",
+    definition: "The science or practice of the diagnosis, treatment, and prevention of disease; a drug or other preparation for the treatment or prevention of disease.",
+    example: "He needs to take his **medicine** twice a day.",
+    chinese: "药 (yào)",
+    spanish: "Medicina / Medicamento"
+  },
+  {
+    word: "Pill / Tablet",
+    ipa: "/pɪl / ˈtæblɪt/",
+    definition: "A small, rounded or flattened mass of medicinal substance, usually swallowed whole.",
+    example: "Take one **pill** with water before meals.",
+    chinese: "药片 (yàopiàn)",
+    spanish: "Píldora / Pastilla"
+  },
+  {
+    word: "Capsule",
+    ipa: "/ˈkæpsuːl/",
+    definition: "A small soluble case, typically of gelatin, containing a dose of medicine.",
+    example: "This **capsule** contains a special herb extract.",
+    chinese: "胶囊 (jiāonáng)",
+    spanish: "Cápsula"
+  },
+  {
+    word: "Syrup",
+    ipa: "/ˈsɪrəp/",
+    definition: "A thick, sweet, sticky liquid, often containing medicine, sugar, or flavorings.",
+    example: "The doctor prescribed a cough **syrup** for her cold.",
+    chinese: "糖浆 (tángjiāng)",
+    spanish: "Jarabe"
+  },
+  {
+    word: "Injection / Shot",
+    ipa: "/ɪnˈdʒɛkʃən / ʃɑːt/",
+    definition: "An act or instance of injecting or being injected; a dose of medicine given by injection.",
+    example: "The nurse gave him an **injection** to relieve the pain.",
+    chinese: "注射 / 针 (zhùshè / zhēn)",
+    spanish: "Inyección"
+  },
+  {
+    word: "Bandage",
+    ipa: "/ˈbændɪdʒ/",
+    definition: "A strip of material used to bind up a wound or to protect an injured part of the body.",
+    example: "Wrap a clean **bandage** around the cut.",
+    chinese: "绷带 (bēngdài)",
+    spanish: "Venda"
+  },
+  {
+    word: "Painkiller / Analgesic",
+    ipa: "/ˈpeɪnkɪlər / ˌænəlˈdʒiːzɪk/",
+    definition: "A drug or medicine for relieving pain.",
+    example: "She took a **painkiller** for her headache.",
+    chinese: "止痛药 (zhǐtòngyào)",
+    spanish: "Analgésico / Calmante"
+  },
+  {
+    word: "Antibiotic",
+    ipa: "/ˌæntaɪbaɪˈɑːtɪk/",
+    definition: "A medicine (such as penicillin) that inhibits the growth of or destroys microorganisms.",
+    example: "The doctor prescribed **antibiotics** for the bacterial infection.",
+    chinese: "抗生素 (kàngshēngsù)",
+    spanish: "Antibiótico"
+  },
+  {
+    word: "Antacid",
+    ipa: "/ˌæntˈæsɪd/",
+    definition: "A substance that neutralizes stomach acid, used to relieve heartburn, indigestion, and acid reflux.",
+    example: "He took an **antacid** to calm his upset stomach.",
+    chinese: "抗酸剂 (kàngsuānjì)",
+    spanish: "Antiácido"
+  },
+  {
+    word: "Antihistamine",
+    ipa: "/ˌæntiˈhɪstəmiːn/",
+    definition: "A drug that inhibits the physiological effects of histamine, used especially in the treatment of allergies.",
+    example: "Take an **antihistamine** to help with your allergy symptoms.",
+    chinese: "抗组胺药 (kàngzǔ'ànyào)",
+    spanish: "Antihistamínico"
+  },
+  {
+    word: "Prescription",
+    ipa: "/prɪˈskrɪpʃən/",
+    definition: "An instruction written by a medical practitioner that authorizes a patient to be provided with a medicine or treatment.",
+    example: "The doctor wrote him a **prescription** for a stronger medication.",
+    chinese: "处方 (chǔfāng)",
+    spanish: "Receta (médica)"
+  },
+  {
+    word: "Dosage",
+    ipa: "/ˈdoʊsɪdʒ/",
+    definition: "The size or frequency of a dose of a medicine or drug.",
+    example: "Follow the recommended **dosage** on the bottle.",
+    chinese: "剂量 (jìliàng)",
+    spanish: "Dosis"
+  },
+  {
+    word: "Side effects",
+    ipa: "/saɪd ɪˈfɛkts/",
+    definition: "A secondary, typically undesirable effect of a drug or medical treatment.",
+    example: "Nausea is a common **side effect** of this medication.",
+    chinese: "副作用 (fùzuòyòng)",
+    spanish: "Efectos secundarios"
+  },
+  {
+    word: "Treatment",
+    ipa: "/ˈtriːtmənt/",
+    definition: "The manner in which someone behaves toward or deals with someone or something; the application of medical care.",
+    example: "He is undergoing **treatment** for his illness.",
+    chinese: "治疗 (zhìliáo)",
+    spanish: "Tratamiento"
+  },
+  {
+    word: "Therapy",
+    ipa: "/ˈθɛrəpi/",
+    definition: "Treatment intended to heal or relieve a disorder.",
+    example: "She's receiving physical **therapy** for her knee injury.",
+    chinese: "疗法 / 治疗 (liáofǎ / zhìliáo)",
+    spanish: "Terapia"
+  },
+  {
+    word: "Surgery",
+    ipa: "/ˈsɜːrdʒəri/",
+    definition: "The treatment of injuries or diseases in living things by incision, especially with instruments; an operation.",
+    example: "He needed **surgery** to repair the broken bone.",
+    chinese: "手术 (shǒushù)",
+    spanish: "Cirugía"
+  },
+  {
+    word: "Vaccine",
+    ipa: "/ˈvæksiːn/",
+    definition: "A substance used to stimulate the production of antibodies and provide immunity against one or several diseases, prepared from the causative agent of a disease, its products, or a synthetic substitute, treated to act as an antigen without inducing the disease.",
+    example: "The new **vaccine** offers protection against the virus.",
+    chinese: "疫苗 (yìmiáo)",
+    spanish: "Vacuna"
+  },
+  {
+    word: "Diagnosis",
+    ipa: "/ˌdaɪəɡˈnoʊsɪs/",
+    definition: "The identification of the nature of an illness or other problem by examination of the symptoms.",
+    example: "The doctor's **diagnosis** confirmed she had the flu.",
+    chinese: "诊断 (zhěnduàn)",
+    spanish: "Diagnóstico"
+  },
+  {
+    word: "Recovery",
+    ipa: "/rɪˈkʌvəri/",
+    definition: "A return to a normal state of health, mind, or strength.",
+    example: "His **recovery** after the operation was quick.",
+    chinese: "康复 (kāngfù)",
+    spanish: "Recuperación"
+  },
+  {
+    word: "Rehabilitation",
+    ipa: "/ˌriːhəˌbɪlɪˈteɪʃən/",
+    definition: "The action of restoring someone to health or normal life through training and therapy after illness, addiction, or imprisonment.",
+    example: "He went to **rehabilitation** to regain strength in his leg.",
+    chinese: "康复治疗 (kāngfù zhìliáo)",
+    spanish: "Rehabilitación"
+  },
+  {
+    word: "Prescribe",
+    ipa: "/prɪˈskraɪb/",
+    definition: "To advise and authorize the use of (a medicine or treatment) for someone.",
+    example: "The doctor will **prescribe** you something for the pain.",
+    chinese: "开药 (kāiyào)",
+    spanish: "Recetar"
+  },
+  {
+    word: "Administer",
+    ipa: "/ədˈmɪnɪstər/",
+    definition: "Dispense or apply (a remedy or drug).",
+    example: "The nurse will **administer** the medication at noon.",
+    chinese: "施用 / 给药 (shīyòng / gěiyào)",
+    spanish: "Administrar"
+  },
+  {
+    word: "Hospitalization",
+    ipa: "/ˌhɑːspɪtələˈzeɪʃən/",
+    definition: "The action of admitting someone to a hospital for treatment.",
+    example: "Severe pneumonia often requires **hospitalization**.",
+    chinese: "住院 (zhùyuàn)",
+    spanish: "Hospitalización"
+  },
+  {
+    word: "First aid",
+    ipa: "/fɜːrst eɪd/",
+    definition: "Help given to a sick or injured person until full medical treatment is available.",
+    example: "He used a **first aid** kit to clean the cut.",
+    chinese: "急救 (jíjiù)",
+    spanish: "Primeros auxilios"
+  },
+  {
+    word: "X-ray",
+    ipa: "/ˈɛks reɪ/",
+    definition: "An electromagnetic wave of high energy and very short wavelength, which is able to pass through many materials opaque to light.",
+    example: "The doctor ordered an **X-ray** to check for a broken bone.",
+    chinese: "X光 (X guāng)",
+    spanish: "Rayos X"
+  },
+  {
+    word: "Scan (CT, MRI)",
+    ipa: "/skæn/",
+    definition: "A medical examination in which an image of a part of the body is produced by scanning it with X-rays or sound waves.",
+    example: "The **CT scan** showed a small tumor.",
+    chinese: "扫描 (sǎomiáo)",
+    spanish: "Escáner (TAC, RMN)"
+  },
+  {
+    word: "Consultation",
+    ipa: "/ˌkɑːnsəlˈteɪʃən/",
+    definition: "A meeting with a doctor to seek advice or treatment for an illness or ailment.",
+    example: "She had a **consultation** with a specialist about her condition.",
+    chinese: "会诊 / 咨询 (huìzhěn / zīxún)",
+    spanish: "Consulta"
+  },
+  {
+    word: "Prognosis",
+    ipa: "/prɑːɡˈnoʊsɪs/",
+    definition: "The likely course of a disease or ailment.",
+    example: "The doctor gave a good **prognosis** for his full recovery.",
+    chinese: "预后 (yùhòu)",
+    spanish: "Pronóstico"
+  },
+  {
+    word: "Symptom relief",
+    ipa: "/ˈsɪmptəm rɪˈliːf/",
+    definition: "Alleviation of the signs or feelings of a disease, but not necessarily a cure.",
+    example: "These drops provide quick **symptom relief** for itchy eyes.",
+    chinese: "缓解症状 (huǎnjiě zhèngzhuàng)",
+    spanish: "Alivio de síntomas"
+  },
+  {
+    word: "Prevention",
+    ipa: "/prɪˈvɛnʃən/",
+    definition: "The action of stopping something from happening or arising.",
+    example: "Washing hands regularly is important for disease **prevention**.",
+    chinese: "预防 (yùfáng)",
+    spanish: "Prevención"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

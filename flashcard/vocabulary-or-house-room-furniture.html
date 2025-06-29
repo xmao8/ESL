@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>House & Furniture Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>House, Rooms, & Furniture Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "House",
+    ipa: "/haʊs/",
+    definition: "A building for human habitation, especially one that is lived in by a family or small group of people.",
+    example: "Their new **house** has a big garden.",
+    chinese: "房子 (fángzi)",
+    spanish: "Casa"
+  },
+  {
+    word: "Apartment",
+    ipa: "/əˈpɑːrtmənt/",
+    definition: "A suite of rooms forming one residence, typically in a building containing a number of such residences.",
+    example: "She lives in a small **apartment** in the city center.",
+    chinese: "公寓 (gōngyù)",
+    spanish: "Apartamento / Piso"
+  },
+  {
+    word: "Bedroom",
+    ipa: "/ˈbɛdruːm/",
+    definition: "A room used for sleeping.",
+    example: "My **bedroom** has a large window overlooking the park.",
+    chinese: "卧室 (wòshì)",
+    spanish: "Dormitorio / Habitación"
+  },
+  {
+    word: "Living Room",
+    ipa: "/ˈlɪvɪŋ ruːm/",
+    definition: "A room in a private house or apartment for relaxing, entertaining guests, etc.",
+    example: "We watch movies together in the **living room**.",
+    chinese: "客厅 (kètīng)",
+    spanish: "Sala de estar / Salón"
+  },
+  {
+    word: "Kitchen",
+    ipa: "/ˈkɪtʃɪn/",
+    definition: "A room or area where food is prepared and cooked.",
+    example: "The **kitchen** smells wonderful when we're baking cookies.",
+    chinese: "厨房 (chúfáng)",
+    spanish: "Cocina"
+  },
+  {
+    word: "Bathroom",
+    ipa: "/ˈbæθruːm/",
+    definition: "A room containing a toilet and sink, typically also a bathtub or shower.",
+    example: "Please clean the **bathroom** before guests arrive.",
+    chinese: "浴室 / 卫生间 (yùshì / wèishēngjiān)",
+    spanish: "Baño"
+  },
+  {
+    word: "Dining Room",
+    ipa: "/ˈdaɪnɪŋ ruːm/",
+    definition: "A room in a house or hotel in which meals are eaten.",
+    example: "We usually have dinner in the **dining room** on special occasions.",
+    chinese: "餐厅 (cāntīng)",
+    spanish: "Comedor"
+  },
+  {
+    word: "Hallway",
+    ipa: "/ˈhɔːlweɪ/",
+    definition: "A passage in a building, typically with rooms leading off it; a corridor.",
+    example: "The **hallway** was long and narrow, with many doors.",
+    chinese: "走廊 (zǒuláng)",
+    spanish: "Pasillo"
+  },
+  {
+    word: "Garage",
+    ipa: "/ɡəˈrɑːʒ/",
+    definition: "A building or shed for parking a vehicle or vehicles.",
+    example: "He keeps his car in the **garage**.",
+    chinese: "车库 (chēkù)",
+    spanish: "Garaje"
+  },
+  {
+    word: "Garden / Yard",
+    ipa: "/ˈɡɑːrdən / jɑːrd/",
+    definition: "An area of ground adjoining a house, used for growing flowers, fruit, or vegetables, or for recreation.",
+    example: "The children love to play in the **garden**.",
+    chinese: "花园 / 院子 (huāyuán / yuànzi)",
+    spanish: "Jardín / Patio"
+  },
+  {
+    word: "Roof",
+    ipa: "/ruːf/",
+    definition: "The structure forming the upper covering of a building or vehicle.",
+    example: "The **roof** of the house was damaged in the storm.",
+    chinese: "屋顶 (wūdǐng)",
+    spanish: "Tejado / Techo"
+  },
+  {
+    word: "Wall",
+    ipa: "/wɔːl/",
+    definition: "A continuous, upright structure that encloses or divides an area of land.",
+    example: "We decided to paint the **walls** of the living room blue.",
+    chinese: "墙 (qiáng)",
+    spanish: "Pared"
+  },
+  {
+    word: "Floor",
+    ipa: "/flɔːr/",
+    definition: "The lower surface of a room, on which one walks.",
+    example: "Please wipe your feet before stepping on the clean **floor**.",
+    chinese: "地板 (dìbǎn)",
+    spanish: "Suelo / Piso"
+  },
+  {
+    word: "Window",
+    ipa: "/ˈwɪndoʊ/",
+    definition: "An opening in the wall or roof of a building or vehicle that is fitted with glass or other transparent material in a frame to admit light or air and allow people to see out.",
+    example: "Open the **window** and let in some fresh air.",
+    chinese: "窗户 (chuānghù)",
+    spanish: "Ventana"
+  },
+  {
+    word: "Door",
+    ipa: "/dɔːr/",
+    definition: "A movable barrier at the entrance to a building, room, or vehicle, or in the framework of a cupboard.",
+    example: "Please close the **door** quietly.",
+    chinese: "门 (mén)",
+    spanish: "Puerta"
+  },
+  {
+    word: "Stairs",
+    ipa: "/stɛərz/",
+    definition: "A set of steps leading from one floor or level to another.",
+    example: "Be careful when you walk down the **stairs**.",
+    chinese: "楼梯 (lóutī)",
+    spanish: "Escaleras"
+  },
+  {
+    word: "Furniture",
+    ipa: "/ˈfɜːrnɪtʃər/",
+    definition: "The movable articles that are needed to make a room or house suitable for living or working.",
+    example: "We bought new **furniture** for the dining room.",
+    chinese: "家具 (jiājù)",
+    spanish: "Muebles"
+  },
+  {
+    word: "Sofa / Couch",
+    ipa: "/ˈsoʊfə / kaʊtʃ/",
+    definition: "A long upholstered seat with a back and arms, for more than one person.",
+    example: "Let's relax on the **sofa** and watch TV.",
+    chinese: "沙发 (shāfā)",
+    spanish: "Sofá / Sillón"
+  },
+  {
+    word: "Chair",
+    ipa: "/tʃɛər/",
+    definition: "A separate seat for one person, typically with a back and four legs.",
+    example: "Pull up a **chair** and join us.",
+    chinese: "椅子 (yǐzi)",
+    spanish: "Silla"
+  },
+  {
+    word: "Table",
+    ipa: "/ˈteɪbəl/",
+    definition: "A piece of furniture with a flat top and one or more legs, providing a level surface for eating, writing, or working.",
+    example: "We set the **table** for dinner.",
+    chinese: "桌子 (zhuōzi)",
+    spanish: "Mesa"
+  },
+  {
+    word: "Bed",
+    ipa: "/bɛd/",
+    definition: "A piece of furniture for sleeping on, typically a framework with a mattress and bedclothes.",
+    example: "I was so tired, I just wanted to fall into **bed**.",
+    chinese: "床 (chuáng)",
+    spanish: "Cama"
+  },
+  {
+    word: "Wardrobe / Closet",
+    ipa: "/ˈwɔːrdrəʊb / ˈklɑːzɪt/",
+    definition: "A large, tall cupboard in which clothes may be hung or stored.",
+    example: "My **wardrobe** is full of clothes.",
+    chinese: "衣柜 (yīguì)",
+    spanish: "Armario"
+  },
+  {
+    word: "Desk",
+    ipa: "/dɛsk/",
+    definition: "A piece of furniture with a flat top and often drawers, at which one can read, write, or do other work.",
+    example: "He spends hours working at his computer **desk**.",
+    chinese: "书桌 (shūzhuō)",
+    spanish: "Escritorio"
+  },
+  {
+    word: "Bookshelf",
+    ipa: "/ˈbʊkʃɛlf/",
+    definition: "A shelf or shelves on which books can be stored.",
+    example: "The **bookshelf** in the study is filled with novels.",
+    chinese: "书架 (shūjià)",
+    spanish: "Estantería de libros"
+  },
+  {
+    word: "Lamp",
+    ipa: "/læmp/",
+    definition: "A device for giving light, either one consisting of an electric bulb together with its fittings, or one burning oil, gas, or spirit.",
+    example: "Turn on the **lamp**; it's getting dark.",
+    chinese: "台灯 / 灯 (táidēng / dēng)",
+    spanish: "Lámpara"
+  },
+  {
+    word: "Carpet / Rug",
+    ipa: "/ˈkɑːrpɪt / rʌɡ/",
+    definition: "A floor covering, typically made of thick woven fabric.",
+    example: "We bought a new **carpet** for the living room.",
+    chinese: "地毯 (dìtǎn)",
+    spanish: "Alfombra"
+  },
+  {
+    word: "Curtains / Drapes",
+    ipa: "/ˈkɜːrtənz / dreɪps/",
+    definition: "A piece of material suspended at the top to form a screen, typically one of a pair at a window.",
+    example: "Close the **curtains** to block out the light.",
+    chinese: "窗帘 (chuānglián)",
+    spanish: "Cortinas"
+  },
+  {
+    word: "Mirror",
+    ipa: "/ˈmɪrər/",
+    definition: "A surface, typically of glass coated with a metallic amalgam, which reflects a clear image.",
+    example: "She checked her appearance in the **mirror**.",
+    chinese: "镜子 (jìngzi)",
+    spanish: "Espejo"
+  },
+  {
+    word: "Television / TV",
+    ipa: "/ˈtɛlɪvɪʒən / tiːˈviː/",
+    definition: "An electronic device with a screen for receiving visual images and sounds broadcast by electrical signals.",
+    example: "Let's watch a movie on the **television**.",
+    chinese: "电视 (diànshì)",
+    spanish: "Televisión / TV"
+  },
+  {
+    word: "Refrigerator / Fridge",
+    ipa: "/rɪˈfrɪdʒəreɪtər / frɪdʒ/",
+    definition: "An appliance or compartment that is kept cool, used for storing food and drink.",
+    example: "Please put the milk back in the **fridge**.",
+    chinese: "冰箱 (bīngxiāng)",
+    spanish: "Refrigerador / Nevera"
+  },
+  {
+    word: "Oven",
+    ipa: "/ˈʌvən/",
+    definition: "An enclosed compartment, usually part of a cooker, for cooking and heating food.",
+    example: "I'll bake the cake in the **oven**.",
+    chinese: "烤箱 (kǎoxiāng)",
+    spanish: "Horno"
+  },
+  {
+    word: "Microwave",
+    ipa: "/ˈmaɪkrəweɪv/",
+    definition: "An electric oven that heats and cooks food by exposing it to electromagnetic radiation in the microwave frequency range.",
+    example: "Just pop it in the **microwave** for two minutes.",
+    chinese: "微波炉 (wēibōlú)",
+    spanish: "Microondas"
+  },
+  {
+    word: "Sink",
+    ipa: "/sɪŋk/",
+    definition: "A fixed basin with a water supply and a drain, used for washing.",
+    example: "Please wash your hands in the **sink**.",
+    chinese: "水槽 / 洗碗池 (shuǐcáo / xǐwǎnchí)",
+    spanish: "Fregadero / Lavabo"
+  },
+  {
+    word: "Toilet",
+    ipa: "/ˈtɔɪlɪt/",
+    definition: "A ceramic bowl with a hinged seat and a flushing mechanism, used for urinating and defecating.",
+    example: "Please remember to flush the **toilet**.",
+    chinese: "马桶 (mǎtǒng)",
+    spanish: "Inodoro / Retrete"
+  },
+  {
+    word: "Shower",
+    ipa: "/ˈʃaʊər/",
+    definition: "An apparatus for spraying water on the body, usually from above, typically in a cubicle or bath.",
+    example: "I'm going to take a quick **shower**.",
+    chinese: "淋浴 (línyù)",
+    spanish: "Ducha"
+  },
+  {
+    word: "Bathtub",
+    ipa: "/ˈbæθtʌb/",
+    definition: "A long container for washing oneself, usually in a bathroom.",
+    example: "The baby loves to play with toys in the **bathtub**.",
+    chinese: "浴缸 (yùgāng)",
+    spanish: "Bañera"
+  },
+  {
+    word: "Pillow",
+    ipa: "/ˈpɪloʊ/",
+    definition: "A rectangular cushion typically used for resting one's head on in bed.",
+    example: "I need a softer **pillow** for a better night's sleep.",
+    chinese: "枕头 (zhěntou)",
+    spanish: "Almohada"
+  },
+  {
+    word: "Blanket",
+    ipa: "/ˈblæŋkɪt/",
+    definition: "A large piece of woolen or similar material used as a covering on a bed or for warmth.",
+    example: "It's cold, so pull up the **blanket**.",
+    chinese: "毯子 (tǎnzi)",
+    spanish: "Manta"
+  },
+  {
+    word: "Dresser / Chest of Drawers",
+    ipa: "/ˈdrɛsər / tʃɛst əv drɔːrz/",
+    definition: "A piece of furniture with a set of drawers, used for storing clothes.",
+    example: "He keeps his shirts in the top drawer of the **dresser**.",
+    chinese: "梳妆台 / 抽屉柜 (shūzhuāngtái / chōutìguì)",
+    spanish: "Cómoda / Cajonera"
+  },
+  {
+    word: "Nightstand / Bedside Table",
+    ipa: "/ˈnaɪtstænd / ˈbɛdsaɪd ˈteɪbəl/",
+    definition: "A small table or cabinet placed beside a bed.",
+    example: "She keeps her book and water glass on her **nightstand**.",
+    chinese: "床头柜 (chuángtóuguì)",
+    spanish: "Mesita de noche"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

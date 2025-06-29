@@ -219,6 +219,11 @@
       font-size: 1rem;
       margin-top: 0.3rem;
     }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
     .speaker {
       cursor: pointer;
       font-size: 1.6rem;
@@ -298,301 +303,401 @@ const flashcards = [
     word: "Produce",
     ipa: "/ˈproʊduːs/",
     definition: "Fresh fruits and vegetables.",
-    example: "Make sure to buy plenty of fresh **produce** for a healthy diet."
+    example: "Make sure to buy plenty of fresh **produce** for a healthy diet.",
+    chinese: "农产品 / 新鲜果蔬 (Nóngchǎnpǐn / Xīnxiān guǒshū)",
+    spanish: "Productos frescos"
   },
   {
     word: "Dairy",
     ipa: "/ˈdɛəri/",
     definition: "Products made from milk.",
-    example: "**Dairy** products like cheese and yogurt are good sources of calcium."
+    example: "**Dairy** products like cheese and yogurt are good sources of calcium.",
+    chinese: "乳制品 (Rǔzhìpǐn)",
+    spanish: "Lácteos"
   },
   {
     word: "Protein",
     ipa: "/ˈproʊtiːn/",
     definition: "Foods that build and repair body tissues.",
-    example: "Meat, beans, and eggs are good sources of **protein**."
+    example: "Meat, beans, and eggs are good sources of **protein**.",
+    chinese: "蛋白质 (Dànbáizhì)",
+    spanish: "Proteína"
   },
   {
     word: "Grains",
     ipa: "/ɡreɪnz/",
     definition: "Cereal crops like wheat, rice, and oats.",
-    example: "Whole **grains** are an important part of a balanced diet."
+    example: "Whole **grains** are an important part of a balanced diet.",
+    chinese: "谷物 (Gǔwù)",
+    spanish: "Granos"
   },
   {
     word: "Poultry",
     ipa: "/ˈpoʊltri/",
     definition: "Birds raised for food, like chicken and turkey.",
-    example: "**Poultry** is a versatile ingredient for many dishes."
+    example: "**Poultry** is a versatile ingredient for many dishes.",
+    chinese: "家禽 (Jiāqín)",
+    spanish: "Aves de corral"
   },
   {
     word: "Seafood",
     ipa: "/ˈsiːfuːd/",
     definition: "Fish and shellfish from the sea.",
-    example: "We often have **seafood** on Fridays, like salmon or shrimp."
+    example: "We often have **seafood** on Fridays, like salmon or shrimp.",
+    chinese: "海鲜 (Hǎixiān)",
+    spanish: "Mariscos"
   },
   {
     word: "Condiments",
     ipa: "/ˈkɑːndɪmənts/",
     definition: "Sauces or spices used to flavor food.",
-    example: "Ketchup, mustard, and soy sauce are common **condiments**."
+    example: "Ketchup, mustard, and soy sauce are common **condiments**.",
+    chinese: "调味品 (Tiáowèipǐn)",
+    spanish: "Condimentos"
   },
   {
     word: "Appetizer",
     ipa: "/ˈæpɪtaɪzər/",
     definition: "A small dish eaten before the main course.",
-    example: "We started our meal with a delicious **appetizer** of spring rolls."
+    example: "We started our meal with a delicious **appetizer** of spring rolls.",
+    chinese: "开胃菜 (Kāiwèicài)",
+    spanish: "Aperitivo / Entrada"
   },
   {
     word: "Entrée",
     ipa: "/ˈɑːntreɪ/",
     definition: "The main dish of a meal.",
-    example: "For the **entrée**, I ordered the grilled steak with vegetables."
+    example: "For the **entrée**, I ordered the grilled steak with vegetables.",
+    chinese: "主菜 (Zhǔcài)",
+    spanish: "Plato principal"
   },
   {
     word: "Dessert",
     ipa: "/dɪˈzɜːrt/",
     definition: "Sweet course eaten at the end of a meal.",
-    example: "After dinner, we shared a chocolate cake for **dessert**."
+    example: "After dinner, we shared a chocolate cake for **dessert**.",
+    chinese: "甜点 (Tiándiǎn)",
+    spanish: "Postre"
   },
   {
     word: "Beverage",
     ipa: "/ˈbɛvərɪdʒ/",
     definition: "A drink.",
-    example: "Would you like a hot **beverage** like coffee or tea?"
+    example: "Would you like a hot **beverage** like coffee or tea?",
+    chinese: "饮料 (Yǐnliào)",
+    spanish: "Bebida"
   },
   {
     word: "Snack",
     ipa: "/snæk/",
     definition: "A small amount of food eaten between meals.",
-    example: "I usually have a fruit or a handful of nuts as a mid-afternoon **snack**."
+    example: "I usually have a fruit or a handful of nuts as a mid-afternoon **snack**.",
+    chinese: "零食 (Língshí)",
+    spanish: "Bocadillo / Merienda"
   },
   {
     word: "Leftovers",
     ipa: "/ˈlɛftˌoʊvərz/",
     definition: "Food remaining from a previous meal.",
-    example: "We had enough **leftovers** from dinner for lunch the next day."
+    example: "We had enough **leftovers** from dinner for lunch the next day.",
+    chinese: "剩饭剩菜 (Shèngfàn shèngcài)",
+    spanish: "Sobras"
   },
   {
     word: "Cuisine",
     ipa: "/kwɪˈziːn/",
     definition: "A style of cooking, often associated with a particular country or region.",
-    example: "Italian **cuisine** is known for its pasta and pizza."
+    example: "Italian **cuisine** is known for its pasta and pizza.",
+    chinese: "烹饪 / 菜肴 (Pēngrèn / Càiyáo)",
+    spanish: "Cocina (estilo)"
   },
   {
     word: "Chop",
     ipa: "/tʃɑːp/",
     definition: "To cut into small pieces.",
-    example: "**Chop** the onions finely for the soup."
+    example: "**Chop** the onions finely for the soup.",
+    chinese: "切碎 (Qièsuì)",
+    spanish: "Picar"
   },
   {
     word: "Dice",
     ipa: "/daɪs/",
     definition: "To cut into very small cubes.",
-    example: "**Dice** the potatoes before boiling them."
+    example: "**Dice** the potatoes before boiling them.",
+    chinese: "切丁 (Qiēdīng)",
+    spanish: "Cortar en dados"
   },
   {
     word: "Slice",
     ipa: "/slaɪs/",
     definition: "To cut into thin, flat pieces.",
-    example: "**Slice** the bread for sandwiches."
+    example: "**Slice** the bread for sandwiches.",
+    chinese: "切片 (Qiēpiàn)",
+    spanish: "Rebanar / Cortar en rodajas"
   },
   {
     word: "Peel",
     ipa: "/piːl/",
     definition: "To remove the outer skin of a fruit or vegetable.",
-    example: "Remember to **peel** the apples before baking them."
+    example: "Remember to **peel** the apples before baking them.",
+    chinese: "削皮 (Xiāopí)",
+    spanish: "Pelar"
   },
   {
     word: "Grate",
     ipa: "/ɡreɪt/",
     definition: "To rub food against a grater to produce small shreds.",
-    example: "**Grate** some cheese over the pasta for extra flavor."
+    example: "**Grate** some cheese over the pasta for extra flavor.",
+    chinese: "擦碎 (Cāsuì)",
+    spanish: "Rallar"
   },
   {
     word: "Mince",
     ipa: "/mɪns/",
     definition: "To cut into very, very small pieces, often used for garlic or herbs.",
-    example: "**Mince** the garlic before adding it to the sauce."
+    example: "**Mince** the garlic before adding it to the sauce.",
+    chinese: "剁碎 (Duòsuì)",
+    spanish: "Picar (muy fino)"
   },
   {
     word: "Bake",
     ipa: "/beɪk/",
     definition: "To cook with dry heat, especially in an oven.",
-    example: "She loves to **bake** cookies on the weekends."
+    example: "She loves to **bake** cookies on the weekends.",
+    chinese: "烘焙 (Hōngbèi)",
+    spanish: "Hornear"
   },
   {
     word: "Roast",
     ipa: "/roʊst/",
     definition: "To cook with dry heat in an oven or over a fire, often for meat or vegetables.",
-    example: "We're going to **roast** a chicken for dinner."
+    example: "We're going to **roast** a chicken for dinner.",
+    chinese: "烤 (Kǎo)",
+    spanish: "Asar"
   },
   {
     word: "Grill",
     ipa: "/ɡrɪl/",
     definition: "To cook food over direct heat.",
-    example: "Let's **grill** some burgers for the barbecue."
+    example: "Let's **grill** some burgers for the barbecue.",
+    chinese: "烧烤 (Shāokǎo)",
+    spanish: "Asar a la parrilla"
   },
   {
     word: "Fry",
     ipa: "/fraɪ/",
     definition: "To cook in hot oil or fat.",
-    example: "**Fry** the bacon until it's crispy."
+    example: "**Fry** the bacon until it's crispy.",
+    chinese: "煎 / 炸 (Jiān / Zhá)",
+    spanish: "Freír"
   },
   {
     word: "Sauté",
     ipa: "/sɔːˈteɪ/",
     definition: "To fry quickly in a small amount of fat.",
-    example: "**Sauté** the mushrooms with a little butter."
+    example: "**Sauté** the mushrooms with a little butter.",
+    chinese: "煸炒 (Biānchǎo)",
+    spanish: "Saltear"
   },
   {
     word: "Boil",
     ipa: "/bɔɪl/",
     definition: "To cook in boiling water.",
-    example: "**Boil** the water for five minutes before adding the pasta."
+    example: "**Boil** the water for five minutes before adding the pasta.",
+    chinese: "煮沸 (Zhǔfèi)",
+    spanish: "Hervir"
   },
   {
     word: "Simmer",
     ipa: "/ˈsɪmər/",
     definition: "To cook gently in liquid just below the boiling point.",
-    example: "Let the sauce **simmer** for 20 minutes to thicken."
+    example: "Let the sauce **simmer** for 20 minutes to thicken.",
+    chinese: "炖煮 (Dùnzhǔ)",
+    spanish: "Cocinar a fuego lento"
   },
   {
     word: "Stew",
     ipa: "/stuː/",
     definition: "To cook slowly in liquid in a closed dish or pan.",
-    example: "We had a hearty beef **stew** for dinner on a cold night."
+    example: "We had a hearty beef **stew** for dinner on a cold night.",
+    chinese: "炖 (Dùn)",
+    spanish: "Guisar"
   },
   {
     word: "Season",
     ipa: "/ˈsiːzən/",
     definition: "To add salt, pepper, or other spices to food.",
-    example: "**Season** the chicken generously before cooking."
+    example: "**Season** the chicken generously before cooking.",
+    chinese: "调味 (Tiáowèi)",
+    spanish: "Sazonar"
   },
   {
     word: "Marinate",
     ipa: "/ˈmærɪneɪt/",
     definition: "To soak food in a seasoned liquid before cooking.",
-    example: "**Marinate** the steak overnight for a tender result."
+    example: "**Marinate** the steak overnight for a tender result.",
+    chinese: "腌制 (Yānzhì)",
+    spanish: "Marinar"
   },
   {
     word: "Recipe",
     ipa: "/ˈrɛsəpi/",
     definition: "A set of instructions for preparing a dish.",
-    example: "Do you have a good **recipe** for chocolate chip cookies?"
+    example: "Do you have a good **recipe** for chocolate chip cookies?",
+    chinese: "食谱 (Shípǔ)",
+    spanish: "Receta"
   },
   {
     word: "Utensil",
     ipa: "/juːˈtɛnsɪl/",
     definition: "A tool or implement, especially one used in the kitchen.",
-    example: "Forks, spoons, and knives are common eating **utensils**."
+    example: "Forks, spoons, and knives are common eating **utensils**.",
+    chinese: "器具 (Qìjù)",
+    spanish: "Utensilio"
   },
   {
     word: "Ingredient",
     ipa: "/ɪnˈɡriːdiənt/",
     definition: "Any of the foods or substances that are combined to make a particular dish.",
-    example: "Flour, sugar, and eggs are basic **ingredients** for a cake."
+    example: "Flour, sugar, and eggs are basic **ingredients** for a cake.",
+    chinese: "配料 / 成分 (Pèiliào / Chéngfèn)",
+    spanish: "Ingrediente"
   },
   {
     word: "Sweet",
     ipa: "/swiːt/",
     definition: "Having the taste of sugar.",
-    example: "This dessert is perfectly **sweet**."
+    example: "This dessert is perfectly **sweet**.",
+    chinese: "甜的 (Tiánde)",
+    spanish: "Dulce"
   },
   {
     word: "Sour",
     ipa: "/ˈsaʊər/",
     definition: "Having an acidic taste, like lemon.",
-    example: "Lemons have a very **sour** taste."
+    example: "Lemons have a very **sour** taste.",
+    chinese: "酸的 (Suānde)",
+    spanish: "Agrio/a"
   },
   {
     word: "Bitter",
     ipa: "/ˈbɪtər/",
     definition: "Having a sharp, often unpleasant taste, like dark chocolate or coffee.",
-    example: "Dark chocolate can be quite **bitter**."
+    example: "Dark chocolate can be quite **bitter**.",
+    chinese: "苦的 (Kǔde)",
+    spanish: "Amargo/a"
   },
   {
     word: "Salty",
     ipa: "/ˈsɔːlti/",
     definition: "Tasting of salt.",
-    example: "These potato chips are a bit too **salty** for my taste."
+    example: "These potato chips are a bit too **salty** for my taste.",
+    chinese: "咸的 (Xiánde)",
+    spanish: "Salado/a"
   },
   {
     word: "Spicy/Hot",
     ipa: "/ˈspaɪsi/ /hɑːt/",
     definition: "Having a strong, burning flavor.",
-    example: "I love **spicy** food, especially curries."
+    example: "I love **spicy** food, especially curries.",
+    chinese: "辣的 (Làde)",
+    spanish: "Picante"
   },
   {
     word: "Savory",
     ipa: "/ˈseɪvəri/",
     definition: "Flavorful, not sweet or sour, often umami-rich.",
-    example: "These mushroom tarts are a delicious **savory** snack."
+    example: "These mushroom tarts are a delicious **savory** snack.",
+    chinese: "咸香的 (Xiánxiāngde)",
+    spanish: "Sabroso/a (no dulce)"
   },
   {
     word: "Rich",
     ipa: "/rɪtʃ/",
     definition: "Having a strong, pleasant, and often heavy flavor.",
-    example: "The chocolate fudge cake was incredibly **rich**."
+    example: "The chocolate fudge cake was incredibly **rich**.",
+    chinese: "浓郁的 (Nóngyùde)",
+    spanish: "Rico/a (sabor)"
   },
   {
     word: "Crispy/Crunchy",
     ipa: "/ˈkrɪspi/ /ˈkrʌntʃi/",
     definition: "Firm, dry, and easily broken.",
-    example: "The fried chicken had a wonderfully **crispy** skin."
+    example: "The fried chicken had a wonderfully **crispy** skin.",
+    chinese: "脆的 (Cuìde)",
+    spanish: "Crujiente"
   },
   {
     word: "Chewy",
     ipa: "/ˈtʃuːi/",
     definition: "Requiring a lot of chewing.",
-    example: "These cookies are deliciously **chewy**."
+    example: "These cookies are deliciously **chewy**.",
+    chinese: "有嚼劲的 (Yǒu jiáojìnde)",
+    spanish: "Masticable"
   },
   {
     word: "Tender",
     ipa: "/ˈtɛndər/",
     definition: "Easy to cut or chew, not tough.",
-    example: "The slow-cooked beef was incredibly **tender**."
+    example: "The slow-cooked beef was incredibly **tender**.",
+    chinese: "嫩的 (Nènde)",
+    spanish: "Tierno/a"
   },
   {
     word: "Ripe",
     ipa: "/raɪp/",
     definition: "Fully developed and ready to be eaten (for fruit).",
-    example: "Choose bananas that are perfectly **ripe**, not green."
+    example: "Choose bananas that are perfectly **ripe**, not green.",
+    chinese: "成熟的 (Chéngshúde)",
+    spanish: "Maduro/a"
   },
   {
     word: "Stale",
     ipa: "/steɪl/",
     definition: "No longer fresh or pleasant to eat; hard, dry, or tasteless.",
-    example: "Don't eat that bread, it's a bit **stale**."
+    example: "Don't eat that bread, it's a bit **stale**.",
+    chinese: "不新鲜的 (Bùxīnxiānde)",
+    spanish: "Rancio/a / Duro/a (pan)"
   },
   {
     word: "Bland",
     ipa: "/blænd/",
     definition: "Lacking strong flavor.",
-    example: "The soup was a bit **bland**; it needed more seasoning."
+    example: "The soup was a bit **bland**; it needed more seasoning.",
+    chinese: "清淡的 / 无味的 (Qīngdànde / Wúwèide)",
+    spanish: "Insípido/a"
   },
   {
     word: "Delicious",
     ipa: "/dɪˈlɪʃəs/",
     definition: "Highly pleasant to the taste.",
-    example: "This homemade pizza is absolutely **delicious**!"
+    example: "This homemade pizza is absolutely **delicious**!",
+    chinese: "美味的 (Měiwèide)",
+    spanish: "Delicioso/a"
   },
   {
     word: "Edible",
     ipa: "/ˈɛdəbəl/",
     definition: "Safe or fit to be eaten.",
-    example: "Are these wild berries **edible**?"
+    example: "Are these wild berries **edible**?",
+    chinese: "可食用的 (Kěshíyòngde)",
+    spanish: "Comestible"
   },
   {
     word: "Nutritious",
     ipa: "/nuːˈtrɪʃəs/",
     definition: "Providing nourishment; healthy.",
-    example: "Eating fruits and vegetables is very **nutritious**."
+    example: "Eating fruits and vegetables is very **nutritious**.",
+    chinese: "有营养的 (Yǒu yíngyǎngde)",
+    spanish: "Nutritivo/a"
   },
   {
     word: "Portion",
     ipa: "/ˈpɔːrʃən/",
     definition: "An amount of food that is served to one person.",
-    example: "Be mindful of your **portion** sizes to avoid overeating."
+    example: "Be mindful of your **portion** sizes to avoid overeating.",
+    chinese: "份 (Fèn)",
+    spanish: "Porción"
   }
 ];
 
@@ -612,7 +717,7 @@ function showCard() {
 
 function flipCard() {
   if (!flipped) {
-    const { word, ipa, definition, example } = flashcards[index];
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
     flashcard.innerHTML = `
       <div class="word">
         ${word}
@@ -621,6 +726,8 @@ function flipCard() {
       <div class="ipa">${ipa}</div>
       <div class="definition">${definition}</div>
       <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
       <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
     flashcard.classList.add("flipped");

@@ -298,10 +298,12 @@
 
 <div class="buttons">
   <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-  <button onclick="nextCard()" aria-label="Next ➡</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
+console.log("Script started!"); // Log to confirm script execution
+
 const flashcards = [
   {
     word: "Carrot",
@@ -709,8 +711,10 @@ let index = 0;
 let flipped = false;
 
 const flashcard = document.getElementById("flashcard");
+console.log("flashcard element found:", flashcard); // Log to see if the element is found
 
 function showCard() {
+  console.log("showCard() called."); // Log to confirm function call
   flipped = false;
   flashcard.classList.remove("flipped");
   flashcard.setAttribute("aria-pressed", "false");
@@ -771,7 +775,7 @@ function prevCard() {
   showCard();
 }
 
-showCard();
+showCard(); // Initial call to display the first card
 </script>
 
 <div class="buttons">

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Colors Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Colors Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Red",
+    ipa: "/rɛd/",
+    definition: "The color of blood, cherries, or ripe strawberries.",
+    example: "The fire truck was a bright **red**.",
+    chinese: "红色 (hóngsè)",
+    spanish: "Rojo"
+  },
+  {
+    word: "Blue",
+    ipa: "/bluː/",
+    definition: "The color of the clear sky or the deep sea.",
+    example: "He wore a **blue** shirt to the party.",
+    chinese: "蓝色 (lánsè)",
+    spanish: "Azul"
+  },
+  {
+    word: "Yellow",
+    ipa: "/ˈjɛloʊ/",
+    definition: "The color of lemons, butter, or sunflowers.",
+    example: "The sun is a big, **yellow** ball in the sky.",
+    chinese: "黄色 (huángsè)",
+    spanish: "Amarillo"
+  },
+  {
+    word: "Green",
+    ipa: "/ɡriːn/",
+    definition: "The color of grass, leaves, or emeralds.",
+    example: "The trees are a beautiful **green** in spring.",
+    chinese: "绿色 (lǜsè)",
+    spanish: "Verde"
+  },
+  {
+    word: "Orange",
+    ipa: "/ˈɔːrɪndʒ/",
+    definition: "A color between red and yellow, like the fruit.",
+    example: "Pumpkins are typically **orange** in the fall.",
+    chinese: "橙色 (chéngsè)",
+    spanish: "Naranja"
+  },
+  {
+    word: "Purple",
+    ipa: "/ˈpɜːrpəl/",
+    definition: "A color between blue and red, often associated with royalty.",
+    example: "She loved the deep **purple** of the amethyst.",
+    chinese: "紫色 (zǐsè)",
+    spanish: "Morado / Púrpura"
+  },
+  {
+    word: "Pink",
+    ipa: "/pɪŋk/",
+    definition: "A pale red color.",
+    example: "The baby's room was decorated in **pink** and white.",
+    chinese: "粉色 (fěnsè)",
+    spanish: "Rosado"
+  },
+  {
+    word: "Brown",
+    ipa: "/braʊn/",
+    definition: "The color of earth, wood, or chocolate.",
+    example: "The dog had soft, **brown** fur.",
+    chinese: "棕色 (zōngsè)",
+    spanish: "Marrón / Café"
+  },
+  {
+    word: "Black",
+    ipa: "/blæk/",
+    definition: "The darkest color, the absence of light.",
+    example: "The night sky was completely **black**.",
+    chinese: "黑色 (hēisè)",
+    spanish: "Negro"
+  },
+  {
+    word: "White",
+    ipa: "/waɪt/",
+    definition: "The lightest color, like snow or milk.",
+    example: "She wore a **white** wedding dress.",
+    chinese: "白色 (báisè)",
+    spanish: "Blanco"
+  },
+  {
+    word: "Gray/Grey",
+    ipa: "/ɡreɪ/",
+    definition: "A color between black and white.",
+    example: "The sky was **gray** and cloudy before the rain.",
+    chinese: "灰色 (huīsè)",
+    spanish: "Gris"
+  },
+  {
+    word: "Gold",
+    ipa: "/ɡoʊld/",
+    definition: "A shiny, yellow metallic color.",
+    example: "The Olympic medal was **gold**.",
+    chinese: "金色 (jīnsè)",
+    spanish: "Dorado"
+  },
+  {
+    word: "Silver",
+    ipa: "/ˈsɪlvər/",
+    definition: "A shiny, whitish-gray metallic color.",
+    example: "She wore a beautiful **silver** necklace.",
+    chinese: "银色 (yínsè)",
+    spanish: "Plateado"
+  },
+  {
+    word: "Bronze",
+    ipa: "/brɑːnz/",
+    definition: "A dull, brownish-yellow metallic color.",
+    example: "He won the **bronze** medal in the competition.",
+    chinese: "青铜色 (qīngtóngsè)",
+    spanish: "Bronceado"
+  },
+  {
+    word: "Turquoise",
+    ipa: "/ˈtɜːrkɔɪz/",
+    definition: "A greenish-blue color.",
+    example: "The clear ocean water was a stunning **turquoise**.",
+    chinese: "绿松石色 (lǜsōngshísè)",
+    spanish: "Turquesa"
+  },
+  {
+    word: "Navy Blue",
+    ipa: "/ˈneɪvi bluː/",
+    definition: "A very dark blue color.",
+    example: "Sailors traditionally wear **navy blue** uniforms.",
+    chinese: "海军蓝 (hǎijūnlán)",
+    spanish: "Azul marino"
+  },
+  {
+    word: "Sky Blue",
+    ipa: "/skaɪ bluː/",
+    definition: "A light, bright blue, like the color of the sky on a clear day.",
+    example: "The little bird had soft, **sky blue** feathers.",
+    chinese: "天蓝色 (tiānlánsè)",
+    spanish: "Azul cielo"
+  },
+  {
+    word: "Lime Green",
+    ipa: "/laɪm ɡriːn/",
+    definition: "A bright, vivid yellow-green color, like the fruit.",
+    example: "The fashion show featured bold **lime green** outfits.",
+    chinese: "柠檬绿 (níngménglǜ)",
+    spanish: "Verde lima"
+  },
+  {
+    word: "Forest Green",
+    ipa: "/ˈfɔːrɪst ɡriːn/",
+    definition: "A dark, deep green, resembling the color of trees in a forest.",
+    example: "His hunting jacket was a camouflage **forest green**.",
+    chinese: "森林绿 (sēnlínlǜ)",
+    spanish: "Verde bosque"
+  },
+  {
+    word: "Crimson",
+    ipa: "/ˈkrɪmzən/",
+    definition: "A rich deep red color inclined to purple.",
+    example: "The sunset painted the clouds in shades of **crimson**.",
+    chinese: "深红色 (shēnhóngsè)",
+    spanish: "Carmesí"
+  },
+  {
+    word: "Scarlet",
+    ipa: "/ˈskɑːrlɪt/",
+    definition: "A brilliant red color with a tinge of orange.",
+    example: "The cardinal bird has bright **scarlet** feathers.",
+    chinese: "猩红色 (xīnghóngsè)",
+    spanish: "Escarlata"
+  },
+  {
+    word: "Magenta",
+    ipa: "/məˈdʒɛntə/",
+    definition: "A purplish-red or reddish-purple color.",
+    example: "The vibrant flowers were a striking **magenta**.",
+    chinese: "洋红色 (yánghóngsè)",
+    spanish: "Magenta"
+  },
+  {
+    word: "Teal",
+    ipa: "/tiːl/",
+    definition: "A dark greenish-blue color.",
+    example: "The living room was decorated in shades of **teal** and cream.",
+    chinese: "蓝绿色 (lánlǜsè)",
+    spanish: "Verde azulado"
+  },
+  {
+    word: "Lavender",
+    ipa: "/ˈlævəndər/",
+    definition: "A pale purple color, like the flower.",
+    example: "She chose a soft **lavender** paint for her bedroom walls.",
+    chinese: "淡紫色 (dànzǐsè)",
+    spanish: "Lavanda"
+  },
+  {
+    word: "Beige",
+    ipa: "/beɪʒ/",
+    definition: "A pale, sandy fawn color.",
+    example: "The neutral tones of the sofa were a pleasant **beige**.",
+    chinese: "米色 (mǐsè)",
+    spanish: "Beige"
+  },
+  {
+    word: "Cream",
+    ipa: "/kriːm/",
+    definition: "A pale yellowish-white color.",
+    example: "The walls were painted a warm **cream** color.",
+    chinese: "奶油色 (nǎiyóusè)",
+    spanish: "Crema"
+  },
+  {
+    word: "Maroon",
+    ipa: "/məˈruːn/",
+    definition: "A dark brownish-red color.",
+    example: "The school uniform included a **maroon** blazer.",
+    chinese: "栗色 (lìsè)",
+    spanish: "Granate"
+  },
+  {
+    word: "Olive Green",
+    ipa: "/ˈɑːlɪv ɡriːn/",
+    definition: "A dull yellowish-green color, like olives.",
+    example: "His military jacket was an **olive green**.",
+    chinese: "橄榄绿 (gǎnlǎnlǜ)",
+    spanish: "Verde oliva"
+  },
+  {
+    word: "Indigo",
+    ipa: "/ˈɪndɪɡoʊ/",
+    definition: "A deep purplish-blue color.",
+    example: "The night sky deepened to an **indigo** hue.",
+    chinese: "靛蓝色 (diànlánsè)",
+    spanish: "Índigo"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

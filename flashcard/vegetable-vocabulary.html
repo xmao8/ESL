@@ -1,599 +1,707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vegetable Vocabulary – ESLnote Flashcards</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f9;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* Prevent horizontal scroll */
-    }
-    nav {
-      background: #124076;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1100px; /* Max width for larger screens */
-      margin: 0 auto; /* Center the container */
-      padding: 0.8rem 1rem; /* Padding for all screen sizes */
-      box-sizing: border-box;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      color: #ff9800;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-decoration: none;
-    }
-    .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-    }
-    .nav-links a {
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      color: #ffbb33;
-      outline: none;
-    }
-    /* Hamburger menu button */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    .menu-toggle .bar {
-      width: 25px;
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-    }
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vegetable Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
 
-    /* --- Phone Layout (max-width: 600px) --- */
-    @media (max-width: 600px) {
-      .nav-links {
-        position: fixed;
-        top: 56px; /* Adjust if your nav height is different */
-        right: 0;
-        background: #124076;
-        flex-direction: column;
-        width: 100%; /* Changed from 100vw to 100% */
-        height: calc(100vh - 56px); /* Adjust if your nav height is different */
-        padding: 1rem 1.5rem 2rem 1.5rem;
-        gap: 1.2rem;
-        overflow-y: auto;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        border-radius: 0 0 0 10px;
-        z-index: 999;
-        box-sizing: border-box;
-        align-items: flex-start;
-      }
-      .nav-links.active {
-        transform: translateX(0);
-      }
-      .menu-toggle {
-        display: flex; /* Show hamburger on phones */
-      }
-      h1, .flashcard, .buttons {
-        padding: 0 1rem; /* Add horizontal padding to main content */
-        box-sizing: border-box;
-      }
-    }
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
 
-    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
-    @media (min-width: 601px) and (max-width: 900px) {
-      .nav-container {
-        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
-      }
-      .nav-links {
-        position: static; /* Links are part of the normal flow */
-        flex-direction: row; /* Links in a row */
-        background: none;
-        height: auto;
-        width: auto;
-        padding: 0;
-        gap: 1.3rem; /* Slightly smaller gap than desktop */
-        transform: none !important; /* Ensure no translation */
-        border-radius: 0;
-        align-items: center;
-        overflow: visible;
-      }
-      .menu-toggle {
-        display: none; /* Hide hamburger on tablets */
-      }
-      h1, .flashcard, .buttons {
-        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
-        box-sizing: border-box;
-      }
-    }
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
 
-    /* --- Desktop Layout (min-width: 901px) --- */
-    @media (min-width: 901px) {
-      .nav-container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0.8rem 1rem;
-      }
-      .nav-links {
-        position: static;
-        flex-direction: row;
-        background: none;
-        height: auto;
-        width: auto;
-        padding: 0;
-        gap: 1.5rem;
-        transform: none !important;
-        border-radius: 0;
-        align-items: center;
-        overflow: visible;
-      }
-      .menu-toggle {
-        display: none; /* Hide hamburger on desktop */
-      }
-      body {
-        padding: 0;
-      }
-      h1, .flashcard, .buttons {
-        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
-      }
-    }
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
 
-    h1 {
-      margin: 2rem auto;
-      color: #2c3e50;
-      max-width: 600px;
-    }
-    .flashcard {
-      background: white;
-      width: 90%;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-    .flashcard.flipped {
-      background-color: #3498db;
-      color: white;
-    }
-    .word {
-      font-weight: bold;
-      font-size: 2rem;
-      margin-bottom: 0.3rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .ipa {
-      font-family: 'Arial', sans-serif;
-      font-style: italic;
-      font-size: 1.4rem;
-      color: #666;
-    }
-    .flashcard.flipped .ipa {
-      color: #e0e0e0;
-    }
-    .definition {
-      margin: 1rem 0 0.5rem 0;
-      font-size: 1.1rem;
-    }
-    .example {
-      font-style: italic;
-      opacity: 0.85;
-      font-size: 1rem;
-      margin-top: 0.3rem;
-    }
-    .speaker {
-      cursor: pointer;
-      font-size: 1.6rem;
-      color: #fff;
-      user-select: none;
-      transition: color 0.2s;
-    }
-    .speaker:hover {
-      color: #f0c040;
-    }
-    .buttons {
-      margin: 2rem auto 3rem auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      max-width: 600px;
-    }
-    button, .buttons a {
-      padding: 0.6rem 1.2rem;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      user-select: none;
-    }
-    button:hover, .buttons a:hover {
-      background: #2980b9;
-    }
-  </style>
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+    .translation strong {
+      font-weight: bold;
+      color: #ffeb3b; /* A lighter yellow for emphasis on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
 </head>
 <body>
 
 <nav aria-label="Main navigation">
-  <div class="nav-container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-      <span class="site-name">ESLnote</span>
-    </a>
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
 
-    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
 
-    <div class="nav-links" id="primary-navigation">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../practice.html">Practices</a>
-    </div>
-  </div>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
 </nav>
 
 <h1>Vegetable Vocabulary Flashcards</h1>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
-  <div class="word">Click to Flip</div>
-  <div class="ipa" style="color: #666;"></div>
-  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
-  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
 const flashcards = [
-  {
-    word: "Carrot",
-    ipa: "/ˈkærət/",
-    definition: "A tapering orange-colored root eaten as a vegetable.",
-    example: "Rabbits love to eat **carrots**."
-  },
-  {
-    word: "Broccoli",
-    ipa: "/ˈbrɑːkəli/",
-    definition: "A cultivated variety of cabbage bearing heads of green or purplish flower buds.",
-    example: "**Broccoli** is a very healthy vegetable, often steamed."
-  },
-  {
-    word: "Spinach",
-    ipa: "/ˈspɪnɪdʒ/",
-    definition: "A leafy green vegetable, rich in iron.",
-    example: "Popeye the Sailor Man got his strength from **spinach**."
-  },
-  {
-    word: "Lettuce",
-    ipa: "/ˈlɛtɪs/",
-    definition: "A leafy green vegetable, typically used in salads.",
-    example: "Make sure to wash the **lettuce** thoroughly before making a salad."
-  },
-  {
-    word: "Tomato",
-    ipa: "/təˈmeɪtoʊ/",
-    definition: "A soft, red or yellow, pulpy fruit eaten as a vegetable.",
-    example: "Is a **tomato** a fruit or a vegetable? (Botanically, it's a fruit, culinarily, a vegetable!)"
-  },
-  {
-    word: "Cucumber",
-    ipa: "/ˈkjuːkʌmbər/",
-    definition: "A long, green-skinned fruit with watery flesh, usually eaten raw in salads.",
-    example: "I like slices of **cucumber** in my water for refreshment."
-  },
-  {
-    word: "Onion",
-    ipa: "/ˈʌnjən/",
-    definition: "An edible bulb with a pungent taste and smell, composed of several concentric layers.",
-    example: "Chopping **onions** often makes your eyes water."
-  },
-  {
-    word: "Garlic",
-    ipa: "/ˈɡɑːrlɪk/",
-    definition: "A strong-smelling, pungent-tasting bulb, used as a flavoring in cooking.",
-    example: "**Garlic** is a key ingredient in Italian cuisine."
-  },
-  {
-    word: "Potato",
-    ipa: "/pəˈteɪtoʊ/",
-    definition: "A starchy plant tuber which is widely cultivated as a staple food.",
-    example: "French fries are made from **potatoes**."
-  },
-  {
-    word: "Sweet potato",
-    ipa: "/swiːt pəˈteɪtoʊ/",
-    definition: "A starchy, sweet-tasting root vegetable, typically orange or purple.",
-    example: "Roasted **sweet potatoes** are a popular side dish."
-  },
-  {
-    word: "Bell pepper",
-    ipa: "/bɛl ˈpɛpər/",
-    definition: "A hollow, often bell-shaped, fruit eaten as a vegetable, typically green, yellow, orange, or red.",
-    example: "Red **bell peppers** add a nice crunch to stir-fries."
-  },
-  {
-    word: "Mushroom",
-    ipa: "/ˈmʌʃruːm/",
-    definition: "A fleshy, spore-bearing fruiting body of a fungus, typically produced above ground on soil or on its food source.",
-    example: "Some people forage for wild **mushrooms**."
-  },
-  {
-    word: "Zucchini",
-    ipa: "/zuːˈkiːni/",
-    definition: "A green variety of summer squash, typically elongated and cylindrical.",
-    example: "Grilled **zucchini** is a simple and delicious side."
-  },
-  {
-    word: "Eggplant",
-    ipa: "/ˈɛɡplænt/",
-    definition: "A plant of the nightshade family, bearing a large, dark purple, edible fruit.",
-    example: "Baba ghanoush is a dip made from **eggplant**."
-  },
-  {
-    word: "Cabbage",
-    ipa: "/ˈkæbɪdʒ/",
-    definition: "A leafy green, red, or white biennial plant, grown for its dense, leafy heads.",
-    example: "Coleslaw is made with shredded **cabbage**."
-  },
-  {
-    word: "Cauliflower",
-    ipa: "/ˈkɑːlɪˌflaʊər/",
-    definition: "A cultivated variety of cabbage bearing a large, white flower head.",
-    example: "Roasted **cauliflower** can be a good substitute for mashed potatoes."
-  },
-  {
-    word: "Brussels sprout",
-    ipa: "/ˌbrʌsəlz ˈspraʊt/",
-    definition: "A small cabbage-like bud eaten as a vegetable.",
-    example: "Many people don't like **Brussels sprouts**, but I enjoy them roasted."
-  },
-  {
-    word: "Asparagus",
-    ipa: "/əˈspærəɡəs/",
-    definition: "A long, slender, green stalk, typically steamed or roasted.",
-    example: "**Asparagus** is a sign of spring."
-  },
-  {
-    word: "Celery",
-    ipa: "/ˈsɛləri/",
-    definition: "A plant of the parsley family with long, crisp leaf stalks, eaten as a vegetable.",
-    example: "I put **celery** in my tuna salad for extra crunch."
-  },
-  {
-    word: "Corn",
-    ipa: "/kɔːrn/",
-    definition: "A cereal plant that yields large kernels, usually yellow, on a cob, widely cultivated as a food crop.",
-    example: "**Corn** on the cob is a summer favorite."
-  },
-  {
-    word: "Peas",
-    ipa: "/piːz/",
-    definition: "Small, spherical green seeds eaten as a vegetable.",
-    example: "Green **peas** are often served with fish and chips."
-  },
-  {
-    word: "Green beans",
-    ipa: "/ɡriːn biːnz/",
-    definition: "The immature green pods of the common bean, eaten as a vegetable.",
-    example: "Steamed **green beans** are a simple and healthy side."
-  },
-  {
-    word: "Artichoke",
-    ipa: "/ˈɑːrtɪtʃoʊk/",
-    definition: "A large, thistle-like plant whose edible flower head has spiny bracts and a fleshy base.",
-    example: "Eating an **artichoke** can be a bit tricky, but it's delicious."
-  },
-  {
-    word: "Leek",
-    ipa: "/liːk/",
-    definition: "A plant related to the onion, with a long, white, edible bulb that is thicker than an onion.",
-    example: "**Leek** and potato soup is a classic comfort food."
-  },
-  {
-    word: "Kale",
-    ipa: "/keɪl/",
-    definition: "A hardy cabbage with coarse curly leaves, which do not form a compact head.",
-    example: "**Kale** is a superfood, often used in smoothies or salads."
-  },
-  {
-    word: "Collard greens",
-    ipa: "/ˈkɑːlərd ɡriːnz/",
-    definition: "A type of leafy green vegetable, popular in Southern US cuisine.",
-    example: "**Collard greens** are often cooked with smoked meats."
-  },
-  {
-    word: "Beet",
-    ipa: "/biːt/",
-    definition: "A deep red root vegetable, often eaten boiled or pickled.",
-    example: "The vibrant color of **beets** can stain your hands."
-  },
-  {
-    word: "Radish",
-    ipa: "/ˈrædɪʃ/",
-    definition: "A small, pungent, fleshy root vegetable, usually red.",
-    example: "**Radishes** add a peppery bite to salads."
-  },
-  {
-    word: "Turnip",
-    ipa: "/ˈtɜːrnɪp/",
-    definition: "A round, white or cream-colored root vegetable.",
-    example: "**Turnips** can be roasted or added to stews."
-  },
-  {
-    word: "Parsnip",
-    ipa: "/ˈpɑːrsnɪp/",
-    definition: "A long, cream-colored root vegetable, similar to a carrot but sweeter.",
-    example: "Roasted **parsnips** are a delicious alternative to potatoes."
-  },
-  {
-    word: "Pumpkin",
-    ipa: "/ˈpʌmpkɪn/",
-    definition: "A large, round, orange-yellow fruit with a thick rind and flesh, often used for pies or carving.",
-    example: "We carved a spooky face into the **pumpkin** for Halloween."
-  },
-  {
-    word: "Squash",
-    ipa: "/skwɑːʃ/",
-    definition: "A gourd-like fruit, typically eaten as a vegetable, with a hard rind and fleshy interior.",
-    example: "Butternut **squash** makes a wonderful soup."
-  },
-  {
-    word: "Okra",
-    ipa: "/ˈoʊkrə/",
-    definition: "A green, ridged pod containing small, edible seeds, often used in stews or fried.",
-    example: "**Okra** is a common ingredient in gumbo."
-  },
-  {
-    word: "Arugula",
-    ipa: "/əˈruːɡjələ/",
-    definition: "A leafy green vegetable with a slightly bitter, peppery taste, used in salads.",
-    example: "**Arugula** adds a fresh, spicy note to pizza."
-  },
-  {
-    word: "Endive",
-    ipa: "/ˈɛndaɪv/",
-    definition: "A leafy vegetable with a slightly bitter taste, often used in salads.",
-    example: "**Endive** can be used as a scoop for dips."
-  },
-  {
-    word: "Fennel",
-    ipa: "/ˈfɛnl/",
-    definition: "A plant with a swollen, white, bulb-like base, green stalks, and feathery leaves, with a mild anise flavor.",
-    example: "Roasted **fennel** becomes sweet and tender."
-  },
-  {
-    word: "Ginger",
-    ipa: "/ˈdʒɪndʒər/",
-    definition: "A pungent, spicy rhizome used as a spice and for flavoring.",
-    example: "**Ginger** is often used in Asian cuisine and for upset stomachs."
-  },
-  {
-    word: "Horseradish",
-    ipa: "/ˈhɔːrsˌrædɪʃ/",
-    definition: "A cultivated plant with a large, white, pungent root, used as a relish or condiment.",
-    example: "**Horseradish** sauce is a classic accompaniment to roast beef."
-  },
-  {
-    word: "Jicama",
-    ipa: "/ˈhɪkəmə/",
-    definition: "A crisp, sweet, edible root vegetable, resembling a turnip.",
-    example: "**Jicama** is great sliced into sticks for a refreshing snack."
-  },
-  {
-    word: "Kohlrabi",
-    ipa: "/ˈkoʊlrɑːbi/",
-    definition: "A variety of cabbage that has a turnip-like edible stem.",
-    example: "**Kohlrabi** can be eaten raw or cooked."
-  },
-  {
-    word: "Parsley",
-    ipa: "/ˈpɑːrsli/",
-    definition: "A biennial plant with crinkly or flat leaves, widely used as a culinary herb.",
-    example: "Garnish the soup with fresh **parsley**."
-  },
-  {
-    word: "Cilantro",
-    ipa: "/sɪˈlɑːntroʊ/",
-    definition: "The leaves of the coriander plant, used as an herb, especially in Mexican and Asian cuisine.",
-    example: "Some people love **cilantro**, others think it tastes like soap."
-  },
-  {
-    word: "Dill",
-    ipa: "/dɪl/",
-    definition: "An aromatic herb with feathery green leaves, used as a seasoning.",
-    example: "**Dill** is commonly used with fish and in pickles."
-  },
-  {
-    word: "Chives",
-    ipa: "/tʃaɪvz/",
-    definition: "A small, slender bulbous plant of the onion family, used as a culinary herb.",
-    example: "Sprinkle chopped **chives** over your baked potato."
-  },
-  {
-    word: "Mint",
-    ipa: "/mɪnt/",
-    definition: "An aromatic plant whose leaves are used as a culinary herb and for flavoring.",
-    example: "**Mint** is refreshing in tea or added to desserts."
-  },
-  {
-    word: "Rosemary",
-    ipa: "/ˈroʊzmɛri/",
-    definition: "An aromatic evergreen shrub, whose leaves are used as a culinary herb.",
-    example: "**Rosemary** pairs well with roasted chicken."
-  },
-  {
-    word: "Thyme",
-    ipa: "/taɪm/",
-    definition: "An aromatic evergreen herb with tiny leaves, used as a seasoning.",
-    example: "**Thyme** is a classic herb for soups and stews."
-  },
-  {
-    word: "Scallion/Green onion",
-    ipa: "/ˈskæliən/ /ɡriːn ˈʌnjən/",
-    definition: "A long, thin onion, typically used raw or lightly cooked, including its green leaves.",
-    example: "Chop some **scallions** for a topping on your ramen."
-  },
-  {
-    word: "Shallot",
-    ipa: "/ˈʃælət/",
-    definition: "A small bulbous plant of the onion family, with a mild onion flavor.",
-    example: "**Shallots** are often preferred over onions for their milder taste."
-  },
-  {
-    word: "Vegetable garden",
-    ipa: "/ˈvɛdʒtəbəl ˈɡɑːrdən/",
-    definition: "A plot of ground where vegetables are grown.",
-    example: "My grandmother loves spending time in her **vegetable garden**."
-  }
+  {
+    word: "Carrot",
+    ipa: "/ˈkærət/",
+    definition: "A tapering orange-colored root eaten as a vegetable.",
+    example: "Rabbits love to eat **carrots**.",
+    chinese: "胡萝卜 (húluóbo)",
+    spanish: "zanahoria"
+  },
+  {
+    word: "Broccoli",
+    ipa: "/ˈbrɑːkəli/",
+    definition: "A cultivated variety of cabbage bearing heads of green or purplish flower buds.",
+    example: "**Broccoli** is a very healthy vegetable, often steamed.",
+    chinese: "西兰花 (xīlánhuā)",
+    spanish: "brócoli"
+  },
+  {
+    word: "Spinach",
+    ipa: "/ˈspɪnɪdʒ/",
+    definition: "A leafy green vegetable, rich in iron.",
+    example: "Popeye the Sailor Man got his strength from **spinach**.",
+    chinese: "菠菜 (bōcài)",
+    spanish: "espinaca"
+  },
+  {
+    word: "Lettuce",
+    ipa: "/ˈlɛtɪs/",
+    definition: "A leafy green vegetable, typically used in salads.",
+    example: "Make sure to wash the **lettuce** thoroughly before making a salad.",
+    chinese: "生菜 (shēngcài)",
+    spanish: "lechuga"
+  },
+  {
+    word: "Tomato",
+    ipa: "/təˈmeɪtoʊ/",
+    definition: "A soft, red or yellow, pulpy fruit eaten as a vegetable.",
+    example: "Is a **tomato** a fruit or a vegetable? (Botanically, it's a fruit, culinarily, a vegetable!)",
+    chinese: "番茄 (fānqié)",
+    spanish: "tomate"
+  },
+  {
+    word: "Cucumber",
+    ipa: "/ˈkjuːkʌmbər/",
+    definition: "A long, green-skinned fruit with watery flesh, usually eaten raw in salads.",
+    example: "I like slices of **cucumber** in my water for refreshment.",
+    chinese: "黄瓜 (huángguā)",
+    spanish: "pepino"
+  },
+  {
+    word: "Onion",
+    ipa: "/ˈʌnjən/",
+    definition: "An edible bulb with a pungent taste and smell, composed of several concentric layers.",
+    example: "Chopping **onions** often makes your eyes water.",
+    chinese: "洋葱 (yángcōng)",
+    spanish: "cebolla"
+  },
+  {
+    word: "Garlic",
+    ipa: "/ˈɡɑːrlɪk/",
+    definition: "A strong-smelling, pungent-tasting bulb, used as a flavoring in cooking.",
+    example: "**Garlic** is a key ingredient in Italian cuisine.",
+    chinese: "大蒜 (dàsuàn)",
+    spanish: "ajo"
+  },
+  {
+    word: "Potato",
+    ipa: "/pəˈteɪtoʊ/",
+    definition: "A starchy plant tuber which is widely cultivated as a staple food.",
+    example: "French fries are made from **potatoes**.",
+    chinese: "土豆 (tǔdòu)",
+    spanish: "papa"
+  },
+  {
+    word: "Sweet potato",
+    ipa: "/swiːt pəˈteɪtoʊ/",
+    definition: "A starchy, sweet-tasting root vegetable, typically orange or purple.",
+    example: "Roasted **sweet potatoes** are a popular side dish.",
+    chinese: "红薯 (hóngshǔ)",
+    spanish: "camote"
+  },
+  {
+    word: "Bell pepper",
+    ipa: "/bɛl ˈpɛpər/",
+    definition: "A hollow, often bell-shaped, fruit eaten as a vegetable, typically green, yellow, orange, or red.",
+    example: "Red **bell peppers** add a nice crunch to stir-fries.",
+    chinese: "甜椒 (tiánjiāo)",
+    spanish: "pimiento"
+  },
+  {
+    word: "Mushroom",
+    ipa: "/ˈmʌʃruːm/",
+    definition: "A fleshy, spore-bearing fruiting body of a fungus, typically produced above ground on soil or on its food source.",
+    example: "Some people forage for wild **mushrooms**.",
+    chinese: "蘑菇 (mógū)",
+    spanish: "champiñón"
+  },
+  {
+    word: "Zucchini",
+    ipa: "/zuːˈkiːni/",
+    definition: "A green variety of summer squash, typically elongated and cylindrical.",
+    example: "Grilled **zucchini** is a simple and delicious side.",
+    chinese: "西葫芦 (xīhúlu)",
+    spanish: "calabacín"
+  },
+  {
+    word: "Eggplant",
+    ipa: "/ˈɛɡplænt/",
+    definition: "A plant of the nightshade family, bearing a large, dark purple, edible fruit.",
+    example: "Baba ghanoush is a dip made from **eggplant**.",
+    chinese: "茄子 (qiézi)",
+    spanish: "berenjena"
+  },
+  {
+    word: "Cabbage",
+    ipa: "/ˈkæbɪdʒ/",
+    definition: "A leafy green, red, or white biennial plant, grown for its dense, leafy heads.",
+    example: "Coleslaw is made with shredded **cabbage**.",
+    chinese: "卷心菜 (juǎnxīncài)",
+    spanish: "repollo"
+  },
+  {
+    word: "Cauliflower",
+    ipa: "/ˈkɑːlɪˌflaʊər/",
+    definition: "A cultivated variety of cabbage bearing a large, white flower head.",
+    example: "Roasted **cauliflower** can be a good substitute for mashed potatoes.",
+    chinese: "花椰菜 (huāyēcài)",
+    spanish: "coliflor"
+  },
+  {
+    word: "Brussels sprout",
+    ipa: "/ˌbrʌsəlz ˈspraʊt/",
+    definition: "A small cabbage-like bud eaten as a vegetable.",
+    example: "Many people don't like **Brussels sprouts**, but I enjoy them roasted.",
+    chinese: "抱子甘蓝 (bàozǐ gānlán)",
+    spanish: "col de Bruselas"
+  },
+  {
+    word: "Asparagus",
+    ipa: "/əˈspærəɡəs/",
+    definition: "A long, slender, green stalk, typically steamed or roasted.",
+    example: "**Asparagus** is a sign of spring.",
+    chinese: "芦笋 (lúsǔn)",
+    spanish: "espárrago"
+  },
+  {
+    word: "Celery",
+    ipa: "/ˈsɛləri/",
+    definition: "A plant of the parsley family with long, crisp leaf stalks, eaten as a vegetable.",
+    example: "I put **celery** in my tuna salad for extra crunch.",
+    chinese: "芹菜 (qíncài)",
+    spanish: "apio"
+  },
+  {
+    word: "Corn",
+    ipa: "/kɔːrn/",
+    definition: "A cereal plant that yields large kernels, usually yellow, on a cob, widely cultivated as a food crop.",
+    example: "**Corn** on the cob is a summer favorite.",
+    chinese: "玉米 (yùmǐ)",
+    spanish: "maíz"
+  },
+  {
+    word: "Peas",
+    ipa: "/piːz/",
+    definition: "Small, spherical green seeds eaten as a vegetable.",
+    example: "Green **peas** are often served with fish and chips.",
+    chinese: "豌豆 (wāndòu)",
+    spanish: "guisantes"
+  },
+  {
+    word: "Green beans",
+    ipa: "/ɡriːn biːnz/",
+    definition: "The immature green pods of the common bean, eaten as a vegetable.",
+    example: "Steamed **green beans** are a simple and healthy side.",
+    chinese: "四季豆 (sìjìdòu)",
+    spanish: "judías verdes"
+  },
+  {
+    word: "Artichoke",
+    ipa: "/ˈɑːrtɪtʃoʊk/",
+    definition: "A large, thistle-like plant whose edible flower head has spiny bracts and a fleshy base.",
+    example: "Eating an **artichoke** can be a bit tricky, but it's delicious.",
+    chinese: "朝鲜蓟 (cháoxiǎnjì)",
+    spanish: "alcachofa"
+  },
+  {
+    word: "Leek",
+    ipa: "/liːk/",
+    definition: "A plant related to the onion, with a long, white, edible bulb that is thicker than an onion.",
+    example: "**Leek** and potato soup is a classic comfort food.",
+    chinese: "韭葱 (jiǔcōng)",
+    spanish: "puerro"
+  },
+  {
+    word: "Kale",
+    ipa: "/keɪl/",
+    definition: "A hardy cabbage with coarse curly leaves, which do not form a compact head.",
+    example: "**Kale** is a superfood, often used in smoothies or salads.",
+    chinese: "羽衣甘蓝 (yǔyīgānlán)",
+    spanish: "col rizada"
+  },
+  {
+    word: "Collard greens",
+    ipa: "/ˈkɑːlərd ɡriːnz/",
+    definition: "A type of leafy green vegetable, popular in Southern US cuisine.",
+    example: "**Collard greens** are often cooked with smoked meats.",
+    chinese: "芥蓝 (jièlán)",
+    spanish: "berza"
+  },
+  {
+    word: "Beet",
+    ipa: "/biːt/",
+    definition: "A deep red root vegetable, often eaten boiled or pickled.",
+    example: "The vibrant color of **beets** can stain your hands.",
+    chinese: "甜菜 (tiáncài)",
+    spanish: "remolacha"
+  },
+  {
+    word: "Radish",
+    ipa: "/ˈrædɪʃ/",
+    definition: "A small, pungent, fleshy root vegetable, usually red.",
+    example: "**Radishes** add a peppery bite to salads.",
+    chinese: "萝卜 (luóbo)",
+    spanish: "rábano"
+  },
+  {
+    word: "Turnip",
+    ipa: "/ˈtɜːrnɪp/",
+    definition: "A round, white or cream-colored root vegetable.",
+    example: "**Turnips** can be roasted or added to stews.",
+    chinese: "芜菁 (wújīng)",
+    spanish: "nabo"
+  },
+  {
+    word: "Parsnip",
+    ipa: "/ˈpɑːrsnɪp/",
+    definition: "A long, cream-colored root vegetable, similar to a carrot but sweeter.",
+    example: "Roasted **parsnips** are a delicious alternative to potatoes.",
+    chinese: "欧洲防风 (ōuzhōu fángfēng)",
+    spanish: "chirivía"
+  },
+  {
+    word: "Pumpkin",
+    ipa: "/ˈpʌmpkɪn/",
+    definition: "A large, round, orange-yellow fruit with a thick rind and flesh, often used for pies or carving.",
+    example: "We carved a spooky face into the **pumpkin** for Halloween.",
+    chinese: "南瓜 (nánguā)",
+    spanish: "calabaza"
+  },
+  {
+    word: "Squash",
+    ipa: "/skwɑːʃ/",
+    definition: "A gourd-like fruit, typically eaten as a vegetable, with a hard rind and fleshy interior.",
+    example: "Butternut **squash** makes a wonderful soup.",
+    chinese: "西葫芦 (xīhúlu) / 南瓜 (nánguā) - (depends on type)",
+    spanish: "calabaza / zapallo"
+  },
+  {
+    word: "Okra",
+    ipa: "/ˈoʊkrə/",
+    definition: "A green, ridged pod containing small, edible seeds, often used in stews or fried.",
+    example: "**Okra** is a common ingredient in gumbo.",
+    chinese: "秋葵 (qiūkuí)",
+    spanish: "ocra / quimbombó"
+  },
+  {
+    word: "Arugula",
+    ipa: "/əˈruːɡjələ/",
+    definition: "A leafy green vegetable with a slightly bitter, peppery taste, used in salads.",
+    example: "**Arugula** adds a fresh, spicy note to pizza.",
+    chinese: "芝麻菜 (zhīmacài)",
+    spanish: "rúcula"
+  },
+  {
+    word: "Endive",
+    ipa: "/ˈɛndaɪv/",
+    definition: "A leafy vegetable with a slightly bitter taste, often used in salads.",
+    example: "**Endive** can be used as a scoop for dips.",
+    chinese: "菊苣 (jújù)",
+    spanish: "endibia"
+  },
+  {
+    word: "Fennel",
+    ipa: "/ˈfɛnl/",
+    definition: "A plant with a swollen, white, bulb-like base, green stalks, and feathery leaves, with a mild anise flavor.",
+    example: "Roasted **fennel** becomes sweet and tender.",
+    chinese: "茴香 (huíxiāng)",
+    spanish: "hinojo"
+  },
+  {
+    word: "Ginger",
+    ipa: "/ˈdʒɪndʒər/",
+    definition: "A pungent, spicy rhizome used as a spice and for flavoring.",
+    example: "**Ginger** is often used in Asian cuisine and for upset stomachs.",
+    chinese: "姜 (jiāng)",
+    spanish: "jengibre"
+  },
+  {
+    word: "Horseradish",
+    ipa: "/ˈhɔːrsˌrædɪʃ/",
+    definition: "A cultivated plant with a large, white, pungent root, used as a relish or condiment.",
+    example: "**Horseradish** sauce is a classic accompaniment to roast beef.",
+    chinese: "辣根 (làgēn)",
+    spanish: "rábano picante"
+  },
+  {
+    word: "Jicama",
+    ipa: "/ˈhɪkəmə/",
+    definition: "A crisp, sweet, edible root vegetable, resembling a turnip.",
+    example: "**Jicama** is great sliced into sticks for a refreshing snack.",
+    chinese: "凉薯 (liángshǔ)",
+    spanish: "jícama"
+  },
+  {
+    word: "Kohlrabi",
+    ipa: "/ˈkoʊlrɑːbi/",
+    definition: "A variety of cabbage that has a turnip-like edible stem.",
+    example: "**Kohlrabi** can be eaten raw or cooked.",
+    chinese: "大头菜 (dàtóucài)",
+    spanish: "colirrábano"
+  },
+  {
+    word: "Parsley",
+    ipa: "/ˈpɑːrsli/",
+    definition: "A biennial plant with crinkly or flat leaves, widely used as a culinary herb.",
+    example: "Garnish the soup with fresh **parsley**.",
+    chinese: "欧芹 (ōuqín)",
+    spanish: "perejil"
+  },
+  {
+    word: "Cilantro",
+    ipa: "/sɪˈlɑːntroʊ/",
+    definition: "The leaves of the coriander plant, used as an herb, especially in Mexican and Asian cuisine.",
+    example: "Some people love **cilantro**, others think it tastes like soap.",
+    chinese: "香菜 (xiāngcài)",
+    spanish: "cilantro"
+  },
+  {
+    word: "Dill",
+    ipa: "/dɪl/",
+    definition: "An aromatic herb with feathery green leaves, used as a seasoning.",
+    example: "**Dill** is commonly used with fish and in pickles.",
+    chinese: "莳萝 (shíluó)",
+    spanish: "eneldo"
+  },
+  {
+    word: "Chives",
+    ipa: "/tʃaɪvz/",
+    definition: "A small, slender bulbous plant of the onion family, used as a culinary herb.",
+    example: "Sprinkle chopped **chives** over your baked potato.",
+    chinese: "细香葱 (xìxiāngcōng)",
+    spanish: "cebollino"
+  },
+  {
+    word: "Mint",
+    ipa: "/mɪnt/",
+    definition: "An aromatic plant whose leaves are used as a culinary herb and for flavoring.",
+    example: "**Mint** is refreshing in tea or added to desserts.",
+    chinese: "薄荷 (bòhe)",
+    spanish: "menta"
+  },
+  {
+    word: "Rosemary",
+    ipa: "/ˈroʊzmɛri/",
+    definition: "An aromatic evergreen shrub, whose leaves are used as a culinary herb.",
+    example: "**Rosemary** pairs well with roasted chicken.",
+    chinese: "迷迭香 (mídiéxiāng)",
+    spanish: "romero"
+  },
+  {
+    word: "Thyme",
+    ipa: "/taɪm/",
+    definition: "An aromatic evergreen herb with tiny leaves, used as a seasoning.",
+    example: "**Thyme** is a classic herb for soups and stews.",
+    chinese: "百里香 (bǎilǐxiāng)",
+    spanish: "tomillo"
+  },
+  {
+    word: "Scallion/Green onion",
+    ipa: "/ˈskæliən/ /ɡriːn ˈʌnjən/",
+    definition: "A long, thin onion, typically used raw or lightly cooked, including its green leaves.",
+    example: "Chop some **scallions** for a topping on your ramen.",
+    chinese: "葱 (cōng)",
+    spanish: "cebolleta / cebollín"
+  },
+  {
+    word: "Shallot",
+    ipa: "/ˈʃælət/",
+    definition: "A small bulbous plant of the onion family, with a mild onion flavor.",
+    example: "**Shallots** are often preferred over onions for their milder taste.",
+    chinese: "小葱 (xiǎocōng)",
+    spanish: "chalote"
+  },
+  {
+    word: "Vegetable garden",
+    ipa: "/ˈvɛdʒtəbəl ˈɡɑːrdən/",
+    definition: "A plot of ground where vegetables are grown.",
+    example: "My grandmother loves spending time in her **vegetable garden**.",
+    chinese: "菜园 (càiyuán)",
+    spanish: "huerto"
+  }
 ];
 
 let index = 0;
@@ -602,94 +710,96 @@ let flipped = false;
 const flashcard = document.getElementById("flashcard");
 
 function showCard() {
-  flipped = false;
-  flashcard.classList.remove("flipped");
-  flashcard.setAttribute("aria-pressed", "false");
-  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
-                           <div class="ipa">${flashcards[index].ipa}</div>
-                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  // Removed IPA from the first side
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
 }
 
 function flipCard() {
-  if (!flipped) {
-    const { word, ipa, definition, example } = flashcards[index];
-    flashcard.innerHTML = `
-      <div class="word">
-        ${word}
-        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
-      </div>
-      <div class="ipa">${ipa}</div>
-      <div class="definition">${definition}</div>
-      <div class="example">"${example}"</div>
-      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
-    `;
-    flashcard.classList.add("flipped");
-    flashcard.setAttribute("aria-pressed", "true");
-    flipped = true;
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      ${chinese ? `<div class="translation"><strong>Chinese:</strong> ${chinese}</div>` : ''}
+      ${spanish ? `<div class="translation"><strong>Spanish:</strong> ${spanish}</div>` : ''}
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
 
-    // Pronounce word when flipping
-    const speakerBtn = flashcard.querySelector(".speaker");
-    function speak() {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      speechSynthesis.speak(utterance);
-    }
-    speakerBtn.addEventListener("click", speak);
-    speakerBtn.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        speak();
-      }
-    });
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
 
-    // Auto pronounce once on flip
-    speak();
+    // Auto pronounce once on flip
+    speak();
 
-  } else {
-    showCard();
-  }
+  } else {
+    showCard();
+  }
 }
 
 function nextCard() {
-  index = (index + 1) % flashcards.length;
-  showCard();
+  index = (index + 1) % flashcards.length;
+  showCard();
 }
 
 function prevCard() {
-  index = (index - 1 + flashcards.length) % flashcards.length;
-  showCard();
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
 }
 
 showCard();
 </script>
 
 <div class="buttons">
-  <a href="../flashcards.html">← Back to Flashcards</a>
-  <a href="../index.html">🏠 Home</a>
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
 </div>
 
 <script>
-  // Mobile nav toggle script
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-    });
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
-  }
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
 </script>
 
 </body>

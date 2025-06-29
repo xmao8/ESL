@@ -219,6 +219,11 @@
       font-size: 1rem;
       margin-top: 0.3rem;
     }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
     .speaker {
       cursor: pointer;
       font-size: 1.6rem;
@@ -298,121 +303,161 @@ const flashcards = [
     word: "Salmon",
     ipa: "/ˈsæmən/",
     definition: "A large, edible fish that spends most of its life in the sea but swims up rivers to breed.",
-    example: "Grilled **salmon** with lemon and dill is a healthy meal."
+    example: "Grilled **salmon** with lemon and dill is a healthy meal.",
+    chinese: "三文鱼 (Sānwènyú)",
+    spanish: "Salmón"
   },
   {
     word: "Tuna",
     ipa: "/ˈtuːnə/",
     definition: "A large, active predatory fish of the mackerel family, found in warm seas.",
-    example: "Canned **tuna** is a popular ingredient for sandwiches."
+    example: "Canned **tuna** is a popular ingredient for sandwiches.",
+    chinese: "金枪鱼 (Jīnqiāngyú)",
+    spanish: "Atún"
   },
   {
     word: "Cod",
     ipa: "/kɑːd/",
     definition: "A large marine food fish with a barbel on its chin.",
-    example: "Fish and chips often use **cod**."
+    example: "Fish and chips often use **cod**.",
+    chinese: "鳕鱼 (Xuěyú)",
+    spanish: "Bacalao"
   },
   {
     word: "Trout",
     ipa: "/traʊt/",
     definition: "A common freshwater fish of the salmon family, popular for sport fishing and food.",
-    example: "We went fishing for **trout** in the mountain stream."
+    example: "We went fishing for **trout** in the mountain stream.",
+    chinese: "鳟鱼 (Zūnyú)",
+    spanish: "Trucha"
   },
   {
     word: "Mackerel",
     ipa: "/ˈmækərəl/",
     definition: "A predatory marine fish with a streamlined, cylindrical body, commonly found in temperate and tropical waters.",
-    example: "Smoked **mackerel** has a strong, distinct flavor."
+    example: "Smoked **mackerel** has a strong, distinct flavor.",
+    chinese: "鲭鱼 (Qīngyú)",
+    spanish: "Caballa"
   },
   {
     word: "Sardine",
     ipa: "/ˈsɑːrdiːn/",
     definition: "A small, oily, edible fish of the herring family, often canned.",
-    example: "**Sardines** are packed with omega-3 fatty acids."
+    example: "**Sardines** are packed with omega-3 fatty acids.",
+    chinese: "沙丁鱼 (Shādīngyú)",
+    spanish: "Sardina"
   },
   {
     word: "Herring",
     ipa: "/ˈhɛrɪŋ/",
     definition: "A silvery fish that swims in large schools in the North Atlantic and Pacific Oceans.",
-    example: "Pickled **herring** is a traditional dish in some Northern European countries."
+    example: "Pickled **herring** is a traditional dish in some Northern European countries.",
+    chinese: "鲱鱼 (Fēiyú)",
+    spanish: "Arenque"
   },
   {
     word: "Halibut",
     ipa: "/ˈhælɪbət/",
     definition: "A large, flat marine fish, highly valued for food.",
-    example: "**Halibut** is known for its firm, white flesh."
+    example: "**Halibut** is known for its firm, white flesh.",
+    chinese: "大比目鱼 (Dàbǐmùyú)",
+    spanish: "Fletán"
   },
   {
     word: "Tilapia",
     ipa: "/tɪˈlɑːpiə/",
     definition: "A freshwater fish native to Africa and the Middle East, widely farmed for food.",
-    example: "**Tilapia** is a mild-flavored fish often used in tacos."
+    example: "**Tilapia** is a mild-flavored fish often used in tacos.",
+    chinese: "罗非鱼 (Luófēiyú)",
+    spanish: "Tilapia"
   },
   {
     word: "Bass",
     ipa: "/bæs/",
     definition: "A name for various species of fish, both freshwater and marine, often popular for sport fishing.",
-    example: "He caught a largemouth **bass** in the lake."
+    example: "He caught a largemouth **bass** in the lake.",
+    chinese: "鲈鱼 (Lúyú)",
+    spanish: "Lubina"
   },
   {
     word: "Pike",
     ipa: "/paɪk/",
     definition: "A long-bodied, predatory freshwater fish with a pointed snout and large mouth.",
-    example: "The northern **pike** is a fierce predator in its habitat."
+    example: "The northern **pike** is a fierce predator in its habitat.",
+    chinese: "梭子鱼 (Suōziyú)",
+    spanish: "Lucio"
   },
   {
     word: "Carp",
     ipa: "/kɑːrp/",
     definition: "A large freshwater fish, often found in ponds and slow-moving rivers.",
-    example: "**Carp** can be quite large and are sometimes considered a nuisance species."
+    example: "**Carp** can be quite large and are sometimes considered a nuisance species.",
+    chinese: "鲤鱼 (Lǐyú)",
+    spanish: "Carpa"
   },
   {
     word: "Catfish",
     ipa: "/ˈkætˌfɪʃ/",
     definition: "A freshwater fish with whisker-like barbels around its mouth.",
-    example: "Fried **catfish** is a Southern American delicacy."
+    example: "Fried **catfish** is a Southern American delicacy.",
+    chinese: "鲶鱼 (Niányú)",
+    spanish: "Bagre"
   },
   {
     word: "Swordfish",
     ipa: "/ˈsɔːrdfɪʃ/",
     definition: "A large, predatory marine fish with a long, flattened, sword-like bill.",
-    example: "**Swordfish** steaks are often grilled."
+    example: "**Swordfish** steaks are often grilled.",
+    chinese: "剑鱼 (Jiànyú)",
+    spanish: "Pez espada"
   },
   {
     word: "Mahi-Mahi",
     ipa: "/ˈmɑːhi ˈmɑːhi/",
     definition: "A highly migratory, surface-dwelling ray-finned fish found in off-shore temperate, tropical, and subtropical waters worldwide.",
-    example: "**Mahi-mahi** is also known as dolphin fish, but it's not a mammal."
+    example: "**Mahi-mahi** is also known as dolphin fish, but it's not a mammal.",
+    chinese: "鲯鳅鱼 (Qíqiūyú)",
+    spanish: "Dorado (or Mahi-mahi)"
   },
   {
     word: "Flounder",
     ipa: "/ˈflaʊndər/",
     definition: "A flatfish that lies on its side and has both eyes on the upper side of its head.",
-    example: "Baked **flounder** is a delicate and flaky dish."
+    example: "Baked **flounder** is a delicate and flaky dish.",
+    chinese: "比目鱼 (Bǐmùyú)",
+    spanish: "Lenguado"
   },
   {
     word: "Sole",
     ipa: "/soʊl/",
     definition: "A genus of flatfish, highly valued as food.",
-    example: "Dover **sole** is considered a culinary treat."
+    example: "Dover **sole** is considered a culinary treat.",
+    chinese: "鳎鱼 (Tǎyú)",
+    spanish: "Lenguado"
   },
   {
     word: "Perch",
     ipa: "/pɜːrtʃ/",
     definition: "A freshwater spiny-finned fish, widely distributed in the Northern Hemisphere.",
-    example: "Many anglers enjoy catching **perch**."
+    example: "Many anglers enjoy catching **perch**.",
+    chinese: "鲈鱼 (Lúyú)", // Note: 'Lúyú' can refer to different types of perch/bass
+    spanish: "Perca"
   },
   {
     word: "Snapper",
     ipa: "/ˈsnæpər/",
     definition: "A marine food fish, typically red or pinkish in color, with strong jaws and sharp teeth.",
-    example: "Red **snapper** is a popular choice for whole roasted fish."
+    example: "Red **snapper** is a popular choice for whole roasted fish.",
+    chinese: "鲷鱼 (Diāoyú)",
+    spanish: "Pargo"
   },
   {
     word: "Anchovy",
     ipa: "/ˈæntʃoʊvi/",
     definition: "A small, common saltwater forage fish of the Engraulidae family.",
-    example: "**Anchovies** are often used to add a salty, umami flavor to dishes."
+    example: "**Anchovies** are often used to add a salty, umami flavor to dishes.",
+    chinese: "凤尾鱼 (Fèngwěiyú)",
+    spanish: "Anchoa"
   }
 ];
 
@@ -432,7 +477,7 @@ function showCard() {
 
 function flipCard() {
   if (!flipped) {
-    const { word, ipa, definition, example } = flashcards[index];
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
     flashcard.innerHTML = `
       <div class="word">
         ${word}
@@ -441,6 +486,8 @@ function flipCard() {
       <div class="ipa">${ipa}</div>
       <div class="definition">${definition}</div>
       <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
       <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
     flashcard.classList.add("flipped");

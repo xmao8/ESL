@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animals Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Animals Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Dog",
+    ipa: "/dɔːɡ/",
+    definition: "A domesticated carnivorous mammal that typically has a long snout, an acute sense of smell, and a barking, howling, or whining voice.",
+    example: "My neighbor's **dog** barks every morning.",
+    chinese: "狗 (gǒu)",
+    spanish: "Perro"
+  },
+  {
+    word: "Cat",
+    ipa: "/kæt/",
+    definition: "A small domesticated carnivorous mammal with soft fur, a short snout, and retractile claws. It is widely kept as a pet or for catching mice.",
+    example: "The **cat** curled up on the sofa and went to sleep.",
+    chinese: "猫 (māo)",
+    spanish: "Gato"
+  },
+  {
+    word: "Bird",
+    ipa: "/bɜːrd/",
+    definition: "A warm-blooded egg-laying vertebrate distinguished by the possession of feathers, wings, a beak, and usually by being able to fly.",
+    example: "A little **bird** was singing outside my window.",
+    chinese: "鸟 (niǎo)",
+    spanish: "Pájaro / Ave"
+  },
+  {
+    word: "Fish",
+    ipa: "/fɪʃ/",
+    definition: "A limbless cold-blooded vertebrate animal with gills and fins living wholly in water.",
+    example: "We saw many colorful **fish** while snorkeling.",
+    chinese: "鱼 (yú)",
+    spanish: "Pez (live) / Pescado (food)"
+  },
+  {
+    word: "Horse",
+    ipa: "/hɔːrs/",
+    definition: "A large, strong, four-legged animal with a mane and tail, used for riding, racing, and carrying things.",
+    example: "She loves riding her **horse** in the countryside.",
+    chinese: "马 (mǎ)",
+    spanish: "Caballo"
+  },
+  {
+    word: "Cow",
+    ipa: "/kaʊ/",
+    definition: "A large female bovine animal kept for milk or meat.",
+    example: "The **cow** was grazing in the field.",
+    chinese: "牛 (niú)",
+    spanish: "Vaca"
+  },
+  {
+    word: "Pig",
+    ipa: "/pɪɡ/",
+    definition: "A domesticated hoofed mammal with a stout body, short legs, and a snout, bred for meat.",
+    example: "The farmer raises **pigs** on his farm.",
+    chinese: "猪 (zhū)",
+    spanish: "Cerdo / Puerco"
+  },
+  {
+    word: "Chicken",
+    ipa: "/ˈtʃɪkɪn/",
+    definition: "A domesticated fowl kept for its eggs or meat.",
+    example: "The **chicken** laid an egg this morning.",
+    chinese: "鸡 (jī)",
+    spanish: "Pollo / Gallina"
+  },
+  {
+    word: "Sheep",
+    ipa: "/ʃiːp/",
+    definition: "A domesticated ruminant mammal with a thick woolly fleece and (typically only in the male) curving horns.",
+    example: "The **sheep** were sheared for their wool.",
+    chinese: "绵羊 (miányáng)",
+    spanish: "Oveja"
+  },
+  {
+    word: "Lion",
+    ipa: "/ˈlaɪən/",
+    definition: "A large tawny-colored cat that lives in prides, found in Africa and northwest India.",
+    example: "The **lion** roared loudly in the jungle.",
+    chinese: "狮子 (shīzi)",
+    spanish: "León"
+  },
+  {
+    word: "Tiger",
+    ipa: "/ˈtaɪɡər/",
+    definition: "A very large solitary cat with a yellow-brown coat striped with black, native to the forests of Asia.",
+    example: "A **tiger** has distinctive black stripes.",
+    chinese: "老虎 (lǎohǔ)",
+    spanish: "Tigre"
+  },
+  {
+    word: "Elephant",
+    ipa: "/ˈɛlɪfənt/",
+    definition: "A very large plant-eating mammal with a prehensile trunk, long curved tusks, and large ears, native to Africa and Asia.",
+    example: "The **elephant** used its trunk to spray water.",
+    chinese: "大象 (dàxiàng)",
+    spanish: "Elefante"
+  },
+  {
+    word: "Monkey",
+    ipa: "/ˈmʌŋki/",
+    definition: "A primate typically having a long tail and living in trees in tropical countries.",
+    example: "The **monkey** swung from branch to branch.",
+    chinese: "猴子 (hóuzi)",
+    spanish: "Mono"
+  },
+  {
+    word: "Bear",
+    ipa: "/bɛər/",
+    definition: "A large, heavy, hairy mammal that walks on the soles of its feet, with prominent claws and a short tail.",
+    example: "We saw a **bear** fishing for salmon in the river.",
+    chinese: "熊 (xióng)",
+    spanish: "Oso"
+  },
+  {
+    word: "Wolf",
+    ipa: "/wʊlf/",
+    definition: "A wild carnivorous mammal of the dog family, living and hunting in packs.",
+    example: "A pack of **wolves** howled at the moon.",
+    chinese: "狼 (láng)",
+    spanish: "Lobo"
+  },
+  {
+    word: "Fox",
+    ipa: "/fɑːks/",
+    definition: "A carnivorous mammal of the dog family with a pointed muzzle and bushy tail, noted for its cunning.",
+    example: "The cunning **fox** outsmarted the hunters.",
+    chinese: "狐狸 (húlí)",
+    spanish: "Zorro"
+  },
+  {
+    word: "Deer",
+    ipa: "/dɪər/",
+    definition: "A hoofed ruminant mammal with deciduous antlers typically borne by the male.",
+    example: "A **deer** grazed peacefully in the forest.",
+    chinese: "鹿 (lù)",
+    spanish: "Ciervo"
+  },
+  {
+    word: "Rabbit",
+    ipa: "/ˈræbɪt/",
+    definition: "A burrowing, gregarious, plant-eating mammal with long ears, long hind legs, and a short fluffy tail.",
+    example: "The **rabbit** hopped across the lawn.",
+    chinese: "兔子 (tùzi)",
+    spanish: "Conejo"
+  },
+  {
+    word: "Mouse",
+    ipa: "/maʊs/",
+    definition: "A small rodent that typically has a pointed snout, rather large ears, and a long slender tail.",
+    example: "The **mouse** scurried across the floor.",
+    chinese: "老鼠 (lǎoshǔ)",
+    spanish: "Ratón"
+  },
+  {
+    word: "Snake",
+    ipa: "/sneɪk/",
+    definition: "A long, limbless reptile that has no eyelids, a short tail, and a jaw that is capable of considerable distension.",
+    example: "Be careful; there might be a **snake** in the grass.",
+    chinese: "蛇 (shé)",
+    spanish: "Serpiente"
+  },
+  {
+    word: "Crocodile",
+    ipa: "/ˈkrɑːkədaɪl/",
+    definition: "A large predatory semiaquatic reptile with a long snout and powerful jaws, native to tropical regions.",
+    example: "A **crocodile** was lurking in the murky water.",
+    chinese: "鳄鱼 (èyú)",
+    spanish: "Cocodrilo"
+  },
+  {
+    word: "Turtle",
+    ipa: "/ˈtɜːrtl/",
+    definition: "A reptile of the order Testudines, having a shell-encased body.",
+    example: "The sea **turtle** swam gracefully through the ocean.",
+    chinese: "海龟 / 乌龟 (hǎiguī / wūguī)",
+    spanish: "Tortuga"
+  },
+  {
+    word: "Frog",
+    ipa: "/frɑːɡ/",
+    definition: "A tailless amphibian with a short squat body, moist smooth skin, and very long hind legs for leaping.",
+    example: "The **frog** jumped into the pond.",
+    chinese: "青蛙 (qīngwā)",
+    spanish: "Rana"
+  },
+  {
+    word: "Spider",
+    ipa: "/ˈspaɪdər/",
+    definition: "An eight-legged arachnid with an unsegmented body and a spinneret for spinning webs.",
+    example: "A large **spider** built a web in the corner of the room.",
+    chinese: "蜘蛛 (zhīzhū)",
+    spanish: "Araña"
+  },
+  {
+    word: "Bee",
+    ipa: "/biː/",
+    definition: "A stinging winged insect that collects nectar and pollen, producing wax and honey.",
+    example: "A **bee** flew out of the flower.",
+    chinese: "蜜蜂 (mìfēng)",
+    spanish: "Abeja"
+  },
+  {
+    word: "Butterfly",
+    ipa: "/ˈbʌtərflaɪ/",
+    definition: "An insect with four large, often brightly colored wings, a slender body, and antennae.",
+    example: "A beautiful **butterfly** landed on the flower.",
+    chinese: "蝴蝶 (húdié)",
+    spanish: "Mariposa"
+  },
+  {
+    word: "Ant",
+    ipa: "/ænt/",
+    definition: "A small insect typically living in large colonies with a complex social organization.",
+    example: "An **ant** carried a crumb much larger than itself.",
+    chinese: "蚂蚁 (mǎyǐ)",
+    spanish: "Hormiga"
+  },
+  {
+    word: "Mosquito",
+    ipa: "/məˈskiːtoʊ/",
+    definition: "A slender long-legged fly with aquatic larvae. The females suck the blood of mammals and birds, and some kinds transmit diseases.",
+    example: "I got bitten by a **mosquito** last night.",
+    chinese: "蚊子 (wénzi)",
+    spanish: "Mosquito"
+  },
+  {
+    word: "Fly",
+    ipa: "/flaɪ/",
+    definition: "A two-winged insect of a large order that also includes gnats and mosquitoes.",
+    example: "There's a **fly** buzzing around the kitchen.",
+    chinese: "苍蝇 (cāngyíng)",
+    spanish: "Mosca"
+  },
+  {
+    word: "Shark",
+    ipa: "/ʃɑːrk/",
+    definition: "A large predatory marine fish with a cartilaginous skeleton and five to seven gill slits on each side of the head.",
+    example: "We saw a **shark** fin in the distance.",
+    chinese: "鲨鱼 (shāyú)",
+    spanish: "Tiburón"
+  },
+  {
+    word: "Whale",
+    ipa: "/weɪl/",
+    definition: "A very large marine mammal with a streamlined hairless body, a horizontal fluke, and a blowhole on top of the head for breathing.",
+    example: "The **whale** breached out of the water.",
+    chinese: "鲸鱼 (jīngyú)",
+    spanish: "Ballena"
+  },
+  {
+    word: "Dolphin",
+    ipa: "/ˈdɑːlfɪn/",
+    definition: "A small toothed whale that typically has a beaklike snout and a curved fin on the back.",
+    example: "We watched the **dolphins** jump and play in the waves.",
+    chinese: "海豚 (hǎitún)",
+    spanish: "Delfín"
+  },
+  {
+    word: "Seal",
+    ipa: "/siːl/",
+    definition: "A carnivorous mammal that lives in the sea and on land, with a streamlined body and limbs that are modified into flippers.",
+    example: "A group of **seals** were basking on the rocks.",
+    chinese: "海豹 (hǎibào)",
+    spanish: "Foca"
+  },
+  {
+    word: "Penguin",
+    ipa: "/ˈpɛŋɡwɪn/",
+    definition: "A large flightless seabird of the southern hemisphere, having a sleek, black and white plumage and short, paddle-like wings.",
+    example: "The **penguin** waddled across the ice.",
+    chinese: "企鹅 (qǐ'é)",
+    spanish: "Pingüino"
+  },
+  {
+    word: "Owl",
+    ipa: "/aʊl/",
+    definition: "A nocturnal bird of prey with large eyes, a flat face, and a hooked beak.",
+    example: "An **owl** hooted from the top of the tree.",
+    chinese: "猫头鹰 (māotóuyīng)",
+    spanish: "Búho"
+  },
+  {
+    word: "Eagle",
+    ipa: "/ˈiːɡl/",
+    definition: "A large bird of prey with a massive hooked bill and long broad wings, noted for its keen sight and powerful soaring flight.",
+    example: "The **eagle** soared high above the mountains.",
+    chinese: "老鹰 (lǎoyīng)",
+    spanish: "Águila"
+  },
+  {
+    word: "Duck",
+    ipa: "/dʌk/",
+    definition: "A waterbird with a broad bill, short legs, and webbed feet.",
+    example: "The **duck** swam gracefully across the pond.",
+    chinese: "鸭子 (yāzi)",
+    spanish: "Pato"
+  },
+  {
+    word: "Goose",
+    ipa: "/ɡuːs/",
+    definition: "A large waterbird with a long neck, short legs, and webbed feet, larger than a duck.",
+    example: "A flock of **geese** flew in a V-formation.",
+    chinese: "鹅 (é)",
+    spanish: "Ganso / Oca"
+  },
+  {
+    word: "Rooster / Cock",
+    ipa: "/ˈruːstər / kɑːk/",
+    definition: "A male domestic fowl.",
+    example: "The **rooster** crowed at dawn.",
+    chinese: "公鸡 (gōngjī)",
+    spanish: "Gallo"
+  },
+  {
+    word: "Hen",
+    ipa: "/hɛn/",
+    definition: "A female fowl, especially of a domestic fowl.",
+    example: "The **hen** laid a fresh egg.",
+    chinese: "母鸡 (mǔjī)",
+    spanish: "Gallina"
+  },
+  {
+    word: "Goat",
+    ipa: "/ɡoʊt/",
+    definition: "A hardy domesticated ruminant mammal that has horns and a beard (in the male) and is kept for its milk, meat, and wool.",
+    example: "The **goat** climbed easily up the rocky hill.",
+    chinese: "山羊 (shānyáng)",
+    spanish: "Cabra"
+  },
+  {
+    word: "Donkey",
+    ipa: "/ˈdɑːŋki/",
+    definition: "A domesticated hoofed mammal of the horse family with long ears and a braying call, used as a beast of burden.",
+    example: "The farmer used a **donkey** to carry his load.",
+    chinese: "驴子 (lǘzi)",
+    spanish: "Burro"
+  },
+  {
+    word: "Camel",
+    ipa: "/ˈkæməl/",
+    definition: "A large, long-necked ruminant mammal of arid regions, with one or two humps on its back and long, slender legs.",
+    example: "They rode a **camel** across the desert.",
+    chinese: "骆驼 (luòtuo)",
+    spanish: "Camello"
+  },
+  {
+    word: "Zebra",
+    ipa: "/ˈziːbrə/",
+    definition: "An African wild horse with black-and-white stripes and an erect mane.",
+    example: "The **zebra** galloped across the savanna.",
+    chinese: "斑马 (bānmǎ)",
+    spanish: "Cebra"
+  },
+  {
+    word: "Giraffe",
+    ipa: "/dʒɪˈræf/",
+    definition: "A large African ruminant mammal with a very long neck and forelegs and a spotted coat.",
+    example: "The **giraffe** stretched its long neck to reach the highest leaves.",
+    chinese: "长颈鹿 (chángjǐnglù)",
+    spanish: "Jirafa"
+  },
+  {
+    word: "Kangaroo",
+    ipa: "/ˌkæŋɡəˈruː/",
+    definition: "A large herbivorous marsupial of Australia and New Guinea, with a long powerful tail and strong hind legs for hopping.",
+    example: "The baby **kangaroo** peeked out from its mother's pouch.",
+    chinese: "袋鼠 (dàishǔ)",
+    spanish: "Canguro"
+  },
+  {
+    word: "Panda",
+    ipa: "/ˈpændə/",
+    definition: "A large bear-like mammal with distinctive black and white markings, native to China.",
+    example: "The giant **panda** is a symbol of wildlife conservation.",
+    chinese: "熊猫 (xióngmāo)",
+    spanish: "Panda"
+  },
+  {
+    word: "Penguin",
+    ipa: "/ˈpɛŋɡwɪn/",
+    definition: "A large flightless seabird of the southern hemisphere, having a sleek, black and white plumage and short, paddle-like wings.",
+    example: "The **penguin** waddled across the ice.",
+    chinese: "企鹅 (qǐ'é)",
+    spanish: "Pingüino"
+  },
+  {
+    word: "Crocodile",
+    ipa: "/ˈkrɑːkədaɪl/",
+    definition: "A large predatory semiaquatic reptile with a long snout and powerful jaws, native to tropical regions.",
+    example: "A **crocodile** was lurking in the murky water.",
+    chinese: "鳄鱼 (èyú)",
+    spanish: "Cocodrilo"
+  },
+  {
+    word: "Octopus",
+    ipa: "/ˈɑːktəpəs/",
+    definition: "A marine mollusk with eight sucker-bearing arms, a soft sac-like body, and strong beaklike jaws.",
+    example: "The **octopus** can change its color to camouflage.",
+    chinese: "章鱼 (zhāngyú)",
+    spanish: "Pulpo"
+  },
+  {
+    word: "Jellyfish",
+    ipa: "/ˈdʒɛliˌfɪʃ/",
+    definition: "A free-swimming marine coelenterate with a bell-shaped or saucer-shaped body, tentacles, and a pulsating motion.",
+    example: "Be careful not to touch the **jellyfish**; they can sting.",
+    chinese: "水母 (shuǐmǔ)",
+    spanish: "Medusa"
+  },
+  {
+    word: "Squirrel",
+    ipa: "/ˈskwɜːrəl/",
+    definition: "An agile tree-dwelling rodent with a bushy tail.",
+    example: "A **squirrel** buried nuts in the garden.",
+    chinese: "松鼠 (sōngshǔ)",
+    spanish: "Ardilla"
+  },
+  {
+    word: "Hedgehog",
+    ipa: "/ˈhɛdʒˌhɔːɡ/",
+    definition: "A small nocturnal mammal with a spiny coat and short legs, able to roll itself into a ball for defense.",
+    example: "The **hedgehog** curled into a ball when approached.",
+    chinese: "刺猬 (cìwei)",
+    spanish: "Erizo"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

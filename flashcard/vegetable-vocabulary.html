@@ -219,15 +219,16 @@
       font-size: 1rem;
       margin-top: 0.3rem;
     }
-    .translation {
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-      opacity: 0.9;
-    }
-    .translation strong {
-      font-weight: bold;
-      color: #ffeb3b; /* A lighter yellow for emphasis on flipped card */
-    }
+    /* New style for translations */
+    .translation {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+    .translation strong {
+      font-weight: bold;
+      color: #ffeb3b; /* A lighter yellow for emphasis on flipped card */
+    }
     .speaker {
       cursor: pointer;
       font-size: 1.6rem;
@@ -292,12 +293,12 @@
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
   <div class="word">Click to Flip</div>
-  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
   <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button onclick="nextCard()" aria-label="Next ➡</button>
 </div>
 
 <script>
@@ -713,14 +714,13 @@ function showCard() {
   flipped = false;
   flashcard.classList.remove("flipped");
   flashcard.setAttribute("aria-pressed", "false");
-  // Removed IPA from the first side
   flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
-                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+                                                      <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
 }
 
 function flipCard() {
   if (!flipped) {
-    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index]; // Destructure new properties
     flashcard.innerHTML = `
       <div class="word">
         ${word}

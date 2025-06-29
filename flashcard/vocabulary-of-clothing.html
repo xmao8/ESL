@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clothing Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Clothing Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Shirt",
+    ipa: "/ʃɜːrt/",
+    definition: "A garment for the upper body, typically with a collar and sleeves.",
+    example: "He wore a blue **shirt** with jeans.",
+    chinese: "衬衫 (chènshān)",
+    spanish: "Camisa"
+  },
+  {
+    word: "T-shirt",
+    ipa: "/ˈtiː ʃɜːrt/",
+    definition: "A casual top, usually short-sleeved and collarless.",
+    example: "She put on a comfortable **T-shirt** after her workout.",
+    chinese: "T恤衫 (T xùshān)",
+    spanish: "Camiseta"
+  },
+  {
+    word: "Pants",
+    ipa: "/pænts/",
+    definition: "An outer garment covering the body from the waist to the ankles, with a separate part for each leg.",
+    example: "He bought a new pair of black **pants** for work.",
+    chinese: "裤子 (kùzi)",
+    spanish: "Pantalones"
+  },
+  {
+    word: "Jeans",
+    ipa: "/dʒiːnz/",
+    definition: "Trousers made from denim, a type of strong cotton fabric.",
+    example: "Everyone loves to wear comfortable **jeans** on the weekends.",
+    chinese: "牛仔裤 (niúzǎikù)",
+    spanish: "Vaqueros / Jeans"
+  },
+  {
+    word: "Dress",
+    ipa: "/drɛs/",
+    definition: "A one-piece garment for women or girls, consisting of a bodice and skirt.",
+    example: "She wore a beautiful red **dress** to the formal event.",
+    chinese: "连衣裙 (liányīqún)",
+    spanish: "Vestido"
+  },
+  {
+    word: "Skirt",
+    ipa: "/skɜːrt/",
+    definition: "A garment hanging from the waist, worn by women and girls.",
+    example: "The long flowy **skirt** was perfect for summer.",
+    chinese: "裙子 (qúnzi)",
+    spanish: "Falda"
+  },
+  {
+    word: "Jacket",
+    ipa: "/ˈdʒækɪt/",
+    definition: "An outer garment extending to the waist or hips, with sleeves, worn for warmth or protection.",
+    example: "It's cold outside, so grab your **jacket**.",
+    chinese: "夹克 (jiákè)",
+    spanish: "Chaqueta"
+  },
+  {
+    word: "Coat",
+    ipa: "/koʊt/",
+    definition: "An outer garment worn for warmth or fashion, usually longer than a jacket.",
+    example: "She put on her heavy winter **coat** before going out.",
+    chinese: "大衣 (dàyī)",
+    spanish: "Abrigo"
+  },
+  {
+    word: "Sweater",
+    ipa: "/ˈswɛtər/",
+    definition: "A knitted garment worn on the upper part of the body, typically made of wool or cotton.",
+    example: "He loves to wear a warm **sweater** in the fall.",
+    chinese: "毛衣 (máoyī)",
+    spanish: "Suéter / Jersey"
+  },
+  {
+    word: "Hoodie",
+    ipa: "/ˈhʊdi/",
+    definition: "A sweatshirt with a hood.",
+    example: "He always wears his favorite **hoodie** when he goes jogging.",
+    chinese: "连帽衫 (liánmàoshān)",
+    spanish: "Sudadera con capucha"
+  },
+  {
+    word: "Socks",
+    ipa: "/sɑːks/",
+    definition: "A garment worn on the foot and lower part of the leg.",
+    example: "Don't forget to put on your **socks** before your shoes.",
+    chinese: "袜子 (wàzi)",
+    spanish: "Calcetines"
+  },
+  {
+    word: "Shoes",
+    ipa: "/ʃuːz/",
+    definition: "A covering for the foot, typically made of leather, with a sturdy sole and not reaching above the ankle.",
+    example: "She bought a new pair of comfortable walking **shoes**.",
+    chinese: "鞋子 (xiézi)",
+    spanish: "Zapatos"
+  },
+  {
+    word: "Sneakers",
+    ipa: "/ˈsniːkərz/",
+    definition: "Soft shoes suitable for sports or casual wear.",
+    example: "He prefers to wear **sneakers** for their comfort.",
+    chinese: "运动鞋 (yùndòngxié)",
+    spanish: "Zapatillas de deporte"
+  },
+  {
+    word: "Boots",
+    ipa: "/buːts/",
+    definition: "A type of shoe that covers the whole foot and lower part of the leg.",
+    example: "She wore waterproof **boots** for hiking in the mountains.",
+    chinese: "靴子 (xuēzi)",
+    spanish: "Botas"
+  },
+  {
+    word: "Hat",
+    ipa: "/hæt/",
+    definition: "A covering for the head, often with a brim.",
+    example: "He put on a baseball **hat** to protect his face from the sun.",
+    chinese: "帽子 (màozi)",
+    spanish: "Sombrero / Gorra"
+  },
+  {
+    word: "Cap",
+    ipa: "/kæp/",
+    definition: "A soft, flat hat, typically with a visor.",
+    example: "He always wears his favorite sports **cap**.",
+    chinese: "鸭舌帽 / 便帽 (yāshémào / biànmào)",
+    spanish: "Gorra"
+  },
+  {
+    word: "Scarf",
+    ipa: "/skɑːrf/",
+    definition: "A length of fabric worn around the neck, head, or shoulders for warmth, sun protection, fashion, or religious reasons.",
+    example: "She tied a colorful **scarf** around her neck.",
+    chinese: "围巾 (wéijīn)",
+    spanish: "Bufanda / Pañuelo"
+  },
+  {
+    word: "Gloves",
+    ipa: "/ɡlʌvz/",
+    definition: "A covering for the hand worn for protection against cold or dirt and typically having separate sections for each finger and the thumb.",
+    example: "Don't forget your **gloves** if it's very cold outside.",
+    chinese: "手套 (shǒutào)",
+    spanish: "Guantes"
+  },
+  {
+    word: "Mittens",
+    ipa: "/ˈmɪtənz/",
+    definition: "Gloves with a single section for all the fingers, and a separate one for the thumb.",
+    example: "Children often wear warm **mittens** to play in the snow.",
+    chinese: "连指手套 (liánzhǐ shǒutào)",
+    spanish: "Manoplas"
+  },
+  {
+    word: "Belt",
+    ipa: "/bɛlt/",
+    definition: "A strip of leather or other material worn around the waist or over the shoulder to support clothes or carry weapons.",
+    example: "He tightened his **belt** after losing weight.",
+    chinese: "皮带 (pídài)",
+    spanish: "Cinturón"
+  },
+  {
+    word: "Tie",
+    ipa: "/taɪ/",
+    definition: "A strip of material worn around the neck, especially by men, and knotted at the front.",
+    example: "He wore a suit and a red **tie** to the interview.",
+    chinese: "领带 (lǐngdài)",
+    spanish: "Corbata"
+  },
+  {
+    word: "Suit",
+    ipa: "/suːt/",
+    definition: "A set of outer clothes made of the same fabric and designed to be worn together, typically consisting of a jacket and trousers or a skirt.",
+    example: "He always wears a business **suit** to important meetings.",
+    chinese: "西装 (xīzhuāng)",
+    spanish: "Traje"
+  },
+  {
+    word: "Blouse",
+    ipa: "/blaʊs/",
+    definition: "A woman's loose-fitting upper garment, typically worn with a skirt or trousers.",
+    example: "She wore a silk **blouse** with her black skirt.",
+    chinese: "女衬衫 (nǚchènshān)",
+    spanish: "Blusa"
+  },
+  {
+    word: "Sweatpants",
+    ipa: "/ˈswɛtpænts/",
+    definition: "Casual trousers, typically made of cotton or polyester, worn for exercise or relaxation.",
+    example: "He likes to wear comfortable **sweatpants** around the house.",
+    chinese: "运动裤 (yùndòngkù)",
+    spanish: "Pantalones de chándal"
+  },
+  {
+    word: "Shorts",
+    ipa: "/ʃɔːrts/",
+    definition: "Trousers that only reach to the knees or higher.",
+    example: "It's hot today, so I'm wearing **shorts**.",
+    chinese: "短裤 (duǎnkù)",
+    spanish: "Pantalones cortos / Shorts"
+  },
+  {
+    word: "Swimsuit",
+    ipa: "/ˈswɪmsuːt/",
+    definition: "A garment worn for swimming, by either sex.",
+    example: "Don't forget your **swimsuit** for the beach trip.",
+    chinese: "泳衣 (yǒngyī)",
+    spanish: "Traje de baño"
+  },
+  {
+    word: "Underwear",
+    ipa: "/ˈʌndərwer/",
+    definition: "Clothes worn next to the skin, under other clothes.",
+    example: "You should change your **underwear** every day.",
+    chinese: "内衣 (nèiyī)",
+    spanish: "Ropa interior"
+  },
+  {
+    word: "Pajamas",
+    ipa: "/pəˈdʒæməz/",
+    definition: "Loose-fitting garments worn for sleeping.",
+    example: "He put on his warm **pajamas** before bed.",
+    chinese: "睡衣 (shuìyī)",
+    spanish: "Pijama"
+  },
+  {
+    word: "Robe",
+    ipa: "/roʊb/",
+    definition: "A long, loose outer garment.",
+    example: "She put on a soft **robe** after her shower.",
+    chinese: "浴袍 / 长袍 (yùpáo / chángpáo)",
+    spanish: "Bata"
+  },
+  {
+    word: "Vest",
+    ipa: "/vɛst/",
+    definition: "A sleeveless upper body garment, typically worn over a shirt.",
+    example: "He wore a nice wool **vest** over his shirt.",
+    chinese: "背心 / 马甲 (bèixīn / mǎjiǎ)",
+    spanish: "Chaleco"
+  },
+  {
+    word: "Gloves",
+    ipa: "/ɡlʌvz/",
+    definition: "A covering for the hand worn for protection against cold or dirt and typically having separate sections for each finger and the thumb.",
+    example: "Don't forget your **gloves** if it's very cold outside.",
+    chinese: "手套 (shǒutào)",
+    spanish: "Guantes"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

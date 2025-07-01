@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noun-Verb Pairs Flashcards – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .main-term {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #3498db; /* Default color for speaker on noun side */
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #2980b9;
+    }
+    .flashcard.flipped .speaker {
+      color: #fff; /* White color for speaker on flipped side */
+    }
+    .flashcard.flipped .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Same Form Noun-Verb Pairs Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="main-term" id="card-term"></div>
+  <div class="ipa" id="card-ipa"></div>
+  <div class="definition" id="card-definition"></div>
+  <div class="example" id="card-example"></div>
+  <div class="translation" id="card-chinese"></div>
+  <div class="translation" id="card-spanish"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    noun: "conflict", ipa_n: "/ˈkɑːnflɪkt/", def_n: "A serious disagreement or argument.", example_n: "There was a **conflict** between the two sides.", chinese_n: "冲突 (chōngtū)", spanish_n: "Conflicto",
+    verb: "conflict", ipa_v: "/kənˈflɪkt/", def_v: "Be incompatible or at variance; clash.", example_v: "His actions **conflict** with his beliefs.", chinese_v: "冲突 (chōngtū)", spanish_v: "Entrar en conflicto"
+  },
+  {
+    noun: "record", ipa_n: "/ˈrɛkərd/", def_n: "A thing constituting a piece of evidence about past events, especially one preserved in writing or some other permanent form.", example_n: "She keeps a detailed **record** of her expenses.", chinese_n: "记录 (jìlù)", spanish_n: "Registro",
+    verb: "record", ipa_v: "/rɪˈkɔːrd/", def_v: "Set down in writing or some other permanent form for future reference.", example_v: "Please **record** the minutes of the meeting.", chinese_v: "录制 (lùzhì)", spanish_v: "Grabar/Registrar"
+  },
+  {
+    noun: "present", ipa_n: "/ˈprɛzənt/", def_n: "Something that is given.", example_n: "He received a nice **present** for his birthday.", chinese_n: "礼物 (lǐwù)", spanish_n: "Regalo",
+    verb: "present", ipa_v: "/prɪˈzɛnt/", def_v: "Give (something) to someone, especially formally or as a gift or award.", example_v: "She will **present** her findings tomorrow.", chinese_v: "呈现 (chéngxiàn)", spanish_v: "Presentar"
+  },
+  {
+    noun: "permit", ipa_n: "/ˈpɜːrmɪt/", def_n: "An official document giving someone authorization to do something.", example_n: "You need a **permit** to build here.", chinese_n: "许可证 (xǔkězhèng)", spanish_n: "Permiso",
+    verb: "permit", ipa_v: "/pərˈmɪt/", def_v: "Give authorization or consent to (someone) to do something.", example_v: "Smoking is not **permitted** indoors.", chinese_v: "允许 (yǔnxǔ)", spanish_v: "Permitir"
+  },
+  {
+    noun: "object", ipa_n: "/ˈɑːbdʒɪkt/", def_n: "A material thing that can be seen and touched.", example_n: "He picked up a strange **object**.", chinese_n: "物体 (wùtǐ)", spanish_n: "Objeto",
+    verb: "object", ipa_v: "/əbˈdʒɛkt/", def_v: "Say something to express one's disapproval of or disagreement with something.", example_v: "I **object** to your proposal.", chinese_v: "反对 (fǎnduì)", spanish_v: "Objetar"
+  },
+  {
+    noun: "conduct", ipa_n: "/ˈkɑːndʌkt/", def_n: "The manner in which an organization or activity is managed or directed.", example_n: "His **conduct** was unacceptable.", chinese_n: "行为 (xíngwéi)", spanish_n: "Conducta",
+    verb: "conduct", ipa_v: "/kənˈdʌkt/", def_v: "Organize and carry out.", example_v: "They will **conduct** a survey.", chinese_v: "进行 (jìnxíng)", spanish_v: "Dirigir/Conducir"
+  },
+  {
+    noun: "address", ipa_n: "/ˈædrɛs/", def_n: "The particulars of the place where someone lives or an organization is situated.", example_n: "What's your new **address**?", chinese_n: "地址 (dìzhǐ)", spanish_n: "Dirección",
+    verb: "address", ipa_v: "/əˈdrɛs/", def_v: "Speak to (a person or an organization).", example_v: "He will **address** the audience.", chinese_v: "处理/讲话 (chǔlǐ/jiǎnghuà)", spanish_v: "Dirigirse a"
+  },
+  {
+    noun: "decrease", ipa_n: "/ˈdiːkriːs/", def_n: "A reduction in something.", example_n: "There was a sharp **decrease** in sales.", chinese_n: "减少 (jiǎnshǎo)", spanish_n: "Disminución",
+    verb: "decrease", ipa_v: "/dɪˈkriːs/", def_v: "Make or become smaller or fewer in size, amount, intensity, or degree.", example_v: "The population began to **decrease**.", chinese_v: "减少 (jiǎnshǎo)", spanish_v: "Disminuir"
+  },
+  {
+    noun: "impact", ipa_n: "/ˈɪmpækt/", def_n: "The striking of one object against another; collision.", example_n: "The **impact** of the car crash was severe.", chinese_n: "冲击 (chōngjī)", spanish_n: "Impacto",
+    verb: "impact", ipa_v: "/ɪmˈpækt/", def_v: "Have a strong effect on someone or something.", example_v: "The new policy will **impact** everyone.", chinese_v: "影响 (yǐngxiǎng)", spanish_v: "Impactar"
+  },
+  {
+    noun: "export", ipa_n: "/ˈɛkspɔːrt/", def_n: "A commodity, article, or service sold or sent to another country.", example_n: "Oil is a major **export** of the country.", chinese_n: "出口 (chūkǒu)", spanish_n: "Exportación",
+    verb: "export", ipa_v: "/ɪkˈspɔːrt/", def_v: "Send (goods or services) to another country for sale.", example_v: "They **export** cars to many countries.", chinese_v: "出口 (chūkǒu)", spanish_v: "Exportar"
+  },
+  {
+    noun: "import", ipa_n: "/ˈɪmpɔːrt/", def_n: "A commodity, article, or service brought into one country from another.", example_n: "Their main **import** is raw materials.", chinese_n: "进口 (jìnkǒu)", spanish_n: "Importación",
+    verb: "import", ipa_v: "/ɪmˈpɔːrt/", def_v: "Bring (goods or services) into a country from abroad for sale.", example_v: "We **import** coffee from Brazil.", chinese_v: "进口 (jìnkǒu)", spanish_v: "Importar"
+  },
+  {
+    noun: "protest", ipa_n: "/ˈproʊtɛst/", def_n: "A statement or action expressing disapproval of or objection to something.", example_n: "There was a huge **protest** against the new law.", chinese_n: "抗议 (kàngyì)", spanish_n: "Protesta",
+    verb: "protest", ipa_v: "/prəˈtɛst/", def_v: "Express an objection to what someone has said or done.", example_v: "They will **protest** the decision.", chinese_v: "抗议 (kàngyì)", spanish_v: "Protestar"
+  },
+  {
+    noun: "rebel", ipa_n: "/ˈrɛbl/", def_n: "A person who rises in opposition or armed resistance against an established government or ruler.", example_n: "He was a political **rebel**.", chinese_n: "反叛者 (fǎnpànzhě)", spanish_n: "Rebelde",
+    verb: "rebel", ipa_v: "/rɪˈbɛl/", def_v: "Rise in opposition or armed resistance to an established government or ruler.", example_v: "Children often **rebel** against their parents.", chinese_v: "反抗 (fǎnkàng)", spanish_v: "Rebelarse"
+  },
+  {
+    noun: "transfer", ipa_n: "/ˈtrænsfɜːr/", def_n: "An act of moving something or someone from one place to another.", example_n: "The data **transfer** was successful.", chinese_n: "转移 (zhuǎnyí)", spanish_n: "Transferencia",
+    verb: "transfer", ipa_v: "/trænsˈfɜːr/", def_v: "Move from one place to another.", example_v: "Can you **transfer** the files to my computer?", chinese_v: "转移 (zhuǎnyí)", spanish_v: "Transferir"
+  },
+  {
+    noun: "increase", ipa_n: "/ˈɪnkriːs/", def_n: "A raise in amount, size, or number.", example_n: "There was a sharp **increase** in prices.", chinese_n: "增加 (zēngjiā)", spanish_n: "Aumento",
+    verb: "increase", ipa_v: "/ɪnˈkriːs/", def_v: "Become or make greater in size, amount, intensity, or degree.", example_v: "Sales began to **increase** rapidly.", chinese_v: "增加 (zēngjiā)", spanish_v: "Aumentar"
+  },
+  {
+    noun: "contrast", ipa_n: "/ˈkɑːntræst/", def_n: "The state of being strikingly different from something else in juxtaposition or close association.", example_n: "The **contrast** between rich and poor is stark.", chinese_n: "对比 (duìbǐ)", spanish_n: "Contraste",
+    verb: "contrast", ipa_v: "/kənˈtræst/", def_v: "Compare in such a way as to emphasize differences.", example_v: "You should **contrast** the two theories.", chinese_v: "对比 (duìbǐ)", spanish_v: "Contrastar"
+  },
+  {
+    noun: "insight", ipa_n: "/ˈɪnsaɪt/", def_n: "The capacity to gain an accurate and deep understanding of someone or something.", example_n: "The report provided valuable **insight**.", chinese_n: "洞察力 (dòngchálì)", spanish_n: "Perspicacia",
+    verb: "insight", ipa_v: "/ɪnˈsaɪt/", def_v: "(Note: 'insight' is primarily a noun. As a verb, it is generally used with a direct object to mean 'to cause to see or understand clearly'. This is less common.)", example_v: "His explanation helped to **insight** the problem.", chinese_v: "启发 (qǐfā)", spanish_v: "Iluminar/Infundir"
+  },
+  {
+    noun: "suspect", ipa_n: "/ˈsʌspɛkt/", def_n: "A person thought to be guilty of a crime or offense.", example_n: "The police identified a **suspect**.", chinese_n: "嫌疑犯 (xiányífàn)", spanish_n: "Sospechoso/a",
+    verb: "suspect", ipa_v: "/səˈspɛkt/", def_v: "Have an idea or impression of the existence, presence, or truth of (something) without certain proof.", example_v: "I **suspect** he knows more than he's saying.", chinese_v: "怀疑 (huáiyí)", spanish_v: "Sospechar"
+  },
+  {
+    noun: "digest", ipa_n: "/ˈdaɪdʒɛst/", def_n: "A compilation or summary of material or information.", example_n: "He read a **digest** of the news.", chinese_n: "摘要 (zhāiyào)", spanish_n: "Resumen",
+    verb: "digest", ipa_v: "/daɪˈdʒɛst/", def_v: "Break down food in the stomach and intestines into substances that the body can absorb and use.", example_v: "The body needs time to **digest** food.", chinese_v: "消化 (xiāohuà)", spanish_v: "Digerir"
+  },
+  {
+    noun: "project", ipa_n: "/ˈprɑːdʒɛkt/", def_n: "An individual or collaborative enterprise that is carefully planned and designed to achieve a particular aim.", example_n: "The new building **project** is underway.", chinese_n: "项目 (xiàngmù)", spanish_n: "Proyecto",
+    verb: "project", ipa_v: "/prəˈdʒɛkt/", def_v: "Estimate or forecast (something) on the basis of present trends or past data.", example_v: "They **project** a rise in profits.", chinese_v: "预测/投射 (yùcè/tóushè)", spanish_v: "Proyectar"
+  },
+  // You will need to add the remaining 90 pairs here in a similar format.
+  // Each pair should be an object with properties for the noun and verb,
+  // including their IPA, definition, example, Chinese, and Spanish translations.
+  // Example for a placeholder pair:
+  // {
+  //   noun: "example", ipa_n: "/ɪɡˈzæmpl/", def_n: "A thing characteristic of its kind or illustrating a general rule.", example_n: "This is a good **example**.", chinese_n: "例子 (lìzi)", spanish_n: "Ejemplo",
+  //   verb: "example", ipa_v: "/ɪɡˈzæmpl/", def_v: "To show by example.", example_v: "She will **example** the correct way to do it.", chinese_v: "举例 (jǔlì)", spanish_v: "Ejemplificar"
+  // },
+];
+
+let index = 0;
+let flipped = false;
+let currentPart = 'noun'; // To keep track of which side is currently shown
+
+const flashcard = document.getElementById("flashcard");
+const cardTerm = document.getElementById("card-term");
+const cardIpa = document.getElementById("card-ipa");
+const cardDefinition = document.getElementById("card-definition");
+const cardExample = document.getElementById("card-example");
+const cardChinese = document.getElementById("card-chinese");
+const cardSpanish = document.getElementById("card-spanish");
+
+function updateCardContent(data, partOfSpeech) {
+  let term, ipa, definition, example, chinese, spanish;
+
+  if (partOfSpeech === 'noun') {
+    term = data.noun;
+    ipa = data.ipa_n;
+    definition = data.def_n;
+    example = data.example_n;
+    chinese = data.chinese_n;
+    spanish = data.spanish_n;
+    flashcard.classList.remove("flipped");
+    flashcard.querySelector('.speaker').style.color = '#3498db'; // Color for noun side speaker
+    cardIpa.style.color = '#666';
+    cardChinese.style.color = '#666';
+    cardSpanish.style.color = '#666';
+  } else { // partOfSpeech === 'verb'
+    term = data.verb;
+    ipa = data.ipa_v;
+    definition = data.def_v;
+    example = data.example_v;
+    chinese = data.chinese_v;
+    spanish = data.spanish_v;
+    flashcard.classList.add("flipped");
+    flashcard.querySelector('.speaker').style.color = '#fff'; // Color for verb side speaker
+    cardIpa.style.color = '#e0e0e0';
+    cardChinese.style.color = '#c0d9f0';
+    cardSpanish.style.color = '#c0d9f0';
+  }
+
+  cardTerm.innerHTML = `${term} <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${term}">🔊</span>`;
+  cardIpa.textContent = ipa;
+  cardDefinition.textContent = definition;
+  cardExample.innerHTML = `"${example}"`;
+  cardChinese.textContent = `Chinese: ${chinese}`;
+  cardSpanish.textContent = `Spanish: ${spanish}`;
+
+  // Set up speaker button
+  const speakerBtn = cardTerm.querySelector(".speaker");
+  speakerBtn.onclick = (e) => {
+    e.stopPropagation(); // Prevent card flip on speaker click
+    speakWord(term);
+  };
+  speakerBtn.onkeydown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent card flip on speaker keypress
+      speakWord(term);
+    }
+  };
+}
+
+function speakWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.9;
+  speechSynthesis.speak(utterance);
+}
+
+function showCard() {
+  flipped = false;
+  currentPart = 'noun';
+  flashcard.setAttribute("aria-pressed", "false");
+  updateCardContent(flashcards[index], currentPart); // Show noun side
+}
+
+function flipCard() {
+  if (currentPart === 'noun') {
+    currentPart = 'verb';
+    updateCardContent(flashcards[index], currentPart); // Show verb side
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+    speakWord(flashcards[index].verb); // Auto-pronounce verb on flip
+  } else {
+    currentPart = 'noun';
+    showCard(); // Show noun side again
+    speakWord(flashcards[index].noun); // Auto-pronounce noun on flip back
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard(); // Initial card display
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+</script>
+
+</body>
+</html>

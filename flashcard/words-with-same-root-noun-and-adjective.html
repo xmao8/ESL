@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Words for Feelings Flashcards – ESLnote Flashcards</title>
+  <title>Noun-Adjective Pairs Flashcards – ESLnote Flashcards</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -191,7 +191,7 @@
       background-color: #3498db;
       color: white;
     }
-    .word {
+    .main-term {
       font-weight: bold;
       font-size: 2rem;
       margin-bottom: 0.3rem;
@@ -284,12 +284,16 @@
   </div>
 </nav>
 
-<h1>Words for Feelings Flashcards</h1>
+<h1>Noun-Adjective Pairs Flashcards</h1>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
-  <div class="word">Click to Flip</div>
-  <div class="ipa" style="color: #666;"></div>
-  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  <div class="main-term" id="card-term"></div>
+  <div class="ipa" id="card-ipa"></div>
+  <div class="definition" id="card-definition"></div>
+  <div class="example" id="card-example"></div>
+  <div class="translation" id="card-chinese"></div>
+  <div class="translation" id="card-spanish"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip</div>
 </div>
 
 <div class="buttons">
@@ -300,212 +304,404 @@
 <script>
 const flashcards = [
   {
-    word: "Happy",
-    ipa: "/ˈhæpi/",
-    definition: "Feeling or showing pleasure or contentment.",
-    example: "She felt **happy** after receiving good news.",
-    chinese: "高兴 (gāoxìng)",
-    spanish: "Feliz"
+    noun: "allergy", ipa_n: "/ˈælərdʒi/", def_n: "A damaging immune response by the body to a substance, especially pollen, fur, a particular food, or dust, to which it has become hypersensitive.", example_n: "She has a severe peanut **allergy**.", chinese_n: "过敏 (guòmǐn)", spanish_n: "Alergia",
+    adjective: "allergic", ipa_a: "/əˈlɜːrdʒɪk/", def_a: "Having an allergy to something.", example_a: "He is **allergic** to cats.", chinese_a: "过敏的 (guòmǐn de)", spanish_a: "Alérgico/a"
   },
   {
-    word: "Sad",
-    ipa: "/sæd/",
-    definition: "Feeling or showing sorrow; unhappy.",
-    example: "He was **sad** to see his friend leave.",
-    chinese: "伤心 (shāngxīn)",
-    spanish: "Triste"
+    noun: "emotion", ipa_n: "/ɪˈmoʊʃən/", def_n: "A strong feeling deriving from one's circumstances, mood, or relationships with others.", example_n: "Joy is a powerful **emotion**.", chinese_n: "情感 (qínggǎn)", spanish_n: "Emoción",
+    adjective: "emotional", ipa_a: "/ɪˈmoʊʃənəl/", def_a: "Relating to emotions; strongly affected by emotion.", example_a: "He's a very **emotional** person.", chinese_a: "情绪化的 (qíngxùhuà de)", spanish_a: "Emocional"
   },
   {
-    word: "Angry",
-    ipa: "/ˈæŋɡri/",
-    definition: "Having a strong feeling of annoyance, displeasure, or hostility.",
-    example: "The customer became **angry** when his order was wrong.",
-    chinese: "生气 (shēngqì)",
-    spanish: "Enojado/a"
+    noun: "nation", ipa_n: "/ˈneɪʃən/", def_n: "A large body of people united by common descent, history, culture, or language, inhabiting a particular country or territory.", example_n: "The United States is a diverse **nation**.", chinese_n: "国家 (guójiā)", spanish_n: "Nación",
+    adjective: "national", ipa_a: "/ˈnæʃənəl/", def_a: "Relating to or characteristic of a nation; common to a whole nation.", example_a: "The team sang the **national** anthem.", chinese_a: "国家的 (guójiā de)", spanish_a: "Nacional"
   },
   {
-    word: "Excited",
-    ipa: "/ɪkˈsaɪtɪd/",
-    definition: "Feeling or showing great enthusiasm and eagerness.",
-    example: "The children were **excited** about the trip to the zoo.",
-    chinese: "兴奋 (xīngfèn)",
-    spanish: "Emocionado/a"
+    noun: "nature", ipa_n: "/ˈneɪtʃər/", def_n: "The phenomena of the physical world collectively, including plants, animals, the landscape, and other features and products of the earth, as opposed to humans or human creations.", example_n: "We love spending time in **nature**.", chinese_n: "自然 (zìrán)", spanish_n: "Naturaleza",
+    adjective: "natural", ipa_a: "/ˈnætʃərəl/", def_a: "Existing in or derived from nature; not made or caused by humankind.", example_a: "She has a **natural** talent for music.", chinese_a: "自然的 (zìrán de)", spanish_a: "Natural"
   },
   {
-    word: "Scared",
-    ipa: "/skɛərd/",
-    definition: "Fearful; frightened.",
-    example: "She was **scared** of the dark.",
-    chinese: "害怕 (hàipà)",
-    spanish: "Asustado/a"
+    noun: "culture", ipa_n: "/ˈkʌltʃər/", def_n: "The customs, arts, social institutions, and achievements of a particular nation, people, or group.", example_n: "We studied Japanese **culture**.", chinese_n: "文化 (wénhuà)", spanish_n: "Cultura",
+    adjective: "cultural", ipa_a: "/ˈkʌltʃərəl/", def_a: "Relating to the ideas, customs, and social behavior of a society.", example_a: "They have many **cultural** traditions.", chinese_a: "文化的 (wénhuà de)", spanish_a: "Cultural"
   },
   {
-    word: "Surprised",
-    ipa: "/sərˈpraɪzd/",
-    definition: "Feeling or showing surprise.",
-    example: "He looked **surprised** when they told him the news.",
-    chinese: "惊讶 (jīngyà)",
-    spanish: "Sorprendido/a"
+    noun: "music", ipa_n: "/ˈmjuːzɪk/", def_n: "Vocal or instrumental sounds (or both) combined in such a way as to produce beauty of form, harmony, and expression of emotion.", example_n: "She enjoys classical **music**.", chinese_n: "音乐 (yīnyuè)", spanish_n: "Música",
+    adjective: "musical", ipa_a: "/ˈmjuːzɪkəl/", def_a: "Relating to or connected with music.", example_a: "He's very **musical** and plays several instruments.", chinese_a: "音乐的 (yīnyuè de)", spanish_a: "Musical"
   },
   {
-    word: "Tired",
-    ipa: "/ˈtaɪərd/",
-    definition: "In need of sleep or rest; weary.",
-    example: "After a long day, she felt very **tired**.",
-    chinese: "累 (lèi)",
-    spanish: "Cansado/a"
+    noun: "logic", ipa_n: "/ˈlɑːdʒɪk/", def_n: "Reasoning conducted or assessed according to strict principles of validity.", example_n: "There was no **logic** in his argument.", chinese_n: "逻辑 (luóji)", spanish_n: "Lógica",
+    adjective: "logical", ipa_a: "/ˈlɑːdʒɪkəl/", def_a: "Of or according to the rules of logic or formal argument.", example_a: "That's a very **logical** conclusion.", chinese_a: "逻辑的 (luójí de)", spanish_a: "Lógico/a"
   },
   {
-    word: "Bored",
-    ipa: "/bɔːrd/",
-    definition: "Feeling weary and impatient because one is unoccupied or lacks interest in one's current activity.",
-    example: "He quickly became **bored** with the lecture.",
-    chinese: "无聊 (wúliáo)",
-    spanish: "Aburrido/a"
+    noun: "atom", ipa_n: "/ˈætəm/", def_n: "The basic unit of a chemical element.", example_n: "Water is made of hydrogen and oxygen **atoms**.", chinese_n: "原子 (yuánzǐ)", spanish_n: "Átomo",
+    adjective: "atomic", ipa_a: "/əˈtɑːmɪk/", def_a: "Of or relating to an atom or atoms.", example_a: "**Atomic** energy is very powerful.", chinese_a: "原子的 (yuánzǐ de)", spanish_a: "Atómico/a"
   },
   {
-    word: "Confused",
-    ipa: "/kənˈfjuːzd/",
-    definition: "Unable to think clearly; bewildered.",
-    example: "The instructions left him completely **confused**.",
-    chinese: "困惑 (kùnhuò)",
-    spanish: "Confundido/a"
+    noun: "hero", ipa_n: "/ˈhɪəroʊ/", def_n: "A person who is admired for their courage, outstanding achievements, or noble qualities.", example_n: "He was a war **hero**.", chinese_n: "英雄 (yīngxióng)", spanish_n: "Héroe",
+    adjective: "heroic", ipa_a: "/hɪˈroʊɪk/", def_a: "Having the characteristics of a hero or heroine; very brave.", example_a: "She made a **heroic** effort to save him.", chinese_a: "英勇的 (yīngyǒng de)", spanish_a: "Heroico/a"
   },
   {
-    word: "Proud",
-    ipa: "/praʊd/",
-    definition: "Feeling deep pleasure or satisfaction as a result of one's own achievements, qualities, or possessions or those of someone with whom one is closely associated.",
-    example: "She felt **proud** of her daughter's achievements.",
-    chinese: "骄傲 (jiāo'ào)",
-    spanish: "Orgulloso/a"
+    noun: "poet", ipa_n: "/ˈpoʊɪt/", def_n: "A person who writes poems.", example_n: "Shakespeare was a great **poet**.", chinese_n: "诗人 (shīrén)", spanish_n: "Poeta",
+    adjective: "poetic", ipa_a: "/poʊˈɛtɪk/", def_a: "Relating to or characteristic of poetry or poets.", example_a: "His language was very **poetic**.", chinese_a: "诗意的 (shīyì de)", spanish_a: "Poético/a"
   },
   {
-    word: "Shy",
-    ipa: "/ʃaɪ/",
-    definition: "Nervous or timid in the company of other people.",
-    example: "The new student was very **shy** on her first day.",
-    chinese: "害羞 (hàixiū)",
-    spanish: "Tímido/a"
+    noun: "history", ipa_n: "/ˈhɪstəri/", def_n: "The study of past events.", example_n: "I love reading about ancient **history**.", chinese_n: "历史 (lìshǐ)", spanish_n: "Historia",
+    adjective: "historical", ipa_a: "/hɪˈstɔːrɪkəl/", def_a: "Of or concerning history; concerning past events.", example_a: "We visited many **historical** sites.", chinese_a: "历史的 (lìshǐ de)", spanish_a: "Histórico/a"
   },
   {
-    word: "Lonely",
-    ipa: "/ˈloʊnli/",
-    definition: "Sad because one has no friends or company.",
-    example: "After everyone left, he felt quite **lonely**.",
-    chinese: "孤独 (gūdú)",
-    spanish: "Solo/a"
+    noun: "climate", ipa_n: "/ˈklaɪmət/", def_n: "The long-term weather patterns of a region.", example_n: "The desert has a dry **climate**.", chinese_n: "气候 (qìhòu)", spanish_n: "Clima",
+    adjective: "climatic", ipa_a: "/klaɪˈmætɪk/", def_a: "Relating to climate.", example_a: "The region experiences extreme **climatic** changes.", chinese_a: "气候的 (qìhòu de)", spanish_a: "Climático/a"
   },
   {
-    word: "Anxious",
-    ipa: "/ˈæŋkʃəs/",
-    definition: "Experiencing worry, unease, or nervousness, typically about an event or something with an uncertain outcome.",
-    example: "She was **anxious** about her upcoming exam.",
-    chinese: "焦虑 (jiāolǜ)",
-    spanish: "Ansioso/a"
+    noun: "drama", ipa_n: "/ˈdrɑːmə/", def_n: "A play for theatre, radio, or television.", example_n: "The show was a thrilling **drama**.", chinese_n: "戏剧 (xìjù)", spanish_n: "Drama",
+    adjective: "dramatic", ipa_a: "/drəˈmætɪk/", def_a: "Relating to drama or the performing arts.", example_a: "There was a **dramatic** change in the weather.", chinese_a: "戏剧性的 (xìjùxìng de)", spanish_a: "Dramático/a"
   },
   {
-    word: "Grateful",
-    ipa: "/ˈɡreɪtfəl/",
-    definition: "Feeling or showing appreciation for something received or done.",
-    example: "He was **grateful** for their help.",
-    chinese: "感激 (gǎnjī)",
-    spanish: "Agradecido/a"
+    noun: "period", ipa_n: "/ˈpɪriəd/", def_n: "A length or portion of time.", example_n: "He lived during the Roman **period**.", chinese_n: "时期 (shíqī)", spanish_n: "Período",
+    adjective: "periodic", ipa_a: "/ˌpɪriˈɑːdɪk/", def_a: "Appearing or occurring at intervals.", example_a: "The comet makes a **periodic** appearance.", chinese_a: "周期性的 (zhōuqīxìng de)", spanish_a: "Periódico/a"
   },
   {
-    word: "Jealous",
-    ipa: "/ˈdʒɛləs/",
-    definition: "Feeling or showing envy of someone or their achievements and advantages.",
-    example: "She felt **jealous** of her friend's new car.",
-    chinese: "嫉妒 (jídù)",
-    spanish: "Celoso/a"
+    noun: "academy", ipa_n: "/əˈkædəmi/", def_n: "A place of study or training in a special field.", example_n: "She attended a prestigious art **academy**.", chinese_n: "学院 (xuéyuàn)", spanish_n: "Academia",
+    adjective: "academic", ipa_a: "/ˌækəˈdɛmɪk/", def_a: "Relating to education and scholarship.", example_a: "He has a strong **academic** background.", chinese_a: "学术的 (xuéshù de)", spanish_a: "Académico/a"
   },
   {
-    word: "Nervous",
-    ipa: "/ˈnɜːrvəs/",
-    definition: "Easily agitated or alarmed; tending to be anxious.",
-    example: "He felt **nervous** before his job interview.",
-    chinese: "紧张 (jǐnzhāng)",
-    spanish: "Nervioso/a"
+    noun: "economy", ipa_n: "/ɪˈkɑːnəmi/", def_n: "The system by which a country's money and goods are produced and used.", example_n: "The global **economy** is interconnected.", chinese_n: "经济 (jīngjì)", spanish_n: "Economía",
+    adjective: "economic", ipa_a: "/ˌɛkəˈnɑːmɪk/", def_a: "Relating to economics or the economy.", example_a: "They discussed the country's **economic** growth.", chinese_a: "经济的 (jīngjì de)", spanish_a: "Económico/a"
   },
   {
-    word: "Relieved",
-    ipa: "/rɪˈliːvd/",
-    definition: "No longer feeling distressed or anxious; reassured.",
-    example: "She was **relieved** when the flight landed safely.",
-    chinese: "放心 (fàngxīn)",
-    spanish: "Aliviado/a"
+    noun: "science", ipa_n: "/ˈsaɪəns/", def_n: "The intellectual and practical activity encompassing the systematic study of the structure and behaviour of the physical and natural world through observation and experiment.", example_n: "He is dedicated to the pursuit of **science**.", chinese_n: "科学 (kēxué)", spanish_n: "Ciencia",
+    adjective: "scientific", ipa_a: "/ˌsaɪənˈtɪfɪk/", def_a: "Based on or characterized by the methods and principles of science.", example_a: "They conducted a **scientific** experiment.", chinese_a: "科学的 (kēxué de)", spanish_a: "Científico/a"
   },
   {
-    word: "Frustrated",
-    ipa: "/frʌˈstreɪtɪd/",
-    definition: "Feeling or expressing distress and annoyance resulting from an inability to change or achieve something.",
-    example: "He was **frustrated** by the slow internet connection.",
-    chinese: "沮丧 (jǔsàng)",
-    spanish: "Frustrado/a"
+    noun: "art", ipa_n: "/ɑːrt/", def_n: "The expression or application of human creative skill and imagination, typically in a visual form such as painting or sculpture, producing works to be appreciated primarily for their beauty or emotional power.", example_n: "She studies modern **art**.", chinese_n: "艺术 (yìshù)", spanish_n: "Arte",
+    adjective: "artistic", ipa_a: "/ɑːrˈtɪstɪk/", def_a: "Having or revealing creative skill.", example_a: "He has great **artistic** talent.", chinese_a: "艺术的 (yìshù de)", spanish_a: "Artístico/a"
   },
   {
-    word: "Disappointed",
-    ipa: "/ˌdɪsəˈpɔɪntɪd/",
-    definition: "Sad or displeased because someone or something has failed to fulfill hopes or expectations.",
-    example: "She was **disappointed** with her test results.",
-    chinese: "失望 (shīwàng)",
-    spanish: "Decepcionado/a"
+    noun: "ocean", ipa_n: "/ˈoʊʃən/", def_n: "A very large expanse of sea.", example_n: "The Pacific **Ocean** is the largest.", chinese_n: "海洋 (hǎiyáng)", spanish_n: "Océano",
+    adjective: "oceanic", ipa_a: "/ˌoʊʃiˈænɪk/", def_a: "Relating to the ocean.", example_a: "They study **oceanic** currents.", chinese_a: "海洋的 (hǎiyáng de)", spanish_a: "Oceánico/a"
   },
   {
-    word: "Embarrassed",
-    ipa: "/ɪmˈbærəst/",
-    definition: "Feeling awkward, self-conscious, or ashamed.",
-    example: "He was **embarrassed** when he tripped in front of everyone.",
-    chinese: "尴尬 (gāngà)",
-    spanish: "Avergonzado/a"
+    noun: "globe", ipa_n: "/ɡloʊb/", def_n: "The earth.", example_n: "Maps help us understand the **globe**.", chinese_n: "地球 (dìqiú)", spanish_n: "Globo",
+    adjective: "global", ipa_a: "/ˈɡloʊbəl/", def_a: "Relating to the whole world; worldwide.", example_a: "Climate change is a **global** issue.", chinese_a: "全球的 (quánqiú de)", spanish_a: "Global"
   },
   {
-    word: "Calm",
-    ipa: "/kɑːm/",
-    definition: "Not feeling or showing agitation, anger, or other strong emotions.",
-    example: "Despite the chaos, she remained perfectly **calm**.",
-    chinese: "平静 (píngjìng)",
-    spanish: "Tranquilo/a"
+    noun: "region", ipa_n: "/ˈriːdʒən/", def_n: "An area of land having definable characteristics but not always fixed boundaries.", example_n: "This is an agricultural **region**.", chinese_n: "地区 (dìqū)", spanish_n: "Región",
+    adjective: "regional", ipa_a: "/ˈriːdʒənəl/", def_a: "Of, relating to, or characteristic of a region.", example_a: "They discussed **regional** differences.", chinese_a: "区域的 (qūyù de)", spanish_a: "Regional"
   },
   {
-    word: "Hopeful",
-    ipa: "/ˈhoʊpfəl/",
-    definition: "Feeling or inspiring optimism about a future event.",
-    example: "He was **hopeful** about finding a new job soon.",
-    chinese: "有希望 (yǒu xīwàng)",
-    spanish: "Esperanzado/a"
+    noun: "industry", ipa_n: "/ˈɪndəstri/", def_n: "Economic activity concerned with the processing of raw materials and manufacture of goods in factories.", example_n: "The automotive **industry** is struggling.", chinese_n: "工业 (gōngyè)", spanish_n: "Industria",
+    adjective: "industrial", ipa_a: "/ɪnˈdʌstriəl/", def_a: "Of or relating to industry.", example_a: "The area has a lot of **industrial** buildings.", chinese_a: "工业的 (gōngyè de)", spanish_n: "Industrial"
   },
   {
-    word: "Suspicious",
-    ipa: "/səˈspɪʃəs/",
-    definition: "Having or showing a cautious distrust of someone or something.",
-    example: "She became **suspicious** of his sudden generosity.",
-    chinese: "怀疑 (huáiyí)",
-    spanish: "Sospechoso/a"
+    noun: "advantage", ipa_n: "/ədˈvæntɪdʒ/", def_n: "A condition or circumstance that puts one in a favorable or superior position.", example_n: "His experience gave him an **advantage**.", chinese_n: "优势 (yōushì)", spanish_n: "Ventaja",
+    adjective: "advantageous", ipa_a: "/ˌædvənˈteɪdʒəs/", def_a: "Providing an advantage; favorable.", example_a: "The deal was very **advantageous** to us.", chinese_a: "有利的 (yǒulì de)", spanish_n: "Ventajoso/a"
   },
   {
-    word: "Giddy",
-    ipa: "/ˈɡɪdi/",
-    definition: "Having a sensation of whirling and a tendency to fall or stagger; dizzy. (Also: feeling excited to the point of disorientation)",
-    example: "She felt **giddy** with delight after winning the prize.",
-    chinese: "眩晕 (xuànyūn) / 兴奋得发昏",
-    spanish: "Mareado/a / Eufórico/a"
+    noun: "danger", ipa_n: "/ˈdeɪndʒər/", def_n: "The possibility of suffering harm or injury.", example_n: "There is **danger** in climbing without ropes.", chinese_n: "危险 (wēixiǎn)", spanish_n: "Peligro",
+    adjective: "dangerous", ipa_a: "/ˈdeɪndʒərəs/", def_a: "Full of danger; unsafe.", example_a: "It's a **dangerous** path to take.", chinese_a: "危险的 (wēixiǎn de)", spanish_n: "Peligroso/a"
   },
   {
-    word: "Overwhelmed",
-    ipa: "/ˌoʊvərˈwɛlmd/",
-    definition: "Buried or drowned beneath a huge mass of something. (Also: having too much of something)",
-    example: "She felt **overwhelmed** by the amount of work she had to do.",
-    chinese: "不知所措 (bù zhī suǒ cuò)",
-    spanish: "Abrumado/a"
+    noun: "mystery", ipa_n: "/ˈmɪstəri/", def_n: "Something that is difficult or impossible to understand or explain.", example_n: "The crime remains a **mystery**.", chinese_n: "谜 (mí)", spanish_n: "Misterio",
+    adjective: "mysterious", ipa_a: "/mɪˈstɪəriəs/", def_a: "Difficult or impossible to understand, explain, or identify.", example_a: "She had a **mysterious** smile.", chinese_a: "神秘的 (shénmì de)", spanish_n: "Misterioso/a"
   },
   {
-    word: "Amused",
-    ipa: "/əˈmjuːzd/",
-    definition: "Finding something funny or entertaining.",
-    example: "He was highly **amused** by the comedian's jokes.",
-    chinese: "好笑 (hǎoxiào)",
-    spanish: "Divertido/a"
+    noun: "glory", ipa_n: "/ˈɡlɔːri/", def_n: "High renown or honor won by notable achievements.", example_n: "He sought fame and **glory**.", chinese_n: "荣耀 (róngyào)", spanish_n: "Gloria",
+    adjective: "glorious", ipa_a: "/ˈɡlɔːriəs/", def_a: "Having, worthy of, or bringing fame or admiration.", example_a: "They had a **glorious** victory.", chinese_a: "光荣的 (guāngróng de)", spanish_n: "Glorioso/a"
+  },
+  {
+    noun: "fame", ipa_n: "/feɪm/", def_n: "The state of being known or talked about by many people, especially on account of notable achievements.", example_n: "She achieved international **fame**.", chinese_n: "名声 (míngshēng)", spanish_n: "Fama",
+    adjective: "famous", ipa_a: "/ˈfeɪməs/", def_a: "Known about by many people.", example_a: "He is a **famous** actor.", chinese_a: "著名的 (zhùmíng de)", spanish_n: "Famoso/a"
+  },
+  {
+    noun: "poison", ipa_n: "/ˈpɔɪzən/", def_n: "A substance that is capable of causing illness or death when taken into the body or absorbed.", example_n: "Be careful, this plant is a **poison**.", chinese_n: "毒药 (dúyào)", spanish_n: "Veneno",
+    adjective: "poisonous", ipa_a: "/ˈpɔɪzənəs/", def_a: "Capable of causing illness or death when taken into the body.", example_a: "Some snakes are highly **poisonous**.", chinese_a: "有毒的 (yǒudú de)", spanish_n: "Venenoso/a"
+  },
+  {
+    noun: "mountain", ipa_n: "/ˈmaʊntən/", def_n: "A large natural elevation of the earth's surface rising abruptly from the surrounding level; a large steep hill.", example_n: "Mount Everest is the highest **mountain**.", chinese_n: "山 (shān)", spanish_n: "Montaña",
+    adjective: "mountainous", ipa_a: "/ˈmaʊntənəs/", def_a: "Having many mountains.", example_a: "The region is very **mountainous**.", chinese_a: "多山的 (duōshān de)", spanish_n: "Montañoso/a"
+  },
+  {
+    noun: "courage", ipa_n: "/ˈkɜːrɪdʒ/", def_n: "The ability to do something that frightens one.", example_n: "It takes **courage** to speak up.", chinese_n: "勇气 (yǒngqì)", spanish_n: "Coraje",
+    adjective: "courageous", ipa_a: "/kəˈreɪdʒəs/", def_a: "Not deterred by danger or pain; brave.", example_a: "She made a **courageous** decision.", chinese_a: "勇敢的 (yǒnggǎn de)", spanish_n: "Valiente"
+  },
+  {
+    noun: "adventure", ipa_n: "/ədˈvɛntʃər/", def_n: "An unusual and exciting or daring experience.", example_n: "Life is a grand **adventure**.", chinese_n: "冒险 (màoxiǎn)", spanish_n: "Aventura",
+    adjective: "adventurous", ipa_a: "/ədˈvɛntʃərəs/", def_a: "Willing to take risks or to try out new methods, ideas, or experiences.", example_a: "He has a very **adventurous** spirit.", chinese_a: "爱冒险的 (ài màoxiǎn de)", spanish_n: "Aventurero/a"
+  },
+  {
+    noun: "beauty", ipa_n: "/ˈbjuːti/", def_n: "A combination of qualities, such as shape, color, or form, that pleases the aesthetic senses, especially the sight.", example_n: "The **beauty** of the landscape was breathtaking.", chinese_n: "美丽 (měilì)", spanish_n: "Belleza",
+    adjective: "beautiful", ipa_a: "/ˈbjuːtɪfl/", def_a: "Pleasing the senses or mind aesthetically.", example_a: "She wore a **beautiful** dress.", chinese_a: "美丽的 (měilì de)", spanish_n: "Hermoso/a"
+  },
+  {
+    noun: "wonder", ipa_n: "/ˈwʌndər/", def_n: "A feeling of surprise mingled with admiration, caused by something beautiful, unexpected, unfamiliar, or inexplicable.", example_n: "The Grand Canyon is a natural **wonder**.", chinese_n: "奇迹 (qíjī)", spanish_n: "Maravilla",
+    adjective: "wonderful", ipa_a: "/ˈwʌndərfl/", def_a: "Inspiring delight, pleasure, or admiration; extremely good; marvelous.", example_a: "We had a **wonderful** time.", chinese_a: "精彩的 (jīngcǎi de)", spanish_n: "Maravilloso/a"
+  },
+  {
+    noun: "success", ipa_n: "/səkˈsɛs/", def_n: "The accomplishment of an aim or purpose.", example_n: "Hard work is key to **success**.", chinese_n: "成功 (chénggōng)", spanish_n: "Éxito",
+    adjective: "successful", ipa_a: "/səkˈsɛsfəl/", def_a: "Accomplishing an aim or purpose.", example_a: "The venture was very **successful**.", chinese_a: "成功的 (chénggōng de)", spanish_n: "Exitoso/a"
+  },
+  {
+    noun: "power", ipa_n: "/ˈpaʊər/", def_n: "The ability to do something or act in a particular way.", example_n: "He has great political **power**.", chinese_n: "力量 (lìliàng)", spanish_n: "Poder",
+    adjective: "powerful", ipa_a: "/ˈpaʊərfl/", def_a: "Having great power or strength.", example_a: "The engine is very **powerful**.", chinese_a: "强大的 (qiángdà de)", spanish_n: "Poderoso/a"
+  },
+  {
+    noun: "help", ipa_n: "/hɛlp/", def_n: "The action of helping someone; assistance.", example_n: "Can I offer you some **help**?", chinese_n: "帮助 (bāngzhù)", spanish_n: "Ayuda",
+    adjective: "helpful", ipa_a: "/ˈhɛlpfəl/", def_a: "Giving or providing help.", example_a: "She's always very **helpful**.", chinese_a: "有帮助的 (yǒu bāngzhù de)", spanish_n: "Útil"
+  },
+  {
+    noun: "care", ipa_n: "/kɛər/", def_n: "The provision of what is necessary for the health, welfare, maintenance, and protection of someone or something.", example_n: "She takes great **care** of her plants.", chinese_n: "照顾 (zhàogù)", spanish_n: "Cuidado",
+    adjective: "careful", ipa_a: "/ˈkɛərfəl/", def_a: "Exercising caution or circumspection; attentive to potential danger, error, or harm.", example_a: "Be **careful** crossing the road.", chinese_a: "小心的 (xiǎoxīn de)", spanish_n: "Cuidadoso/a"
+  },
+  {
+    noun: "peace", ipa_n: "/piːs/", def_n: "Freedom from disturbance; tranquility.", example_n: "We wish for world **peace**.", chinese_n: "和平 (hépíng)", spanish_n: "Paz",
+    adjective: "peaceful", ipa_a: "/ˈpiːsfəl/", def_a: "Free from disturbance; tranquil.", example_a: "It was a **peaceful** evening.", chinese_a: "和平的 (hépíng de)", spanish_n: "Pacífico/a"
+  },
+  {
+    noun: "truth", ipa_n: "/truːθ/", def_n: "The quality or state of being true.", example_n: "Tell me the whole **truth**.", chinese_n: "真相 (zhēnxiàng)", spanish_n: "Verdad",
+    adjective: "truthful", ipa_a: "/ˈtruːθfəl/", def_a: "Telling or expressing the truth; honest.", example_a: "He gave a **truthful** account of events.", chinese_n: "诚实的 (chéngshí de)", spanish_n: "Veraz"
+  },
+  {
+    noun: "health", ipa_n: "/hɛlθ/", def_n: "The state of being free from illness or injury.", example_n: "Eating well is good for your **health**.", chinese_n: "健康 (jiànkāng)", spanish_n: "Salud",
+    adjective: "healthy", ipa_a: "/ˈhɛlθi/", def_a: "In a good physical or mental condition; in good health.", example_a: "She leads a very **healthy** lifestyle.", chinese_n: "健康的 (jiànkāng de)", spanish_n: "Saludable"
+  },
+  {
+    noun: "wealth", ipa_n: "/wɛlθ/", def_n: "An abundance of valuable possessions or money.", example_n: "He accumulated great **wealth**.", chinese_n: "财富 (cáifù)", spanish_n: "Riqueza",
+    adjective: "wealthy", ipa_a: "/ˈwɛlθi/", def_a: "Having a great deal of money, resources, or assets; rich.", example_a: "He comes from a **wealthy** family.", chinese_n: "富有的 (fùyǒu de)", spanish_n: "Rico/a"
+  },
+  {
+    noun: "dirt", ipa_n: "/dɜːrt/", def_n: "Loose earth or soil.", example_n: "My shoes were covered in **dirt**.", chinese_n: "泥土 (nítǔ)", spanish_n: "Tierra/Suciedad",
+    adjective: "dirty", ipa_a: "/ˈdɜːrti/", def_a: "Covered or marked with an unclean substance.", example_a: "His clothes were **dirty** after playing outside.", chinese_n: "脏的 (zāng de)", spanish_n: "Sucio/a"
+  },
+  {
+    noun: "hunger", ipa_n: "/ˈhʌŋɡər/", def_n: "A feeling of discomfort or weakness caused by lack of food, coupled with the desire to eat.", example_n: "He felt intense **hunger** after hiking all day.", chinese_n: "饥饿 (jī'è)", spanish_n: "Hambre",
+    adjective: "hungry", ipa_a: "/ˈhʌŋɡri/", def_a: "Feeling or displaying the need for food.", example_a: "I'm very **hungry**.", chinese_n: "饥饿的 (jī'è de)", spanish_n: "Hambriento/a"
+  },
+  {
+    noun: "thirst", ipa_n: "/θɜːrst/", def_n: "A feeling of needing or wanting to drink.", example_n: "The long walk caused great **thirst**.", chinese_n: "口渴 (kǒukě)", spanish_n: "Sed",
+    adjective: "thirsty", ipa_a: "/ˈθɜːrsti/", def_a: "Feeling a need to drink.", example_a: "Are you **thirsty**?", chinese_n: "口渴的 (kǒukě de)", spanish_n: "Sediento/a"
+  },
+  {
+    noun: "storm", ipa_n: "/stɔːrm/", def_n: "A violent disturbance of the atmosphere with strong winds and usually rain, thunder, lightning, or snow.", example_n: "A big **storm** is coming.", chinese_n: "暴风雨 (bàofēngyǔ)", spanish_n: "Tormenta",
+    adjective: "stormy", ipa_a: "/ˈstɔːrmi/", def_a: "Of or characterized by storms.", example_a: "It was a **stormy** night.", chinese_n: "暴风雨的 (bàofēngyǔ de)", spanish_n: "Tormentoso/a"
+  },
+  {
+    noun: "sun", ipa_n: "/sʌn/", def_n: "The star that the Earth orbits, providing light and heat.", example_n: "The **sun** is shining brightly.", chinese_n: "太阳 (tàiyáng)", spanish_n: "Sol",
+    adjective: "sunny", ipa_a: "/ˈsʌni/", def_a: "Bright with sunlight.", example_a: "It's a beautiful **sunny** day.", chinese_n: "阳光充足的 (yángguāng chōngzú de)", spanish_n: "Soleado/a"
+  },
+  {
+    noun: "wind", ipa_n: "/wɪnd/", def_n: "The perceptible natural movement of air.", example_n: "The **wind** blew strongly.", chinese_n: "风 (fēng)", spanish_n: "Viento",
+    adjective: "windy", ipa_a: "/ˈwɪndi/", def_a: "Marked by or exposed to strong winds.", example_a: "It was a very **windy** day.", chinese_n: "多风的 (duōfēng de)", spanish_n: "Ventoso/a"
+  },
+  {
+    noun: "fog", ipa_n: "/fɑːɡ/", def_n: "A thick cloud of tiny water droplets suspended in the atmosphere at or near the earth's surface which obscures or restricts visibility.", example_n: "The **fog** was so thick we couldn't see anything.", chinese_n: "雾 (wù)", spanish_n: "Niebla",
+    adjective: "foggy", ipa_a: "/ˈfɑːɡi/", def_a: "Full of or accompanied by fog.", example_a: "It was a **foggy** morning.", chinese_n: "有雾的 (yǒuwù de)", spanish_n: "Nebuloso/a"
+  },
+  {
+    noun: "rain", ipa_n: "/reɪn/", def_n: "Moisture condensed from the atmosphere that falls visibly in separate drops.", example_n: "We need some **rain** for the crops.", chinese_n: "雨 (yǔ)", spanish_n: "Lluvia",
+    adjective: "rainy", ipa_a: "/ˈreɪni/", def_a: "Having a lot of rain.", example_a: "It's a **rainy** season.", chinese_n: "下雨的 (xiàyǔ de)", spanish_n: "Lluvioso/a"
+  },
+  {
+    noun: "snow", ipa_n: "/snoʊ/", def_n: "Atmospheric water vapor frozen into ice crystals and falling in light white flakes or lying on the ground as a white layer.", example_n: "The first **snow** of winter fell.", chinese_n: "雪 (xuě)", spanish_n: "Nieve",
+    adjective: "snowy", ipa_a: "/ˈsnoʊi/", def_a: "Having a lot of snow.", example_a: "We had a very **snowy** winter.", chinese_n: "下雪的 (xiàxuě de)", spanish_n: "Nevado/a"
+  },
+  {
+    noun: "ice", ipa_n: "/aɪs/", def_n: "Frozen water, a brittle, transparent crystalline solid.", example_n: "Be careful, there's **ice** on the road.", chinese_n: "冰 (bīng)", spanish_n: "Hielo",
+    adjective: "icy", ipa_a: "/ˈaɪsi/", def_a: "Covered with or consisting of ice.", example_a: "The roads were **icy**.", chinese_n: "结冰的 (jiébīng de)", spanish_n: "Helado/a"
+  },
+  {
+    noun: "friend", ipa_n: "/frɛnd/", def_n: "A person whom one knows and with whom one has a bond of mutual affection.", example_n: "He is my best **friend**.", chinese_n: "朋友 (péngyǒu)", spanish_n: "Amigo/a",
+    adjective: "friendly", ipa_a: "/ˈfrɛndli/", def_a: "Kind and pleasant.", example_a: "She has a very **friendly** smile.", chinese_n: "友好的 (yǒuhǎo de)", spanish_n: "Amigable"
+  },
+  {
+    noun: "love", ipa_n: "/lʌv/", def_n: "An intense feeling of deep affection.", example_n: "Their **love** for each other was evident.", chinese_n: "爱 (ài)", spanish_n: "Amor",
+    adjective: "lovely", ipa_a: "/ˈlʌvli/", def_a: "Pleasingly beautiful or attractive.", example_a: "What a **lovely** day!", chinese_n: "可爱的 (kě'ài de)", spanish_n: "Encantador/a"
+  },
+  {
+    noun: "home", ipa_n: "/hoʊm/", def_n: "The place where one lives permanently, especially as a member of a family or household.", example_n: "I miss my **home**.", chinese_n: "家 (jiā)", spanish_n: "Casa/Hogar",
+    adjective: "homely", ipa_a: "/ˈhoʊmli/", def_a: "Unpretentious but cozy and comfortable (especially of a place or atmosphere).", example_a: "The inn had a **homely** atmosphere.", chinese_n: "舒适的 (shūshì de)", spanish_n: "Hogareño/a"
+  },
+  {
+    noun: "cost", ipa_n: "/kɔːst/", def_n: "An amount that has to be paid or spent to get or obtain something.", example_n: "The total **cost** was high.", chinese_n: "成本 (chéngběn)", spanish_n: "Costo",
+    adjective: "costly", ipa_a: "/ˈkɔːstli/", def_a: "Costing a lot; expensive.", example_a: "Buying a new car can be very **costly**.", chinese_n: "昂贵的 (ángguì de)", spanish_n: "Costoso/a"
+  },
+  {
+    noun: "time", ipa_n: "/taɪm/", def_n: "The indefinite continued progress of existence and events in the past, present, and future regarded as a whole.", example_n: "What **time** is it?", chinese_n: "时间 (shíjiān)", spanish_n: "Tiempo",
+    adjective: "timely", ipa_a: "/ˈtaɪmli/", def_a: "Done or occurring at a favorable or useful time; opportune.", example_a: "Your advice was very **timely**.", chinese_n: "及时的 (jíshí de)", spanish_n: "Oportuno/a"
+  },
+  {
+    noun: "day", ipa_n: "/deɪ/", def_n: "A period of 24 hours as a unit of time, reckoned from one midnight to the next, corresponding to a rotation of the earth on its axis.", example_n: "It was a beautiful **day**.", chinese_n: "天 (tiān)", spanish_n: "Día",
+    adjective: "daily", ipa_a: "/ˈdeɪli/", def_a: "Done, produced, or occurring every day or every weekday.", example_a: "She reads the **daily** newspaper.", chinese_n: "日常的 (rìcháng de)", spanish_n: "Diario/a"
+  },
+  {
+    noun: "week", ipa_n: "/wiːk/", def_n: "A period of seven days.", example_n: "I'll see you next **week**.", chinese_n: "周 (zhōu)", spanish_n: "Semana",
+    adjective: "weekly", ipa_a: "/ˈwiːkli/", def_a: "Done, produced, or occurring once a week.", example_a: "We have a **weekly** meeting.", chinese_n: "每周的 (měizhōu de)", spanish_n: "Semanal"
+  },
+  {
+    noun: "month", ipa_n: "/mʌnθ/", def_n: "A period of 28, 29, 30, or 31 days, typically a twelfth of a year.", example_n: "The baby is six **months** old.", chinese_n: "月 (yuè)", spanish_n: "Mes",
+    adjective: "monthly", ipa_a: "/ˈmʌnθli/", def_a: "Done, produced, or occurring once a month.", example_a: "They receive a **monthly** report.", chinese_n: "每月的 (měiyuè de)", spanish_n: "Mensual"
+  },
+  {
+    noun: "year", ipa_n: "/jɪər/", def_n: "The time taken by the Earth to make one revolution around the sun.", example_n: "Happy New **Year**!", chinese_n: "年 (nián)", spanish_n: "Año",
+    adjective: "yearly", ipa_a: "/ˈjɪərli/", def_a: "Done, produced, or occurring once a year or every year.", example_a: "They have a **yearly** convention.", chinese_n: "每年的 (měinián de)", spanish_n: "Anual"
+  },
+  {
+    noun: "season", ipa_n: "/ˈsiːzən/", def_n: "Each of the four divisions of the year (spring, summer, autumn, and winter).", example_n: "Autumn is my favorite **season**.", chinese_n: "季节 (jìjié)", spanish_n: "Estación",
+    adjective: "seasonal", ipa_a: "/ˈsiːzənl/", def_a: "Relating to or characteristic of a particular season of the year.", example_a: "**Seasonal** fruits are the freshest.", chinese_n: "季节性的 (jìjiéxìng de)", spanish_n: "Estacional"
+  },
+  {
+    noun: "occasion", ipa_n: "/əˈkeɪʒən/", def_n: "A particular event or the time at which it takes place.", example_n: "It was a special **occasion**.", chinese_n: "场合 (chǎnghé)", spanish_n: "Ocasión",
+    adjective: "occasional", ipa_a: "/əˈkeɪʒənl/", def_a: "Occurring, appearing, or done infrequently and irregularly.", example_a: "We have **occasional** visits from relatives.", chinese_n: "偶尔的 (ǒu'ěr de)", spanish_n: "Ocasional"
+  },
+  {
+    noun: "profession", ipa_n: "/prəˈfɛʃən/", def_n: "A paid occupation, especially one that involves prolonged training and a formal qualification.", example_n: "Teaching is a noble **profession**.", chinese_n: "职业 (zhíyè)", spanish_n: "Profesión",
+    adjective: "professional", ipa_a: "/prəˈfɛʃənl/", def_a: "Relating to or belonging to a profession.", example_a: "He showed great **professional** skill.", chinese_n: "专业的 (zhuānyè de)", spanish_n: "Profesional"
+  },
+  {
+    noun: "tradition", ipa_n: "/trəˈdɪʃən/", def_n: "The transmission of customs or beliefs from generation to generation.", example_n: "It's a family **tradition**.", chinese_n: "传统 (chuántǒng)", spanish_n: "Tradición",
+    adjective: "traditional", ipa_a: "/trəˈdɪʃənl/", def_a: "Existing in or as part of a tradition; long-established.", example_a: "They wore **traditional** costumes.", chinese_n: "传统的 (chuántǒng de)", spanish_n: "Tradicional"
+  },
+  {
+    noun: "constitution", ipa_n: "/ˌkɑːnstɪˈtuːʃən/", def_n: "A body of fundamental principles or established precedents according to which a state or other organization is acknowledged to be governed.", example_n: "The country adopted a new **constitution**.", chinese_n: "宪法 (xiànfǎ)", spanish_n: "Constitución",
+    adjective: "constitutional", ipa_a: "/ˌkɑːnstɪˈtuːʃənl/", def_a: "Relating to an established set of principles governing a state.", example_a: "This is a **constitutional** right.", chinese_n: "宪法的 (xiànfǎ de)", spanish_n: "Constitucional"
+  },
+  {
+    noun: "institution", ipa_n: "/ˌɪnstɪˈtuːʃən/", def_n: "An established organization or foundation, especially one dedicated to public service or culture.", example_n: "The university is a respected **institution**.", chinese_n: "机构 (jīgòu)", spanish_n: "Institución",
+    adjective: "institutional", ipa_a: "/ˌɪnstɪˈtuːʃənl/", def_a: "Relating to a long-established and important organization.", example_a: "They face **institutional** barriers.", chinese_n: "机构的 (jīgòu de)", spanish_n: "Institucional"
+  },
+  {
+    noun: "revolution", ipa_n: "/ˌrɛvəˈluːʃən/", def_n: "A forcible overthrow of a government or social order, in favor of a new system.", example_n: "The industrial **revolution** changed society.", chinese_n: "革命 (gémìng)", spanish_n: "Revolución",
+    adjective: "revolutionary", ipa_a: "/ˌrɛvəˈluːʃəneri/", def_a: "Involving or causing a complete or dramatic change.", example_a: "This is a **revolutionary** new technology.", chinese_n: "革命性的 (gémìngxìng de)", spanish_n: "Revolucionario/a"
+  },
+  {
+    noun: "evolution", ipa_n: "/ˌiːvəˈluːʃən/", def_n: "The gradual development of something.", example_n: "The **evolution** of species is fascinating.", chinese_n: "进化 (jìnhuà)", spanish_n: "Evolución",
+    adjective: "evolutionary", ipa_a: "/ˌiːvəˈluːʃəneri/", def_a: "Relating to the process of evolution.", example_a: "**Evolutionary** biology is a complex field.", chinese_n: "进化的 (jìnhuà de)", spanish_n: "Evolutivo/a"
+  },
+  {
+    noun: "intention", ipa_n: "/ɪnˈtɛnʃən/", def_n: "Aims or plans.", example_n: "It was not my **intention** to offend you.", chinese_n: "意图 (yìtú)", spanish_n: "Intención",
+    adjective: "intentional", ipa_a: "/ɪnˈtɛnʃənl/", def_a: "Done on purpose; deliberate.", example_a: "His actions were clearly **intentional**.", chinese_n: "故意的 (gùyì de)", spanish_n: "Intencional"
+  },
+  {
+    noun: "invention", ipa_n: "/ɪnˈvɛnʃən/", def_n: "The action of inventing something, typically a process or device.", example_n: "The internet was a remarkable **invention**.", chinese_n: "发明 (fāmíng)", spanish_n: "Invención",
+    adjective: "inventive", ipa_a: "/ɪnˈvɛntɪv/", def_a: "Having or showing an ability to create or design new things or to think originally.", example_a: "She's a very **inventive** designer.", chinese_n: "有创造力的 (yǒu chuàngzàolì de)", spanish_n: "Inventivo/a"
+  },
+  {
+    noun: "creation", ipa_n: "/kriˈeɪʃən/", def_n: "The action or process of bringing something into existence.", example_n: "The universe's **creation** is a mystery.", chinese_n: "创造 (chuàngzào)", spanish_n: "Creación",
+    adjective: "creative", ipa_a: "/kriˈeɪtɪv/", def_a: "Relating to or involving the use of the imagination or original ideas to create something.", example_a: "He's very **creative** and artistic.", chinese_n: "有创造性的 (yǒu chuàngzàoxìng de)", spanish_n: "Creativo/a"
+  },
+  {
+    noun: "imagination", ipa_n: "/ɪˌmædʒɪˈneɪʃən/", def_n: "The faculty or action of forming new ideas, or images or concepts of external objects not present to the senses.", example_n: "Children have vivid **imaginations**.", chinese_n: "想象力 (xiǎngxiànglì)", spanish_n: "Imaginación",
+    adjective: "imaginative", ipa_a: "/ɪˈmædʒɪnətɪv/", def_a: "Having or showing creativity or inventiveness.", example_a: "She has an **imaginative** approach to problem-solving.", chinese_n: "富有想象力的 (fùyǒu xiǎngxiànglì de)", spanish_n: "Imaginativo/a"
+  },
+  {
+    noun: "relation", ipa_n: "/rɪˈleɪʃən/", def_n: "The way in which two or more concepts, objects, or people are connected.", example_n: "The **relation** between cause and effect.", chinese_n: "关系 (guānxì)", spanish_n: "Relación",
+    adjective: "relational", ipa_a: "/rɪˈleɪʃənl/", def_a: "Concerning the way in which two or more people or things are connected.", example_a: "They studied **relational** databases.", chinese_n: "关系的 (guānxì de)", spanish_n: "Relacional"
+  },
+  {
+    noun: "sensation", ipa_n: "/sɛnˈseɪʃən/", def_n: "A physical feeling or perception resulting from something that happens to or comes into contact with the body.", example_n: "I felt a burning **sensation**.", chinese_n: "感觉 (gǎnjué)", spanish_n: "Sensación",
+    adjective: "sensational", ipa_a: "/sɛnˈseɪʃənl/", def_a: "Producing or designed to produce a startling effect, arousing intense interest, curiosity, or emotional reaction.", example_a: "The concert was a **sensational** success.", chinese_n: "轰动的 (hōngdòng de)", spanish_n: "Sensacional"
+  },
+  {
+    noun: "admiration", ipa_n: "/ˌædməˈreɪʃən/", def_n: "Respect and warm approval.", example_n: "He earned their **admiration**.", chinese_n: "钦佩 (qīnpèi)", spanish_n: "Admiración",
+    adjective: "admirable", ipa_a: "/ˈædmərəbl/", def_a: "Deserving respect and approval.", example_a: "Her dedication is **admirable**.", chinese_n: "值得钦佩的 (zhídé qīnpèi de)", spanish_n: "Admirable"
+  },
+  {
+    noun: "consideration", ipa_n: "/kənˌsɪdəˈreɪʃən/", def_n: "Careful thought, typically over a period of time.", example_n: "After much **consideration**, she accepted.", chinese_n: "考虑 (kǎolǜ)", spanish_n: "Consideración",
+    adjective: "considerable", ipa_a: "/kənˈsɪdərəbl/", def_a: "Notably large in size, amount, or extent.", example_a: "They made **considerable** progress.", chinese_n: "相当大的 (xiāngdāng dà de)", spanish_n: "Considerable"
+  },
+  {
+    noun: "responsibility", ipa_n: "/rɪˌspɑːnsəˈbɪləti/", def_n: "The state or fact of having a duty to deal with something or of having control over someone.", example_n: "It is your **responsibility** to complete the task.", chinese_n: "责任 (zérèn)", spanish_n: "Responsabilidad",
+    adjective: "responsible", ipa_a: "/rɪˈspɑːnsəbl/", def_a: "Having an obligation to do something, or having control over or care for someone, as part of one's job or role.", example_a: "He is **responsible** for the project.", chinese_n: "负责的 (fùzé de)", spanish_n: "Responsable"
+  },
+  {
+    noun: "capability", ipa_n: "/ˌkeɪpəˈbɪləti/", def_n: "The ability or power to do something.", example_n: "The system has advanced **capability**.", chinese_n: "能力 (nénglì)", spanish_n: "Capacidad",
+    adjective: "capable", ipa_a: "/ˈkeɪpəbl/", def_a: "Having the ability, fitness, or quality necessary to do or achieve a specified thing.", example_a: "She is a very **capable** leader.", chinese_n: "有能力的 (yǒu nénglì de)", spanish_n: "Capaz"
+  },
+  {
+    noun: "variability", ipa_n: "/ˌvɛəriəˈbɪləti/", def_n: "Lack of consistency or fixed pattern; liability to vary.", example_n: "The **variability** of the climate.", chinese_n: "可变性 (kěbiànxìng)", spanish_n: "Variabilidad",
+    adjective: "variable", ipa_a: "/ˈvɛəriəbl/", def_a: "Not consistent or having a fixed pattern; liable to change.", example_a: "The weather is very **variable**.", chinese_n: "可变的 (kěbiàn de)", spanish_n: "Variable"
+  },
+  {
+    noun: "stability", ipa_n: "/stəˈbɪləti/", def_n: "The state of being stable; resistance to change or displacement.", example_n: "Economic **stability** is important.", chinese_n: "稳定性 (wěndìngxìng)", spanish_n: "Estabilidad",
+    adjective: "stable", ipa_a: "/ˈsteɪbl/", def_a: "Not likely to give way or overturn; firmly fixed.", example_a: "The ladder felt **stable**.", chinese_n: "稳定的 (wěndìng de)", spanish_n: "Estable"
+  },
+  {
+    noun: "credibility", ipa_n: "/ˌkrɛdəˈbɪləti/", def_n: "The quality of being trusted and believed in.", example_n: "His story lacked **credibility**.", chinese_n: "可信度 (kěxìndù)", spanish_n: "Credibilidad",
+    adjective: "credible", ipa_a: "/ˈkrɛdəbl/", def_a: "Able to be believed; convincing.", example_a: "She presented a **credible** argument.", chinese_n: "可信的 (kěxìn de)", spanish_n: "Creíble"
+  },
+  {
+    noun: "visibility", ipa_n: "/ˌvɪzəˈbɪləti/", def_n: "The state of being able to see or be seen.", example_n: "Poor **visibility** due to fog.", chinese_n: "能见度 (néngjiàndù)", spanish_n: "Visibilidad",
+    adjective: "visible", ipa_a: "/ˈvɪzəbl/", def_a: "Able to be seen.", example_a: "The moon was clearly **visible**.", chinese_n: "可见的 (kějiàn de)", spanish_n: "Visible"
+  },
+  {
+    noun: "audibility", ipa_n: "/ˌɔːdəˈbɪləti/", def_n: "The quality of being heard.", example_n: "The speaker adjusted the microphone for better **audibility**.", chinese_n: "可听度 (kětīngdù)", spanish_n: "Audibilidad",
+    adjective: "audible", ipa_a: "/ˈɔːdəbl/", def_a: "Able to be heard.", example_a: "Her whisper was barely **audible**.", chinese_n: "可听见的 (kětīngjiàn de)", spanish_n: "Audible"
+  },
+  {
+    noun: "possibility", ipa_n: "/ˌpɑːsəˈbɪləti/", def_n: "A thing that may be chosen or done out of several possible alternatives.", example_n: "There is a **possibility** of rain.", chinese_n: "可能性 (kěnéngxìng)", spanish_n: "Posibilidad",
+    adjective: "possible", ipa_a: "/ˈpɑːsəbl/", def_a: "Able to be done; feasible.", example_a: "It's **possible** to finish by tomorrow.", chinese_n: "可能的 (kěnéng de)", spanish_n: "Posible"
+  },
+  {
+    noun: "probability", ipa_n: "/ˌprɑːbəˈbɪləti/", def_n: "The extent to which something is probable or likely to happen.", example_n: "The **probability** of winning is low.", chinese_n: "概率 (gàilǜ)", spanish_n: "Probabilidad",
+    adjective: "probable", ipa_a: "/ˈprɑːbəbl/", def_a: "Likely to happen or be the case.", example_a: "It's **probable** that he'll be late.", chinese_n: "很可能的 (hěn kěnéng de)", spanish_n: "Probable"
+  },
+  {
+    noun: "durability", ipa_n: "/ˌdʊrəˈbɪləti/", def_n: "The ability to withstand wear, pressure, or damage.", example_n: "The product is known for its **durability**.", chinese_n: "耐用性 (nàiyòngxìng)", spanish_n: "Durabilidad",
+    adjective: "durable", ipa_a: "/ˈdʊrəbl/", def_a: "Able to withstand wear, pressure, or damage; hard-wearing.", example_a: "These shoes are very **durable**.", chinese_n: "耐用的 (nàiyòng de)", spanish_n: "Duradero/a"
+  },
+  {
+    noun: "portability", ipa_n: "/ˌpɔːrtəˈbɪləti/", def_n: "The quality of being able to be carried or moved easily.", example_n: "The laptop's **portability** is a key feature.", chinese_n: "便携性 (biànxiéxìng)", spanish_n: "Portabilidad",
+    adjective: "portable", ipa_a: "/ˈpɔːrtəbl/", def_a: "Able to be easily carried or moved, especially because of being a lighter and smaller version of something.", example_a: "I bought a **portable** speaker.", chinese_n: "便携的 (biànxié de)", spanish_n: "Portátil"
+  },
+  {
+    noun: "usability", ipa_n: "/ˌjuːzəˈbɪləti/", def_n: "The ease of use and learnability of a human-made object.", example_n: "The software has excellent **usability**.", chinese_n: "可用性 (kěyòngxìng)", spanish_n: "Usabilidad",
+    adjective: "usable", ipa_a: "/ˈjuːzəbl/", def_a: "Able to be used.", example_a: "The old computer is still **usable**.", chinese_n: "可用的 (kěyòng de)", spanish_n: "Utilizable"
+  },
+  {
+    noun: "reliability", ipa_n: "/rɪˌlaɪəˈbɪləti/", def_n: "The quality of being trustworthy or of performing consistently well.", example_n: "The car is known for its **reliability**.", chinese_n: "可靠性 (kěkàoxìng)", spanish_n: "Fiabilidad",
+    adjective: "reliable", ipa_a: "/rɪˈlaɪəbl/", def_a: "Consistently good in quality or performance; able to be trusted.", example_a: "He's a very **reliable** employee.", chinese_n: "可靠的 (kěkào de)", spanish_n: "Confiable"
+  },
+  {
+    noun: "availability", ipa_n: "/əˌveɪləˈbɪləti/", def_n: "The quality of being able to be used or obtained.", example_n: "Check the **availability** of tickets.", chinese_n: "可用性 (kěyòngxìng)", spanish_n: "Disponibilidad",
+    adjective: "available", ipa_a: "/əˈveɪləbl/", def_a: "Able to be used or obtained; at someone's disposal.", example_a: "The product is now **available**.", chinese_n: "可用的 (kěyòng de)", spanish_n: "Disponible"
+  },
+  {
+    noun: "suitability", ipa_n: "/ˌsuːtəˈbɪləti/", def_n: "The quality of being appropriate for a particular purpose or occasion.", example_n: "We questioned the **suitability** of the material.", chinese_n: "适用性 (shìyòngxìng)", spanish_n: "Idoneidad",
+    adjective: "suitable", ipa_a: "/ˈsuːtəbl/", def_a: "Appropriate for a particular purpose or occasion.", example_a: "This dress is **suitable** for the party.", chinese_n: "合适的 (héshì de)", spanish_n: "Adecuado/a"
+  },
+  {
+    noun: "comfort", ipa_n: "/ˈkʌmfərt/", def_n: "A state of physical ease and freedom from pain or constraint.", example_n: "I enjoy the **comfort** of my own bed.", chinese_n: "舒适 (shūshì)", spanish_n: "Comodidad",
+    adjective: "comfortable", ipa_a: "/ˈkʌmfərtəbl/", def_a: "Providing physical ease and relaxation.", example_a: "The chair is very **comfortable**.", chinese_n: "舒适的 (shūshì de)", spanish_n: "Cómodo/a"
+  },
+  {
+    noun: "enjoyment", ipa_n: "/ɪnˈdʒɔɪmənt/", def_n: "The state or process of taking pleasure in something.", example_n: "I get great **enjoyment** from reading.", chinese_n: "乐趣 (lèqù)", spanish_n: "Disfrute",
+    adjective: "enjoyable", ipa_a: "/ɪnˈdʒɔɪəbl/", def_a: "Giving delight or pleasure.", example_a: "It was a very **enjoyable** movie.", chinese_n: "令人愉快的 (lìngrén yúkuài de)", spanish_n: "Agradable"
+  },
+  {
+    noun: "change", ipa_n: "/tʃeɪndʒ/", def_n: "The act or process of making or becoming different.", example_n: "We need a **change** of scenery.", chinese_n: "变化 (biànhuà)", spanish_n: "Cambio",
+    adjective: "changeable", ipa_a: "/ˈtʃeɪndʒəbl/", def_a: "Liable to change or to be changed.", example_a: "The weather is very **changeable**.", chinese_n: "多变的 (duōbiàn de)", spanish_n: "Cambiante"
+  },
+  {
+    noun: "knowledge", ipa_n: "/ˈnɑːlɪdʒ/", def_n: "Facts, information, and skills acquired by a person through experience or education.", example_n: "He has a lot of **knowledge** about history.", chinese_n: "知识 (zhīshi)", spanish_n: "Conocimiento",
+    adjective: "knowledgeable", ipa_a: "/ˈnɑːlɪdʒəbl/", def_a: "Intelligent and well informed.", example_a: "She's very **knowledgeable** about plants.", chinese_n: "知识渊博的 (zhīshì yuānbó de)", spanish_n: "Informado/a / Con conocimiento"
+  },
+  {
+    noun: "honor", ipa_n: "/ˈɑːnər/", def_n: "High respect; great esteem.", example_n: "It was an **honor** to meet her.", chinese_n: "荣誉 (róngyù)", spanish_n: "Honor",
+    adjective: "honorable", ipa_a: "/ˈɑːnərəbl/", def_a: "Worthy of respect; distinguished.", example_a: "He is an **honorable** man.", chinese_n: "光荣的 (guāngróng de)", spanish_n: "Honorable"
+  },
+  {
+    noun: "value", ipa_n: "/ˈvæljuː/", def_n: "The regard that something is held to deserve; the importance, worth, or usefulness of something.", example_n: "The painting has great historical **value**.", chinese_n: "价值 (jiàzhí)", spanish_n: "Valor",
+    adjective: "valuable", ipa_a: "/ˈvæljuəbl/", def_a: "Worth a great deal of money.", example_a: "It's a very **valuable** antique.", chinese_n: "有价值的 (yǒu jiàzhí de)", spanish_n: "Valioso/a"
+  },
+  {
+    noun: "notice", ipa_n: "/ˈnoʊtɪs/", def_n: "The fact of observing or paying attention to something.", example_n: "He took no **notice** of my warning.", chinese_n: "注意 (zhùyì)", spanish_n: "Aviso/Atención",
+    adjective: "noticeable", ipa_a: "/ˈnoʊtɪsəbl/", def_a: "Easily seen or recognized; apparent.", example_a: "There was a **noticeable** improvement.", chinese_n: "明显的 (míngxiǎn de)", spanish_n: "Notable"
+  },
+  {
+    noun: "practice", ipa_n: "/ˈpræktɪs/", def_n: "The actual application or use of an idea, belief, or method, as opposed to theories relating to it.", example_n: "It takes a lot of **practice** to play the piano well.", chinese_n: "实践 (shíjiàn)", spanish_n: "Práctica",
+    adjective: "practical", ipa_a: "/ˈpræktɪkəl/", def_a: "Of or concerned with the actual doing or use of something rather than with theory and ideas.", example_a: "He gave some **practical** advice.", chinese_n: "实用的 (shíyòng de)", spanish_n: "Práctico/a"
+  },
+  {
+    noun: "theory", ipa_n: "/ˈθɪəri/", def_n: "A set of principles on which the practice of an activity is based.", example_n: "The **theory** of relativity.", chinese_n: "理论 (lǐlùn)", spanish_n: "Teoría",
+    adjective: "theoretical", ipa_a: "/ˌθiːəˈrɛtɪkəl/", def_a: "Concerned with the theories or hypotheses rather than the practicalities of a subject.", example_a: "It's a **theoretical** possibility.", chinese_n: "理论上的 (lǐlùn shàng de)", spanish_n: "Teórico/a"
   }
 ];
 
@@ -513,56 +709,80 @@ let index = 0;
 let flipped = false;
 
 const flashcard = document.getElementById("flashcard");
+const cardTerm = document.getElementById("card-term");
+const cardIpa = document.getElementById("card-ipa");
+const cardDefinition = document.getElementById("card-definition");
+const cardExample = document.getElementById("card-example");
+const cardChinese = document.getElementById("card-chinese");
+const cardSpanish = document.getElementById("card-spanish");
+
+function updateCardContent(data, isNounSide) {
+  const term = isNounSide ? data.noun : data.adjective;
+  const ipa = isNounSide ? data.ipa_n : data.ipa_a;
+  const definition = isNounSide ? data.def_n : data.def_a;
+  const example = isNounSide ? data.example_n : data.example_a;
+  const chinese = isNounSide ? data.chinese_n : data.chinese_a;
+  const spanish = isNounSide ? data.spanish_n : data.spanish_a;
+
+  cardTerm.innerHTML = `${term} <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${term}">🔊</span>`;
+  cardIpa.textContent = ipa;
+  cardDefinition.textContent = definition;
+  cardExample.innerHTML = `"${example}"`;
+  cardChinese.textContent = `Chinese: ${chinese}`;
+  cardSpanish.textContent = `Spanish: ${spanish}`;
+
+  // Update styles based on flipped state
+  if (!isNounSide) {
+    flashcard.classList.add("flipped");
+    cardTerm.querySelector('.speaker').style.color = '#fff';
+    cardIpa.style.color = '#e0e0e0';
+    cardChinese.style.color = '#c0d9f0';
+    cardSpanish.style.color = '#c0d9f0';
+  } else {
+    flashcard.classList.remove("flipped");
+    cardTerm.querySelector('.speaker').style.color = '#3498db'; /* Or any color you prefer for the speaker on the noun side */
+    cardIpa.style.color = '#666';
+    cardChinese.style.color = '#666'; /* Or adjust for clarity */
+    cardSpanish.style.color = '#666'; /* Or adjust for clarity */
+  }
+
+  // Set up speaker button
+  const speakerBtn = cardTerm.querySelector(".speaker");
+  speakerBtn.onclick = (e) => {
+    e.stopPropagation(); // Prevent card flip on speaker click
+    speakWord(term);
+  };
+  speakerBtn.onkeydown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent card flip on speaker keypress
+      speakWord(term);
+    }
+  };
+}
+
+function speakWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.9;
+  speechSynthesis.speak(utterance);
+}
 
 function showCard() {
   flipped = false;
-  flashcard.classList.remove("flipped");
   flashcard.setAttribute("aria-pressed", "false");
-  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
-                           <div class="ipa">${flashcards[index].ipa}</div>
-                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+  updateCardContent(flashcards[index], true); // Show noun side
 }
 
 function flipCard() {
   if (!flipped) {
-    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
-    flashcard.innerHTML = `
-      <div class="word">
-        ${word}
-        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
-      </div>
-      <div class="ipa">${ipa}</div>
-      <div class="definition">${definition}</div>
-      <div class="example">"${example}"</div>
-      <div class="translation">Chinese: ${chinese}</div>
-      <div class="translation">Spanish: ${spanish}</div>
-      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
-    `;
-    flashcard.classList.add("flipped");
+    updateCardContent(flashcards[index], false); // Show adjective side
     flashcard.setAttribute("aria-pressed", "true");
     flipped = true;
-
-    // Pronounce word when flipping
-    const speakerBtn = flashcard.querySelector(".speaker");
-    function speak() {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      speechSynthesis.speak(utterance);
-    }
-    speakerBtn.addEventListener("click", speak);
-    speakerBtn.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        speak();
-      }
-    });
-
-    // Auto pronounce once on flip
-    speak();
-
+    speakWord(flashcards[index].adjective); // Auto-pronounce adjective on flip
   } else {
     showCard();
+    speakWord(flashcards[index].noun); // Auto-pronounce noun on flip back
   }
 }
 
@@ -576,35 +796,28 @@ function prevCard() {
   showCard();
 }
 
-showCard();
-</script>
+showCard(); // Initial card display
 
-<div class="buttons">
-  <a href="../flashcards.html">← Back to Flashcards</a>
-  <a href="../index.html">🏠 Home</a>
-</div>
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
 
-<script>
-  // Mobile nav toggle script
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
     });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
-  }
+  });
+}
 </script>
 
 </body>

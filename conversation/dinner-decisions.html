@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dinner Decisions – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main { flex: 1; }
+        a { text-decoration: none; color: inherit; }
+        h1, h2 { color: #124076; }
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            padding: 0;
+        }
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #124076;
+            margin-top: 1em;
+            display: block;
+        }
+        .dialogue {
+            margin-left: 1.5em;
+            margin-bottom: 0.5em;
+            font-style: italic;
+        }
+        .setting-info {
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        dl { margin: 0; padding: 0; }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dotted #3498db;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        dt:hover, dt:focus {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+            outline: none;
+        }
+        .speaker-icon {
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
+        }
+        dd { margin-left: 1.2rem; margin-bottom: 0.8rem; font-style: normal; }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+        .buttons {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            .container { padding: 1.8rem 2rem; }
+            article p { font-size: 1.05rem; }
+            section.vocab h2 { font-size: 1.6rem; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            h1 { font-size: 2rem; padding: 0 0.8rem; }
+            .container { padding: 1rem; margin-top: 2rem; }
+            article p { font-size: 1rem; }
+            section.vocab h2 { font-size: 1.5rem; }
+            dt { font-size: 0.95rem; }
+            dd, dd.example { font-size: 0.9rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>Dinner Decisions</h1>
+
+    <article>
+        <p class="scene-direction"><strong>Characters:</strong></p>
+        <p>
+            <strong>MARIA:</strong> Loves to cook traditional food from her country.<br>
+            <strong>JOHN:</strong> Lives alone and eats simply.<br>
+            <strong>AMINA:</strong> Busy working mom who likes quick meals.
+        </p>
+        <p class="setting-info"><strong>Setting:</strong> End of a long day. Maria, John, and Amina are sitting in the break room at work, talking before they go home.</p>
+
+        <p class="scene-direction">(SCENE START)</p>
+
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">(smiling) It’s almost six o’clock! I’m starting to feel hungry. What do you usually cook for dinner, John?</span></p>
+        <p><span class="character-name">JOHN:</span> <span class="dialogue">(laughs) Oh, I’m not a great cook, Maria. Most nights I just make something easy. Maybe some eggs and toast. Sometimes I buy a frozen pizza if I don’t have time.</span></p>
+        <p><span class="character-name">AMINA:</span> <span class="dialogue">(nodding) I understand, John. I work late almost every day. When I get home, I have to cook for my children. Usually, I make something quick—like pasta with vegetables, or chicken and rice.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">That sounds nice, Amina! For me, cooking is a way to relax. I like to make food from my country. Tonight, I’ll make <b>paella</b>—it’s rice with seafood, chicken, and vegetables. It takes some time, but the smell fills my house.</span></p>
+        <p><span class="character-name">JOHN:</span> <span class="dialogue">That sounds delicious! But I’m always too tired to cook big meals. I wish I knew how to cook more things. Maybe I could try cooking with you one day, Maria.</span></p>
+        <p><span class="character-name">AMINA:</span> <span class="dialogue">Me too! I want my kids to try new food, but sometimes I don’t know what to cook. Do you have any recipes that are easy?</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">Of course! I can show you both some simple Spanish dishes. For example, “<b>tortilla de patatas</b>” is just potatoes, eggs, and onions. It’s easy and everyone loves it.</span></p>
+        <p><span class="character-name">JOHN:</span> <span class="dialogue">I think I could make that. I have eggs and potatoes at home.</span></p>
+        <p><span class="character-name">AMINA:</span> <span class="dialogue">Yes, me too. And it sounds healthy! What about you, John? Is there any food you remember from your childhood?</span></p>
+        <p><span class="character-name">JOHN:</span> <span class="dialogue">My mom used to make beef stew. It took a long time, but it was so good on cold nights.</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">Maybe we can all cook together one weekend. I can bring paella, John can try stew, and Amina can make her pasta. We can have a dinner party!</span></p>
+        <p><span class="character-name">AMINA:</span> <span class="dialogue">That would be wonderful! My children would love to meet you and try new foods.</span></p>
+        <p><span class="character-name">JOHN:</span> <span class="dialogue">It’s a deal. Next week, dinner at Maria’s place!</span></p>
+        <p><span class="character-name">MARIA:</span> <span class="dialogue">Great! I’ll make sure to cook enough for everyone. Now, I’m really looking forward to dinner tonight.</span></p>
+        <p class="scene-direction">(They all laugh and start planning their dinner party as the scene ends.)</p>
+        <p class="scene-direction">(SCENE END)</p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <p>Click on each term to hear pronunciation!</p>
+        <dl>
+            <dt class="vocab-term" tabindex="0">Paella <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A Spanish rice dish originally from Valencia, made with seafood, chicken, and vegetables.</dd>
+            <dd class="example">Example: "Tonight, I’ll make <b>paella</b>—it’s rice with seafood, chicken, and vegetables."</dd>
+
+            <dt class="vocab-term" tabindex="0">Tortilla de patatas <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A Spanish omelet made with potatoes, eggs, and sometimes onions.</dd>
+            <dd class="example">Example: "‘Tortilla de patatas’ is just potatoes, eggs, and onions."</dd>
+
+            <dt class="vocab-term" tabindex="0">Frozen pizza <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Pizza that is bought in a frozen state and cooked at home.</dd>
+            <dd class="example">Example: "Sometimes I buy a frozen pizza if I don’t have time."</dd>
+
+            <dt class="vocab-term" tabindex="0">Stew <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A dish of meat and vegetables cooked slowly in liquid in a closed dish or pan.</dd>
+            <dd class="example">Example: "My mom used to make beef stew."</dd>
+
+            <dt class="vocab-term" tabindex="0">Dinner party <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A social gathering at which dinner is served to guests.</dd>
+            <dd class="example">Example: "We can have a dinner party!"</dd>
+
+            <dt class="vocab-term" tabindex="0">Quick meals <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Food that can be made fast, usually in less than 30 minutes.</dd>
+            <dd class="example">Example: "I make something quick—like pasta with vegetables."</dd>
+
+            <dt class="vocab-term" tabindex="0">Traditional food <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Food that is typical or native to a particular country or culture.</dd>
+            <dd class="example">Example: "I like to make food from my country."</dd>
+
+            <dt class="vocab-term" tabindex="0">Relax <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To become less tense or anxious; to rest.</dd>
+            <dd class="example">Example: "For me, cooking is a way to relax."</dd>
+
+            <dt class="vocab-term" tabindex="0">Vegetables <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Plants or parts of plants used as food, such as cabbage, potatoes, and beans.</dd>
+            <dd class="example">Example: "Pasta with vegetables."</dd>
+
+            <dt class="vocab-term" tabindex="0">Looking forward to <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To feel happy and excited about something that will happen.</dd>
+            <dd class="example">Example: "I’m really looking forward to dinner tonight."</dd>
+        </dl>
+    </section>
+
+    <div class="buttons">
+        <a href="../reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utt = new SpeechSynthesisUtterance(word);
+            utt.lang = 'en-US';
+            window.speechSynthesis.speak(utt);
+        } else {
+            alert("Text-to-speech not supported.");
+        }
+    }
+    document.querySelectorAll('.vocab-term').forEach(item => {
+        item.addEventListener('click', () => {
+            const word = item.textContent.replace(/ 🔊$/, '').trim();
+            speakWord(word);
+        });
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const word = item.textContent.replace(/ 🔊$/, '').trim();
+                speakWord(word);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

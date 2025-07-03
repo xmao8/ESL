@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>True Friends – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main { flex: 1; }
+        a { text-decoration: none; color: inherit; }
+        h1, h2 { color: #124076; }
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            padding: 0;
+        }
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #124076;
+            margin-top: 1em;
+            display: block;
+        }
+        .dialogue {
+            margin-left: 1.5em;
+            margin-bottom: 0.5em;
+            font-style: italic;
+        }
+        .setting-info {
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        dl { margin: 0; padding: 0; }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dotted #3498db;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        dt:hover, dt:focus {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+            outline: none;
+        }
+        .speaker-icon {
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
+        }
+        dd { margin-left: 1.2rem; margin-bottom: 0.8rem; font-style: normal; }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+        .buttons {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            .container { padding: 1.8rem 2rem; }
+            article p { font-size: 1.05rem; }
+            section.vocab h2 { font-size: 1.6rem; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            h1 { font-size: 2rem; padding: 0 0.8rem; }
+            .container { padding: 1rem; margin-top: 2rem; }
+            article p { font-size: 1rem; }
+            section.vocab h2 { font-size: 1.5rem; }
+            dt { font-size: 0.95rem; }
+            dd, dd.example { font-size: 0.9rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>True Friends</h1>
+
+    <article>
+        <p class="scene-direction"><strong>Characters:</strong></p>
+        <p>
+            <strong>HELEN:</strong> Thoughtful, a bit shy, values deep friendship.<br>
+            <strong>RAJ:</strong> Funny, talkative, always making jokes.<br>
+            <strong>GRACE:</strong> Practical, honest, supportive.
+        </p>
+        <p class="setting-info"><strong>Setting:</strong> It’s lunchtime at the community center. Helen, Raj, and Grace are sitting at a table, eating together.</p>
+
+        <p class="scene-direction">(SCENE START)</p>
+
+        <p><span class="character-name">HELEN:</span> <span class="dialogue">(quietly) You know, sometimes I wonder… What is a good friend really like?</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">(grinning) That’s easy! A good friend always laughs at your jokes, even if they’re terrible. Like mine!</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">(smiling) Oh, come on, Raj. I think a good friend is honest with you, even if it’s not what you want to hear.</span></p>
+        <p><span class="character-name">HELEN:</span> <span class="dialogue">I agree, Grace. It’s important to be honest. But I also think a good friend listens when you need to talk. Not everyone does that.</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">Listening? That’s true. Grace is a great listener. And you too, Helen. Last week, when I was upset about my exam, you both listened to me complain for a whole hour!</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">Of course, Raj! Friends help each other, even if we just listen. But I also think a good friend supports you. For example, when you started your new job, we celebrated together.</span></p>
+        <p><span class="character-name">HELEN:</span> <span class="dialogue">Yes, I really appreciated that. I was nervous, but having you both there made me feel strong.</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">And don’t forget—good friends keep secrets! Remember my “secret” birthday party? Helen didn’t tell anyone, not even her sister.</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">(teasing) That’s true. Helen is trustworthy. But, Raj, you almost ruined the surprise yourself!</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">(laughing) Okay, maybe I did! But that’s another thing—a good friend can laugh with you, and also at you, but in a nice way.</span></p>
+        <p><span class="character-name">HELEN:</span> <span class="dialogue">That’s so important! I think a good friend makes you feel happy and comfortable. You can be yourself.</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">Exactly. A good friend isn’t perfect, but they care. They call when you’re sad, and they remember things that are important to you.</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">And they share food. (Reaches over to steal a french fry from Grace’s plate.)</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">(laughs, pretending to be angry) Hey! Only because you’re my friend.</span></p>
+        <p><span class="character-name">HELEN:</span> <span class="dialogue">(smiling) I feel lucky to have both of you as my friends.</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">Me too! So, do you both want to go to the park after lunch?</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">Sure! That sounds nice.</span></p>
+        <p><span class="character-name">HELEN:</span> <span class="dialogue">Let’s go. Good friends spend time together, right?</span></p>
+        <p><span class="character-name">RAJ:</span> <span class="dialogue">Right! And maybe you’ll both laugh at my next terrible joke.</span></p>
+        <p><span class="character-name">GRACE:</span> <span class="dialogue">(smiling) We’ll see, Raj. But you’re still our friend.</span></p>
+        <p class="scene-direction">(They all laugh and gather their things, happy to be together as the scene ends.)</p>
+        <p class="scene-direction">(SCENE END)</p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <p>Click on each term to hear pronunciation!</p>
+        <dl>
+            <dt class="vocab-term" tabindex="0">Support <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To help or encourage someone in difficult times.</dd>
+            <dd class="example">Example: "A good friend supports you."</dd>
+
+            <dt class="vocab-term" tabindex="0">Trustworthy <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Someone you can rely on to keep secrets and tell the truth.</dd>
+            <dd class="example">Example: "Helen is trustworthy."</dd>
+
+            <dt class="vocab-term" tabindex="0">Listener <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Someone who pays attention when you are talking.</dd>
+            <dd class="example">Example: "Grace is a great listener."</dd>
+
+            <dt class="vocab-term" tabindex="0">Teasing <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Joking with someone in a friendly way.</dd>
+            <dd class="example">Example: "(teasing) That’s true."</dd>
+
+            <dt class="vocab-term" tabindex="0">Complain <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To say that you are not happy about something.</dd>
+            <dd class="example">Example: "You both listened to me complain for a whole hour."</dd>
+
+            <dt class="vocab-term" tabindex="0">Celebrate <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To do something special for an important event or day.</dd>
+            <dd class="example">Example: "We celebrated together."</dd>
+
+            <dt class="vocab-term" tabindex="0">Secret <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Information that you do not tell other people.</dd>
+            <dd class="example">Example: "Good friends keep secrets."</dd>
+
+            <dt class="vocab-term" tabindex="0">Comfortable <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Feeling relaxed and free from stress.</dd>
+            <dd class="example">Example: "A good friend makes you feel happy and comfortable."</dd>
+
+            <dt class="vocab-term" tabindex="0">Lucky <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Feeling happy because something good has happened.</dd>
+            <dd class="example">Example: "I feel lucky to have both of you as my friends."</dd>
+
+            <dt class="vocab-term" tabindex="0">Spend time <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To do things with someone over a period of time.</dd>
+            <dd class="example">Example: "Good friends spend time together, right?"</dd>
+        </dl>
+    </section>
+
+    <div class="buttons">
+        <a href="../reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utt = new SpeechSynthesisUtterance(word);
+            utt.lang = 'en-US';
+            window.speechSynthesis.speak(utt);
+        } else {
+            alert("Text-to-speech not supported.");
+        }
+    }
+    document.querySelectorAll('.vocab-term').forEach(item => {
+        item.addEventListener('click', () => {
+            const word = item.textContent.replace(/ 🔊$/, '').trim();
+            speakWord(word);
+        });
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const word = item.textContent.replace(/ 🔊$/, '').trim();
+                speakWord(word);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

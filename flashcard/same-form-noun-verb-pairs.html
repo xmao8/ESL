@@ -7,7 +7,7 @@
   <title>Noun-Verb Pairs Flashcards – ESLnote Flashcards</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* Your existing CSS goes here. No changes needed to the CSS for this fix. */
+    /* Your existing CSS goes here. No changes needed to the CSS. */
     * {
       box-sizing: border-box;
     }
@@ -309,97 +309,92 @@
 </div>
 
 <script>
+// IMPORTANT: You MUST have audio files in an 'audio/' directory for this to work correctly.
+// Example: audio/conflict_n.mp3, audio/conflict_v.mp3 etc.
+
 const flashcards = [
   {
-    noun: "conflict", pronunciation_n: "CON-flict", ipa_n: "/ˈkɑːnflɪkt/", def_n: "A serious disagreement or argument.", example_n: "There was a **conflict** between the two sides.", chinese_n: "冲突 (chōngtū)", spanish_n: "Conflicto",
-    verb: "conflict", pronunciation_v: "con-FLICT", ipa_v: "/kənˈflɪkt/", def_v: "Be incompatible or at variance; clash.", example_v: "His actions **conflict** with his beliefs.", chinese_v: "冲突 (chōngtū)", spanish_v: "Entrar en conflicto"
+    noun: "conflict", ipa_n: "/ˈkɑːnflɪkt/", def_n: "A serious disagreement or argument.", example_n: "There was a **conflict** between the two sides.", chinese_n: "冲突 (chōngtū)", spanish_n: "Conflicto", audio_n: "audio/conflict_n.mp3",
+    verb: "conflict", ipa_v: "/kənˈflɪkt/", def_v: "Be incompatible or at variance; clash.", example_v: "His actions **conflict** with his beliefs.", chinese_v: "冲突 (chōngtū)", spanish_v: "Entrar en conflicto", audio_v: "audio/conflict_v.mp3"
   },
   {
-    noun: "record", pronunciation_n: "REC-ord", ipa_n: "/ˈrɛkərd/", def_n: "A thing constituting a piece of evidence about past events, especially one preserved in writing or some other permanent form.", example_n: "She keeps a detailed **record** of her expenses.", chinese_n: "记录 (jìlù)", spanish_n: "Registro",
-    verb: "record", pronunciation_v: "re-CORD", ipa_v: "/rɪˈkɔːrd/", def_v: "Set down in writing or some other permanent form for future reference.", example_v: "Please **record** the minutes of the meeting.", chinese_v: "录制 (lùzhì)", spanish_v: "Grabar/Registrar"
+    noun: "record", ipa_n: "/ˈrɛkərd/", def_n: "A thing constituting a piece of evidence about past events, especially one preserved in writing or some other permanent form.", example_n: "She keeps a detailed **record** of her expenses.", chinese_n: "记录 (jìlù)", spanish_n: "Registro", audio_n: "audio/record_n.mp3",
+    verb: "record", ipa_v: "/rɪˈkɔːrd/", def_v: "Set down in writing or some other permanent form for future reference.", example_v: "Please **record** the minutes of the meeting.", chinese_v: "录制 (lùzhì)", spanish_v: "Grabar/Registrar", audio_v: "audio/record_v.mp3"
   },
   {
-    noun: "present", pronunciation_n: "PRE-sent", ipa_n: "/ˈprɛzənt/", def_n: "Something that is given.", example_n: "He received a nice **present** for his birthday.", chinese_n: "礼物 (lǐwù)", spanish_n: "Regalo",
-    verb: "present", pronunciation_v: "pre-SENT", ipa_v: "/prɪˈzɛnt/", def_v: "Give (something) to someone, especially formally or as a gift or award.", example_v: "She will **present** her findings tomorrow.", chinese_v: "呈现 (chéngxiàn)", spanish_v: "Presentar"
+    noun: "present", ipa_n: "/ˈprɛzənt/", def_n: "Something that is given.", example_n: "He received a nice **present** for his birthday.", chinese_n: "礼物 (lǐwù)", spanish_n: "Regalo", audio_n: "audio/present_n.mp3",
+    verb: "present", ipa_v: "/prɪˈzɛnt/", def_v: "Give (something) to someone, especially formally or as a gift or award.", example_v: "She will **present** her findings tomorrow.", chinese_v: "呈现 (chéngxiàn)", spanish_v: "Presentar", audio_v: "audio/present_v.mp3"
   },
   {
-    noun: "permit", pronunciation_n: "PER-mit", ipa_n: "/ˈpɜːrmɪt/", def_n: "An official document giving someone authorization to do something.", example_n: "You need a **permit** to build here.", chinese_n: "许可证 (xǔkězhèng)", spanish_n: "Permiso",
-    verb: "permit", pronunciation_v: "per-MIT", ipa_v: "/pərˈmɪt/", def_v: "Give authorization or consent to (someone) to do something.", example_v: "Smoking is not **permitted** indoors.", chinese_v: "允许 (yǔnxǔ)", spanish_n: "Permitir"
+    noun: "permit", ipa_n: "/ˈpɜːrmɪt/", def_n: "An official document giving someone authorization to do something.", example_n: "You need a **permit** to build here.", chinese_n: "许可证 (xǔkězhèng)", spanish_n: "Permiso", audio_n: "audio/permit_n.mp3",
+    verb: "permit", ipa_v: "/pərˈmɪt/", def_v: "Give authorization or consent to (someone) to do something.", example_v: "Smoking is not **permitted** indoors.", chinese_v: "允许 (yǔnxǔ)", spanish_v: "Permitir", audio_v: "audio/permit_v.mp3"
   },
   {
-    noun: "object", pronunciation_n: "OB-ject", ipa_n: "/ˈɑːbdʒɪkt/", def_n: "A material thing that can be seen and touched.", example_n: "He picked up a strange **object**.", chinese_n: "物体 (wùtǐ)", spanish_n: "Objeto",
-    verb: "object", pronunciation_v: "ob-JECT", ipa_v: "/əbˈdʒɛkt/", def_v: "Say something to express one's disapproval of or disagreement with something.", example_v: "I **object** to your proposal.", chinese_v: "反对 (fǎnduì)", spanish_v: "Objetar"
+    noun: "object", ipa_n: "/ˈɑːbdʒɪkt/", def_n: "A material thing that can be seen and touched.", example_n: "He picked up a strange **object**.", chinese_n: "物体 (wùtǐ)", spanish_n: "Objeto", audio_n: "audio/object_n.mp3",
+    verb: "object", ipa_v: "/əbˈdʒɛkt/", def_v: "Say something to express one's disapproval of or disagreement with something.", example_v: "I **object** to your proposal.", chinese_v: "反对 (fǎnduì)", spanish_v: "Objetar", audio_v: "audio/object_v.mp3"
   },
   {
-    noun: "conduct", pronunciation_n: "CON-duct", ipa_n: "/ˈkɑːndʌkt/", def_n: "The manner in which an organization or activity is managed or directed.", example_n: "His **conduct** was unacceptable.", chinese_n: "行为 (xíngwéi)", spanish_n: "Conducta",
-    verb: "conduct", pronunciation_v: "con-DUCT", ipa_v: "/kənˈdʌkt/", def_v: "Organize and carry out.", example_v: "They will **conduct** a survey.", chinese_v: "进行 (jìnxíng)", spanish_v: "Dirigir/Conducir"
+    noun: "conduct", ipa_n: "/ˈkɑːndʌkt/", def_n: "The manner in which an organization or activity is managed or directed.", example_n: "His **conduct** was unacceptable.", chinese_n: "行为 (xíngwéi)", spanish_n: "Conducta", audio_n: "audio/conduct_n.mp3",
+    verb: "conduct", ipa_v: "/kənˈdʌkt/", def_v: "Organize and carry out.", example_v: "They will **conduct** a survey.", chinese_v: "进行 (jìnxíng)", spanish_v: "Dirigir/Conducir", audio_v: "audio/conduct_v.mp3"
   },
   {
-    noun: "address", pronunciation_n: "AD-dress", ipa_n: "/ˈædrɛs/", def_n: "The particulars of the place where someone lives or an organization is situated.", example_n: "What's your new **address**?", chinese_n: "地址 (dìzhǐ)", spanish_n: "Dirección",
-    verb: "address", pronunciation_v: "ad-DRESS", ipa_v: "/əˈdrɛs/", def_v: "Speak to (a person or an organization).", example_v: "He will **address** the audience.", chinese_v: "处理/讲话 (chǔlǐ/jiǎnghuà)", spanish_n: "Dirigirse a"
+    noun: "address", ipa_n: "/ˈædrɛs/", def_n: "The particulars of the place where someone lives or an organization is situated.", example_n: "What's your new **address**?", chinese_n: "地址 (dìzhǐ)", spanish_n: "Dirección", audio_n: "audio/address_n.mp3",
+    verb: "address", ipa_v: "/əˈdrɛs/", def_v: "Speak to (a person or an organization).", example_v: "He will **address** the audience.", chinese_v: "处理/讲话 (chǔlǐ/jiǎnghuà)", spanish_v: "Dirigirse a", audio_v: "audio/address_v.mp3"
   },
   {
-    noun: "decrease", pronunciation_n: "DE-crease", ipa_n: "/ˈdiːkriːs/", def_n: "A reduction in something.", example_n: "There was a sharp **decrease** in sales.", chinese_n: "减少 (jiǎnshǎo)", spanish_n: "Disminución",
-    verb: "decrease", pronunciation_v: "de-CREASE", ipa_v: "/dɪˈkriːs/", def_v: "Make or become smaller or fewer in size, amount, intensity, or degree.", example_v: "The population began to **decrease**.", chinese_v: "减少 (jiǎnshǎo)", spanish_v: "Disminuir"
+    noun: "decrease", ipa_n: "/ˈdiːkriːs/", def_n: "A reduction in something.", example_n: "There was a sharp **decrease** in sales.", chinese_n: "减少 (jiǎnshǎo)", spanish_n: "Disminución", audio_n: "audio/decrease_n.mp3",
+    verb: "decrease", ipa_v: "/dɪˈkriːs/", def_v: "Make or become smaller or fewer in size, amount, intensity, or degree.", example_v: "The population began to **decrease**.", chinese_v: "减少 (jiǎnshǎo)", spanish_v: "Disminuir", audio_v: "audio/decrease_v.mp3"
   },
   {
-    noun: "impact", pronunciation_n: "IM-pact", ipa_n: "/ˈɪmpækt/", def_n: "The striking of one object against another; collision.", example_n: "The **impact** of the car crash was severe.", chinese_n: "冲击 (chōngjī)", spanish_n: "Impacto",
-    verb: "impact", pronunciation_v: "im-PACT", ipa_v: "/ɪmˈpækt/", def_v: "Have a strong effect on someone or something.", example_v: "The new policy will **impact** everyone.", chinese_v: "影响 (yǐngxiǎng)", spanish_v: "Impactar"
+    noun: "impact", ipa_n: "/ˈɪmpækt/", def_n: "The striking of one object against another; collision.", example_n: "The **impact** of the car crash was severe.", chinese_n: "冲击 (chōngjī)", spanish_n: "Impacto", audio_n: "audio/impact_n.mp3",
+    verb: "impact", ipa_v: "/ɪmˈpækt/", def_v: "Have a strong effect on someone or something.", example_v: "The new policy will **impact** everyone.", chinese_v: "影响 (yǐngxiǎng)", spanish_v: "Impactar", audio_v: "audio/impact_v.mp3"
   },
   {
-    noun: "export", pronunciation_n: "EX-port", ipa_n: "/ˈɛkspɔːrt/", def_n: "A commodity, article, or service sold or sent to another country.", example_n: "Oil is a major **export** of the country.", chinese_n: "出口 (chūkǒu)", spanish_n: "Exportación",
-    verb: "export", pronunciation_v: "ex-PORT", ipa_v: "/ɪkˈspɔːrt/", def_v: "Send (goods or services) to another country for sale.", example_v: "They **export** cars to many countries.", chinese_v: "出口 (chūkǒu)", spanish_v: "Exportar"
+    noun: "export", ipa_n: "/ˈɛkspɔːrt/", def_n: "A commodity, article, or service sold or sent to another country.", example_n: "Oil is a major **export** of the country.", chinese_n: "出口 (chūkǒu)", spanish_n: "Exportación", audio_n: "audio/export_n.mp3",
+    verb: "export", ipa_v: "/ɪkˈspɔːrt/", def_v: "Send (goods or services) to another country for sale.", example_v: "They **export** cars to many countries.", chinese_v: "出口 (chūkǒu)", spanish_v: "Exportar", audio_v: "audio/export_v.mp3"
   },
   {
-    noun: "import", pronunciation_n: "IM-port", ipa_n: "/ˈɪmpɔːrt/", def_n: "A commodity, article, or service brought into one country from another.", example_n: "Their main **import** is raw materials.", chinese_n: "进口 (jìnkǒu)", spanish_n: "Importación",
-    verb: "import", pronunciation_v: "im-PORT", ipa_v: "/ɪmˈpɔːrt/", def_v: "Bring (goods or services) into a country from abroad for sale.", example_v: "We **import** coffee from Brazil.", chinese_v: "进口 (jìnkǒu)", spanish_n: "Importar"
+    noun: "import", ipa_n: "/ˈɪmpɔːrt/", def_n: "A commodity, article, or service brought into one country from another.", example_n: "Their main **import** is raw materials.", chinese_n: "进口 (jìnkǒu)", spanish_n: "Importación", audio_n: "audio/import_n.mp3",
+    verb: "import", ipa_v: "/ɪmˈpɔːrt/", def_v: "Bring (goods or services) into a country from abroad for sale.", example_v: "We **import** coffee from Brazil.", chinese_v: "进口 (jìnkǒu)", spanish_v: "Importar", audio_v: "audio/import_v.mp3"
   },
   {
-    noun: "protest", pronunciation_n: "PRO-test", ipa_n: "/ˈproʊtɛst/", def_n: "A statement or action expressing disapproval of or objection to something.", example_n: "There was a huge **protest** against the new law.", chinese_n: "抗议 (kàngyì)", spanish_n: "Protesta",
-    verb: "protest", pronunciation_v: "pro-TEST", ipa_v: "/prəˈtɛst/", def_v: "Express an objection to what someone has said or done.", example_v: "They will **protest** the decision.", chinese_v: "抗议 (kàngyì)", spanish_n: "Protestar"
+    noun: "protest", ipa_n: "/ˈproʊtɛst/", def_n: "A statement or action expressing disapproval of or objection to something.", example_n: "There was a huge **protest** against the new law.", chinese_n: "抗议 (kàngyì)", spanish_n: "Protesta", audio_n: "audio/protest_n.mp3",
+    verb: "protest", ipa_v: "/prəˈtɛst/", def_v: "Express an objection to what someone has said or done.", example_v: "They will **protest** the decision.", chinese_v: "抗议 (kàngyì)", spanish_v: "Protestar", audio_v: "audio/protest_v.mp3"
   },
   {
-    noun: "rebel", pronunciation_n: "REB-el", ipa_n: "/ˈrɛbl/", def_n: "A person who rises in opposition or armed resistance against an established government or ruler.", example_n: "He was a political **rebel**.", chinese_n: "反叛者 (fǎnpànzhě)", spanish_n: "Rebelde",
-    verb: "rebel", pronunciation_v: "re-BEL", ipa_v: "/rɪˈbɛl/", def_v: "Rise in opposition or armed resistance to an established government or ruler.", example_v: "Children often **rebel** against their parents.", chinese_v: "反抗 (fǎnkàng)", spanish_v: "Rebelarse"
+    noun: "rebel", ipa_n: "/ˈrɛbl/", def_n: "A person who rises in opposition or armed resistance against an established government or ruler.", example_n: "He was a political **rebel**.", chinese_n: "反叛者 (fǎnpànzhě)", spanish_n: "Rebelde", audio_n: "audio/rebel_n.mp3",
+    verb: "rebel", ipa_v: "/rɪˈbɛl/", def_v: "Rise in opposition or armed resistance to an established government or ruler.", example_v: "Children often **rebel** against their parents.", chinese_v: "反抗 (fǎnkàng)", spanish_v: "Rebelarse", audio_v: "audio/rebel_v.mp3"
   },
   {
-    noun: "transfer", pronunciation_n: "TRANS-fer", ipa_n: "/ˈtrænsfɜːr/", def_n: "An act of moving something or someone from one place to another.", example_n: "The data **transfer** was successful.", chinese_n: "转移 (zhuǎnyí)", spanish_n: "Transferencia",
-    verb: "transfer", pronunciation_v: "trans-FER", ipa_v: "/trænsˈfɜːr/", def_v: "Move from one place to another.", example_v: "Can you **transfer** the files to my computer?", chinese_v: "转移 (zhuǎnyí)", spanish_v: "Transferir"
+    noun: "transfer", ipa_n: "/ˈtrænsfɜːr/", def_n: "An act of moving something or someone from one place to another.", example_n: "The data **transfer** was successful.", chinese_n: "转移 (zhuǎnyí)", spanish_n: "Transferencia", audio_n: "audio/transfer_n.mp3",
+    verb: "transfer", ipa_v: "/trænsˈfɜːr/", def_v: "Move from one place to another.", example_v: "Can you **transfer** the files to my computer?", chinese_v: "转移 (zhuǎnyí)", spanish_v: "Transferir", audio_v: "audio/transfer_v.mp3"
   },
   {
-    noun: "increase", pronunciation_n: "IN-crease", ipa_n: "/ˈɪnkriːs/", def_n: "A raise in amount, size, or number.", example_n: "There was a sharp **increase** in prices.", chinese_n: "增加 (zēngjiā)", spanish_n: "Aumento",
-    verb: "increase", pronunciation_v: "in-CREASE", ipa_v: "/ɪnˈkriːs/", def_v: "Become or make greater in size, amount, intensity, or degree.", example_v: "Sales began to **increase** rapidly.", chinese_v: "增加 (zēngjiā)", spanish_n: "Aumentar"
+    noun: "increase", ipa_n: "/ˈɪnkriːs/", def_n: "A raise in amount, size, or number.", example_n: "There was a sharp **increase** in prices.", chinese_n: "增加 (zēngjiā)", spanish_n: "Aumento", audio_n: "audio/increase_n.mp3",
+    verb: "increase", ipa_v: "/ɪnˈkriːs/", def_v: "Become or make greater in size, amount, intensity, or degree.", example_v: "Sales began to **increase** rapidly.", chinese_v: "增加 (jiǎnshǎo)", spanish_n: "Aumentar", audio_v: "audio/increase_v.mp3"
   },
   {
-    noun: "contrast", pronunciation_n: "CON-trast", ipa_n: "/ˈkɑːntræst/", def_n: "The state of being strikingly different from something else in juxtaposition or close association.", example_n: "The **contrast** between rich and poor is stark.", chinese_n: "对比 (duìbǐ)", spanish_n: "Contraste",
-    verb: "contrast", pronunciation_v: "con-TRAST", ipa_v: "/kənˈtræst/", def_v: "Compare in such a way as to emphasize differences.", example_v: "You should **contrast** the two theories.", chinese_v: "对比 (duìbǐ)", spanish_n: "Contrastar"
+    noun: "contrast", ipa_n: "/ˈkɑːntræst/", def_n: "The state of being strikingly different from something else in juxtaposition or close association.", example_n: "The **contrast** between rich and poor is stark.", chinese_n: "对比 (duìbǐ)", spanish_n: "Contraste", audio_n: "audio/contrast_n.mp3",
+    verb: "contrast", ipa_v: "/kənˈtræst/", def_v: "Compare in such a way as to emphasize differences.", example_v: "You should **contrast** the two theories.", chinese_v: "对比 (duìbǐ)", spanish_n: "Contrastar", audio_v: "audio/contrast_v.mp3"
   },
   {
-    noun: "insight", pronunciation_n: "IN-sight", ipa_n: "/ˈɪnsaɪt/", def_n: "The capacity to gain an accurate and deep understanding of someone or something.", example_n: "The report provided valuable **insight**.", chinese_n: "洞察力 (dòngchálì)", spanish_n: "Perspicacia",
-    // Note: For "insight" as a verb, it's less common and less about stress shift.
-    // If you add more, consider if they actually have a common, different verb pronunciation.
-    verb: "insight", pronunciation_v: "in-SIGHT", ipa_v: "/ɪnˈsaɪt/", def_v: "(Note: 'insight' is primarily a noun. As a verb, it is generally used with a direct object to mean 'to cause to see or understand clearly'. This is less common.)", example_v: "His explanation helped to **insight** the problem.", chinese_v: "启发 (qǐfā)", spanish_v: "Iluminar/Infundir"
+    noun: "insight", ipa_n: "/ˈɪnsaɪt/", def_n: "The capacity to gain an accurate and deep understanding of someone or something.", example_n: "The report provided valuable **insight**.", chinese_n: "洞察力 (dòngchálì)", spanish_n: "Perspicacia", audio_n: "audio/insight_n.mp3", // Assuming insight noun pronunciation
+    verb: "insight", ipa_v: "/ɪnˈsaɪt/", def_v: "(Note: 'insight' is primarily a noun. As a verb, it is generally used with a direct object to mean 'to cause to see or understand clearly'. This is less common.)", example_v: "His explanation helped to **insight** the problem.", chinese_v: "启发 (qǐfā)", spanish_v: "Iluminar/Infundir", audio_v: "audio/insight_v.mp3" // Assuming insight verb pronunciation
   },
   {
-    noun: "suspect", pronunciation_n: "SUS-pect", ipa_n: "/ˈsʌspɛkt/", def_n: "A person thought to be guilty of a crime or offense.", example_n: "The police identified a **suspect**.", chinese_n: "嫌疑犯 (xiányífàn)", spanish_n: "Sospechoso/a",
-    verb: "suspect", pronunciation_v: "sus-PECT", ipa_v: "/səˈspɛkt/", def_v: "Have an idea or impression of the existence, presence, or truth of (something) without certain proof.", example_v: "I **suspect** he knows more than he's saying.", chinese_v: "怀疑 (huáiyí)", spanish_v: "Sospechar"
+    noun: "suspect", ipa_n: "/ˈsʌspɛkt/", def_n: "A person thought to be guilty of a crime or offense.", example_n: "The police identified a **suspect**.", chinese_n: "嫌疑犯 (xiányífàn)", spanish_n: "Sospechoso/a", audio_n: "audio/suspect_n.mp3",
+    verb: "suspect", ipa_v: "/səˈspɛkt/", def_v: "Have an idea or impression of the existence, presence, or truth of (something) without certain proof.", example_v: "I **suspect** he knows more than he's saying.", chinese_v: "怀疑 (huáiyí)", spanish_n: "Sospechar", audio_v: "audio/suspect_v.mp3"
   },
   {
-    noun: "digest", pronunciation_n: "DI-gest", ipa_n: "/ˈdaɪdʒɛst/", def_n: "A compilation or summary of material or information.", example_n: "He read a **digest** of the news.", chinese_n: "摘要 (zhāiyào)", spanish_n: "Resumen",
-    verb: "digest", pronunciation_v: "di-GEST", ipa_v: "/daɪˈdʒɛst/", def_v: "Break down food in the stomach and intestines into substances that the body can absorb and use.", example_v: "The body needs time to **digest** food.", chinese_v: "消化 (xiāohuà)", spanish_v: "Digerir"
+    noun: "digest", ipa_n: "/ˈdaɪdʒɛst/", def_n: "A compilation or summary of material or information.", example_n: "He read a **digest** of the news.", chinese_n: "摘要 (zhāiyào)", spanish_n: "Resumen", audio_n: "audio/digest_n.mp3",
+    verb: "digest", ipa_v: "/daɪˈdʒɛst/", def_v: "Break down food in the stomach and intestines into substances that the body can absorb and use.", example_v: "The body needs time to **digest** food.", chinese_v: "消化 (xiāohuà)", spanish_n: "Digerir", audio_v: "audio/digest_v.mp3"
   },
   {
-    noun: "project", pronunciation_n: "PRO-ject", ipa_n: "/ˈprɑːdʒɛkt/", def_n: "An individual or collaborative enterprise that is carefully planned and designed to achieve a particular aim.", example_n: "The new building **project** is underway.", chinese_n: "项目 (xiàngmù)", spanish_n: "Proyecto",
-    verb: "project", pronunciation_v: "pro-JECT", ipa_v: "/prəˈdʒɛkt/", def_v: "Estimate or forecast (something) on the basis of present trends or past data.", example_v: "They **project** a rise in profits.", chinese_v: "预测/投射 (yùcè/tóushè)", spanish_v: "Proyectar"
+    noun: "project", ipa_n: "/ˈprɑːdʒɛkt/", def_n: "An individual or collaborative enterprise that is carefully planned and designed to achieve a particular aim.", example_n: "The new building **project** is underway.", chinese_n: "项目 (xiàngmù)", spanish_n: "Proyecto", audio_n: "audio/project_n.mp3",
+    verb: "project", ipa_v: "/prəˈdʒɛkt/", def_v: "Estimate or forecast (something) on the basis of present trends or past data.", example_v: "They **project** a rise in profits.", chinese_v: "预测/投射 (yùcè/tóushè)", spanish_v: "Proyectar", audio_v: "audio/project_v.mp3"
   },
-  // Add your remaining 80 pairs here, ensuring you add the 'pronunciation_n' and 'pronunciation_v' keys.
-  // Use a simplified phonetic spelling that highlights the stress difference (e.g., CON-flict vs. con-FLICT).
-  // For words that truly have the same pronunciation for both noun and verb forms, you can just use the word itself.
-  // Example for a placeholder pair with pronunciation keys:
-  // {
-  //   noun: "addict", pronunciation_n: "ADD-ict", ipa_n: "/ˈædɪkt/", def_n: "A person who is addicted to a particular substance, typically an illegal drug.", example_n: "He is a drug **addict**.", chinese_n: "吸毒者 (xīđúzhě)", spanish_n: "Adicto/a",
-  //   verb: "addict", pronunciation_v: "ad-DICT", ipa_v: "/əˈdɪkt/", def_v: "To make (someone) dependently fond of or devoted to something.", example_v: "She will **addict** herself to gaming.", chinese_v: "使…上瘾 (shǐ...shàngyǐn)", spanish_v: "Adictar"
-  // },
+  // Add your remaining 80 pairs here.
+  // Each pair must have 'audio_n' and 'audio_v' paths pointing to your MP3 files.
 ];
 
 let index = 0;
@@ -415,19 +410,32 @@ const cardExample = document.getElementById("card-example");
 const cardChinese = document.getElementById("card-chinese");
 const cardSpanish = document.getElementById("card-spanish");
 
+// Create an Audio object once to reuse
+const audioPlayer = new Audio();
+audioPlayer.autoplay = true; // Set to true if you want auto-play
+
+function playAudio(audioSrc) {
+    if (audioSrc) {
+        audioPlayer.src = audioSrc;
+        audioPlayer.load(); // Load the new source
+        audioPlayer.play().catch(e => console.error("Error playing audio:", e));
+    } else {
+        console.warn("No audio source provided for this word.");
+    }
+}
+
 function updateCardContent(data, partOfSpeech) {
-  let term, ipa, definition, example, chinese, spanish, pronunciationText; // Added pronunciationText
+  let term, ipa, definition, example, chinese, spanish, audioSrc;
 
   if (partOfSpeech === 'noun') {
     term = data.noun;
-    pronunciationText = data.pronunciation_n || data.noun; // Use specific pronunciation if available, else noun
     ipa = data.ipa_n;
     definition = data.def_n;
     example = data.example_n;
     chinese = data.chinese_n;
     spanish = data.spanish_n;
+    audioSrc = data.audio_n; // Get noun audio source
     flashcard.classList.remove("flipped");
-    // Ensure speaker button color is updated on the noun side
     const speakerBtn = cardTerm.querySelector('.speaker');
     if (speakerBtn) speakerBtn.style.color = '#3498db';
     cardIpa.style.color = '#666';
@@ -435,14 +443,13 @@ function updateCardContent(data, partOfSpeech) {
     cardSpanish.style.color = '#666';
   } else { // partOfSpeech === 'verb'
     term = data.verb;
-    pronunciationText = data.pronunciation_v || data.verb; // Use specific pronunciation if available, else verb
     ipa = data.ipa_v;
     definition = data.def_v;
     example = data.example_v;
     chinese = data.chinese_v;
     spanish = data.spanish_v;
+    audioSrc = data.audio_v; // Get verb audio source
     flashcard.classList.add("flipped");
-    // Ensure speaker button color is updated on the verb side
     const speakerBtn = cardTerm.querySelector('.speaker');
     if (speakerBtn) speakerBtn.style.color = '#fff';
     cardIpa.style.color = '#e0e0e0';
@@ -457,42 +464,20 @@ function updateCardContent(data, partOfSpeech) {
   cardChinese.textContent = `Chinese: ${chinese}`;
   cardSpanish.textContent = `Spanish: ${spanish}`;
 
-  // Set up speaker button event listeners AFTER it's added to the DOM
+  // Set up speaker button event listeners
   const speakerBtn = cardTerm.querySelector(".speaker");
-  if (speakerBtn) { // Check if speakerBtn exists
+  if (speakerBtn) {
     speakerBtn.onclick = (e) => {
       e.stopPropagation(); // Prevent card flip on speaker click
-      speakWord(pronunciationText); // Pass the specific pronunciation text
+      playAudio(audioSrc); // Play the specific audio file
     };
     speakerBtn.onkeydown = (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         e.stopPropagation(); // Prevent card flip on speaker keypress
-        speakWord(pronunciationText); // Pass the specific pronunciation text
+        playAudio(audioSrc); // Play the specific audio file
       }
     };
-  }
-}
-
-// Modified speakWord function to take specific text for pronunciation
-function speakWord(wordToSpeak) {
-  // Check if Web Speech API is available
-  if ('speechSynthesis' in window) {
-    // Stop any currently speaking utterances to prevent overlap
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-    }
-    const utterance = new SpeechSynthesisUtterance(wordToSpeak);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.9;
-    // You can experiment with pitch and volume, but their effect on stress is minor.
-    // utterance.pitch = 1.0; // 0 to 2, default is 1
-    // utterance.volume = 1.0; // 0 to 1, default is 1
-    speechSynthesis.speak(utterance);
-  } else {
-    console.warn("Speech Synthesis API not supported in this browser.");
-    // Optionally, alert the user or provide a fallback
-    // alert("Your browser does not support text-to-speech for pronunciation.");
   }
 }
 
@@ -501,8 +486,7 @@ function showCard() {
   currentPart = 'noun';
   flashcard.setAttribute("aria-pressed", "false");
   updateCardContent(flashcards[index], currentPart); // Show noun side
-  // Auto-pronounce noun when card is first displayed or navigated to
-  speakWord(flashcards[index].pronunciation_n || flashcards[index].noun);
+  playAudio(flashcards[index].audio_n); // Auto-play noun audio
 }
 
 function flipCard() {
@@ -511,12 +495,12 @@ function flipCard() {
     updateCardContent(flashcards[index], currentPart); // Show verb side
     flashcard.setAttribute("aria-pressed", "true");
     flipped = true;
-    speakWord(flashcards[index].pronunciation_v || flashcards[index].verb); // Auto-pronounce verb on flip
+    playAudio(flashcards[index].audio_v); // Auto-play verb audio
   } else {
     currentPart = 'noun';
-    updateCardContent(flashcards[index], currentPart); // Show noun side again (re-using updateCardContent is better here)
+    updateCardContent(flashcards[index], currentPart); // Show noun side again
     flipped = false; // Reset flipped status
-    speakWord(flashcards[index].pronunciation_n || flashcards[index].noun); // Auto-pronounce noun on flip back
+    playAudio(flashcards[index].audio_n); // Auto-play noun audio
   }
 }
 
@@ -531,20 +515,21 @@ function prevCard() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if there are flashcards to display
     if (flashcards.length > 0) {
-        showCard(); // Initial card display
+        showCard();
     } else {
         cardTerm.textContent = "No flashcards defined!";
         cardIpa.textContent = "";
-        cardDefinition.textContent = "Please add data to the 'flashcards' array in the script.";
+        cardDefinition.textContent = "Please add data to the 'flashcards' array and ensure audio files are present.";
         cardExample.textContent = "";
         cardChinese.textContent = "";
         cardSpanish.textContent = "";
-        document.querySelector('.buttons').style.display = 'none'; // Hide buttons if no cards
+        document.querySelector('.buttons').style.display = 'none';
+        flashcard.onclick = null; // Disable flip
+        flashcard.onkeydown = null; // Disable flip
+        flashcard.style.cursor = 'default';
     }
 
-    // Mobile nav toggle script
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('primary-navigation');
 

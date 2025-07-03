@@ -7,6 +7,7 @@
   <title>Noun-Verb Pairs Flashcards – ESLnote Flashcards</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
+    /* Your existing CSS goes here. No changes needed to the CSS for this fix. */
     * {
       box-sizing: border-box;
     }
@@ -118,7 +119,7 @@
       }
       .nav-links {
         position: static; /* Links are part of the normal flow */
-        flex-direction: row; /* Links in a row */
+        flex-direction: row;
         background: none;
         height: auto;
         width: auto;
@@ -290,7 +291,7 @@
   </div>
 </nav>
 
-<h1>Same Form Noun-Verb Pairs Flashcards</h1>
+<h1>Noun-Verb Pairs Flashcards</h1>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
   <div class="main-term" id="card-term"></div>
@@ -403,6 +404,7 @@ let index = 0;
 let flipped = false;
 let currentPart = 'noun'; // To keep track of which side is currently shown
 
+// Get references to elements
 const flashcard = document.getElementById("flashcard");
 const cardTerm = document.getElementById("card-term");
 const cardIpa = document.getElementById("card-ipa");
@@ -422,7 +424,9 @@ function updateCardContent(data, partOfSpeech) {
     chinese = data.chinese_n;
     spanish = data.spanish_n;
     flashcard.classList.remove("flipped");
-    flashcard.querySelector('.speaker').style.color = '#3498db'; // Color for noun side speaker
+    // Ensure speaker button color is updated on the noun side
+    const speakerBtn = cardTerm.querySelector('.speaker');
+    if (speakerBtn) speakerBtn.style.color = '#3498db';
     cardIpa.style.color = '#666';
     cardChinese.style.color = '#666';
     cardSpanish.style.color = '#666';
@@ -434,7 +438,9 @@ function updateCardContent(data, partOfSpeech) {
     chinese = data.chinese_v;
     spanish = data.spanish_v;
     flashcard.classList.add("flipped");
-    flashcard.querySelector('.speaker').style.color = '#fff'; // Color for verb side speaker
+    // Ensure speaker button color is updated on the verb side
+    const speakerBtn = cardTerm.querySelector('.speaker');
+    if (speakerBtn) speakerBtn.style.color = '#fff';
     cardIpa.style.color = '#e0e0e0';
     cardChinese.style.color = '#c0d9f0';
     cardSpanish.style.color = '#c0d9f0';
@@ -447,26 +453,34 @@ function updateCardContent(data, partOfSpeech) {
   cardChinese.textContent = `Chinese: ${chinese}`;
   cardSpanish.textContent = `Spanish: ${spanish}`;
 
-  // Set up speaker button
+  // Set up speaker button event listeners AFTER it's added to the DOM
   const speakerBtn = cardTerm.querySelector(".speaker");
-  speakerBtn.onclick = (e) => {
-    e.stopPropagation(); // Prevent card flip on speaker click
-    speakWord(term);
-  };
-  speakerBtn.onkeydown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      e.stopPropagation(); // Prevent card flip on speaker keypress
+  if (speakerBtn) { // Check if speakerBtn exists
+    speakerBtn.onclick = (e) => {
+      e.stopPropagation(); // Prevent card flip on speaker click
       speakWord(term);
-    }
-  };
+    };
+    speakerBtn.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent card flip on speaker keypress
+        speakWord(term);
+      }
+    };
+  }
 }
 
 function speakWord(word) {
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = 'en-US';
-  utterance.rate = 0.9;
-  speechSynthesis.speak(utterance);
+  // Check if Web Speech API is available
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    speechSynthesis.speak(utterance);
+  } else {
+    console.warn("Speech Synthesis API not supported in this browser.");
+    alert("Your browser does not support text-to-speech for pronunciation.");
+  }
 }
 
 function showCard() {
@@ -485,7 +499,8 @@ function flipCard() {
     speakWord(flashcards[index].verb); // Auto-pronounce verb on flip
   } else {
     currentPart = 'noun';
-    showCard(); // Show noun side again
+    updateCardContent(flashcards[index], currentPart); // Show noun side again (re-using updateCardContent is better here)
+    flipped = false; // Reset flipped status
     speakWord(flashcards[index].noun); // Auto-pronounce noun on flip back
   }
 }
@@ -500,28 +515,32 @@ function prevCard() {
   showCard();
 }
 
-showCard(); // Initial card display
+// *** CRITICAL CHANGE HERE ***
+// Run the initial card display only after the DOM is fully loaded.
+document.addEventListener('DOMContentLoaded', () => {
+    showCard(); // Initial card display
 
-// Mobile nav toggle script
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('primary-navigation');
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
 
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-    menuToggle.setAttribute('aria-expanded', !expanded);
-    navLinks.classList.toggle('active');
-  });
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
 
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', false);
-      }
-    });
-  });
-}
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+});
 </script>
 
 </body>

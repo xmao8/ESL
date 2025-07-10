@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>First Day Jitters – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main { flex: 1; }
+        a { text-decoration: none; color: inherit; }
+        h1, h2 { color: #124076; }
+        nav {
+            background-color: #124076;
+            width: 100%;
+            padding: 0.8rem 1rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover,
+        .nav-container .nav-links a:focus {
+            color: #ffbb33;
+            text-decoration: underline;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            padding: 0;
+        }
+        article p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #124076;
+            margin-top: 1em;
+            display: block;
+        }
+        .dialogue {
+            margin-left: 1.5em;
+            margin-bottom: 0.5em;
+            font-style: italic;
+        }
+        .setting-info {
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+        section.vocab {
+            margin-top: 2.5rem;
+        }
+        section.vocab h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        dl { margin: 0; padding: 0; }
+        dt {
+            font-weight: 700;
+            color: #3498db;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dotted #3498db;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        dt:hover, dt:focus {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+            outline: none;
+        }
+        .speaker-icon {
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
+        }
+        dd { margin-left: 1.2rem; margin-bottom: 0.8rem; font-style: normal; }
+        dd.example {
+            font-style: italic;
+            color: #555;
+            margin-left: 1.5rem;
+            margin-top: -0.4rem;
+        }
+        .buttons {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            .container { padding: 1.8rem 2rem; }
+            article p { font-size: 1.05rem; }
+            section.vocab h2 { font-size: 1.6rem; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                z-index: 998;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            h1 { font-size: 2rem; padding: 0 0.8rem; }
+            .container { padding: 1rem; margin-top: 2rem; }
+            article p { font-size: 1rem; }
+            section.vocab h2 { font-size: 1.5rem; }
+            dt { font-size: 0.95rem; }
+            dd, dd.example { font-size: 0.9rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>First Day Jitters</h1>
+
+    <article>
+        <p class="scene-direction"><strong>Characters:</strong></p>
+        <p>
+            <strong>ANNA:</strong> A new student, a little shy but eager.<br>
+            <strong>MARCO:</strong> A confident and friendly student.<br>
+            <strong>MS. DAVIS:</strong> The welcoming and encouraging teacher.
+        </p>
+        <p class="setting-info"><strong>Setting:</strong> A bright, airy classroom. Desks are arranged in small groups. It's the first day of a summer ESL class.</p>
+
+        <p class="scene-direction">(The scene opens with ANNA entering the classroom nervously. She looks around, holding her bag tightly. MARCO is already sitting at a desk, looking at his phone, but he looks up and smiles.)</p>
+
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">(Friendly) Hi! Is this ESL Intermediate?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">(Hesitantly) Yes… I think so. I’m Anna.</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">Nice to meet you, Anna! I’m Marco. This is my first time in this class. Are you new here too?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">Yes, my first time. I’m a little… nervous.</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">Don’t worry! Me too, a little. But it looks like a nice classroom. And summer classes are usually fun. Where are you from, Anna?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">I’m from South Korea. And you?</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">I’m from Brazil. It’s my third summer in California. I really want to improve my English for my job. I’m an engineer.</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">Oh, wow! That’s interesting. I work in marketing. I need English for meetings and emails.</span></p>
+
+        <p class="scene-direction">(MS. DAVIS enters the classroom. She has a warm smile and carries a stack of papers.)</p>
+
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Good morning, everyone! Welcome to our Intermediate ESL Summer class. My name is Ms. Davis, and I'm so happy to see you all here.</span></p>
+
+        <p class="scene-direction">(Anna and Marco sit up straighter.)</p>
+
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Please, find a seat wherever you feel comfortable. We have a great summer ahead of us, full of learning and speaking English. Don’t be shy! This is a safe place to practice and make mistakes. That’s how we learn, right?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">(Whispering to Marco) She seems very nice.</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">(Whispering back) Yeah, she does.</span></p>
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Today, we’ll start with some introductions and a fun activity to get to know each other. I know the first day can feel a bit nerve-wracking, but I promise, we’ll have a lot of fun. My goal is for all of you to feel more confident speaking English by the end of this summer.</span></p>
+
+        <p class="scene-direction">(Ms. Davis walks over to Anna and Marco’s table.)</p>
+
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Hello there! What are your names?</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">Hi, Ms. Davis. I’m Marco.</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">(Smiling more confidently) And I’m Anna.</span></p>
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Welcome, Marco and Anna! It’s great to have you both. Marco, where are you from?</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">I’m from Brazil.</span></p>
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Wonderful! And Anna?</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">I’m from South Korea.</span></p>
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Excellent! We have a diverse group this summer, which is fantastic for practicing different accents and perspectives. Are you both looking forward to anything specific this summer, outside of class?</span></p>
+        <p><span class="character-name">MARCO:</span> <span class="dialogue">I want to visit some national parks!</span></p>
+        <p><span class="character-name">ANNA:</span> <span class="dialogue">I hope to go to the beach a lot!</span></p>
+        <p><span class="character-name">MS. DAVIS:</span> <span class="dialogue">Those sound like great plans! Well, let’s get started. Everyone, please stand up if you can…</span></p>
+
+        <p class="scene-direction">(Anna and Marco exchange a look, still a little nervous, but with a growing sense of ease. They stand up, ready for the class to begin.)</p>
+
+        <p class="scene-direction">(FADE OUT.)</p>
+    </article>
+
+    <section class="vocab" aria-labelledby="vocab-title">
+        <h2 id="vocab-title">Vocabulary List</h2>
+        <p>Click on each term to hear pronunciation!</p>
+        <dl>
+            <dt class="vocab-term" tabindex="0">Nervous <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Feeling worried or anxious.</dd>
+            <dd class="example">Example: "I’m a little… nervous."</dd>
+
+            <dt class="vocab-term" tabindex="0">Confident <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Feeling sure about yourself and your abilities.</dd>
+            <dd class="example">Example: "My goal is for all of you to feel more confident speaking English."</dd>
+
+            <dt class="vocab-term" tabindex="0">Improve <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>To make something better.</dd>
+            <dd class="example">Example: "I really want to improve my English for my job."</dd>
+
+            <dt class="vocab-term" tabindex="0">Hesitantly <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>In a slow or unsure way because you are not confident.</dd>
+            <dd class="example">Example: "(Hesitantly) Yes… I think so."</dd>
+
+            <dt class="vocab-term" tabindex="0">Engineer <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A person who designs, builds, or maintains engines, machines, or structures.</dd>
+            <dd class="example">Example: "I’m an engineer."</dd>
+
+            <dt class="vocab-term" tabindex="0">Marketing <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>The activity of presenting, advertising, and selling a company's products or services.</dd>
+            <dd class="example">Example: "I work in marketing."</dd>
+
+            <dt class="vocab-term" tabindex="0">Engaging <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Interesting and holding your attention.</dd>
+            <dd class="example">Example: "We’ll use a variety of engaging activities."</dd>
+
+            <dt class="vocab-term" tabindex="0">Nerve-wracking <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Causing a lot of anxiety or stress.</dd>
+            <dd class="example">Example: "I know the first day can feel a bit nerve-wracking."</dd>
+
+            <dt class="vocab-term" tabindex="0">Diverse <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>Including people from different backgrounds or cultures.</dd>
+            <dd class="example">Example: "We have a diverse group this summer."</dd>
+
+            <dt class="vocab-term" tabindex="0">Perspective <span class="speaker-icon"><i class="fas fa-volume-up"></i></span></dt>
+            <dd>A particular attitude toward or way of regarding something; a point of view.</dd>
+            <dd class="example">Example: "Fantastic for practicing different accents and perspectives."</dd>
+        </dl>
+    </section>
+
+    <div class="buttons">
+        <a href="../reading.html">← Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+</main>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utt = new SpeechSynthesisUtterance(word);
+            utt.lang = 'en-US';
+            window.speechSynthesis.speak(utt);
+        } else {
+            alert("Text-to-speech not supported.");
+        }
+    }
+    document.querySelectorAll('.vocab-term').forEach(item => {
+        item.addEventListener('click', () => {
+            const word = item.textContent.replace(/ 🔊$/, '').trim();
+            speakWord(word);
+        });
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const word = item.textContent.replace(/ 🔊$/, '').trim();
+                speakWord(word);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

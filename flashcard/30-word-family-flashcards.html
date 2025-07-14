@@ -1,806 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>30 Word family flashcards</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Base layout */
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
-            overflow-x: hidden;
-        }
-        main {
-            flex: 1;
-            max-width: 800px;
-            margin: auto;
-            padding: 1rem;
-        }
-
-        /* NAVBAR */
-        nav {
-            background-color: #124076;
-            padding: 0.8rem 1rem;
-            width: 100%;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0;
-        }
-        .nav-container .logo {
-            display: flex;
-            align-items: center;
-        }
-        .nav-container .logo-img {
-            width: 32px;
-            height: 32px;
-            margin-right: 0.5rem;
-        }
-        .nav-container .site-name {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            color: #ff9800;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .nav-container .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .nav-container .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
-        }
-        .nav-container .nav-links a:hover {
-            color: #ffbb33;
-            text-decoration: underline;
-        }
-
-        /* Hamburger menu button styles (hidden by default) */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1000;
-        }
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Page title */
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin: 2rem auto 1rem;
-            color: #2c3e50;
-            max-width: 800px;
-            padding: 0 1rem;
-        }
-
-        /* Headings */
-        h2 {
-            color: #124076;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        h3 {
-            margin: 1rem 0 0.5rem;
-            font-style: italic;
-        }
-
-        /* Text and lists */
-        p {
-            line-height: 1.5;
-            margin: 0.5rem 0;
-        }
-        ul, ol {
-            margin: 0.5rem 0 1rem 1.5rem;
-            padding: 0;
-        }
-        ul li, ol li {
-            margin-bottom: 0.3rem;
-        }
-
-        /* Article & Questions Specific Styles */
-        .content-section {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .content-section ol {
-            list-style-type: decimal;
-            margin-left: 20px;
-        }
-        .content-section li {
-            margin-bottom: 0.8rem;
-        }
-
-        /* Vocabulary List Specific Styles */
-        .vocabulary-list ul {
-            list-style: none; /* Remove default bullet points */
-            padding-left: 0;
-        }
-        .vocabulary-list li {
-            background-color: #fdfdff;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            padding: 12px 15px;
-            display: flex;
-            align-items: flex-start; /* Align items to the top if text wraps */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            line-height: 1.4;
-        }
-        .vocabulary-list li strong {
-            color: #124076;
-            margin-right: 8px;
-            font-size: 1.1em;
-            flex-shrink: 0; /* Prevent the word from shrinking */
-        }
-        .speaker-icon {
-            color: #3498db;
-            cursor: pointer;
-            margin-left: 5px;
-            font-size: 0.9em;
-            transition: color 0.2s;
-            flex-shrink: 0; /* Prevent icon from shrinking */
-            margin-top: 2px; /* Slight adjustment for vertical alignment with text */
-        }
-        .speaker-icon:hover {
-            color: #2980b9;
-        }
-        .vocabulary-list li .definition {
-            flex-grow: 1; /* Allow definition to take up remaining space */
-        }
-        .vocabulary-list li .example {
-            font-style: italic;
-            color: #555;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        /* Back button */
-        .buttons {
-            text-align: center;
-            margin: 2rem auto;
-            max-width: 800px;
-            padding: 0 1rem;
-        }
-        .buttons a {
-            text-decoration: none;
-            background-color: #3498db;
-            color: white;
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-            display: inline-block;
-        }
-        .buttons a:hover {
-            background-color: #2980b9;
-        }
-
-        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
-        @media (min-width: 601px) and (max-width: 900px) {
-            .nav-container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0.8rem 1rem;
-            }
-            .nav-container .logo {
-                margin-bottom: 0;
-            }
-            .nav-container .nav-links {
-                flex-wrap: wrap;
-                justify-content: flex-end;
-                gap: 1rem;
-            }
-            .nav-container .site-name {
-                font-size: 1.25rem;
-            }
-            .menu-toggle {
-                display: none;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-                margin: 1.8rem auto 0.8rem;
-                padding: 0 1.5rem;
-            }
-            main {
-                padding: 1.5rem;
-            }
-            h2 {
-                font-size: 1.6rem;
-            }
-            h3 {
-                font-size: 1.3rem;
-            }
-            p, ul, ol {
-                font-size: 1rem;
-            }
-            .buttons {
-                padding: 0 1.5rem;
-            }
-        }
-
-        /* --- Phone Layout (max-width: 600px) --- */
-        @media (max-width: 600px) {
-            .nav-container {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 0.6rem 0.8rem;
-            }
-            .nav-container .logo {
-                margin-bottom: 0;
-            }
-            .nav-container .site-name {
-                font-size: 1.2rem;
-            }
-            .nav-container .nav-links {
-                position: fixed;
-                top: 56px;
-                right: 0;
-                background: #124076;
-                flex-direction: column;
-                width: 100%;
-                height: calc(100vh - 56px);
-                padding: 1rem 1.5rem;
-                gap: 1rem;
-                overflow-y: auto;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                z-index: 998;
-                align-items: flex-start;
-                border-radius: 0 0 0 10px;
-            }
-            .nav-container .nav-links.active {
-                transform: translateX(0);
-            }
-            .nav-container .nav-links a {
-                width: auto;
-                text-align: left;
-                padding: 0.5rem 0;
-            }
-            .menu-toggle {
-                display: flex;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-                margin: 1.5rem auto 0.5rem;
-                padding: 0 0.8rem;
-            }
-            main {
-                padding: 0.8rem;
-            }
-            h2 {
-                font-size: 1.3rem;
-            }
-            h3 {
-                font-size: 1.1rem;
-            }
-            p, ul, ol {
-                font-size: 0.95rem;
-            }
-            .buttons a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            /* Adjust vocabulary list for smaller screens */
-            .vocabulary-list li {
-                flex-direction: column; /* Stack word, icon, and definition vertically */
-                align-items: flex-start;
-                padding: 10px;
-            }
-            .vocabulary-list li strong {
-                font-size: 1em;
-                margin-bottom: 5px;
-            }
-            .speaker-icon {
-                margin-left: 0;
-                margin-bottom: 5px;
-            }
-            .vocabulary-list li .definition {
-                font-size: 0.9em;
-            }
-            .vocabulary-list li .example {
-                font-size: 0.85em;
-            }
-        }
-
-        /* Extra small phone adjustments (optional, for very narrow screens) */
-        @media (max-width: 380px) {
-            .nav-container .nav-links a {
-                font-size: 0.8rem;
-                padding: 0.2rem 0.4rem;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <nav aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="../index.html" class="logo" aria-label="ESLnote Home">
-                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
-                <span class="site-name">ESLnote</span>
-            </a>
-
-            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <div class="nav-links" id="primary-navigation">
-                <a href="../index.html">Home</a>
-                <a href="../flashcards.html">Flashcards</a>
-                <a href="../conversation.html">Conversations</a>
-                <a href="../grammar.html">Grammar</a>
-                <a href="../reading.html">Reading</a>
-                <a href="../practice.html">Practices</a>
-            </div>
-        </div>
-    </nav>
-
-  <!DOCTYPE html>
-<html lang="en">
-<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
-  <title>30 Word Family Flashcards – 4-Way Flip</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Family Flashcards – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0;}
-    .flashcard { background: white; max-width: 520px; margin: 2rem auto; padding: 2rem; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.10); cursor: pointer; min-height: 260px;}
-    .flipped1 { background: #3498db; color: white;}
-    .flipped2 { background: #27ae60; color: white;}
-    .flipped3 { background: #e67e22; color: white;}
-    .flipped0 { background: white; color: #222;}
-    .main-term { font-weight: bold; font-size: 2rem; margin-bottom: 0.3em;}
-    .ipa { font-size: 1.2rem; color: #666;}
-    .definition, .example, .translation, .card-label { margin-top: 0.6rem;}
-    .card-label { font-size: 1.1rem; letter-spacing: 0.05em;}
-    .example { font-style: italic;}
-    .speaker { cursor: pointer; font-size: 1.3em; margin-left: 0.4em; }
-    .card-num { font-size: 0.9rem; color: #999;}
-    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem;}
-    button { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;}
-    .cycle-tip { font-size: 1rem; margin-top: 1.5em; color: #888; }
-    @media (max-width:600px) { .flashcard { padding: 1rem; } }
+    /* Base layout */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+      min-height: 250px; /* Ensure a minimum height for consistent layout */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Different background for flipped state to distinguish parts of speech */
+    .flashcard.flipped-1 { /* Verb */
+      background-color: #3498db; /* Blue */
+      color: white;
+    }
+    .flashcard.flipped-2 { /* Adjective */
+      background-color: #2ecc71; /* Green */
+      color: white;
+    }
+    .flashcard.flipped-3 { /* Adverb */
+      background-color: #f39c12; /* Orange */
+      color: white;
+    }
+
+    .main-term {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    /* IPA color changes based on flipped state */
+    .flashcard:not(.flipped-1):not(.flipped-2):not(.flipped-3) .ipa {
+        color: #666; /* Noun state */
+    }
+    .flashcard.flipped-1 .ipa,
+    .flashcard.flipped-2 .ipa,
+    .flashcard.flipped-3 .ipa {
+      color: #e0e0e0;
+    }
+
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #666; /* Default color for translations */
+    }
+    /* Translation color changes based on flipped state */
+    .flashcard.flipped-1 .translation,
+    .flashcard.flipped-2 .translation,
+    .flashcard.flipped-3 .translation {
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #3498db; /* Default color for speaker on noun side */
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #2980b9;
+    }
+    /* Speaker icon color changes based on flipped state */
+    .flashcard.flipped-1 .speaker,
+    .flashcard.flipped-2 .speaker,
+    .flashcard.flipped-3 .speaker {
+      color: #fff; /* White color for speaker on flipped side */
+    }
+    .flashcard.flipped-1 .speaker:hover,
+    .flashcard.flipped-2 .speaker:hover,
+    .flashcard.flipped-3 .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
   </style>
 </head>
 <body>
-  <h1>Word Family Flashcards<br><span style="font-size:1.2rem;font-weight:normal;">(Verb → Noun → Adjective → Adverb)</span></h1>
-  <div id="flashcard" class="flashcard flipped0" onclick="flipCard()" tabindex="0">
-    <div class="main-term" id="card-term"></div>
-    <div class="ipa" id="card-ipa"></div>
-    <div class="definition" id="card-definition"></div>
-    <div class="example" id="card-example"></div>
-    <div class="card-label" id="card-label"></div>
-    <div class="card-num" id="card-num"></div>
-    <div class="cycle-tip">Click to flip: Verb → Noun → Adjective → Adverb</div>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
   </div>
-  <div class="buttons">
-    <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-    <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
-  </div>
+</nav>
+
+<h1>Word Family Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="main-term" id="card-term"></div>
+  <div class="ipa" id="card-ipa"></div>
+  <div class="definition" id="card-definition"></div>
+  <div class="example" id="card-example"></div>
+  <div class="translation" id="card-chinese"></div>
+  <div class="translation" id="card-spanish"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
 <script>
 const flashcards = [
   {
-    root: "Act",
-    forms: [
-      { type: "Verb", term: "act", ipa: "/ækt/", def: "To do something; to take action.", example: "You must act quickly in an emergency." },
-      { type: "Noun", term: "action", ipa: "/ˈækʃən/", def: "The process of doing something.", example: "He took immediate action." },
-      { type: "Adjective", term: "active", ipa: "/ˈæktɪv/", def: "Doing things; busy.", example: "She leads an active lifestyle." },
-      { type: "Adverb", term: "actively", ipa: "/ˈæktɪvli/", def: "In a way that involves doing things.", example: "They are actively looking for solutions." }
-    ]
+    noun: "Action", ipa_n: "/ˈækʃn/", def_n: "A thing done; a deed.", example_n: "His brave **action** saved the child.", chinese_n: "行动 (xíngdòng)", spanish_n: "Acción",
+    verb: "Act", ipa_v: "/ækt/", def_v: "Take action; do something.", example_v: "The government needs to **act** quickly.", chinese_v: "行动 (xíngdòng)", spanish_v: "Actuar",
+    adj: "Active", ipa_adj: "/ˈæktɪv/", def_adj: "Engaging or ready to engage in physically energetic pursuits.", example_adj: "She is a very **active** person.", chinese_adj: "积极的 (jījíde)", spanish_adj: "Activo",
+    adv: "Actively", ipa_adv: "/ˈæktɪvli/", def_adv: "In an active manner.", example_adv: "The team members worked **actively**.", chinese_adv: "积极地 (jījíde)", spanish_adv: "Activamente"
   },
   {
-    root: "Analyze",
-    forms: [
-      { type: "Verb", term: "analyze", ipa: "/ˈænəlaɪz/", def: "To study or examine something in detail.", example: "Let's analyze the data." },
-      { type: "Noun", term: "analysis", ipa: "/əˈnæləsɪs/", def: "Detailed study of something.", example: "Her analysis was very thorough." },
-      { type: "Adjective", term: "analytic", ipa: "/ˌænəˈlɪtɪk/", def: "Related to or using analysis.", example: "He has an analytic mind." },
-      { type: "Adverb", term: "analytically", ipa: "/ˌænəˈlɪtɪkli/", def: "In an analytical way.", example: "She approached the problem analytically." }
-    ]
+    noun: "Analysis", ipa_n: "/əˈnæləsɪs/", def_n: "Detailed examination of the elements or structure of something.", example_n: "His detailed **analysis** of the market helped.", chinese_n: "分析 (fēnxī)", spanish_n: "Análisis",
+    verb: "Analyze", ipa_v: "/ˈænəlaɪz/", def_v: "Examine methodically and in detail the constitution or structure of something.", example_v: "The scientist will **analyze** the data.", chinese_v: "分析 (fēnxī)", spanish_v: "Analizar",
+    adj: "Analytic", ipa_adj: "/ˌænəˈlɪtɪk/", def_adj: "Relating to or using analysis or logical reasoning.", example_adj: "She has a strong **analytic** mind.", chinese_adj: "分析的 (fēnxīdē)", spanish_adj: "Analítico",
+    adv: "Analytically", ipa_adv: "/ˌænəˈlɪtɪkli/", def_adv: "In an analytical manner.", example_adv: "He approached the problem **analytically**.", chinese_adv: "分析地 (fēnxīdì)", spanish_adv: "Analíticamente"
   },
   {
-    root: "Apply",
-    forms: [
-      { type: "Verb", term: "apply", ipa: "/əˈplaɪ/", def: "To make a formal request or put something into effect.", example: "She decided to apply for the job." },
-      { type: "Noun", term: "application", ipa: "/ˌæplɪˈkeɪʃən/", def: "A formal request or the act of putting something into operation.", example: "Your application was accepted." },
-      { type: "Adjective", term: "applicable", ipa: "/əˈplɪkəb(ə)l/", def: "Relevant or appropriate.", example: "The rule is applicable to everyone." },
-      { type: "Adverb", term: "applicably", ipa: "/əˈplɪkəbli/", def: "In an applicable way.", example: "The law applies applicably to all cases." }
-    ]
+    noun: "Application", ipa_n: "/ˌæplɪˈkeɪʃn/", def_n: "A formal request to an authority for something.", example_n: "You need to fill out an **application** form.", chinese_n: "申请 (shēnqǐng)", spanish_n: "Solicitud",
+    verb: "Apply", ipa_v: "/əˈplaɪ/", def_v: "Make a formal request or application.", example_v: "Please **apply** for the scholarship.", chinese_v: "申请 (shēnqǐng)", spanish_v: "Aplicar/Solicitar",
+    adj: "Applicable", ipa_adj: "/ˈæplɪkəbl/", def_adj: "Relevant or appropriate.", example_adj: "The new rules are **applicable** to all students.", chinese_adj: "适用的 (shìyòngdē)", spanish_adj: "Aplicable",
+    adv: "Applicably", ipa_adv: "/ˈæplɪkəbli/", def_adv: "In an applicable manner.", example_adv: "The principle can be **applicably** used.", chinese_adv: "适用地 (shìyòngdì)", spanish_adv: "Aplicablemente"
   },
   {
-    root: "Communicate",
-    forms: [
-      { type: "Verb", term: "communicate", ipa: "/kəˈmjuːnɪkeɪt/", def: "To share or exchange information.", example: "We communicate by email." },
-      { type: "Noun", term: "communication", ipa: "/kəˌmjuːnɪˈkeɪʃən/", def: "The act of sharing information.", example: "Good communication is important." },
-      { type: "Adjective", term: "communicative", ipa: "/kəˈmjuːnɪkətɪv/", def: "Willing to talk or share.", example: "The team is very communicative." },
-      { type: "Adverb", term: "communicatively", ipa: "/kəˈmjuːnɪkətɪvli/", def: "In a communicative manner.", example: "She participates communicatively." }
-    ]
+    noun: "Communication", ipa_n: "/kəˌmjuːnɪˈkeɪʃn/", def_n: "The imparting or exchanging of information.", example_n: "Effective **communication** is key.", chinese_n: "沟通 (gōutōng)", spanish_n: "Comunicación",
+    verb: "Communicate", ipa_v: "/kəˈmjuːnɪkeɪt/", def_v: "Share or exchange information, news, or ideas.", example_v: "They tried to **communicate** their ideas clearly.", chinese_v: "沟通 (gōutōng)", spanish_v: "Comunicar",
+    adj: "Communicative", ipa_adj: "/kəˈmjuːnɪkətɪv/", def_adj: "Ready to talk or impart information.", example_adj: "She is a very **communicative** person.", chinese_adj: "善于交际的 (shànyú jiāojìdē)", spanish_adj: "Comunicativo",
+    adv: "Communicatively", ipa_adv: "/kəˌmjuːnɪˈkeɪtɪvli/", def_adv: "In a communicative manner.", example_adv: "The team collaborated **communicatively**.", chinese_adv: "交际地 (jiāojìdì)", spanish_adv: "Comunicativamente"
   },
   {
-    root: "Compete",
-    forms: [
-      { type: "Verb", term: "compete", ipa: "/kəmˈpiːt/", def: "To try to win against others.", example: "They compete for the prize." },
-      { type: "Noun", term: "competition", ipa: "/ˌkɒmpəˈtɪʃ(ə)n/", def: "An event in which people compete.", example: "The competition was tough." },
-      { type: "Adjective", term: "competitive", ipa: "/kəmˈpɛtɪtɪv/", def: "Having a strong desire to win.", example: "He is very competitive." },
-      { type: "Adverb", term: "competitively", ipa: "/kəmˈpɛtɪtɪvli/", def: "In a competitive manner.", example: "She played competitively." }
-    ]
+    noun: "Competition", ipa_n: "/ˌkɒmpəˈtɪʃn/", def_n: "The activity of striving to gain or win something.", example_n: "The **competition** for jobs is intense.", chinese_n: "竞争 (jìngzhēng)", spanish_n: "Competición",
+    verb: "Compete", ipa_v: "/kəmˈpiːt/", def_v: "Strive to gain or win something.", example_v: "The two companies **compete** for market share.", chinese_v: "竞争 (jìngzhēng)", spanish_v: "Competir",
+    adj: "Competitive", ipa_adj: "/kəmˈpɛtətɪv/", def_adj: "Relating to or characterized by competition.", example_adj: "He has a very **competitive** personality.", chinese_adj: "竞争的 (jìngzhēngdē)", spanish_adj: "Competitivo",
+    adv: "Competitively", ipa_adv: "/kəmˈpɛtətɪvli/", def_adv: "In a competitive manner.", example_adv: "Athletes train **competitively** to win.", chinese_adv: "有竞争力地 (yǒu jìngzhēnglìdì)", spanish_adv: "Competitivamente"
   },
   {
-    root: "Comprehend",
-    forms: [
-      { type: "Verb", term: "comprehend", ipa: "/ˌkɒmprɪˈhɛnd/", def: "To understand something.", example: "He cannot comprehend the instructions." },
-      { type: "Noun", term: "comprehension", ipa: "/ˌkɒmprɪˈhɛnʃ(ə)n/", def: "Understanding.", example: "Reading comprehension is important." },
-      { type: "Adjective", term: "comprehensible", ipa: "/ˌkɒmprɪˈhɛnsəb(ə)l/", def: "Able to be understood.", example: "His speech was comprehensible." },
-      { type: "Adverb", term: "comprehensibly", ipa: "/ˌkɒmprɪˈhɛnsəbli/", def: "In a comprehensible way.", example: "He explained comprehensibly." }
-    ]
+    noun: "Comprehension", ipa_n: "/ˌkɒmprɪˈhɛnʃn/", def_n: "The ability to understand something.", example_n: "Her **comprehension** of the text was impressive.", chinese_n: "理解 (lǐjiě)", spanish_n: "Comprensión",
+    verb: "Comprehend", ipa_v: "/ˌkɒmprɪˈhɛnd/", def_v: "Grasp mentally; understand.", example_v: "It's sometimes hard to **comprehend** complex theories.", chinese_v: "理解 (lǐjiě)", spanish_v: "Comprender",
+    adj: "Comprehensible", ipa_adj: "/ˌkɒmprɪˈhɛnsəbl/", def_adj: "Able to be understood; intelligible.", example_adj: "The instructions were clear and **comprehensible**.", chinese_adj: "可理解的 (kě lǐjiědē)", spanish_adj: "Comprensible",
+    adv: "Comprehensibly", ipa_adv: "/ˌkɒmprɪˈhɛnsəbli/", def_adv: "In a comprehensible manner.", example_adv: "The teacher explained the concept **comprehensibly**.", chinese_adv: "可理解地 (kě lǐjiědì)", spanish_adv: "Comprensiblemente"
   },
   {
-    root: "Conclude",
-    forms: [
-      { type: "Verb", term: "conclude", ipa: "/kənˈkluːd/", def: "To finish or decide something.", example: "Let's conclude the meeting." },
-      { type: "Noun", term: "conclusion", ipa: "/kənˈkluːʒən/", def: "The end or finish of something.", example: "The conclusion was clear." },
-      { type: "Adjective", term: "conclusive", ipa: "/kənˈkluːsɪv/", def: "Serving to prove something.", example: "The evidence was conclusive." },
-      { type: "Adverb", term: "conclusively", ipa: "/kənˈkluːsɪvli/", def: "In a way that proves something.", example: "The case was solved conclusively." }
-    ]
+    noun: "Conclusion", ipa_n: "/kənˈkluːʒn/", def_n: "The end or finish of an event or process.", example_n: "In **conclusion**, we made the right choice.", chinese_n: "结论 (jiélùn)", spanish_n: "Conclusión",
+    verb: "Conclude", ipa_v: "/kənˈkluːd/", def_v: "Bring (something) to an end.", example_v: "They **concluded** that the project was feasible.", chinese_v: "总结 (zǒngjié)", spanish_v: "Concluir",
+    adj: "Conclusive", ipa_adj: "/kənˈkluːsɪv/", def_adj: "Serving to prove a case; decisive or convincing.", example_adj: "The evidence was not **conclusive**.", chinese_adj: "决定性的 (juédìngxìngdē)", spanish_adj: "Concluyente",
+    adv: "Conclusively", ipa_adv: "/kənˈkluːsɪvli/", def_adv: "In a conclusive manner.", example_adv: "The experiment results proved it **conclusively**.", chinese_adv: "决定性地 (juédìngxìngdì)", spanish_adv: "Concluyentemente"
   },
   {
-    root: "Confide",
-    forms: [
-      { type: "Verb", term: "confide", ipa: "/kənˈfaɪd/", def: "To tell someone a secret.", example: "She confided her worries to me." },
-      { type: "Noun", term: "confidence", ipa: "/ˈkɒnfɪdəns/", def: "Trust or belief in someone or something.", example: "He has confidence in his abilities." },
-      { type: "Adjective", term: "confident", ipa: "/ˈkɒnfɪdənt/", def: "Sure of oneself.", example: "She is a confident speaker." },
-      { type: "Adverb", term: "confidently", ipa: "/ˈkɒnfɪdəntli/", def: "In a confident way.", example: "He answered confidently." }
-    ]
+    noun: "Confidence", ipa_n: "/ˈkɒnfɪdəns/", def_n: "The feeling or belief that one can rely on someone or something.", example_n: "Building self-**confidence** takes time.", chinese_n: "信心 (xìnxīn)", spanish_n: "Confianza",
+    verb: "Confide", ipa_v: "/kənˈfaɪd/", def_v: "Tell someone about a secret or sensitive matter.", example_v: "She decided to **confide** her secret.", chinese_v: "倾诉 (qīngsù)", spanish_v: "Confiar",
+    adj: "Confident", ipa_adj: "/ˈkɒnfɪdənt/", def_adj: "Feeling or showing confidence in oneself.", example_adj: "He felt **confident** that he would pass.", chinese_adj: "自信的 (zìxìndē)", spanish_adj: "Confiado",
+    adv: "Confidently", ipa_adv: "/ˈkɒnfɪdəntli/", def_adv: "In a confident manner.", example_adv: "She spoke **confidently** about her presentation.", chinese_adv: "自信地 (zìxìndì)", spanish_adv: "Confiadamente"
   },
   {
-    root: "Connect",
-    forms: [
-      { type: "Verb", term: "connect", ipa: "/kəˈnɛkt/", def: "To join together.", example: "Please connect the cable to your computer." },
-      { type: "Noun", term: "connection", ipa: "/kəˈnɛkʃ(ə)n/", def: "A link or relationship.", example: "There is no connection between the two events." },
-      { type: "Adjective", term: "connected", ipa: "/kəˈnɛktɪd/", def: "Joined or linked.", example: "The devices are connected." },
-      { type: "Adverb", term: "connecting", ipa: "/kəˈnɛktɪŋ/", def: "(Present participle, not standard adverb)", example: "The connecting train arrives at 6pm." }
-    ]
+    noun: "Connection", ipa_n: "/kəˈnɛkʃn/", def_n: "A relationship in which a person, thing, or idea is linked.", example_n: "There is a strong **connection** between exercise and health.", chinese_n: "连接 (liánjiē)", spanish_n: "Conexión",
+    verb: "Connect", ipa_v: "/kəˈnɛkt/", def_v: "Bring together or into contact.", example_v: "The two devices need to be **connected**.", chinese_v: "连接 (liánjiē)", spanish_v: "Conectar",
+    adj: "Connected", ipa_adj: "/kəˈnɛktɪd/", def_adj: "Joined or linked together.", example_adj: "The events in the story were **connected**.", chinese_adj: "连接的 (liánjiēdē)", spanish_adj: "Conectado",
+    adv: "Connectedly", ipa_adv: "/kəˈnɛktɪdli/", def_adv: "In a connected manner.", example_adv: "The ideas flowed **connectedly**.", chinese_adv: "连贯地 (liánguàndì)", spanish_adv: "Conectadamente"
   },
   {
-    root: "Decide",
-    forms: [
-      { type: "Verb", term: "decide", ipa: "/dɪˈsaɪd/", def: "To make a choice.", example: "You need to decide soon." },
-      { type: "Noun", term: "decision", ipa: "/dɪˈsɪʒən/", def: "A choice or judgment.", example: "Her decision was final." },
-      { type: "Adjective", term: "decisive", ipa: "/dɪˈsaɪsɪv/", def: "Able to decide quickly and confidently.", example: "She is a decisive leader." },
-      { type: "Adverb", term: "decisively", ipa: "/dɪˈsaɪsɪvli/", def: "In a way that shows the ability to decide quickly.", example: "He acted decisively." }
-    ]
+    noun: "Decision", ipa_n: "/dɪˈsɪʒn/", def_n: "A conclusion or resolution reached after consideration.", example_n: "She made a quick **decision**.", chinese_n: "决定 (juédìng)", spanish_n: "Decisión",
+    verb: "Decide", ipa_v: "/dɪˈsaɪd/", def_v: "Come to a resolution in the mind.", example_v: "We need to **decide** what to do next.", chinese_v: "决定 (juédìng)", spanish_v: "Decidir",
+    adj: "Decisive", ipa_adj: "/dɪˈsaɪsɪv/", def_adj: "Settling an issue; producing a definite result.", example_adj: "It was a **decisive** moment.", chinese_adj: "决定性的 (juédìngxìngdē)", spanish_adj: "Decisivo",
+    adv: "Decisively", ipa_adv: "/dɪˈsaɪsɪvli/", def_adv: "In a decisive manner.", example_adv: "The leader acted **decisively** in the crisis.", chinese_adv: "果断地 (guǒduàndì)", spanish_adv: "Decisivamente"
   },
   {
-    root: "Demonstrate",
-    forms: [
-      { type: "Verb", term: "demonstrate", ipa: "/ˈdɛmənstreɪt/", def: "To show or prove something clearly.", example: "She will demonstrate how to use the machine." },
-      { type: "Noun", term: "demonstration", ipa: "/ˌdɛmənˈstreɪʃən/", def: "An act of showing how to do something.", example: "The demonstration was helpful." },
-      { type: "Adjective", term: "demonstrative", ipa: "/dɪˈmɒnstrətɪv/", def: "Willing to show feelings.", example: "He is very demonstrative." },
-      { type: "Adverb", term: "demonstratively", ipa: "/dɪˈmɒnstrətɪvli/", def: "In a way that shows feelings openly.", example: "She hugged him demonstratively." }
-    ]
+    noun: "Demonstration", ipa_n: "/ˌdɛmənˈstreɪʃn/", def_n: "An act of showing how something works.", example_n: "The scientist performed a **demonstration**.", chinese_n: "演示 (yǎnshì)", spanish_n: "Demostración",
+    verb: "Demonstrate", ipa_v: "/ˈdɛmənstreɪt/", def_v: "Clearly show the existence or truth of something.", example_v: "You need to **demonstrate** your understanding.", chinese_v: "演示 (yǎnshì)", spanish_v: "Demostrar",
+    adj: "Demonstrable", ipa_adj: "/ˈdɛmənstrəbl/", def_adj: "Able to be demonstrated or proved.", example_adj: "His skill was **demonstrable** superior.", chinese_adj: "可证明的 (kě zhèngmíngdē)", spanish_adj: "Demostrable",
+    adv: "Demonstrably", ipa_adv: "/ˈdɛmənstrəbli/", def_adv: "In a way that can be clearly shown or proved.", example_adv: "He was **demonstrably** wrong.", chinese_adv: "可证明地 (kě zhèngmíngdì)", spanish_adv: "Demostrablemente"
   },
   {
-    root: "Develop",
-    forms: [
-      { type: "Verb", term: "develop", ipa: "/dɪˈvɛləp/", def: "To grow or change into something bigger or better.", example: "The company plans to develop new products." },
-      { type: "Noun", term: "development", ipa: "/dɪˈvɛləpmənt/", def: "The process of growing or improving.", example: "Urban development is rapid here." },
-      { type: "Adjective", term: "developing", ipa: "/dɪˈvɛləpɪŋ/", def: "Growing or becoming more advanced.", example: "Developing countries need support." },
-      { type: "Adverb", term: "developed", ipa: "/dɪˈvɛləpt/", def: "(Past participle, not an adverb)", example: "The country is highly developed." }
-    ]
+    noun: "Development", ipa_n: "/dɪˈvɛləpmənt/", def_n: "The process of developing or being developed.", example_n: "The city is planning a new housing **development**.", chinese_n: "发展 (fāzhǎn)", spanish_n: "Desarrollo",
+    verb: "Develop", ipa_v: "/dɪˈvɛləp/", def_v: "Grow or cause to grow and become more mature.", example_v: "The company aims to **develop** innovative products.", chinese_v: "发展 (fāzhǎn)", spanish_v: "Desarrollar",
+    adj: "Developing", ipa_adj: "/dɪˈvɛləpɪŋ/", def_adj: "Becoming more advanced or mature.", example_adj: "He is still a **developing** artist.", chinese_adj: "发展中的 (fāzhǎn zhōngdē)", spanish_adj: "En desarrollo",
+    adv: "Developmentally", ipa_adv: "/dɪˌvɛləpˈmɛntəli/", def_adv: "In a way that relates to the process of developing.", example_adv: "Children learn new skills **developmentally**.", chinese_adv: "发展地 (fāzhǎndì)", spanish_adv: "Desarrolladoramente"
   },
   {
-    root: "Educate",
-    forms: [
-      { type: "Verb", term: "educate", ipa: "/ˈɛdjʊkeɪt/", def: "To teach or train someone.", example: "Schools educate children." },
-      { type: "Noun", term: "education", ipa: "/ˌɛdjʊˈkeɪʃən/", def: "The process of teaching or learning.", example: "Education is essential for progress." },
-      { type: "Adjective", term: "educational", ipa: "/ˌɛdjʊˈkeɪʃənl/", def: "Related to education.", example: "They watched an educational video." },
-      { type: "Adverb", term: "educationally", ipa: "/ˌɛdjʊˈkeɪʃənli/", def: "In an educational way.", example: "The program is educationally beneficial." }
-    ]
+    noun: "Education", ipa_n: "/ˌɛdʒuˈkeɪʃn/", def_n: "The process of receiving or giving systematic instruction.", example_n: "Access to quality **education** is a basic right.", chinese_n: "教育 (jiàoyù)", spanish_n: "Educación",
+    verb: "Educate", ipa_v: "/ˈɛdʒukeɪt/", def_v: "Give (someone) an intellectual, moral, or social instruction.", example_v: "The program is designed to **educate** young children.", chinese_v: "教育 (jiàoyù)", spanish_v: "Educar",
+    adj: "Educational", ipa_adj: "/ˌɛdʒuˈkeɪʃənl/", def_adj: "Relating to education.", example_adj: "This documentary was very **educational**.", chinese_adj: "教育性的 (jiàoyùxìngdē)", spanish_adj: "Educativo",
+    adv: "Educationally", ipa_adv: "/ˌɛdʒuˈkeɪʃənəli/", def_adv: "In a way that relates to education.", example_adv: "The country is investing heavily **educationally**.", chinese_adv: "教育上 (jiàoyù shàng)", spanish_adv: "Educativamente"
   },
   {
-    root: "Employ",
-    forms: [
-      { type: "Verb", term: "employ", ipa: "/ɪmˈplɔɪ/", def: "To give someone a job.", example: "They employ over 100 workers." },
-      { type: "Noun", term: "employment", ipa: "/ɪmˈplɔɪmənt/", def: "Having a job or work.", example: "He found employment after graduation." },
-      { type: "Adjective", term: "employed", ipa: "/ɪmˈplɔɪd/", def: "Having a job.", example: "He is currently employed." },
-      { type: "Adjective", term: "employable", ipa: "/ɪmˈplɔɪəbl/", def: "Able to get and keep a job.", example: "She is highly employable." }
-    ]
+    noun: "Employment", ipa_n: "/ɪmˈplɔɪmənt/", def_n: "The state of having paid work.", example_n: "The new policy aims to boost **employment** rates.", chinese_n: "就业 (jiùyè)", spanish_n: "Empleo",
+    verb: "Employ", ipa_v: "/ɪmˈplɔɪ/", def_v: "Give work to (someone) and pay them for it.", example_v: "The company plans to **employ** more staff.", chinese_v: "雇佣 (gùyōng)", spanish_v: "Emplear",
+    adj: "Employed", ipa_adj: "/ɪmˈplɔɪd/", def_adj: "Having a job.", example_adj: "She is currently **employed** as a manager.", chinese_adj: "受雇的 (shòugùdē)", spanish_adj: "Empleado",
+    adv: "(no common adverb)", ipa_adv: "", def_adv: "N/A", example_adv: "", chinese_adv: "", spanish_adv: ""
   },
   {
-    root: "Enjoy",
-    forms: [
-      { type: "Verb", term: "enjoy", ipa: "/ɪnˈdʒɔɪ/", def: "To take pleasure in something.", example: "They enjoy hiking together." },
-      { type: "Noun", term: "enjoyment", ipa: "/ɪnˈdʒɔɪmənt/", def: "Pleasure or satisfaction.", example: "He gets enjoyment from music." },
-      { type: "Adjective", term: "enjoyable", ipa: "/ɪnˈdʒɔɪəbl/", def: "Pleasant or fun.", example: "The movie was enjoyable." },
-      { type: "Adverb", term: "enjoyably", ipa: "/ɪnˈdʒɔɪəbli/", def: "In an enjoyable manner.", example: "The evening was enjoyably spent." }
-    ]
+    noun: "Enjoyment", ipa_n: "/ɪnˈdʒɔɪmənt/", def_n: "The state or process of taking pleasure in something.", example_n: "He finds great **enjoyment** in playing games.", chinese_n: "乐趣 (lèqù)", spanish_n: "Disfrute",
+    verb: "Enjoy", ipa_v: "/ɪnˈdʒɔɪ/", def_v: "Take delight or pleasure in (an activity or occasion).", example_v: "I really **enjoy** reading this book.", chinese_v: "享受 (xiǎngshòu)", spanish_v: "Disfrutar",
+    adj: "Enjoyable", ipa_adj: "/ɪnˈdʒɔɪəbl/", def_adj: "Giving delight or pleasure.", example_adj: "We had a truly **enjoyable** evening.", chinese_adj: "愉快的 (yúkuàidē)", spanish_adj: "Agradable",
+    adv: "Enjoyably", ipa_adv: "/ɪnˈdʒɔɪəbli/", def_adv: "In an enjoyable manner.", example_adv: "The children played **enjoyably** in the park.", chinese_adv: "愉快地 (yúkuàidì)", spanish_adv: "Agradablemente"
   },
   {
-    root: "Explain",
-    forms: [
-      { type: "Verb", term: "explain", ipa: "/ɪkˈspleɪn/", def: "To make something clear.", example: "Can you explain this word?" },
-      { type: "Noun", term: "explanation", ipa: "/ˌɛkspləˈneɪʃən/", def: "A reason or justification.", example: "Her explanation was helpful." },
-      { type: "Adjective", term: "explanatory", ipa: "/ɪkˈsplænətɔːri/", def: "Giving information or explanation.", example: "She wrote an explanatory note." },
-      { type: "Adverb", term: "explanatorily", ipa: "/ɪkˌsplænəˈtɔːrəli/", def: "In an explanatory manner.", example: "He spoke explanatorily." }
-    ]
+    noun: "Explanation", ipa_n: "/ˌɛkspləˈneɪʃn/", def_n: "A statement or account that makes something clear.", example_n: "She offered a brief **explanation** of the process.", chinese_n: "解释 (jiěshì)", spanish_n: "Explicación",
+    verb: "Explain", ipa_v: "/ɪkˈspleɪn/", def_v: "Make (an idea, situation, or phrase) clear to someone.", example_v: "Can you **explain** the instructions more clearly?", chinese_v: "解释 (jiěshì)", spanish_v: "Explicar",
+    adj: "Explanatory", ipa_adj: "/ɪkˈsplænətɔːri/", def_adj: "Serving to explain something.", example_adj: "The textbook includes many **explanatory** diagrams.", chinese_adj: "解释性的 (jiěshìxìngdē)", spanish_adj: "Explicativo",
+    adv: "Explanatorily", ipa_adv: "/ɪkˌsplænəˈtɔːrəli/", def_adv: "In an explanatory manner.", example_adv: "He wrote a long essay, **explanatorily** detailing his research.", chinese_adv: "解释地 (jiěshìdì)", spanish_adv: "Explicativamente"
   },
   {
-    root: "Explore",
-    forms: [
-      { type: "Verb", term: "explore", ipa: "/ɪkˈsplɔːr/", def: "To travel through or learn about something new.", example: "They love to explore new places." },
-      { type: "Noun", term: "exploration", ipa: "/ˌɛkspləˈreɪʃən/", def: "The act of exploring.", example: "Space exploration is exciting." },
-      { type: "Adjective", term: "exploratory", ipa: "/ɪkˈsplɒrətəri/", def: "Done in order to discover more.", example: "They did an exploratory study." },
-      { type: "Adverb", term: "exploratively", ipa: "/ɪkˈsplɔːrətɪvli/", def: "In an exploratory way.", example: "She moved exploratively." }
-    ]
+    noun: "Exploration", ipa_n: "/ˌɛkspləˈreɪʃn/", def_n: "The action of traveling in or through an unfamiliar area.", example_n: "Space **exploration** continues to fascinate.", chinese_n: "探索 (tànsuǒ)", spanish_n: "Exploración",
+    verb: "Explore", ipa_v: "/ɪkˈsplɔːr/", def_v: "Travel in or through (an unfamiliar country or area).", example_v: "They decided to **explore** the old caves.", chinese_v: "探索 (tànsuǒ)", spanish_v: "Explorar",
+    adj: "Exploratory", ipa_adj: "/ɪkˈsplɔːrətɔːri/", def_adj: "Relating to or involving exploration or investigation.", example_adj: "The team conducted an **exploratory** survey.", chinese_adj: "探索性的 (tànsuǒxìngdē)", spanish_adj: "Exploratorio",
+    adv: "(no common adverb)", ipa_adv: "", def_adv: "N/A", example_adv: "", chinese_adv: "", spanish_adv: ""
   },
   {
-    root: "Imagine",
-    forms: [
-      { type: "Verb", term: "imagine", ipa: "/ɪˈmædʒɪn/", def: "To form a mental image.", example: "Can you imagine living there?" },
-      { type: "Noun", term: "imagination", ipa: "/ɪˌmædʒɪˈneɪʃən/", def: "The ability to create ideas.", example: "Imagination is important for creativity." },
-      { type: "Adjective", term: "imaginative", ipa: "/ɪˈmædʒɪnətɪv/", def: "Having new ideas.", example: "She is an imaginative writer." },
-      { type: "Adverb", term: "imaginatively", ipa: "/ɪˈmædʒɪnətɪvli/", def: "In a creative way.", example: "The story was told imaginatively." }
-    ]
+    noun: "Imagination", ipa_n: "/ɪˌmædʒɪˈneɪʃn/", def_n: "The faculty or action of forming new ideas.", example_n: "A good writer needs a strong **imagination**.", chinese_n: "想象力 (xiǎngxiànglì)", spanish_n: "Imaginación",
+    verb: "Imagine", ipa_v: "/ɪˈmædʒɪn/", def_v: "Form a mental image or concept of.", example_v: "Can you **imagine** a world without technology?", chinese_v: "想象 (xiǎngxiàng)", spanish_v: "Imaginar",
+    adj: "Imaginative", ipa_adj: "/ɪˈmædʒɪnətɪv/", def_adj: "Having or showing creativity or inventiveness.", example_adj: "The artist used her **imaginative** skills.", chinese_adj: "富有想象力的 (fùyǒu xiǎngxiànglìdē)", spanish_adj: "Imaginativo",
+    adv: "Imaginatively", ipa_adv: "/ɪˈmædʒɪnətɪvli/", def_adv: "In an imaginative manner.", example_adv: "She decorated her room very **imaginatively**.", chinese_adv: "富有想象力地 (fùyǒu xiǎngxiànglìdì)", spanish_adv: "Imaginativamente"
   },
   {
-    root: "Inform",
-    forms: [
-      { type: "Verb", term: "inform", ipa: "/ɪnˈfɔːrm/", def: "To give information.", example: "Please inform me of any changes." },
-      { type: "Noun", term: "information", ipa: "/ˌɪnfərˈmeɪʃən/", def: "Knowledge or facts.", example: "They gave us useful information." },
-      { type: "Adjective", term: "informative", ipa: "/ɪnˈfɔːrmətɪv/", def: "Providing useful information.", example: "The lecture was informative." },
-      { type: "Adverb", term: "informatively", ipa: "/ɪnˈfɔːrmətɪvli/", def: "In an informative way.", example: "She spoke informatively." }
-    ]
+    noun: "Information", ipa_n: "/ˌɪnfərˈmeɪʃn/", def_n: "Facts provided or learned about something.", example_n: "We need more **information**.", chinese_n: "信息 (xìnxī)", spanish_n: "Información",
+    verb: "Inform", ipa_v: "/ɪnˈfɔːrm/", def_v: "Give (someone) facts or information; tell.", example_v: "Please **inform** me of any changes.", chinese_v: "通知 (tōngzhī)", spanish_v: "Informar",
+    adj: "Informative", ipa_adj: "/ɪnˈfɔːrmətɪv/", def_adj: "Providing useful or interesting information.", example_adj: "The lecture was very **informative**.", chinese_adj: "信息丰富的 (xìnxī fēngfùdē)", spanish_adj: "Informativo",
+    adv: "Informatively", ipa_adv: "/ɪnˈfɔːrmətɪvli/", def_adv: "In an informative manner.", example_adv: "The report presents the facts clearly and **informatively**.", chinese_adv: "翔实地 (xiángshídì)", spanish_adv: "Informativamente"
   },
   {
-    root: "Achieve",
-    forms: [
-      { type: "Verb", term: "achieve", ipa: "/əˈtʃiːv/", def: "To succeed in doing something.", example: "He achieved his goal." },
-      { type: "Noun", term: "achievement", ipa: "/əˈtʃiːvmənt/", def: "Something that has been done successfully.", example: "Winning the award was a big achievement." },
-      { type: "Adjective", term: "achievable", ipa: "/əˈtʃiːvəbl/", def: "Able to be achieved.", example: "Set achievable goals." },
-      { type: "Adverb", term: "achievably", ipa: "/əˈtʃiːvəbli/", def: "In an achievable way.", example: "The plan was achievably structured." }
-    ]
+    noun: "Achievement", ipa_n: "/əˈtʃiːvmənt/", def_n: "A thing done successfully, typically by effort, courage, or skill.", example_n: "Winning the championship was a great **achievement**.", chinese_n: "成就 (chéngjiù)", spanish_n: "Logro",
+    verb: "Achieve", ipa_v: "/əˈtʃiːv/", def_v: "Successfully bring about or reach (a desired objective).", example_v: "You can **achieve** anything you set your mind to.", chinese_v: "实现 (shíxiàn)", spanish_v: "Lograr",
+    adj: "Achievable", ipa_adj: "/əˈtʃiːvəbl/", def_adj: "Able to be brought about or reached successfully.", example_adj: "Setting **achievable** goals is important.", chinese_adj: "可实现的 (kě shíxiàndē)", spanish_adj: "Alcanzable",
+    adv: "Achievably", ipa_adv: "/əˈtʃiːvəbli/", def_adv: "In a way that can be achieved.", example_adv: "The target is difficult but **achievably** within reach.", chinese_adv: "可实现地 (kě shíxiàndì)", spanish_adv: "Alcanzablemente"
   },
   {
-    root: "Organize",
-    forms: [
-      { type: "Verb", term: "organize", ipa: "/ˈɔːrɡənaɪz/", def: "To arrange or put in order.", example: "They organize meetings every week." },
-      { type: "Noun", term: "organization", ipa: "/ˌɔːrɡənaɪˈzeɪʃən/", def: "A group with a purpose.", example: "He joined a non-profit organization." },
-      { type: "Adjective", term: "organized", ipa: "/ˈɔːrɡənaɪzd/", def: "Arranged or planned.", example: "She is very organized." },
-      { type: "Adjective", term: "organizational", ipa: "/ˌɔːrɡənaɪˈzeɪʃənl/", def: "Relating to organization.", example: "She has strong organizational skills." }
-    ]
+    noun: "Organization", ipa_n: "/ˌɔːrɡənɪˈzeɪʃn/", def_n: "An organized body of people with a particular purpose.", example_n: "The **organization** helps local communities.", chinese_n: "组织 (zǔzhī)", spanish_n: "Organización",
+    verb: "Organize", ipa_v: "/ˈɔːrɡənaɪz/", def_v: "Arrange into a structured whole; order.", example_v: "They plan to **organize** a charity event.", chinese_v: "组织 (zǔzhī)", spanish_v: "Organizar",
+    adj: "Organized", ipa_adj: "/ˈɔːrɡənaɪzd/", def_adj: "Arranged or structured in a systematic way.", example_adj: "She is a very **organized** person.", chinese_adj: "有组织的 (yǒu zǔzhīdē)", spanish_adj: "Organizado",
+    adv: "Organizationally", ipa_adv: "/ˌɔːrɡənɪˈzeɪʃənəli/", def_adv: "In a way that relates to the organization or structure of something.", example_adv: "The company needs to improve **organizationally**.", chinese_adv: "组织上 (zǔzhī shàng)", spanish_adv: "Organizacionalmente"
   },
   {
-    root: "Persuade",
-    forms: [
-      { type: "Verb", term: "persuade", ipa: "/pərˈsweɪd/", def: "To convince someone.", example: "He persuaded her to stay." },
-      { type: "Noun", term: "persuasion", ipa: "/pərˈsweɪʒən/", def: "The act of convincing.", example: "She used gentle persuasion." },
-      { type: "Adjective", term: "persuasive", ipa: "/pərˈsweɪsɪv/", def: "Good at convincing.", example: "Her argument was persuasive." },
-      { type: "Adverb", term: "persuasively", ipa: "/pərˈsweɪsɪvli/", def: "In a persuasive way.", example: "He spoke persuasively." }
-    ]
+    noun: "Persuasion", ipa_n: "/pərˈsweɪʒn/", def_n: "The action or process of persuading someone.", example_n: "He used his powers of **persuasion**.", chinese_n: "说服 (shuōfú)", spanish_n: "Persuasión",
+    verb: "Persuade", ipa_v: "/pərˈsweɪd/", def_v: "Induce (someone) to do something through reasoning or argument.", example_v: "He tried to **persuade** her to change her mind.", chinese_v: "说服 (shuōfú)", spanish_v: "Persuadir",
+    adj: "Persuasive", ipa_adj: "/pərˈsweɪsɪv/", def_adj: "Good at persuading someone.", example_adj: "Her argument was very **persuasive**.", chinese_adj: "有说服力的 (yǒu shuōfúlìdē)", spanish_adj: "Persuasivo",
+    adv: "Persuasively", ipa_adv: "/pərˈsweɪsɪvli/", def_adv: "In a persuasive manner.", example_adv: "She spoke **persuasively**, winning over the audience.", chinese_adv: "有说服力地 (yǒu shuōfúlìdì)", spanish_adv: "Persuasivamente"
   },
   {
-    root: "Practice",
-    forms: [
-      { type: "Verb", term: "practice", ipa: "/ˈpræktɪs/", def: "To do something repeatedly to improve.", example: "You should practice every day." },
-      { type: "Noun", term: "practice", ipa: "/ˈpræktɪs/", def: "Repeated exercise in an activity.", example: "Practice makes perfect." },
-      { type: "Adjective", term: "practical", ipa: "/ˈpræktɪkəl/", def: "Useful or sensible.", example: "She gave practical advice." },
-      { type: "Adverb", term: "practically", ipa: "/ˈpræktɪkli/", def: "Almost or nearly.", example: "It's practically impossible." }
-    ]
+    noun: "Practice", ipa_n: "/ˈpræktɪs/", def_n: "The actual application or use of an idea.", example_n: "It takes a lot of **practice** to master a skill.", chinese_n: "练习 (liànxí)", spanish_n: "Práctica",
+    verb: "Practice", ipa_v: "/ˈpræktɪs/", def_v: "Perform (an activity) repeatedly or regularly.", example_v: "You should **practice** your English every day.", chinese_v: "练习 (liànxí)", spanish_v: "Practicar",
+    adj: "Practical", ipa_adj: "/ˈpræktɪkl/", def_adj: "Of or concerned with the actual doing of something.", example_adj: "This advice is very **practical**.", chinese_adj: "实用的 (shíyòngdē)", spanish_adj: "Práctico",
+    adv: "Practically", ipa_adv: "/ˈpræktɪkli/", def_adv: "In a practical manner; almost.", example_adv: "The new system is **practically** impossible to implement.", chinese_adv: "实际上 (shíjìshàng)", spanish_adv: "Prácticamente"
   },
   {
-    root: "Predict",
-    forms: [
-      { type: "Verb", term: "predict", ipa: "/prɪˈdɪkt/", def: "To say what will happen.", example: "Can you predict the weather?" },
-      { type: "Noun", term: "prediction", ipa: "/prɪˈdɪkʃən/", def: "A statement about what will happen.", example: "Her prediction was correct." },
-      { type: "Adjective", term: "predictable", ipa: "/prɪˈdɪktəbl/", def: "Able to be predicted.", example: "His actions are predictable." },
-      { type: "Adverb", term: "predictably", ipa: "/prɪˈdɪktəbli/", def: "As expected.", example: "Predictably, it rained again." }
-    ]
+    noun: "Prediction", ipa_n: "/prɪˈdɪkʃn/", def_n: "A forecast.", example_n: "Her reaction was entirely **predictable**.", chinese_n: "预测 (yùcè)", spanish_n: "Predicción",
+    verb: "Predict", ipa_v: "/prɪˈdɪkt/", def_v: "Say or estimate that (a specified thing) will happen.", example_v: "It's difficult to **predict** the future.", chinese_v: "预测 (yùcè)", spanish_v: "Predecir",
+    adj: "Predictable", ipa_adj: "/prɪˈdɪktəbl/", def_adj: "Able to be predicted.", example_adj: "The outcome was entirely **predictable**.", chinese_adj: "可预测的 (kě yùcèdē)", spanish_adj: "Predecible",
+    adv: "Predictably", ipa_adv: "/prɪˈdɪktəbli/", def_adv: "In a predictable manner.", example_adv: "The team's performance was **predictably** poor.", chinese_adv: "可预测地 (kě yùcèdì)", spanish_adv: "Predeciblemente"
   },
   {
-    root: "Produce",
-    forms: [
-      { type: "Verb", term: "produce", ipa: "/prəˈduːs/", def: "To make or create something.", example: "They produce cars in this factory." },
-      { type: "Noun", term: "production", ipa: "/prəˈdʌkʃən/", def: "The process of making something.", example: "Production increased last year." },
-      { type: "Adjective", term: "productive", ipa: "/prəˈdʌktɪv/", def: "Achieving good results.", example: "He had a productive day." },
-      { type: "Adverb", term: "productively", ipa: "/prəˈdʌktɪvli/", def: "In a productive way.", example: "She worked productively." }
-    ]
+    noun: "Production", ipa_n: "/prəˈdʌkʃn/", def_n: "The action of making or manufacturing.", example_n: "The factory aims to increase its **production**.", chinese_n: "生产 (shēngchǎn)", spanish_n: "Producción",
+    verb: "Produce", ipa_v: "/prəˈduːs/", def_v: "Make or manufacture (something).", example_v: "This region **produces** a lot of wine.", chinese_v: "生产 (shēngchǎn)", spanish_v: "Producir",
+    adj: "Productive", ipa_adj: "/prəˈdʌktɪv/", def_adj: "Producing or able to produce large amounts.", example_adj: "It was a very **productive** meeting.", chinese_adj: "富有成效的 (fùyǒu chéngxiàodē)", spanish_adj: "Productivo",
+    adv: "Productively", ipa_adv: "/prəˈdʌktɪvli/", def_adv: "In a productive manner.", example_adv: "They worked **productively** throughout the day.", chinese_adv: "富有成效地 (fùyǒu chéngxiàodì)", spanish_adv: "Productivamente"
   },
   {
-    root: "Relax",
-    forms: [
-      { type: "Verb", term: "relax", ipa: "/rɪˈlæks/", def: "To rest and be calm.", example: "Take time to relax." },
-      { type: "Noun", term: "relaxation", ipa: "/ˌriːlækˈseɪʃən/", def: "Rest and enjoyment.", example: "She enjoys relaxation on weekends." },
-      { type: "Adjective", term: "relaxed", ipa: "/rɪˈlækst/", def: "Calm and free from stress.", example: "He looks relaxed." },
-      { type: "Adjective", term: "relaxing", ipa: "/rɪˈlæksɪŋ/", def: "Making you feel relaxed.", example: "A relaxing bath helps me sleep." }
-    ]
+    noun: "Relaxation", ipa_n: "/ˌriːlækˈseɪʃn/", def_n: "The state of being free from tension and anxiety.", example_n: "Yoga is a great way to achieve deep **relaxation**.", chinese_n: "放松 (fàngsōng)", spanish_n: "Relajación",
+    verb: "Relax", ipa_v: "/rɪˈlæks/", def_v: "Make or become less tense or anxious.", example_v: "After a long day, I like to **relax** with a book.", chinese_v: "放松 (fàngsōng)", spanish_v: "Relajar",
+    adj: "Relaxed", ipa_adj: "/rɪˈlækst/", def_adj: "Free from tension and anxiety; at ease.", example_adj: "He felt very **relaxed** after his vacation.", chinese_adj: "放松的 (fàngsōngde)", spanish_adj: "Relajado",
+    adv: "Relaxingly", ipa_adv: "/rɪˈlæksɪŋli/", def_adv: "In a relaxing manner.", example_adv: "The music played **relaxingly** in the background.", chinese_adv: "放松地 (fàngsōngdì)", spanish_adv: "Relajadamente"
   },
   {
-    root: "Respond",
-    forms: [
-      { type: "Verb", term: "respond", ipa: "/rɪˈspɒnd/", def: "To answer or react.", example: "He didn't respond to my message." },
-      { type: "Noun", term: "response", ipa: "/rɪˈspɒns/", def: "An answer or reaction.", example: "Her response was quick." },
-      { type: "Adjective", term: "responsive", ipa: "/rɪˈspɒnsɪv/", def: "Reacting quickly and positively.", example: "He is responsive to feedback." },
-      { type: "Adverb", term: "responsively", ipa: "/rɪˈspɒnsɪvli/", def: "In a responsive way.", example: "She answered responsively." }
-    ]
+    noun: "Response", ipa_n: "/rɪˈspɒns/", def_n: "A verbal or written answer.", example_n: "Her quick **response** saved the situation.", chinese_n: "回应 (huíyìng)", spanish_n: "Respuesta",
+    verb: "Respond", ipa_v: "/rɪˈspɒnd/", def_v: "Say something in reply.", example_v: "How did he **respond** to your suggestion?", chinese_v: "回应 (huíyìng)", spanish_v: "Responder",
+    adj: "Responsive", ipa_adj: "/rɪˈspɒnsɪv/", def_adj: "Reacting quickly and positively.", example_adj: "The company is very **responsive** to feedback.", chinese_adj: "反应迅速的 (fǎnyìng xùnsùdē)", spanish_adj: "Receptivo",
+    adv: "Responsively", ipa_adv: "/rɪˈspɒnsɪvli/", def_adv: "In a responsive manner.", example_adv: "The system reacted **responsively** to the input.", chinese_adv: "迅速地 (xùnsùdì)", spanish_adv: "Receptivamente"
   },
   {
-    root: "Solve",
-    forms: [
-      { type: "Verb", term: "solve", ipa: "/sɒlv/", def: "To find an answer to a problem.", example: "Can you solve this puzzle?" },
-      { type: "Noun", term: "solution", ipa: "/səˈluːʃən/", def: "The answer to a problem.", example: "The solution was simple." },
-      { type: "Adjective", term: "solvable", ipa: "/ˈsɒlvəbl/", def: "Able to be solved.", example: "It's a solvable issue." },
-      { type: "Adverb", term: "", ipa: "", def: "(No standard adverb.)", example: "" }
-    ]
+    noun: "Solution", ipa_n: "/səˈluːʃn/", def_n: "A means of solving a problem or dealing with a difficult situation.", example_n: "We need to find a **solution** to this problem.", chinese_n: "解决方案 (jiějué fāng'àn)", spanish_n: "Solución",
+    verb: "Solve", ipa_v: "/sɒlv/", def_v: "Find an answer to, explanation for, or means of effectively dealing with (a problem or mystery).", example_v: "Can you help me **solve** this puzzle?", chinese_v: "解决 (jiějué)", spanish_v: "Resolver",
+    adj: "Solvable", ipa_adj: "/ˈsɒlvəbl/", def_adj: "Able to be solved.", example_adj: "This math problem is easily **solvable**.", chinese_adj: "可解决的 (kě jiějuédē)", spanish_adj: "Resoluble",
+    adv: "(no common adverb)", ipa_adv: "", def_adv: "N/A", example_adv: "", chinese_adv: "", spanish_adv: ""
   },
   {
-    root: "Succeed",
-    forms: [
-      { type: "Verb", term: "succeed", ipa: "/səkˈsiːd/", def: "To achieve what you want.", example: "She worked hard to succeed." },
-      { type: "Noun", term: "success", ipa: "/səkˈsɛs/", def: "Achieving a goal.", example: "He enjoyed great success." },
-      { type: "Adjective", term: "successful", ipa: "/səkˈsɛsfəl/", def: "Having achieved success.", example: "She is a successful businesswoman." },
-      { type: "Adverb", term: "successfully", ipa: "/səkˈsɛsfəli/", def: "In a successful way.", example: "He passed the exam successfully." }
-    ]
+    noun: "Success", ipa_n: "/səkˈsɛs/", def_n: "The accomplishment of an aim or purpose.", example_n: "His business has been a great **success**.", chinese_n: "成功 (chénggōng)", spanish_n: "Éxito",
+    verb: "Succeed", ipa_v: "/səkˈsiːd/", def_v: "Achieve the desired aim or result.", example_v: "She hopes to **succeed** in her new career.", chinese_v: "成功 (chénggōng)", spanish_v: "Tener éxito",
+    adj: "Successful", ipa_adj: "/səkˈsɛsfʊl/", def_adj: "Accomplishing an aim or purpose.", example_adj: "He is a very **successful** entrepreneur.", chinese_adj: "成功的 (chénggōngdē)", spanish_adj: "Exitoso",
+    adv: "Successfully", ipa_adv: "/səkˈsɛsfʊli/", def_adv: "In a way that achieves a desired aim or result.", example_adv: "The project was **successfully** completed on time.", chinese_adv: "成功地 (chénggōngdì)", spanish_adv: "Exitosamente"
   },
   {
-    root: "Understand",
-    forms: [
-      { type: "Verb", term: "understand", ipa: "/ˌʌndərˈstænd/", def: "To know the meaning of something.", example: "Do you understand the question?" },
-      { type: "Noun", term: "understanding", ipa: "/ˌʌndərˈstændɪŋ/", def: "Knowledge about something.", example: "He showed deep understanding." },
-      { type: "Adjective", term: "understandable", ipa: "/ˌʌndərˈstændəbl/", def: "Able to be understood.", example: "His accent is understandable." },
-      { type: "Adverb", term: "understandably", ipa: "/ˌʌndərˈstændəbli/", def: "In a way that can be understood.", example: "She was understandably upset." }
-    ]
+    noun: "Understanding", ipa_n: "/ˌʌndərˈstændɪŋ/", def_n: "The ability to understand something; comprehension.", example_n: "There was a clear **understanding** between them.", chinese_n: "理解 (lǐjiě)", spanish_n: "Comprensión",
+    verb: "Understand", ipa_v: "/ˌʌndərˈstænd/", def_v: "Perceive the intended meaning of (words, a language, or a speaker).", example_v: "Do you **understand** what I mean?", chinese_v: "理解 (lǐjiě)", spanish_v: "Comprender",
+    adj: "Understandable", ipa_adj: "/ˌʌndərˈstændəbl/", def_adj: "Able to be understood.", example_adj: "His explanation was very **understandable**.", chinese_adj: "可理解的 (kě lǐjiědē)", spanish_adj: "Comprensible",
+    adv: "Understandably", ipa_adv: "/ˌʌndərˈstændəbli/", def_adv: "In an understandable manner; as might be expected.", example_adv: "It's **understandably** that you're upset.", chinese_adv: "可理解地 (kě lǐjiědì)", spanish_adv: "Comprensiblemente"
+  },
+  {
+    noun: "Creation", ipa_n: "/kriˈeɪʃn/", def_n: "The action or process of bringing something into existence.", example_n: "The **creation** of new jobs.", chinese_n: "创造 (chuàngzào)", spanish_n: "Creación",
+    verb: "Create", ipa_v: "/kriˈeɪt/", def_v: "Bring (something) into existence.", example_v: "She wants to **create** a new design.", chinese_v: "创造 (chuàngzào)", spanish_v: "Crear",
+    adj: "Creative", ipa_adj: "/kriˈeɪtɪv/", def_adj: "Relating to or involving the use of the imagination or original ideas.", example_adj: "She is a very **creative** artist.", chinese_adj: "有创造力的 (yǒu chuàngzàolìdē)", spanish_n: "Creativo",
+    adv: "Creatively", ipa_adv: "/kriˈeɪtɪvli/", def_adv: "In a creative manner.", example_adv: "He thought **creatively** about the problem.", chinese_adv: "创造性地 (chuàngzàoxìngdì)", spanish_n: "Creativamente"
+  },
+  {
+    noun: "Danger", ipa_n: "/ˈdeɪndʒər/", def_n: "The possibility of suffering harm or injury.", example_n: "He was in great **danger**.", chinese_n: "危险 (wēixiǎn)", spanish_n: "Peligro",
+    verb: "Endanger", ipa_v: "/ɪnˈdeɪndʒər/", def_v: "Put (someone or something) at risk or in peril.", example_v: "Smoking can **endanger** your health.", chinese_v: "危及 (wēijí)", spanish_n: "Poner en peligro",
+    adj: "Dangerous", ipa_adj: "/ˈdeɪndʒərəs/", def_adj: "Able or likely to cause harm or injury.", example_adj: "That's a **dangerous** road.", chinese_adj: "危险的 (wēixiǎndē)", spanish_n: "Peligroso",
+    adv: "Dangerously", ipa_adv: "/ˈdeɪndʒərəsli/", def_adv: "In a dangerous manner.", example_adv: "He drove **dangerously** fast.", chinese_adv: "危险地 (wēixiǎndì)", spanish_n: "Peligrosamente"
+  },
+  {
+    noun: "Beauty", ipa_n: "/ˈbjuːti/", def_n: "A combination of qualities that pleases the aesthetic senses.", example_n: "The **beauty** of the sunset was breathtaking.", chinese_n: "美丽 (měilì)", spanish_n: "Belleza",
+    verb: "Beautify", ipa_v: "/ˈbjuːtɪfaɪ/", def_v: "Make beautiful.", example_v: "They tried to **beautify** the park.", chinese_v: "美化 (měihuà)", spanish_n: "Embellecer",
+    adj: "Beautiful", ipa_adj: "/ˈbjuːtɪfʊl/", def_adj: "Pleasing the senses or mind aesthetically.", example_adj: "She wore a **beautiful** dress.", chinese_adj: "美丽的 (měilìdē)", spanish_n: "Hermoso",
+    adv: "Beautifully", ipa_adv: "/ˈbjuːtɪfʊli/", def_adv: "In a beautiful manner.", example_adv: "She sings **beautifully**.", chinese_adv: "美丽地 (měilìdì)", spanish_n: "Hermosamente"
+  },
+  {
+    noun: "Happiness", ipa_n: "/ˈhæpinəs/", def_n: "The state of being happy.", example_n: "Her **happiness** was evident.", chinese_n: "幸福 (xìngfú)", spanish_n: "Felicidad",
+    verb: "(no common verb)", ipa_v: "", def_v: "N/A", example_v: "", chinese_v: "", spanish_v: "",
+    adj: "Happy", ipa_adj: "/ˈhæpi/", def_adj: "Feeling or showing pleasure or contentment.", example_adj: "He is a very **happy** child.", chinese_adj: "高兴的 (gāoxìngdē)", spanish_n: "Feliz",
+    adv: "Happily", ipa_adv: "/ˈhæpɪli/", def_adv: "In a happy manner.", example_adv: "They lived **happily** ever after.", chinese_adv: "高兴地 (gāoxìngdì)", spanish_n: "Felizmente"
+  },
+  {
+    noun: "Strength", ipa_n: "/strɛŋθ/", def_n: "The quality or state of being strong.", example_n: "He showed great **strength**.", chinese_n: "力量 (lìliàng)", spanish_n: "Fuerza",
+    verb: "Strengthen", ipa_v: "/ˈstrɛŋθn/", def_v: "Make or become stronger.", example_v: "Exercise will **strengthen** your muscles.", chinese_v: "加强 (jiāqiáng)", spanish_n: "Fortalecer",
+    adj: "Strong", ipa_adj: "/strɔːŋ/", def_adj: "Having the power to move heavy weights.", example_adj: "He is very **strong**.", chinese_adj: "强的 (qiángdē)", spanish_n: "Fuerte",
+    adv: "Strongly", ipa_adv: "/ˈstrɔːŋli/", def_adv: "With great physical or mental strength.", example_adv: "He argued **strongly** for his point of view.", chinese_adv: "强烈地 (qiánglièdì)", spanish_n: "Fuertemente"
+  },
+  {
+    noun: "Health", ipa_n: "/hɛlθ/", def_n: "The state of being free from illness or injury.", example_n: "Good **health** is important.", chinese_n: "健康 (jiànkāng)", spanish_n: "Salud",
+    verb: "(no common verb)", ipa_v: "", def_v: "N/A", example_v: "", chinese_v: "", spanish_v: "",
+    adj: "Healthy", ipa_adj: "/ˈhɛlθi/", def_adj: "In good health.", example_adj: "She lives a **healthy** lifestyle.", chinese_adj: "健康的 (jiànkāngdē)", spanish_n: "Saludable",
+    adv: "Healthily", ipa_adv: "/ˈhɛlθɪli/", def_adv: "In a healthy manner.", example_adv: "Eat **healthily**.", chinese_adv: "健康地 (jiànkāngdì)", spanish_n: "Saludablemente"
   }
 ];
 
-// Card state
 let index = 0;
-let side = 0; // 0: Verb, 1: Noun, 2: Adj, 3: Adv
+// Current part of speech: 0 = noun, 1 = verb, 2 = adjective, 3 = adverb
+let currentPartIndex = 0;
+const partsOfSpeech = ['noun', 'verb', 'adj', 'adv'];
 
+// Get references to elements
 const flashcard = document.getElementById("flashcard");
 const cardTerm = document.getElementById("card-term");
 const cardIpa = document.getElementById("card-ipa");
 const cardDefinition = document.getElementById("card-definition");
 const cardExample = document.getElementById("card-example");
-const cardLabel = document.getElementById("card-label");
-const cardNum = document.getElementById("card-num");
+const cardChinese = document.getElementById("card-chinese");
+const cardSpanish = document.getElementById("card-spanish");
 
-function updateCardContent() {
-  const data = flashcards[index];
-  const form = data.forms[side];
-  flashcard.className = `flashcard flipped${side}`;
+function updateCardContent(data, partKey) {
+  let term, ipa, definition, example, chinese, spanish;
 
-  cardTerm.innerHTML = `${form.term} <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${form.term}">🔊</span>`;
-  cardIpa.textContent = form.ipa || "";
-  cardDefinition.textContent = form.def || "";
-  cardExample.innerHTML = form.example ? `"${form.example}"` : "";
-  cardLabel.textContent = form.type || "";
-  cardNum.textContent = `#${index + 1} of ${flashcards.length} – ${data.root}`;
+  // Remove all flipped classes first
+  flashcard.classList.remove("flipped-1", "flipped-2", "flipped-3");
 
-  // Speaker button
+  switch (partKey) {
+    case 'noun':
+      term = data.noun;
+      ipa = data.ipa_n;
+      definition = data.def_n;
+      example = data.example_n;
+      chinese = data.chinese_n;
+      spanish = data.spanish_n;
+      flashcard.setAttribute("aria-pressed", "false"); // Not flipped
+      break;
+    case 'verb':
+      term = data.verb;
+      ipa = data.ipa_v;
+      definition = data.def_v;
+      example = data.example_v;
+      chinese = data.chinese_v;
+      spanish = data.spanish_v;
+      flashcard.classList.add("flipped-1"); // Apply specific flipped class for verb
+      flashcard.setAttribute("aria-pressed", "true");
+      break;
+    case 'adj':
+      term = data.adj;
+      ipa = data.ipa_adj;
+      definition = data.def_adj;
+      example = data.example_adj;
+      chinese = data.chinese_adj;
+      spanish = data.spanish_adj;
+      flashcard.classList.add("flipped-2"); // Apply specific flipped class for adjective
+      flashcard.setAttribute("aria-pressed", "true");
+      break;
+    case 'adv':
+      term = data.adv;
+      ipa = data.ipa_adv;
+      definition = data.def_adv;
+      example = data.example_adv;
+      chinese = data.chinese_adv;
+      spanish = data.spanish_adv;
+      flashcard.classList.add("flipped-3"); // Apply specific flipped class for adverb
+      flashcard.setAttribute("aria-pressed", "true");
+      break;
+  }
+
+  // Display "N/A" if a form is not available
+  cardTerm.innerHTML = `${term || 'N/A'} <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${term || 'N/A'}">🔊</span>`;
+  cardIpa.textContent = ipa || 'N/A';
+  cardDefinition.textContent = definition || 'N/A';
+  cardExample.innerHTML = `"${example || 'N/A'}"`;
+  cardChinese.textContent = `Chinese: ${chinese || 'N/A'}`;
+  cardSpanish.textContent = `Spanish: ${spanish || 'N/A'}`;
+
   const speakerBtn = cardTerm.querySelector(".speaker");
   if (speakerBtn) {
-    speakerBtn.onclick = (e) => { e.stopPropagation(); speakWord(form.term); };
-    speakerBtn.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); speakWord(form.term); } };
+    speakerBtn.onclick = (e) => {
+      e.stopPropagation(); // Prevent card flip on speaker click
+      speakWord(term);
+    };
+    speakerBtn.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent card flip on speaker keypress
+        speakWord(term);
+      }
+    };
   }
 }
 
 function speakWord(word) {
-  if ('speechSynthesis' in window) {
+  // Only try to speak if the word is a valid string and not a placeholder
+  if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '' && word.trim().toLowerCase() !== 'n/a' && !word.includes('(no common')) {
     const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = 'en-US'; utterance.rate = 0.9;
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
     speechSynthesis.speak(utterance);
+  } else {
+    console.warn("Speech Synthesis API not supported or word is not suitable for pronunciation.");
   }
 }
 
 function showCard() {
-  side = 0;
-  flashcard.setAttribute("aria-pressed", "false");
-  updateCardContent();
+  currentPartIndex = 0; // Always start with noun when showing a new card
+  const currentCardData = flashcards[index];
+  updateCardContent(currentCardData, partsOfSpeech[currentPartIndex]);
+  speakWord(currentCardData[partsOfSpeech[currentPartIndex]]); // Speak the noun when a new card is shown
 }
 
 function flipCard() {
-  side = (side + 1) % 4;
-  flashcard.setAttribute("aria-pressed", side !== 0 ? "true" : "false");
-  updateCardContent();
-  const data = flashcards[index], form = data.forms[side];
-  speakWord(form.term);
+  currentPartIndex = (currentPartIndex + 1) % partsOfSpeech.length;
+  const currentCardData = flashcards[index];
+  const currentPart = partsOfSpeech[currentPartIndex];
+
+  const termToSpeak = currentCardData[`${currentPart}`]; // Get the word for the current part of speech
+  updateCardContent(currentCardData, currentPart);
+  speakWord(termToSpeak); // Auto-pronounce the word on flip
 }
 
-function nextCard() { index = (index + 1) % flashcards.length; showCard(); }
-function prevCard() { index = (index - 1 + flashcards.length) % flashcards.length; showCard(); }
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard(); // Resets to noun side and speaks
+}
 
-document.addEventListener('DOMContentLoaded', showCard);
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard(); // Resets to noun side and speaks
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  showCard(); // Initial card display
+
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+});
 </script>
-</body>
-</html>
-
-
     <div class="buttons">
         <a href="../reading.html">⬅️ Back to Reading</a>
         <a href="../index.html">🏠 Back to Home</a>
     </div>
 
-    <script>
-        // Mobile nav toggle script
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('primary-navigation');
-
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-                menuToggle.setAttribute('aria-expanded', !expanded);
-                navLinks.classList.toggle('active');
-            });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if(navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', false);
-                    }
-                });
-            });
-        }
-
-        // Text-to-speech functionality for vocabulary words
-        const speakerIcons = document.querySelectorAll('.speaker-icon');
-
-        if ('speechSynthesis' in window) {
-            speakerIcons.forEach(icon => {
-                icon.addEventListener('click', function() {
-                    const wordToSpeak = this.dataset.word;
-                    if (wordToSpeak) {
-                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
-                        utterance.lang = 'en-US'; // Set language to English (US)
-                        window.speechSynthesis.speak(utterance);
-                    }
-                });
-            });
-        } else {
-            console.warn("Text-to-speech not supported in this browser.");
-            // Optionally, hide speaker icons or show a message to the user
-            speakerIcons.forEach(icon => icon.style.display = 'none');
-        }
-    </script>
 </body>
 </html>

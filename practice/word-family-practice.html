@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESL Word Families Worksheet – ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+
+    .exercise-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+
+    /* Fill-in-the-blanks */
+    .question-list ol {
+        padding-left: 20px;
+    }
+    .question-list li {
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+    }
+    .question-list input[type="text"] {
+        width: 250px; /* Increased width for longer answers */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    .correct-answer-text {
+        color: #28a745;
+        font-weight: bold;
+        margin-left: 10px;
+        display: none; /* Hidden by default */
+    }
+    .incorrect-answer-text {
+        color: #dc3545;
+        font-weight: bold;
+        margin-left: 10px;
+        display: none; /* Hidden by default */
+    }
+
+    /* Check Answers Button */
+    #checkAnswersBtn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+        background-color: #0056b3;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>ESL Word Families Worksheet: Intermediate-High</h1>
+
+<div class="content-container">
+  <p>This worksheet is designed to help you expand your vocabulary by exploring word families. Understanding how different forms of a word (noun, verb, adjective, adverb) are used can significantly improve your fluency and accuracy in English.</p>
+
+  <p><strong>Instructions:</strong></p>
+  <p>For each word family below, read the different forms provided. Then, complete the sentences using the **correct form** of the word family, paying attention to the context of the sentence.</p>
+
+  <div class="exercise-section">
+    <h2>Exercise: Fill in the Blanks</h2>
+    <div class="question-list">
+      <ol>
+        <li>
+          <h3>1. ACT Family</h3>
+          <ul>
+            <li>**Noun:** Action</li>
+            <li>**Verb:** Act</li>
+            <li>**Adjective:** Active</li>
+            <li>**Adverb:** Actively</li>
+          </ul>
+          a. She is a very <input type="text" id="q1a" /> person and loves sports.
+          <span class="correct-answer-text" id="a1a"></span><br>
+          b. The government needs to <input type="text" id="q1b" /> quickly to address the issue.
+          <span class="correct-answer-text" id="a1b"></span><br>
+          c. His brave <input type="text" id="q1c" /> saved the child from danger.
+          <span class="correct-answer-text" id="a1c"></span><br>
+          d. The team members worked <input type="text" id="q1d" /> to finish the project on time.
+          <span class="correct-answer-text" id="a1d"></span>
+        </li>
+        <li>
+          <h3>2. ANALYZE Family</h3>
+          <ul>
+            <li>**Noun:** Analysis</li>
+            <li>**Verb:** Analyze</li>
+            <li>**Adjective:** Analytic</li>
+            <li>**Adverb:** Analytically</li>
+          </ul>
+          a. The scientist will <input type="text" id="q2a" /> the data to find patterns.
+          <span class="correct-answer-text" id="a2a"></span><br>
+          b. His detailed <input type="text" id="q2b" /> of the market helped the company make a good decision.
+          <span class="correct-answer-text" id="a2b"></span><br>
+          c. She has a very strong <input type="text" id="q2c" /> mind, which helps her solve complex problems.
+          <span class="correct-answer-text" id="a2c"></span><br>
+          d. He approached the problem <input type="text" id="q2d" />, breaking it down into smaller parts.
+          <span class="correct-answer-text" id="a2d"></span>
+        </li>
+        <li>
+          <h3>3. APPLY Family</h3>
+          <ul>
+            <li>**Noun:** Application</li>
+            <li>**Verb:** Apply</li>
+            <li>**Adjective:** Applicable</li>
+            <li>**Adverb:** Applicably</li>
+          </ul>
+          a. Please <input type="text" id="q3a" /> for the scholarship before the deadline.
+          <span class="correct-answer-text" id="a3a"></span><br>
+          b. The new rules are <input type="text" id="q3b" /> to all students.
+          <span class="correct-answer-text" id="a3b"></span><br>
+          c. You need to fill out an <input type="text" id="q3c" /> form to join the club.
+          <span class="correct-answer-text" id="a3c"></span><br>
+          d. The principle can be <input type="text" id="q3d" /> used in various situations.
+          <span class="correct-answer-text" id="a3d"></span>
+        </li>
+        <li>
+          <h3>4. COMMUNICATE Family</h3>
+          <ul>
+            <li>**Noun:** Communication</li>
+            <li>**Verb:** Communicate</li>
+            <li>**Adjective:** Communicative</li>
+            <li>**Adverb:** Communicatively</li>
+          </ul>
+          a. Effective <input type="text" id="q4a" /> is key to a healthy relationship.
+          <span class="correct-answer-text" id="a4a"></span><br>
+          b. They tried to <input type="text" id="q4b" /> their ideas clearly during the meeting.
+          <span class="correct-answer-text" id="a4b"></span><br>
+          c. She is a very <input type="text" id="q4c" /> person and enjoys talking to new people.
+          <span class="correct-answer-text" id="a4c"></span><br>
+          d. The team collaborated <input type="text" id="q4d" /> to share updates and ideas.
+          <span class="correct-answer-text" id="a4d"></span>
+        </li>
+        <li>
+          <h3>5. COMPETE Family</h3>
+          <ul>
+            <li>**Noun:** Competition</li>
+            <li>**Verb:** Compete</li>
+            <li>**Adjective:** Competitive</li>
+            <li>**Adverb:** Competitively</li>
+          </ul>
+          a. The two companies <input type="text" id="q5a" /> for market share.
+          <span class="correct-answer-text" id="a5a"></span><br>
+          b. He has a very <input type="text" id="q5b" /> personality and always wants to win.
+          <span class="correct-answer-text" id="a5b"></span><br>
+          c. The <input type="text" id="q5c" /> for jobs in this field is very intense.
+          <span class="correct-answer-text" id="a5c"></span><br>
+          d. Athletes train <input type="text" id="q5d" /> to win gold medals.
+          <span class="correct-answer-text" id="a5d"></span>
+        </li>
+        <li>
+          <h3>6. COMPREHEND Family</h3>
+          <ul>
+            <li>**Noun:** Comprehension</li>
+            <li>**Verb:** Comprehend</li>
+            <li>**Adjective:** Comprehensible</li>
+            <li>**Adverb:** Comprehensibly</li>
+          </ul>
+          a. The instructions were written in a clear and <input type="text" id="q6a" /> way.
+          <span class="correct-answer-text" id="a6a"></span><br>
+          b. It's sometimes hard to <input type="text" id="q6b" /> the complex theories of physics.
+          <span class="correct-answer-text" id="a6b"></span><br>
+          c. Her <input type="text" id="q6c" /> of the difficult text was impressive.
+          <span class="correct-answer-text" id="a6c"></span><br>
+          d. The teacher explained the concept <input type="text" id="q6d" /> so everyone understood.
+          <span class="correct-answer-text" id="a6d"></span>
+        </li>
+        <li>
+          <h3>7. CONCLUDE Family</h3>
+          <ul>
+            <li>**Noun:** Conclusion</li>
+            <li>**Verb:** Conclude</li>
+            <li>**Adjective:** Conclusive</li>
+            <li>**Adverb:** Conclusively</li>
+          </ul>
+          a. After much discussion, they <input type="text" id="q7a" /> that the project was feasible.
+          <span class="correct-answer-text" id="a7a"></span><br>
+          b. The evidence was not <input type="text" id="q7b" /> enough to prove his guilt.
+          <span class="correct-answer-text" id="a7b"></span><br>
+          c. In <input type="text" id="q7c" />, I believe we made the right choice.
+          <span class="correct-answer-text" id="a7c"></span><br>
+          d. The experiment results proved the hypothesis <input type="text" id="q7d" />.
+          <span class="correct-answer-text" id="a7d"></span>
+        </li>
+        <li>
+          <h3>8. CONFIDENT Family</h3>
+          <ul>
+            <li>**Noun:** Confidence</li>
+            <li>**Verb:** Confide</li>
+            <li>**Adjective:** Confident</li>
+            <li>**Adverb:** Confidently</li>
+          </ul>
+          a. She spoke <input type="text" id="q8a" /> about her presentation.
+          <span class="correct-answer-text" id="a8a"></span><br>
+          b. Building self-<input type="text" id="q8b" /> takes time and practice.
+          <span class="correct-answer-text" id="a8b"></span><br>
+          c. He felt <input type="text" id="q8c" /> that he would pass the exam.
+          <span class="correct-answer-text" id="a8c"></span><br>
+          d. She decided to <input type="text" id="q8d" /> her secret to her best friend.
+          <span class="correct-answer-text" id="a8d"></span>
+        </li>
+        <li>
+          <h3>9. CONNECT Family</h3>
+          <ul>
+            <li>**Noun:** Connection</li>
+            <li>**Verb:** Connect</li>
+            <li>**Adjective:** Connected</li>
+            <li>**Adverb:** Connectedly</li>
+          </ul>
+          a. There is a strong <input type="text" id="q9a" /> between exercise and good health.
+          <span class="correct-answer-text" id="a9a"></span><br>
+          b. The two devices need to be <input type="text" id="q9b" /> to the same network.
+          <span class="correct-answer-text" id="a9b"></span><br>
+          c. The events in the story were <input type="text" id="q9c" />, leading to a surprising ending.
+          <span class="correct-answer-text" id="a9c"></span><br>
+          d. The ideas flowed <input type="text" id="q9d" /> from one point to the next.
+          <span class="correct-answer-text" id="a9d"></span>
+        </li>
+        <li>
+          <h3>10. DECIDE Family</h3>
+          <ul>
+            <li>**Noun:** Decision</li>
+            <li>**Verb:** Decide</li>
+            <li>**Adjective:** Decisive</li>
+            <li>**Adverb:** Decisively</li>
+          </ul>
+          a. She made a quick <input type="text" id="q10a" /> to accept the job offer.
+          <span class="correct-answer-text" id="a10a"></span><br>
+          b. The leader acted <input type="text" id="q10b" /> in the crisis.
+          <span class="correct-answer-text" id="a10b"></span><br>
+          c. It was a <input type="text" id="q10c" /> moment that changed the course of history.
+          <span class="correct-answer-text" id="a10c"></span><br>
+          d. We need to <input type="text" id="q10d" /> what to do next.
+          <span class="correct-answer-text" id="a10d"></span>
+        </li>
+        <li>
+          <h3>11. DEMONSTRATE Family</h3>
+          <ul>
+            <li>**Noun:** Demonstration</li>
+            <li>**Verb:** Demonstrate</li>
+            <li>**Adjective:** Demonstrable</li>
+            <li>**Adverb:** Demonstrably</li>
+          </ul>
+          a. The new software will be <input type="text" id="q11a" /> at the conference.
+          <span class="correct-answer-text" id="a11a"></span><br>
+          b. His skill was <input type="text" id="q11b" /> superior to others.
+          <span class="correct-answer-text" id="a11b"></span><br>
+          c. The scientist performed a <input type="text" id="q11c" /> to show the chemical reaction.
+          <span class="correct-answer-text" id="a11c"></span><br>
+          d. You need to <input type="text" id="q11d" /> your understanding of the topic.
+          <span class="correct-answer-text" id="a11d"></span>
+        </li>
+        <li>
+          <h3>12. DEVELOP Family</h3>
+          <ul>
+            <li>**Noun:** Development</li>
+            <li>**Verb:** Develop</li>
+            <li>**Adjective:** Developing</li>
+            <li>**Adverb:** Developmentally</li>
+          </ul>
+          a. The city is planning a new housing <input type="text" id="q12a" />.
+          <span class="correct-answer-text" id="a12a"></span><br>
+          b. Children learn new skills <input type="text" id="q12b" /> as they grow.
+          <span class="correct-answer-text" id="a12b"></span><br>
+          c. The company aims to <input type="text" id="q12c" /> innovative products.
+          <span class="correct-answer-text" id="a12c"></span><br>
+          d. He is still a <input type="text" id="q12d" /> artist, but shows great promise.
+          <span class="correct-answer-text" id="a12d"></span>
+        </li>
+        <li>
+          <h3>13. EDUCATE Family</h3>
+          <ul>
+            <li>**Noun:** Education</li>
+            <li>**Verb:** Educate</li>
+            <li>**Adjective:** Educational</li>
+            <li>**Adverb:** Educationally</li>
+          </ul>
+          a. Access to quality <input type="text" id="q13a" /> is a basic right.
+          <span class="correct-answer-text" id="a13a"></span><br>
+          b. The program is designed to <input type="text" id="q13b" /> young children about healthy eating.
+          <span class="correct-answer-text" id="a13b"></span><br>
+          c. This documentary was very <input type="text" id="q13c" /> and informative.
+          <span class="correct-answer-text" id="a13c"></span><br>
+          d. The country is investing heavily <input type="text" id="q13d" /> in its youth.
+          <span class="correct-answer-text" id="a13d"></span>
+        </li>
+        <li>
+          <h3>14. EMPLOY Family</h3>
+          <ul>
+            <li>**Noun:** Employment</li>
+            <li>**Verb:** Employ</li>
+            <li>**Adjective:** Employed</li>
+            <li>**Adverb:** (No common adverb)</li>
+          </ul>
+          a. The company plans to <input type="text" id="q14a" /> more staff next year.
+          <span class="correct-answer-text" id="a14a"></span><br>
+          b. She is currently <input type="text" id="q14b" /> as a marketing manager.
+          <span class="correct-answer-text" id="a14b"></span><br>
+          c. The new policy aims to boost <input type="text" id="q14c" /> rates.
+          <span class="correct-answer-text" id="a14c"></span><br>
+          d. He was <input type="text" id="q14d" /> as a consultant for the project.
+          <span class="correct-answer-text" id="a14d"></span>
+        </li>
+        <li>
+          <h3>15. ENJOY Family</h3>
+          <ul>
+            <li>**Noun:** Enjoyment</li>
+            <li>**Verb:** Enjoy</li>
+            <li>**Adjective:** Enjoyable</li>
+            <li>**Adverb:** Enjoyably</li>
+          </ul>
+          a. We had a truly <input type="text" id="q15a" /> evening at the concert.
+          <span class="correct-answer-text" id="a15a"></span><br>
+          b. He finds great <input type="text" id="q15b" /> in playing video games.
+          <span class="correct-answer-text" id="a15b"></span><br>
+          c. I really <input type="text" id="q15c" /> reading this book.
+          <span class="correct-answer-text" id="a15c"></span><br>
+          d. The children played <input type="text" id="q15d" /> in the park all afternoon.
+          <span class="correct-answer-text" id="a15d"></span>
+        </li>
+        <li>
+          <h3>16. EXPLAIN Family</h3>
+          <ul>
+            <li>**Noun:** Explanation</li>
+            <li>**Verb:** Explain</li>
+            <li>**Adjective:** Explanatory</li>
+            <li>**Adverb:** Explanatorily</li>
+          </ul>
+          a. Can you <input type="text" id="q16a" /> the instructions more clearly?
+          <span class="correct-answer-text" id="a16a"></span><br>
+          b. The textbook includes many <input type="text" id="q16b" /> diagrams.
+          <span class="correct-answer-text" id="a16b"></span><br>
+          c. She offered a brief <input type="text" id="q16c" /> of the process.
+          <span class="correct-answer-text" id="a16c"></span><br>
+          d. He wrote a long essay, <input type="text" id="q16d" /> detailing his research.
+          <span class="correct-answer-text" id="a16d"></span>
+        </li>
+        <li>
+          <h3>17. EXPLORE Family</h3>
+          <ul>
+            <li>**Noun:** Exploration</li>
+            <li>**Verb:** Explore</li>
+            <li>**Adjective:** Exploratory</li>
+            <li>**Adverb:** (No common adverb)</li>
+          </ul>
+          a. The team conducted an <input type="text" id="q17a" /> survey before starting the main research.
+          <span class="correct-answer-text" id="a17a"></span><br>
+          b. They decided to <input type="text" id="q17b" /> the old caves in the mountain.
+          <span class="correct-answer-text" id="a17b"></span><br>
+          c. Space <input type="text" id="q17c" /> continues to fascinate scientists.
+          <span class="correct-answer-text" id="a17c"></span><br>
+          d. The first phase of the project is purely <input type="text" id="q17d" />.
+          <span class="correct-answer-text" id="a17d"></span>
+        </li>
+        <li>
+          <h3>18. IMAGINE Family</h3>
+          <ul>
+            <li>**Noun:** Imagination</li>
+            <li>**Verb:** Imagine</li>
+            <li>**Adjective:** Imaginative</li>
+            <li>**Adverb:** Imaginatively</li>
+          </ul>
+          a. A good writer needs a strong <input type="text" id="q18a" />.
+          <span class="correct-answer-text" id="a18a"></span><br>
+          b. She decorated her room very <input type="text" id="q18b" />.
+          <span class="correct-answer-text" id="a18b"></span><br>
+          c. Can you <input type="text" id="q18c" /> a world without technology?
+          <span class="correct-answer-text" id="a18c"></span><br>
+          d. The artist used her <input type="text" id="q18d" /> to create a unique sculpture.
+          <span class="correct-answer-text" id="a18d"></span>
+        </li>
+        <li>
+          <h3>19. INFORM Family</h3>
+          <ul>
+            <li>**Noun:** Information</li>
+            <li>**Verb:** Inform</li>
+            <li>**Adjective:** Informative</li>
+            <li>**Adverb:** Informatively</li>
+          </ul>
+          a. The lecture was very <input type="text" id="q19a" />.
+          <span class="correct-answer-text" id="a19a"></span><br>
+          b. Please <input type="text" id="q19b" /> me if there are any changes to the schedule.
+          <span class="correct-answer-text" id="a19b"></span><br>
+          c. We need more <input type="text" id="q19c" /> before making a decision.
+          <span class="correct-answer-text" id="a19c"></span><br>
+          d. The report presents the facts clearly and <input type="text" id="q19d" />.
+          <span class="correct-answer-text" id="a19d"></span>
+        </li>
+        <li>
+          <h3>20. ACHIEVE Family</h3>
+          <ul>
+            <li>**Noun:** Achievement</li>
+            <li>**Verb:** Achieve</li>
+            <li>**Adjective:** Achievable</li>
+            <li>**Adverb:** Achievably</li>
+          </ul>
+          a. Setting <input type="text" id="q20a" /> goals is important for success.
+          <span class="correct-answer-text" id="a20a"></span><br>
+          b. Winning the championship was a great <input type="text" id="q20b" /> for the team.
+          <span class="correct-answer-text" id="a20b"></span><br>
+          c. You can <input type="text" id="q20c" /> anything you set your mind to.
+          <span class="correct-answer-text" id="a20c"></span><br>
+          d. The target is difficult but <input type="text" id="q20d" />.
+          <span class="correct-answer-text" id="a20d"></span>
+        </li>
+        <li>
+          <h3>21. ORGANIZE Family</h3>
+          <ul>
+            <li>**Noun:** Organization</li>
+            <li>**Verb:** Organize</li>
+            <li>**Adjective:** Organized</li>
+            <li>**Adverb:** Organizationally</li>
+          </ul>
+          a. She is a very <input type="text" id="q21a" /> person and always knows where everything is.
+          <span class="correct-answer-text" id="a21a"></span><br>
+          b. The company needs to improve its <input type="text" id="q21b" /> structure.
+          <span class="correct-answer-text" id="a21b"></span><br>
+          c. They plan to <input type="text" id="q21c" /> a charity event next month.
+          <span class="correct-answer-text" id="a21c"></span><br>
+          d. The project was well-<input type="text" id="q21d" /> from start to finish.
+          <span class="correct-answer-text" id="a21d"></span>
+        </li>
+        <li>
+          <h3>22. PERSUADE Family</h3>
+          <ul>
+            <li>**Noun:** Persuasion</li>
+            <li>**Verb:** Persuade</li>
+            <li>**Adjective:** Persuasive</li>
+            <li>**Adverb:** Persuasively</li>
+          </ul>
+          a. He tried to <input type="text" id="q22a" /> her to change her mind.
+          <span class="correct-answer-text" id="a22a"></span><br>
+          b. Her argument was very <input type="text" id="q22b" />.
+          <span class="correct-answer-text" id="a22b"></span><br>
+          c. He used his powers of <input type="text" id="q22c" /> to convince the committee.
+          <span class="correct-answer-text" id="a22c"></span><br>
+          d. She spoke <input type="text" id="q22d" />, winning over the audience.
+          <span class="correct-answer-text" id="a22d"></span>
+        </li>
+        <li>
+          <h3>23. PRACTICE Family</h3>
+          <ul>
+            <li>**Noun:** Practice</li>
+            <li>**Verb:** Practice</li>
+            <li>**Adjective:** Practical</li>
+            <li>**Adverb:** Practically</li>
+          </ul>
+          a. It takes a lot of <input type="text" id="q23a" /> to master a new skill.
+          <span class="correct-answer-text" id="a23a"></span><br>
+          b. This advice is very <input type="text" id="q23b" /> and easy to use.
+          <span class="correct-answer-text" id="a23b"></span><br>
+          c. You should <input type="text" id="q23c" /> your English every day.
+          <span class="correct-answer-text" id="a23c"></span><br>
+          d. The new system is <input type="text" id="q23d" /> impossible to implement.
+          <span class="correct-answer-text" id="a23d"></span>
+        </li>
+        <li>
+          <h3>24. PREDICT Family</h3>
+          <ul>
+            <li>**Noun:** Prediction</li>
+            <li>**Verb:** Predict</li>
+            <li>**Adjective:** Predictable</li>
+            <li>**Adverb:** Predictably</li>
+          </ul>
+          a. The weather forecast can sometimes be hard to <input type="text" id="q24a" />.
+          <span class="correct-answer-text" id="a24a"></span><br>
+          b. Her reaction was entirely <input type="text" id="q24b" />.
+          <span class="correct-answer-text" id="a24b"></span><br>
+          c. It's difficult to <input type="text" id="q24c" /> the future.
+          <span class="correct-answer-text" id="a24c"></span><br>
+          d. The team's performance was <input type="text" id="q24d" /> poor.
+          <span class="correct-answer-text" id="a24d"></span>
+        </li>
+        <li>
+          <h3>25. PRODUCE Family</h3>
+          <ul>
+            <li>**Noun:** Production</li>
+            <li>**Verb:** Produce</li>
+            <li>**Adjective:** Productive</li>
+            <li>**Adverb:** Productively</li>
+          </ul>
+          a. The factory aims to increase its <input type="text" id="q25a" /> by 10%.
+          <span class="correct-answer-text" id="a25a"></span><br>
+          b. It was a very <input type="text" id="q25b" /> meeting; we got a lot done.
+          <span class="correct-answer-text" id="a25b"></span><br>
+          c. This region <input type="text" id="q25c" /> a lot of wine.
+          <span class="correct-answer-text" id="a25c"></span><br>
+          d. They worked <input type="text" id="q25d" /> throughout the day.
+          <span class="correct-answer-text" id="a25d"></span>
+        </li>
+        <li>
+          <h3>26. RELAX Family</h3>
+          <ul>
+            <li>**Noun:** Relaxation</li>
+            <li>**Verb:** Relax</li>
+            <li>**Adjective:** Relaxed</li>
+            <li>**Adverb:** Relaxingly</li>
+          </ul>
+          a. After a long day, I like to <input type="text" id="q26a" /> with a book.
+          <span class="correct-answer-text" id="a26a"></span><br>
+          b. Yoga is a great way to achieve deep <input type="text" id="q26b" />.
+          <span class="correct-answer-text" id="a26b"></span><br>
+          c. He felt very <input type="text" id="q26c" /> after his vacation.
+          <span class="correct-answer-text" id="a26c"></span><br>
+          d. The music played <input type="text" id="q26d" /> in the background.
+          <span class="correct-answer-text" id="a26d"></span>
+        </li>
+        <li>
+          <h3>27. RESPOND Family</h3>
+          <ul>
+            <li>**Noun:** Response</li>
+            <li>**Verb:** Respond</li>
+            <li>**Adjective:** Responsive</li>
+            <li>**Adverb:** Responsively</li>
+          </ul>
+          a. The company is very <input type="text" id="q27a" /> to customer feedback.
+          <span class="correct-answer-text" id="a27a"></span><br>
+          b. Her quick <input type="text" id="q27b" /> saved the situation.
+          <span class="correct-answer-text" id="a27b"></span><br>
+          c. How did he <input type="text" id="q27c" /> to your suggestion?
+          <span class="correct-answer-text" id="a27c"></span><br>
+          d. The system reacted <input type="text" id="q27d" /> to the user's input.
+          <span class="correct-answer-text" id="a27d"></span>
+        </li>
+        <li>
+          <h3>28. SOLVE Family</h3>
+          <ul>
+            <li>**Noun:** Solution</li>
+            <li>**Verb:** Solve</li>
+            <li>**Adjective:** Solvable</li>
+            <li>**Adverb:** (No common adverb)</li>
+          </ul>
+          a. We need to find a <input type="text" id="q28a" /> to this problem.
+          <span class="correct-answer-text" id="a28a"></span><br>
+          b. This math problem is easily <input type="text" id="q28b" />.
+          <span class="correct-answer-text" id="a28b"></span><br>
+          c. Can you help me <input type="text" id="q28c" /> this puzzle?
+          <span class="correct-answer-text" id="a28c"></span><br>
+          d. The complex equation was deemed <input type="text" id="q28d" />.
+          <span class="correct-answer-text" id="a28d"></span>
+        </li>
+        <li>
+          <h3>29. SUCCESS Family</h3>
+          <ul>
+            <li>**Noun:** Success</li>
+            <li>**Verb:** Succeed</li>
+            <li>**Adjective:** Successful</li>
+            <li>**Adverb:** Successfully</li>
+          </ul>
+          a. She hopes to <input type="text" id="q29a" /> in her new career.
+          <span class="correct-answer-text" id="a29a"></span><br>
+          b. The project was <input type="text" id="q29b" /> completed on time.
+          <span class="correct-answer-text" id="a29b"></span><br>
+          c. His business has been a great <input type="text" id="q29c" />.
+          <span class="correct-answer-text" id="a29c"></span><br>
+          d. He is a very <input type="text" id="q29d" /> entrepreneur.
+          <span class="correct-answer-text" id="a29d"></span>
+        </li>
+        <li>
+          <h3>30. UNDERSTAND Family</h3>
+          <ul>
+            <li>**Noun:** Understanding</li>
+            <li>**Verb:** Understand</li>
+            <li>**Adjective:** Understandable</li>
+            <li>**Adverb:** Understandably</li>
+          </ul>
+          a. It's <input type="text" id="q30a" /> that you're upset after what happened.
+          <span class="correct-answer-text" id="a30a"></span><br>
+          b. Do you <input type="text" id="q30b" /> what I mean?
+          <span class="correct-answer-text" id="a30b"></span><br>
+          c. There was a clear <input type="text" id="q30c" /> between them.
+          <span class="correct-answer-text" id="a30c"></span><br>
+          d. His explanation was very <input type="text" id="q30d" />.
+          <span class="correct-answer-text" id="a30d"></span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practices</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // --- Worksheet Logic ---
+  const answers = {
+    "q1a": "active", "q1b": "act", "q1c": "action", "q1d": "actively",
+    "q2a": "analyze", "q2b": "analysis", "q2c": "analytic", "q2d": "analytically",
+    "q3a": "apply", "q3b": "applicable", "q3c": "application", "q3d": "applicably",
+    "q4a": "communication", "q4b": "communicate", "q4c": "communicative", "q4d": "communicatively",
+    "q5a": "compete", "q5b": "competitive", "q5c": "competition", "q5d": "competitively",
+    "q6a": "comprehensible", "q6b": "comprehend", "q6c": "comprehension", "q6d": "comprehensibly",
+    "q7a": "concluded", "q7b": "conclusive", "q7c": "conclusion", "q7d": "conclusively",
+    "q8a": "confidently", "q8b": "confidence", "q8c": "confident", "q8d": "confide",
+    "q9a": "connection", "q9b": "connected", "q9c": "connected", "q9d": "connectedly",
+    "q10a": "decision", "q10b": "decisively", "q10c": "decisive", "q10d": "decide",
+    "q11a": "demonstrated", "q11b": "demonstrably", "q11c": "demonstration", "q11d": "demonstrate",
+    "q12a": "development", "q12b": "developmentally", "q12c": "develop", "q12d": "developing",
+    "q13a": "education", "q13b": "educate", "q13c": "educational", "q13d": "educationally",
+    "q14a": "employ", "q14b": "employed", "q14c": "employment", "q14d": "employed",
+    "q15a": "enjoyable", "q15b": "enjoyment", "q15c": "enjoy", "q15d": "enjoyably",
+    "q16a": "explain", "q16b": "explanatory", "q16c": "explanation", "q16d": "explanatorily",
+    "q17a": "exploratory", "q17b": "explore", "q17c": "exploration", "q17d": "exploratory",
+    "q18a": "imagination", "q18b": "imaginatively", "q18c": "imagine", "q18d": "imagination",
+    "q19a": "informative", "q19b": "inform", "q19c": "information", "q19d": "informatively",
+    "q20a": "achievable", "q20b": "achievement", "q20c": "achieve", "q20d": "achievably",
+    "q21a": "organized", "q21b": "organizational", "q21c": "organize", "q21d": "organized",
+    "q22a": "persuade", "q22b": "persuasive", "q22c": "persuasion", "q22d": "persuasively",
+    "q23a": "practice", "q23b": "practical", "q23c": "practice", "q23d": "practically",
+    "q24a": "predict", "q24b": "predictable", "q24c": "predict", "q24d": "predictably",
+    "q25a": "production", "q25b": "productive", "q25c": "produce", "q25d": "productively",
+    "q26a": "relax", "q26b": "relaxation", "q26c": "relaxed", "q26d": "relaxingly",
+    "q27a": "responsive", "q27b": "response", "q27c": "respond", "q27d": "responsively",
+    "q28a": "solution", "q28b": "solvable", "q28c": "solve", "q28d": "solvable",
+    "q29a": "succeed", "q29b": "successfully", "q29c": "success", "q29d": "successful",
+    "q30a": "understandable", "q30b": "understand", "q30c": "understanding", "q30d": "understandable"
+  };
+
+  function checkAnswers() {
+    for (let i = 1; i <= 30; i++) {
+      const prefixes = ['a', 'b', 'c', 'd'];
+      prefixes.forEach(prefix => {
+        const inputId = `q${i}${prefix}`;
+        const answerId = `a${i}${prefix}`;
+        const inputElement = document.getElementById(inputId);
+        const answerElement = document.getElementById(answerId);
+
+        if (inputElement && answerElement) { // Ensure elements exist
+          const userAnswer = inputElement.value.trim().toLowerCase();
+          const correctAnswer = answers[inputId].toLowerCase();
+
+          answerElement.style.display = 'inline'; // Show the answer feedback
+
+          if (userAnswer === correctAnswer) {
+            answerElement.textContent = `Correct!`;
+            answerElement.className = 'correct-answer-text';
+          } else {
+            answerElement.textContent = `Incorrect. Correct: ${answers[inputId]}`;
+            answerElement.className = 'incorrect-answer-text';
+          }
+        }
+      });
+    }
+  }
+</script>
+
+</body>
+</html>

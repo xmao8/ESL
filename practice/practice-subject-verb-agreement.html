@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subject-Verb Agreement Worksheet: Life Goals – ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    /* Content specific styles */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin-bottom: 1rem;
+    }
+    .content-container ol {
+        list-style-type: decimal;
+        padding-left: 20px;
+        margin-bottom: 1rem;
+    }
+    .content-container li {
+        margin-bottom: 0.5rem;
+    }
+    .content-container strong {
+        color: #124076; /* Make strong words stand out a bit more */
+    }
+    .content-container em {
+        font-style: italic;
+        color: #555;
+    }
+
+    /* Worksheet specific styles */
+    .exercise-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+    .question-list ol {
+        padding-left: 20px;
+    }
+    .question-list li {
+        margin-bottom: 1.5rem; /* More space between questions */
+        font-size: 1.05rem;
+    }
+    .question-list input[type="text"] {
+        width: 200px; /* Adjust width for the blank */
+        padding: 6px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin: 0 5px; /* Space around the input */
+        text-align: center; /* Center text in the blank */
+    }
+    .feedback {
+        margin-top: 8px;
+        font-weight: bold;
+        display: none; /* Hidden by default */
+    }
+    .feedback.correct {
+        color: #28a745;
+    }
+    .feedback.incorrect {
+        color: #dc3545;
+    }
+
+    /* Check Answers Button */
+    #checkAnswersBtn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+        background-color: #0056b3;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Subject-Verb Agreement Worksheet: Life Goals</h1>
+
+<div class="content-container">
+  <p>This worksheet focuses on Subject-Verb Agreement, a key element for accurate English. Read each sentence carefully and fill in the blank with the correct verb form that agrees with its subject. Pay close attention to singular and plural subjects, as well as negative sentence structures. This exercise will help you master agreement rules, especially with more complex sentence structures related to personal aspirations and achievements.</p>
+
+  <div class="exercise-section">
+    <h2>Exercise: Fill in the Blanks with the Correct Verb Form</h2>
+    <div class="question-list" id="question-list">
+      <!-- Questions will be dynamically loaded here by JavaScript -->
+    </div>
+    <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Worksheet Logic
+  const questions = [
+    {
+      id: "q1",
+      sentence: "Every one of the students, including those with ambitious career goals, ____ to attend the workshop. (want)",
+      answer: "wants"
+    },
+    {
+      id: "q2",
+      sentence: "The team, along with its dedicated leader, ____ tirelessly towards achieving their shared vision. (work)",
+      answer: "works"
+    },
+    {
+      id: "q3",
+      sentence: "Neither the challenges nor the setbacks ____ to deter her from pursuing her entrepreneurial dream. (manage)",
+      answer: "manage"
+    },
+    {
+      id: "q4",
+      sentence: "A significant portion of the budget ____ allocated to personal development courses this year. (be)",
+      answer: "is"
+    },
+    {
+      id: "q5",
+      sentence: "The committee, composed of experienced mentors, ____ regularly to discuss student aspirations. (meet)",
+      answer: "meets"
+    },
+    {
+      id: "q6",
+      sentence: "There ____ many opportunities for growth in the new digital marketing field. (be)",
+      answer: "are"
+    },
+    {
+      id: "q7",
+      sentence: "Each of the potential career paths ____ a unique set of skills and dedication. (require)",
+      answer: "requires"
+    },
+    {
+      id: "q8",
+      sentence: "The data collected from various successful entrepreneurs ____ that persistence is key. (suggest)",
+      answer: "suggests"
+    },
+    {
+      id: "q9",
+      sentence: "Not only hard work but also smart strategies ____ to long-term success. (lead)",
+      answer: "lead"
+    },
+    {
+      id: "q10",
+      sentence: "Mathematics, despite being a challenging subject, ____ essential for many engineering careers. (be)",
+      answer: "is"
+    },
+    {
+      id: "q11",
+      sentence: "The news about the scholarship opportunities ____ spreading quickly among the students. (be)",
+      answer: "is"
+    },
+    {
+      id: "q12",
+      sentence: "Several of the participants ____ already achieved significant milestones in their personal projects. (have)",
+      answer: "have"
+    },
+    {
+      id: "q13",
+      sentence: "Either a clear vision or strong motivation ____ necessary for overcoming obstacles. (be)",
+      answer: "is"
+    },
+    {
+      id: "q14",
+      sentence: "The majority of students in the advanced class ____ fluent in at least two languages. (be)",
+      answer: "are"
+    },
+    {
+      id: "q15",
+      sentence: "To become a successful entrepreneur ____ a combination of innovation and perseverance. (take)",
+      answer: "takes"
+    },
+    {
+      id: "q16",
+      sentence: "My sister, unlike her friends, ____ not believe in setting rigid long-term goals. (do)",
+      answer: "does"
+    },
+    {
+      id: "q17",
+      sentence: "The group of volunteers ____ not always agree on the best approach to community projects. (do)",
+      answer: "do"
+    },
+    {
+      id: "q18",
+      sentence: "The success of these ambitious projects ____ not depend solely on financial investment. (do)",
+      answer: "does"
+    },
+    {
+      id: "q19",
+      sentence: "Many people ____ not realize the importance of continuous learning for career advancement. (do)",
+      answer: "do"
+    },
+    {
+      id: "q20",
+      sentence: "Neither the new policy nor the budget cuts ____ to affect our department significantly. (seem)",
+      answer: "seem"
+    }
+  ];
+
+  function loadQuestions() {
+    const questionListDiv = document.getElementById('question-list');
+    let htmlContent = '<ol>';
+    questions.forEach((q, index) => {
+      // Split the sentence at '____' to insert the input field
+      const parts = q.sentence.split('____');
+      const sentenceHtml = `${parts[0]}<input type="text" id="${q.id}" />${parts[1]}`;
+
+      htmlContent += `
+        <li>
+          <p>${sentenceHtml}</p>
+          <div id="feedback-${q.id}" class="feedback"></div>
+        </li>
+      `;
+    });
+    htmlContent += '</ol>';
+    questionListDiv.innerHTML = htmlContent;
+  }
+
+  function checkAnswers() {
+    questions.forEach(q => {
+      const inputElement = document.getElementById(q.id);
+      const feedbackDiv = document.getElementById(`feedback-${q.id}`);
+
+      if (inputElement && feedbackDiv) {
+        const userAnswer = inputElement.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        feedbackDiv.style.display = 'block'; // Show the feedback div
+
+        if (userAnswer === correctAnswer) {
+          feedbackDiv.textContent = "Correct!";
+          feedbackDiv.className = 'feedback correct';
+        } else {
+          feedbackDiv.textContent = `Incorrect. Correct: ${q.answer}`;
+          feedbackDiv.className = 'feedback incorrect';
+        }
+      }
+    });
+  }
+
+  // Load questions when the page loads
+  document.addEventListener('DOMContentLoaded', loadQuestions);
+</script>
+
+</body>
+</html>

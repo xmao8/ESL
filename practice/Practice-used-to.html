@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>'Used to' Fill-in-the-Blanks Worksheet – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: none; /* Removed disc to align with specific formatting below */
+            padding-left: 0; /* Remove default padding for lists */
+        }
+        .content-container ul li {
+            margin-bottom: 0.8rem;
+            display: flex; /* For aligning number and input */
+            align-items: baseline;
+        }
+        .content-container ul li .number {
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0; /* Prevent number from shrinking */
+        }
+        .content-container strong {
+            color: #2c3e50;
+        }
+        .content-container em {
+            font-style: normal;
+            color: #555;
+        }
+        .fill-in-the-blank {
+            display: inline-block;
+            width: 120px; /* Adjust width as needed */
+            padding: 5px 8px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            color: #333;
+            vertical-align: middle; /* Align with text */
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>'Used to' Fill-in-the-Blanks Worksheet</h1>
+
+<div class="content-container">
+    <p>Complete the following sentences using the correct form of <strong>'used to'</strong>, <strong>'didn't use to'</strong>, or <strong>'Did you use to'</strong> and the verb in parentheses. Pay attention to whether the sentence is positive, negative, or a question.</p>
+
+    <ul>
+        <li><span class="number">1.</span> I <input type="text" class="fill-in-the-blank" placeholder="e.g., used to play"> soccer every weekend when I was younger. (play)</li>
+        <li><span class="number">2.</span> There <input type="text" class="fill-in-the-blank" placeholder="e.g., used to be"> a small shop on this corner. (be)</li>
+        <li><span class="number">3.</span> She <input type="text" class="fill-in-the-blank" placeholder="e.g., used to live"> in New York. (live)</li>
+        <li><span class="number">4.</span> We <input type="text" class="fill-in-the-blank" placeholder="e.g., used to go"> camping every summer. (go)</li>
+        <li><span class="number">5.</span> He <input type="text" class="fill-in-the-blank" placeholder="e.g., used to have"> long hair. (have)</li>
+        <li><span class="number">6.</span> I <input type="text" class="fill-in-the-blank" placeholder="e.g., didn't use to like"> public speaking, but now I do. (like - negative)</li>
+        <li><span class="number">7.</span> They <input type="text" class="fill-in-the-blank" placeholder="e.g., didn't use to travel"> much before they retired. (travel - negative)</li>
+        <li><span class="number">8.</span> <input type="text" class="fill-in-the-blank" placeholder="e.g., Did you use to study"> English in high school? (study - question)</li>
+        <li><span class="number">9.</span> <input type="text" class="fill-in-the-blank" placeholder="e.g., Did she use to work"> here? (work - question)</li>
+        <li><span class="number">10.</span> My grandparents <input type="text" class="fill-in-the-blank" placeholder="e.g., used to visit"> us every Christmas. (visit)</li>
+        <li><span class="number">11.</span> I <input type="text" class="fill-in-the-blank" placeholder="e.g., didn't use to eat"> vegetables, but now I love them. (eat - negative)</li>
+        <li><span class="number">12.</span> <input type="text" class="fill-in-the-blank" placeholder="e.g., Did they use to live"> in that old house? (live - question)</li>
+        <li><span class="number">13.</span> He <input type="text" class="fill-in-the-blank" placeholder="e.g., used to smoke">, but he quit last year. (smoke)</li>
+        <li><span class="number">14.</span> We <input type="text" class="fill-in-the-blank" placeholder="e.g., didn't use to have"> a car, so we walked everywhere. (have - negative)</li>
+        <li><span class="number">15.</span> What kind of music <input type="text" class="fill-in-the-blank" placeholder="e.g., did you use to listen"> to when you were a teenager? (listen - question)</li>
+    </ul>
+
+    <p class="note"><strong>Hint:</strong> Remember to use "used to" for positive statements, "didn't use to" for negative statements, and "Did (subject) use to" for questions. The verb that follows is always in its base form.</p>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

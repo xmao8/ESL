@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subject-Verb Agreement – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    /* Content specific styles */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin-bottom: 1rem;
+    }
+    .content-container ol {
+        list-style-type: decimal;
+        padding-left: 20px;
+        margin-bottom: 1rem;
+    }
+    .content-container li {
+        margin-bottom: 0.5rem;
+    }
+    .content-container strong {
+        color: #124076; /* Make strong words stand out a bit more */
+    }
+    .content-container em {
+        font-style: italic;
+        color: #555;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Subject-Verb Agreement</h1>
+
+<div class="content-container">
+  <p>Welcome to a fundamental concept in English grammar: <strong>Subject-Verb Agreement</strong>! This topic is crucial for speaking and writing clearly and correctly, especially as you move towards an intermediate-high level. Don't worry, it's not as complicated as it sounds, and once you understand the basic rules, your English will sound much more natural and accurate.</p>
+
+  <h2>What is Subject-Verb Agreement?</h2>
+  <p>Simply put, subject-verb agreement means that the <strong>subject</strong> of a sentence and the <strong>verb</strong> in that sentence must "agree" with each other in terms of number.</p>
+  <ul>
+    <li>If the subject is <strong>singular</strong> (one person, one thing, one idea), the verb must also be <strong>singular</strong>.</li>
+    <li>If the subject is <strong>plural</strong> (more than one person, thing, or idea), the verb must also be <strong>plural</strong>.</li>
+  </ul>
+  <p>It's like matching socks – you need a pair!</p>
+
+  <h2>The Basic Rule: Singular vs. Plural</h2>
+  <p>Let's look at the most common scenario: verbs in the simple present tense.</p>
+  <ul>
+    <li><strong>For most verbs, we add '-s' or '-es' to the verb when the subject is singular (he, she, it, or a singular noun).</strong>
+      <ul>
+        <li>She <strong>walks</strong> to school every day. (Singular subject 'She' + singular verb 'walks')</li>
+        <li>The dog <strong>barks</strong> loudly. (Singular subject 'The dog' + singular verb 'barks')</li>
+        <li>He <strong>studies</strong> English. (Singular subject 'He' + singular verb 'studies')</li>
+      </ul>
+    </li>
+    <li><strong>When the subject is plural (we, you, they, or a plural noun) or 'I' or 'you', the verb usually stays in its base form (without '-s' or '-es').</strong>
+      <ul>
+        <li>They <strong>walk</strong> to school every day. (Plural subject 'They' + plural verb 'walk')</li>
+        <li>The dogs <strong>bark</strong> loudly. (Plural subject 'The dogs' + plural verb 'bark')</li>
+        <li>We <strong>study</strong> English. (Plural subject 'We' + plural verb 'study')</li>
+        <li>I <strong>walk</strong> to school. (Subject 'I' + plural verb 'walk')</li>
+        <li>You <strong>walk</strong> to school. (Subject 'You' + plural verb 'walk')</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>The Verb "To Be"</h2>
+  <p>The verb "to be" is a bit special because it changes form more significantly.</p>
+  <ul>
+    <li><strong>Singular:</strong>
+      <ul>
+        <li>I <strong>am</strong></li>
+        <li>He/She/It <strong>is</strong></li>
+        <li>The student <strong>is</strong></li>
+      </ul>
+    </li>
+    <li><strong>Plural:</strong>
+      <ul>
+        <li>We <strong>are</strong></li>
+        <li>You <strong>are</strong></li>
+        <li>They <strong>are</strong></li>
+        <li>The students <strong>are</strong></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Subject-Verb Agreement in Negative Sentences</h2>
+  <p>When forming negative sentences in the simple present tense, we use "do not" (or "don't") and "does not" (or "doesn't"). The main verb that follows "do/does not" always stays in its base form (without '-s' or '-es'). The agreement happens with "do" or "does."</p>
+  <ul>
+    <li><strong>Use "does not" (doesn't) with singular subjects (he, she, it, or a singular noun).</strong>
+      <ul>
+        <li>She <strong>does not walk</strong> to school every day. (Singular subject 'She' + singular auxiliary 'does not')</li>
+        <li>The dog <strong>does not bark</strong> loudly. (Singular subject 'The dog' + singular auxiliary 'does not')</li>
+        <li>He <strong>doesn't study</strong> English. (Singular subject 'He' + singular auxiliary 'doesn't')</li>
+      </ul>
+    </li>
+    <li><strong>Use "do not" (don't) with plural subjects (we, you, they, or a plural noun) or 'I' or 'you'.</strong>
+      <ul>
+        <li>They <strong>do not walk</strong> to school every day. (Plural subject 'They' + plural auxiliary 'do not')</li>
+        <li>The dogs <strong>do not bark</strong> loudly. (Plural subject 'The dogs' + plural auxiliary 'do not')</li>
+        <li>We <strong>don't study</strong> English. (Plural subject 'We' + plural auxiliary 'don't')</li>
+        <li>I <strong>do not walk</strong> to school. (Subject 'I' + plural auxiliary 'do not')</li>
+        <li>You <strong>don't walk</strong> to school. (Subject 'You' + plural auxiliary 'don't')</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Why is this important for ESL students?</h2>
+  <p>Mastering subject-verb agreement helps you:</p>
+  <ol>
+    <li><strong>Sound more natural:</strong> Native speakers expect this agreement, and using it correctly makes your English sound more fluent.</li>
+    <li><strong>Communicate clearly:</strong> Incorrect agreement can sometimes confuse your listener or reader about who or what you are talking about.</li>
+    <li><strong>Write more accurately:</strong> It's a fundamental rule in formal and academic writing.</li>
+  </ol>
+  <p>While the basic rule is straightforward, English has some tricky cases (like when there are phrases between the subject and verb, or with collective nouns). We'll explore those more advanced topics later. For now, focus on understanding and practicing the core idea: <strong>match your subject and your verb in number!</strong></p>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

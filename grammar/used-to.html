@@ -7,7 +7,7 @@
   <title>Used to – ESLnote Grammar</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* General body and container styles */
+    /* Your existing CSS for navigation and general layout */
     * {
       box-sizing: border-box;
     }
@@ -44,7 +44,6 @@
       text-decoration: none;
     }
     .logo-img {
-      /* Reverted logo size to 32px as per original example */
       width: 32px;
       height: 32px;
       margin-right: 0.5rem;
@@ -171,7 +170,6 @@
       }
     }
 
-    /* Content specific styles */
     h1 {
       margin: 2rem auto 1.5rem auto;
       color: #2c3e50;
@@ -204,14 +202,8 @@
     .content-container p {
       margin-bottom: 1rem;
     }
-    .content-container ul {
-        list-style-type: disc;
-        padding-left: 20px;
-        margin-bottom: 1rem;
-    }
-    .content-container ol {
-        list-style-type: decimal;
-        padding-left: 20px;
+    .content-container ul, .content-container ol {
+        margin-left: 20px;
         margin-bottom: 1rem;
     }
     .content-container li {
@@ -219,10 +211,6 @@
     }
     .content-container strong {
         color: #124076; /* Make strong words stand out a bit more */
-    }
-    .content-container em {
-        font-style: italic;
-        color: #555;
     }
 
     .buttons {
@@ -254,7 +242,7 @@
 <nav aria-label="Main navigation">
   <div class="nav-container">
     <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" />
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
       <span class="site-name">ESLnote</span>
     </a>
 
@@ -274,8 +262,8 @@
     </div>
   </div>
 </nav>
-
-<h1>Introduction to 'Used to' in English Grammar</h1>
+  
+<h1>Introduction to 'Used to'</h1>
 
 <div class="content-container">
   <p>Hello! Today, we're going to explore a very common and useful English phrase: <strong>"used to."</strong> This phrase helps us talk about things that were true or happened regularly in the past but are no longer true or no longer happen now. It's a key phrase for describing past habits and states.</p>

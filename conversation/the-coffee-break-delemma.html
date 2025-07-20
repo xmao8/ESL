@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Coffee Break Dilemma – ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Your existing CSS for navigation and general layout */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul, .content-container ol {
+      margin-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .content-container li {
+      margin-bottom: 0.5rem;
+    }
+    .content-container strong {
+      color: #124076; /* Make strong words stand out a bit more */
+    }
+
+    /* Conversation specific styles */
+    .conversation-script p {
+      margin-bottom: 0.8rem;
+    }
+    .conversation-script strong {
+      display: inline-block; /* Allows for consistent spacing with character names */
+      width: 80px; /* Adjust as needed for longest name */
+      text-align: right;
+      margin-right: 10px;
+      color: #124076;
+    }
+    .conversation-script span.dialogue {
+      display: inline;
+    }
+    .scene-direction {
+      font-style: italic;
+      color: #555;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .character-info {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info h3 {
+      margin-bottom: 0.5rem;
+    }
+    .character-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .character-info li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* Vocabulary List specific styles */
+    .vocabulary-list ul {
+      list-style-type: disc;
+      padding-left: 25px;
+    }
+    .vocabulary-list li {
+      margin-bottom: 0.8rem; /* More space between vocabulary items */
+    }
+    .vocabulary-list .vocab-word {
+      font-weight: bold;
+      color: #124076;
+      display: inline-flex; /* Use flexbox for word + icon alignment */
+      align-items: center;
+      gap: 8px; /* Space between word and icon */
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #3498db;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .vocabulary-list .speaker-icon:hover {
+      color: #2980b9;
+    }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      color: #666;
+      margin-left: 5px; /* Space after the word/icon */
+    }
+    .vocabulary-list .definition {
+      display: block; /* Make definition appear on a new line */
+      margin-top: 0.2rem;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Coffee Break Dilemma</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>Anna (30s):</strong> A dedicated graphic designer, always busy.</li>
+      <li><strong>Ben (30s):</strong> A friendly office manager, trying to find his rhythm.</li>
+      <li><strong>Chloe (30s):</strong> A calm and observant HR specialist.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Scene: A small, slightly cluttered office breakroom. There’s a coffee machine, a microwave, and a small table with three chairs.</p>
+
+  <div class="conversation-script">
+    <p class="scene-direction">(ANNA enters, looking tired. She goes straight for the coffee machine, yawning.)</p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Muttering to herself) Another late night. This project is never-ending.</span></p>
+
+    <p class="scene-direction">(BEN enters, carrying a healthy-looking lunchbox. He smiles at Anna.)</p>
+    <p><strong>BEN:</strong> <span class="dialogue">Morning, Anna! Or is it still morning for you? You look like you just rolled out of bed.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Forces a smile) Pretty much. I was up until 2 AM finishing those revisions. Client wanted them yesterday, of course.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">Ouch. That’s rough. You need a proper break, not just more coffee. I’m having my lunch now. Want to join me for a few minutes?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Sighs) I wish. But I have a meeting in ten minutes, and then I need to prepare for the afternoon presentation. No time for lunch today, just this coffee.</span></p>
+
+    <p class="scene-direction">(CHLOE enters, holding a small plant. She places it on the windowsill.)</p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">Good morning, everyone. Anna, you look exhausted. Are you taking care of yourself?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">I’m fine, Chloe. Just a busy week. It’ll calm down soon. (Takes a large gulp of coffee.)</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">That’s what you said last month, and the month before. Remember what we talked about in the wellness seminar? Life balance isn't a luxury; it’s a necessity.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">I know, I know. Work-life balance. But it’s easier said than done when you have deadlines and demanding clients. My career is important to me.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">Mine too, but I learned the hard way. I used to work non-stop, just like you. I got sick, missed important family events. It wasn't worth it. Now, I make sure to take my lunch break, even if it’s just 20 minutes. And I leave on time, most days.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">How do you do it? Seriously. I feel like if I step away, everything will fall apart.</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">It’s about setting boundaries, Anna. Both with your work and with yourself. Can you delegate any tasks? Can you say "no" to extra work sometimes? Even small changes can make a big difference. Like taking five minutes to stretch, or walking around the block.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">Exactly. And don't forget the power of a good night's sleep. Your brain needs to rest to be creative and efficient. You’ll actually do better work if you’re not constantly running on empty.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Looks at her coffee, then at her watch. She hesitates.) Maybe… maybe you’re right. My head is throbbing. What’s in that lunchbox, Ben? Looks good.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">(Grinning) Quinoa salad with grilled chicken. Plenty for two if you want to share and actually sit down for five minutes.</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">(Smiling gently) It’s a start, Anna. One small step towards finding that balance.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Sighs, but a hint of relief crosses her face) Okay. Five minutes. Just five. But don't tell my boss.</span></p>
+
+    <p class="scene-direction">(Anna puts down her coffee cup and slowly sits at the table. Ben opens his lunchbox, and Chloe offers Anna a small piece of fruit from her bag.)</p>
+    <p class="scene-direction">[End Scene]</p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li><span class="vocab-word">Muttering <span class="speaker-icon" onclick="speakWord('Muttering')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈmʌtərɪŋ/</span> <span class="definition">(v.): speaking in a low, unclear voice.</span></li>
+      <li><span class="vocab-word">Yawning <span class="speaker-icon" onclick="speakWord('Yawning')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈjɔːnɪŋ/</span> <span class="definition">(v.): opening your mouth wide and taking a deep breath because you are tired or bored.</span></li>
+      <li><span class="vocab-word">Revisions <span class="speaker-icon" onclick="speakWord('Revisions')" title="Pronounce">🔊</span></span> <span class="ipa">/rɪˈvɪʒənz/</span> <span class="definition">(n.): changes or improvements made to something.</span></li>
+      <li><span class="vocab-word">Demanding <span class="speaker-icon" onclick="speakWord('Demanding')" title="Pronounce">🔊</span></span> <span class="ipa">/dɪˈmændɪŋ/</span> <span class="definition">(adj.): needing a lot of effort, time, or attention.</span></li>
+      <li><span class="vocab-word">Ouch <span class="speaker-icon" onclick="speakWord('Ouch')" title="Pronounce">🔊</span></span> <span class="ipa">/aʊtʃ/</span> <span class="definition">(interj.): an exclamation of pain or discomfort.</span></li>
+      <li><span class="vocab-word">Rough <span class="speaker-icon" onclick="speakWord('Rough')" title="Pronounce">🔊</span></span> <span class="ipa">/rʌf/</span> <span class="definition">(adj.): difficult or unpleasant.</span></li>
+      <li><span class="vocab-word">Sighs <span class="speaker-icon" onclick="speakWord('Sighs')" title="Pronounce">🔊</span></span> <span class="ipa">/saɪz/</span> <span class="definition">(v.): makes a long, deep audible breath expressing sadness, relief, tiredness, or similar.</span></li>
+      <li><span class="vocab-word">Necessity <span class="speaker-icon" onclick="speakWord('Necessity')" title="Pronounce">🔊</span></span> <span class="ipa">/nɪˈsesɪti/</span> <span class="definition">(n.): something that is needed.</span></li>
+      <li><span class="vocab-word">Luxury <span class="speaker-icon" onclick="speakWord('Luxury')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈlʌkʃəri/</span> <span class="definition">(n.): something expensive that is not essential but brings pleasure.</span></li>
+      <li><span class="vocab-word">Deadlines <span class="speaker-icon" onclick="speakWord('Deadlines')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈdedlaɪnz/</span> <span class="definition">(n.): a time or date by which something must be completed.</span></li>
+      <li><span class="vocab-word">Delegating <span class="speaker-icon" onclick="speakWord('Delegating')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈdelɪɡeɪtɪŋ/</span> <span class="definition">(v.): entrusting a task or responsibility to another person.</span></li>
+      <li><span class="vocab-word">Boundaries <span class="speaker-icon" onclick="speakWord('Boundaries')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈbaʊndəriz/</span> <span class="definition">(n.): limits that define acceptable behavior or space.</span></li>
+      <li><span class="vocab-word">Efficiency <span class="speaker-icon" onclick="speakWord('Efficiency')" title="Pronounce">🔊</span></span> <span class="ipa">/ɪˈfɪʃənsi/</span> <span class="definition">(n.): the ability to do something well without wasting time or money.</span></li>
+      <li><span class="vocab-word">Throbbing <span class="speaker-icon" onclick="speakWord('Throbbing')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈθrɒbɪŋ/</span> <span class="definition">(v.): beating or pulsating with pain.</span></li>
+      <li><span class="vocab-word">Relief <span class="speaker-icon" onclick="speakWord('Relief')" title="Pronounce">🔊</span></span> <span class="ipa">/rɪˈliːf/</span> <span class="definition">(n.): a feeling of reassurance and relaxation following release from anxiety or distress.</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Function to speak a word using Web Speech API
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US'; // Set language to English (US)
+      utterance.rate = 0.9; // Adjust speech rate if needed
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+      // Optionally, you could provide a visual alert here instead of console.warn
+      // alert("Your browser does not support text-to-speech for pronunciation.");
+    }
+  }
+</script>
+
+</body>
+</html>

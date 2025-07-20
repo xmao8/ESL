@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Understanding Word Families – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #2c3e50;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .content-container ul ul {
+      list-style-type: circle;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .content-container strong {
+      color: #2c3e50;
+    }
+    .content-container em {
+      font-style: normal; /* Keep italic for examples if desired, or remove */
+      color: #555;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Understanding Word Families in English</h1>
+
+<div class="content-container">
+  <p>Word families are an incredibly useful tool for English language learners! They help you see patterns in words, making it easier to learn new vocabulary, improve your spelling, and understand what you read. Essentially, word families are groups of words that share a common feature or pattern.</p>
+
+  ---
+
+  <h2>What Are Word Families?</h2>
+  <p>At their core, word families are groups of words connected by a shared element. This could be a consistent sound and spelling pattern (especially helpful for new readers), or a common root word, prefix, or suffix (great for building vocabulary).</p>
+
+  ---
+
+  <h2>Two Main Types of Word Families</h2>
+
+  <h3>1. Rhyming Word Families (Phonograms / Rimes)</h3>
+  <p>These are word families where words share the same ending sound and spelling pattern. They’re super helpful for early readers and spellers because they highlight predictable patterns in English. You change the beginning sound (the "onset"), but the ending "chunk" (the "rime") stays the same.</p>
+
+  <h4>Examples of Rhyming Word Families:</h4>
+  <ul>
+    <li><strong>-at family:</strong>
+      <ul>
+        <li>c<strong>at</strong></li>
+        <li>h<strong>at</strong></li>
+        <li>m<strong>at</strong></li>
+        <li>r<strong>at</strong></li>
+        <li>s<strong>at</strong></li>
+        <li>b<strong>at</strong></li>
+      </ul>
+    </li>
+    <li><strong>-ing family:</strong>
+      <ul>
+        <li>s<strong>ing</strong></li>
+        <li>r<strong>ing</strong></li>
+        <li>br<strong>ing</strong></li>
+        <li>k<strong>ing</strong></li>
+        <li>th<strong>ing</strong></li>
+      </ul>
+    </li>
+    <li><strong>-ake family:</strong> (Note the silent 'e' for the long 'a' sound)
+      <ul>
+        <li>b<strong>ake</strong></li>
+        <li>c<strong>ake</strong></li>
+        <li>l<strong>ake</strong></li>
+        <li>m<strong>ake</strong></li>
+        <li>sn<strong>ake</strong></li>
+      </ul>
+    </li>
+    <li><strong>-ight family:</strong>
+      <ul>
+        <li>br<strong>ight</strong></li>
+        <li>f<strong>ight</strong></li>
+        <li>l<strong>ight</strong></li>
+        <li>n<strong>ight</strong></li>
+        <li>r<strong>ight</strong></li>
+      </ul>
+    </li>
+    <li><strong>Other Common Rhyming Families:</strong>
+      <ul>
+        <li>-an: <em>can, fan, man, ran, van</em></li>
+        <li>-ed: <em>bed, fed, red, led, wed</em></li>
+        <li>-in: <em>bin, fin, pin, tin, win</em></li>
+        <li>-op: <em>hop, mop, pop, top, shop</em></li>
+        <li>-ug: <em>bug, hug, mug, rug, jug</em></li>
+      </ul>
+    </li>
+  </ul>
+
+  ---
+
+  <h3>2. Morphological Word Families (Root-Based Word Families)</h3>
+  <p>These families are built around a common base or root word, with different prefixes (added to the beginning) and suffixes (added to the end) creating new words. These words are related in meaning and often change their grammatical function.</p>
+
+  <h4>Examples of Morphological Word Families:</h4>
+  <ul>
+    <li><strong>Root: `act` (meaning "to do" or "to drive")</strong>
+      <ul>
+        <li><strong>act</strong> (base word)</li>
+        <li><strong>act</strong>or (one who performs an act)</li>
+        <li><strong>act</strong>ion (the process of doing)</li>
+        <li>re<strong>act</strong> (to do back; respond)</li>
+        <li>in<strong>act</strong>ive (not doing)</li>
+        <li>en<strong>act</strong> (to put into action)</li>
+      </ul>
+    </li>
+    <li><strong>Root: `port` (meaning "to carry")</strong>
+      <ul>
+        <li><strong>port</strong>able (able to be carried)</li>
+        <li>ex<strong>port</strong> (to carry out of a country)</li>
+        <li>im<strong>port</strong> (to carry into a country)</li>
+        <li>trans<strong>port</strong> (to carry across)</li>
+        <li>re<strong>port</strong> (to carry back information)</li>
+      </ul>
+    </li>
+    <li><strong>Base Word: `happy`</strong>
+      <ul>
+        <li><strong>happy</strong> (base word)</li>
+        <li>un<strong>happy</strong> (not happy)</li>
+        <li><strong>happi</strong>ness (the state of being happy)</li>
+        <li><strong>happi</strong>ly (in a happy manner)</li>
+      </ul>
+    </li>
+    <li><strong>Base Word: `read`</strong>
+      <ul>
+        <li><strong>read</strong> (base word)</li>
+        <li><strong>read</strong>er (one who reads)</li>
+        <li><strong>read</strong>able (able to be read)</li>
+        <li>un<strong>read</strong> (not read)</li>
+        <li><strong>read</strong>ing (the act of reading)</li>
+      </ul>
+    </li>
+  </ul>
+
+  ---
+
+  <h2>Why Are Word Families Important for Learning English?</h2>
+  <p>Learning about word families offers several significant advantages:</p>
+  <ul>
+    <li><strong>Vocabulary Expansion:</strong> Understanding one word in a family can help you guess the meanings of several related words, rapidly expanding your vocabulary.</li>
+    <li><strong>Improved Spelling:</strong> Recognizing common patterns helps you spell new words more accurately. For instance, if you know how to spell "cat," you can easily spell "hat" or "mat."</li>
+    <li><strong>Enhanced Reading Comprehension:</strong> When you encounter an unfamiliar word, recognizing its word family can help you decode it and understand its meaning within the sentence.</li>
+    <li><strong>Better Pronunciation:</strong> Consistent sound patterns in rhyming families help reinforce correct pronunciation.</li>
+    <li><strong>Builds Confidence:</strong> As you spot these patterns, reading and writing become less daunting and more enjoyable.</li>
+  </ul>
+
+  <p>By actively looking for and practicing word families, you’ll not only learn individual words but also understand the powerful building blocks of the English language. This approach makes your learning journey more efficient and effective!</p>
+</div>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

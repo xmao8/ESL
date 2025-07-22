@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="https://placehold.co/32x32/124076/FFFFFF?text=ESL" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel & Hospitality Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="https://placehold.co/32x32/124076/FFFFFF?text=ESL" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Travel & Hospitality Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "itinerary",
+    ipa: "/aɪˈtɪnəˌrɛri/",
+    definition: "A detailed plan of a trip, including places and times",
+    example: "Our itinerary includes sightseeing and a food tour.",
+    chinese: "行程 (xíngchéng)",
+    spanish: "itinerario"
+  },
+  {
+    word: "destination",
+    ipa: "/ˌdɛstɪˈneɪʃən/",
+    definition: "A place where someone is going",
+    example: "The museum district is our first destination.",
+    chinese: "目的地 (mùdìdì)",
+    spanish: "destino"
+  },
+  {
+    word: "excursion",
+    ipa: "/ɪkˈskɜːrʒən/",
+    definition: "A short trip for pleasure",
+    example: "We’re planning an excursion to the nearby lake.",
+    chinese: "短途旅行 (duǎntú lǚxíng)",
+    spanish: "excursión"
+  },
+  {
+    word: "prioritize",
+    ipa: "/praɪˈɔːrəˌtaɪz/",
+    definition: "To decide what is most important",
+    example: "We should prioritize places that are unique to our city.",
+    chinese: "优先 (yōuxiān)",
+    spanish: "priorizar"
+  },
+  {
+    word: "logistics",
+    ipa: "/ləˈʤɪstɪks/",
+    definition: "The details of organizing a plan or trip",
+    example: "Let’s talk about the logistics of transportation and timing.",
+    chinese: "后勤 (hòuqín)",
+    spanish: "logística"
+  },
+  {
+    word: "scenic",
+    ipa: "/ˈsiːnɪk/",
+    definition: "With beautiful natural or urban views",
+    example: "We’ll take the scenic route along the river.",
+    chinese: "风景优美的 (fēngjǐng yōuměi de)",
+    spanish: "escénico"
+  },
+  {
+    word: "reservation",
+    ipa: "/ˌrɛzərˈveɪʃən/",
+    definition: "An arrangement made in advance, especially for meals or tours",
+    example: "I made a dinner reservation for 7 PM.",
+    chinese: "预订 (yùdìng)",
+    spanish: "reserva"
+  },
+  {
+    word: "landmark",
+    ipa: "/ˈlændˌmɑrk/",
+    definition: "A famous or historical place",
+    example: "The historic train station is a major landmark.",
+    chinese: "地标 (dìbiāo)",
+    spanish: "punto de referencia"
+  },
+  {
+    word: "pace",
+    ipa: "/peɪs/",
+    definition: "The speed or rhythm of an activity",
+    example: "We should keep a relaxed pace for the afternoon.",
+    chinese: "步调 (bùdiào)",
+    spanish: "ritmo"
+  },
+  {
+    word: "companion",
+    ipa: "/kəmˈpænjən/",
+    definition: "Someone who goes with you",
+    example: "Each traveler will have a local companion.",
+    chinese: "同伴 (tóngbàn)",
+    spanish: "compañero"
+  },
+  {
+    word: "cultural",
+    ipa: "/ˈkʌltʃərəl/",
+    definition: "Related to the habits and beliefs of a society",
+    example: "We want to include cultural experiences like a dance show.",
+    chinese: "文化的 (wénhuà de)",
+    spanish: "cultural"
+  },
+  {
+    word: "coordinate",
+    ipa: "/koʊˈɔːrdəˌneɪt/",
+    definition: "To organize people or activities so they work well together",
+    example: "I’ll coordinate the pick-up times for everyone.",
+    chinese: "协调 (xiétiáo)",
+    spanish: "coordinar"
+  },
+  {
+    word: "downtown",
+    ipa: "/ˌdaʊnˈtaʊn/",
+    definition: "The central business area of a city",
+    example: "We’ll meet downtown and start from there.",
+    chinese: "市中心 (shì zhōngxīn)",
+    spanish: "centro de la ciudad"
+  },
+  {
+    word: "itinerary draft",
+    ipa: "/aɪˈtɪnəˌrɛri dræft/",
+    definition: "A first version of a travel plan",
+    example: "Let’s review your itinerary draft before finalizing.",
+    chinese: "行程草案 (xíngchéng cǎo'àn)",
+    spanish: "borrador de itinerario"
+  },
+  {
+    word: "allocate",
+    ipa: "/ˈæləˌkeɪt/",
+    definition: "To assign time, money, or resources for something",
+    example: "We should allocate two hours for the museum visit.",
+    chinese: "分配 (fēnpèi)",
+    spanish: "asignar"
+  },
+  {
+    word: "accommodate",
+    ipa: "/əˈkɑːməˌdeɪt/",
+    definition: "To provide space or meet someone’s needs",
+    example: "The room can accommodate two guests comfortably.",
+    chinese: "容纳 (róngnà)",
+    spanish: "acomodar"
+  },
+  {
+    word: "hospitality",
+    ipa: "/ˌhɑːspɪˈtæləti/",
+    definition: "Friendly behavior towards guests",
+    example: "In my culture, hospitality is very important.",
+    chinese: "热情好客 (rèqíng hàokè)",
+    spanish: "hospitalidad"
+  },
+  {
+    word: "amenity",
+    ipa: "/əˈmɛnəti/",
+    definition: "A feature that adds comfort or convenience",
+    example: "The apartment offers modern amenities like Wi-Fi and air conditioning.",
+    chinese: "便利设施 (biànlì shèshī)",
+    spanish: "comodidad"
+  },
+  {
+    word: "considerate",
+    ipa: "/kənˈsɪdərət/",
+    definition: "Caring about other people’s feelings",
+    example: "It's considerate to show guests how to use the appliances.",
+    chinese: "体贴的 (tǐtiē de)",
+    spanish: "considerado"
+  },
+  {
+    word: "provision",
+    ipa: "/prəˈvɪʒən/",
+    definition: "Supplies or preparations provided for use",
+    example: "We left provisions like snacks and bottled water.",
+    chinese: "供应品 (gōngyìngpǐn)",
+    spanish: "provisión"
+  },
+  {
+    word: "household",
+    ipa: "/ˈhaʊsˌhoʊld/",
+    definition: "Related to the home",
+    example: "Every household has its own routines and customs.",
+    chinese: "家庭 (jiātíng)",
+    spanish: "doméstico"
+  },
+  {
+    word: "designate",
+    ipa: "/ˈdɛzɪɡˌneɪt/",
+    definition: "To assign something for a specific purpose",
+    example: "We designated the guest room for her stay.",
+    chinese: "指定 (zhǐdìng)",
+    spanish: "designar"
+  },
+  {
+    word: "etiquette",
+    ipa: "/ˈɛtɪkət/",
+    definition: "Social rules about polite behavior",
+    example: "It’s good to explain bathroom etiquette clearly.",
+    chinese: "礼仪 (lǐyí)",
+    spanish: "etiqueta"
+  },
+  {
+    word: "shared space",
+    ipa: "/ʃɛrd speɪs/",
+    definition: "An area used by more than one person",
+    example: "The kitchen is a shared space, so please keep it clean.",
+    chinese: "共享空间 (gòngxiǎng kōngjiān)",
+    spanish: "espacio compartido"
+  },
+  {
+    word: "linens",
+    ipa: "/ˈlɪnənz/",
+    definition: "Sheets, towels, and other fabric items for home use",
+    example: "Clean linens are in the cabinet near the bathroom.",
+    chinese: "床上用品 (chuángshàng yòngpǐn)",
+    spanish: "ropa de cama"
+  },
+  {
+    word: "ventilation",
+    ipa: "/ˌvɛntəˈleɪʃən/",
+    definition: "Movement of fresh air into a room",
+    example: "Good ventilation helps the guest room stay fresh.",
+    chinese: "通风 (tōngfēng)",
+    spanish: "ventilación"
+  },
+  {
+    word: "appliance",
+    ipa: "/əˈplaɪəns/",
+    definition: "A machine used in the home, like a coffee maker",
+    example: "Show your guest how to use each appliance.",
+    chinese: "电器 (diànqì)",
+    spanish: "electrodoméstico"
+  },
+  {
+    word: "respectful",
+    ipa: "/rɪˈspɛktfəl/",
+    definition: "Showing politeness or care for others",
+    example: "Guests should be respectful of household rules.",
+    chinese: "尊重的 (zūnzhòng de)",
+    spanish: "respetuoso"
+  },
+  {
+    word: "sleeping arrangements",
+    ipa: "/ˈsliːpɪŋ əˈreɪnʤmənts/",
+    definition: "Plans for where and how someone will sleep",
+    example: "We discussed the sleeping arrangements in advance.",
+    chinese: "住宿安排 (zhùsù ānpái)",
+    spanish: "arreglos para dormir"
+  },
+  {
+    word: "overnight guest",
+    ipa: "/ˈoʊvərˌnaɪt ɡɛst/",
+    definition: "A guest staying for one or more nights",
+    example: "Our overnight guest arrives tomorrow.",
+    chinese: "过夜客人 (guòyè kèrén)",
+    spanish: "huésped nocturno"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                         <div class="ipa">${flashcards[index].ipa}</div>
+                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

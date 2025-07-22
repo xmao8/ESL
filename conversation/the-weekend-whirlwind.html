@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Weekend Whirlwind – ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Your existing CSS for navigation and general layout */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul, .content-container ol {
+      margin-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .content-container li {
+      margin-bottom: 0.5rem;
+    }
+    .content-container strong {
+      color: #124076; /* Make strong words stand out a bit more */
+    }
+
+    /* Conversation specific styles */
+    .conversation-script p {
+      margin-bottom: 0.8rem;
+    }
+    .conversation-script strong {
+      display: inline-block; /* Allows for consistent spacing with character names */
+      width: 80px; /* Adjust as needed for longest name */
+      text-align: right;
+      margin-right: 10px;
+      color: #124076;
+    }
+    .conversation-script span.dialogue {
+      display: inline;
+    }
+    .scene-direction {
+      font-style: italic;
+      color: #555;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .character-info {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info h3 {
+      margin-bottom: 0.5rem;
+    }
+    .character-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .character-info li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* Vocabulary List specific styles */
+    .vocabulary-list ul {
+      list-style-type: disc;
+      padding-left: 25px;
+    }
+    .vocabulary-list li {
+      margin-bottom: 0.8rem; /* More space between vocabulary items */
+    }
+    .vocabulary-list .vocab-word {
+      font-weight: bold;
+      color: #124076;
+      display: inline-flex; /* Use flexbox for word + icon alignment */
+      align-items: center;
+      gap: 8px; /* Space between word and icon */
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #3498db;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .vocabulary-list .speaker-icon:hover {
+      color: #2980b9;
+    }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      color: #666;
+      margin-left: 5px; /* Space after the word/icon */
+    }
+    .vocabulary-list .definition {
+      display: block; /* Make definition appear on a new line */
+      margin-top: 0.2rem;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Weekend Whirlwind</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>ANNA (30s):</strong> Energetic, lives in the city.</li>
+      <li><strong>BEN (30s):</strong> Anna's friend from their home country, a bit overwhelmed.</li>
+      <li><strong>CHLOE (20s):</strong> Anna's local friend, knowledgeable and relaxed.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Setting: A busy café in a vibrant city. Morning.</p>
+  <p class="scene-direction">(ANNA and BEN are sitting at a small table. Anna is looking at a map, beaming. Ben looks a little tired.)</p>
+
+  <div class="conversation-script">
+    <p><strong>ANNA:</strong> <span class="dialogue">Good morning, Ben! Ready for Day Two of our grand city adventure? We’ve got so much planned!</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">(Sighs softly) Morning, Anna. I’m not sure my feet are ready. Yesterday was… a lot of walking. My fitbit said 20,000 steps!</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">That’s fantastic! Think of all the sights we saw! Today, we’ll start with the famous Art Museum, then a delicious street food market for lunch, and after that, we can visit the historic Old Town. And then…</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">(Interrupting gently) Anna, could we… slow down a little? I feel like I’m in a marathon. I haven't really had time to just… look.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">But there’s so much to see! You’re only here for the weekend! I want you to experience everything.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">I appreciate it, really. But maybe experiencing everything means experiencing less, but more deeply? I’d love to sit in a park, or just browse a local shop, not rush from one famous spot to another.</span></p>
+
+    <p class="scene-direction">(Chloe walks up to their table, smiling.)</p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">Anna, Ben! Mind if I join you? I was just passing by.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Chloe, perfect timing! Ben here is feeling a bit overwhelmed by my super-tourist itinerary.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">(Smiling weakly) Exactly!</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">(To Ben) Ah, the classic "Anna-style" tour. She means well, but she forgets not everyone has her turbo-charged energy.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">Exactly!</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">(To Anna) You know, sometimes the best way to see a city isn't just checking off a list. It's about getting a feel for it, right?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">But he’s from out of town! He needs to see the main attractions.</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">You could do the market this morning, then the park for a relaxed lunch. You still have the whole afternoon and evening. Maybe a nice dinner in a different neighborhood?</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">Hmm. I saw a beautiful park yesterday, near the river. I’d love to just sit there for an hour, maybe read. And I’m curious about local markets, not just the big tourist ones. I want to see how people here really live.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Considering) A park… and a local market… So, no Art Museum? No Old Town?</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">You could do the market this morning, then the park for a relaxed lunch. You still have the whole afternoon and evening. Maybe a nice dinner in a different neighborhood?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">(Her face brightening) Okay, I see. So, instead of a whirlwind, it’s more of a… relaxed exploration. I can do that! Sorry, Ben. I just got excited.</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">(Relieved) No worries, Anna! I’m still excited. Just at a slightly slower pace. Thank you, Chloe!</span></p>
+    <p><strong>CHLOE:</strong> <span class="dialogue">Any time! Enjoy your calmer day.</span></p>
+
+    <p class="scene-direction">(Anna closes the map and smiles at Ben.)</p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Alright, Ben. Local market it is! And then a park. After that, who knows? We can decide together. How does that sound?</span></p>
+    <p><strong>BEN:</strong> <span class="dialogue">(Grinning) Perfect, Anna. Absolutely perfect.</span></p>
+    <p class="scene-direction">(They both stand up, a renewed sense of calm settling over Ben.)</p>
+    <p class="scene-direction">[End Scene]</p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li><span class="vocab-word">Beaming <span class="speaker-icon" onclick="speakWord('Beaming')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈbiːmɪŋ/</span> <span class="definition">(v.): smiling broadly and radiantly.</span></li>
+      <li><span class="vocab-word">Itinerary <span class="speaker-icon" onclick="speakWord('Itinerary')" title="Pronounce">🔊</span></span> <span class="ipa">/aɪˈtɪnərɛri/</span> <span class="definition">(n.): A planned route or journey, often including details of places to be visited and times.</span></li>
+      <li><span class="vocab-word">Marathon <span class="speaker-icon" onclick="speakWord('Marathon')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈmærəˌθɒn/</span> <span class="definition">(Figurative) A long, difficult, or tiring activity or period.</span></li>
+      <li><span class="vocab-word">Overwhelmed <span class="speaker-icon" onclick="speakWord('Overwhelmed')" title="Pronounce">🔊</span></span> <span class="ipa">/ˌoʊvərˈwɛlmd/</span> <span class="definition">(adj.): Feeling like you have too much to do or too many things to deal with.</span></li>
+      <li><span class="vocab-word">Interrupting <span class="speaker-icon" onclick="speakWord('Interrupting')" title="Pronounce">🔊</span></span> <span class="ipa">/ˌɪntəˈrʌptɪŋ/</span> <span class="definition">(v.): stopping someone from speaking by saying or doing something.</span></li>
+      <li><span class="vocab-word">Appreciate <span class="speaker-icon" onclick="speakWord('Appreciate')" title="Pronounce">🔊</span></span> <span class="ipa">/əˈpriːʃieɪt/</span> <span class="definition">(v.): To recognize the full worth of; to be grateful for something.</span></li>
+      <li><span class="vocab-word">Browse <span class="speaker-icon" onclick="speakWord('Browse')" title="Pronounce">🔊</span></span> <span class="ipa">/braʊz/</span> <span class="definition">(v.): To look through a collection of items, especially in a store, without necessarily intending to buy anything.</span></li>
+      <li><span class="vocab-word">Turbo-charged <span class="speaker-icon" onclick="speakWord('Turbo-charged')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈtɜːrboʊ tʃɑːrdʒd/</span> <span class="definition">(Figurative) Extremely fast, powerful, or energetic; enhanced.</span></li>
+      <li><span class="vocab-word">Considering <span class="speaker-icon" onclick="speakWord('Considering')" title="Pronounce">🔊</span></span> <span class="ipa">/kənˈsɪdərɪŋ/</span> <span class="definition">(v.): thinking carefully about something.</span></li>
+      <li><span class="vocab-word">Brightening <span class="speaker-icon" onclick="speakWord('Brightening')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈbraɪtnɪŋ/</span> <span class="definition">(v.): becoming happier or more cheerful; making something brighter.</span></li>
+      <li><span class="vocab-word">Whirlwind <span class="speaker-icon" onclick="speakWord('Whirlwind')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈwɜːrlwɪnd/</span> <span class="definition">(Figurative) A very fast pace or a busy period of events.</span></li>
+      <li><span class="vocab-word">Exploration <span class="speaker-icon" onclick="speakWord('Exploration')" title="Pronounce">🔊</span></span> <span class="ipa">/ˌɛkspləˈreɪʃən/</span> <span class="definition">(n.): the action of traveling in or through an unfamiliar area to learn about it.</span></li>
+      <li><span class="vocab-word">Relieved <span class="speaker-icon" onclick="speakWord('Relieved')" title="Pronounce">🔊</span></span> <span class="ipa">/rɪˈliːvd/</span> <span class="definition">(adj.): Feeling happy because something unpleasant has not happened or has ended.</span></li>
+      <li><span class="vocab-word">Grinning <span class="speaker-icon" onclick="speakWord('Grinning')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈɡrɪnɪŋ/</span> <span class="definition">(v.): smiling broadly, often to show pleasure or amusement.</span></li>
+      <li><span class="vocab-word">Settling <span class="speaker-icon" onclick="speakWord('Settling')" title="Pronounce">🔊</span></span> <span class="ipa">/ˈsɛtlɪŋ/</span> <span class="definition">(v.): becoming calm, stable, or established.</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Function to speak a word using Web Speech API
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US'; // Set language to English (US)
+      utterance.rate = 0.9; // Adjust speech rate if needed
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+      // Optionally, you could provide a visual alert here instead of console.warn
+      // alert("Your browser does not support text-to-speech for pronunciation.");
+    }
+  }
+</script>
+
+</body>
+</html>

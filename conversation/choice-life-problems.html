@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choices – ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Your existing CSS for navigation and general layout */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul, .content-container ol {
+      margin-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .content-container li {
+      margin-bottom: 0.5rem;
+    }
+    .content-container strong {
+      color: #124076; /* Make strong words stand out a bit more */
+    }
+
+    /* Conversation specific styles */
+    .conversation-script p {
+      margin-bottom: 0.8rem;
+    }
+    .conversation-script strong {
+      display: inline-block; /* Allows for consistent spacing with character names */
+      width: 80px; /* Adjust as needed for longest name */
+      text-align: right;
+      margin-right: 10px;
+      color: #124076;
+    }
+    .conversation-script span.dialogue {
+      display: inline;
+    }
+    .scene-direction {
+      font-style: italic;
+      color: #555;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .character-info {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info h3 {
+      margin-bottom: 0.5rem;
+    }
+    .character-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .character-info li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* Vocabulary List specific styles */
+    .vocabulary-list ul {
+      list-style-type: disc;
+      padding-left: 25px;
+    }
+    .vocabulary-list li {
+      margin-bottom: 0.8rem; /* More space between vocabulary items */
+    }
+    .vocabulary-list .vocab-word {
+      font-weight: bold;
+      color: #124076;
+      display: inline-flex; /* Use flexbox for word + icon alignment */
+      align-items: center;
+      gap: 8px; /* Space between word and icon */
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #3498db;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .vocabulary-list .speaker-icon:hover {
+      color: #2980b9;
+    }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      color: #666;
+      margin-left: 5px; /* Space after the word/icon */
+    }
+    .vocabulary-list .definition {
+      display: block; /* Make definition appear on a new line */
+      margin-top: 0.2rem;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Choices: Life Problems</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>ALEX (32):</strong> Struggling musician, full of hope.</li>
+      <li><strong>MIA (30):</strong> Office worker dreaming of change.</li>
+      <li><strong>LEO (33):</strong> Café owner who took a big risk.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Setting: A cozy café, mid-afternoon.</p>
+
+  <div class="conversation-script">
+    <p><strong>ALEX:</strong> <span class="dialogue"></span> (sitting, staring into space)</p>
+    <p><strong>MIA:</strong> Alex! There you are! I haven't seen you in ages. (sits)</p>
+    <p><strong>ALEX:</strong> Mia, wow. It’s been too long. How's life?</p>
+    <p><strong>MIA:</strong> Busy, stressful. Office life isn't what I imagined.</p>
+    <p><strong>ALEX:</strong> Tell me about it. I'm still chasing dreams and living on noodles.</p>
+    <p class="scene-direction">(LEO approaches their table with coffee.)</p>
+    <p><strong>LEO:</strong> I couldn't help overhearing. Alex, your music last Friday was great.</p>
+    <p><strong>ALEX:</strong> Thanks, Leo. You're probably my biggest—and only—fan.</p>
+    <p><strong>LEO:</strong> (smiling) Don't lose hope. Remember, I left a well-paid job to open this café. Sometimes, risk is necessary.</p>
+    <p><strong>MIA:</strong> That's courageous, Leo. Honestly, I've been thinking about changing careers, but I'm terrified.</p>
+    <p><strong>ALEX:</strong> And I’ve been thinking about quitting music. Maybe it's time to get realistic.</p>
+    <p><strong>LEO:</strong> But what’s "realistic," Alex? You love music. Mia, what career change interests you?</p>
+    <p><strong>MIA:</strong> Teaching yoga. But my parents expect stability, and I'm already 30...</p>
+    <p><strong>LEO:</strong> Age isn't the problem. Fear is. My family was worried too. But it’s your life, your choice.</p>
+    <p><strong>ALEX:</strong> It feels easier said than done. Rent, bills... real life isn't forgiving.</p>
+    <p><strong>LEO:</strong> True, but regret is harder to live with than struggle.</p>
+    <p><strong>MIA:</strong> Leo, did you ever doubt your decision?</p>
+    <p><strong>LEO:</strong> Many times. But doubt is part of growth. Alex, you’ve inspired people. Mia, you have the passion to help others. That’s worth fighting for.</p>
+    <p><strong>ALEX:</strong> Maybe you're right. I don't want to wonder "what if."</p>
+    <p><strong>MIA:</strong> Neither do I. I think... I’ll sign up for yoga instructor training.</p>
+    <p><strong>LEO:</strong> Good for you, Mia! Alex?</p>
+    <p><strong>ALEX:</strong> I'll keep playing. Maybe a day job too, but I'll keep the dream alive.</p>
+    <p><strong>LEO:</strong> Life isn’t about avoiding problems, it’s about facing them head-on.</p>
+    <p><strong>MIA:</strong> To taking risks.</p>
+    <p><strong>ALEX:</strong> To passion.</p>
+    <p><strong>LEO:</strong> To making brave choices.</p>
+    <p class="scene-direction">(They clink cups, hopeful and determined.)</p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Struggling <span class="speaker-icon" onclick="speakWord('Struggling')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈstrʌɡəlɪŋ/</span>
+        <span class="definition">(adj.): having difficulty doing something; facing challenges.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Risk <span class="speaker-icon" onclick="speakWord('Risk')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/rɪsk/</span>
+        <span class="definition">(n.): the possibility of loss or injury; danger taken when making a decision.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Terrified <span class="speaker-icon" onclick="speakWord('Terrified')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈtɛrɪfaɪd/</span>
+        <span class="definition">(adj.): extremely afraid.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Realistic <span class="speaker-icon" onclick="speakWord('Realistic')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˌriːəˈlɪstɪk/</span>
+        <span class="definition">(adj.): accepting things as they are in real life; practical.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Regret <span class="speaker-icon" onclick="speakWord('Regret')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/rɪˈɡrɛt/</span>
+        <span class="definition">(n.): feeling sad or disappointed about something you did or didn’t do.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Inspire <span class="speaker-icon" onclick="speakWord('Inspire')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ɪnˈspaɪər/</span>
+        <span class="definition">(v.): to fill someone with the urge or ability to do something.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Passion <span class="speaker-icon" onclick="speakWord('Passion')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈpæʃən/</span>
+        <span class="definition">(n.): a strong feeling of enthusiasm or excitement for something.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Bills <span class="speaker-icon" onclick="speakWord('Bills')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/bɪlz/</span>
+        <span class="definition">(n.): statements of money owed for goods or services.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Hopeful <span class="speaker-icon" onclick="speakWord('Hopeful')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈhoʊpfəl/</span>
+        <span class="definition">(adj.): optimistic; feeling positive about the future.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Function to speak a word using Web Speech API
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US'; // Set language to English (US)
+      utterance.rate = 0.9; // Adjust speech rate if needed
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

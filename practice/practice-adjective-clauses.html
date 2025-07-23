@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adjective Clauses Worksheet – ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+
+    .exercise-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+
+    /* Questions and Inputs */
+    .question-list ol {
+        padding-left: 20px;
+    }
+    .question-list li {
+        margin-bottom: 1.5rem; /* Increased space between questions */
+        font-size: 1.05rem;
+    }
+    .question-pair {
+        margin-bottom: 0.5rem; /* Space between the two sentences */
+        font-style: italic;
+        color: #555;
+    }
+    .combined-sentence input[type="text"] {
+        width: 100%; /* Take full width */
+        max-width: 600px; /* Limit max width */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-top: 0.5rem; /* Space below the original sentences */
+        display: block; /* Make it a block element to take full width */
+    }
+    .feedback {
+        margin-top: 5px;
+        font-size: 0.95rem;
+    }
+    .correct {
+        color: #28a745;
+        font-weight: bold;
+    }
+    .incorrect {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    /* Check Answers Button */
+    #checkAnswersBtn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+        background-color: #0056b3;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Adjective Clauses Worksheet: Life Goals & Problems</h1>
+
+<div class="content-container">
+  <p>This worksheet focuses on **Adjective Clauses** (also known as Relative Clauses), which help you combine sentences and add detail. For each pair of sentences below, combine them into one sentence using an appropriate relative pronoun (**who, whom, whose, which, that**) or relative adverb (**when, where, why**). Remember to think about whether the clause is essential or non-essential, and use commas accordingly.</p>
+
+  <div class="exercise-section">
+    <h2>Exercise: Combine the Sentences</h2>
+    <div class="question-list" id="question-list">
+      </div>
+    <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Worksheet Logic
+  const questions = [
+    {
+      id: "q1",
+      sentences: ["I have a dream.", "This dream involves helping people."],
+      answer: "I have a dream that involves helping people."
+    },
+    {
+      id: "q2",
+      sentences: ["My biggest ambition is to start my own business.", "My business will focus on sustainable products."],
+      answer: "My biggest ambition is to start my own business, which will focus on sustainable products."
+    },
+    {
+      id: "q3",
+      sentences: ["She wants to travel the world.", "Travel will broaden her perspective."],
+      answer: "She wants to travel the world, which will broaden her perspective."
+    },
+    {
+      id: "q4",
+      sentences: ["He's saving money for a house.", "The house is located near the beach."],
+      answer: "He's saving money for a house that is located near the beach."
+    },
+    {
+      id: "q5",
+      sentences: ["They are learning new skills.", "These skills are necessary for their career advancement."],
+      answer: "They are learning new skills that are necessary for their career advancement."
+    },
+    {
+      id: "q6",
+      sentences: ["I admire people.", "These people overcome challenges to achieve their goals."],
+      answer: "I admire people who overcome challenges to achieve their goals."
+    },
+    {
+      id: "q7",
+      sentences: ["One day, I'll visit the country.", "I was born in that country."],
+      answer: "One day, I'll visit the country where I was born."
+    },
+    {
+      id: "q8",
+      sentences: ["She dreams of a moment.", "At this moment, she will finally publish her novel."],
+      answer: "She dreams of a moment when she will finally publish her novel."
+    },
+    {
+      id: "q9",
+      sentences: ["My neighbor has a lot of financial worries.", "His business recently failed."],
+      answer: "My neighbor, whose business recently failed, has a lot of financial worries."
+    },
+    {
+      id: "q10",
+      sentences: ["The traffic is a major issue.", "It causes me to be late every morning."],
+      answer: "The traffic is a major issue that causes me to be late every morning."
+    },
+    {
+      id: "q11",
+      sentences: ["She found a solution to the problem.", "The problem had bothered her for weeks."],
+      answer: "She found a solution to the problem that had bothered her for weeks."
+    },
+    {
+      id: "q12",
+      sentences: ["He had to deal with a difficult client.", "The client refused to compromise."],
+      answer: "He had to deal with a difficult client who refused to compromise."
+    },
+    {
+      id: "q13",
+      sentences: ["The company faced a crisis.", "Its reputation was severely damaged by the crisis."],
+      answer: "The company faced a crisis which severely damaged its reputation."
+    },
+    {
+      id: "q14",
+      sentences: ["I try to understand the reason.", "My friends often complain about this reason."],
+      answer: "I try to understand the reason why my friends often complain."
+    },
+    {
+      id: "q15",
+      sentences: ["They live in an area.", "The public transportation in this area is unreliable."],
+      answer: "They live in an area where the public transportation is unreliable."
+    }
+  ];
+
+  function loadQuestions() {
+    const questionListDiv = document.getElementById('question-list');
+    let htmlContent = '<ol>';
+    questions.forEach((q, index) => {
+      htmlContent += `
+        <li>
+          <p class="question-pair">1. ${q.sentences[0]}</p>
+          <p class="question-pair">2. ${q.sentences[1]}</p>
+          <div class="combined-sentence">
+            <input type="text" id="${q.id}" placeholder="Combine into one sentence..." />
+          </div>
+          <div id="feedback-${q.id}" class="feedback"></div>
+        </li>
+      `;
+    });
+    htmlContent += '</ol>';
+    questionListDiv.innerHTML = htmlContent;
+  }
+
+  function checkAnswers() {
+    questions.forEach(q => {
+      const inputElement = document.getElementById(q.id);
+      const feedbackDiv = document.getElementById(`feedback-${q.id}`);
+
+      if (inputElement && feedbackDiv) {
+        // Normalize user answer (remove extra spaces, convert to lowercase for basic comparison)
+        const userAnswer = inputElement.value.trim().toLowerCase().replace(/\s+/g, ' ');
+        // Normalize correct answer
+        const correctAnswer = q.answer.trim().toLowerCase().replace(/\s+/g, ' ');
+
+        feedbackDiv.style.display = 'block'; // Show the feedback div
+
+        // Simple comparison. For more robust checking, you'd need a more advanced NLP approach.
+        // This checks if the user's answer exactly matches the expected answer after normalization.
+        if (userAnswer === correctAnswer) {
+          feedbackDiv.textContent = "Correct!";
+          feedbackDiv.className = 'feedback correct';
+        } else {
+          feedbackDiv.textContent = `Incorrect. Correct: ${q.answer}`;
+          feedbackDiv.className = 'feedback incorrect';
+        }
+      }
+    });
+  }
+
+  // Load questions when the page loads
+  document.addEventListener('DOMContentLoaded', loadQuestions);
+</script>
+
+</body>
+</html>

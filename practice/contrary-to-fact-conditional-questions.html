@@ -198,43 +198,46 @@
         .question-item {
             margin-bottom: 1.5rem;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            flex-direction: column; /* Changed to column for better responsiveness of feedback */
+            gap: 0.5rem; /* Space between question line and input/feedback */
         }
-        .question-text {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .input-group {
+        .question-line { /* New class for the question line to control flex behavior */
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
+            align-items: baseline;
+            flex-wrap: wrap; /* Allow elements in the line to wrap */
         }
-        .input-group label {
-            font-size: 0.9em;
-            color: #666;
+        .question-line .number {
+            font-weight: bold;
+            margin-right: 10px;
             flex-shrink: 0;
         }
         .fill-in-the-blank {
-            flex-grow: 1;
-            min-width: 100px;
-            padding: 8px 12px;
+            display: inline-block; /* Keep inline-block for fitting within the text flow */
+            width: 120px; /* Adjust width as needed */
+            padding: 5px 8px;
+            margin: 0 5px; /* Adjust margin to control space around inputs */
             border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 4px;
             font-family: 'Segoe UI', sans-serif;
             font-size: 1rem;
             color: #333;
+            vertical-align: middle; /* Align with text */
         }
         .fill-in-the-blank:focus {
             border-color: #3498db;
             outline: none;
             box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
+        .blank-hint { /* Style for the verb in parentheses */
+            color: #555;
+            font-style: italic;
+            margin-left: 5px; /* Space after the blank */
+        }
         .feedback {
             margin-top: 5px;
             font-size: 0.9rem;
             height: 1.2em;
+            text-align: center; /* Center feedback under the inputs */
         }
         .feedback.correct {
             color: #27ae60;
@@ -334,42 +337,32 @@
     <form id="part1-form">
         <ul>
             <li class="question-item">
-                <div class="question-text">1. If you <span class="blank-hint">(win)</span> the lottery, what <span class="blank-hint">(you/buy)</span>?</div>
-                <div class="input-group">
-                    <label for="q1-input1">if clause verb:</label> <input type="text" id="q1-input1" class="fill-in-the-blank" data-answer="won">
-                    <label for="q1-input2">main clause verb:</label> <input type="text" id="q1-input2" class="fill-in-the-blank" data-answer="would you buy">
+                <div class="question-line">
+                    <span class="number">1.</span> If you <input type="text" id="q1-input1" class="fill-in-the-blank" data-answer="won"> (win) the lottery, what <input type="text" id="q1-input2" class="fill-in-the-blank" data-answer="would you buy"> (you/buy)?
                 </div>
                 <div id="q1-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">2. What <span class="blank-hint">(you/do)</span> if you <span class="blank-hint">(be)</span> invisible for a day?</div>
-                <div class="input-group">
-                    <label for="q2-input1">main clause verb:</label> <input type="text" id="q2-input1" class="fill-in-the-blank" data-answer="would you do">
-                    <label for="q2-input2">if clause verb:</label> <input type="text" id="q2-input2" class="fill-in-the-blank" data-answer="were">
+                <div class="question-line">
+                    <span class="number">2.</span> What <input type="text" id="q2-input1" class="fill-in-the-blank" data-answer="would you do"> (you/do) if you <input type="text" id="q2-input2" class="fill-in-the-blank" data-answer="were"> (be) invisible for a day?
                 </div>
                 <div id="q2-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">3. <span class="blank-hint">(you/travel)</span> more if you <span class="blank-hint">(have)</span> more free time?</div>
-                <div class="input-group">
-                    <label for="q3-input1">main clause verb:</label> <input type="text" id="q3-input1" class="fill-in-the-blank" data-answer="would you travel">
-                    <label for="q3-input2">if clause verb:</label> <input type="text" id="q3-input2" class="fill-in-the-blank" data-answer="had">
+                <div class="question-line">
+                    <span class="number">3.</span> <input type="text" id="q3-input1" class="fill-in-the-blank" data-answer="would you travel"> (you/travel) more if you <input type="text" id="q3-input2" class="fill-in-the-blank" data-answer="had"> (have) more free time?
                 </div>
                 <div id="q3-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">4. If she <span class="blank-hint">(not/have)</span> to work, where <span class="blank-hint">(she/go)</span> on vacation?</div>
-                <div class="input-group">
-                    <label for="q4-input1">if clause verb:</label> <input type="text" id="q4-input1" class="fill-in-the-blank" data-answer="didn't have">
-                    <label for="q4-input2">main clause verb:</label> <input type="text" id="q4-input2" class="fill-in-the-blank" data-answer="would she go">
+                <div class="question-line">
+                    <span class="number">4.</span> If she <input type="text" id="q4-input1" class="fill-in-the-blank" data-answer="didn't have"> (not/have) to work, where <input type="text" id="q4-input2" class="fill-in-the-blank" data-answer="would she go"> (she/go) on vacation?
                 </div>
                 <div id="q4-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">5. <span class="blank-hint">(he/tell)</span> her the truth if he <span class="blank-hint">(know)</span> she wouldn't be upset?</div>
-                <div class="input-group">
-                    <label for="q5-input1">main clause verb:</label> <input type="text" id="q5-input1" class="fill-in-the-blank" data-answer="would he tell">
-                    <label for="q5-input2">if clause verb:</label> <input type="text" id="q5-input2" class="fill-in-the-blank" data-answer="knew">
+                <div class="question-line">
+                    <span class="number">5.</span> <input type="text" id="q5-input1" class="fill-in-the-blank" data-answer="would he tell"> (he/tell) her the truth if he <input type="text" id="q5-input2" class="fill-in-the-blank" data-answer="knew"> (know) she wouldn't be upset?
                 </div>
                 <div id="q5-feedback" class="feedback"></div>
             </li>
@@ -383,42 +376,32 @@
     <form id="part2-form">
         <ul>
             <li class="question-item">
-                <div class="question-text">1. If you <span class="blank-hint">(study)</span> harder, what <span class="blank-hint">(happen)</span>?</div>
-                <div class="input-group">
-                    <label for="q6-input1">if clause verb:</label> <input type="text" id="q6-input1" class="fill-in-the-blank" data-answer="had studied">
-                    <label for="q6-input2">main clause verb:</label> <input type="text" id="q6-input2" class="fill-in-the-blank" data-answer="would have happened">
+                <div class="question-line">
+                    <span class="number">1.</span> If you <input type="text" id="q6-input1" class="fill-in-the-blank" data-answer="had studied"> (study) harder, what <input type="text" id="q6-input2" class="fill-in-the-blank" data-answer="would have happened"> (happen)?
                 </div>
                 <div id="q6-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">2. <span class="blank-hint">(you/go)</span> to the party if you <span class="blank-hint">(know)</span> about it?</div>
-                <div class="input-group">
-                    <label for="q7-input1">main clause verb:</label> <input type="text" id="q7-input1" class="fill-in-the-blank" data-answer="would you have gone">
-                    <label for="q7-input2">if clause verb:</label> <input type="text" id="q7-input2" class="fill-in-the-blank" data-answer="had known">
+                <div class="question-line">
+                    <span class="number">2.</span> <input type="text" id="q7-input1" class="fill-in-the-blank" data-answer="would you have gone"> (you/go) to the party if you <input type="text" id="q7-input2" class="fill-in-the-blank" data-answer="had known"> (know) about it?
                 </div>
                 <div id="q7-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">3. What <span class="blank-hint">(you/do)</span> if you <span class="blank-hint">(miss)</span> your flight?</div>
-                <div class="input-group">
-                    <label for="q8-input1">main clause verb:</label> <input type="text" id="q8-input1" class="fill-in-the-blank" data-answer="would you have done">
-                    <label for="q8-input2">if clause verb:</label> <input type="text" id="q8-input2" class="fill-in-the-blank" data-answer="had missed">
+                <div class="question-line">
+                    <span class="number">3.</span> What <input type="text" id="q8-input1" class="fill-in-the-blank" data-answer="would you have done"> (you/do) if you <input type="text" id="q8-input2" class="fill-in-the-blank" data-answer="had missed"> (miss) your flight?
                 </div>
                 <div id="q8-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">4. If he <span class="blank-hint">(not/help)</span> you, <span class="blank-hint">(you/finish)</span> the project on time?</div>
-                <div class="input-group">
-                    <label for="q9-input1">if clause verb:</label> <input type="text" id="q9-input1" class="fill-in-the-blank" data-answer="hadn't helped">
-                    <label for="q9-input2">main clause verb:</label> <input type="text" id="q9-input2" class="fill-in-the-blank" data-answer="would you have finished">
+                <div class="question-line">
+                    <span class="number">4.</span> If he <input type="text" id="q9-input1" class="fill-in-the-blank" data-answer="hadn't helped"> (not/help) you, <input type="text" id="q9-input2" class="fill-in-the-blank" data-answer="would you have finished"> (you/finish) the project on time?
                 </div>
                 <div id="q9-feedback" class="feedback"></div>
             </li>
             <li class="question-item">
-                <div class="question-text">5. Where <span class="blank-hint">(they/go)</span> if they <span class="blank-hint">(not/find)</span> a hotel?</div>
-                <div class="input-group">
-                    <label for="q10-input1">main clause verb:</label> <input type="text" id="q10-input1" class="fill-in-the-blank" data-answer="would they have gone">
-                    <label for="q10-input2">if clause verb:</label> <input type="text" id="q10-input2" class="fill-in-the-blank" data-answer="hadn't found">
+                <div class="question-line">
+                    <span class="number">5.</span> Where <input type="text" id="q10-input1" class="fill-in-the-blank" data-answer="would they have gone"> (they/go) if they <input type="text" id="q10-input2" class="fill-in-the-blank" data-answer="hadn't found"> (not/find) a hotel?
                 </div>
                 <div id="q10-feedback" class="feedback"></div>
             </li>
@@ -483,6 +466,7 @@
     function checkAnswers(part) {
         const formId = `${part}-form`;
         const form = document.getElementById(formId);
+        // Select only the inputs within the specific form
         const inputs = form.querySelectorAll('.fill-in-the-blank');
 
         inputs.forEach(input => {
@@ -495,7 +479,7 @@
                 feedbackElement.textContent = 'Correct!';
                 feedbackElement.className = 'feedback correct';
             } else {
-                feedbackElement.textContent = `Incorrect. Hint: ${input.dataset.answer}`; // Provide hint
+                feedbackElement.textContent = `Incorrect. The correct answer is: ${input.dataset.answer}`;
                 feedbackElement.className = 'feedback incorrect';
             }
         });

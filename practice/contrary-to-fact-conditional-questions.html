@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrary to Fact Conditional Questions Practice – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .question-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .input-group label {
+            font-size: 0.9em;
+            color: #666;
+            flex-shrink: 0;
+        }
+        .fill-in-the-blank {
+            flex-grow: 1;
+            min-width: 100px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            color: #333;
+        }
+        .fill-in-the-blank:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        .feedback {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            height: 1.2em;
+        }
+        .feedback.correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .feedback.incorrect {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        #showAnswersBtn {
+            background: #f39c12;
+        }
+        #showAnswersBtn:hover {
+            background: #e67e22;
+        }
+        .answer-key {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #e9ecef;
+            border-radius: 8px;
+            text-align: left;
+            display: none;
+        }
+        .answer-key h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .answer-key ol {
+            padding-left: 20px;
+        }
+        .answer-key li {
+            margin-bottom: 0.5rem;
+        }
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Contrary to Fact Conditional Questions Practice</h1>
+
+<div class="content-container">
+    <p>Test your understanding of **contrary to fact conditional questions**! Fill in the blanks with the correct form of the verbs in parentheses to complete each question. Remember to pay attention to whether it's an imaginary present/future or imaginary past situation.</p>
+
+    <h2>Part 1: Imaginary Present or Future Situations (Second Conditional)</h2>
+    <form id="part1-form">
+        <ul>
+            <li class="question-item">
+                <div class="question-text">1. If you <span class="blank-hint">(win)</span> the lottery, what <span class="blank-hint">(you/buy)</span>?</div>
+                <div class="input-group">
+                    <label for="q1-input1">if clause verb:</label> <input type="text" id="q1-input1" class="fill-in-the-blank" data-answer="won">
+                    <label for="q1-input2">main clause verb:</label> <input type="text" id="q1-input2" class="fill-in-the-blank" data-answer="would you buy">
+                </div>
+                <div id="q1-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">2. What <span class="blank-hint">(you/do)</span> if you <span class="blank-hint">(be)</span> invisible for a day?</div>
+                <div class="input-group">
+                    <label for="q2-input1">main clause verb:</label> <input type="text" id="q2-input1" class="fill-in-the-blank" data-answer="would you do">
+                    <label for="q2-input2">if clause verb:</label> <input type="text" id="q2-input2" class="fill-in-the-blank" data-answer="were">
+                </div>
+                <div id="q2-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">3. <span class="blank-hint">(you/travel)</span> more if you <span class="blank-hint">(have)</span> more free time?</div>
+                <div class="input-group">
+                    <label for="q3-input1">main clause verb:</label> <input type="text" id="q3-input1" class="fill-in-the-blank" data-answer="would you travel">
+                    <label for="q3-input2">if clause verb:</label> <input type="text" id="q3-input2" class="fill-in-the-blank" data-answer="had">
+                </div>
+                <div id="q3-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">4. If she <span class="blank-hint">(not/have)</span> to work, where <span class="blank-hint">(she/go)</span> on vacation?</div>
+                <div class="input-group">
+                    <label for="q4-input1">if clause verb:</label> <input type="text" id="q4-input1" class="fill-in-the-blank" data-answer="didn't have">
+                    <label for="q4-input2">main clause verb:</label> <input type="text" id="q4-input2" class="fill-in-the-blank" data-answer="would she go">
+                </div>
+                <div id="q4-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">5. <span class="blank-hint">(he/tell)</span> her the truth if he <span class="blank-hint">(know)</span> she wouldn't be upset?</div>
+                <div class="input-group">
+                    <label for="q5-input1">main clause verb:</label> <input type="text" id="q5-input1" class="fill-in-the-blank" data-answer="would he tell">
+                    <label for="q5-input2">if clause verb:</label> <input type="text" id="q5-input2" class="fill-in-the-blank" data-answer="knew">
+                </div>
+                <div id="q5-feedback" class="feedback"></div>
+            </li>
+        </ul>
+        <button type="button" onclick="checkAnswers('part1')">Check Part 1 Answers</button>
+    </form>
+
+    ---
+
+    <h2>Part 2: Imaginary Past Situations (Third Conditional)</h2>
+    <form id="part2-form">
+        <ul>
+            <li class="question-item">
+                <div class="question-text">1. If you <span class="blank-hint">(study)</span> harder, what <span class="blank-hint">(happen)</span>?</div>
+                <div class="input-group">
+                    <label for="q6-input1">if clause verb:</label> <input type="text" id="q6-input1" class="fill-in-the-blank" data-answer="had studied">
+                    <label for="q6-input2">main clause verb:</label> <input type="text" id="q6-input2" class="fill-in-the-blank" data-answer="would have happened">
+                </div>
+                <div id="q6-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">2. <span class="blank-hint">(you/go)</span> to the party if you <span class="blank-hint">(know)</span> about it?</div>
+                <div class="input-group">
+                    <label for="q7-input1">main clause verb:</label> <input type="text" id="q7-input1" class="fill-in-the-blank" data-answer="would you have gone">
+                    <label for="q7-input2">if clause verb:</label> <input type="text" id="q7-input2" class="fill-in-the-blank" data-answer="had known">
+                </div>
+                <div id="q7-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">3. What <span class="blank-hint">(you/do)</span> if you <span class="blank-hint">(miss)</span> your flight?</div>
+                <div class="input-group">
+                    <label for="q8-input1">main clause verb:</label> <input type="text" id="q8-input1" class="fill-in-the-blank" data-answer="would you have done">
+                    <label for="q8-input2">if clause verb:</label> <input type="text" id="q8-input2" class="fill-in-the-blank" data-answer="had missed">
+                </div>
+                <div id="q8-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">4. If he <span class="blank-hint">(not/help)</span> you, <span class="blank-hint">(you/finish)</span> the project on time?</div>
+                <div class="input-group">
+                    <label for="q9-input1">if clause verb:</label> <input type="text" id="q9-input1" class="fill-in-the-blank" data-answer="hadn't helped">
+                    <label for="q9-input2">main clause verb:</label> <input type="text" id="q9-input2" class="fill-in-the-blank" data-answer="would you have finished">
+                </div>
+                <div id="q9-feedback" class="feedback"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">5. Where <span class="blank-hint">(they/go)</span> if they <span class="blank-hint">(not/find)</span> a hotel?</div>
+                <div class="input-group">
+                    <label for="q10-input1">main clause verb:</label> <input type="text" id="q10-input1" class="fill-in-the-blank" data-answer="would they have gone">
+                    <label for="q10-input2">if clause verb:</label> <input type="text" id="q10-input2" class="fill-in-the-blank" data-answer="hadn't found">
+                </div>
+                <div id="q10-feedback" class="feedback"></div>
+            </li>
+        </ul>
+        <button type="button" onclick="checkAnswers('part2')">Check Part 2 Answers</button>
+    </form>
+
+    <div class="buttons">
+        <button id="resetAllBtn" onclick="resetAll()">Reset All</button>
+        <button id="showAnswersBtn" onclick="toggleAnswers()">Show/Hide Answers</button>
+    </div>
+
+    <div id="answerKey" class="answer-key">
+        <h3>Answer Key</h3>
+        <h4>Part 1 Answers:</h4>
+        <ol>
+            <li>If you **won** the lottery, what **would you buy**?</li>
+            <li>What **would you do** if you **were** invisible for a day?</li>
+            <li>**Would you travel** more if you **had** more free time?</li>
+            <li>If she **didn't have** to work, where **would she go** on vacation?</li>
+            <li>**Would he tell** her the truth if he **knew** she wouldn't be upset?</li>
+        </ol>
+        <h4>Part 2 Answers:</h4>
+        <ol start="6">
+            <li>If you **had studied** harder, what **would have happened**?</li>
+            <li>**Would you have gone** to the party if you **had known** about it?</li>
+            <li>What **would you have done** if you **had missed** your flight?</li>
+            <li>If he **hadn't helped** you, **would you have finished** the project on time?</li>
+            <li>Where **would they have gone** if they **hadn't found** a hotel?</li>
+        </ol>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to check answers for a specific part
+    function checkAnswers(part) {
+        const formId = `${part}-form`;
+        const form = document.getElementById(formId);
+        const inputs = form.querySelectorAll('.fill-in-the-blank');
+
+        inputs.forEach(input => {
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = input.dataset.answer.toLowerCase();
+            const feedbackId = input.id.replace('input', 'feedback');
+            const feedbackElement = document.getElementById(feedbackId);
+
+            if (userAnswer === correctAnswer) {
+                feedbackElement.textContent = 'Correct!';
+                feedbackElement.className = 'feedback correct';
+            } else {
+                feedbackElement.textContent = `Incorrect. Hint: ${input.dataset.answer}`; // Provide hint
+                feedbackElement.className = 'feedback incorrect';
+            }
+        });
+    }
+
+    // Function to reset all inputs and feedback
+    function resetAll() {
+        const allInputs = document.querySelectorAll('.fill-in-the-blank');
+        allInputs.forEach(input => {
+            input.value = '';
+            const feedbackId = input.id.replace('input', 'feedback');
+            const feedbackElement = document.getElementById(feedbackId);
+            if (feedbackElement) {
+                feedbackElement.textContent = '';
+                feedbackElement.className = 'feedback';
+            }
+        });
+        document.getElementById('answerKey').style.display = 'none';
+        document.getElementById('showAnswersBtn').textContent = 'Show/Hide Answers';
+    }
+
+    // Function to toggle answer key visibility
+    function toggleAnswers() {
+        const answerKey = document.getElementById('answerKey');
+        const showAnswersBtn = document.getElementById('showAnswersBtn');
+        if (answerKey.style.display === 'block') {
+            answerKey.style.display = 'none';
+            showAnswersBtn.textContent = 'Show/Hide Answers';
+        } else {
+            answerKey.style.display = 'block';
+            showAnswersBtn.textContent = 'Hide Answers';
+        }
+    }
+</script>
+
+</body>
+</html>

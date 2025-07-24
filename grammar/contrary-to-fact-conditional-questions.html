@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contrary to Fact Conditional Questions – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Your existing CSS styles go here */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .content-container ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .content-container strong {
+      color: #2c3e50;
+    }
+    .content-container em {
+      font-style: italic; /* Keep italic for examples if desired, or remove */
+      color: #555;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Introduction to Contrary to Fact Conditional Questions</h1>
+
+<div class="content-container">
+  <p>Hello! Today, we're going to explore a type of question that helps us talk about hypothetical or imaginary situations – things that are *not* true in reality. These are called "<strong>contrary to fact conditional questions</strong>." They are also sometimes known as "second conditional questions" (for present/future situations) or "third conditional questions" (for past situations).</p>
+
+  <h2>What Does 'Contrary to Fact' Mean?</h2>
+  <p>"<strong>Contrary to fact</strong>" means the opposite of what is true. So, a "contrary to fact conditional question" asks about what would happen if a situation were different from how it really is, or how it really was.</p>
+
+  <h2>Two Types of Contrary to Fact Conditional Questions</h2>
+
+  <h3>1. Questions about Imaginary Present or Future Situations (Second Conditional)</h3>
+  <p>These questions ask about what would happen if a current or future situation were different. The condition (the "if" part) is impossible or very unlikely in the present or future.</p>
+  <ul>
+    <li><strong>Structure:</strong>
+      <ul>
+        <li><strong>Question word (optional) + would + subject + base verb + if + subject + simple past verb?</strong></li>
+        <li>(If "to be" verb is used in the "if" clause, we usually use "were" for all subjects.)</li>
+      </ul>
+    </li>
+    <li><strong>Example:</strong> <em>If you <strong>won</strong> the lottery, what <strong>would you buy</strong>?</em>
+      (This implies you haven't won the lottery and probably won't, but we're imagining it.)</li>
+    <li><strong>Example:</strong> <em><strong>Would you help</strong> me if I <strong>were</strong> in trouble?</em>
+      (This implies I'm not in trouble right now, but I'm imagining a situation where I am.)</li>
+    <li><strong>Example:</strong> <em>Where <strong>would you live</strong> if you <strong>could choose</strong> anywhere in the world?</em>
+      (This implies you can't just choose anywhere right now.)</li>
+  </ul>
+
+  <h3>2. Questions about Imaginary Past Situations (Third Conditional)</h3>
+  <p>These questions ask about what would have happened if something in the past had been different. These situations are impossible to change because the past has already happened.</p>
+  <ul>
+    <li><strong>Structure:</strong>
+      <ul>
+        <li><strong>Question word (optional) + would have + subject + past participle + if + subject + past perfect (had + past participle)?</strong></li>
+      </ul>
+    </li>
+    <li><strong>Example:</strong> <em>If you <strong>had studied</strong> harder, what <strong>would have happened</strong>?</em>
+      (This implies you did *not* study harder in the past, and we're regretting or wondering about the consequence.)</li>
+    <li><strong>Example:</strong> <em><strong>Would you have gone</strong> to the party if you <strong>had known</strong> about it?</em>
+      (This implies you did not know about the party, so you did not go.)</li>
+    <li><strong>Example:</strong> <em>What <strong>would you have done</strong> if you <strong>had missed</strong> your flight?</em>
+      (This implies you did not miss your flight, but we're imagining the past consequence.)</li>
+  </ul>
+
+  <h2>Why are Contrary to Fact Conditional Questions Important?</h2>
+  <ul>
+    <li><strong>Discussing Hypotheticals:</strong> They allow you to discuss imaginary scenarios, dreams, regrets, and possibilities that aren't real.</li>
+    <li><strong>Expressing Regret/Criticism:</strong> Especially the third conditional helps express regret about past actions or criticize past decisions.</li>
+    <li><strong>Understanding Nuance:</strong> Mastering these questions adds sophistication to your English and helps you understand complex conversations.</li>
+    <li><strong>Common in Conversation:</strong> Native speakers frequently use these questions to explore different ideas and situations.</li>
+  </ul>
+  <p>Don't be afraid to practice forming these questions. Think about your own imaginary situations, both in the present/future and the past, and try to ask questions using these structures. It takes practice, but you'll get there!</p>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

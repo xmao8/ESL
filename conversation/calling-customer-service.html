@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calling Customer Service – ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0; padding: 0; overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0;}
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+        gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;}
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+        gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;}
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 800px; margin: 2rem auto;
+      padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.6; font-size: 1.1rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul, .content-container ol { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 110px; text-align: right; margin-right: 10px; color: #124076;
+    }
+    .conversation-script span.dialogue { display: inline; }
+    .scene-direction { font-style: italic; color: #555; margin-top: 1rem; margin-bottom: 1rem; text-align: center; }
+    .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+    .character-info h3 { margin-bottom: 0.5rem; }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word { font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;}
+    .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.2rem; color: #3498db; user-select: none; transition: color 0.2s; }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+    .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+    .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em;}
+    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+    button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px;
+      font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Calling Customer Service About a Damaged Item</h1>
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>Customer:</strong> Polite, a little frustrated, wants a replacement.</li>
+      <li><strong>Customer Service Rep:</strong> Professional and helpful.</li>
+      <li><strong>Supervisor:</strong> (Optional, for roleplay extension)</li>
+    </ul>
+  </div>
+  <p class="scene-direction">Setting: At home, on the phone with customer service.</p>
+  <div class="conversation-script">
+    <p class="scene-direction">(Scene: The customer calls SmartHome Support after receiving a damaged item in an order.)</p>
+    <p><strong>Rep:</strong> <span class="dialogue">Good afternoon, thank you for calling SmartHome Support. How can I assist you today?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Hi, I’m calling because I received a damaged item in my order.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">I’m very sorry to hear that. Can you tell me what the item was?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Yes, it was a wireless speaker. When I opened the box, it was cracked and wouldn’t turn on.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">Thank you for the information. Do you have the order number handy?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Yes, it’s #567849.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">Got it. And just to confirm—did the damage happen during shipping, or did it look used or defective?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">I think it happened during shipping. The box was dented when it arrived.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">Understood. I apologize for the inconvenience. Could you help me by sending a photo of the item to our email: support@smarthome.com?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Sure, I can do that right after the call.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">Great, thank you. Once we receive the photo, we can process either a refund or a replacement. Which would you prefer?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">I’d prefer a replacement if possible.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">No problem—we’ll send a new one to the same address. It should arrive in 3–5 business days. Is there anything else I can help you with?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Actually, could you help me with tracking my other item as well?</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">Of course. What item are you referring to?</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">The smart light bulbs. They were part of the same order, but I haven’t received them yet.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">Let me check... Ah, they were shipped separately. They should arrive tomorrow.</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Perfect, thank you. One more thing—can I speak to a supervisor? I just want to report how helpful you’ve been.</span></p>
+    <p><strong>Rep:</strong> <span class="dialogue">That’s very kind of you. I’ll connect you now. Please stay on the line.</span></p>
+    <p><strong>Customer:</strong> <span class="dialogue">Thanks again!</span></p>
+    <p class="scene-direction">(End scene.)</p>
+  </div>
+  <hr>
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">damaged <span class="speaker-icon" onclick="speakWord('damaged')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈdæmɪdʒd/</span>
+        <span class="definition">(adj.): Harmed or broken; not in good condition.</span>
+        <span class="example">Example: The wireless speaker was <strong>damaged</strong> when it arrived.</span>
+      </li>
+      <li>
+        <span class="vocab-word">replacement <span class="speaker-icon" onclick="speakWord('replacement')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/rɪˈpleɪsmənt/</span>
+        <span class="definition">(n.): A new item that is given instead of a broken or lost one.</span>
+        <span class="example">Example: I’d prefer a <strong>replacement</strong> for the damaged product.</span>
+      </li>
+      <li>
+        <span class="vocab-word">refund <span class="speaker-icon" onclick="speakWord('refund')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈriːfʌnd/</span>
+        <span class="definition">(n.): Money returned to a customer when an item is returned or not working.</span>
+        <span class="example">Example: If you are not satisfied, you can ask for a <strong>refund</strong>.</span>
+      </li>
+      <li>
+        <span class="vocab-word">order number <span class="speaker-icon" onclick="speakWord('order number')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈɔːrdər ˈnʌmbər/</span>
+        <span class="definition">(n.): A special number that identifies your purchase.</span>
+        <span class="example">Example: Please provide your <strong>order number</strong> when you call customer service.</span>
+      </li>
+      <li>
+        <span class="vocab-word">inconvenience <span class="speaker-icon" onclick="speakWord('inconvenience')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˌɪnkənˈviːniəns/</span>
+        <span class="definition">(n.): Trouble or difficulty caused to someone.</span>
+        <span class="example">Example: We apologize for any <strong>inconvenience</strong> this may have caused.</span>
+      </li>
+      <li>
+        <span class="vocab-word">defective <span class="speaker-icon" onclick="speakWord('defective')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/dɪˈfɛktɪv/</span>
+        <span class="definition">(adj.): Not working properly; having a fault.</span>
+        <span class="example">Example: The product was <strong>defective</strong> and wouldn’t turn on.</span>
+      </li>
+      <li>
+        <span class="vocab-word">tracking <span class="speaker-icon" onclick="speakWord('tracking')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈtrækɪŋ/</span>
+        <span class="definition">(n.): Following the progress or location of something (such as a package).</span>
+        <span class="example">Example: Can you help me with <strong>tracking</strong> my other item?</span>
+      </li>
+      <li>
+        <span class="vocab-word">ship/shipped <span class="speaker-icon" onclick="speakWord('shipped')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ʃɪp/</span>
+        <span class="definition">(v.): To send something by mail or delivery service.</span>
+        <span class="example">Example: The light bulbs were <strong>shipped</strong> separately.</span>
+      </li>
+      <li>
+        <span class="vocab-word">supervisor <span class="speaker-icon" onclick="speakWord('supervisor')" title="Pronounce">🔊</span></span>
+        <span class="ipa">/ˈsuːpərˌvaɪzər/</span>
+        <span class="definition">(n.): A manager or person in charge.</span>
+        <span class="example">Example: Can I speak to a <strong>supervisor</strong>?</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+  }
+</script>
+</body>
+</html>

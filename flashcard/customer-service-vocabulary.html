@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer Service Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Customer Service Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Agent",
+    ipa: "/ˌeɪdʒənt/",
+    definition: "A person who acts on behalf of another person or group. In customer service, often refers to the representative helping a customer.",
+    example: "The customer service **agent** quickly resolved my billing issue.",
+    chinese: "代理 (dàilǐ)",
+    spanish: "Agente"
+  },
+  {
+    word: "Complaint",
+    ipa: "/kəmˈpleɪnt/",
+    definition: "A statement that something is unsatisfactory or unacceptable.",
+    example: "We received a **complaint** about the slow delivery service.",
+    chinese: "投诉 (tóusù)",
+    spanish: "Queja"
+  },
+  {
+    word: "Customer",
+    ipa: "/ˈkʌstəmər/",
+    definition: "A person or organization that buys goods or services from a store or business.",
+    example: "Our goal is to ensure every **customer** is satisfied.",
+    chinese: "客户 (kèhù)",
+    spanish: "Cliente"
+  },
+  {
+    word: "Defective",
+    ipa: "/dɪˈfektɪv/",
+    definition: "Not working properly; imperfect or faulty.",
+    example: "The customer returned the **defective** product for a refund.",
+    chinese: "有缺陷的 (yǒu quēxiàn de) / 有毛病的 (yǒu máobìng de)",
+    spanish: "Defectuoso/a"
+  },
+  {
+    word: "Empathy",
+    ipa: "/ˈempəθi/",
+    definition: "The ability to understand and share the feelings of another.",
+    example: "A good customer service representative shows **empathy** towards frustrated customers.",
+    chinese: "同理心 (tónglǐxīn)",
+    spanish: "Empatía"
+  },
+  {
+    word: "Escalate",
+    ipa: "/ˈeskəleɪt/",
+    definition: "To increase in intensity or magnitude; in customer service, to refer a problem to a higher authority.",
+    example: "If the agent can't help, they will **escalate** your call to a supervisor.",
+    chinese: "升级 (shēngjí)",
+    spanish: "Escalar"
+  },
+  {
+    word: "Feedback",
+    ipa: "/ˈfiːdbæk/",
+    definition: "Information about reactions to a product, a person's performance of a task, etc., used as a basis for improvement.",
+    example: "Please provide **feedback** on your experience with our new online system.",
+    chinese: "反馈 (fǎnkuì)",
+    spanish: "Retroalimentación / Comentarios"
+  },
+  {
+    word: "Greeting",
+    ipa: "/ˈɡriːtɪŋ/",
+    definition: "A polite word or sign of welcome or recognition.",
+    example: "Her warm **greeting** made me feel welcome when I called.",
+    chinese: "问候 (wènhòu)",
+    spanish: "Saludo"
+  },
+  {
+    word: "Handle",
+    ipa: "/ˈhændl/",
+    definition: "To deal with or manage a situation or problem.",
+    example: "We are trained to **handle** difficult customers calmly.",
+    chinese: "处理 (chǔlǐ)",
+    spanish: "Manejar / Gestionar"
+  },
+  {
+    word: "Issue",
+    ipa: "/ˈɪʃuː/",
+    definition: "An important topic or problem for debate or discussion; a problem or difficulty.",
+    example: "I'm calling about an **issue** with my recent order.",
+    chinese: "问题 (wèntí)",
+    spanish: "Problema / Asunto"
+  },
+  {
+    word: "Loyalty",
+    ipa: "/ˈlɔɪəlti/",
+    definition: "The quality of being faithful to someone or something. In business, customer loyalty means customers repeatedly choose a certain brand or company.",
+    example: "Building customer **loyalty** is crucial for long-term business success.",
+    chinese: "忠诚度 (zhōngchéngdù)",
+    spanish: "Lealtad"
+  },
+  {
+    word: "Polite",
+    ipa: "/pəˈlaɪt/",
+    definition: "Having or showing behavior that is respectful and considerate of other people.",
+    example: "Always be **polite** to customers, even if they are rude.",
+    chinese: "有礼貌的 (yǒu lǐmào de)",
+    spanish: "Cortés"
+  },
+  {
+    word: "Query",
+    ipa: "/ˈkwɪəri/",
+    definition: "A question, especially one expressing doubt or requesting information.",
+    example: "We handle numerous customer **queries** every day.",
+    chinese: "询问 (xúnwèn)",
+    spanish: "Consulta"
+  },
+  {
+    word: "Refund",
+    ipa: "/ˈriːfʌnd/",
+    definition: "A sum of money paid back to a customer, especially when they return goods.",
+    example: "I requested a full **refund** because the product was damaged.",
+    chinese: "退款 (tuìkuǎn)",
+    spanish: "Reembolso"
+  },
+  {
+    word: "Replacement",
+    ipa: "/rɪˈpleɪsmənt/",
+    definition: "The action or process of replacing something; an item that replaces another.",
+    example: "We sent a **replacement** for the broken part immediately.",
+    chinese: "更换 (gēnghuàn) / 替换物 (tìhuànwù)",
+    spanish: "Reemplazo / Repuesto"
+  },
+  {
+    word: "Resolution",
+    ipa: "/ˌrezəˈluːʃn/",
+    definition: "The action of solving a problem, dispute, or contentious matter.",
+    example: "Our team is dedicated to finding a quick **resolution** to your problem.",
+    chinese: "解决 (jiějué)",
+    spanish: "Resolución"
+  },
+  {
+    word: "Satisfied",
+    ipa: "/ˈsætɪsfaɪd/",
+    definition: "Contented; pleased.",
+    example: "We hope you are **satisfied** with our service.",
+    chinese: "满意 (mǎnyì)",
+    spanish: "Satisfecho/a"
+  },
+  {
+    word: "Service",
+    ipa: "/ˈsɜːrvɪs/",
+    definition: "The action of helping or doing work for someone.",
+    example: "We pride ourselves on excellent customer **service**.",
+    chinese: "服务 (fúwù)",
+    spanish: "Servicio"
+  },
+  {
+    word: "Support",
+    ipa: "/səˈpɔːrt/",
+    definition: "Provide assistance to. In customer service, often refers to technical or general assistance.",
+    example: "Our technical **support** team is available 24/7.",
+    chinese: "支持 (zhīchí)",
+    spanish: "Soporte"
+  },
+  {
+    word: "Troubleshoot",
+    ipa: "/ˈtrʌblʃuːt/",
+    definition: "To identify and fix problems, especially in mechanical or technical systems.",
+    example: "Our technician helped me **troubleshoot** the internet connection issue over the phone.",
+    chinese: "排除故障 (páichú gùzhàng)",
+    spanish: "Solucionar problemas"
+  },
+  {
+    word: "Upset",
+    ipa: "/ʌpˈset/",
+    definition: "Unhappy, disappointed, or worried.",
+    example: "The customer was very **upset** about the delayed shipment.",
+    chinese: "不高兴 (bù gāoxìng) / 沮丧 (jǔsàng)",
+    spanish: "Molesto/a"
+  },
+  {
+    word: "Warranty",
+    ipa: "/ˈwɔːrənti/",
+    definition: "A written guarantee, issued to the purchaser of an article by its manufacturer, promising to repair or replace it if necessary within a specified period.",
+    example: "The product comes with a two-year **warranty**.",
+    chinese: "保修 (bǎoxiū)",
+    spanish: "Garantía"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+// Initial card load
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passive Voice Worksheet: Shopping – ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px; /* Wider for content pages */
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px; /* Adjust max-width to suit content */
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; /* Align text left for readability */
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+        color: #124076;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+
+    .exercise-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+
+    /* Questions and Inputs */
+    .question-list ol {
+        padding-left: 20px;
+    }
+    .question-list li {
+        margin-bottom: 1.5rem; /* Increased space between questions */
+        font-size: 1.05rem;
+    }
+    .active-sentence {
+        margin-bottom: 0.5rem; /* Space between the two sentences */
+        font-style: italic;
+        color: #555;
+    }
+    .passive-sentence input[type="text"] {
+        width: 100%; /* Take full width */
+        max-width: 600px; /* Limit max width */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-top: 0.5rem; /* Space below the original sentences */
+        display: block; /* Make it a block element to take full width */
+    }
+    .feedback {
+        margin-top: 5px;
+        font-size: 0.95rem;
+    }
+    .correct {
+        color: #28a745;
+        font-weight: bold;
+    }
+    .incorrect {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    /* Check Answers Button */
+    #checkAnswersBtn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Status and User ID display */
+    #statusMessage, #userIdDisplay {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+    #statusMessage.success {
+        color: #28a745;
+    }
+    #statusMessage.error {
+        color: #dc3545;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Passive Voice Worksheet: Shopping</h1>
+
+<div class="content-container">
+  <p>This worksheet focuses on practicing the **Passive Voice**. For each sentence below, rewrite the active voice sentence into the passive voice. Remember the structure: <strong>Subject + form of "to be" + Past Participle (V3)</strong>. Pay attention to the tense of the original sentence and whether to include the "by + agent" phrase.</p>
+
+  <div class="exercise-section">
+    <h2>Exercise: Change to Passive Voice</h2>
+    <p id="userIdDisplay">Loading User ID...</p>
+    <p id="statusMessage">Loading your previous answers...</p>
+    <div class="question-list" id="question-list">
+      <!-- Questions will be dynamically loaded here by JavaScript -->
+    </div>
+    <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script type="module">
+  // Firebase Imports
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  // Mobile nav toggle script (remains the same)
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Firebase Initialization and Auth
+  const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+  const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+
+  // Initialize Firebase app only if config is not empty
+  let app;
+  let db;
+  let auth;
+
+  try {
+      app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+  } catch (error) {
+      console.error("Firebase initialization error:", error);
+      document.getElementById('statusMessage').textContent = 'Error initializing Firebase. Please try again later.';
+      document.getElementById('statusMessage').className = 'error';
+  }
+
+
+  let userId = null; // Will be set after auth
+  let isAuthReady = false; // Flag to ensure auth is ready before Firestore ops
+  const worksheetDocId = 'passiveVoiceShopping'; // Unique ID for this specific worksheet
+
+  const statusMessageElement = document.getElementById('statusMessage');
+  const userIdDisplayElement = document.getElementById('userIdDisplay');
+
+  // Listen for authentication state changes
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      userId = user.uid;
+      userIdDisplayElement.textContent = `User ID: ${userId}`;
+      isAuthReady = true;
+      await loadUserAnswers();
+    } else {
+      // Sign in anonymously if no user is authenticated
+      try {
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          await signInAnonymously(auth);
+        }
+      } catch (error) {
+        console.error("Error during authentication:", error);
+        statusMessageElement.textContent = 'Error signing in. Please refresh the page.';
+        statusMessageElement.className = 'error';
+      }
+    }
+  });
+
+  // Worksheet Questions and Answers
+  const questions = [
+    {
+      id: "q1",
+      activeSentence: "The store manager opens the shop at 9 AM every day.",
+      passiveAnswer: "The shop is opened by the store manager at 9 AM every day."
+    },
+    {
+      id: "q2",
+      activeSentence: "Customers bought all the new arrivals within an hour.",
+      passiveAnswer: "All the new arrivals were bought by customers within an hour."
+    },
+    {
+      id: "q3",
+      activeSentence: "The sales assistant is helping a customer right now.",
+      passiveAnswer: "A customer is being helped by the sales assistant right now."
+    },
+    {
+      id: "q4",
+      activeSentence: "They will deliver the furniture next Tuesday.",
+      passiveAnswer: "The furniture will be delivered next Tuesday."
+    },
+    {
+      id: "q5",
+      activeSentence: "Someone has left a wallet on the counter.",
+      passiveAnswer: "A wallet has been left on the counter."
+    },
+    {
+      id: "q6",
+      activeSentence: "You must pay for your items at the checkout.",
+      passiveAnswer: "Your items must be paid for at the checkout."
+    },
+    {
+      id: "q7",
+      activeSentence: "The security guard caught the shoplifter.",
+      passiveAnswer: "The shoplifter was caught by the security guard."
+    },
+    {
+      id: "q8",
+      activeSentence: "Many people enjoy online shopping these days.",
+      passiveAnswer: "Online shopping is enjoyed by many people these days."
+    },
+    {
+      id: "q9",
+      activeSentence: "The company manufactures these electronics in Asia.",
+      passiveAnswer: "These electronics are manufactured by the company in Asia."
+    },
+    {
+      id: "q10",
+      activeSentence: "We are developing a new loyalty program.",
+      passiveAnswer: "A new loyalty program is being developed."
+    },
+    {
+      id: "q11",
+      activeSentence: "They renovated the entire mall last year.",
+      passiveAnswer: "The entire mall was renovated last year."
+    },
+    {
+      id: "q12",
+      activeSentence: "The customer service team handles all complaints.",
+      passiveAnswer: "All complaints are handled by the customer service team."
+    },
+    {
+      id: "q13",
+      activeSentence: "Someone has already packed your order.",
+      passiveAnswer: "Your order has already been packed."
+    },
+    {
+      id: "q14",
+      activeSentence: "The store will offer big discounts next month.",
+      passiveAnswer: "Big discounts will be offered by the store next month."
+    },
+    {
+      id: "q15",
+      activeSentence: "You can find many bargains during the sales.",
+      passiveAnswer: "Many bargains can be found during the sales."
+    }
+  ];
+
+  // Function to load questions into the HTML
+  function loadQuestions() {
+    const questionListDiv = document.getElementById('question-list');
+    let htmlContent = '<ol>';
+    questions.forEach((q, index) => {
+      htmlContent += `
+        <li>
+          <p class="active-sentence"><strong>Active:</strong> ${q.activeSentence}</p>
+          <div class="passive-sentence">
+            <input type="text" id="${q.id}" placeholder="Rewrite in Passive Voice..." />
+          </div>
+          <div id="feedback-${q.id}" class="feedback"></div>
+        </li>
+      `;
+    });
+    htmlContent += '</ol>';
+    questionListDiv.innerHTML = htmlContent;
+
+    // Add event listeners for saving answers on blur
+    questions.forEach(q => {
+      const inputElement = document.getElementById(q.id);
+      if (inputElement) {
+        inputElement.addEventListener('blur', () => saveUserAnswer(q.id, inputElement.value));
+      }
+    });
+  }
+
+  // Function to save a single user answer to Firestore
+  async function saveUserAnswer(questionId, answer) {
+    if (!isAuthReady || !userId) {
+      console.warn("Authentication not ready or user ID not available. Cannot save answer.");
+      statusMessageElement.textContent = 'Not ready to save. Please wait for authentication.';
+      statusMessageElement.className = 'error';
+      return;
+    }
+
+    try {
+      statusMessageElement.textContent = 'Saving...';
+      statusMessageElement.className = '';
+
+      const userDocRef = doc(db, 'artifacts', appId, 'users', userId, 'worksheetAnswers', worksheetDocId);
+      await setDoc(userDocRef, { [questionId]: answer }, { merge: true });
+
+      statusMessageElement.textContent = 'Saved!';
+      statusMessageElement.className = 'success';
+      setTimeout(() => {
+        statusMessageElement.textContent = ''; // Clear message after a short delay
+        statusMessageElement.className = '';
+      }, 2000);
+    } catch (error) {
+      console.error("Error saving answer:", error);
+      statusMessageElement.textContent = 'Error saving answer. Please try again.';
+      statusMessageElement.className = 'error';
+    }
+  }
+
+  // Function to load all user answers from Firestore
+  async function loadUserAnswers() {
+    if (!isAuthReady || !userId) {
+      console.warn("Authentication not ready or user ID not available. Cannot load answers.");
+      return;
+    }
+
+    try {
+      statusMessageElement.textContent = 'Loading your previous answers...';
+      statusMessageElement.className = '';
+
+      const userDocRef = doc(db, 'artifacts', appId, 'users', userId, 'worksheetAnswers', worksheetDocId);
+      const docSnap = await getDoc(userDocRef);
+
+      if (docSnap.exists()) {
+        const savedAnswers = docSnap.data();
+        questions.forEach(q => {
+          const inputElement = document.getElementById(q.id);
+          if (inputElement && savedAnswers[q.id]) {
+            inputElement.value = savedAnswers[q.id];
+          }
+        });
+        statusMessageElement.textContent = 'Answers loaded!';
+        statusMessageElement.className = 'success';
+      } else {
+        statusMessageElement.textContent = 'No previous answers found. Start typing!';
+        statusMessageElement.className = '';
+      }
+      setTimeout(() => {
+        statusMessageElement.textContent = ''; // Clear message after a short delay
+        statusMessageElement.className = '';
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error loading answers:", error);
+      statusMessageElement.textContent = 'Error loading answers. Please try again.';
+      statusMessageElement.className = 'error';
+    }
+  }
+
+  // Function to check answers and provide feedback
+  function checkAnswers() {
+    questions.forEach(q => {
+      const inputElement = document.getElementById(q.id);
+      const feedbackDiv = document.getElementById(`feedback-${q.id}`);
+
+      if (inputElement && feedbackDiv) {
+        // Normalize user answer (remove extra spaces, convert to lowercase for basic comparison)
+        const userAnswer = inputElement.value.trim().toLowerCase().replace(/\s+/g, ' ');
+        // Normalize correct answer
+        const correctAnswer = q.passiveAnswer.trim().toLowerCase().replace(/\s+/g, ' ');
+
+        feedbackDiv.style.display = 'block'; // Show the feedback div
+
+        // Simple comparison. For more robust checking, you'd need a more advanced NLP approach.
+        // This checks if the user's answer exactly matches the expected answer after normalization.
+        if (userAnswer === correctAnswer) {
+          feedbackDiv.textContent = "Correct!";
+          feedbackDiv.className = 'feedback correct';
+        } else {
+          feedbackDiv.textContent = `Incorrect. Correct: ${q.passiveAnswer}`;
+          feedbackDiv.className = 'feedback incorrect';
+        }
+      }
+    });
+    // Also save all answers when checkAnswers is clicked
+    questions.forEach(q => {
+      const inputElement = document.getElementById(q.id);
+      if (inputElement) {
+        saveUserAnswer(q.id, inputElement.value);
+      }
+    });
+  }
+
+  // Load questions when the page loads
+  document.addEventListener('DOMContentLoaded', loadQuestions);
+</script>
+
+</body>
+</html>

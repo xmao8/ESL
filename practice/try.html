@@ -319,8 +319,8 @@
       <a href="../flashcards.html">Flashcards</a>
       <a href="../conversation.html">Conversations</a>
       <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
       <a href="../practice.html">Practices</a>
+      <a href="../reading.html">Reading</a>
     </div>
   </div>
 </nav>
@@ -333,11 +333,11 @@
   <div class="exercise-section">
     <h2>Exercise: Change to Passive Voice</h2>
     <p id="userIdDisplay">Loading User ID...</p>
-    <p id="statusMessage">Loading your previous answers...</p>
+    <p id="statusMessage">Initializing...</p>
     <div class="question-list" id="question-list">
       <!-- Questions will be dynamically loaded here by JavaScript -->
     </div>
-    <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+    <button id="checkAnswersBtn" onclick="window.checkAnswers()">Check Answers</button>
   </div>
 </div>
 
@@ -375,21 +375,40 @@
 
   // Firebase Initialization and Auth
   const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-  const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+  let firebaseConfig = {};
+  try {
+      firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+  } catch (e) {
+      console.error("Error parsing __firebase_config:", e);
+      // Fallback to empty config if parsing fails
+  }
 
-  // Initialize Firebase app only if config is not empty
+
   let app;
   let db;
   let auth;
+  let firebaseInitialized = false;
 
-  try {
-      app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-      auth = getAuth(app);
-  } catch (error) {
-      console.error("Firebase initialization error:", error);
-      document.getElementById('statusMessage').textContent = 'Error initializing Firebase. Please try again later.';
-      document.getElementById('statusMessage').className = 'error';
+  const statusMessageElement = document.getElementById('statusMessage');
+  const userIdDisplayElement = document.getElementById('userIdDisplay');
+
+  // Initialize Firebase app only if config has API key
+  if (firebaseConfig && firebaseConfig.apiKey) {
+      try {
+          app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+          auth = getAuth(app);
+          firebaseInitialized = true;
+          statusMessageElement.textContent = 'Firebase initialized. Authenticating...';
+      } catch (error) {
+          console.error("Firebase initialization error:", error);
+          statusMessageElement.textContent = 'Error initializing Firebase. Check console for details.';
+          statusMessageElement.className = 'error';
+      }
+  } else {
+      statusMessageElement.textContent = 'Firebase configuration not found. Data persistence will not work.';
+      statusMessageElement.className = 'error';
+      console.warn("Firebase configuration (__firebase_config) is missing or empty. Data persistence will not work.");
   }
 
 
@@ -397,31 +416,35 @@
   let isAuthReady = false; // Flag to ensure auth is ready before Firestore ops
   const worksheetDocId = 'passiveVoiceShopping'; // Unique ID for this specific worksheet
 
-  const statusMessageElement = document.getElementById('statusMessage');
-  const userIdDisplayElement = document.getElementById('userIdDisplay');
-
-  // Listen for authentication state changes
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      userId = user.uid;
-      userIdDisplayElement.textContent = `User ID: ${userId}`;
-      isAuthReady = true;
-      await loadUserAnswers();
-    } else {
-      // Sign in anonymously if no user is authenticated
-      try {
-        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-          await signInWithCustomToken(auth, __initial_auth_token);
+  if (firebaseInitialized) {
+      // Listen for authentication state changes
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          userId = user.uid;
+          userIdDisplayElement.textContent = `User ID: ${userId}`;
+          isAuthReady = true;
+          await window.loadUserAnswers(); // Call loadUserAnswers after auth is ready
         } else {
-          await signInAnonymously(auth);
+          // Sign in anonymously if no user is authenticated
+          try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+              await signInWithCustomToken(auth, __initial_auth_token);
+              statusMessageElement.textContent = 'Signed in with custom token.';
+            } else {
+              await signInAnonymously(auth);
+              statusMessageElement.textContent = 'Signed in anonymously.';
+            }
+          } catch (error) {
+            console.error("Error during authentication:", error);
+            statusMessageElement.textContent = 'Error signing in. Please refresh the page.';
+            statusMessageElement.className = 'error';
+          }
         }
-      } catch (error) {
-        console.error("Error during authentication:", error);
-        statusMessageElement.textContent = 'Error signing in. Please refresh the page.';
-        statusMessageElement.className = 'error';
-      }
-    }
-  });
+      });
+  } else {
+      userIdDisplayElement.textContent = 'User ID: Not available (Firebase not initialized)';
+  }
+
 
   // Worksheet Questions and Answers
   const questions = [
@@ -503,7 +526,7 @@
   ];
 
   // Function to load questions into the HTML
-  function loadQuestions() {
+  window.loadQuestions = function() { // Made globally accessible
     const questionListDiv = document.getElementById('question-list');
     let htmlContent = '<ol>';
     questions.forEach((q, index) => {
@@ -531,9 +554,9 @@
 
   // Function to save a single user answer to Firestore
   async function saveUserAnswer(questionId, answer) {
-    if (!isAuthReady || !userId) {
-      console.warn("Authentication not ready or user ID not available. Cannot save answer.");
-      statusMessageElement.textContent = 'Not ready to save. Please wait for authentication.';
+    if (!firebaseInitialized || !isAuthReady || !userId) {
+      console.warn("Firebase not initialized, authentication not ready, or user ID not available. Cannot save answer.");
+      statusMessageElement.textContent = 'Not ready to save. Please wait for initialization and authentication.';
       statusMessageElement.className = 'error';
       return;
     }
@@ -553,15 +576,15 @@
       }, 2000);
     } catch (error) {
       console.error("Error saving answer:", error);
-      statusMessageElement.textContent = 'Error saving answer. Please try again.';
+      statusMessageElement.textContent = 'Error saving answer. Check console for details.';
       statusMessageElement.className = 'error';
     }
   }
 
   // Function to load all user answers from Firestore
-  async function loadUserAnswers() {
-    if (!isAuthReady || !userId) {
-      console.warn("Authentication not ready or user ID not available. Cannot load answers.");
+  window.loadUserAnswers = async function() { // Made globally accessible
+    if (!firebaseInitialized || !isAuthReady || !userId) {
+      console.warn("Firebase not initialized, authentication not ready, or user ID not available. Cannot load answers.");
       return;
     }
 
@@ -593,13 +616,13 @@
 
     } catch (error) {
       console.error("Error loading answers:", error);
-      statusMessageElement.textContent = 'Error loading answers. Please try again.';
+      statusMessageElement.textContent = 'Error loading answers. Check console for details.';
       statusMessageElement.className = 'error';
     }
   }
 
   // Function to check answers and provide feedback
-  function checkAnswers() {
+  window.checkAnswers = function() { // Made globally accessible
     questions.forEach(q => {
       const inputElement = document.getElementById(q.id);
       const feedbackDiv = document.getElementById(`feedback-${q.id}`);
@@ -633,7 +656,7 @@
   }
 
   // Load questions when the page loads
-  document.addEventListener('DOMContentLoaded', loadQuestions);
+  document.addEventListener('DOMContentLoaded', window.loadQuestions);
 </script>
 
 </body>

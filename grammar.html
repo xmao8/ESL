@@ -285,6 +285,15 @@
     <h1>Grammar Essentials</h1>
 
     <main>
+    <div style="max-width:800px;margin:auto;padding:1rem;">
+    <input
+        type="text"
+        id="search-bar"
+        placeholder="Search grammar topics..."
+        style="width:100%;padding:10px;font-size:1.05rem;border-radius:6px;border:1px solid #ccc;margin-bottom:1.2rem;"
+    >
+   </div>
+
         <div class="container">
 
             <a class="label-link" href="grammar/passive-voice.html">Passive Voice</a>
@@ -349,5 +358,20 @@
             });
         });
     </script>
+<script>
+document.getElementById('search-bar').addEventListener('input', function() {
+    let filter = this.value.toLowerCase();
+    let items = document.querySelectorAll('.container .label-link');
+    items.forEach(function(item) {
+        if (item.textContent.toLowerCase().includes(filter)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+</script>
+
+
 </body>
 </html>

@@ -512,7 +512,7 @@
 <script>
 document.getElementById('search-bar').addEventListener('input', function() {
     let filter = this.value.toLowerCase();
-    let items = document.querySelectorAll('.container .label-link');
+    let items = document.querySelectorAll('.container .block');
     items.forEach(function(item) {
         if (item.textContent.toLowerCase().includes(filter)) {
             item.style.display = '';

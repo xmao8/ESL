@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The American Civil War</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0;
+        }
+        ul li, ol li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Article & Questions Specific Styles */
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Vocabulary List Specific Styles */
+        .vocabulary-list ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: flex-start; /* Align items to the top if text wraps */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            margin-right: 8px;
+            font-size: 1.1em;
+            flex-shrink: 0; /* Prevent the word from shrinking */
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-top: 2px; /* Slight adjustment for vertical alignment with text */
+        }
+        .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list li .definition {
+            flex-grow: 1; /* Allow definition to take up remaining space */
+        }
+        .vocabulary-list li .example {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Back button */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .nav-links {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            main {
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            p, ul, ol {
+                font-size: 1rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-container .nav-links a {
+                width: auto;
+                text-align: left;
+                padding: 0.5rem 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            main {
+                padding: 0.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p, ul, ol {
+                font-size: 0.95rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Adjust vocabulary list for smaller screens */
+            .vocabulary-list li {
+                flex-direction: column; /* Stack word, icon, and definition vertically */
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-list li strong {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+            .speaker-icon {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+            .vocabulary-list li .definition {
+                font-size: 0.9em;
+            }
+            .vocabulary-list li .example {
+                font-size: 0.85em;
+            }
+        }
+
+        /* Extra small phone adjustments (optional, for very narrow screens) */
+        @media (max-width: 380px) {
+            .nav-container .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>The American Civil War: A Nation Divided</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>The American Civil War: A Nation Divided</h2>
+            <p>In the mid-19th century, the United States was a nation deeply divided, primarily over the issue of slavery. While the Northern states had largely abolished slavery, it remained central to the economy and society of the Southern states. This fundamental disagreement, along with economic and political differences, created growing <strong>tensions</strong> that eventually led to the deadliest conflict in American history: the Civil War.</p>
+
+            <p>The election of Abraham Lincoln as President in 1860 was a <strong>catalyst</strong> for the war. Lincoln and the Republican Party opposed the expansion of slavery into new territories, though not its immediate abolition where it already existed. Fearing that their way of life and economic system were under <strong>threat</strong>, several Southern states, beginning with South Carolina, decided to secede from the Union, forming the Confederate States of America. They believed they had the right to govern themselves independently.</p>
+
+            <p>The war officially began on April 12, 1861, when Confederate forces attacked Fort Sumter in South Carolina. This act of aggression ignited a four-year conflict that pitted Americans against Americans. The Union (the North) fought to preserve the nation and eventually to end slavery, while the Confederacy (the South) fought for its independence and the preservation of its social system.</p>
+
+            <p>The Civil War was incredibly brutal and costly. New military technologies, like more accurate rifles and ironclad ships, led to unprecedented casualties. Battles such as Antietam, Gettysburg, and Vicksburg resulted in massive loss of life. Soldiers on both sides endured <strong>appalling</strong> conditions, including disease, starvation, and the constant fear of death. The war also had a <strong>profound</strong> impact on the home front, as women took on new roles and families faced immense hardship and loss.</p>
+
+            <p>A <strong>pivotal</strong> moment came in 1863 when President Lincoln issued the Emancipation Proclamation, declaring that all enslaved people in the Confederate states were free. This transformed the war into a fight for human freedom and encouraged many African Americans to join the Union army. Though not immediately freeing all slaves, it was a crucial step towards the eventual abolition of slavery throughout the nation.</p>
+
+            <p>Under the leadership of Union generals like Ulysses S. Grant, the tide of the war slowly turned. The Union's greater industrial capacity and larger population eventually proved decisive. On April 9, 1865, Confederate General Robert E. Lee surrendered to General Grant at Appomattox Court House, Virginia, effectively ending the war.</p>
+
+            <p>The Civil War resulted in over 600,000 deaths, making it the deadliest conflict in American history. It preserved the Union and led to the <strong>emancipation</strong> of four million enslaved people. However, the period of Reconstruction that followed was challenging, and racial <strong>inequality</strong> continued for many decades. The war's <strong>legacy</strong> is complex, a reminder of the deep divisions that once tore the nation apart and the <strong>enduring</strong> struggle for true equality and justice for all Americans.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are important words from the article that can help you understand it better. Try to guess their meaning from the story first, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>Tensions</strong> <i class="fas fa-volume-up speaker-icon" data-word="Tensions" aria-label="Pronounce Tensions"></i>
+                    <div class="definition">A state of strained relations or suppressed hostility.</div>
+                </li>
+                <li>
+                    <strong>Catalyst</strong> <i class="fas fa-volume-up speaker-icon" data-word="Catalyst" aria-label="Pronounce Catalyst"></i>
+                    <div class="definition">A person or thing that precipitates an event or change.</div>
+                </li>
+                <li>
+                    <strong>Threat</strong> <i class="fas fa-volume-up speaker-icon" data-word="Threat" aria-label="Pronounce Threat"></i>
+                    <div class="definition">A statement of an intention to inflict pain, injury, damage, or other hostile action on someone in retribution for something done or not done.</div>
+                </li>
+                <li>
+                    <strong>Secede</strong> <i class="fas fa-volume-up speaker-icon" data-word="Secede" aria-label="Pronounce Secede"></i>
+                    <div class="definition">To formally withdraw from a federation or body, especially a political one.</div>
+                </li>
+                <li>
+                    <strong>Aggression</strong> <i class="fas fa-volume-up speaker-icon" data-word="Aggression" aria-label="Pronounce Aggression"></i>
+                    <div class="definition">Hostile or violent behavior or attitudes toward another; readiness to attack or confront.</div>
+                </li>
+                <li>
+                    <strong>Pitted</strong> <i class="fas fa-volume-up speaker-icon" data-word="Pitted" aria-label="Pronounce Pitted"></i>
+                    <div class="definition">Set (someone or something) in conflict with.</div>
+                </li>
+                <li>
+                    <strong>Unprecedented</strong> <i class="fas fa-volume-up speaker-icon" data-word="Unprecedented" aria-label="Pronounce Unprecedented"></i>
+                    <div class="definition">Never done or known before.</div>
+                </li>
+                <li>
+                    <strong>Casualties</strong> <i class="fas fa-volume-up speaker-icon" data-word="Casualties" aria-label="Pronounce Casualties"></i>
+                    <div class="definition">Persons killed or injured in a war or accident.</div>
+                </li>
+                <li>
+                    <strong>Appalling</strong> <i class="fas fa-volume-up speaker-icon" data-word="Appalling" aria-label="Pronounce Appalling"></i>
+                    <div class="definition">Causing shock or dismay; horrific.</div>
+                </li>
+                <li>
+                    <strong>Profound</strong> <i class="fas fa-volume-up speaker-icon" data-word="Profound" aria-label="Pronounce Profound"></i>
+                    <div class="definition">Very great or intense.</div>
+                </li>
+                <li>
+                    <strong>Pivotal</strong> <i class="fas fa-volume-up speaker-icon" data-word="Pivotal" aria-label="Pronounce Pivotal"></i>
+                    <div class="definition">Of crucial importance in relation to the development or success of something else.</div>
+                </li>
+                <li>
+                    <strong>Emancipation</strong> <i class="fas fa-volume-up speaker-icon" data-word="Emancipation" aria-label="Pronounce Emancipation"></i>
+                    <div class="definition">The fact or process of being set free from legal, social, or political restrictions; liberation.</div>
+                </li>
+                <li>
+                    <strong>Inequality</strong> <i class="fas fa-volume-up speaker-icon" data-word="Inequality" aria-label="Pronounce Inequality"></i>
+                    <div class="definition">Difference in size, degree, circumstances, etc.; lack of equality.</div>
+                </li>
+                <li>
+                    <strong>Legacy</strong> <i class="fas fa-volume-up speaker-icon" data-word="Legacy" aria-label="Pronounce Legacy"></i>
+                    <div class="definition">Something handed down from an ancestor or from the past.</div>
+                </li>
+                <li>
+                    <strong>Enduring</strong> <i class="fas fa-volume-up speaker-icon" data-word="Enduring" aria-label="Pronounce Enduring"></i>
+                    <div class="definition">Lasting over a long period; durable.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the article "The American Civil War: A Nation Divided."</p>
+            <ol>
+                <li>What was the main issue that divided the Northern and Southern states before the Civil War?</li>
+                <li>What event led several Southern states to secede from the Union?</li>
+                <li>When and where did the Civil War officially begin?</li>
+                <li>What was the purpose of the Emancipation Proclamation, and who issued it?</li>
+                <li>Who were the main generals for the Union and the Confederacy at the end of the war?</li>
+                <li>What were two major outcomes or impacts of the American Civil War?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech functionality for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US'; // Set language to English (US)
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            console.warn("Text-to-speech not supported in this browser.");
+            // Optionally, hide speaker icons or show a message to the user
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

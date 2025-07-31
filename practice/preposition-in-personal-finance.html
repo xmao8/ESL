@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prepositions in Personal Finance – ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none;
+      }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+      }
+    }
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none;
+      }
+      body {
+        padding: 0;
+      }
+      h1, .content-container, .buttons {
+        padding: 0;
+      }
+    }
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+    .exercise-section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #fcfcfc;
+    }
+    .question-list ol {
+      padding-left: 20px;
+    }
+    .question-list li {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    .blank-input {
+      width: 100px;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-left: 4px;
+      margin-right: 4px;
+      text-align: center;
+    }
+    .preposition-choice {
+      margin: 0 3px 0 0;
+      font-size: 1rem;
+    }
+    .feedback {
+      margin-top: 5px;
+      font-size: 0.95rem;
+    }
+    .correct {
+      color: #28a745;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: #dc3545;
+      font-weight: bold;
+    }
+    #checkAnswersBtn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 2rem;
+      transition: background-color 0.2s;
+    }
+    #checkAnswersBtn:hover {
+      background-color: #0056b3;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+    .instructions {
+      background-color: #e6f7ff;
+      border-left: 5px solid #007bff;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+<h1>Prepositions in Personal Finance: A Grammar Worksheet</h1>
+<div class="content-container">
+  <p class="instructions">
+    <strong>Instructions:</strong> Read each sentence carefully. Type the best preposition to complete the blank or select the most appropriate preposition from the choices. Click "Check Answers" to see your results.
+  </p>
+  <div class="exercise-section">
+    <h2>Part 1: Fill in the Blank</h2>
+    <div class="question-list" id="fillBlankList"></div>
+  </div>
+  <div class="exercise-section">
+    <h2>Part 2: Choose the Correct Preposition</h2>
+    <div class="question-list" id="mcqList"></div>
+    <button id="checkAnswersBtn" onclick="checkAnswers()">Check Answers</button>
+  </div>
+</div>
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+<script>
+  // Mobile nav
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Part 1: Fill-in-the-blank questions
+  const fillBlankQuestions = [
+    { id: "f1", text: `It's wise to set clear financial goals <input class="blank-input" type="text" id="f1" maxlength="10" autocomplete="off"> the future.`, answer: "for" },
+    { id: "f2", text: `She put a down payment <input class="blank-input" type="text" id="f2" maxlength="10" autocomplete="off"> a new car last month.`, answer: "on" },
+    { id: "f3", text: `Many people struggle <input class="blank-input" type="text" id="f3" maxlength="10" autocomplete="off"> managing their monthly budget.`, answer: "with" },
+    { id: "f4", text: `He decided to invest <input class="blank-input" type="text" id="f4" maxlength="10" autocomplete="off"> a diversified portfolio of stocks and bonds.`, answer: "in" },
+    { id: "f5", text: `Always compare interest rates <input class="blank-input" type="text" id="f5" maxlength="10" autocomplete="off"> different lenders before taking out a loan.`, answer: "from" },
+    { id: "f6", text: `An emergency fund should cover at least three <input class="blank-input" type="text" id="f6" maxlength="10" autocomplete="off"> six months of living expenses.`, answer: "to" },
+    { id: "f7", text: `She paid off her credit card debt <input class="blank-input" type="text" id="f7" maxlength="10" autocomplete="off"> consistent, small payments.`, answer: "by" },
+    { id: "f8", text: `He received sound financial advice <input class="blank-input" type="text" id="f8" maxlength="10" autocomplete="off"> his mentor.`, answer: "from" },
+    { id: "f9", text: `Consider taking out insurance <input class="blank-input" type="text" id="f9" maxlength="10" autocomplete="off"> unexpected life events.`, answer: "against" },
+    { id: "f10", text: `We need to cut down <input class="blank-input" type="text" id="f10" maxlength="10" autocomplete="off"> unnecessary spending this quarter.`, answer: "on" },
+    { id: "f11", text: `He deposited a large sum <input class="blank-input" type="text" id="f11" maxlength="10" autocomplete="off"> his savings account.`, answer: "into" },
+    { id: "f12", text: `Review your bank statements regularly to look <input class="blank-input" type="text" id="f12" maxlength="10" autocomplete="off"> suspicious activity.`, answer: "for" },
+    { id: "f13", text: `Setting aside money <input class="blank-input" type="text" id="f13" maxlength="10" autocomplete="off"> retirement is crucial for long-term security.`, answer: "for" },
+    { id: "f14", text: `They agreed <input class="blank-input" type="text" id="f14" maxlength="10" autocomplete="off"> the terms and conditions of the mortgage.`, answer: "to" },
+    { id: "f15", text: `What are the benefits <input class="blank-input" type="text" id="f15" maxlength="10" autocomplete="off"> opening a high-yield savings account?`, answer: "of" }
+  ];
+
+  // Part 2: Multiple-choice questions
+  const mcqQuestions = [
+    { id: "m1", text: `You should always be mindful`, choices: ["of", "with", "for"], answer: "of", tail: "your spending habits." },
+    { id: "m2", text: `The new policy came`, choices: ["into", "on", "by"], answer: "into", tail: "effect at the start of the fiscal year." },
+    { id: "m3", text: `It's important to build a strong credit history`, choices: ["for", "by", "with"], answer: "by", tail: "paying your bills on time." },
+    { id: "m4", text: `He borrowed money`, choices: ["from", "of", "to"], answer: "from", tail: "the bank to start his business." },
+    { id: "m5", text: `They are responsible`, choices: ["for", "about", "of"], answer: "for", tail: "paying their taxes annually." },
+    { id: "m6", text: `She put her savings`, choices: ["into", "in", "on"], answer: "into", tail: "a new investment fund." },
+    { id: "m7", text: `Many investors worry`, choices: ["about", "for", "with"], answer: "about", tail: "inflation affecting their returns." },
+    { id: "m8", text: `He opted`, choices: ["for", "to", "with"], answer: "for", tail: "a fixed-rate mortgage." },
+    { id: "m9", text: `We need to allocate funds`, choices: ["to", "for", "on"], answer: "to", tail: "different categories in our budget." },
+    { id: "m10", text: `What is the difference`, choices: ["between", "among", "from"], answer: "between", tail: "a Roth IRA and a traditional IRA?" }
+  ];
+
+  // Render Part 1
+  function renderFillBlank() {
+    const container = document.getElementById('fillBlankList');
+    let html = "<ol>";
+    fillBlankQuestions.forEach((q, idx) => {
+      html += `<li>${q.text} <div id="fb-feedback-${q.id}" class="feedback"></div></li>`;
+    });
+    html += "</ol>";
+    container.innerHTML = html;
+  }
+
+  // Render Part 2
+  function renderMcq() {
+    const container = document.getElementById('mcqList');
+    let html = "<ol start='16'>";
+    mcqQuestions.forEach((q, i) => {
+      html += `<li>${q.text}
+        ${q.choices.map(
+          c => `<label class="preposition-choice"><input type="radio" name="mcq${i}" value="${c}" id="mcq${i}_${c}"> ${c}</label>`
+        ).join('')}
+        ${q.tail}
+        <div id="mcq-feedback-${q.id}" class="feedback"></div>
+      </li>`;
+    });
+    html += "</ol>";
+    container.innerHTML = html;
+  }
+
+  // Check answers and show feedback
+  function checkAnswers() {
+    // Fill-in-the-blank
+    fillBlankQuestions.forEach(q => {
+      const userInput = (document.getElementById(q.id).value || '').trim().toLowerCase();
+      const feedbackDiv = document.getElementById(`fb-feedback-${q.id}`);
+      if (userInput === q.answer) {
+        feedbackDiv.textContent = "Correct!";
+        feedbackDiv.className = "feedback correct";
+      } else {
+        feedbackDiv.textContent = `Incorrect. Correct answer: "${q.answer}"`;
+        feedbackDiv.className = "feedback incorrect";
+      }
+    });
+    // MCQ
+    mcqQuestions.forEach((q, i) => {
+      const selected = document.querySelector(`input[name="mcq${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`mcq-feedback-${q.id}`);
+      if (selected && selected.value === q.answer) {
+        feedbackDiv.textContent = "Correct!";
+        feedbackDiv.className = "feedback correct";
+      } else {
+        feedbackDiv.textContent = `Incorrect. Correct answer: "${q.answer}"`;
+        feedbackDiv.className = "feedback incorrect";
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    renderFillBlank();
+    renderMcq();
+  });
+</script>
+</body>
+</html>

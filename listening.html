@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Watch: Goal Setting Videos – ESLnote</title>
+  <title>Listening Materials – ESLnote</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
@@ -153,19 +153,35 @@
       width: 90%;
       max-width: 1100px;
       margin: 2rem auto;
-      padding: 2rem 2rem 1rem 2rem; /* less bottom padding */
+      padding: 2rem 2rem 1rem 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: left;
       line-height: 1.6;
       font-size: 1.1rem;
     }
+    .search-bar-container {
+      max-width: 600px;
+      margin: 0 auto 1.5rem auto;
+      padding: 0 0 0.5rem 0;
+      text-align: center;
+    }
+    #search-bar {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.05rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      background: #fff;
+    }
     .video-blocks-row {
       display: flex;
       gap: 2rem;
       align-items: stretch;
       flex-wrap: wrap;
-      margin-bottom: 0.5rem; /* reduced */
+      margin-bottom: 0.5rem;
     }
     .video-card {
       flex: 1 1 350px;
@@ -177,6 +193,10 @@
       min-width: 300px;
       max-width: 540px;
       margin: 0 auto;
+      transition: box-shadow 0.2s;
+    }
+    .video-card[hidden] {
+      display: none !important;
     }
     .video-label-text {
       flex: 1 1 140px;
@@ -320,18 +340,26 @@
   </div>
 </nav>
 
-<h1>Goal Setting Video Lessons</h1>
+<h1>Listening Materials</h1>
 
 <div class="content-container">
+  <div class="search-bar-container">
+    <input
+      type="text"
+      id="search-bar"
+      placeholder="Search Listening..."
+      autocomplete="off"
+    />
+  </div>
   <div class="video-blocks-row">
     <div class="video-card">
       <div class="video-label-text">
-        <h2>How to Set Goals</h2>
+        <h2>[Audiobook] Sherlock Holmes</h2>
       </div>
       <div class="video-label-video">
         <div class="video-responsive">
           <iframe src="https://www.youtube.com/embed/A4TU2h_rDlM?si=Ewz2RqYmLgCcZOHR"
-            title="How to Set Goals Video"
+            title="Sherlock Holmes"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
@@ -339,12 +367,12 @@
     </div>
     <div class="video-card">
       <div class="video-label-text">
-        <h2>5 Steps to Achieve Your Goals</h2>
+        <h2>[Audiobook] HARRY POTTER AND THE SORCERER'S STONE</h2>
       </div>
       <div class="video-label-video">
         <div class="video-responsive">
           <iframe src="https://www.youtube.com/embed/YJDHWD2O7Ik?si=4peGhT4uVGRmbC3l"
-            title="5 Steps to Achieve Your Goals"
+            title="HARRY POTTER AND THE SORCERER'S STONE"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
@@ -379,6 +407,20 @@
       });
     });
   }
+
+  // Search bar filtering for video cards
+  document.getElementById('search-bar').addEventListener('input', function() {
+    let filter = this.value.toLowerCase();
+    let cards = document.querySelectorAll('.video-card');
+    cards.forEach(function(card) {
+      let label = card.querySelector('.video-label-text h2').textContent.toLowerCase();
+      if (label.includes(filter)) {
+        card.hidden = false;
+      } else {
+        card.hidden = true;
+      }
+    });
+  });
 </script>
 
 </body>

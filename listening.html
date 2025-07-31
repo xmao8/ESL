@@ -160,13 +160,14 @@
       line-height: 1.6;
       font-size: 1.1rem;
     }
-    /* Side-by-side label and video */
+    /* Side-by-side label and video with equal height */
     .video-label-row {
       display: flex;
       gap: 2rem;
-      align-items: flex-start;
+      align-items: stretch;
       margin-bottom: 2rem;
       flex-wrap: wrap;
+      min-height: 0;
     }
     .video-label-text {
       flex: 1 1 200px;
@@ -175,23 +176,34 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      /* Make it stretch to match video height */
+      height: 100%;
+      background: #e8eefc;
+      border-radius: 12px;
+      padding: 0 1rem;
     }
     .video-label-text h2 {
-      margin-top: 0;
+      margin: 0;
       color: #124076;
       font-family: 'Poppins', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
     }
     .video-label-video {
       flex: 2 1 320px;
       min-width: 240px;
       max-width: 600px;
+      display: flex;
+      align-items: stretch;
     }
     .video-responsive {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 33.33%; /* 3:1 aspect ratio for 1/3 height */
       height: 0;
+      width: 100%;
       overflow: hidden;
       border-radius: 12px;
       background: #ddd;
@@ -214,6 +226,14 @@
       .video-label-text, .video-label-video {
         max-width: 100%;
         min-width: 0;
+        height: auto;
+      }
+      .video-label-text {
+        padding: 1rem 0;
+        border-radius: 12px 12px 0 0;
+      }
+      .video-label-video {
+        border-radius: 0 0 12px 12px;
       }
     }
     .buttons {
@@ -264,17 +284,12 @@
   </div>
 </nav>
 
-<h1>Video Lesson: How to Set Goals</h1>
+<h1>How to Set Goals</h1>
 
 <div class="content-container">
   <div class="video-label-row">
     <div class="video-label-text">
       <h2>How to Set Goals</h2>
-      <p>
-        Watch this video to learn simple and practical tips for setting and achieving your life goals.
-        <br><br>
-        <strong>Tip:</strong> After watching, try saying or writing your own goals in English!
-      </p>
     </div>
     <div class="video-label-video">
       <div class="video-responsive">

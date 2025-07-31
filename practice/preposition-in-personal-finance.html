@@ -215,9 +215,35 @@
       margin-right: 4px;
       text-align: center;
     }
-    .preposition-choice {
-      margin: 0 3px 0 0;
-      font-size: 1rem;
+    /* --- NEW MCQ CHOICES STYLE --- */
+    .mcq-choices {
+      margin: 0.7em 0 0.4em 0;
+      background: #f5faff;
+      padding: 0.75em 1em;
+      border-radius: 8px;
+      border: 1px solid #e0ecfa;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      width: fit-content;
+      min-width: 190px;
+      box-shadow: 0 1px 4px rgba(20, 80, 170, 0.04);
+    }
+    .mcq-choices label {
+      font-size: 1.09em;
+      cursor: pointer;
+      padding: 0.13em 0.3em;
+      border-radius: 5px;
+      transition: background 0.17s;
+      display: block;
+    }
+    .mcq-choices input[type="radio"] {
+      accent-color: #3498db;
+      margin-right: 7px;
+    }
+    .mcq-choices label:hover,
+    .mcq-choices label:focus-within {
+      background: #e3f1fb;
     }
     .feedback {
       margin-top: 5px;
@@ -387,9 +413,11 @@
     let html = "<ol start='16'>";
     mcqQuestions.forEach((q, i) => {
       html += `<li>${q.text}
+        <div class="mcq-choices">
         ${q.choices.map(
-          c => `<label class="preposition-choice"><input type="radio" name="mcq${i}" value="${c}" id="mcq${i}_${c}"> ${c}</label>`
+          c => `<label><input type="radio" name="mcq${i}" value="${c}" id="mcq${i}_${c}"> ${c}</label>`
         ).join('')}
+        </div>
         ${q.tail}
         <div id="mcq-feedback-${q.id}" class="feedback"></div>
       </li>`;

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>House Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
+
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
+
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>House Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Dwelling",
+    ipa: "/ˈdwɛlɪŋ/",
+    definition: "A house, apartment, or other place of residence.",
+    example: "The old stone cottage served as their winter dwelling.",
+    chinese: "住所 (zhùsuǒ)",
+    spanish: "vivienda"
+  },
+  {
+    word: "Mortgage",
+    ipa: "/ˈmɔːrɡɪdʒ/",
+    definition: "A legal agreement by which a bank lends money for the purchase of a house.",
+    example: "It took them 25 years to pay off their mortgage.",
+    chinese: "抵押贷款 (dǐyā dàikuǎn)",
+    spanish: "hipoteca"
+  },
+  {
+    word: "Lease",
+    ipa: "/liːs/",
+    definition: "A contract by which one party grants land, property, or a service to another party for a specified time in return for payment.",
+    example: "Our lease on the apartment is up at the end of the month.",
+    chinese: "租约 (zūyuē)",
+    spanish: "contrato de arrendamiento"
+  },
+  {
+    word: "Landlord",
+    ipa: "/ˈlændlɔːrd/",
+    definition: "A person who rents out a building or land to a tenant.",
+    example: "We have a great landlord who fixes problems very quickly.",
+    chinese: "房东 (fángdōng)",
+    spanish: "propietario"
+  },
+  {
+    word: "Tenant",
+    ipa: "/ˈtɛnənt/",
+    definition: "A person who occupies land or property rented from a landlord.",
+    example: "The new tenant moved in last week.",
+    chinese: "房客 (fángkè)",
+    spanish: "inquilino"
+  },
+  {
+    word: "Amenities",
+    ipa: "/əˈmɛnɪtiz/",
+    definition: "A desirable or useful feature or facility of a building or place.",
+    example: "The apartment complex has great amenities, including a gym and a swimming pool.",
+    chinese: "便利设施 (biànlì shèshī)",
+    spanish: "servicios"
+  },
+  {
+    word: "Utilities",
+    ipa: "/juːˈtɪlɪtiz/",
+    definition: "The services, such as electricity, water, and gas, that are provided to the public.",
+    example: "Rent for the apartment is $1,200 a month, not including utilities.",
+    chinese: "水电费 (shuǐdiànfèi)",
+    spanish: "servicios públicos"
+  },
+  {
+    word: "Appliance",
+    ipa: "/əˈplaɪəns/",
+    definition: "A device or piece of equipment designed to perform a specific task, typically a domestic one.",
+    example: "The kitchen has all new stainless steel appliances.",
+    chinese: "电器 (diànqì)",
+    spanish: "electrodoméstico"
+  },
+  {
+    word: "Property",
+    ipa: "/ˈprɒpərti/",
+    definition: "A building or land owned by someone.",
+    example: "They are looking to buy a new property in the countryside.",
+    chinese: "房产 (fángchǎn)",
+    spanish: "propiedad"
+  },
+  {
+    word: "Maintenance",
+    ipa: "/ˈmeɪntənəns/",
+    definition: "The process of preserving a building or item in its original condition.",
+    example: "The building requires regular maintenance to stay in good shape.",
+    chinese: "维护 (wéihù)",
+    spanish: "mantenimiento"
+  },
+  {
+    word: "Fixture",
+    ipa: "/ˈfɪkstʃər/",
+    definition: "A piece of equipment or furniture that is a permanent part of a house or building.",
+    example: "The new owners wanted to replace all the light fixtures.",
+    chinese: "固定装置 (gùdìng zhuāngzhì)",
+    spanish: "accesorio"
+  },
+  {
+    word: "Suburbs",
+    ipa: "/ˈsʌbɜːrbz/",
+    definition: "A residential area on the outskirts of a city.",
+    example: "Many families move to the suburbs for more space and quieter neighborhoods.",
+    chinese: "郊区 (jiāoqū)",
+    spanish: "suburbios"
+  },
+  {
+    word: "Condominium (Condo)",
+    ipa: "/ˌkɒndəˈmɪniəm/",
+    definition: "A building or complex containing a number of individually owned apartments or houses.",
+    example: "They sold their house and moved into a modern condo downtown.",
+    chinese: "公寓 (gōngyù)",
+    spanish: "condominio"
+  },
+  {
+    word: "Studio apartment",
+    ipa: "/ˈstuːdioʊ əˈpɑːrtmənt/",
+    definition: "A small apartment where the main living, sleeping, and cooking areas are combined in a single room.",
+    example: "He lives in a studio apartment because it's cheaper and he doesn't need a lot of space.",
+    chinese: "单间公寓 (dānjiān gōngyù)",
+    spanish: "estudio"
+  },
+  {
+    word: "Deposit",
+    ipa: "/dɪˈpɒzɪt/",
+    definition: "A sum of money paid as a first installment or a down payment, or as a guarantee of an agreement.",
+    example: "When you rent, you usually have to pay a security deposit.",
+    chinese: "押金 (yājīn)",
+    spanish: "depósito"
+  },
+  {
+    word: "Furnish",
+    ipa: "/ˈfɜːrnɪʃ/",
+    definition: "To provide (a house or room) with furniture and other fittings.",
+    example: "We plan to furnish the living room with a new sofa and chairs.",
+    chinese: "布置家具 (bùzhì jiājù)",
+    spanish: "amueblar"
+  },
+  {
+    word: "Renovate",
+    ipa: "/ˈrɛnəveɪt/",
+    definition: "To restore (something old, especially a building) to a good state of repair.",
+    example: "They decided to renovate the kitchen before selling the house.",
+    chinese: "翻新 (fānxīn)",
+    spanish: "renovar"
+  },
+  {
+    word: "Relocate",
+    ipa: "/ˈriːloʊkeɪt/",
+    definition: "To move to a new place and establish one's home or business there.",
+    example: "After his promotion, he had to relocate to a different city.",
+    chinese: "搬迁 (bānqiān)",
+    spanish: "reubicarse"
+  },
+  {
+    word: "Evict",
+    ipa: "/ɪˈvɪkt/",
+    definition: "To expel (someone) from a property, especially with the support of the law.",
+    example: "The landlord threatened to evict the tenant for not paying rent.",
+    chinese: "驱逐 (qūzhú)",
+    spanish: "desahuciar"
+  },
+  {
+    word: "Downsize",
+    ipa: "/ˈdaʊnsaɪz/",
+    definition: "To move to a smaller home.",
+    example: "When their children left home, the couple decided to downsize to a smaller house.",
+    chinese: "缩小规模 (suōxiǎo guīmó)",
+    spanish: "reducir el tamaño"
+  },
+  {
+    word: "Appraise",
+    ipa: "/əˈpreɪz/",
+    definition: "To assess the value of (something).",
+    example: "Before selling, we need to have the house appraised to determine its market value.",
+    chinese: "评估 (pínggū)",
+    spanish: "tasar"
+  },
+  {
+    word: "Cozy",
+    ipa: "/ˈkoʊzi/",
+    definition: "Giving a feeling of comfort, warmth, and relaxation.",
+    example: "The fireplace made the living room feel very cozy on a cold night.",
+    chinese: "舒适的 (shūshì de)",
+    spanish: "acogedor"
+  },
+  {
+    word: "Spacious",
+    ipa: "/ˈspeɪʃəs/",
+    definition: "Having ample space.",
+    example: "The kitchen is much more spacious than our old one.",
+    chinese: "宽敞的 (kuānchǎng de)",
+    spanish: "espacioso"
+  },
+  {
+    word: "Cluttered",
+    ipa: "/ˈklʌtərd/",
+    definition: "Covered with a lot of things in an untidy way.",
+    example: "The garage was too cluttered to park the car inside.",
+    chinese: "凌乱的 (língluàn de)",
+    spanish: "abarrotado"
+  },
+  {
+    word: "Dilapidated",
+    ipa: "/dɪˈlæpɪdeɪtɪd/",
+    definition: "in a state of disrepair or ruin as a result of age or neglect.",
+    example: "We found an old, dilapidated farmhouse and decided to fix it up.",
+    chinese: "破旧的 (pòjiù de)",
+    spanish: "deteriorado"
+  },
+  {
+    word: "Furnished",
+    ipa: "/ˈfɜːrnɪʃt/",
+    definition: "Containing furniture and household essentials.",
+    example: "We rented a furnished apartment, so we didn't have to buy any furniture.",
+    chinese: "有家具的 (yǒu jiājù de)",
+    spanish: "amueblado"
+  },
+  {
+    word: "Unfurnished",
+    ipa: "/ʌnˈfɜːrnɪʃt/",
+    definition: "Without furniture.",
+    example: "The apartment was unfurnished, so we had to bring our own beds and a sofa.",
+    chinese: "没有家具的 (méiyǒu jiājù de)",
+    spanish: "sin amueblar"
+  },
+  {
+    word: "Vacant",
+    ipa: "/ˈveɪkənt/",
+    definition: "not occupied; empty.",
+    example: "The apartment has been vacant for two months now.",
+    chinese: "空闲的 (kōngxián de)",
+    spanish: "vacío"
+  },
+  {
+    word: "Quaint",
+    ipa: "/kweɪnt/",
+    definition: "Attractively unusual or old-fashioned.",
+    example: "We stayed in a quaint little cabin in the woods for our vacation.",
+    chinese: "古雅的 (gǔyǎ de)",
+    spanish: "pintoresco"
+  },
+  {
+    word: "Contemporary",
+    ipa: "/kənˈtɛmpəˌrɛri/",
+    definition: "Belonging to or occurring in the present.",
+    example: "The new building features a very contemporary design with lots of glass and metal.",
+    chinese: "现代的 (xiàndài de)",
+    spanish: "contemporáneo"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                         <div class="ipa">${flashcards[index].ipa}</div>
+                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+
+    // Auto pronounce once on flip
+    speak();
+
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

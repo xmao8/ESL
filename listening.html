@@ -16,20 +16,18 @@
       padding: 0;
       overflow-x: hidden;
     }
-    nav {
-      background: #124076;
-      margin: 0;
-      padding: 0;
+    nav  {
+      background-color: #124076;
+      padding: 0.8rem 1rem;
+      width: 100%; /* Ensure nav takes full width */
     }
     .nav-container {
       display: flex;
+      justify-content: space-between; /* Puts logo on left, links on right by default */
       align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.8rem 1rem;
-      box-sizing: border-box;
+      max-width: 1100px; /* Max width for desktop nav content */
+      margin: 0 auto; /* Center the nav content */
+      padding: 0;
     }
     .logo {
       display: flex;

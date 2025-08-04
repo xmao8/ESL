@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Great Gatsby</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0;
+        }
+        ul li, ol li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Article & Questions Specific Styles */
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li {
+            margin-bottom: 0.8rem;
+        }
+        .poem-text p {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-indent: 1.5rem;
+        }
+
+        /* Vocabulary List Specific Styles */
+        .vocabulary-list ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            font-size: 1.1em;
+            flex-shrink: 0; /* Prevent the word from shrinking */
+        }
+        .vocabulary-list li .definition {
+            font-size: 1em;
+            margin-top: 5px;
+            color: #555;
+        }
+        .vocabulary-list li .translation {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-top: 2px; /* Slight adjustment for vertical alignment with text */
+        }
+        .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-item-header {
+            display: flex;
+            align-items: center;
+        }
+        .vocabulary-item-header strong {
+            margin-right: 5px;
+        }
+
+        /* Back button */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .nav-links {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            main {
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            p, ul, ol {
+                font-size: 1rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-container .nav-links a {
+                width: auto;
+                text-align: left;
+                padding: 0.5rem 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1 {
+                font-size: 1.8rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            main {
+                padding: 0.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p, ul, ol {
+                font-size: 0.95rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Adjust vocabulary list for smaller screens */
+            .vocabulary-list li {
+                flex-direction: column; /* Stack word, icon, and definition vertically */
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-list li strong {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+            .speaker-icon {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+            .vocabulary-list li .definition {
+                font-size: 0.9em;
+            }
+            .vocabulary-list li .translation {
+                font-size: 0.85em;
+            }
+        }
+        /* Extra small phone adjustments (optional, for very narrow screens) */
+        @media (max-width: 380px) {
+            .nav-container .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+   <main>
+        <div class="content-section">
+            <h2>The Great Gatsby (Excerpt) by F. Scott Fitzgerald</h2>
+            <p>In my younger and more **vulnerable** years my father gave me some advice that I’ve been turning over in my mind ever since.
+            “Whenever you feel like **criticizing** anyone,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had.”
+            He didn’t say any more, but we’ve always been unusually communicative in a **reserved** way, and I understood that he meant a great deal more than that. In **consequence**, I’m **inclined** to reserve all judgments, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran **bores**. The **abnormal** mind is quick to detect and attach itself to this quality when it appears in a normal person, and so it came about that in college I was unjustly accused of being a politician, because I was **privy** to the secret griefs of wild, unknown men. Most of the confidences were unsought—frequently I have **feigned** sleep, **preoccupation**, or a hostile **levity** when I realized by some unmistakable sign that an intimate revelation was **quivering** on the horizon; for the intimate revelations of young men, or at least the terms in which they express them, are usually **plagiaristic** and marred by obvious **suppressions**. Reserving judgments is a matter of infinite hope. I am still a little afraid of missing something if I forget that, as my father **snobbishly** suggested, and I snobbishly repeat, a sense of the fundamental decencies is parcelled out **unequally** at birth.</p>
+
+            <p>And, after boasting this way of my **tolerance**, I come to the admission that it has a limit. Conduct may be founded on the hard rock or the wet marshes, but after a certain point I don’t care what it’s founded on. When I came back from the East last autumn I felt that I wanted the world to be in uniform and at a sort of moral attention forever; I wanted no more riotous excursions with privileged glimpses into the human heart. Only Gatsby, the man who gives his name to this book, was **exempt** from my reaction—Gatsby, who represented everything for which I have an **unaffected** **scorn**. If personality is an unbroken series of successful gestures, then there was something gorgeous about him, some heightened sensitivity to the promises of life, as if he were related to one of those intricate machines that register earthquakes ten thousand miles away. This responsiveness had nothing to do with that **flabby** impressionability which is dignified under the name of the “creative temperament”—it was an extraordinary gift for hope, a romantic readiness such as I have never found in any other person and which it is not likely I shall ever find again. No—Gatsby turned out all right at the end; it is what preyed on Gatsby, what foul dust floated in the wake of his dreams that temporarily closed out my interest in the **abortive** sorrows and short-winded **elations** of men.(Excerpted from The Great Gatsby by F. Scott Fitzgerald)</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are important words from the article that can help you understand it better. Try to guess their meaning from the story first, then check the definitions.</p>
+            <ul>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Vulnerable</strong> <i class="fas fa-volume-up speaker-icon" data-word="Vulnerable" aria-label="Pronounce Vulnerable"></i>
+                    </div>
+                    <div class="definition">Exposed to the possibility of being attacked or harmed, either physically or emotionally.</div>
+                    <div class="translation">IPA: /ˈvʌlnərəbəl/ | Chinese: 易受伤害的 (yì shòu shānghài de) | Spanish: vulnerable</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Reserved</strong> <i class="fas fa-volume-up speaker-icon" data-word="Reserved" aria-label="Pronounce Reserved"></i>
+                    </div>
+                    <div class="definition">Slow to show emotion or express an opinion.</div>
+                    <div class="translation">IPA: /rɪˈzɜːrvd/ | Chinese: 矜持的 (jīnchí de) | Spanish: reservado</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Consequence</strong> <i class="fas fa-volume-up speaker-icon" data-word="Consequence" aria-label="Pronounce Consequence"></i>
+                    </div>
+                    <div class="definition">A result or effect of an action or condition.</div>
+                    <div class="translation">IPA: /ˈkɒnsɪkwəns/ | Chinese: 结果 (jiéguǒ) | Spanish: consecuencia</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Abnormal</strong> <i class="fas fa-volume-up speaker-icon" data-word="Abnormal" aria-label="Pronounce Abnormal"></i>
+                    </div>
+                    <div class="definition">Deviating from what is normal or usual.</div>
+                    <div class="translation">IPA: /æbˈnɔːrməl/ | Chinese: 反常的 (fǎncháng de) | Spanish: anormal</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Privy</strong> <i class="fas fa-volume-up speaker-icon" data-word="Privy" aria-label="Pronounce Privy"></i>
+                    </div>
+                    <div class="definition">Sharing in the knowledge of something secret or private.</div>
+                    <div class="translation">IPA: /ˈprɪvi/ | Chinese: 知情的 (zhīqíng de) | Spanish: al tanto de</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Feigned</strong> <i class="fas fa-volume-up speaker-icon" data-word="Feigned" aria-label="Pronounce Feigned"></i>
+                    </div>
+                    <div class="definition">Pretended to feel or be affected by something.</div>
+                    <div class="translation">IPA: /feɪnd/ | Chinese: 假装的 (jiǎzhuāng de) | Spanish: fingido</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Plagiaristic</strong> <i class="fas fa-volume-up speaker-icon" data-word="Plagiaristic" aria-label="Pronounce Plagiaristic"></i>
+                    </div>
+                    <div class="definition">Relating to or constituting plagiarism; copying.</div>
+                    <div class="translation">IPA: /ˌpleɪdʒɪəˈrɪstɪk/ | Chinese: 抄袭的 (chāoxí de) | Spanish: plagiario</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Snobbishly</strong> <i class="fas fa-volume-up speaker-icon" data-word="Snobbishly" aria-label="Pronounce Snobbishly"></i>
+                    </div>
+                    <div class="definition">In a way that shows a belief that one's own tastes and habits are superior to those of others.</div>
+                    <div class="translation">IPA: /ˈsnɒbɪʃli/ | Chinese: 势利地 (shìlì de) | Spanish: con esnobismo</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Tolerance</strong> <i class="fas fa-volume-up speaker-icon" data-word="Tolerance" aria-label="Pronounce Tolerance"></i>
+                    </div>
+                    <div class="definition">The ability or willingness to tolerate the existence of opinions or behavior one dislikes or disagrees with.</div>
+                    <div class="translation">IPA: /ˈtɒlərəns/ | Chinese: 宽容 (kuānróng) | Spanish: tolerancia</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Exempt</strong> <i class="fas fa-volume-up speaker-icon" data-word="Exempt" aria-label="Pronounce Exempt"></i>
+                    </div>
+                    <div class="definition">Free from an obligation or liability imposed on others.</div>
+                    <div class="translation">IPA: /ɪɡˈzɛmpt/ | Chinese: 豁免的 (huòmiǎn de) | Spanish: exento</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Scorn</strong> <i class="fas fa-volume-up speaker-icon" data-word="Scorn" aria-label="Pronounce Scorn"></i>
+                    </div>
+                    <div class="definition">The feeling that something is worthless or despicable.</div>
+                    <div class="translation">IPA: /skɔːrn/ | Chinese: 蔑视 (mièshì) | Spanish: desprecio</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Abortive</strong> <i class="fas fa-volume-up speaker-icon" data-word="Abortive" aria-label="Pronounce Abortive"></i>
+                    </div>
+                    <div class="definition">Failing to produce the intended result.</div>
+                    <div class="translation">IPA: /əˈbɔːrtɪv/ | Chinese: 失败的 (shībài de) | Spanish: fallido</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Elations</strong> <i class="fas fa-volume-up speaker-icon" data-word="Elations" aria-label="Pronounce Elations"></i>
+                    </div>
+                    <div class="definition">Great happiness and exhilaration.</div>
+                    <div class="translation">IPA: /ɪˈleɪʃənz/ | Chinese: 狂喜 (kuángxǐ) | Spanish: euforias</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the opening of *The Great Gatsby*.</p>
+            <ol>
+                <li>What advice did the narrator's father give him, and what does it mean to "reserve all judgments"?</li>
+                <li>How has the narrator's practice of reserving judgments both helped and harmed him?</li>
+                <li>Why was the narrator able to hear the "secret griefs of wild, unknown men" in college?</li>
+                <li>What is the narrator's ultimate confession about his tolerance?</li>
+                <li>What quality does the narrator find in Gatsby that makes him "exempt" from the narrator's general disgust with the world?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech functionality for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US'; // Set language to English (US)
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            console.warn("Text-to-speech not supported in this browser.");
+            // Optionally, hide speaker icons or show a message to the user
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>An Order for In-N-Out – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Your existing CSS for navigation and general layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+
+        /* Conversation specific styles */
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block; /* Allows for consistent spacing with character names */
+            width: 100px; /* Adjust as needed for longest name */
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Vocabulary List specific styles */
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem; /* More space between vocabulary items */
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex; /* Use flexbox for word + icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between word and icon */
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px; /* Space after the word/icon */
+        }
+        .vocabulary-list .definition {
+            display: block; /* Make definition appear on a new line */
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block; /* New line for example */
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>An Order for In-N-Out</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>AVA:</strong> A foreign student in her 20s, excited but a little overwhelmed.</li>
+            <li><strong>CHLOE:</strong> Ava’s friend, a local student in her 20s, a veteran In-N-Out customer.</li>
+            <li><strong>CASHIER:</strong> A friendly, fast-paced employee in his late teens.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: The inside of a bustling In-N-Out Burger. The line is long and a little noisy.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with AVA and CHLOE standing in a long line. AVA is looking at the menu board, which is very simple. She looks confused.)</p>
+        <p><strong>AVA:</strong> <span class="dialogue">So, this is it? There are only three kinds of burgers? Just "Hamburger," "Cheeseburger," and "Double-Double"?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">(Laughing) Yep! That’s the classic menu. But that’s not all. The real magic is on the **secret menu**.</span></p>
+        <p><strong>AVA:</strong> <span class="dialogue">The secret menu? Like… hidden burgers?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Exactly! You can get a burger **"Animal Style,"** which means it comes with mustard cooked into the patty, extra spread, and grilled onions. Or you can get your fries "Animal Style" too! It’s the best.</span></p>
+        <p><strong>AVA:</strong> <span class="dialogue">(Smiling, a little unsure) That sounds… complicated. I just want a regular hamburger. With cheese. But maybe a little secret.</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Perfect! So, a cheeseburger, but ask for it **"Protein Style."** That’s a burger wrapped in lettuce instead of a bun. It’s healthier, kind of.</span></p>
+        <p class="scene-direction">(They finally get to the front of the line. The CASHIER smiles at them, ready for their order.)</p>
+        <p><strong>CASHIER:</strong> <span class="dialogue">Hi! What can I get for you today?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Hi! I’ll do a Double-Double, Animal Style, with an order of Animal Style fries. And a Coke.</span></p>
+        <p><strong>CASHIER:</strong> <span class="dialogue">Awesome. And for you?</span></p>
+        <p class="scene-direction">(AVA freezes for a moment. She looks at Chloe, then back at the cashier, taking a deep breath.)</p>
+        <p><strong>AVA:</strong> <span class="dialogue">I would like… one cheeseburger. But… “Protein Style,” please. And a… chocolate shake.</span></p>
+        <p><strong>CASHIER:</strong> <span class="dialogue">(Typing the order) Got it. One Protein Style Cheeseburger and a chocolate shake. Your total is $12.50. Will that be all?</span></p>
+        <p><strong>AVA:</strong> <span class="dialogue">(Nodding proudly) Yes! Thank you.</span></p>
+        <p class="scene-direction">(Ava and Chloe move to the side to wait. Ava is beaming, a sense of accomplishment on her face.)</p>
+        <p><strong>AVA:</strong> <span class="dialogue">I did it! I ordered from the secret menu!</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">See? It’s easy! You’re a pro now. You can order anything. Next time, maybe we’ll get a **"Neapolitan"** shake. It’s chocolate, vanilla, and strawberry all mixed together.</span></p>
+        <p><strong>AVA:</strong> <span class="dialogue">(Eyes wide) Whoa. You guys have so many food secrets.</span></p>
+        <p class="scene-direction">(AVA and CHLOE laugh as the cashier calls out their order number. FADE OUT.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Secret menu <span class="speaker-icon" onclick="speakWord('Secret menu')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈsiːkrɪt ˈmɛnjuː/</span>
+                <span class="definition">(n.): A list of items that a restaurant can make but aren't written on the main menu.</span>
+                <span class="example">Example: The best burger is on the **secret menu**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Animal Style <span class="speaker-icon" onclick="speakWord('Animal Style')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈænɪməl staɪl/</span>
+                <span class="definition">(idiom): A special way of preparing an In-N-Out burger or fries. It includes mustard, grilled onions, and extra sauce.</span>
+                <span class="example">Example: He always gets his fries **Animal Style**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Protein Style <span class="speaker-icon" onclick="speakWord('Protein Style')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈproʊtiːn staɪl/</span>
+                <span class="definition">(idiom): An option for a burger where lettuce is used instead of a bun.</span>
+                <span class="example">Example: I ordered my burger **Protein Style** to avoid the bread.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Neapolitan <span class="speaker-icon" onclick="speakWord('Neapolitan')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌniːəˈpɒlɪtən/</span>
+                <span class="definition">(adj.): A type of ice cream or milkshake that has three flavors: chocolate, vanilla, and strawberry.</span>
+                <span class="example">Example: She wanted a **Neapolitan** shake because she couldn't choose just one flavor.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Double-Double <span class="speaker-icon" onclick="speakWord('Double-Double')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈdʌbəl ˈdʌbəl/</span>
+                <span class="definition">(n.): A specific type of In-N-Out burger with two beef patties and two slices of cheese.</span>
+                <span class="example">Example: A **Double-Double** is a very popular burger at In-N-Out.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Patty <span class="speaker-icon" onclick="speakWord('Patty')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈpæti/</span>
+                <span class="definition">(n.): A flat, round piece of minced meat or other food.</span>
+                <span class="example">Example: The burger had a thick beef **patty**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Bun <span class="speaker-icon" onclick="speakWord('Bun')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/bʌn/</span>
+                <span class="definition">(n.): A small, soft bread roll, often used for burgers.</span>
+                <span class="example">Example: They put the burger on a soft **bun**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Spread <span class="speaker-icon" onclick="speakWord('Spread')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/sprɛd/</span>
+                <span class="definition">(n.): The special sauce used on In-N-Out burgers.</span>
+                <span class="example">Example: He asked for extra **spread** on his burger.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Veteran <span class="speaker-icon" onclick="speakWord('Veteran')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈvɛtərən/</span>
+                <span class="definition">(n.): A person who has a lot of experience in a particular field.</span>
+                <span class="example">Example: As a **veteran** shopper, she knew all the best places to find good deals.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; // Set language to English (US)
+            utterance.rate = 0.9; // Adjust speech rate if needed
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

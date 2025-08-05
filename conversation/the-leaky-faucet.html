@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Leaky Faucet – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Your existing CSS for navigation and general layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+
+        /* Conversation specific styles */
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block; /* Allows for consistent spacing with character names */
+            width: 100px; /* Adjust as needed for longest name */
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Vocabulary List specific styles */
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem; /* More space between vocabulary items */
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex; /* Use flexbox for word + icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between word and icon */
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px; /* Space after the word/icon */
+        }
+        .vocabulary-list .definition {
+            display: block; /* Make definition appear on a new line */
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block; /* New line for example */
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>The Leaky Faucet</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>MR. THOMPSON:</strong> A homeowner in his 60s, a bit flustered.</li>
+            <li><strong>SARAH:</strong> His daughter, in her 30s, practical and calm.</li>
+            <li><strong>PLUMBER:</strong> A friendly, experienced professional.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: The kitchen of a house. A single, very old faucet is dripping loudly into a sink.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with MR. THOMPSON staring at a leaky kitchen faucet. He has a wrench in his hand and looks defeated. His daughter, SARAH, walks in with a phone.)</p>
+        <p><strong>SARAH:</strong> <span class="dialogue">Dad, you’ve been out here all morning. Did you fix it?</span></p>
+        <p><strong>MR. THOMPSON:</strong> <span class="dialogue">(Sighing) No. The **washer** is worn out, but I can't get the **handle** off. It's stuck. This faucet is probably forty years old.</span></p>
+        <p><strong>SARAH:</strong> <span class="dialogue">Okay. Let’s not break it completely. I’ve already called a **plumber**. He said he can come by in about thirty minutes.</span></p>
+        <p class="scene-direction">(Mr. Thompson puts the wrench down and shakes his head.)</p>
+        <p><strong>MR. THOMPSON:</strong> <span class="dialogue">A plumber? It's just a leaky faucet! I can fix a leaky faucet.</span></p>
+        <p><strong>SARAH:</strong> <span class="dialogue">Dad, you've tried. Now let a professional handle it. I don't want the kitchen to flood.</span></p>
+        <p class="scene-direction">(Thirty minutes later, the doorbell rings. Sarah lets the PLUMBER in. He is carrying a large toolbox.)</p>
+        <p><strong>PLUMBER:</strong> <span class="dialogue">Hello. I'm here about the leaky faucet. I'm Mark.</span></p>
+        <p><strong>SARAH:</strong> <span class="dialogue">Hi, Mark. It's in the kitchen.</span></p>
+        <p class="scene-direction">(The Plumber goes into the kitchen and looks at the faucet. He turns the handle a few times and listens to the drip.)</p>
+        <p><strong>PLUMBER:</strong> <span class="dialogue">Hmm. It’s a good old one. The **compression valve** is probably shot. That handle is really on there. Looks like someone put it on with a lot of **elbow grease**.</span></p>
+        <p><strong>MR. THOMPSON:</strong> <span class="dialogue">(Standing beside him) I tried to get it off. But no luck. I didn’t want to break the whole thing.</span></p>
+        <p><strong>PLUMBER:</strong> <span class="dialogue">Good call. We don't want to cause more problems. Let's see... (He pulls out a special tool from his box and works on the handle for a minute. With a final twist, it comes loose.) There we go! The **cartridge** is definitely worn out. It's old.</span></p>
+        <p class="scene-direction">(The Plumber quickly replaces the old part with a new one. He tightens everything up and turns the water on. The drip is gone.)</p>
+        <p><strong>PLUMBER:</strong> <span class="dialogue">All done! It should be good as new. The new cartridge and washer will last for years.</span></p>
+        <p><strong>SARAH:</strong> <span class="dialogue">Oh, thank you so much! It's so nice to have some quiet again. What's the **damage**?</span></p>
+        <p><strong>PLUMBER:</strong> <span class="dialogue">No problem at all. My rate is $75 for the **service call**, plus $15 for the new parts. So that’s $90 total.</span></p>
+        <p><strong>MR. THOMPSON:</strong> <span class="dialogue">(Amazed) That’s it? After all that work? You really saved us, Mark. Thank you.</span></p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Plumber <span class="speaker-icon" onclick="speakWord('Plumber')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈplʌmər/</span>
+                <span class="definition">(n.): A person who installs and repairs pipes, faucets, and other plumbing fixtures.</span>
+                <span class="example">Example: We had to call a **plumber** to fix the leak.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Washer <span class="speaker-icon" onclick="speakWord('Washer')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈwɑːʃər/</span>
+                <span class="definition">(n.): A small, flat ring of rubber or metal used to make a joint watertight.</span>
+                <span class="example">Example: The leaky faucet just needed a new **washer**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Handle <span class="speaker-icon" onclick="speakWord('Handle')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈhændəl/</span>
+                <span class="definition">(n.): The part of a faucet that you turn to control the flow of water.</span>
+                <span class="example">Example: The **handle** on the sink broke off.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Compression valve <span class="speaker-icon" onclick="speakWord('Compression valve')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kəmˈprɛʃən vælv/</span>
+                <span class="definition">(n.): A type of faucet valve that uses a rubber washer to stop the flow of water.</span>
+                <span class="example">Example: The old **compression valve** was the reason for the dripping.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Elbow grease <span class="speaker-icon" onclick="speakWord('Elbow grease')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈɛlboʊ ɡriːs/</span>
+                <span class="definition">(idiom): hard physical work or effort.</span>
+                <span class="example">Example: It took a lot of **elbow grease** to get the floor clean.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Cartridge <span class="speaker-icon" onclick="speakWord('Cartridge')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkɑːrtrɪdʒ/</span>
+                <span class="definition">(n.): A single unit inside a faucet that controls the flow and temperature of water.</span>
+                <span class="example">Example: Replacing the **cartridge** fixed the faucet.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Service call <span class="speaker-icon" onclick="speakWord('Service call')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈsɜːrvɪs kɔːl/</span>
+                <span class="definition">(n.): A visit by a professional to a customer's home to perform a service.</span>
+                <span class="example">Example: The **service call** fee was $50.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Damage <span class="speaker-icon" onclick="speakWord('Damage')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈdæmɪdʒ/</span>
+                <span class="definition">(n., informal): The cost or amount of money that you have to pay.</span>
+                <span class="example">Example: "What's the **damage**?" he asked the waiter.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Flustered <span class="speaker-icon" onclick="speakWord('Flustered')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈflʌstərd/</span>
+                <span class="definition">(adj.): Confused or nervous.</span>
+                <span class="example">Example: She was too **flustered** to answer the question.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; // Set language to English (US)
+            utterance.rate = 0.9; // Adjust speech rate if needed
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

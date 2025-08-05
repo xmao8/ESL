@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dinner at a Mexican Restaurant – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Your existing CSS for navigation and general layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+
+        /* Conversation specific styles */
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block; /* Allows for consistent spacing with character names */
+            width: 100px; /* Adjust as needed for longest name */
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Vocabulary List specific styles */
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem; /* More space between vocabulary items */
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex; /* Use flexbox for word + icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between word and icon */
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px; /* Space after the word/icon */
+        }
+        .vocabulary-list .definition {
+            display: block; /* Make definition appear on a new line */
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block; /* New line for example */
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Dinner at a Mexican Restaurant</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>LIAM:</strong> A customer, in his 20s, excited but unfamiliar with Mexican food.</li>
+            <li><strong>MARIA:</strong> His friend, a local, helping him order.</li>
+            <li><strong>WAITER:</strong> A friendly, helpful server.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: A vibrant, colorful Mexican restaurant.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with Liam and Maria seated at a table. A basket of tortilla chips and a bowl of salsa are on the table. Liam is looking at the menu, which has a lot of Spanish words.)</p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Wow, this menu is huge! What's the difference between a **burrito**, a **taco**, and an **enchilada**? They all sound like they have similar ingredients.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">That’s a good question. A taco is a small, soft or crispy tortilla folded around fillings. A burrito is a large flour tortilla wrapped around a bigger mix of fillings, and an enchilada is a corn tortilla rolled around a filling and covered in a chili sauce and cheese before being baked.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Okay, I think I get it. So, a burrito is like a big wrap?</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Exactly. And they are all delicious! Let’s start with some **guacamole**. It's a dip made from avocados, and it's amazing with the chips.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Guacamole sounds good. What about drinks? Is that a margarita I see on the menu?</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Yes, a **margarita** is a very popular cocktail here. It’s made with tequila, lime juice, and a little bit of salt on the rim of the glass. You should try one!</span></p>
+        <p class="scene-direction">(A waiter approaches their table with a pad to take their order.)</p>
+        <p><strong>WAITER:</strong> <span class="dialogue">Hola! Are you ready to order, or do you need a little more time?</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">We're ready, thank you! We'll start with an order of guacamole. For me, I’ll have the **carne asada** tacos, please. And a regular margarita.</span></p>
+        <p><strong>WAITER:</strong> <span class="dialogue">And for you, sir?</span></p>
+        <p class="scene-direction">(Liam looks at the menu again, then at Maria for reassurance.)</p>
+        <p><strong>LIAM:</strong> <span class="dialogue">I think I'll try the enchiladas. What kind of **filling** can I get?</span></p>
+        <p><strong>WAITER:</strong> <span class="dialogue">We have chicken, beef, cheese, or vegetables. And you can choose between a red or green sauce. Our green sauce, or **salsa verde**, is a little bit spicy.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">I'll have the chicken enchiladas with the red sauce. And just a soda, please.</span></p>
+        <p><strong>WAITER:</strong> <span class="dialogue">Excellent choices! I'll get those started for you.</span></p>
+        <p class="scene-direction">(The waiter walks away. Liam smiles, feeling much more at ease.)</p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Thank you, Maria! I would have been completely lost without you.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">No problem! I'm happy to introduce you to my favorite food. You're going to love it.</span></p>
+        <p class="scene-direction">(The two friends cheers with their water glasses, excited for their food to arrive. FADE OUT.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Burrito <span class="speaker-icon" onclick="speakWord('Burrito')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/bʊˈriːtoʊ/</span>
+                <span class="definition">(n.): A dish consisting of a large flour tortilla wrapped around a filling of meat, beans, and cheese.</span>
+                <span class="example">Example: He ordered a beef and bean **burrito**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Taco <span class="speaker-icon" onclick="speakWord('Taco')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈtɑːkoʊ/</span>
+                <span class="definition">(n.): A dish consisting of a small, soft or crispy tortilla folded around fillings such as meat, vegetables, and cheese.</span>
+                <span class="example">Example: I love to get **tacos** on Tuesdays.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Enchilada <span class="speaker-icon" onclick="speakWord('Enchilada')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌɛntʃɪˈlɑːdə/</span>
+                <span class="definition">(n.): A dish consisting of a corn tortilla rolled around a filling, covered with a chili pepper sauce, and baked.</span>
+                <span class="example">Example: The cheese **enchilada** was covered in a rich red sauce.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Guacamole <span class="speaker-icon" onclick="speakWord('Guacamole')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌɡwɑːkəˈmoʊli/</span>
+                <span class="definition">(n.): A dip made from mashed avocados, often with onions, tomatoes, and lime juice.</span>
+                <span class="example">Example: The chips came with a side of delicious **guacamole**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Margarita <span class="speaker-icon" onclick="speakWord('Margarita')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌmɑːrɡəˈriːtə/</span>
+                <span class="definition">(n.): A cocktail made with tequila, lime juice, and an orange-flavored liqueur, often served with salt on the rim of the glass.</span>
+                <span class="example">Example: We ordered a frozen strawberry **margarita**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Carne asada <span class="speaker-icon" onclick="speakWord('Carne asada')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkɑːrneɪ əˈsɑːdə/</span>
+                <span class="definition">(n., Spanish): Marinated and grilled steak, often served in tacos or burritos.</span>
+                <span class="example">Example: The **carne asada** was grilled to perfection.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Filling <span class="speaker-icon" onclick="speakWord('Filling')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈfɪlɪŋ/</span>
+                <span class="definition">(n.): The food put inside a taco, burrito, or enchilada.</span>
+                <span class="example">Example: What kind of **filling** would you like for your taco?</span>
+            </li>
+            <li>
+                <span class="vocab-word">Salsa verde <span class="speaker-icon" onclick="speakWord('Salsa verde')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈsælsə ˈvɛrdeɪ/</span>
+                <span class="definition">(n., Spanish): A green sauce typically made from tomatillos, chili peppers, and cilantro.</span>
+                <span class="example">Example: I prefer the spicy **salsa verde** over the red sauce.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Tortilla <span class="speaker-icon" onclick="speakWord('Tortilla')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/tɔːrˈtiːjə/</span>
+                <span class="definition">(n.): A thin, flat bread made from corn or flour.</span>
+                <span class="example">Example: We had fresh corn **tortillas** with our dinner.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Salsa <span class="speaker-icon" onclick="speakWord('Salsa')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈsælsə/</span>
+                <span class="definition">(n.): A spicy sauce made from chopped tomatoes, onions, and chili peppers.</span>
+                <span class="example">Example: The restaurant made its own fresh **salsa**.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; // Set language to English (US)
+            utterance.rate = 0.9; // Adjust speech rate if needed
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

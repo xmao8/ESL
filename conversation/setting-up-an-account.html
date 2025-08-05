@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Setting Up an Account – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Your existing CSS for navigation and general layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+
+        /* Conversation specific styles */
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block; /* Allows for consistent spacing with character names */
+            width: 100px; /* Adjust as needed for longest name */
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Vocabulary List specific styles */
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem; /* More space between vocabulary items */
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex; /* Use flexbox for word + icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between word and icon */
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px; /* Space after the word/icon */
+        }
+        .vocabulary-list .definition {
+            display: block; /* Make definition appear on a new line */
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block; /* New line for example */
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Setting Up an Account</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>MAYA:</strong> A young student, new to the country, needs to open her first bank account.</li>
+            <li><strong>BANK TELLER:</strong> A friendly and patient employee.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: A modern, clean bank lobby.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with MAYA approaching the counter. She looks a little nervous. The BANK TELLER smiles warmly at her.)</p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">Hello! How can I help you today?</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Hi. I would like to open a... a **checking account**? I'm not sure. I'm a student, and I just need a place to keep my money.</span></p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">That's a great start! A checking account is perfect for your day-to-day spending. It lets you write checks, use a **debit card**, and pay bills easily. Do you also want to open a **savings account**?</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">A savings account? What's the difference?</span></p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">A checking account is for money you'll use often. A savings account is for money you want to save. It usually earns a little bit of **interest**, so your money grows over time. We can set up both for you, so you can easily move money between them.</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Oh, that sounds good. Let's do both then. What do I need?</span></p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">Great! To open the accounts, I just need to see a few things. Do you have your passport and your student ID? Also, a document with your address on it, like a utility bill or a school letter.</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Yes, I have my passport and my student ID. For the address, I have my acceptance letter from the university. Will that work?</span></p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">Yes, that's perfect. Do you have an initial **deposit** you'd like to make today?</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Yes, I have some cash. Is that okay?</span></p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">Absolutely. You can make your first deposit with me right now. Once we're done, I'll give you your new debit card, and you'll be able to use it immediately. I'll also give you some information about **online banking** and the bank’s **mobile app**.</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Thank you so much! This is a little confusing for me, so I really appreciate you explaining everything.</span></p>
+        <p><strong>BANK TELLER:</strong> <span class="dialogue">No problem at all. We're here to help. Welcome to the bank!</span></p>
+        <p class="scene-direction">(The Teller begins to process Maya’s paperwork. Maya smiles, looking relieved. FADE OUT.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Checking account <span class="speaker-icon" onclick="speakWord('Checking account')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈtʃɛkɪŋ əˈkaʊnt/</span>
+                <span class="definition">(n.): A basic bank account that lets you easily deposit and withdraw money for daily expenses, often with a debit card and checks.</span>
+                <span class="example">Example: I use my **checking account** for paying rent and groceries.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Debit card <span class="speaker-icon" onclick="speakWord('Debit card')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈdɛbɪt kɑːrd/</span>
+                <span class="definition">(n.): A card issued by a bank that lets you pay for things directly from your checking account.</span>
+                <span class="example">Example: I used my **debit card** to pay for lunch.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Savings account <span class="speaker-icon" onclick="speakWord('Savings account')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈseɪvɪŋz əˈkaʊnt/</span>
+                <span class="definition">(n.): A bank account where you keep money that you want to save. It often earns interest.</span>
+                <span class="example">Example: She puts money in her **savings account** for her vacation.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Interest <span class="speaker-icon" onclick="speakWord('Interest')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈɪntrəst/</span>
+                <span class="definition">(n.): Money paid to you by the bank for keeping your money in a savings account.</span>
+                <span class="example">Example: My savings account earns 2% **interest** per year.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Deposit <span class="speaker-icon" onclick="speakWord('Deposit')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/dɪˈpɒzɪt/</span>
+                <span class="definition">(n.): An amount of money that you put into a bank account.</span>
+                <span class="example">Example: He made a large cash **deposit** at the bank.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Teller <span class="speaker-icon" onclick="speakWord('Teller')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈtɛlər/</span>
+                <span class="definition">(n.): A person who works in a bank, dealing with customers and handling transactions.</span>
+                <span class="example">Example: The **teller** helped me withdraw money.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Online banking <span class="speaker-icon" onclick="speakWord('Online banking')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈɒnlaɪn ˈbæŋkɪŋ/</span>
+                <span class="definition">(n.): The process of performing transactions and managing your accounts over the internet.</span>
+                <span class="example">Example: I paid my bills using **online banking**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Mobile app <span class="speaker-icon" onclick="speakWord('Mobile app')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈmoʊbaɪl æp/</span>
+                <span class="definition">(n.): An application for a smartphone or tablet that lets you access your bank account.</span>
+                <span class="example">Example: The bank’s **mobile app** is very easy to use.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; // Set language to English (US)
+            utterance.rate = 0.9; // Adjust speech rate if needed
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

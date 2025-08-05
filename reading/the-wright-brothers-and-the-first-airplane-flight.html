@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Wright Brothers and the First Airplane Flight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .ipa {
+            font-size: 0.97em;
+            color: #666;
+            font-style: italic;
+            margin-right: 10px;
+            margin-left: 3px;
+        }
+        .vocabulary-list li .definition { flex-grow: 1; min-width: 180px;}
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px; width: 100%;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a {
+                width: auto; text-align: left; padding: 0.5rem 0;
+            }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li {
+                flex-direction: column; align-items: flex-start; padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>The Wright Brothers and the First Airplane Flight</h1>
+    <main>
+        <div class="content-section">
+            <h2>The Wright Brothers and the First Airplane Flight</h2>
+            <p>
+                In December <strong>1903</strong>, two brothers in <strong>Kitty Hawk</strong>, North Carolina—<strong>Orville and Wilbur Wright</strong>—achieved something that people once thought impossible: the first <strong>powered airplane flight</strong>.
+            </p>
+            <p>
+                Orville and Wilbur were not pilots or engineers by training—they operated a small bicycle shop in <strong>Dayton, Ohio</strong>. But they were curious, inventive, and determined. Observing birds inspired them to ask: <em>Could humans fly like birds?</em>
+            </p>
+            <p>
+                They studied <strong>aerodynamics</strong>, built experimental gliders, and tested them on windy hills. They calculated lift and drag, and used handmade tools to measure wind speed. From these experiments, they designed a <strong>motorized aircraft</strong>, complete with a lightweight engine and wings covered in fabric.
+            </p>
+            <p>
+                On <strong>December 17, 1903</strong>, they traveled to Kitty Hawk, a windy area with soft dunes. That morning, Orville made the first flight. It lasted only <strong>12 seconds</strong> and traveled <strong>120 feet</strong>, but it marked the beginning of modern aviation. Later that day, Wilbur flew <strong>852 feet</strong> in <strong>59 seconds</strong>—a remarkable achievement for the time.
+            </p>
+            <p>
+                Although the brothers were excited, many people remained <strong>skeptical</strong>. Flying machines seemed like science fiction. Newspapers reported the flight, but public interest was low. Still, the Wrights continued improving their designs and demonstrating their success.
+            </p>
+            <p>
+                Eventually, the world began to take notice. The Wright Brothers' invention <strong>revolutionized</strong> transportation. What once took weeks by land or sea could now be done in hours by air. Aviation would go on to change business, war, and global connection forever.
+            </p>
+            <p>
+                The Wright Brothers' success shows how <strong>perseverance</strong>, observation, and creative thinking can transform dreams into reality—even when the world doubts you.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>These words will help you understand the story. Listen, check the IPA, and read the definitions.</p>
+            <ul>
+                <li>
+                    <strong>Aviation</strong>
+                    <span class="ipa">/ˌeɪ.viˈeɪ.ʃən/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="aviation" aria-label="Pronounce aviation"></i>
+                    <div class="definition">the design, development, and flying of aircraft</div>
+                </li>
+                <li>
+                    <strong>Aerodynamics</strong>
+                    <span class="ipa">/ˌer.oʊ.daɪˈnæm.ɪks/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="aerodynamics" aria-label="Pronounce aerodynamics"></i>
+                    <div class="definition">the science of how air moves around things</div>
+                </li>
+                <li>
+                    <strong>Innovative</strong>
+                    <span class="ipa">/ˈɪn.ə.veɪ.tɪv/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="innovative" aria-label="Pronounce innovative"></i>
+                    <div class="definition">introducing new ideas or methods</div>
+                </li>
+                <li>
+                    <strong>Glider</strong>
+                    <span class="ipa">/ˈɡlaɪ.dɚ/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="glider" aria-label="Pronounce glider"></i>
+                    <div class="definition">a light aircraft that flies without an engine</div>
+                </li>
+                <li>
+                    <strong>Fabric</strong>
+                    <span class="ipa">/ˈfæb.rɪk/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="fabric" aria-label="Pronounce fabric"></i>
+                    <div class="definition">cloth used to cover something, like airplane wings</div>
+                </li>
+                <li>
+                    <strong>Motorized</strong>
+                    <span class="ipa">/ˈmoʊ.tə.raɪzd/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="motorized" aria-label="Pronounce motorized"></i>
+                    <div class="definition">powered by a motor or engine</div>
+                </li>
+                <li>
+                    <strong>Lift</strong>
+                    <span class="ipa">/lɪft/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="lift" aria-label="Pronounce lift"></i>
+                    <div class="definition">the upward force that keeps a plane in the air</div>
+                </li>
+                <li>
+                    <strong>Drag</strong>
+                    <span class="ipa">/dræɡ/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="drag" aria-label="Pronounce drag"></i>
+                    <div class="definition">the force that slows an object moving through air</div>
+                </li>
+                <li>
+                    <strong>Prototype</strong>
+                    <span class="ipa">/ˈproʊ.tə.taɪp/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="prototype" aria-label="Pronounce prototype"></i>
+                    <div class="definition">the first working version of a design</div>
+                </li>
+                <li>
+                    <strong>Perseverance</strong>
+                    <span class="ipa">/ˌpɝː.səˈvɪr.əns/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="perseverance" aria-label="Pronounce perseverance"></i>
+                    <div class="definition">continuing despite difficulty</div>
+                </li>
+                <li>
+                    <strong>Skeptical</strong>
+                    <span class="ipa">/ˈskep.tɪ.kəl/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="skeptical" aria-label="Pronounce skeptical"></i>
+                    <div class="definition">doubting that something is true or will work</div>
+                </li>
+                <li>
+                    <strong>Revolutionize</strong>
+                    <span class="ipa">/ˌrev.əˈluː.ʃə.naɪz/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="revolutionize" aria-label="Pronounce revolutionize"></i>
+                    <div class="definition">to completely change something in a major way</div>
+                </li>
+                <li>
+                    <strong>Achievement</strong>
+                    <span class="ipa">/əˈtʃiːv.mənt/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="achievement" aria-label="Pronounce achievement"></i>
+                    <div class="definition">a successful result of hard work</div>
+                </li>
+                <li>
+                    <strong>Invention</strong>
+                    <span class="ipa">/ɪnˈven.ʃən/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="invention" aria-label="Pronounce invention"></i>
+                    <div class="definition">something new created to solve a problem</div>
+                </li>
+                <li>
+                    <strong>Observation</strong>
+                    <span class="ipa">/ˌɑːb.zɚˈveɪ.ʃən/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="observation" aria-label="Pronounce observation"></i>
+                    <div class="definition">watching something closely to learn about it</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about "The Wright Brothers and the First Airplane Flight."</p>
+            <ol>
+                <li>Who were the Wright Brothers and where did they come from?</li>
+                <li>What inspired them to begin working on flight?</li>
+                <li>What important event happened on December 17, 1903?</li>
+                <li>How far did Wilbur Wright fly on his longest flight that day?</li>
+                <li>Why were people skeptical of their invention at first?</li>
+                <li>In what ways did their invention revolutionize transportation?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

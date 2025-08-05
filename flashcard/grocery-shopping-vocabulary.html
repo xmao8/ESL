@@ -1,545 +1,745 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grocery Shopping Vocabulary – ESLnote Flashcards</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f9;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* Prevent horizontal scroll */
-    }
-    nav {
-      background: #124076;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1100px; /* Max width for larger screens */
-      margin: 0 auto; /* Center the container */
-      padding: 0.8rem 1rem; /* Padding for all screen sizes */
-      box-sizing: border-box;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      color: #ff9800;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-decoration: none;
-    }
-    .logo-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.5rem;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-    }
-    .nav-links a {
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      color: #ffbb33;
-      outline: none;
-    }
-    /* Hamburger menu button */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    .menu-toggle .bar {
-      width: 25px;
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-    }
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grocery Shopping Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px; /* Max width for larger screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0.8rem 1rem; /* Padding for all screen sizes */
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
 
-    /* --- Phone Layout (max-width: 600px) --- */
-    @media (max-width: 600px) {
-      .nav-links {
-        position: fixed;
-        top: 56px; /* Adjust if your nav height is different */
-        right: 0;
-        background: #124076;
-        flex-direction: column;
-        width: 100%; /* Changed from 100vw to 100% */
-        height: calc(100vh - 56px); /* Adjust if your nav height is different */
-        padding: 1rem 1.5rem 2rem 1.5rem;
-        gap: 1.2rem;
-        overflow-y: auto;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        border-radius: 0 0 0 10px;
-        z-index: 999;
-        box-sizing: border-box;
-        align-items: flex-start;
-      }
-      .nav-links.active {
-        transform: translateX(0);
-      }
-      .menu-toggle {
-        display: flex; /* Show hamburger on phones */
-      }
-      h1, .flashcard, .buttons {
-        padding: 0 1rem; /* Add horizontal padding to main content */
-        box-sizing: border-box;
-      }
-    }
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px; /* Adjust if your nav height is different */
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%; /* Changed from 100vw to 100% */
+        height: calc(100vh - 56px); /* Adjust if your nav height is different */
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex; /* Show hamburger on phones */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1rem; /* Add horizontal padding to main content */
+        box-sizing: border-box;
+      }
+    }
 
-    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
-    @media (min-width: 601px) and (max-width: 900px) {
-      .nav-container {
-        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
-      }
-      .nav-links {
-        position: static; /* Links are part of the normal flow */
-        flex-direction: row; /* Links in a row */
-        background: none;
-        height: auto;
-        width: auto;
-        padding: 0;
-        gap: 1.3rem; /* Slightly smaller gap than desktop */
-        transform: none !important; /* Ensure no translation */
-        border-radius: 0;
-        align-items: center;
-        overflow: visible;
-      }
-      .menu-toggle {
-        display: none; /* Hide hamburger on tablets */
-      }
-      h1, .flashcard, .buttons {
-        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
-        box-sizing: border-box;
-      }
-    }
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+      }
+      .nav-links {
+        position: static; /* Links are part of the normal flow */
+        flex-direction: row; /* Links in a row */
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem; /* Slightly smaller gap than desktop */
+        transform: none !important; /* Ensure no translation */
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on tablets */
+      }
+      h1, .flashcard, .buttons {
+        padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+        box-sizing: border-box;
+      }
+    }
 
-    /* --- Desktop Layout (min-width: 901px) --- */
-    @media (min-width: 901px) {
-      .nav-container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0.8rem 1rem;
-      }
-      .nav-links {
-        position: static;
-        flex-direction: row;
-        background: none;
-        height: auto;
-        width: auto;
-        padding: 0;
-        gap: 1.5rem;
-        transform: none !important;
-        border-radius: 0;
-        align-items: center;
-        overflow: visible;
-      }
-      .menu-toggle {
-        display: none; /* Hide hamburger on desktop */
-      }
-      body {
-        padding: 0;
-      }
-      h1, .flashcard, .buttons {
-        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
-      }
-    }
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle {
+        display: none; /* Hide hamburger on desktop */
+      }
+      body {
+        padding: 0;
+      }
+      h1, .flashcard, .buttons {
+        padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+      }
+    }
 
-    h1 {
-      margin: 2rem auto;
-      color: #2c3e50;
-      max-width: 600px;
-    }
-    .flashcard {
-      background: white;
-      width: 90%;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-    .flashcard.flipped {
-      background-color: #3498db;
-      color: white;
-    }
-    .word {
-      font-weight: bold;
-      font-size: 2rem;
-      margin-bottom: 0.3rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .ipa {
-      font-family: 'Arial', sans-serif;
-      font-style: italic;
-      font-size: 1.4rem;
-      color: #666;
-    }
-    .flashcard.flipped .ipa {
-      color: #e0e0e0;
-    }
-    .definition {
-      margin: 1rem 0 0.5rem 0;
-      font-size: 1.1rem;
-    }
-    .example {
-      font-style: italic;
-      opacity: 0.85;
-      font-size: 1rem;
-      margin-top: 0.3rem;
-    }
-    .translation {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      color: #c0d9f0; /* Lighter color for translations on flipped card */
-    }
-    .speaker {
-      cursor: pointer;
-      font-size: 1.6rem;
-      color: #fff;
-      user-select: none;
-      transition: color 0.2s;
-    }
-    .speaker:hover {
-      color: #f0c040;
-    }
-    .buttons {
-      margin: 2rem auto 3rem auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      max-width: 600px;
-    }
-    button, .buttons a {
-      padding: 0.6rem 1.2rem;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      user-select: none;
-    }
-    button:hover, .buttons a:hover {
-      background: #2980b9;
-    }
-  </style>
+    h1 {
+      margin: 2rem auto;
+      color: #2c3e50;
+      max-width: 600px;
+    }
+    .flashcard {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped {
+      background-color: #3498db;
+      color: white;
+    }
+    .word {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    .flashcard.flipped .ipa {
+      color: #e0e0e0;
+    }
+    .definition {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .example {
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #c0d9f0; /* Lighter color for translations on flipped card */
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .speaker:hover {
+      color: #f0c040;
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  </style>
 </head>
 <body>
 
 <nav aria-label="Main navigation">
-  <div class="nav-container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-      <span class="site-name">ESLnote</span>
-    </a>
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
 
-    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
 
-    <div class="nav-links" id="primary-navigation">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../listening.html">Listening</a>
-      <a href="../practice.html">Practices</a>
-    </div>
-  </div>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
 </nav>
 
 <h1>Grocery Shopping Vocabulary Flashcards</h1>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
-  <div class="word">Click to Flip</div>
-  <div class="ipa" style="color: #666;"></div>
-  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
-  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
 const flashcards = [
-  {
-    word: "Aisle",
-    ipa: "/aɪl/",
-    definition: "A passageway between rows of shelves in a store.",
-    example: "I found the pasta in the canned goods **aisle**.",
-    chinese: "过道 (guòdào)",
-    spanish: "pasillo"
-  },
-  {
-    word: "Cart / Trolley",
-    ipa: "/kɑːrt/ / ˈtrɒli/",
-    definition: "A large basket on wheels used for carrying groceries.",
-    example: "Grab a **cart** at the entrance before we start shopping.",
-    chinese: "购物车 (gòuwù chē)",
-    spanish: "carrito de compras"
-  },
-  {
-    word: "Produce",
-    ipa: "/ˈproʊduːs/",
-    definition: "Fresh fruits and vegetables.",
-    example: "The **produce** section has beautiful, fresh strawberries today.",
-    chinese: "农产品 (nóngchǎnpǐn)",
-    spanish: "productos frescos"
-  },
-  {
-    word: "Deli",
-    ipa: "/ˈdɛli/",
-    definition: "A department in a grocery store that sells sliced meats, cheeses, and prepared salads.",
-    example: "I'll get a pound of ham from the **deli** counter.",
-    chinese: "熟食店 (shúshí diàn)",
-    spanish: "charcutería"
-  },
-  {
-    word: "Bakery",
-    ipa: "/ˈbeɪkəri/",
-    definition: "The section of a store that sells fresh bread, pastries, and cakes.",
-    example: "The smell of fresh bread from the **bakery** is my favorite part of the store.",
-    chinese: "面包店 (miànbāo diàn)",
-    spanish: "panadería"
-  },
-  {
-    word: "Dairy",
-    ipa: "/ˈdɛri/",
-    definition: "The section with milk, cheese, yogurt, and butter.",
-    example: "We need to go to the **dairy** aisle to get some eggs.",
-    chinese: "奶制品 (nǎizhìpǐn)",
-    spanish: "lácteos"
-  },
-  {
-    word: "Checkout",
-    ipa: "/ˈtʃɛkaʊt/",
-    definition: "The place where you pay for your items.",
-    example: "The lines at the **checkout** are very long right now.",
-    chinese: "收银台 (shōuyín tái)",
-    spanish: "caja"
-  },
-  {
-    word: "Cashier",
-    ipa: "/kæˈʃɪər/",
-    definition: "The person who takes your payment at the checkout.",
-    example: "The **cashier** was very friendly and fast.",
-    chinese: "收银员 (shōuyín yuán)",
-    spanish: "cajero"
-  },
-  {
-    word: "Receipt",
-    ipa: "/rɪˈsiːt/",
-    definition: "A printed note from the cashier that shows what you bought and how much you paid.",
-    example: "Don't forget to get the **receipt** in case you need to return something.",
-    chinese: "收据 (shōujù)",
-    spanish: "recibo"
-  },
-  {
-    word: "Coupon",
-    ipa: "/ˈkuːpɒn/",
-    definition: "A voucher that gives you a discount on a product.",
-    example: "I used a **coupon** to save $2 on the cereal.",
-    chinese: "优惠券 (yōuhuì quàn)",
-    spanish: "cupón"
-  },
-  {
-    word: "Bagger",
-    ipa: "/ˈbæɡər/",
-    definition: "The person who puts your groceries in bags.",
-    example: "A **bagger** helped me pack all my groceries.",
-    chinese: "装袋员 (zhuāngdài yuán)",
-    spanish: "embolsador"
-  },
-  {
-    word: "Loyalty card",
-    ipa: "/ˈlɔɪəlti kɑːrd/",
-    definition: "A card that allows a customer to collect points or get discounts.",
-    example: "Remember to scan your **loyalty card** to get the special price.",
-    chinese: "会员卡 (huìyuán kǎ)",
-    spanish: "tarjeta de fidelidad"
-  },
-  {
-    word: "Bulk",
-    ipa: "/bʌlk/",
-    definition: "Large quantities of a product, often sold from bins or barrels.",
-    example: "It's cheaper to buy rice in **bulk**.",
-    chinese: "散装 (sǎnzhuāng)",
-    spanish: "a granel"
-  },
-  {
-    word: "Organic",
-    ipa: "/ɔːrˈɡænɪk/",
-    definition: "Food produced without the use of artificial chemicals, fertilizers, or pesticides.",
-    example: "She prefers to buy **organic** vegetables.",
-    chinese: "有机的 (yǒujī de)",
-    spanish: "orgánico"
-  },
-  {
-    word: "Nutrition label",
-    ipa: "/nuːˈtrɪʃən ˈleɪbəl/",
-    definition: "A label on food packaging that shows the nutritional information.",
-    example: "Always check the **nutrition label** for the amount of sugar.",
-    chinese: "营养标签 (yíngyǎng biāolún)",
-    spanish: "etiqueta nutricional"
-  },
-  {
-    word: "To pick up",
-    ipa: "/tuː pɪk ʌp/",
-    definition: "To buy or get something quickly.",
-    example: "Can you **pick up** a gallon of milk on your way home?",
-    chinese: "顺便买 (shùnbiàn mǎi)",
-    spanish: "recoger"
-  },
-  {
-    word: "To run out of",
-    ipa: "/tuː rʌn aʊt əv/",
-    definition: "To have no more of something.",
-    example: "We've **run out of** bread, so I need to go to the store.",
-    chinese: "用完 (yòng wán)",
-    spanish: "quedarse sin"
-  },
-  {
-    word: "To finalize a purchase",
-    ipa: "/tuː ˈfaɪnəlaɪz ə ˈpɜːrtʃəs/",
-    definition: "To complete the transaction by paying for the items.",
-    example: "I'm ready to **finalize a purchase**, but the line is so long.",
-    chinese: "完成购买 (wánchéng gòumǎi)",
-    spanish: "finalizar una compra"
-  },
-  {
-    word: "To package",
-    ipa: "/tuː ˈpækɪdʒ/",
-    definition: "To put groceries into bags or containers after purchase.",
-    example: "The groceries are all on the belt; I can **package** them myself.",
-    chinese: "打包 (dǎbāo)",
-    spanish: "empaquetar"
-  },
-  {
-    word: "To navigate the aisles",
-    ipa: "/tuː ˈnævɪɡeɪt ðə aɪlz/",
-    definition: "To find your way through the rows of shelves in a store.",
-    example: "It took me a while to **navigate the aisles** to find everything on my list.",
-    chinese: "逛过道 (guàng guòdào)",
-    spanish: "navegar los pasillos"
-  },
-  {
-    word: "To be in stock",
-    ipa: "/tuː biː ɪn stɒk/",
-    definition: "When an item is available for sale.",
-    example: "The special coffee is finally **in stock** again.",
-    chinese: "有库存 (yǒu kùcún)",
-    spanish: "estar en existencia"
-  },
-  {
-    word: "To be out of stock",
-    ipa: "/tuː biː aʊt əv stɒk/",
-    definition: "When an item is not available.",
-    example: "They are **out of stock** of my favorite yogurt.",
-    chinese: "缺货 (quēhuò)",
-    spanish: "estar agotado"
-  },
-  {
-    word: "To exchange",
-    ipa: "/tuː ɪksˈtʃeɪndʒ/",
-    definition: "To take a product back to the store and get another product in its place.",
-    example: "I need to **exchange** these eggs because the carton is broken.",
-    chinese: "交换 (jiāohuàn)",
-    spanish: "cambiar"
-  },
-  {
-    word: "Reusable bag",
-    ipa: "/ˌriːˈjuːzəbəl bæɡ/",
-    definition: "A strong bag you can use for shopping many times.",
-    example: "Don't forget your **reusable bags** to help the environment.",
-    chinese: "可重复使用的袋子 (kě chóngfù shǐyòng de dàizi)",
-    spanish: "bolsa reutilizable"
-  },
-  {
-    word: "Special / On sale",
-    ipa: "/ˈspɛʃəl / ɒn seɪl/",
-    definition: "A lower price than usual.",
-    example: "I bought these cookies because they were **on special** this week.",
-    chinese: "特价 / 促销 (tèjià / cùxiāo)",
-    spanish: "en oferta"
-  },
-  {
-    word: "Shopping itinerary",
-    ipa: "/ˈʃɒpɪŋ aɪˈtɪnəˌrɛri/",
-    definition: "A detailed plan or list of items one intends to buy at the store.",
-    example: "I forgot my **shopping itinerary** at home, so I have to remember everything.",
-    chinese: "购物清单 (gòuwù qīngdān)",
-    spanish: "itinerario de compras"
-  },
-  {
-    word: "Expiration date",
-    ipa: "/ˌɛkspəˈreɪʃən deɪt/",
-    definition: "The date on food packaging after which the food should not be eaten.",
-    example: "Always check the **expiration date** on milk and other fresh products.",
-    chinese: "有效期 (yǒuxiàoqī)",
-    spanish: "fecha de caducidad"
-  },
-  {
-    word: "Reimbursement",
-    ipa: "/ˌriːɪmˈbɜːrsmənt/",
-    definition: "The money that is paid back to a customer for a return.",
-    example: "I received a full **reimbursement** for the damaged package.",
-    chinese: "报销 / 退款 (bàoxiāo / tuìkuǎn)",
-    spanish: "reembolso"
-  },
-  {
-    word: "Price verification",
-    ipa: "/praɪs ˌvɛrəfəˈkeɪʃən/",
-    definition: "The process of checking or confirming the correct price of an item.",
-    example: "The barcode didn't work, so the cashier had to do a **price verification**.",
-    chinese: "价格核对 (jiàgé héduì)",
-    spanish: "verificación de precio"
-  },
-  {
-    word: "Grocery run",
-    ipa: "/ˈɡroʊsəri rʌn/",
-    definition: "A quick trip to the grocery store to buy a few items.",
-    example: "I'm making a quick **grocery run**; do we need anything?",
-    chinese: "快速采购 (kuàisù cǎigòu)",
-    spanish: "ir a comprar al supermercado"
-  }
+  {
+    word: "Aisle",
+    ipa: "/aɪl/",
+    definition: "A passageway between rows of shelves in a store.",
+    example: "I found the pasta in the canned goods **aisle**.",
+    chinese: "过道 (guòdào)",
+    spanish: "pasillo"
+  },
+  {
+    word: "Cart / Trolley",
+    ipa: "/kɑːrt/ / ˈtrɒli/",
+    definition: "A large basket on wheels used for carrying groceries.",
+    example: "Grab a **cart** at the entrance before we start shopping.",
+    chinese: "购物车 (gòuwù chē)",
+    spanish: "carrito de compras"
+  },
+  {
+    word: "Produce",
+    ipa: "/ˈproʊduːs/",
+    definition: "Fresh fruits and vegetables.",
+    example: "The **produce** section has beautiful, fresh strawberries today.",
+    chinese: "农产品 (nóngchǎnpǐn)",
+    spanish: "productos frescos"
+  },
+  {
+    word: "Deli",
+    ipa: "/ˈdɛli/",
+    definition: "A department in a grocery store that sells sliced meats, cheeses, and prepared salads.",
+    example: "I'll get a pound of ham from the **deli** counter.",
+    chinese: "熟食店 (shúshí diàn)",
+    spanish: "charcutería"
+  },
+  {
+    word: "Bakery",
+    ipa: "/ˈbeɪkəri/",
+    definition: "The section of a store that sells fresh bread, pastries, and cakes.",
+    example: "The smell of fresh bread from the **bakery** is my favorite part of the store.",
+    chinese: "面包店 (miànbāo diàn)",
+    spanish: "panadería"
+  },
+  {
+    word: "Dairy",
+    ipa: "/ˈdɛri/",
+    definition: "The section with milk, cheese, yogurt, and butter.",
+    example: "We need to go to the **dairy** aisle to get some eggs.",
+    chinese: "奶制品 (nǎizhìpǐn)",
+    spanish: "lácteos"
+  },
+  {
+    word: "Checkout",
+    ipa: "/ˈtʃɛkaʊt/",
+    definition: "The place where you pay for your items.",
+    example: "The lines at the **checkout** are very long right now.",
+    chinese: "收银台 (shōuyín tái)",
+    spanish: "caja"
+  },
+  {
+    word: "Cashier",
+    ipa: "/kæˈʃɪər/",
+    definition: "The person who takes your payment at the checkout.",
+    example: "The **cashier** was very friendly and fast.",
+    chinese: "收银员 (shōuyín yuán)",
+    spanish: "cajero"
+  },
+  {
+    word: "Receipt",
+    ipa: "/rɪˈsiːt/",
+    definition: "A printed note from the cashier that shows what you bought and how much you paid.",
+    example: "Don't forget to get the **receipt** in case you need to return something.",
+    chinese: "收据 (shōujù)",
+    spanish: "recibo"
+  },
+  {
+    word: "Coupon",
+    ipa: "/ˈkuːpɒn/",
+    definition: "A voucher that gives you a discount on a product.",
+    example: "I used a **coupon** to save $2 on the cereal.",
+    chinese: "优惠券 (yōuhuì quàn)",
+    spanish: "cupón"
+  },
+  {
+    word: "Bagger",
+    ipa: "/ˈbæɡər/",
+    definition: "The person who puts your groceries in bags.",
+    example: "A **bagger** helped me pack all my groceries.",
+    chinese: "装袋员 (zhuāngdài yuán)",
+    spanish: "embolsador"
+  },
+  {
+    word: "Loyalty card",
+    ipa: "/ˈlɔɪəlti kɑːrd/",
+    definition: "A card that allows a customer to collect points or get discounts.",
+    example: "Remember to scan your **loyalty card** to get the special price.",
+    chinese: "会员卡 (huìyuán kǎ)",
+    spanish: "tarjeta de fidelidad"
+  },
+  {
+    word: "Bulk",
+    ipa: "/bʌlk/",
+    definition: "Large quantities of a product, often sold from bins or barrels.",
+    example: "It's cheaper to buy rice in **bulk**.",
+    chinese: "散装 (sǎnzhuāng)",
+    spanish: "a granel"
+  },
+  {
+    word: "Organic",
+    ipa: "/ɔːrˈɡænɪk/",
+    definition: "Food produced without the use of artificial chemicals, fertilizers, or pesticides.",
+    example: "She prefers to buy **organic** vegetables.",
+    chinese: "有机的 (yǒujī de)",
+    spanish: "orgánico"
+  },
+  {
+    word: "Nutrition label",
+    ipa: "/nuːˈtrɪʃən ˈleɪbəl/",
+    definition: "A label on food packaging that shows the nutritional information.",
+    example: "Always check the **nutrition label** for the amount of sugar.",
+    chinese: "营养标签 (yíngyǎng biāolún)",
+    spanish: "etiqueta nutricional"
+  },
+  {
+    word: "To pick up",
+    ipa: "/tuː pɪk ʌp/",
+    definition: "To buy or get something quickly.",
+    example: "Can you **pick up** a gallon of milk on your way home?",
+    chinese: "顺便买 (shùnbiàn mǎi)",
+    spanish: "recoger"
+  },
+  {
+    word: "To run out of",
+    ipa: "/tuː rʌn aʊt əv/",
+    definition: "To have no more of something.",
+    example: "We've **run out of** bread, so I need to go to the store.",
+    chinese: "用完 (yòng wán)",
+    spanish: "quedarse sin"
+  },
+  {
+    word: "To finalize a purchase",
+    ipa: "/tuː ˈfaɪnəlaɪz ə ˈpɜːrtʃəs/",
+    definition: "To complete the transaction by paying for the items.",
+    example: "I'm ready to **finalize a purchase**, but the line is so long.",
+    chinese: "完成购买 (wánchéng gòumǎi)",
+    spanish: "finalizar una compra"
+  },
+  {
+    word: "To package",
+    ipa: "/tuː ˈpækɪdʒ/",
+    definition: "To put groceries into bags or containers after purchase.",
+    example: "The groceries are all on the belt; I can **package** them myself.",
+    chinese: "打包 (dǎbāo)",
+    spanish: "empaquetar"
+  },
+  {
+    word: "To navigate the aisles",
+    ipa: "/tuː ˈnævɪɡeɪt ðə aɪlz/",
+    definition: "To find your way through the rows of shelves in a store.",
+    example: "It took me a while to **navigate the aisles** to find everything on my list.",
+    chinese: "逛过道 (guàng guòdào)",
+    spanish: "navegar los pasillos"
+  },
+  {
+    word: "To be in stock",
+    ipa: "/tuː biː ɪn stɒk/",
+    definition: "When an item is available for sale.",
+    example: "The special coffee is finally **in stock** again.",
+    chinese: "有库存 (yǒu kùcún)",
+    spanish: "estar en existencia"
+  },
+  {
+    word: "To be out of stock",
+    ipa: "/tuː biː aʊt əv stɒk/",
+    definition: "When an item is not available.",
+    example: "They are **out of stock** of my favorite yogurt.",
+    chinese: "缺货 (quēhuò)",
+    spanish: "estar agotado"
+  },
+  {
+    word: "To exchange",
+    ipa: "/tuː ɪksˈtʃeɪndʒ/",
+    definition: "To take a product back to the store and get another product in its place.",
+    example: "I need to **exchange** these eggs because the carton is broken.",
+    chinese: "交换 (jiāohuàn)",
+    spanish: "cambiar"
+  },
+  {
+    word: "Reusable bag",
+    ipa: "/ˌriːˈjuːzəbəl bæɡ/",
+    definition: "A strong bag you can use for shopping many times.",
+    example: "Don't forget your **reusable bags** to help the environment.",
+    chinese: "可重复使用的袋子 (kě chóngfù shǐyòng de dàizi)",
+    spanish: "bolsa reutilizable"
+  },
+  {
+    word: "Special / On sale",
+    ipa: "/ˈspɛʃəl / ɒn seɪl/",
+    definition: "A lower price than usual.",
+    example: "I bought these cookies because they were **on special** this week.",
+    chinese: "特价 / 促销 (tèjià / cùxiāo)",
+    spanish: "en oferta"
+  },
+  {
+    word: "Shopping itinerary",
+    ipa: "/ˈʃɒpɪŋ aɪˈtɪnəˌrɛri/",
+    definition: "A detailed plan or list of items one intends to buy at the store.",
+    example: "I forgot my **shopping itinerary** at home, so I have to remember everything.",
+    chinese: "购物清单 (gòuwù qīngdān)",
+    spanish: "itinerario de compras"
+  },
+  {
+    word: "Expiration date",
+    ipa: "/ˌɛkspəˈreɪʃən deɪt/",
+    definition: "The date on food packaging after which the food should not be eaten.",
+    example: "Always check the **expiration date** on milk and other fresh products.",
+    chinese: "有效期 (yǒuxiàoqī)",
+    spanish: "fecha de caducidad"
+  },
+  {
+    word: "Reimbursement",
+    ipa: "/ˌriːɪmˈbɜːrsmənt/",
+    definition: "The money that is paid back to a customer for a return.",
+    example: "I received a full **reimbursement** for the damaged package.",
+    chinese: "报销 / 退款 (bàoxiāo / tuìkuǎn)",
+    spanish: "reembolso"
+  },
+  {
+    word: "Price verification",
+    ipa: "/praɪs ˌvɛrəfəˈkeɪʃən/",
+    definition: "The process of checking or confirming the correct price of an item.",
+    example: "The barcode didn't work, so the cashier had to do a **price verification**.",
+    chinese: "价格核对 (jiàgé héduì)",
+    spanish: "verificación de precio"
+  },
+  {
+    word: "Grocery run",
+    ipa: "/ˈɡroʊsəri rʌn/",
+    definition: "A quick trip to the grocery store to buy a few items.",
+    example: "I'm making a quick **grocery run**; do we need anything?",
+    chinese: "快速采购 (kuàisù cǎigòu)",
+    spanish: "ir a comprar al supermercado"
+  },
+  {
+    word: "Nutritious",
+    ipa: "/nuːˈtrɪʃəs/",
+    definition: "Full of substances that your body needs to be healthy and strong.",
+    example: "Eating a **nutritious** breakfast with fruit and eggs is a great way to start the day.",
+    chinese: "有营养的 (yǒu yíngyǎng de)",
+    spanish: "nutritivo"
+  },
+  {
+    word: "Expires",
+    ipa: "/ɪkˈspaɪərz/",
+    definition: "When a product reaches the date after which it should not be used or eaten.",
+    example: "This carton of milk **expires** next week, so we should drink it soon.",
+    chinese: "过期 (guòqī)",
+    spanish: "expira"
+  },
+  {
+    word: "Affordable",
+    ipa: "/əˈfɔːrdəbəl/",
+    definition: "Inexpensive; cheap enough for most people to buy.",
+    example: "The store brand products are often more **affordable** than the name brands.",
+    chinese: "负担得起的 (fùdān dé qǐ de)",
+    spanish: "asequible"
+  },
+  {
+    word: "Protein",
+    ipa: "/ˈproʊtiːn/",
+    definition: "A substance found in foods like meat, eggs, and beans that is essential for building muscle and tissue.",
+    example: "I like to add extra **protein** to my salad with grilled chicken.",
+    chinese: "蛋白质 (dànbáizhì)",
+    spanish: "proteína"
+  },
+  {
+    word: "Perishable",
+    ipa: "/ˈpɛrɪʃəbəl/",
+    definition: "Food items that can decay or spoil quickly and must be kept refrigerated.",
+    example: "Milk, eggs, and meat are all **perishable** goods, so put them in the fridge first.",
+    chinese: "易腐烂的 (yì fǔlàn de)",
+    spanish: "perecedero"
+  },
+  {
+    word: "Store-bought",
+    ipa: "/ˈstɔːr bɔːt/",
+    definition: "Purchased from a store, as opposed to homemade.",
+    example: "The **store-bought** cookies are convenient, but I prefer to bake my own.",
+    chinese: "商店买的 (shāngdiàn mǎi de)",
+    spanish: "comprado en la tienda"
+  },
+  {
+    word: "Convenient",
+    ipa: "/kənˈviːnjənt/",
+    definition: "Easy to use or get; fitting in with your plans and not causing trouble.",
+    example: "Frozen meals are a **convenient** option for a quick dinner.",
+    chinese: "方便的 (fāngbiàn de)",
+    spanish: "conveniente"
+  },
+  {
+    word: "Balanced diet",
+    ipa: "/ˈbælənst ˈdaɪət/",
+    definition: "A diet that contains all the nutrients your body needs to function properly.",
+    example: "To stay healthy, it's important to eat a **balanced diet** with lots of fruits and vegetables.",
+    chinese: "均衡饮食 (jūnhéng yǐnshí)",
+    spanish: "dieta equilibrada"
+  },
+  {
+    word: "Shelf life",
+    ipa: "/ʃɛlf laɪf/",
+    definition: "The length of time that a product can be stored before it becomes unsuitable for use or sale.",
+    example: "Canned foods have a very long **shelf life**.",
+    chinese: "保质期 (bǎozhìqī)",
+    spanish: "vida útil"
+  },
+  {
+    word: "Non-perishable",
+    ipa: "/ˌnɒn ˈpɛrɪʃəbəl/",
+    definition: "Foods that do not spoil easily and can be stored for a long time without refrigeration.",
+    example: "Pasta, rice, and canned beans are **non-perishable** foods that are good for emergencies.",
+    chinese: "不易腐烂的 (bù yì fǔlàn de)",
+    spanish: "no perecedero"
+  },
+  {
+    word: "Fresh produce",
+    ipa: "/frɛʃ ˈproʊduːs/",
+    definition: "Fruits and vegetables that are raw and recently harvested.",
+    example: "The farmer's market has the best **fresh produce**.",
+    chinese: "新鲜农产品 (xīnxiān nóngchǎnpǐn)",
+    spanish: "productos frescos"
+  },
+  {
+    word: "Processed food",
+    ipa: "/ˈprɑːsɛst fuːd/",
+    definition: "Food that has been changed from its natural state, often with added salt, sugar, or fat.",
+    example: "You should try to limit the amount of **processed food** you eat.",
+    chinese: "加工食品 (jiāgōng shípǐn)",
+    spanish: "alimentos procesados"
+  },
+  {
+    word: "Essential",
+    ipa: "/ɪˈsɛnʃəl/",
+    definition: "Completely necessary or important.",
+    example: "Milk and bread are **essential** items on my shopping list this week.",
+    chinese: "必需的 (bìxū de)",
+    spanish: "esencial"
+  },
+  {
+    word: "Filling",
+    ipa: "/ˈfɪlɪŋ/",
+    definition: "A type of food that makes you feel full.",
+    example: "Oatmeal is a very **filling** breakfast that keeps me full until lunch.",
+    chinese: "饱腹的 (bǎofù de)",
+    spanish: "relleno/sustancioso"
+  },
+  {
+    word: "Calorie",
+    ipa: "/ˈkæləri/",
+    definition: "A unit used to measure the energy value of food.",
+    example: "I'm trying to count my **calories** to eat healthier.",
+    chinese: "卡路里 (kǎlùlǐ)",
+    spanish: "caloría"
+  },
+  {
+    word: "Preservative",
+    ipa: "/prɪˈzɜːrvətɪv/",
+    definition: "A substance used to keep food from spoiling.",
+    example: "Many canned soups have **preservatives** to make them last longer.",
+    chinese: "防腐剂 (fángfǔjì)",
+    spanish: "conservante"
+  },
+  {
+    word: "Pantry",
+    ipa: "/ˈpæntri/",
+    definition: "A small room or cupboard where food, dishes, and utensils are stored.",
+    example: "I need to clean out the **pantry** to make space for the new groceries.",
+    chinese: "食品储藏室 (shípǐn chú cáng shì)",
+    spanish: "despensa"
+  },
+  {
+    word: "Leftovers",
+    ipa: "/ˈlɛftˌoʊvərz/",
+    definition: "Food remaining from a previous meal.",
+    example: "We're having chicken soup for dinner; I'll save the **leftovers** for lunch tomorrow.",
+    chinese: "剩饭剩菜 (shèngfàn shèngcài)",
+    spanish: "sobras"
+  },
+  {
+    word: "Portion",
+    ipa: "/ˈpɔːrʃən/",
+    definition: "An amount of food served for one person.",
+    example: "I ate a large **portion** of pasta and now I'm very full.",
+    chinese: "一份 (yī fèn)",
+    spanish: "porción"
+  },
+  {
+    word: "Fiber",
+    ipa: "/ˈfaɪbər/",
+    definition: "A substance in plant-based foods that helps with digestion.",
+    example: "You can get lots of **fiber** from eating whole-grain bread and vegetables.",
+    chinese: "纤维 (xiānwéi)",
+    spanish: "fibra"
+  },
+  {
+    word: "Hydration",
+    ipa: "/haɪˈdreɪʃən/",
+    definition: "The process of drinking enough water to stay healthy.",
+    example: "Proper **hydration** is key to feeling energized throughout the day.",
+    chinese: "补水 (bǔ shuǐ)",
+    spanish: "hidratación"
+  },
+  {
+    word: "Sustainable",
+    ipa: "/səˈsteɪnəbəl/",
+    definition: "Produced or managed in a way that doesn’t harm the environment or deplete natural resources.",
+    example: "I try to buy **sustainable** food products from local farms.",
+    chinese: "可持续的 (kě chíxù de)",
+    spanish: "sostenible"
+  },
+  {
+    word: "Spoil",
+    ipa: "/spɔɪl/",
+    definition: "When food becomes bad to eat because it is old or has not been stored correctly.",
+    example: "If you leave the milk out of the fridge, it will **spoil**.",
+    chinese: "变质 (biànzhì)",
+    spanish: "estropearse"
+  },
+  {
+    word: "Reheatable",
+    ipa: "/ˌriːˈhiːtəbəl/",
+    definition: "Food that can be cooked again, usually in a microwave or oven.",
+    example: "Pre-made meals are often **reheatable** for a quick lunch at work.",
+    chinese: "可再加热的 (kě zài jiārè de)",
+    spanish: "recalentable"
+  },
+  {
+    word: "Multi-purpose",
+    ipa: "/ˌmʌltiˈpɜːrpəs/",
+    definition: "Having more than one use or function.",
+    example: "I bought a large container of **multi-purpose** flour for all my baking needs.",
+    chinese: "多用途的 (duō yòngtú de)",
+    spanish: "multiusos"
+  }
 ];
 
 let index = 0;
@@ -548,96 +748,96 @@ let flipped = false;
 const flashcard = document.getElementById("flashcard");
 
 function showCard() {
-  flipped = false;
-  flashcard.classList.remove("flipped");
-  flashcard.setAttribute("aria-pressed", "false");
-  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
-                         <div class="ipa">${flashcards[index].ipa}</div>
-                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                         <div class="ipa">${flashcards[index].ipa}</div>
+                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
 }
 
 function flipCard() {
-  if (!flipped) {
-    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
-    flashcard.innerHTML = `
-      <div class="word">
-        ${word}
-        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
-      </div>
-      <div class="ipa">${ipa}</div>
-      <div class="definition">${definition}</div>
-      <div class="example">"${example}"</div>
-      <div class="translation">Chinese: ${chinese}</div>
-      <div class="translation">Spanish: ${spanish}</div>
-      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
-    `;
-    flashcard.classList.add("flipped");
-    flashcard.setAttribute("aria-pressed", "true");
-    flipped = true;
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
 
-    // Pronounce word when flipping
-    const speakerBtn = flashcard.querySelector(".speaker");
-    function speak() {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      speechSynthesis.speak(utterance);
-    }
-    speakerBtn.addEventListener("click", speak);
-    speakerBtn.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        speak();
-      }
-    });
+    // Pronounce word when flipping
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
 
-    // Auto pronounce once on flip
-    speak();
+    // Auto pronounce once on flip
+    speak();
 
-  } else {
-    showCard();
-  }
+  } else {
+    showCard();
+  }
 }
 
 function nextCard() {
-  index = (index + 1) % flashcards.length;
-  showCard();
+  index = (index + 1) % flashcards.length;
+  showCard();
 }
 
 function prevCard() {
-  index = (index - 1 + flashcards.length) % flashcards.length;
-  showCard();
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
 }
 
 showCard();
 </script>
 
 <div class="buttons">
-  <a href="../flashcards.html">← Back to Flashcards</a>
-  <a href="../index.html">🏠 Home</a>
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
 </div>
 
 <script>
-  // Mobile nav toggle script
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-    });
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
-  }
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
 </script>
 
 </body>

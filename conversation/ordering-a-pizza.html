@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ordering a Pizza – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Your existing CSS for navigation and general layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+
+        /* Conversation specific styles */
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block; /* Allows for consistent spacing with character names */
+            width: 100px; /* Adjust as needed for longest name */
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Vocabulary List specific styles */
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem; /* More space between vocabulary items */
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex; /* Use flexbox for word + icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between word and icon */
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px; /* Space after the word/icon */
+        }
+        .vocabulary-list .definition {
+            display: block; /* Make definition appear on a new line */
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block; /* New line for example */
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Ordering a Pizza</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>ANNA:</strong> A new customer, in her 20s, a bit overwhelmed by the options.</li>
+            <li><strong>CHLOE:</strong> Her friend, a regular at this pizza place.</li>
+            <li><strong>SERVER:</strong> A friendly and efficient employee.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: A bustling, casual pizza restaurant.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with Anna and Chloe seated at a small table. They are looking at a menu with different types of pizzas and toppings.)</p>
+        <p><strong>ANNA:</strong> <span class="dialogue">This looks so good, but I don't know what to get. Do you have a favorite?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Oh, yeah. I always get the **Supreme**. It's got a little bit of everything: pepperoni, sausage, peppers, onions, and mushrooms. It's a classic for a reason.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Supreme? That sounds like a lot! I think I want something a little simpler. What's the difference between a **pepperoni pizza** and a **meat lover’s pizza**?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Good question. A pepperoni pizza is just that—just pepperoni on top. A meat lover’s pizza, though, has several kinds of meat, like pepperoni, sausage, ham, and sometimes bacon.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Okay, I think I'll just stick to something simple. A pepperoni sounds perfect. What kind of **crust** do you want to get?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">They have a great **thin crust**, which is crispy, or you can get the **hand-tossed**, which is a little thicker and softer. I like the hand-tossed best. It’s perfect for dipping in their **garlic sauce**.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Garlic sauce? Is that extra?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Sometimes, but it’s worth it! You have to try it.</span></p>
+        <p class="scene-direction">(The server comes to their table, pad in hand.)</p>
+        <p><strong>SERVER:</strong> <span class="dialogue">Are you ready to order, ladies?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Yes, we are. We'll get a large, hand-tossed pepperoni pizza. Could we also get a side of garlic sauce for dipping?</span></p>
+        <p><strong>SERVER:</strong> <span class="dialogue">Absolutely. And what about drinks?</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">I'll have a water with lemon, please.</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Just a soda for me.</span></p>
+        <p><strong>SERVER:</strong> <span class="dialogue">Sounds good. A large hand-tossed pepperoni, a side of garlic sauce, a water, and a soda. I’ll put that order in for you. It should be ready in about 20 minutes.</span></p>
+        <p class="scene-direction">(The server walks away. Anna looks pleased with their order.)</p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Thanks for helping me. I feel so much better knowing what I'm getting.</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">No problem! This is going to be the best pizza you've ever had.</span></p>
+        <p class="scene-direction">(The friends smile, excited for their meal. FADE OUT.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Supreme <span class="speaker-icon" onclick="speakWord('Supreme')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/suːˈpriːm/</span>
+                <span class="definition">(n.): A pizza with a variety of toppings, typically including pepperoni, sausage, peppers, onions, and mushrooms.</span>
+                <span class="example">Example: He ordered a **Supreme** pizza to get a taste of everything.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Pepperoni pizza <span class="speaker-icon" onclick="speakWord('Pepperoni pizza')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌpɛpəˈroʊni ˈpiːtsə/</span>
+                <span class="definition">(n.): A simple pizza topped with slices of pepperoni.</span>
+                <span class="example">Example: The kids always want a **pepperoni pizza**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Meat lover’s pizza <span class="speaker-icon" onclick="speakWord('Meat lover’s pizza')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/miːt ˈlʌvərz ˈpiːtsə/</span>
+                <span class="definition">(n.): A pizza with multiple types of meat toppings, such as pepperoni, sausage, and ham.</span>
+                <span class="example">Example: The **meat lover’s pizza** is a very popular choice.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Crust <span class="speaker-icon" onclick="speakWord('Crust')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/krʌst/</span>
+                <span class="definition">(n.): The outer edge and base of a pizza.</span>
+                <span class="example">Example: I like to dip my pizza **crust** in sauce.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Thin crust <span class="speaker-icon" onclick="speakWord('Thin crust')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/θɪn krʌst/</span>
+                <span class="definition">(n.): A very thin, often crispy pizza base.</span>
+                <span class="example">Example: They love the **thin crust** because it's so crispy.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Hand-tossed <span class="speaker-icon" onclick="speakWord('Hand-tossed')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/hænd tɔːst/</span>
+                <span class="definition">(n.): A pizza crust that is thicker and softer than a thin crust.</span>
+                <span class="example">Example: The **hand-tossed** pizza has a chewy, bread-like texture.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Garlic sauce <span class="speaker-icon" onclick="speakWord('Garlic sauce')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈɡɑːrlɪk sɔːs/</span>
+                <span class="definition">(n.): A creamy, savory sauce often served on the side for dipping pizza crust.</span>
+                <span class="example">Example: The **garlic sauce** adds a lot of flavor to the pizza.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Toppings <span class="speaker-icon" onclick="speakWord('Toppings')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈtɒpɪŋz/</span>
+                <span class="definition">(n.): The food items placed on top of a pizza, like vegetables, meat, and cheese.</span>
+                <span class="example">Example: The menu has a long list of **toppings** you can choose from.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Side <span class="speaker-icon" onclick="speakWord('Side')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/saɪd/</span>
+                <span class="definition">(n.): An extra item ordered with the main dish, such as a sauce or a small salad.</span>
+                <span class="example">Example: We ordered a **side** of fries with our burgers.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; // Set language to English (US)
+            utterance.rate = 0.9; // Adjust speech rate if needed
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

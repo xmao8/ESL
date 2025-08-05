@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: My First Literary Venture by Mark Twain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; text-align: justify; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a {
+                width: auto; text-align: left; padding: 0.5rem 0;
+            }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li {
+                flex-direction: column; align-items: flex-start; padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>My First Literary Venture</h1>
+    <main>
+        <div class="content-section">
+            <h2>My First Literary Venture</h2>
+            <p><i>by Mark Twain</i></p>
+            <br>
+            <p>I was a very smart child at the age of thirteen—an unusually smart child, I thought at the time. It was then that I did my first newspaper scribbling, and most unexpectedly to me it stirred up a fine sensation in the community. It did, indeed, and I was very proud of it, too. I was a printer’s “devil,” and a progressive and aspiring one. My uncle had me on his paper (the Weekly Hannibal Journal, two dollars a year in advance—five hundred subscribers, and they paid in cordwood, cabbages, and unmarketable turnips), and on a lucky summer’s day he left town to be gone a week, and asked me if I thought I could edit one issue of the paper judiciously. Ah! didn’t I want to try! Higgins was the editor on the rival paper. He had lately been jilted, and one night a friend found an open note on the poor fellow’s bed, in which he stated that he could not longer endure life and had drowned himself in Bear Creek. The friend ran down there and discovered Higgins wading back to shore. He had concluded he wouldn’t.</p>
+
+            <p>The village was full of it for several days, but Higgins did not suspect it. I thought this was a fine opportunity. I wrote an elaborately wretched account of the whole matter, and then illustrated it with villainous cuts engraved on the bottoms of wooden type with a jackknife—one of them a picture of Higgins wading out into the creek in his shirt, with a lantern, sounding the depth of the water with a walking-stick. I thought it was desperately funny, and was densely unconscious that there was any moral obliquity about such a publication. Being satisfied with this effort I looked around for other worlds to conquer, and it struck me that it would make good, interesting matter to charge the editor of a neighboring country paper with a piece of gratuitous rascality and “see him squirm.”</p>
+
+            <p>I did it, putting the article into the form of a parody on the “Burial of Sir John Moore”—and a pretty crude parody it was, too.</p>
+
+            <p>Then I lampooned two prominent citizens outrageously—not because they had done anything to deserve, but merely because I thought it was my duty to make the paper lively.</p>
+
+            <p>Next I gently touched up the newest stranger—the lion of the day, the gorgeous journeyman tailor from Quincy. He was a simpering coxcomb of the first water, and the “loudest” dressed man in the state. He was an inveterate woman-killer. Every week he wrote lushy “poetry” for the journal, about his newest conquest. His rhymes for my week were headed, “To MARY IN H—l,” meaning to Mary in Hannibal, of course. But while setting up the piece I was suddenly riven from head to heel by what I regarded as a perfect thunderbolt of humor, and I compressed it into a snappy footnote at the bottom—thus: “We will let this thing pass, just this once; but we wish Mr. J. Gordon Runnels to understand distinctly that we have a character to sustain, and from this time forth when he wants to commune with his friends in h—l, he must select some other medium than the columns of this journal!”</p>
+
+            <p>The paper came out, and I never knew any little thing attract so much attention as those playful trifles of mine.</p>
+
+            <p>For once the Hannibal Journal was in demand—a novelty it had not experienced before. The whole town was stirred. Higgins dropped in with a double-barreled shotgun early in the forenoon. When he found that it was an infant (as he called me) that had done him the damage, he simply pulled my ears and went away; but he threw up his situation that night and left town for good. The tailor came with his goose and a pair of shears; but he despised me, too, and departed for the South that night. The two lampooned citizens came with threats of libel, and went away incensed at my insignificance. The country editor pranced in with a war-whoop next day, suffering for blood to drink; but he ended by forgiving me cordially and inviting me down to the drug store to wash away all animosity in a friendly bumper of “Fahnestock’s Vermifuge.” It was his little joke. My uncle was very angry when he got back—unreasonably so, I thought, considering what an impetus I had given the paper, and considering also that gratitude for his preservation ought to have been uppermost in his mind, inasmuch as by his delay he had so wonderfully escaped dissection, tomahawking, libel, and getting his head shot off.</p>
+
+            <p>But he softened when he looked at the accounts and saw that I had actually booked the unparalleled number of thirty-three new subscribers, and had the vegetables to show for it, cordwood, cabbage, beans, and unsalable turnips enough to run the family for two years!</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are important words and phrases from the story. Try to guess the meaning first, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>Scribbling</strong> <i class="fas fa-volume-up speaker-icon" data-word="Scribbling" aria-label="Pronounce Scribbling"></i>
+                    <div class="definition">Writing or drawing in a careless or messy way. In this context, it refers to his early, unprofessional writing.</div>
+                    <div class="example">"My first attempt at writing was just scribbling in a notebook."</div>
+                </li>
+                <li>
+                    <strong>Printer's “devil”</strong> <i class="fas fa-volume-up speaker-icon" data-word="Printer's 'devil'" aria-label="Pronounce Printer's 'devil'"></i>
+                    <div class="definition">An apprentice in a printing office who does the dirty work.</div>
+                    <div class="example">"Before he became a great writer, he started as a printer's 'devil'."</div>
+                </li>
+                <li>
+                    <strong>Judiciously</strong> <i class="fas fa-volume-up speaker-icon" data-word="Judiciously" aria-label="Pronounce Judiciously"></i>
+                    <div class="definition">With good judgment and wisdom.</div>
+                    <div class="example">"She spent her money judiciously, saving a little each month."</div>
+                </li>
+                <li>
+                    <strong>Jilted</strong> <i class="fas fa-volume-up speaker-icon" data-word="Jilted" aria-label="Pronounce Jilted"></i>
+                    <div class="definition">Suddenly rejected or abandoned a lover.</div>
+                    <div class="example">"He felt sad and angry after he was jilted by his girlfriend."</div>
+                </li>
+                <li>
+                    <strong>Moral obliquity</strong> <i class="fas fa-volume-up speaker-icon" data-word="Moral obliquity" aria-label="Pronounce Moral obliquity"></i>
+                    <div class="definition">A deviation from what is considered morally right; moral wrongdoing.</div>
+                    <div class="example">"The newspaper reporter was criticized for his moral obliquity in writing a false story."</div>
+                </li>
+                <li>
+                    <strong>Parody</strong> <i class="fas fa-volume-up speaker-icon" data-word="Parody" aria-label="Pronounce Parody"></i>
+                    <div class="definition">An imitation of the style of a particular writer, artist, or genre with deliberate exaggeration for comic effect.</div>
+                    <div class="example">"The movie was a parody of classic action films."</div>
+                </li>
+                <li>
+                    <strong>Lampooned</strong> <i class="fas fa-volume-up speaker-icon" data-word="Lampooned" aria-label="Pronounce Lampooned"></i>
+                    <div class="definition">Publicly criticized or ridiculed with satire.</div>
+                    <div class="example">"The political cartoon lampooned the politician for his foolish speech."</div>
+                </li>
+                <li>
+                    <strong>Simpering coxcomb</strong> <i class="fas fa-volume-up speaker-icon" data-word="Simpering coxcomb" aria-label="Pronounce Simpering coxcomb"></i>
+                    <div class="definition">A foolish, vain man who smiles or speaks in a silly, affected way.</div>
+                    <div class="example">"He was such a simpering coxcomb, always bragging about his clothes."</div>
+                </li>
+                <li>
+                    <strong>Incensed</strong> <i class="fas fa-volume-up speaker-icon" data-word="Incensed" aria-label="Pronounce Incensed"></i>
+                    <div class="definition">Very angry; enraged.</div>
+                    <div class="example">"She was incensed by the rude comments he made."</div>
+                </li>
+                <li>
+                    <strong>Impetus</strong> <i class="fas fa-volume-up speaker-icon" data-word="Impetus" aria-label="Pronounce Impetus"></i>
+                    <div class="definition">The force or energy with which a body moves; a driving force.</div>
+                    <div class="example">"His speech provided the impetus for the new project."</div>
+                </li>
+                <li>
+                    <strong>Animosity</strong> <i class="fas fa-volume-up speaker-icon" data-word="Animosity" aria-label="Pronounce Animosity"></i>
+                    <div class="definition">Strong hostility.</div>
+                    <div class="example">"There was a lot of animosity between the two rival teams."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the story "My First Literary Venture."</p>
+            <ol>
+                <li>What was the narrator's job at the beginning of the story?</li>
+                <li>Who was Higgins, and what was the funny story about him that the narrator wrote about?</li>
+                <li>What other things did the narrator write about to make the paper "lively"?</li>
+                <li>What was the funny footnote about the tailor's poetry?</li>
+                <li>How did the people the narrator wrote about react to the newspaper?</li>
+                <li>Why was the narrator's uncle initially angry, and what made him change his mind?</li>
+                <li>What is the overall tone or feeling of this story?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

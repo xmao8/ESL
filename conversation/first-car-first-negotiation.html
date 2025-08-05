@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>First Car, First Negotiation – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Your existing CSS for navigation and general layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+
+        /* Conversation specific styles */
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block; /* Allows for consistent spacing with character names */
+            width: 100px; /* Adjust as needed for longest name */
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Vocabulary List specific styles */
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem; /* More space between vocabulary items */
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex; /* Use flexbox for word + icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between word and icon */
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px; /* Space after the word/icon */
+        }
+        .vocabulary-list .definition {
+            display: block; /* Make definition appear on a new line */
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block; /* New line for example */
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>First Car, First Negotiation</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>MARCO:</strong> A young man in his 20s, buying his first car.</li>
+            <li><strong>SOPHIA:</strong> His experienced friend, helping him out.</li>
+            <li><strong>DEALER:</strong> A professional, persuasive car salesperson.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: A car dealership office. A desk with paperwork sits between the characters.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with MARCO, SOPHIA, and the DEALER in a small office. Marco looks nervous, but Sophia looks calm and confident. A price sheet for a used sedan is on the table.)</p>
+        <p><strong>DEALER:</strong> <span class="dialogue">Well, Marco, congratulations! This is a fantastic car. It’s got low **mileage** and a clean history. We’ve had a lot of interest in it.</span></p>
+        <p><strong>MARCO:</strong> <span class="dialogue">Thank you! I really like it. It seems perfect for me. The price on the sticker says $15,000. Is that... the final price?</span></p>
+        <p><strong>DEALER:</strong> <span class="dialogue">That's our **asking price**, yes. It's very competitive for a car in this condition. We did a full inspection and a complete service. We're offering a great value.</span></p>
+        <p class="scene-direction">(Sophia leans forward and taps the price sheet with her finger.)</p>
+        <p><strong>SOPHIA:</strong> <span class="dialogue">We appreciate the work you’ve done on it. But we've also done our research. The **Blue Book value** for this model, year, and mileage is closer to $13,500.</span></p>
+        <p><strong>DEALER:</strong> <span class="dialogue">(Smiling smoothly) Ah, the Blue Book. It’s a good guide, but it doesn't account for our **meticulous** inspection or the recent service, which included a new timing belt. That's a huge expense you won't have to worry about.</span></p>
+        <p><strong>MARCO:</strong> <span class="dialogue">(Whispering to Sophia) What's a timing belt?</span></p>
+        <p><strong>SOPHIA:</strong> <span class="dialogue">(Whispering back) It's expensive. But he's using it as a **negotiation** tool. (To the Dealer) We understand that. However, we also noticed the front tires are quite worn, and we'll need to replace them soon. That's an added cost for us.</span></p>
+        <p><strong>DEALER:</strong> <span class="dialogue">You're a sharp negotiator, Sophia. Tell you what. We’ll meet you in the middle. How about we split the difference? We can come down to $14,500. It’s a fair price for everyone.</span></p>
+        <p><strong>SOPHIA:</strong> <span class="dialogue">That’s a good start. But we’d like to see if we can do better. What’s the absolute best price you can offer today? We're ready to buy, but we want to feel like we’re getting a great deal.</span></p>
+        <p class="scene-direction">(The Dealer pauses, looking at Marco's nervous face and Sophia's determined one. He sighs and types something into his computer.)</p>
+        <p><strong>DEALER:</strong> <span class="dialogue">Okay. Let me talk to my manager. Give me one moment.</span></p>
+        <p class="scene-direction">(The Dealer leaves the room. Marco turns to Sophia, his eyes wide.)</p>
+        <p><strong>MARCO:</strong> <span class="dialogue">Sophia! I can’t believe you did that! You just asked for a better price!</span></p>
+        <p><strong>SOPHIA:</strong> <span class="dialogue">Of course! It's expected. Never accept the first offer. This is all part of the negotiation. He will come back with a better price. We just have to be patient.</span></p>
+        <p class="scene-direction">(The Dealer returns with a new piece of paper and a serious expression.)</p>
+        <p><strong>DEALER:</strong> <span class="dialogue">My manager agreed to a final offer, just for you. We can do $13,800. We can't go any lower than that. That’s our **bottom line**.</span></p>
+        <p><strong>SOPHIA:</strong> <span class="dialogue">(Smiling) That works for us. Thank you.</span></p>
+        <p class="scene-direction">(Marco looks at Sophia, completely amazed. He can’t believe they saved so much money. He shakes the Dealer’s hand.)</p>
+        <p><strong>MARCO:</strong> <span class="dialogue">Thank you so much! I’m so excited!</span></p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Mileage <span class="speaker-icon" onclick="speakWord('Mileage')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈmaɪlɪdʒ/</span>
+                <span class="definition">(n.): The total number of miles that a car has traveled.</span>
+                <span class="example">Example: The used car had low **mileage**, which was good.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Blue Book value <span class="speaker-icon" onclick="speakWord('Blue Book value')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/bluː bʊk ˈvæljuː/</span>
+                <span class="definition">(n.): An estimated market price for a used car, based on its condition, age, and other factors.</span>
+                <span class="example">Example: The **Blue Book value** helps you know a fair price for a car.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Sticker price <span class="speaker-icon" onclick="speakWord('Sticker price')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈstɪkər praɪs/</span>
+                <span class="definition">(n.): The official price of a car as shown on a window sticker or price sheet.</span>
+                <span class="example">Example: The car's **sticker price** was $25,000, but we got it for less.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Asking price <span class="speaker-icon" onclick="speakWord('Asking price')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈæskɪŋ praɪs/</span>
+                <span class="definition">(n.): The price at which a seller is offering to sell an item.</span>
+                <span class="example">Example: The house had a high **asking price**.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Negotiation <span class="speaker-icon" onclick="speakWord('Negotiation')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/nɪˌɡoʊʃiˈeɪʃən/</span>
+                <span class="definition">(n.): A discussion aimed at reaching an agreement.</span>
+                <span class="example">Example: The **negotiation** for the car took over an hour.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Meticulous <span class="speaker-icon" onclick="speakWord('Meticulous')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/məˈtɪkjʊləs/</span>
+                <span class="definition">(adj.): Showing great attention to detail; very careful and precise.</span>
+                <span class="example">Example: The artist was **meticulous** about every detail in the painting.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Bottom line <span class="speaker-icon" onclick="speakWord('Bottom line')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈbɒtəm laɪn/</span>
+                <span class="definition">(idiom): The lowest price or final offer that a person or company is willing to accept.</span>
+                <span class="example">Example: My **bottom line** is $500 for the television; I can't go any lower.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Timing belt <span class="speaker-icon" onclick="speakWord('Timing belt')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈtaɪmɪŋ bɛlt/</span>
+                <span class="definition">(n.): A part of a car's engine that needs to be replaced after a certain number of miles. It can be an expensive repair.</span>
+                <span class="example">Example: The mechanic said the **timing belt** needed to be replaced soon.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; // Set language to English (US)
+            utterance.rate = 0.9; // Adjust speech rate if needed
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

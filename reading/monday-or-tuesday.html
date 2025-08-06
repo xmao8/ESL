@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: 'Monday or Tuesday'</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base layout */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0;
+        }
+        ul li, ol li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Article & Questions Specific Styles */
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li {
+            margin-bottom: 0.8rem;
+        }
+        .poem-text p {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-indent: 1.5rem;
+        }
+
+        /* Vocabulary List Specific Styles */
+        .vocabulary-list ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            font-size: 1.1em;
+            flex-shrink: 0; /* Prevent the word from shrinking */
+        }
+        .vocabulary-list li .definition {
+            font-size: 1em;
+            margin-top: 5px;
+            color: #555;
+        }
+        .vocabulary-list li .translation {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-top: 2px; /* Slight adjustment for vertical alignment with text */
+        }
+        .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-item-header {
+            display: flex;
+            align-items: center;
+        }
+        .vocabulary-item-header strong {
+            margin-right: 5px;
+        }
+
+        /* Back button */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .nav-links {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+            .nav-container .site-name {
+                font-size: 1.25rem;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 1.8rem auto 0.8rem;
+                padding: 0 1.5rem;
+            }
+            main {
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            p, ul, ol {
+                font-size: 1rem;
+            }
+            .buttons {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.6rem 0.8rem;
+            }
+            .nav-container .logo {
+                margin-bottom: 0;
+            }
+            .nav-container .site-name {
+                font-size: 1.2rem;
+            }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-container .nav-links a {
+                width: auto;
+                text-align: left;
+                padding: 0.5rem 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1 {
+                font-size: 1.8rem;
+                margin: 1.5rem auto 0.5rem;
+                padding: 0 0.8rem;
+            }
+            main {
+                padding: 0.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p, ul, ol {
+                font-size: 0.95rem;
+            }
+            .buttons a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Adjust vocabulary list for smaller screens */
+            .vocabulary-list li {
+                flex-direction: column; /* Stack word, icon, and definition vertically */
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-list li strong {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+            .speaker-icon {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+            .vocabulary-list li .definition {
+                font-size: 0.9em;
+            }
+            .vocabulary-list li .translation {
+                font-size: 0.85em;
+            }
+        }
+        /* Extra small phone adjustments (optional, for very narrow screens) */
+        @media (max-width: 380px) {
+            .nav-container .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Monday or Tuesday by Virginia Woolf</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>Monday or Tuesday</h2>
+            <p>Lazy and **indifferent**, shaking space easily from his wings, knowing his way, the heron passes over the church beneath the sky. White and distant, **absorbed** in itself, endlessly the sky covers and uncovers, moves and remains. A lake? Blot the shores of it out! A mountain? Oh, perfect—the sun gold on its slopes. Down that falls. Ferns then, or white feathers, for ever and ever——</p>
+
+            <p>Desiring truth, awaiting it, laboriously distilling a few words, for ever desiring—(a cry starts to the left, another to the right. Wheels strike divergently. Omnibuses **conglomerate** in conflict)—for ever desiring—(the clock **asseverates** with twelve distinct strokes that it is midday; light sheds gold scales; children swarm)—for ever desiring truth. Red is the dome; coins hang on the trees; smoke trails from the chimneys; bark, shout, cry "Iron for sale"—and truth?</p>
+
+            <p>**Radiating** to a point men's feet and women's feet, black or gold-**encrusted**—(This foggy weather—Sugar? No, thank you—The commonwealth of the future)—the firelight darting and making the room red, save for the black figures and their bright eyes, while outside a van discharges, Miss Thingummy drinks tea at her desk, and plate-glass preserves fur coats——</p>
+
+            <p>**Flaunted**, leaf-light, drifting at corners, blown across the wheels, silver-splashed, home or not home, gathered, scattered, **squandered** in separate scales, swept up, down, torn, sunk, assembled—and truth?</p>
+
+            <p>Now to **recollect** by the fireside on the white square of marble. From ivory **depths** words rising shed their blackness, blossom and **penetrate**. Fallen the book; in the flame, in the smoke, in the momentary sparks—or now voyaging, the marble square **pendant**, **minarets** beneath and the Indian seas, while space rushes blue and stars **glint**—truth? or now, content with closeness?</p>
+
+            <p>Lazy and **indifferent** the heron returns; the sky **veils** her stars; then bares them. (By Virginia Woolf.)</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are important words from the excerpt that can help you understand it better. Try to guess their meaning from the context first, then check the definitions.</p>
+            <ul>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Indifferent</strong> <i class="fas fa-volume-up speaker-icon" data-word="Indifferent" aria-label="Pronounce Indifferent"></i>
+                    </div>
+                    <div class="definition">Having no particular interest or sympathy; unconcerned.</div>
+                    <div class="translation">IPA: /ɪnˈdɪfrənt/ | Chinese: 冷漠的 (lěngmò de) | Spanish: indiferente</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Absorbed</strong> <i class="fas fa-volume-up speaker-icon" data-word="Absorbed" aria-label="Pronounce Absorbed"></i>
+                    </div>
+                    <div class="definition">Fully engrossed or occupied; having one's attention fully engaged.</div>
+                    <div class="translation">IPA: /əbˈzɔːrbd/ | Chinese: 全神贯注的 (quánshén guànzhù de) | Spanish: absorto</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Conglomerate</strong> <i class="fas fa-volume-up speaker-icon" data-word="Conglomerate" aria-label="Pronounce Conglomerate"></i>
+                    </div>
+                    <div class="definition">To gather into a compact mass or form a group.</div>
+                    <div class="translation">IPA: /kənˈɡlɒmərət/ | Chinese: 聚集 (jùjí) | Spanish: conglomerado</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Asseverates</strong> <i class="fas fa-volume-up speaker-icon" data-word="Asseverates" aria-label="Pronounce Asseverates"></i>
+                    </div>
+                    <div class="definition">Declares or states solemnly and emphatically.</div>
+                    <div class="translation">IPA: /əˈsɛvəreɪts/ | Chinese: 郑重声明 (zhèngzhòng shēngmíng) | Spanish: asevera</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Radiating</strong> <i class="fas fa-volume-up speaker-icon" data-word="Radiating" aria-label="Pronounce Radiating"></i>
+                    </div>
+                    <div class="definition">Spreading out from a central point.</div>
+                    <div class="translation">IPA: /ˈreɪdiˌeɪtɪŋ/ | Chinese: 辐射 (fúshè) | Spanish: irradiando</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Encrusted</strong> <i class="fas fa-volume-up speaker-icon" data-word="Encrusted" aria-label="Pronounce Encrusted"></i>
+                    </div>
+                    <div class="definition">Covered with a hard crust or coating.</div>
+                    <div class="translation">IPA: /ɪnˈkrʌstɪd/ | Chinese: 结壳的 (jiéké de) | Spanish: incrustado</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Flaunted</strong> <i class="fas fa-volume-up speaker-icon" data-word="Flaunted" aria-label="Pronounce Flaunted"></i>
+                    </div>
+                    <div class="definition">Displayed ostentatiously to provoke envy or admiration.</div>
+                    <div class="translation">IPA: /ˈflɔːntɪd/ | Chinese: 炫耀 (xuànyào) | Spanish: ostentado</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Squandered</strong> <i class="fas fa-volume-up speaker-icon" data-word="Squandered" aria-label="Pronounce Squandered"></i>
+                    </div>
+                    <div class="definition">Wasted (something, especially money or time) in a reckless and foolish manner.</div>
+                    <div class="translation">IPA: /ˈskwɒndərd/ | Chinese: 浪费 (làngfèi) | Spanish: despilfarrado</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Recollect</strong> <i class="fas fa-volume-up speaker-icon" data-word="Recollect" aria-label="Pronounce Recollect"></i>
+                    </div>
+                    <div class="definition">To remember (something).</div>
+                    <div class="translation">IPA: /ˌrɛkəˈlɛkt/ | Chinese: 回忆 (huíyì) | Spanish: recordar</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Depths</strong> <i class="fas fa-volume-up speaker-icon" data-word="Depths" aria-label="Pronounce Depths"></i>
+                    </div>
+                    <div class="definition">The lowest or furthest extent of something.</div>
+                    <div class="translation">IPA: /dɛpθs/ | Chinese: 深处 (shēnchù) | Spanish: profundidades</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Penetrate</strong> <i class="fas fa-volume-up speaker-icon" data-word="Penetrate" aria-label="Pronounce Penetrate"></i>
+                    </div>
+                    <div class="definition">To go into or through something.</div>
+                    <div class="translation">IPA: /ˈpɛnɪˌtreɪt/ | Chinese: 穿透 (chuāntòu) | Spanish: penetrar</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Pendant</strong> <i class="fas fa-volume-up speaker-icon" data-word="Pendant" aria-label="Pronounce Pendant"></i>
+                    </div>
+                    <div class="definition">Hanging downwards, or something that hangs.</div>
+                    <div class="translation">IPA: /ˈpɛndənt/ | Chinese: 悬挂的 (xuánguà de) | Spanish: colgante</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Minarets</strong> <i class="fas fa-volume-up speaker-icon" data-word="Minarets" aria-label="Pronounce Minarets"></i>
+                    </div>
+                    <div class="definition">A tall slender tower, typically part of a mosque, with a balcony from which a muezzin calls Muslims to prayer.</div>
+                    <div class="translation">IPA: /ˌmɪnəˈrɛts/ | Chinese: 尖塔 (jiāntǎ) | Spanish: minaretes</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Glint</strong> <i class="fas fa-volume-up speaker-icon" data-word="Glint" aria-label="Pronounce Glint"></i>
+                    </div>
+                    <div class="definition">A flash of light.</div>
+                    <div class="translation">IPA: /ɡlɪnt/ | Chinese: 闪光 (shǎnguāng) | Spanish: destello</div>
+                </li>
+                <li>
+                    <div class="vocabulary-item-header">
+                        <strong>Veils</strong> <i class="fas fa-volume-up speaker-icon" data-word="Veils" aria-label="Pronounce Veils"></i>
+                    </div>
+                    <div class="definition">To cover, conceal, or disguise.</div>
+                    <div class="translation">IPA: /veɪlz/ | Chinese: 遮盖 (zhēgài) | Spanish: vela</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the excerpt from "Monday or Tuesday."</p>
+            <ol>
+                <li>How does the heron behave at the beginning and end of the passage?</li>
+                <li>What does the sky do repeatedly in the first paragraph?</li>
+                <li>What is the narrator "for ever desiring" throughout the passage?</li>
+                <li>What happens at midday according to the clock?</li>
+                <li>Where does the narrator attempt to "recollect" in the fifth paragraph?</li>
+                <li>What kind of imagery is used to describe the "words rising" from "ivory depths"?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech functionality for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US'; // Set language to English (US)
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            console.warn("Text-to-speech not supported in this browser.");
+            // Optionally, hide speaker icons or show a message to the user
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

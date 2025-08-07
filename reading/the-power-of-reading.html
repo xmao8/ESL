@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>The Power of Reading – ESLnote</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { box-sizing: border-box; }
         body {
@@ -15,6 +16,12 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
         }
         nav {
             background: #124076;
@@ -68,50 +75,143 @@
             .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start; }
             .nav-links.active { transform: translateX(0); }
             .menu-toggle { display: flex; }
-            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box;}
+            h1, .content-section, .buttons { padding: 0 1rem; box-sizing: border-box;}
         }
         @media (min-width: 601px) and (max-width: 900px) {
             .nav-container { padding: 0.8rem 1.5rem;}
             .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;}
             .menu-toggle { display: none;}
-            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box;}
+            h1, .content-section, .buttons { padding: 0 1.5rem; box-sizing: border-box;}
         }
         @media (min-width: 901px) {
             .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;}
             .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;}
             .menu-toggle { display: none;}
             body { padding: 0;}
-            h1, .content-container, .buttons { padding: 0;}
+            h1, .content-section, .buttons { padding: 0;}
         }
         h1 {
             margin: 2rem auto 1.5rem auto;
             color: #2c3e50;
             max-width: 800px;
+            font-size: 2.5rem;
+            padding: 0 1rem;
         }
-        .content-container {
-            background: white;
-            width: 90%;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+        .content-section {
+            background-color: #ffffff;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 2rem auto;
+            width: 90%;
+            max-width: 800px;
             text-align: left;
             line-height: 1.7;
             font-size: 1.13rem;
         }
-        .content-container h2 {
-            color: #3498db;
-            margin-top: 1.2rem;
-            margin-bottom: 0.8rem;
-            font-size: 1.35rem;
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
         }
-        .content-container strong {
+        .content-section li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-item-header {
+            display: flex;
+            align-items: center;
+        }
+        .vocabulary-item-header strong {
             color: #124076;
+            font-size: 1.13em;
+            margin-right: 7px;
         }
-        .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;}
-        button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none;}
-        button:hover, .buttons a:hover { background: #2980b9;}
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 1em;
+            transition: color 0.2s;
+            flex-shrink: 0;
+        }
+        .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .definition {
+            font-size: 1em;
+            margin-top: 5px;
+            color: #555;
+        }
+        .translation {
+            font-size: 0.93em;
+            color: #777;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li ol li {
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+        .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem;}
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+        @media (max-width: 600px) {
+            .content-section {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            .content-section li {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-item-header strong {
+                font-size: 1em;
+            }
+            .speaker-icon {
+                font-size: 0.9em;
+            }
+            .definition {
+                font-size: 0.95em;
+            }
+            .translation {
+                font-size: 0.88em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -133,110 +233,112 @@
             <a href="../conversation.html">Conversations</a>
             <a href="../grammar.html">Grammar</a>
             <a href="../reading.html">Reading</a>
-            <a href="../listening.html">Listening</a>
             <a href="../practice.html">Practices</a>
         </div>
     </div>
 </nav>
 
 <h1>The Power of Reading</h1>
+<h2>--Unlocking Potential and Expanding Horizons</h2>
+<main>
+    <div class="content-section">
+        
+        <p>
+            Reading is more than simply interpreting words on a page; it is a transformative practice that opens doors to infinite possibilities. Through reading, individuals can journey across worlds, experience new ideas, and expand their understanding of themselves and the world around them.
+        </p>
+        <p>
+            One of the greatest benefits of reading is the enhancement of cognitive skills. Regular reading sharpens comprehension, critical thinking, and analytical abilities. When we engage with a story, article, or book, our brains actively process information, connecting ideas and forming insights. Over time, this practice strengthens neural pathways, improving memory and problem-solving skills.
+        </p>
+        <p>
+            Moreover, reading has immense emotional benefits. It provides a sense of empathy as readers step into the shoes of diverse characters, living their experiences and understanding their emotions. This heightened sense of empathy helps individuals connect more deeply with others, fostering emotional intelligence and healthier interpersonal relationships.
+        </p>
+        <p>
+            Reading also fuels creativity and imagination. Unlike visual media, which presents images directly to viewers, reading encourages the mind to create its own visuals and interpretations. This imaginative exercise boosts creativity, helping individuals generate new ideas and innovative solutions in various aspects of life.
+        </p>
+        <p>
+            In a practical sense, reading equips individuals with knowledge and information critical to personal and professional growth. Through reading, one gains exposure to different cultures, histories, scientific discoveries, and global perspectives, thus becoming more informed and capable citizens.
+        </p>
+        <p>
+            Finally, reading is a powerful tool for relaxation and stress relief. Immersing oneself in a good book can provide an escape from daily worries and reduce anxiety. Even short periods of reading each day can significantly enhance mental health and overall well-being.
+        </p>
+        <p>
+            <strong>In conclusion</strong>, the power of reading is undeniable. It enhances our cognitive abilities, deepens emotional intelligence, sparks creativity, provides invaluable knowledge, and contributes greatly to our mental health. Embracing reading as a lifelong habit is one of the most rewarding and beneficial decisions one can make.
+        </p>
+    </div>
 
-<div class="content-container">
-    <h2>Unlocking Potential and Expanding Horizons</h2>
-    <p>
-        Reading is more than simply interpreting words on a page; it is a transformative practice that opens doors to infinite possibilities. Through reading, individuals can journey across worlds, experience new ideas, and expand their understanding of themselves and the world around them.
-    </p>
-    <p>
-        One of the greatest benefits of reading is the enhancement of cognitive skills. Regular reading sharpens comprehension, critical thinking, and analytical abilities. When we engage with a story, article, or book, our brains actively process information, connecting ideas and forming insights. Over time, this practice strengthens neural pathways, improving memory and problem-solving skills.
-    </p>
-    <p>
-        Moreover, reading has immense emotional benefits. It provides a sense of empathy as readers step into the shoes of diverse characters, living their experiences and understanding their emotions. This heightened sense of empathy helps individuals connect more deeply with others, fostering emotional intelligence and healthier interpersonal relationships.
-    </p>
-    <p>
-        Reading also fuels creativity and imagination. Unlike visual media, which presents images directly to viewers, reading encourages the mind to create its own visuals and interpretations. This imaginative exercise boosts creativity, helping individuals generate new ideas and innovative solutions in various aspects of life.
-    </p>
-    <p>
-        In a practical sense, reading equips individuals with knowledge and information critical to personal and professional growth. Through reading, one gains exposure to different cultures, histories, scientific discoveries, and global perspectives, thus becoming more informed and capable citizens.
-    </p>
-    <p>
-        Finally, reading is a powerful tool for relaxation and stress relief. Immersing oneself in a good book can provide an escape from daily worries and reduce anxiety. Even short periods of reading each day can significantly enhance mental health and overall well-being.
-    </p>
-    <p>
-        <strong>In conclusion</strong>, the power of reading is undeniable. It enhances our cognitive abilities, deepens emotional intelligence, sparks creativity, provides invaluable knowledge, and contributes greatly to our mental health. Embracing reading as a lifelong habit is one of the most rewarding and beneficial decisions one can make.
-    </p>
-</div>
-<div class="content-section vocabulary-list">
-    <h2>Vocabulary List</h2>
-    <p>Here are important words from the article. Try to guess their meaning from the context first, then check the definitions.</p>
-    <ul>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Transformative</strong> <i class="fas fa-volume-up speaker-icon" data-word="Transformative" aria-label="Pronounce Transformative"></i>
-            </div>
-            <div class="definition">Causing a major change or transformation.</div>
-            <div class="translation">IPA: /trænsˈfɔːrmətɪv/ | Chinese: 有改变作用的 | Spanish: transformador</div>
-        </li>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Cognitive</strong> <i class="fas fa-volume-up speaker-icon" data-word="Cognitive" aria-label="Pronounce Cognitive"></i>
-            </div>
-            <div class="definition">Related to mental processes such as thinking, understanding, and remembering.</div>
-            <div class="translation">IPA: /ˈkɒɡnɪtɪv/ | Chinese: 认知的 | Spanish: cognitivo</div>
-        </li>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Empathy</strong> <i class="fas fa-volume-up speaker-icon" data-word="Empathy" aria-label="Pronounce Empathy"></i>
-            </div>
-            <div class="definition">The ability to understand and share the feelings of another person.</div>
-            <div class="translation">IPA: /ˈɛmpəθi/ | Chinese: 同理心 | Spanish: empatía</div>
-        </li>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Imagination</strong> <i class="fas fa-volume-up speaker-icon" data-word="Imagination" aria-label="Pronounce Imagination"></i>
-            </div>
-            <div class="definition">The ability to form ideas or images in your mind.</div>
-            <div class="translation">IPA: /ɪˌmædʒɪˈneɪʃən/ | Chinese: 想象力 | Spanish: imaginación</div>
-        </li>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Critical thinking</strong> <i class="fas fa-volume-up speaker-icon" data-word="Critical thinking" aria-label="Pronounce Critical thinking"></i>
-            </div>
-            <div class="definition">The process of carefully analyzing information in order to make a decision or judgment.</div>
-            <div class="translation">IPA: /ˈkrɪtɪkəl ˈθɪŋkɪŋ/ | Chinese: 批判性思维 | Spanish: pensamiento crítico</div>
-        </li>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Exposure</strong> <i class="fas fa-volume-up speaker-icon" data-word="Exposure" aria-label="Pronounce Exposure"></i>
-            </div>
-            <div class="definition">The experience of coming into contact with something new or different.</div>
-            <div class="translation">IPA: /ɪkˈspoʊʒər/ | Chinese: 接触 | Spanish: exposición</div>
-        </li>
-        <li>
-            <div class="vocabulary-item-header">
-                <strong>Well-being</strong> <i class="fas fa-volume-up speaker-icon" data-word="Well-being" aria-label="Pronounce Well-being"></i>
-            </div>
-            <div class="definition">A state of being healthy, happy, and comfortable.</div>
-            <div class="translation">IPA: /ˌwɛlˈbiːɪŋ/ | Chinese: 幸福 | Spanish: bienestar</div>
-        </li>
-    </ul>
-</div>
+    <div class="content-section vocabulary-list">
+        <h2>Vocabulary List</h2>
+        <p>Here are important words from the article. Try to guess their meaning from the context first, then check the definitions.</p>
+        <ul>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Transformative</strong> <i class="fas fa-volume-up speaker-icon" data-word="Transformative" aria-label="Pronounce Transformative"></i>
+                </div>
+                <div class="definition">Causing a major change or transformation.</div>
+                <div class="translation">IPA: /trænsˈfɔːrmətɪv/ | Chinese: 有改变作用的 | Spanish: transformador</div>
+            </li>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Cognitive</strong> <i class="fas fa-volume-up speaker-icon" data-word="Cognitive" aria-label="Pronounce Cognitive"></i>
+                </div>
+                <div class="definition">Related to mental processes such as thinking, understanding, and remembering.</div>
+                <div class="translation">IPA: /ˈkɒɡnɪtɪv/ | Chinese: 认知的 | Spanish: cognitivo</div>
+            </li>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Empathy</strong> <i class="fas fa-volume-up speaker-icon" data-word="Empathy" aria-label="Pronounce Empathy"></i>
+                </div>
+                <div class="definition">The ability to understand and share the feelings of another person.</div>
+                <div class="translation">IPA: /ˈɛmpəθi/ | Chinese: 同理心 | Spanish: empatía</div>
+            </li>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Imagination</strong> <i class="fas fa-volume-up speaker-icon" data-word="Imagination" aria-label="Pronounce Imagination"></i>
+                </div>
+                <div class="definition">The ability to form ideas or images in your mind.</div>
+                <div class="translation">IPA: /ɪˌmædʒɪˈneɪʃən/ | Chinese: 想象力 | Spanish: imaginación</div>
+            </li>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Critical thinking</strong> <i class="fas fa-volume-up speaker-icon" data-word="Critical thinking" aria-label="Pronounce Critical thinking"></i>
+                </div>
+                <div class="definition">The process of carefully analyzing information in order to make a decision or judgment.</div>
+                <div class="translation">IPA: /ˈkrɪtɪkəl ˈθɪŋkɪŋ/ | Chinese: 批判性思维 | Spanish: pensamiento crítico</div>
+            </li>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Exposure</strong> <i class="fas fa-volume-up speaker-icon" data-word="Exposure" aria-label="Pronounce Exposure"></i>
+                </div>
+                <div class="definition">The experience of coming into contact with something new or different.</div>
+                <div class="translation">IPA: /ɪkˈspoʊʒər/ | Chinese: 接触 | Spanish: exposición</div>
+            </li>
+            <li>
+                <div class="vocabulary-item-header">
+                    <strong>Well-being</strong> <i class="fas fa-volume-up speaker-icon" data-word="Well-being" aria-label="Pronounce Well-being"></i>
+                </div>
+                <div class="definition">A state of being healthy, happy, and comfortable.</div>
+                <div class="translation">IPA: /ˌwɛlˈbiːɪŋ/ | Chinese: 幸福 | Spanish: bienestar</div>
+            </li>
+        </ul>
+    </div>
 
-<div class="content-section">
-    <h2>Comprehension Questions</h2>
-    <p>Answer the questions below based on the article “The Power of Reading.”</p>
-    <ol>
-        <li>List two cognitive benefits of regular reading.</li>
-        <li>How does reading help people develop empathy?</li>
-        <li>What does the article say about reading and creativity?</li>
-        <li>How can reading contribute to someone’s personal and professional growth?</li>
-        <li>Why is reading considered helpful for relaxation and stress relief?</li>
-        <li>According to the article, why is reading a valuable lifelong habit?</li>
-    </ol>
-</div>
+    <div class="content-section">
+        <h2>Comprehension Questions</h2>
+        <p>Answer the questions below based on the article “The Power of Reading.”</p>
+        <ol>
+            <li>List two cognitive benefits of regular reading.</li>
+            <li>How does reading help people develop empathy?</li>
+            <li>What does the article say about reading and creativity?</li>
+            <li>How can reading contribute to someone’s personal and professional growth?</li>
+            <li>Why is reading considered helpful for relaxation and stress relief?</li>
+            <li>According to the article, why is reading a valuable lifelong habit?</li>
+        </ol>
+    </div>
+</main>
 
 <div class="buttons">
-    <a href="../reading.html">← Back to Reading</a>
-    <a href="../index.html">🏠 Home</a>
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
 </div>
 
 <script>
@@ -259,6 +361,25 @@
                 }
             });
         });
+    }
+
+    // Text-to-speech functionality for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+
+    if ('speechSynthesis' in window) {
+        speakerIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                const wordToSpeak = this.dataset.word;
+                if (wordToSpeak) {
+                    const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                }
+            });
+        });
+    } else {
+        // Optionally, hide speaker icons or show a message to the user
+        speakerIcons.forEach(icon => icon.style.display = 'none');
     }
 </script>
 

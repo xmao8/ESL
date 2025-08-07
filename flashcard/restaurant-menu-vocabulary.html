@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Restaurant Menu Vocabulary – ESLnote Flashcards</title>
+  <title>Restaurant Menu Vocabulary – Flashcards</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
@@ -41,7 +41,7 @@
     @media (max-width: 600px) {
       .nav-links {
         position: fixed; top: 56px; right: 0; background: #124076;
-        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
         padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
         transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
         z-index: 999; box-sizing: border-box; align-items: flex-start;
@@ -103,17 +103,38 @@
       border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
       text-decoration: none; display: inline-block; user-select: none;
     }
-    button:hover, .buttons a:hover { background: #2980b9; }</style>
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
 </head>
 <body>
 
-<nav aria-label="Main navigation"> <!-- (Same nav HTML as your example) --> </nav>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
 
 <h1>Restaurant Menu Vocabulary Flashcards</h1>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
   <div class="word">Click to Flip</div>
-  <div class="ipa" style="color: #666;"></div>
   <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
@@ -124,43 +145,275 @@
 
 <script>
 const flashcards = [
-  { word: "Appetizer", ipa: "/ˈæpəˌtaɪzər/", definition: "A small dish served before the main course.", example: "We ordered spring rolls as an appetizer.", chinese: "前菜 (qián cài)", spanish: "aperitivo" },
-  { word: "Entrée", ipa: "/ˈɑːntreɪ/", definition: "The main dish of the meal (U.S. menus).", example: "The steak was my entrée.", chinese: "主菜 (zhǔ cài)", spanish: "plato principal" },
-  { word: "Dessert", ipa: "/dɪˈzɜːrt/", definition: "Sweet food served at the end of the meal.", example: "We had cake for dessert.", chinese: "甜点 (tián diǎn)", spanish: "postre" },
-  { word: "Side dish", ipa: "/saɪd dɪʃ/", definition: "A small portion served with the main dish.", example: "Mashed potatoes are a popular side dish.", chinese: "配菜 (pèi cài)", spanish: "guarnición" },
-  { word: "Combo", ipa: "/ˈkɒmboʊ/", definition: "A meal with several items for one price.", example: "I ordered the lunch combo.", chinese: "套餐 (tào cān)", spanish: "combinación" },
-  { word: "Special", ipa: "/ˈspɛʃl/", definition: "A featured item, often discounted.", example: "The chef's special is seafood paella.", chinese: "特价菜 (tèjià cài)", spanish: "especial" },
-  { word: "Grilled", ipa: "/ɡrɪld/", definition: "Cooked over direct heat.", example: "I love grilled chicken.", chinese: "烤 (kǎo)", spanish: "a la parrilla" },
-  { word: "Fried", ipa: "/fraɪd/", definition: "Cooked in hot oil.", example: "Fried shrimp is delicious.", chinese: "炸 (zhà)", spanish: "frito" },
-  { word: "Baked", ipa: "/beɪkt/", definition: "Cooked in an oven.", example: "We had baked lasagna.", chinese: "烤 (kǎo)", spanish: "horneado" },
-  { word: "Steamed", ipa: "/stiːmd/", definition: "Cooked with hot steam.", example: "Steamed dumplings are my favorite.", chinese: "泡 (zhōng)", spanish: "al vapor" },
-  { word: "Spicy", ipa: "/ˈspaɪsi/", definition: "Hot in flavor.", example: "This curry is too spicy!", chinese: "辣 (là)", spanish: "picante" },
-  { word: "Mild", ipa: "/maɪld/", definition: "Not spicy.", example: "He prefers mild salsa.", chinese: "不辣 (bù là)", spanish: "suave" },
-  { word: "Sweet", ipa: "/swiːt/", definition: "Tastes like sugar.", example: "The sauce is very sweet.", chinese: "甜 (tián)", spanish: "dulce" },
-  { word: "Savory", ipa: "/ˈseɪvəri/", definition: "Salty or spicy, not sweet.", example: "Savory pastries are great snacks.", chinese: "鸡味 (xiān wèi)", spanish: "salado" },
-  { word: "Crispy", ipa: "/ˈkrɪspi/", definition: "Crunchy texture.", example: "I love crispy bacon.", chinese: "脆 (cuì)", spanish: "crujiente" },
-  { word: "Tender", ipa: "/ˈtɛndər/", definition: "Easy to chew.", example: "The beef is very tender.", chinese: "嫩 (nèn)", spanish: "tierno" },
-  { word: "Vegetarian", ipa: "/ˌvɛdʒəˈteəriən/", definition: "Contains no meat.", example: "They serve vegetarian lasagna.", chinese: "繁菜 (sù cài)", spanish: "vegetariano" },
-  { word: "Vegan", ipa: "/ˈviːɡən/", definition: "No animal products.", example: "This dessert is vegan.", chinese: "繁食 (quán sù)", spanish: "vegano" },
-  { word: "Gluten-free", ipa: "/ˈɡluːtən friː/", definition: "Contains no gluten.", example: "She needs gluten-free bread.", chinese: "无麿 (wú fūzhi)", spanish: "sin gluten" },
-  { word: "Allergy warning", ipa: "/ˈælərdʒi ˈwɔrnɪŋ/", definition: "Info about possible allergens.", example: "This dish has an allergy warning.", chinese: "过敏提示 (guòmǐn tíshì)", spanish: "advertencia de alergia" },
-  { word: "Pasta", ipa: "/ˈpæstə/", definition: "Noodles with sauce.", example: "We ordered tomato pasta.", chinese: "面饼 (miàn shí)", spanish: "pasta" },
-  { word: "Lasagna", ipa: "/ləˈzɑːnjə/", definition: "Layered pasta with meat & cheese.", example: "Lasagna is baked in the oven.", chinese: "拉萨尼亚 (lā sà ní yà)", spanish: "lasaña" },
-  { word: "Risotto", ipa: "/rɪˈzɒtoʊ/", definition: "Creamy rice dish.", example: "She made mushroom risotto.", chinese: "米饭湯 (mǐfàn tāng)", spanish: "risotto" },
-  { word: "Margherita", ipa: "/ˌmɑːɡəˈriːtə/", definition: "Pizza with tomato, mozzarella, and basil.", example: "We shared a margherita pizza.", chinese: "马格里塔披萨 (mǎgélǐtǀ pīsà)", spanish: "margarita" },
-  { word: "Taco", ipa: "/ˈtɑːkoʊ/", definition: "Tortilla filled with meat & veggies.", example: "I ate three tacos.", chinese: "塔克 (tǎkě)", spanish: "taco" },
-  { word: "Burrito", ipa: "/bʊˈriːtoʊ/", definition: "Rolled tortilla with fillings.", example: "He had a chicken burrito.", chinese: "布里托 (bùlǐtuō)", spanish: "burrito" },
-  { word: "Guacamole", ipa: "/ˌɡwɑːkəˈmoʊli/", definition: "Avocado-based dip.", example: "We shared guacamole and chips.", chinese: "黄瓜泡沫 (huángguā pàomò)", spanish: "guacamole" },
-  { word: "Enchilada", ipa: "/ˌentʃɪˈlɑːdə/", definition: "Filled tortilla covered in sauce.", example: "Try the cheese enchilada.", chinese: "油酥饼 (yóuzhà bǐng)", spanish: "enchilada" },
-  { word: "Dumpling", ipa: "/ˈdʌmplɪŋ/", definition: "Dough with filling inside.", example: "We ordered pork dumplings.", chinese: "饺子 (jiǎngzi)", spanish: "empanadilla" },
-  { word: "Sushi", ipa: "/ˈsuːʃi/", definition: "Rice with raw fish or vegetables.", example: "Sushi is a Japanese dish.", chinese: "寿司 (shòusī)", spanish: "sushi" },
-  { word: "Curry", ipa: "/ˈkɜːri/", definition: "Spicy dish with sauce.", example: "We had Thai curry.", chinese: "咖喱 (gālī)", spanish: "curry" },
-  { word: "Tempura", ipa: "/temˈpjʊərə/", definition: "Battered and fried food.", example: "Tempura is light and crispy.", chinese: "天如美 (tiānrú měi)", spanish: "tempura" },
-  { word: "Pho", ipa: "/fɜː/", definition: "Vietnamese noodle soup.", example: "Pho is served with herbs.", chinese: "米粉湯 (mǐfěn tāng)", spanish: "pho" }
+  {
+    word: "Appetizer",
+    ipa: "/ˈæpətaɪzər/",
+    definition: "A small dish served before the main course.",
+    example: "We started with the calamari appetizer.",
+    chinese: "开胃菜 (kāiwèicài)",
+    spanish: "aperitivo"
+  },
+  {
+    word: "Entrée",
+    ipa: "/ˈɑːntreɪ/",
+    definition: "The main dish of the meal (in U.S. menus).",
+    example: "For my entrée, I'll have the steak.",
+    chinese: "主菜 (zhǔcài)",
+    spanish: "plato principal"
+  },
+  {
+    word: "Dessert",
+    ipa: "/dɪˈzɜːrt/",
+    definition: "Sweet food served at the end of the meal.",
+    example: "Would you like a chocolate cake for dessert?",
+    chinese: "甜点 (tiándiǎn)",
+    spanish: "postre"
+  },
+  {
+    word: "Side dish",
+    ipa: "/saɪd dɪʃ/",
+    definition: "A small portion of food served with the main dish.",
+    example: "The steak comes with a side dish of mashed potatoes.",
+    chinese: "配菜 (pèicài)",
+    spanish: "guarnición"
+  },
+  {
+    word: "Combo",
+    ipa: "/ˈkɒmboʊ/",
+    definition: "A meal that includes several items for a set price.",
+    example: "I ordered the burger combo with fries and a drink.",
+    chinese: "套餐 (tàocān)",
+    spanish: "combo"
+  },
+  {
+    word: "Special",
+    ipa: "/ˈspɛʃəl/",
+    definition: "A featured item, often at a discount or limited time.",
+    example: "Today's special is grilled salmon.",
+    chinese: "特色菜 (tèsècài)",
+    spanish: "especial del día"
+  },
+  {
+    word: "Grilled",
+    ipa: "/ɡrɪld/",
+    definition: "Cooked over direct heat (e.g., grilled chicken).",
+    example: "She ordered the grilled chicken salad.",
+    chinese: "烤的 (kǎo de)",
+    spanish: "a la parrilla"
+  },
+  {
+    word: "Fried",
+    ipa: "/fraɪd/",
+    definition: "Cooked in hot oil (e.g., fried rice, fried shrimp).",
+    example: "I'd like the fried shrimp with a side of coleslaw.",
+    chinese: "油炸的 (yóuzhá de)",
+    spanish: "frito"
+  },
+  {
+    word: "Baked",
+    ipa: "/beɪkt/",
+    definition: "Cooked in the oven (e.g., baked lasagna).",
+    example: "The baked potato was topped with cheese and bacon.",
+    chinese: "烤的 (kǎo de)",
+    spanish: "horneado"
+  },
+  {
+    word: "Steamed",
+    ipa: "/stiːmd/",
+    definition: "Cooked with hot steam (e.g., steamed dumplings).",
+    example: "These steamed vegetables are so healthy.",
+    chinese: "蒸的 (zhēng de)",
+    spanish: "al vapor"
+  },
+  {
+    word: "Spicy",
+    ipa: "/ˈspaɪsi/",
+    definition: "Hot in flavor (e.g., spicy curry).",
+    example: "Be careful, this curry is very spicy.",
+    chinese: "辣的 (là de)",
+    spanish: "picante"
+  },
+  {
+    word: "Mild",
+    ipa: "/maɪld/",
+    definition: "Not spicy; gentle in flavor.",
+    example: "I prefer a mild salsa instead of a hot one.",
+    chinese: "温和的 (wēnhé de)",
+    spanish: "suave"
+  },
+  {
+    word: "Sweet",
+    ipa: "/swiːt/",
+    definition: "Tasting like sugar (e.g., sweet and sour chicken).",
+    example: "The pineapple was wonderfully sweet.",
+    chinese: "甜的 (tián de)",
+    spanish: "dulce"
+  },
+  {
+    word: "Savory",
+    ipa: "/ˈseɪvəri/",
+    definition: "Salty or spicy, not sweet.",
+    example: "I enjoy a savory breakfast, like eggs and bacon.",
+    chinese: "咸的 (xián de)",
+    spanish: "salado"
+  },
+  {
+    word: "Crispy",
+    ipa: "/ˈkrɪspi/",
+    definition: "Crunchy texture (e.g., crispy bacon).",
+    example: "The chicken wings were perfectly crispy.",
+    chinese: "脆的 (cuì de)",
+    spanish: "crujiente"
+  },
+  {
+    word: "Tender",
+    ipa: "/ˈtɛndər/",
+    definition: "Easy to chew (e.g., tender beef).",
+    example: "The beef was so tender it fell apart.",
+    chinese: "嫩的 (nèn de)",
+    spanish: "tierno"
+  },
+  {
+    word: "Vegetarian",
+    ipa: "/ˌvɛdʒəˈtɛəriən/",
+    definition: "Contains no meat.",
+    example: "I'm a vegetarian, so I'll have the pasta primavera.",
+    chinese: "素食的 (sùshí de)",
+    spanish: "vegetariano"
+  },
+  {
+    word: "Vegan",
+    ipa: "/ˈviːɡən/",
+    definition: "Contains no animal products at all.",
+    example: "The restaurant has a separate vegan menu.",
+    chinese: "纯素食的 (chúnsùshí de)",
+    spanish: "vegano"
+  },
+  {
+    word: "Gluten-free",
+    ipa: "/ˈɡluːtən friː/",
+    definition: "Does not contain gluten (good for allergies).",
+    example: "Do you have any gluten-free bread options?",
+    chinese: "无麸质的 (wúfūzhì de)",
+    spanish: "sin gluten"
+  },
+  {
+    word: "Allergy warning",
+    ipa: "/ˈælərdʒi ˈwɔːrnɪŋ/",
+    definition: "Information about possible allergens (e.g., nuts, dairy).",
+    example: "The menu has an allergy warning for dishes containing peanuts.",
+    chinese: "过敏提示 (guòmǐn tíshì)",
+    spanish: "aviso de alergia"
+  },
+  {
+    word: "Pasta",
+    ipa: "/ˈpæstə/",
+    definition: "Noodles, often with sauce (e.g., spaghetti, fettuccine).",
+    example: "I'll have the pasta with a marinara sauce.",
+    chinese: "意大利面 (yìdàlìmiàn)",
+    spanish: "pasta"
+  },
+  {
+    word: "Lasagna",
+    ipa: "/ləˈzɑːnjə/",
+    definition: "Layered pasta with meat, cheese, and sauce.",
+    example: "This homemade lasagna is delicious.",
+    chinese: "千层面 (qiāncéngmiàn)",
+    spanish: "lasaña"
+  },
+  {
+    word: "Risotto",
+    ipa: "/rɪˈzɒtoʊ/",
+    definition: "Creamy rice dish.",
+    example: "The mushroom risotto is a very popular dish.",
+    chinese: "意大利烩饭 (yìdàlì huìfàn)",
+    spanish: "risotto"
+  },
+  {
+    word: "Margherita",
+    ipa: "/ˌmɑːrɡəˈriːtə/",
+    definition: "A pizza with tomato, mozzarella, and basil.",
+    example: "A classic margherita pizza is always a good choice.",
+    chinese: "玛格丽特披萨 (mǎgélìtè pīsà)",
+    spanish: "pizza margherita"
+  },
+  {
+    word: "Taco",
+    ipa: "/ˈtɑːkoʊ/",
+    definition: "A tortilla filled with meat, cheese, and vegetables.",
+    example: "Let's get some tacos for lunch.",
+    chinese: "炸玉米饼 (zhá yùmǐbǐng)",
+    spanish: "taco"
+  },
+  {
+    word: "Burrito",
+    ipa: "/bʊˈriːtoʊ/",
+    definition: "A large rolled tortilla with fillings inside.",
+    example: "He ate a huge burrito filled with beans and rice.",
+    chinese: "墨西哥卷饼 (mòxīgē juǎnbǐng)",
+    spanish: "burrito"
+  },
+  {
+    word: "Guacamole",
+    ipa: "/ˌɡwɑːkəˈmoʊli/",
+    definition: "A dip made from mashed avocado.",
+    example: "I love to eat guacamole with tortilla chips.",
+    chinese: "鳄梨酱 (èlíjiàng)",
+    spanish: "guacamole"
+  },
+  {
+    word: "Enchilada",
+    ipa: "/ˌɛntʃɪˈlɑːdə/",
+    definition: "A tortilla filled and covered with sauce.",
+    example: "The chicken enchiladas were covered in a spicy red sauce.",
+    chinese: "玉米饼卷 (yùmǐbǐng juǎn)",
+    spanish: "enchilada"
+  },
+  {
+    word: "Dumpling",
+    ipa: "/ˈdʌmplɪŋ/",
+    definition: "Dough filled with meat or vegetables.",
+    example: "We ordered a plate of steamed pork dumplings.",
+    chinese: "饺子 (jiǎozi)",
+    spanish: "empanadilla"
+  },
+  {
+    word: "Sushi",
+    ipa: "/ˈsuːʃi/",
+    definition: "Rice with raw fish or vegetables, usually rolled.",
+    example: "I'm craving some fresh sushi for dinner.",
+    chinese: "寿司 (shòusī)",
+    spanish: "sushi"
+  },
+  {
+    word: "Curry",
+    ipa: "/ˈkʌri/",
+    definition: "Spicy dish with sauce (common in Indian/Thai menus).",
+    example: "I want the green curry with coconut milk.",
+    chinese: "咖喱 (gālí)",
+    spanish: "curry"
+  },
+  {
+    word: "Tempura",
+    ipa: "/tɛmˈpʊərə/",
+    definition: "Lightly battered and deep-fried vegetables or seafood.",
+    example: "The shrimp tempura was incredibly light and crunchy.",
+    chinese: "天妇罗 (tiānfùluó)",
+    spanish: "tempura"
+  },
+  {
+    word: "Pho",
+    ipa: "/fəʊ/",
+    definition: "Vietnamese noodle soup with broth and meat.",
+    example: "On a cold day, a bowl of pho is perfect.",
+    chinese: "越南河粉 (yuènán héfěn)",
+    spanish: "sopa de fideos vietnamita"
+  }
 ];
 
 let index = 0;
 let flipped = false;
+
 const flashcard = document.getElementById("flashcard");
 
 function showCard() {
@@ -168,8 +421,8 @@ function showCard() {
   flashcard.classList.remove("flipped");
   flashcard.setAttribute("aria-pressed", "false");
   flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
-                         <div class="ipa">${flashcards[index].ipa}</div>
-                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
 }
 
 function flipCard() {
@@ -205,6 +458,7 @@ function flipCard() {
         speak();
       }
     });
+    // Auto pronounce once on flip
     speak();
   } else {
     showCard();
@@ -222,14 +476,31 @@ function prevCard() {
 }
 
 showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
 </script>
 
 <div class="buttons">
   <a href="../flashcards.html">← Back to Flashcards</a>
   <a href="../index.html">🏠 Home</a>
 </div>
-
-<script>/* (Same nav toggle script as your example) */</script>
 
 </body>
 </html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Appearance Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 600px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.85; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #c0d9f0; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Appearance Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Tall",
+    ipa: "/tɔːl/",
+    definition: "Above average height.",
+    example: "He's a very tall man, probably over six feet.",
+    chinese: "高 (gāo)",
+    spanish: "alto"
+  },
+  {
+    word: "Short",
+    ipa: "/ʃɔːrt/",
+    definition: "Below average height.",
+    example: "She's quite short, so she needs a stool to reach the top shelf.",
+    chinese: "矮 (ǎi)",
+    spanish: "bajo"
+  },
+  {
+    word: "Average height",
+    ipa: "/ˈævərɪdʒ haɪt/",
+    definition: "Neither tall nor short.",
+    example: "Most people are of average height.",
+    chinese: "中等身高 (zhōngděng shēngāo)",
+    spanish: "estatura promedio"
+  },
+  {
+    word: "Slender",
+    ipa: "/ˈslɛndər/",
+    definition: "Thin and gracefully proportioned.",
+    example: "The model had a slender build and long legs.",
+    chinese: "苗条的 (miáotiáo de)",
+    spanish: "esbelto"
+  },
+  {
+    word: "Slim",
+    ipa: "/slɪm/",
+    definition: "Gracefully thin and in good shape.",
+    example: "After working out, he was very slim and athletic.",
+    chinese: "瘦的 (shòu de)",
+    spanish: "delgado"
+  },
+  {
+    word: "Thin",
+    ipa: "/θɪn/",
+    definition: "Having very little body fat.",
+    example: "He became thin after being ill for a month.",
+    chinese: "瘦的 (shòu de)",
+    spanish: "delgado"
+  },
+  {
+    word: "Skinny",
+    ipa: "/ˈskɪni/",
+    definition: "Unattractively thin.",
+    example: "The new puppy was so skinny; he needed more food.",
+    chinese: "骨瘦如柴的 (gǔshòu rúchái de)",
+    spanish: "flaco"
+  },
+  {
+    word: "Muscular",
+    ipa: "/ˈmʌskjələr/",
+    definition: "Well-built with defined muscles.",
+    example: "The bodybuilder had a muscular physique.",
+    chinese: "肌肉发达的 (jīròu fādá de)",
+    spanish: "musculoso"
+  },
+  {
+    word: "Athletic",
+    ipa: "/æθˈlɛtɪk/",
+    definition: "Having a strong, fit, and active body.",
+    example: "She has an athletic build from playing sports.",
+    chinese: "运动型的 (yùndòngxíng de)",
+    spanish: "atlético"
+  },
+  {
+    word: "Stocky",
+    ipa: "/ˈstɒki/",
+    definition: "Broad and sturdily built.",
+    example: "He was a stocky man with a powerful build.",
+    chinese: "结实的 (jiēshí de)",
+    spanish: "robusto"
+  },
+  {
+    word: "Overweight",
+    ipa: "/ˌoʊvərˈweɪt/",
+    definition: "Heavier than the average for one's height.",
+    example: "The doctor advised him to lose weight because he was overweight.",
+    chinese: "超重的 (chāozhòng de)",
+    spanish: "con sobrepeso"
+  },
+  {
+    word: "Curvy",
+    ipa: "/ˈkɜːrvi/",
+    definition: "Having a full, shapely figure.",
+    example: "Many designers are now using curvy models.",
+    chinese: "有曲线美的 (yǒu qūxiàn měi de)",
+    spanish: "con curvas"
+  },
+  {
+    word: "Round face",
+    ipa: "/raʊnd feɪs/",
+    definition: "A face that is circular in shape.",
+    example: "She had a round face with rosy cheeks.",
+    chinese: "圆脸 (yuánliǎn)",
+    spanish: "cara redonda"
+  },
+  {
+    word: "Oval face",
+    ipa: "/ˈoʊvəl feɪs/",
+    definition: "A face that is longer than it is wide, with a rounded jaw.",
+    example: "He has a classic oval face shape.",
+    chinese: "瓜子脸 (guāzǐliǎn)",
+    spanish: "cara ovalada"
+  },
+  {
+    word: "Square face",
+    ipa: "/skwɛər feɪs/",
+    definition: "A face with a broad forehead and jawline.",
+    example: "The actress has a distinctive square face.",
+    chinese: "方脸 (fāngliǎn)",
+    spanish: "cara cuadrada"
+  },
+  {
+    word: "High cheekbones",
+    ipa: "/haɪ ˈtʃiːkboʊnz/",
+    definition: "Prominent cheekbones.",
+    example: "Her high cheekbones gave her a very defined look.",
+    chinese: "高颧骨 (gāo quángǔ)",
+    spanish: "pómulos altos"
+  },
+  {
+    word: "Freckles",
+    ipa: "/ˈfrɛkəlz/",
+    definition: "Small, light brown spots on the skin.",
+    example: "Her face was covered in a smattering of freckles.",
+    chinese: "雀斑 (quèbān)",
+    spanish: "pecas"
+  },
+  {
+    word: "Dimples",
+    ipa: "/ˈdɪmpəlz/",
+    definition: "Small indentations in the cheeks that appear when smiling.",
+    example: "She has dimples that show when she laughs.",
+    chinese: "酒窝 (jiǔwō)",
+    spanish: "hoyuelos"
+  },
+  {
+    word: "Wrinkles",
+    ipa: "/ˈrɪŋkəlz/",
+    definition: "Lines or folds in the skin, often associated with age.",
+    example: "The old man's face was lined with wrinkles.",
+    chinese: "皱纹 (zhòuwén)",
+    spanish: "arrugas"
+  },
+  {
+    word: "Clear complexion",
+    ipa: "/klɪər kəmˈplɛkʃən/",
+    definition: "Smooth skin without blemishes or marks.",
+    example: "The young woman had a clear complexion and glowing skin.",
+    chinese: "皮肤光洁 (pífū guāngjié)",
+    spanish: "tez clara"
+  },
+  {
+    word: "Pale",
+    ipa: "/peɪl/",
+    definition: "Light-colored skin.",
+    example: "He has very pale skin and burns easily in the sun.",
+    chinese: "苍白的 (cāngbái de)",
+    spanish: "pálido"
+  },
+  {
+    word: "Tanned",
+    ipa: "/tænd/",
+    definition: "Brown from sun exposure.",
+    example: "She came back from vacation looking deeply tanned.",
+    chinese: "晒黑的 (shàihēi de)",
+    spanish: "bronceado"
+  },
+  {
+    word: "Short hair",
+    ipa: "/ʃɔːrt hɛər/",
+    definition: "Hair that does not extend far past the ears.",
+    example: "He has a short haircut.",
+    chinese: "短发 (duǎnfà)",
+    spanish: "pelo corto"
+  },
+  {
+    word: "Medium hair",
+    ipa: "/ˈmiːdiəm hɛər/",
+    definition: "Hair that falls between the chin and shoulders.",
+    example: "She has medium length hair that she often wears in a ponytail.",
+    chinese: "中长发 (zhōng chángfà)",
+    spanish: "pelo mediano"
+  },
+  {
+    word: "Long hair",
+    ipa: "/lɔːŋ hɛər/",
+    definition: "Hair that extends past the shoulders.",
+    example: "She has beautiful long hair that reaches her waist.",
+    chinese: "长发 (chángfà)",
+    spanish: "pelo largo"
+  },
+  {
+    word: "Blonde hair",
+    ipa: "/blɒnd hɛər/",
+    definition: "Hair color that is a pale yellow or golden color.",
+    example: "The child had blonde hair and blue eyes.",
+    chinese: "金发 (jīnfà)",
+    spanish: "pelo rubio"
+  },
+  {
+    word: "Brunette hair",
+    ipa: "/bruːˈnɛt hɛər/",
+    definition: "Hair color that is brown.",
+    example: "She is a brunette with rich, dark brown hair.",
+    chinese: "棕发 (zōngfà)",
+    spanish: "pelo castaño"
+  },
+  {
+    word: "Red hair",
+    ipa: "/rɛd hɛər/",
+    definition: "Hair color that is reddish-orange.",
+    example: "The boy's red hair was a fiery color.",
+    chinese: "红发 (hóngfà)",
+    spanish: "pelo pelirrojo"
+  },
+  {
+    word: "Black hair",
+    ipa: "/blæk hɛər/",
+    definition: "Hair color that is dark brown or black.",
+    example: "He has sleek black hair.",
+    chinese: "黑发 (hēifà)",
+    spanish: "pelo negro"
+  },
+  {
+    word: "Gray hair",
+    ipa: "/ɡreɪ hɛər/",
+    definition: "Hair color that is gray or silver, often associated with age.",
+    example: "His hair started to turn gray in his forties.",
+    chinese: "白发 (báifà)",
+    spanish: "pelo gris"
+  },
+  {
+    word: "Straight hair",
+    ipa: "/streɪt hɛər/",
+    definition: "Hair that has no waves or curls.",
+    example: "She wears her long, straight hair down.",
+    chinese: "直发 (zhífà)",
+    spanish: "pelo liso"
+  },
+  {
+    word: "Wavy hair",
+    ipa: "/ˈweɪvi hɛər/",
+    definition: "Hair that has soft curves or waves.",
+    example: "He has naturally wavy hair.",
+    chinese: "卷发 (juǎnfà)",
+    spanish: "pelo ondulado"
+  },
+  {
+    word: "Curly hair",
+    ipa: "/ˈkɜːrli hɛər/",
+    definition: "Hair that is full of spirals or coils.",
+    example: "She has a head of tight curly hair.",
+    chinese: "卷发 (juǎnfà)",
+    spanish: "pelo rizado"
+  },
+  {
+    word: "Frizzy hair",
+    ipa: "/ˈfrɪzi hɛər/",
+    definition: "Hair that is dry, wild, and lacks a defined shape.",
+    example: "The humidity made her hair frizzy.",
+    chinese: "毛躁的头发 (máozào de tóufà)",
+    spanish: "pelo encrespado"
+  },
+  {
+    word: "Bald",
+    ipa: "/bɔːld/",
+    definition: "Having no hair on the head.",
+    example: "He started to go bald in his late twenties.",
+    chinese: "秃头 (tūtóu)",
+    spanish: "calvo"
+  },
+  {
+    word: "Blue eyes",
+    ipa: "/bluː aɪz/",
+    definition: "Eyes that are blue in color.",
+    example: "She has bright blue eyes.",
+    chinese: "蓝眼睛 (lán yǎnjīng)",
+    spanish: "ojos azules"
+  },
+  {
+    word: "Brown eyes",
+    ipa: "/braʊn aɪz/",
+    definition: "Eyes that are brown in color.",
+    example: "He has warm, dark brown eyes.",
+    chinese: "棕色眼睛 (zōngsè yǎnjīng)",
+    spanish: "ojos marrones"
+  },
+  {
+    word: "Green eyes",
+    ipa: "/ɡriːn aɪz/",
+    definition: "Eyes that are green in color.",
+    example: "Her green eyes seem to change color depending on what she wears.",
+    chinese: "绿眼睛 (lǜ yǎnjīng)",
+    spanish: "ojos verdes"
+  },
+  {
+    word: "Hazel eyes",
+    ipa: "/ˈheɪzəl aɪz/",
+    definition: "Eyes that are a mix of green, brown, and gold.",
+    example: "His hazel eyes shimmered in the sunlight.",
+    chinese: "淡褐色的眼睛 (dànhèsè de yǎnjīng)",
+    spanish: "ojos color avellana"
+  },
+  {
+    word: "Gray eyes",
+    ipa: "/ɡreɪ aɪz/",
+    definition: "Eyes that are gray in color.",
+    example: "The woman's gray eyes gave her a serious look.",
+    chinese: "灰色眼睛 (huīsè yǎnjīng)",
+    spanish: "ojos grises"
+  },
+  {
+    word: "Almond-shaped eyes",
+    ipa: "/ˈɑːmənd ʃeɪpt aɪz/",
+    definition: "Eyes that are wider than they are tall, with pointed ends.",
+    example: "She has beautiful almond-shaped eyes.",
+    chinese: "杏眼 (xìngyǎn)",
+    spanish: "ojos almendrados"
+  },
+  {
+    word: "Round eyes",
+    ipa: "/raʊnd aɪz/",
+    definition: "Eyes that are circular in shape.",
+    example: "He has large, round eyes.",
+    chinese: "圆眼睛 (yuán yǎnjīng)",
+    spanish: "ojos redondos"
+  },
+  {
+    word: "Hooded eyes",
+    ipa: "/ˈhʊdɪd aɪz/",
+    definition: "Eyes with a fold of skin that covers the crease.",
+    example: "Her hooded eyes made her look sleepy.",
+    chinese: "眼皮下垂的眼睛 (yǎnpí xiàchuí de yǎnjīng)",
+    spanish: "ojos encapuchados"
+  },
+  {
+    word: "Beard",
+    ipa: "/bɪərd/",
+    definition: "Facial hair on the chin, cheeks, and jaw.",
+    example: "He grew a full beard over the winter.",
+    chinese: "胡须 (húxū)",
+    spanish: "barba"
+  },
+  {
+    word: "Mustache",
+    ipa: "/ˈmʌstæʃ/",
+    definition: "Facial hair on the upper lip.",
+    example: "The man twirled his long mustache.",
+    chinese: "小胡子 (xiǎohúzi)",
+    spanish: "bigote"
+  },
+  {
+    word: "Glasses",
+    ipa: "/ˈɡlæsɪz/",
+    definition: "Eyewear to correct vision.",
+    example: "She wears glasses to read.",
+    chinese: "眼镜 (yǎnjìng)",
+    spanish: "gafas"
+  },
+  {
+    word: "Tattoos",
+    ipa: "/tæˈtuːz/",
+    definition: "Permanent designs on the skin.",
+    example: "He has several tattoos on his arms.",
+    chinese: "纹身 (wénshēn)",
+    spanish: "tatuajes"
+  },
+  {
+    word: "Piercings",
+    ipa: "/ˈpɪərsɪŋz/",
+    definition: "Jewelry worn on a part of the body.",
+    example: "She has multiple ear piercings.",
+    chinese: "穿孔 (chuānkǒng)",
+    spanish: "piercings"
+  },
+  {
+    word: "Scars",
+    ipa: "/skɑːrz/",
+    definition: "Marks left on the skin after a wound has healed.",
+    example: "He had a small scar above his left eyebrow.",
+    chinese: "疤痕 (bāhén)",
+    spanish: "cicatrices"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+    
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

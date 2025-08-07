@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Sun Also Rises Chapter 5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        /* Reading passage styles */
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a {
+                width: auto; text-align: left; padding: 0.5rem 0;
+            }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li {
+                flex-direction: column; align-items: flex-start; padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Chapter 5 of The Sun Also Rises by ERNEST HEMINGWAY</h1>
+    <main>
+        <div class="content-section passage">
+            <h2>Chapter 5</h2>
+            <p>
+In the morning I walked down the Boulevard to the rue Soufflot for coffee and brioche. It was a fine morning. The horse-chestnut trees in the Luxembourg gardens were in bloom. There was the pleasant early-morning feeling of a hot day. I read the papers with the coffee and then smoked a cigarette. The flower-women were coming up from the market and arranging their daily stock. Students went by going up to the law school, or down to the Sorbonne. The Boulevard was busy with trams and people going to work. I got on an S bus and rode down to the Madeleine, standing on the back platform. From the Madeleine I walked along the Boulevard des Capucines to the Opéra, and up to my office. I passed the man with the jumping frogs and the man with the boxer toys. I stepped aside to avoid walking into the thread with which his girl assistant manipulated the boxers. She was standing looking away, the thread in her folded hands. The man was urging two tourists to buy. Three more tourists had stopped and were watching. I walked on behind a man who was pushing a roller that printed the name CINZANO on the sidewalk in damp letters. All along people were going to work. It felt pleasant to be going to work. I walked across the avenue and turned in to my office.
+
+Up-stairs in the office I read the French morning papers, smoked, and then sat at the typewriter and got off a good morning’s work. At eleven o’clock I went over to the Quai d’Orsay in a taxi and went in and sat with about a dozen correspondents, while the foreign-office mouthpiece, a young Nouvelle Revue Française diplomat in horn-rimmed spectacles, talked and answered questions for half an hour. The President of the Council was in Lyons making a speech, or, rather he was on his way back. Several people asked questions to hear themselves talk and there were a couple of questions asked by news service men who wanted to know the answers. There was no news. I shared a taxi back from the Quai d’Orsay with Woolsey and Krum.
+            </p>
+            <p>“What do you do nights, Jake?” asked Krum. “I never see you around.”
+
+“Oh, I’m over in the Quarter.”
+
+“I’m coming over some night. The Dingo. That’s the great place, isn’t it?”
+
+“Yes. That, or this new dive, The Select.”
+
+“I’ve meant to get over,” said Krum. “You know how it is, though, with a wife and kids.”
+
+“Playing any tennis?” Woolsey asked.
+
+“Well, no,” said Krum. “I can’t say I’ve played any this year. I’ve tried to get away, but Sundays it’s always rained, and the courts are so damned crowded.”
+
+“The Englishmen all have Saturday off,” Woolsey said.
+
+“Lucky beggars,” said Krum. “Well, I’ll tell you. Some day I’m not going to be working for an agency. Then I’ll have plenty of time to get out in the country.”
+
+“That’s the thing to do. Live out in the country and have a little car.”
+
+“I’ve been thinking some about getting a car next year.”
+
+I banged on the glass. The chauffeur stopped. “Here’s my street,” I said. “Come in and have a drink.”
+
+“Thanks, old man,” Krum said. Woolsey shook his head. “I’ve got to file that line he got off this morning.”
+
+I put a two-franc piece in Krum’s hand.
+
+“You’re crazy, Jake,” he said. “This is on me.”
+
+“It’s all on the office, anyway.”
+
+“Nope. I want to get it.”
+
+I waved good-by. Krum put his head out. “See you at the lunch on Wednesday.”
+
+“You bet.”
+
+I went to the office in the elevator. Robert Cohn was waiting for me. “Hello, Jake,” he said. “Going out to lunch?”
+
+“Yes. Let me see if there is anything new.”
+
+“Where will we eat?”
+
+“Anywhere.”
+
+I was looking over my desk. “Where do you want to eat?”
+
+“How about Wetzel’s? They’ve got good hors d’œuvres.”
+
+In the restaurant we ordered hors d’œuvres and beer. The sommelier brought the beer, tall, beaded on the outside of the steins, and cold. There were a dozen different dishes of hors d’œuvres.
+
+“Have any fun last night?” I asked.
+
+“No. I don’t think so.”
+
+“How’s the writing going?”
+
+“Rotten. I can’t get this second book going.”
+
+“That happens to everybody.”
+
+“Oh, I’m sure of that. It gets me worried, though.”
+
+“Thought any more about going to South America?”
+
+“I mean that.”
+
+“Well, why don’t you start off?”
+
+“Frances.”
+
+“Well,” I said, “take her with you.”
+
+“She wouldn’t like it. That isn’t the sort of thing she likes. She likes a lot of people around.”
+
+“Tell her to go to hell.”
+
+“I can’t. I’ve got certain obligations to her.”
+
+He shoved the sliced cucumbers away and took a pickled herring.
+
+“What do you know about Lady Brett Ashley, Jake?”
+
+“Her name’s Lady Ashley. Brett’s her own name. She’s a nice girl,” I said. “She’s getting a divorce and she’s going to marry Mike Campbell. He’s over in Scotland now. Why?”
+
+“She’s a remarkably attractive woman.”
+
+“Isn’t she?”
+
+“There’s a certain quality about her, a certain fineness. She seems to be absolutely fine and straight.”
+
+“She’s very nice.”
+
+“I don’t know how to describe the quality,” Cohn said. “I suppose it’s breeding.”
+
+“You sound as though you liked her pretty well.”
+
+“I do. I shouldn’t wonder if I were in love with her.”
+
+“She’s a drunk,” I said. “She’s in love with Mike Campbell, and she’s going to marry him. He’s going to be rich as hell some day.”
+
+“I don’t believe she’ll ever marry him.”
+
+“Why not?”
+
+“I don’t know. I just don’t believe it. Have you known her a long time?”
+
+“Yes,” I said. “She was a V. A. D. in a hospital I was in during the war.”
+
+“She must have been just a kid then.”
+
+“She’s thirty-four now.”
+
+“When did she marry Ashley?”
+
+“During the war. Her own true love had just kicked off with the dysentery.”
+
+“You talk sort of bitter.”
+
+“Sorry. I didn’t mean to. I was just trying to give you the facts.”
+
+“I don’t believe she would marry anybody she didn’t love.”
+
+“Well,” I said. “She’s done it twice.”
+
+“I don’t believe it.”
+
+“Well,” I said, “don’t ask me a lot of fool questions if you don’t like the answers.”
+
+“I didn’t ask you that.”
+
+“You asked me what I knew about Brett Ashley.”
+
+“I didn’t ask you to insult her.”
+
+“Oh, go to hell.”
+
+He stood up from the table his face white, and stood there white and angry behind the little plates of hors d’œuvres.
+
+“Sit down,” I said. “Don’t be a fool.”
+
+“You’ve got to take that back.”
+
+“Oh, cut out the prep-school stuff.”
+
+“Take it back.”
+
+“Sure. Anything. I never heard of Brett Ashley. How’s that?
+
+“No. Not that. About me going to hell.”
+
+“Oh, don’t go to hell,” I said. “Stick around. We’re just starting lunch.”
+
+Cohn smiled again and sat down. He seemed glad to sit down. What the hell would he have done if he hadn’t sat down? “You say such damned insulting things, Jake.”
+
+“I’m sorry. I’ve got a nasty tongue. I never mean it when I say nasty things.”
+
+“I know it,” Cohn said. “You’re really about the best friend I have, Jake.”
+
+God help you, I thought. “Forget what I said,” I said out loud. “I’m sorry.”
+
+“It’s all right. It’s fine. I was just sore for a minute.”
+
+“Good. Let’s get something else to eat.”
+
+After we finished the lunch we walked up to the Café de la Paix and had coffee. I could feel Cohn wanted to bring up Brett again, but I held him off it. We talked about one thing and another, and I left him to come to the office.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are some important words and phrases from the reading. Try to guess the meaning, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>Boulevard</strong> <i class="fas fa-volume-up speaker-icon" data-word="Boulevard" aria-label="Pronounce Boulevard"></i>
+                    <div class="definition">A wide city street, usually with trees on both sides.</div>
+                    <div class="example">"We walked along the beautiful boulevard in Paris."</div>
+                </li>
+                <li>
+                    <strong>Brioche</strong> <i class="fas fa-volume-up speaker-icon" data-word="Brioche" aria-label="Pronounce Brioche"></i>
+                    <div class="definition">A soft, slightly sweet bread from France, often eaten for breakfast.</div>
+                    <div class="example">"She ordered coffee and brioche at the café."</div>
+                </li>
+                <li>
+                    <strong>In bloom</strong> <i class="fas fa-volume-up speaker-icon" data-word="In bloom" aria-label="Pronounce In bloom"></i>
+                    <div class="definition">Having flowers that are open and at their best.</div>
+                    <div class="example">"The trees are in bloom every spring."</div>
+                </li>
+                <li>
+                    <strong>Stock</strong> <i class="fas fa-volume-up speaker-icon" data-word="Stock" aria-label="Pronounce Stock"></i>
+                    <div class="definition">The supply of items (such as flowers) that a seller has to sell.</div>
+                    <div class="example">"The shop's stock was fresh and colorful."</div>
+                </li>
+                <li>
+                    <strong>Sorbonne</strong> <i class="fas fa-volume-up speaker-icon" data-word="Sorbonne" aria-label="Pronounce Sorbonne"></i>
+                    <div class="definition">A famous university in Paris, especially known for arts and humanities.</div>
+                    <div class="example">"Many students dream of studying at the Sorbonne."</div>
+                </li>
+                <li>
+                    <strong>Tram</strong> <i class="fas fa-volume-up speaker-icon" data-word="Tram" aria-label="Pronounce Tram"></i>
+                    <div class="definition">A streetcar or light rail vehicle that runs on tracks in the city.</div>
+                    <div class="example">"She caught a tram to work every morning."</div>
+                </li>
+                <li>
+                    <strong>Platform</strong> <i class="fas fa-volume-up speaker-icon" data-word="Platform" aria-label="Pronounce Platform"></i>
+                    <div class="definition">A raised area where you stand to get on or off public transportation, like a bus or train.</div>
+                    <div class="example">"He stood on the back platform of the bus."</div>
+                </li>
+                <li>
+                    <strong>Opera</strong> <i class="fas fa-volume-up speaker-icon" data-word="Opera" aria-label="Pronounce Opera"></i>
+                    <div class="definition">A large theater for musical performances; in Paris, the Opéra refers to the famous opera house.</div>
+                    <div class="example">"We walked past the Opéra on our way to work."</div>
+                </li>
+                <li>
+                    <strong>Manipulate</strong> <i class="fas fa-volume-up speaker-icon" data-word="Manipulate" aria-label="Pronounce Manipulate"></i>
+                    <div class="definition">To move or control something with your hands.</div>
+                    <div class="example">"She manipulated the toy boxers using a thread."</div>
+                </li>
+                <li>
+                    <strong>Tourist</strong> <i class="fas fa-volume-up speaker-icon" data-word="Tourist" aria-label="Pronounce Tourist"></i>
+                    <div class="definition">A person who is traveling or visiting a place for pleasure.</div>
+                    <div class="example">"Many tourists visit Paris every year."</div>
+                </li>
+                <li>
+                    <strong>Avenue</strong> <i class="fas fa-volume-up speaker-icon" data-word="Avenue" aria-label="Pronounce Avenue"></i>
+                    <div class="definition">A wide street, often lined with trees, in a city or town.</div>
+                    <div class="example">"He crossed the avenue to go to his office."</div>
+                </li>
+                <li>
+                    <strong>Typewriter</strong> <i class="fas fa-volume-up speaker-icon" data-word="Typewriter" aria-label="Pronounce Typewriter"></i>
+                    <div class="definition">A machine used to write letters and documents by pressing keys (used before computers).</div>
+                    <div class="example">"He finished his work on the typewriter."</div>
+                </li>
+                <li>
+                    <strong>Correspondent</strong> <i class="fas fa-volume-up speaker-icon" data-word="Correspondent" aria-label="Pronounce Correspondent"></i>
+                    <div class="definition">A reporter who sends news from a particular place or about a specific topic.</div>
+                    <div class="example">"He worked as a foreign correspondent in France."</div>
+                </li>
+                <li>
+                    <strong>Mouthpiece</strong> <i class="fas fa-volume-up speaker-icon" data-word="Mouthpiece" aria-label="Pronounce Mouthpiece"></i>
+                    <div class="definition">A person who speaks on behalf of an organization or government.</div>
+                    <div class="example">"The diplomat acted as a mouthpiece for the foreign office."</div>
+                </li>
+                <li>
+                    <strong>Obligation</strong> <i class="fas fa-volume-up speaker-icon" data-word="Obligation" aria-label="Pronounce Obligation"></i>
+                    <div class="definition">Something you must do because it is your duty or because you promised.</div>
+                    <div class="example">"He has certain obligations to his friend."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the reading.</p>
+            <ol>
+                <li>What did the narrator do first in the morning?</li>
+                <li>Describe the atmosphere in Paris that morning. What made it special?</li>
+                <li>How did the narrator get to work?</li>
+                <li>Who are Woolsey and Krum?</li>
+                <li>What does the narrator do in his office?</li>
+                <li>What is a “correspondent” as used in the passage?</li>
+                <li>Why does Krum say he can't play tennis?</li>
+                <li>What does “manipulate” mean in the story?</li>
+                <li>Why is the Sorbonne mentioned?</li>
+                <li>What does “obligation” mean as used by Cohn?</li>
+                <li>Who is Lady Brett Ashley?</li>
+                <li>Why do you think the characters talk about buying a car and moving to the country?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

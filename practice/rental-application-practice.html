@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rental Application Practice – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Use your styles from your example */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0;}
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white; border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start; }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box;}
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem;}
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;}
+            .menu-toggle { display: none;}
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box;}
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;}
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;}
+            .menu-toggle { display: none;}
+            body { padding: 0;}
+            h1, .content-container, .buttons { padding: 0;}
+        }
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .worksheet-instructions { margin-bottom: 2rem; font-style: italic;}
+        .form-section { margin-bottom: 2.5rem;}
+        .form-section-title { color: #124076; margin-bottom: 1rem; margin-top: 1.5rem; font-size: 1.17em;}
+        .field-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.1rem;}
+        .field-label { min-width: 180px; font-weight: 500; color: #2c3e50;}
+        .field-input {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.4rem 0.7rem;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #f9f9fa;
+            transition: border-bottom-color 0.3s ease;
+            border-radius: 5px 5px 0 0;
+        }
+        .field-input:focus { outline: none; border-bottom-color: #3498db; background: #fff;}
+        .checkbox-group, .radio-group { display: flex; gap: 1.5rem; align-items: center;}
+        .checkbox-group label, .radio-group label { font-weight: 400;}
+        textarea.field-input { resize: vertical; min-height: 35px; }
+        .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;}
+        button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none;}
+        button:hover, .buttons a:hover { background: #2980b9;}
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Rental Application Form – Fill in the Blanks</h1>
+
+<div class="content-container">
+    <p class="worksheet-instructions"><strong>Instructions:</strong> Complete the rental application form with your own (real or imaginary) information. Practice using formal English and common rental vocabulary.</p>
+    
+    <form>
+        <!-- Personal Information -->
+        <div class="form-section">
+            <div class="form-section-title">1. Personal Information</div>
+            <div class="field-row">
+                <label class="field-label">Full Legal Name:</label>
+                <input class="field-input" type="text" placeholder="Your full name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Date of Birth (MM/DD/YYYY):</label>
+                <input class="field-input" type="text" placeholder="MM/DD/YYYY">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Phone Number:</label>
+                <input class="field-input" type="text" placeholder="e.g., 555-123-4567">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Email Address:</label>
+                <input class="field-input" type="email" placeholder="your@email.com">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Current Address:</label>
+                <input class="field-input" type="text" placeholder="Street address">
+                <input class="field-input" type="text" placeholder="City">
+                <input class="field-input" type="text" placeholder="State">
+                <input class="field-input" type="text" placeholder="ZIP Code">
+            </div>
+            <div class="field-row">
+                <label class="field-label">How long at this address?</label>
+                <input class="field-input" type="text" placeholder="e.g., 1 year, 2 months">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Reason for moving:</label>
+                <input class="field-input" type="text" placeholder="Explain briefly">
+            </div>
+        </div>
+
+        <!-- Employment & Income -->
+        <div class="form-section">
+            <div class="form-section-title">2. Employment & Income</div>
+            <div class="field-row">
+                <label class="field-label">Current Employer:</label>
+                <input class="field-input" type="text" placeholder="Company name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Employer Address:</label>
+                <input class="field-input" type="text" placeholder="Company address">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Position/Job Title:</label>
+                <input class="field-input" type="text" placeholder="Your job title">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Length of Employment:</label>
+                <input class="field-input" type="text" placeholder="e.g., 2 years">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Monthly Income (before tax):</label>
+                <input class="field-input" type="text" placeholder="e.g., $2,000">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Supervisor's Name & Contact:</label>
+                <input class="field-input" type="text" placeholder="Name & phone/email">
+            </div>
+        </div>
+
+        <!-- Rental History -->
+        <div class="form-section">
+            <div class="form-section-title">3. Rental History</div>
+            <div class="field-row">
+                <label class="field-label">Current Landlord's Name:</label>
+                <input class="field-input" type="text" placeholder="Landlord's name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Landlord's Phone Number:</label>
+                <input class="field-input" type="text" placeholder="e.g., 555-987-6543">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Monthly Rent Amount:</label>
+                <input class="field-input" type="text" placeholder="e.g., $1,200">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Dates of Residence:</label>
+                <input class="field-input" type="text" placeholder="From (MM/YYYY)">
+                <input class="field-input" type="text" placeholder="To (MM/YYYY)">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Ever evicted or asked to leave?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="evicted"> Yes</label>
+                    <label><input type="radio" name="evicted"> No</label>
+                </div>
+            </div>
+            <div class="field-row">
+                <label class="field-label">If yes, please explain:</label>
+                <input class="field-input" type="text" placeholder="(Leave blank if not applicable)">
+            </div>
+        </div>
+
+        <!-- Household Information -->
+        <div class="form-section">
+            <div class="form-section-title">4. Household Information</div>
+            <div class="field-row">
+                <label class="field-label">Total number of occupants:</label>
+                <input class="field-input" type="number" min="1" placeholder="e.g., 2">
+            </div>
+            <div class="field-row">
+                <label class="field-label">List names and ages of all other occupants:</label>
+                <input class="field-input" type="text" placeholder="Names & ages">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Do you have pets?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="pets"> Yes</label>
+                    <label><input type="radio" name="pets"> No</label>
+                </div>
+            </div>
+            <div class="field-row">
+                <label class="field-label">If yes, type, breed, weight:</label>
+                <input class="field-input" type="text" placeholder="e.g., Dog, Labrador, 25kg">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Do you or any occupants smoke?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="smoke"> Yes</label>
+                    <label><input type="radio" name="smoke"> No</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <div class="form-section">
+            <div class="form-section-title">5. Reference</div>
+            <div class="field-row">
+                <label class="field-label">Reference Name (not family):</label>
+                <input class="field-input" type="text" placeholder="Full name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Relationship:</label>
+                <input class="field-input" type="text" placeholder="e.g., coworker, friend">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Phone Number:</label>
+                <input class="field-input" type="text" placeholder="e.g., 555-111-2222">
+            </div>
+        </div>
+
+        <!-- Emergency Contact -->
+        <div class="form-section">
+            <div class="form-section-title">6. Emergency Contact</div>
+            <div class="field-row">
+                <label class="field-label">Full Name:</label>
+                <input class="field-input" type="text" placeholder="Contact's name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Relationship:</label>
+                <input class="field-input" type="text" placeholder="e.g., sister, friend">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Phone Number:</label>
+                <input class="field-input" type="text" placeholder="e.g., 555-333-4444">
+            </div>
+        </div>
+
+        <!-- Consent -->
+        <div class="form-section">
+            <div class="form-section-title">7. Consent and Declaration</div>
+            <div class="field-row">
+                <label class="field-label" style="flex-basis:100%;">I certify that all information provided is accurate and complete. I authorize the landlord or property manager to contact employers, landlords, and references listed above, and to run a background or credit check if necessary.</label>
+            </div>
+            <div class="field-row">
+                <label class="field-label">Signature:</label>
+                <input class="field-input" type="text" placeholder="Type your name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">Date:</label>
+                <input class="field-input" type="text" placeholder="MM/DD/YYYY">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="buttons">
+    <a href="../practice.html">← Back to Practice</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

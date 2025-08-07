@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painting & Art Class Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 600px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.85; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #c0d9f0; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Painting & Art Class Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Acrylics",
+    ipa: "/əˈkrɪlɪks/",
+    definition: "Fast-drying paints made of pigment suspended in an acrylic polymer emulsion.",
+    example: "I prefer to use acrylics because they dry quickly.",
+    chinese: "丙烯颜料 (bǐngxī yánliào)",
+    spanish: "pinturas acrílicas"
+  },
+  {
+    word: "Oil paints",
+    ipa: "/ɔɪl peɪnts/",
+    definition: "Slow-drying paints consisting of pigment particles suspended in a drying oil.",
+    example: "He loves the rich colors of oil paints, but hates the long drying time.",
+    chinese: "油画颜料 (yóuhuà yánliào)",
+    spanish: "pinturas al óleo"
+  },
+  {
+    word: "Watercolors",
+    ipa: "/ˈwɔːtərˌkʌlərz/",
+    definition: "Pigment mixed with a binder that can be thinned with water to create transparent washes.",
+    example: "She created a beautiful, soft landscape using watercolors.",
+    chinese: "水彩颜料 (shuǐcǎi yánliào)",
+    spanish: "acuarelas"
+  },
+  {
+    word: "Canvas",
+    ipa: "/ˈkænvəs/",
+    definition: "A durable, heavy-duty fabric stretched over a wooden frame, used as a surface for painting.",
+    example: "The artist prepared a large canvas for his new portrait.",
+    chinese: "帆布 (fānbù)",
+    spanish: "lienzo"
+  },
+  {
+    word: "Brushes",
+    ipa: "/ˈbrʌʃɪz/",
+    definition: "Tools with bristles used to apply paint. They come in various shapes and sizes.",
+    example: "He cleaned his brushes thoroughly after the painting session.",
+    chinese: "画笔 (huàbǐ)",
+    spanish: "pinceles"
+  },
+  {
+    word: "Palette",
+    ipa: "/ˈpælət/",
+    definition: "A flat surface where a painter arranges and mixes colors.",
+    example: "He squeezed new paint colors onto his wooden palette.",
+    chinese: "调色板 (tiáosèbǎn)",
+    spanish: "paleta"
+  },
+  {
+    word: "Palette knife",
+    ipa: "/ˈpælət naɪf/",
+    definition: "A tool with a flexible steel blade used for mixing paint or applying it directly to the canvas.",
+    example: "She used a palette knife to create a thick, textured effect.",
+    chinese: "调色刀 (tiáosèdāo)",
+    spanish: "espátula"
+  },
+  {
+    word: "Easel",
+    ipa: "/ˈiːzəl/",
+    definition: "An upright stand used to hold a canvas or board while an artist works on it.",
+    example: "The painting was placed on an easel for the exhibition.",
+    chinese: "画架 (huàjià)",
+    spanish: "caballete"
+  },
+  {
+    word: "Gesso",
+    ipa: "/ˈdʒɛsoʊ/",
+    definition: "A primer used to prepare a surface for painting.",
+    example: "Before starting, I coated the canvas with gesso.",
+    chinese: "石膏底料 (shígāo dǐliào)",
+    spanish: "yeso"
+  },
+  {
+    word: "Medium",
+    ipa: "/ˈmiːdiəm/",
+    definition: "A substance added to paint to change its properties, such as its thickness or drying time.",
+    example: "She added a little medium to the oil paint to make it more transparent.",
+    chinese: "介质 (jièzhì)",
+    spanish: "medio"
+  },
+  {
+    word: "Solvent",
+    ipa: "/ˈsɒlvənt/",
+    definition: "A liquid used to thin paint or clean brushes.",
+    example: "You need a solvent like turpentine to clean oil paint brushes.",
+    chinese: "溶剂 (róngjì)",
+    spanish: "solvente"
+  },
+  {
+    word: "Varnish",
+    ipa: "/ˈvɑːrnɪʃ/",
+    definition: "A clear, protective coating applied to a finished painting.",
+    example: "He applied a glossy varnish to protect the finished artwork.",
+    chinese: "清漆 (qīngqī)",
+    spanish: "barniz"
+  },
+  {
+    word: "Charcoal",
+    ipa: "/ˈtʃɑːrkoʊl/",
+    definition: "A black, carbon-based drawing stick often used for preliminary sketches.",
+    example: "She started with a charcoal sketch to lay out the composition.",
+    chinese: "木炭 (mùtàn)",
+    spanish: "carboncillo"
+  },
+  {
+    word: "Stretcher bars",
+    ipa: "/ˈstrɛtʃər bɑːrz/",
+    definition: "The wooden frame that a canvas is stretched over.",
+    example: "He assembled the stretcher bars before stapling the canvas to them.",
+    chinese: "画框条 (huàkuàng tiáo)",
+    spanish: "bastidores"
+  },
+  {
+    word: "Blending",
+    ipa: "/ˈblɛndɪŋ/",
+    definition: "The technique of mixing two or more colors together directly on the canvas to create a smooth transition.",
+    example: "She was skilled at blending colors to create soft gradients.",
+    chinese: "混合 (hùnhé)",
+    spanish: "mezclar"
+  },
+  {
+    word: "Underpainting",
+    ipa: "/ˈʌndərˌpeɪntɪŋ/",
+    definition: "The initial layer of paint on a canvas, which serves as a base.",
+    example: "The artist used a monochrome underpainting to establish the values.",
+    chinese: "底色 (dǐsè)",
+    spanish: "imprimación"
+  },
+  {
+    word: "Glazing",
+    ipa: "/ˈɡleɪzɪŋ/",
+    definition: "Applying a thin, transparent layer of paint over a dried layer to alter its color and tone.",
+    example: "The artist used glazing to give the painting a luminous quality.",
+    chinese: "罩染 (zhàorǎn)",
+    spanish: "veladura"
+  },
+  {
+    word: "Impasto",
+    ipa: "/ɪmˈpæstoʊ/",
+    definition: "A technique where paint is applied thickly to a surface, creating visible brushstrokes and a textured effect.",
+    example: "Van Gogh was famous for his use of impasto.",
+    chinese: "厚涂法 (hòutúfǎ)",
+    spanish: "empaste"
+  },
+  {
+    word: "Composition",
+    ipa: "/ˌkɒmpəˈzɪʃən/",
+    definition: "The arrangement of visual elements within a painting, such as the subject, background, and other objects.",
+    example: "The artist carefully planned the composition of his still life.",
+    chinese: "构图 (gòutú)",
+    spanish: "composición"
+  },
+  {
+    word: "Still life",
+    ipa: "/stɪl laɪf/",
+    definition: "A genre of painting that depicts inanimate objects, such as fruit, flowers, or household items.",
+    example: "The students were asked to paint a still life of a bowl of fruit.",
+    chinese: "静物画 (jìngwùhuà)",
+    spanish: "bodegón"
+  },
+  {
+    word: "Portrait",
+    ipa: "/ˈpɔːrtrɪt/",
+    definition: "A painting of a person, focusing on their face and expression.",
+    example: "She commissioned an artist to paint a portrait of her family.",
+    chinese: "肖像画 (xiàoxiànghuà)",
+    spanish: "retrato"
+  },
+  {
+    word: "Landscape",
+    ipa: "/ˈlændskeɪp/",
+    definition: "A painting that depicts a natural scene, such as mountains, forests, or rivers.",
+    example: "The artist is known for his beautiful landscapes of the countryside.",
+    chinese: "风景画 (fēngjǐnghuà)",
+    spanish: "paisaje"
+  },
+  {
+    word: "Abstract",
+    ipa: "/ˈæbstrækt/",
+    definition: "Art that does not represent objects from the physical world but uses shapes, colors, and forms to create a visual experience.",
+    example: "The gallery featured a series of large abstract paintings.",
+    chinese: "抽象派 (chōuxiàngpài)",
+    spanish: "abstracto"
+  },
+  {
+    word: "Perspective",
+    ipa: "/pərˈspɛktɪv/",
+    definition: "A technique used to create the illusion of three-dimensional space on a flat surface.",
+    example: "Learning how to use perspective is essential for realistic drawing.",
+    chinese: "透视 (tòushì)",
+    spanish: "perspectiva"
+  },
+  {
+    word: "Hue",
+    ipa: "/hjuː/",
+    definition: "The pure color itself (e.g., red, blue, green) without any added white or black.",
+    example: "The artist used a vivid hue of red in the foreground.",
+    chinese: "色相 (sèxiàng)",
+    spanish: "tono"
+  },
+  {
+    word: "Value",
+    ipa: "/ˈvæljuː/",
+    definition: "The lightness or darkness of a color.",
+    example: "To create depth, you must have a good range of values in your painting.",
+    chinese: "明度 (míngdù)",
+    spanish: "valor"
+  },
+  {
+    word: "Saturation",
+    ipa: "/ˌsætʃəˈreɪʃən/",
+    definition: "The intensity or purity of a color.",
+    example: "He increased the saturation of the colors to make the painting more vibrant.",
+    chinese: "饱和度 (bǎohé dù)",
+    spanish: "saturación"
+  },
+  {
+    word: "Highlights",
+    ipa: "/ˈhaɪlaɪts/",
+    definition: "The areas in a painting that reflect the most light.",
+    example: "She used a touch of white to create highlights on the apple.",
+    chinese: "高光 (gāoguāng)",
+    spanish: "luces"
+  },
+  {
+    word: "Shadows",
+    ipa: "/ˈʃædoʊz/",
+    definition: "The areas in a painting that are darker because they receive less light.",
+    example: "The long shadows added a dramatic feel to the landscape.",
+    chinese: "阴影 (yīnyǐng)",
+    spanish: "sombras"
+  },
+  {
+    word: "Foreshortening",
+    ipa: "/fɔːrˈʃɔːrtənɪŋ/",
+    definition: "A technique used to create the illusion of depth by making an object appear shorter and compressed.",
+    example: "The artist used foreshortening to make the character's arm appear to be reaching toward the viewer.",
+    chinese: "透视缩短 (tòushì suōduǎn)",
+    spanish: "escorzo"
+  },
+  {
+    word: "Mural",
+    ipa: "/ˈmjʊərəl/",
+    definition: "A large painting created directly on a wall or ceiling.",
+    example: "The city commissioned a mural to be painted on the side of the building.",
+    chinese: "壁画 (bìhuà)",
+    spanish: "mural"
+  },
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

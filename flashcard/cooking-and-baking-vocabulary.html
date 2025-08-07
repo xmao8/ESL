@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cooking & Baking Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 600px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.85; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #c0d9f0; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Cooking & Baking Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  {
+    word: "Boil",
+    ipa: "/bɔɪl/",
+    definition: "To heat a liquid to the point where it bubbles vigorously.",
+    example: "Boil the water before adding the pasta.",
+    chinese: "煮沸 (zhǔfèi)",
+    spanish: "hervir"
+  },
+  {
+    word: "Simmer",
+    ipa: "/ˈsɪmər/",
+    definition: "To cook a liquid just below the boiling point, with gentle bubbles.",
+    example: "Let the sauce simmer for 20 minutes to thicken.",
+    chinese: "文火煮 (wénhuǒ zhǔ)",
+    spanish: "hervir a fuego lento"
+  },
+  {
+    word: "Sauté",
+    ipa: "/soʊˈteɪ/",
+    definition: "To cook food quickly in a small amount of oil or fat over high heat.",
+    example: "Sauté the onions until they are soft and translucent.",
+    chinese: "炒 (chǎo)",
+    spanish: "saltear"
+  },
+  {
+    word: "Fry",
+    ipa: "/fraɪ/",
+    definition: "To cook food in hot fat or oil.",
+    example: "Fry the chicken until it is golden-brown.",
+    chinese: "油炸 (yóuzhá)",
+    spanish: "freír"
+  },
+  {
+    word: "Deep-fry",
+    ipa: "/diːp fraɪ/",
+    definition: "To completely submerge food in hot oil to cook it.",
+    example: "Deep-fry the French fries for a crispy texture.",
+    chinese: "炸 (zhà)",
+    spanish: "freír en abundante aceite"
+  },
+  {
+    word: "Bake",
+    ipa: "/beɪk/",
+    definition: "To cook food in an oven using dry heat.",
+    example: "Bake the cake at 350°F (175°C) for 30 minutes.",
+    chinese: "烤 (kǎo)",
+    spanish: "hornear"
+  },
+  {
+    word: "Roast",
+    ipa: "/roʊst/",
+    definition: "To cook food, especially meat and vegetables, with dry heat in an oven.",
+    example: "Roast the potatoes until they are tender and browned.",
+    chinese: "烤 (kǎo)",
+    spanish: "asar"
+  },
+  {
+    word: "Grill",
+    ipa: "/ɡrɪl/",
+    definition: "To cook food over an open flame or direct heat source.",
+    example: "Grill the burgers for about 5 minutes on each side.",
+    chinese: "烧烤 (shāokǎo)",
+    spanish: "asar a la parrilla"
+  },
+  {
+    word: "Steam",
+    ipa: "/stiːm/",
+    definition: "To cook food using the vapor from boiling water.",
+    example: "Steam the broccoli to keep it crisp and nutritious.",
+    chinese: "蒸 (zhēng)",
+    spanish: "cocer al vapor"
+  },
+  {
+    word: "Broil",
+    ipa: "/brɔɪl/",
+    definition: "To cook food with a heat source from above, typically in an oven.",
+    example: "Broil the fish for a few minutes to give it a nice crust.",
+    chinese: "炙烤 (zhìkǎo)",
+    spanish: "asar a la parrilla"
+  },
+  {
+    word: "Blanch",
+    ipa: "/blæntʃ/",
+    definition: "To briefly cook food in boiling water, then immediately plunge it into ice water.",
+    example: "Blanch the green beans to brighten their color.",
+    chinese: "焯水 (chāoshuǐ)",
+    spanish: "escaldar"
+  },
+  {
+    word: "Poach",
+    ipa: "/poʊtʃ/",
+    definition: "To cook food gently in a liquid that is just below the boiling point.",
+    example: "Poach the eggs for a soft, runny yolk.",
+    chinese: "水煮 (shuǐzhǔ)",
+    spanish: "escalfar"
+  },
+  {
+    word: "Braise",
+    ipa: "/breɪz/",
+    definition: "To sear food and then simmer it in a small amount of liquid in a covered pot.",
+    example: "Braise the short ribs for several hours until they are very tender.",
+    chinese: "焖 (mèn)",
+    spanish: "estofar"
+  },
+  {
+    word: "Sear",
+    ipa: "/sɪər/",
+    definition: "To cook the surface of food at a high temperature to form a caramelized crust.",
+    example: "Sear the steak before putting it in the oven.",
+    chinese: "煎 (jiān)",
+    spanish: "sellar"
+  },
+  {
+    word: "Chop",
+    ipa: "/tʃɒp/",
+    definition: "To cut food into small, irregular pieces.",
+    example: "Chop the carrots and celery for the soup.",
+    chinese: "切碎 (qièsuì)",
+    spanish: "picar"
+  },
+  {
+    word: "Slice",
+    ipa: "/slaɪs/",
+    definition: "To cut food into thin, flat pieces.",
+    example: "Slice the tomatoes for the sandwich.",
+    chinese: "切片 (qièpiàn)",
+    spanish: "rebanar"
+  },
+  {
+    word: "Dice",
+    ipa: "/daɪs/",
+    definition: "To cut food into small, uniform cubes.",
+    example: "Dice the potatoes into 1-inch cubes.",
+    chinese: "切丁 (qièdīng)",
+    spanish: "cortar en dados"
+  },
+  {
+    word: "Mince",
+    ipa: "/mɪns/",
+    definition: "To cut food into very tiny pieces.",
+    example: "Mince the garlic and ginger finely.",
+    chinese: "剁碎 (duòsuì)",
+    spanish: "picar finamente"
+  },
+  {
+    word: "Grate",
+    ipa: "/ɡreɪt/",
+    definition: "To shred food into small pieces by rubbing it against a grater.",
+    example: "Grate the cheese over the pasta.",
+    chinese: "磨碎 (mòsuì)",
+    spanish: "rallar"
+  },
+  {
+    word: "Peel",
+    ipa: "/piːl/",
+    definition: "To remove the outer layer of a fruit or vegetable.",
+    example: "Peel the potatoes before you boil them.",
+    chinese: "削皮 (xiāopí)",
+    spanish: "pelar"
+  },
+  {
+    word: "Stir",
+    ipa: "/stɜːr/",
+    definition: "To mix ingredients in a circular motion with a spoon or whisk.",
+    example: "Stir the soup constantly to prevent it from burning.",
+    chinese: "搅拌 (jiǎobàn)",
+    spanish: "remover"
+  },
+  {
+    word: "Mix",
+    ipa: "/mɪks/",
+    definition: "To combine two or more ingredients together.",
+    example: "Mix the flour and salt in a large bowl.",
+    chinese: "混合 (hùnhé)",
+    spanish: "mezclar"
+  },
+  {
+    word: "Whisk",
+    ipa: "/wɪsk/",
+    definition: "To beat or stir ingredients with a whisk to incorporate air.",
+    example: "Whisk the eggs until they are light and fluffy.",
+    chinese: "搅打 (jiǎodǎ)",
+    spanish: "batir"
+  },
+  {
+    word: "Beat",
+    ipa: "/biːt/",
+    definition: "To mix ingredients vigorously with a spoon, fork, or electric mixer.",
+    example: "Beat the egg whites until they form stiff peaks.",
+    chinese: "打 (dǎ)",
+    spanish: "batir"
+  },
+  {
+    word: "Blend",
+    ipa: "/blɛnd/",
+    definition: "To mix ingredients thoroughly, often in a blender, to create a smooth mixture.",
+    example: "Blend the fruits and yogurt to make a smoothie.",
+    chinese: "混合 (hùnhé)",
+    spanish: "licuar"
+  },
+  {
+    word: "Fold",
+    ipa: "/foʊld/",
+    definition: "To gently combine a lighter mixture with a heavier one by scraping a spatula down the side and into the center of the bowl.",
+    example: "Fold the whipped cream into the chocolate batter.",
+    chinese: "折叠 (zhédié)",
+    spanish: "incorporar"
+  },
+  {
+    word: "Knead",
+    ipa: "/niːd/",
+    definition: "To work dough by pressing, folding, and stretching it to develop gluten.",
+    example: "Knead the bread dough for about 10 minutes.",
+    chinese: "揉 (róu)",
+    spanish: "amasar"
+  },
+  {
+    word: "Marinate",
+    ipa: "/ˈmærəneɪt/",
+    definition: "To soak food in a seasoned liquid to tenderize and flavor it.",
+    example: "Marinate the chicken in a soy and ginger sauce overnight.",
+    chinese: "腌 (yān)",
+    spanish: "marinar"
+  },
+  {
+    word: "Season",
+    ipa: "/ˈsiːzən/",
+    definition: "To add salt, pepper, or other spices to food to enhance its flavor.",
+    example: "Season the steak with salt and pepper before cooking.",
+    chinese: "调味 (tiáowèi)",
+    spanish: "sazonar"
+  },
+  {
+    word: "Preheat",
+    ipa: "/priːˈhiːt/",
+    definition: "To heat an oven to the desired temperature before baking.",
+    example: "Preheat the oven to 400°F (200°C).",
+    chinese: "预热 (yùrè)",
+    spanish: "precalentar"
+  },
+  {
+    word: "Proof",
+    ipa: "/pruːf/",
+    definition: "The final rising period for yeast dough before baking.",
+    example: "Let the dough proof in a warm place for an hour.",
+    chinese: "发酵 (fāxiào)",
+    spanish: "leudar"
+  },
+  {
+    word: "Rise",
+    ipa: "/raɪz/",
+    definition: "The process of dough increasing in volume due to leavening.",
+    example: "The bread dough will double in size as it rises.",
+    chinese: "膨胀 (péngzhàng)",
+    spanish: "subir"
+  },
+  {
+    word: "Roll out",
+    ipa: "/roʊl aʊt/",
+    definition: "To flatten dough with a rolling pin.",
+    example: "Roll out the pie crust to a 1/4-inch thickness.",
+    chinese: "擀开 (gǎnkāi)",
+    spanish: "estirar"
+  },
+  {
+    word: "Grease",
+    ipa: "/ɡriːs/",
+    definition: "To coat a pan with butter, oil, or shortening to prevent sticking.",
+    example: "Grease the pan with a little butter.",
+    chinese: "涂油 (túyóu)",
+    spanish: "engrasar"
+  },
+  {
+    word: "Dust",
+    ipa: "/dʌst/",
+    definition: "To lightly sprinkle a surface or food with flour or sugar.",
+    example: "Dust the cake with powdered sugar.",
+    chinese: "撒粉 (sǎfěn)",
+    spanish: "espolvorear"
+  },
+  {
+    word: "Glaze",
+    ipa: "/ɡleɪz/",
+    definition: "To coat a food with a glossy, sweet, or savory liquid.",
+    example: "Glaze the donuts with a simple sugar icing.",
+    chinese: "上光 (shàngguāng)",
+    spanish: "glasear"
+  },
+  {
+    word: "Drizzle",
+    ipa: "/ˈdrɪzəl/",
+    definition: "To pour a liquid over food in a thin stream.",
+    example: "Drizzle some olive oil over the finished salad.",
+    chinese: "淋 (lín)",
+    spanish: "rociar"
+  },
+  {
+    word: "Cream",
+    ipa: "/kriːm/",
+    definition: "To beat butter and sugar together until light and fluffy.",
+    example: "Cream the butter and sugar until the mixture is pale.",
+    chinese: "打发 (dǎfā)",
+    spanish: "cremar"
+  },
+  {
+    word: "Sift",
+    ipa: "/sɪft/",
+    definition: "To pass dry ingredients through a sieve to remove lumps and aerate them.",
+    example: "Sift the flour and cocoa powder together.",
+    chinese: "过筛 (guòshāi)",
+    spanish: "tamizar"
+  },
+  {
+    word: "Cool",
+    ipa: "/kuːl/",
+    definition: "To allow food to decrease in temperature.",
+    example: "Cool the cookies on a wire rack before frosting.",
+    chinese: "放凉 (fàngliáng)",
+    spanish: "enfriar"
+  },
+  {
+    word: "Frost",
+    ipa: "/frɒst/",
+    definition: "To cover a cake or cupcake with a sweet topping, typically frosting or icing.",
+    example: "Frost the chocolate cake with a rich cream cheese frosting.",
+    chinese: "上糖霜 (shàng tángshuāng)",
+    spanish: "cubrir con glaseado"
+  },
+  {
+    word: "Icing",
+    ipa: "/ˈaɪsɪŋ/",
+    definition: "A sweet, often thin, glaze or coating for cakes and pastries.",
+    example: "The icing on the donut was perfectly sweet.",
+    chinese: "糖霜 (tángshuāng)",
+    spanish: "glaseado"
+  },
+  {
+    word: "Crispy",
+    ipa: "/ˈkrɪspi/",
+    definition: "A texture that is firm and brittle; crunchy.",
+    example: "The skin on the roasted chicken was perfectly crispy.",
+    chinese: "脆 (cuì)",
+    spanish: "crujiente"
+  },
+  {
+    word: "Crunchy",
+    ipa: "/ˈkrʌntʃi/",
+    definition: "Making a loud sound when chewed; having a firm texture.",
+    example: "The granola was full of crunchy almonds.",
+    chinese: "嘎吱作响的 (gāzhī zuòxiǎng de)",
+    spanish: "crujiente"
+  },
+  {
+    word: "Tender",
+    ipa: "/ˈtɛndər/",
+    definition: "Soft and easy to chew or cut.",
+    example: "The beef was so tender it fell apart easily.",
+    chinese: "嫩 (nèn)",
+    spanish: "tierno"
+  },
+  {
+    word: "Moist",
+    ipa: "/mɔɪst/",
+    definition: "Slightly wet; not dry.",
+    example: "This cake is incredibly moist and delicious.",
+    chinese: "湿润的 (shīrùn de)",
+    spanish: "húmedo"
+  },
+  {
+    word: "Fluffy",
+    ipa: "/ˈflʌfi/",
+    definition: "Light and airy in texture.",
+    example: "The pancakes were light and fluffy.",
+    chinese: "蓬松的 (péngsōng de)",
+    spanish: "esponjoso"
+  },
+  {
+    word: "Gooey",
+    ipa: "/ˈɡuːi/",
+    definition: "Soft, sticky, and often semi-liquid.",
+    example: "The chocolate lava cake had a gooey center.",
+    chinese: "黏糊糊的 (niánhūhū de)",
+    spanish: "pegajoso"
+  },
+  {
+    word: "Golden-brown",
+    ipa: "/ˈɡoʊldən braʊn/",
+    definition: "A golden color that indicates food is cooked through and lightly browned.",
+    example: "Bake the biscuits until they are golden-brown.",
+    chinese: "金黄色的 (jīnhuáng sè de)",
+    spanish: "dorado"
+  },
+  {
+    word: "Soft",
+    ipa: "/sɒft/",
+    definition: "Easy to chew or shape; not hard or firm.",
+    example: "The fresh bread was very soft.",
+    chinese: "软 (ruǎn)",
+    spanish: "blando"
+  },
+  {
+    word: "Chewy",
+    ipa: "/ˈtʃuːi/",
+    definition: "Requiring a lot of chewing.",
+    example: "The caramel candy was deliciously chewy.",
+    chinese: "有嚼劲的 (yǒu jiáojìn de)",
+    spanish: "gomoso"
+  },
+  {
+    word: "Runny",
+    ipa: "/ˈrʌni/",
+    definition: "More liquid than solid; flows easily.",
+    example: "The egg yolk was still runny.",
+    chinese: "稀的 (xī de)",
+    spanish: "líquido"
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

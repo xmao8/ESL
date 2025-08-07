@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant Menu Vocabulary – ESLnote Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 600px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.85; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #c0d9f0; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation"> <!-- (Same nav HTML as your example) --> </nav>
+
+<h1>Restaurant Menu Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="ipa" style="color: #666;"></div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Appetizer", ipa: "/ˈæpəˌtaɪzər/", definition: "A small dish served before the main course.", example: "We ordered spring rolls as an appetizer.", chinese: "前菜 (qián cài)", spanish: "aperitivo" },
+  { word: "Entrée", ipa: "/ˈɑːntreɪ/", definition: "The main dish of the meal (U.S. menus).", example: "The steak was my entrée.", chinese: "主菜 (zhǔ cài)", spanish: "plato principal" },
+  { word: "Dessert", ipa: "/dɪˈzɜːrt/", definition: "Sweet food served at the end of the meal.", example: "We had cake for dessert.", chinese: "甜点 (tián diǎn)", spanish: "postre" },
+  { word: "Side dish", ipa: "/saɪd dɪʃ/", definition: "A small portion served with the main dish.", example: "Mashed potatoes are a popular side dish.", chinese: "配菜 (pèi cài)", spanish: "guarnición" },
+  { word: "Combo", ipa: "/ˈkɒmboʊ/", definition: "A meal with several items for one price.", example: "I ordered the lunch combo.", chinese: "套餐 (tào cān)", spanish: "combinación" },
+  { word: "Special", ipa: "/ˈspɛʃl/", definition: "A featured item, often discounted.", example: "The chef's special is seafood paella.", chinese: "特价菜 (tèjià cài)", spanish: "especial" },
+  { word: "Grilled", ipa: "/ɡrɪld/", definition: "Cooked over direct heat.", example: "I love grilled chicken.", chinese: "烤 (kǎo)", spanish: "a la parrilla" },
+  { word: "Fried", ipa: "/fraɪd/", definition: "Cooked in hot oil.", example: "Fried shrimp is delicious.", chinese: "炸 (zhà)", spanish: "frito" },
+  { word: "Baked", ipa: "/beɪkt/", definition: "Cooked in an oven.", example: "We had baked lasagna.", chinese: "烤 (kǎo)", spanish: "horneado" },
+  { word: "Steamed", ipa: "/stiːmd/", definition: "Cooked with hot steam.", example: "Steamed dumplings are my favorite.", chinese: "泡 (zhōng)", spanish: "al vapor" },
+  { word: "Spicy", ipa: "/ˈspaɪsi/", definition: "Hot in flavor.", example: "This curry is too spicy!", chinese: "辣 (là)", spanish: "picante" },
+  { word: "Mild", ipa: "/maɪld/", definition: "Not spicy.", example: "He prefers mild salsa.", chinese: "不辣 (bù là)", spanish: "suave" },
+  { word: "Sweet", ipa: "/swiːt/", definition: "Tastes like sugar.", example: "The sauce is very sweet.", chinese: "甜 (tián)", spanish: "dulce" },
+  { word: "Savory", ipa: "/ˈseɪvəri/", definition: "Salty or spicy, not sweet.", example: "Savory pastries are great snacks.", chinese: "鸡味 (xiān wèi)", spanish: "salado" },
+  { word: "Crispy", ipa: "/ˈkrɪspi/", definition: "Crunchy texture.", example: "I love crispy bacon.", chinese: "脆 (cuì)", spanish: "crujiente" },
+  { word: "Tender", ipa: "/ˈtɛndər/", definition: "Easy to chew.", example: "The beef is very tender.", chinese: "嫩 (nèn)", spanish: "tierno" },
+  { word: "Vegetarian", ipa: "/ˌvɛdʒəˈteəriən/", definition: "Contains no meat.", example: "They serve vegetarian lasagna.", chinese: "繁菜 (sù cài)", spanish: "vegetariano" },
+  { word: "Vegan", ipa: "/ˈviːɡən/", definition: "No animal products.", example: "This dessert is vegan.", chinese: "繁食 (quán sù)", spanish: "vegano" },
+  { word: "Gluten-free", ipa: "/ˈɡluːtən friː/", definition: "Contains no gluten.", example: "She needs gluten-free bread.", chinese: "无麿 (wú fūzhi)", spanish: "sin gluten" },
+  { word: "Allergy warning", ipa: "/ˈælərdʒi ˈwɔrnɪŋ/", definition: "Info about possible allergens.", example: "This dish has an allergy warning.", chinese: "过敏提示 (guòmǐn tíshì)", spanish: "advertencia de alergia" },
+  { word: "Pasta", ipa: "/ˈpæstə/", definition: "Noodles with sauce.", example: "We ordered tomato pasta.", chinese: "面饼 (miàn shí)", spanish: "pasta" },
+  { word: "Lasagna", ipa: "/ləˈzɑːnjə/", definition: "Layered pasta with meat & cheese.", example: "Lasagna is baked in the oven.", chinese: "拉萨尼亚 (lā sà ní yà)", spanish: "lasaña" },
+  { word: "Risotto", ipa: "/rɪˈzɒtoʊ/", definition: "Creamy rice dish.", example: "She made mushroom risotto.", chinese: "米饭湯 (mǐfàn tāng)", spanish: "risotto" },
+  { word: "Margherita", ipa: "/ˌmɑːɡəˈriːtə/", definition: "Pizza with tomato, mozzarella, and basil.", example: "We shared a margherita pizza.", chinese: "马格里塔披萨 (mǎgélǐtǀ pīsà)", spanish: "margarita" },
+  { word: "Taco", ipa: "/ˈtɑːkoʊ/", definition: "Tortilla filled with meat & veggies.", example: "I ate three tacos.", chinese: "塔克 (tǎkě)", spanish: "taco" },
+  { word: "Burrito", ipa: "/bʊˈriːtoʊ/", definition: "Rolled tortilla with fillings.", example: "He had a chicken burrito.", chinese: "布里托 (bùlǐtuō)", spanish: "burrito" },
+  { word: "Guacamole", ipa: "/ˌɡwɑːkəˈmoʊli/", definition: "Avocado-based dip.", example: "We shared guacamole and chips.", chinese: "黄瓜泡沫 (huángguā pàomò)", spanish: "guacamole" },
+  { word: "Enchilada", ipa: "/ˌentʃɪˈlɑːdə/", definition: "Filled tortilla covered in sauce.", example: "Try the cheese enchilada.", chinese: "油酥饼 (yóuzhà bǐng)", spanish: "enchilada" },
+  { word: "Dumpling", ipa: "/ˈdʌmplɪŋ/", definition: "Dough with filling inside.", example: "We ordered pork dumplings.", chinese: "饺子 (jiǎngzi)", spanish: "empanadilla" },
+  { word: "Sushi", ipa: "/ˈsuːʃi/", definition: "Rice with raw fish or vegetables.", example: "Sushi is a Japanese dish.", chinese: "寿司 (shòusī)", spanish: "sushi" },
+  { word: "Curry", ipa: "/ˈkɜːri/", definition: "Spicy dish with sauce.", example: "We had Thai curry.", chinese: "咖喱 (gālī)", spanish: "curry" },
+  { word: "Tempura", ipa: "/temˈpjʊərə/", definition: "Battered and fried food.", example: "Tempura is light and crispy.", chinese: "天如美 (tiānrú měi)", spanish: "tempura" },
+  { word: "Pho", ipa: "/fɜː/", definition: "Vietnamese noodle soup.", example: "Pho is served with herbs.", chinese: "米粉湯 (mǐfěn tāng)", spanish: "pho" }
+];
+
+let index = 0;
+let flipped = false;
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
+                         <div class="ipa">${flashcards[index].ipa}</div>
+                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>/* (Same nav toggle script as your example) */</script>
+
+</body>
+</html>

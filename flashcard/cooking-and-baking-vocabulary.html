@@ -584,6 +584,7 @@ function flipCard() {
     flashcard.innerHTML = `
       <div class="word">
         ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
       </div>
       <div class="ipa">${ipa}</div>
       <div class="definition">${definition}</div>
@@ -595,6 +596,23 @@ function flipCard() {
     flashcard.classList.add("flipped");
     flashcard.setAttribute("aria-pressed", "true");
     flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
   } else {
     showCard();
   }

@@ -139,6 +139,7 @@
 </div>
 
 <div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
   <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
   <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
@@ -479,6 +480,98 @@ if (menuToggle && navLinks) {
     });
   });
 }
+
+// Autoplay functionality
+
+let autoplay = false;
+let autoplayTimeouts = [];
+
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function pronounce(text, delay = 0) {
+  return new Promise((resolve) => {
+    const timeout = setTimeout(() => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      utterance.onend = resolve;
+      speechSynthesis.speak(utterance);
+    }, delay);
+    autoplayTimeouts.push(timeout);
+  });
+}
+
+async function autoplaySequence() {
+  if (!autoplay) return;
+
+  const { word, example } = flashcards[index];
+
+  // Show card front first
+  showCard();
+
+  // Small pause before flip
+  await new Promise(r => setTimeout(r, 500));
+
+  // Flip card to show definition and details
+  flipCard();
+
+  // Pronounce word 3 times
+  for (let i = 0; i < 3; i++) {
+    if (!autoplay) return;
+    await pronounce(word);
+    await new Promise(r => setTimeout(r, 400));
+  }
+
+  // Pronounce example once
+  if (!autoplay) return;
+  await pronounce(example);
+
+  // Pause before next card
+  await new Promise(r => setTimeout(r, 700));
+
+  if (!autoplay) return;
+
+  nextCard();
+
+  autoplaySequence();
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+
+flashcard.addEventListener('click', () => {
+  stopAutoplayOnUserAction();
+});
+
+document.querySelector('.buttons button[aria-label="Previous flashcard"]').addEventListener('click', stopAutoplayOnUserAction);
+document.querySelector('.buttons button[aria-label="Next flashcard"]').addEventListener('click', stopAutoplayOnUserAction);
+
 </script>
 
 <div class="buttons">

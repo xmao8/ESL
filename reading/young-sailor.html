@@ -75,82 +75,148 @@
             padding-left: 2em;
             text-align: left;
         }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+        .definition {
+            font-size: 1rem;
+        }
+        .example {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
-    <nav aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="../index.html" class="logo" aria-label="ESLnote Home">
-                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
-                <span class="site-name">ESLnote</span>
-            </a>
-            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <div class="nav-links" id="primary-navigation">
-                <a href="../index.html">Home</a>
-                <a href="../flashcards.html">Flashcards</a>
-                <a href="../conversation.html">Conversations</a>
-                <a href="../grammar.html">Grammar</a>
-                <a href="../reading.html">Reading</a>
-                <a href="../listening.html">Listening</a>
-                <a href="../practice.html">Practices</a>
-            </div>
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
         </div>
-    </nav>
-    <h1>Young Sailor</h1>
-    <main>
-        <div class="poem">
-            <h2>Young Sailor</h2>
-            <p><i>by Langston Hughes</i></p>
+    </div>
+</nav>
+<h1>Young Sailor</h1>
+<main>
+    <div class="content-section poem">
+        <h2>Young Sailor</h2>
+        <p><i>by Langston Hughes</i></p>
+        <br>
+        <div>
+            <p>He carries</p>
+            <p>His own strength</p>
+            <p>And his own laughter,</p>
+            <p>His own today</p>
+            <p>And his own hereafter,—</p>
+            <p>This strong young sailor</p>
+            <p>Of the wide seas.</p>
             <br>
-            <div>
-                <p>He carries</p>
-                <p>His own strength</p>
-                <p>And his own laughter,</p>
-                <p>His own today</p>
-                <p>And his own hereafter,—</p>
-                <p>This strong young sailor</p>
-                <p>Of the wide seas.</p>
-                <br>
-                <p>What is money for?</p>
-                <p class="indented">To spend, he says.</p>
-                <p>And wine?</p>
-                <p class="indented">To drink.</p>
-                <p>And women?</p>
-                <p class="indented">To love.</p>
-                <p>And today?</p>
-                <p class="indented">For joy.</p>
-                <p>And tomorrow?</p>
-                <p class="indented">For joy.</p>
-                <p>And the green sea</p>
-                <p class="indented">For strength,</p>
-                <p>And the brown land</p>
-                <p class="indented">For laughter.</p>
-                <p>And nothing hereafter.</p>
-            </div>
+            <p>What is money for?</p>
+            <p class="indented">To spend, he says.</p>
+            <p>And wine?</p>
+            <p class="indented">To drink.</p>
+            <p>And women?</p>
+            <p class="indented">To love.</p>
+            <p>And today?</p>
+            <p class="indented">For joy.</p>
+            <p>And tomorrow?</p>
+            <p class="indented">For joy.</p>
+            <p>And the green sea</p>
+            <p class="indented">For strength,</p>
+            <p>And the brown land</p>
+            <p class="indented">For laughter.</p>
+            <p>And nothing hereafter.</p>
         </div>
-    </main>
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('primary-navigation');
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-                menuToggle.setAttribute('aria-expanded', !expanded);
-                navLinks.classList.toggle('active');
-            });
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if(navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', false);
-                    }
-                });
-            });
-        }
-    </script>
+    </div>
+
+    <div class="content-section vocabulary-list">
+        <h2>Vocabulary List</h2>
+        <ul>
+            <li>
+                <strong>Strength</strong>
+                <div class="definition">The quality or state of being physically strong or powerful.</div>
+                <div class="example">"He lifted the heavy box with great strength."</div>
+            </li>
+            <li>
+                <strong>Laughter</strong>
+                <div class="definition">The sound or act of laughing; showing amusement or joy.</div>
+                <div class="example">"The child's laughter filled the room."</div>
+            </li>
+            <li>
+                <strong>Hereafter</strong>
+                <div class="definition">The time after this life; the future, or what comes next.</div>
+                <div class="example">"He did not worry about the hereafter, only about today."</div>
+            </li>
+            <li>
+                <strong>Sailor</strong>
+                <div class="definition">A person whose job is to work on a ship at sea.</div>
+                <div class="example">"The sailor traveled to many different countries by ship."</div>
+            </li>
+            <li>
+                <strong>Wide seas</strong>
+                <div class="definition">The vast, open ocean; a large area of the sea.</div>
+                <div class="example">"He dreamed of adventure on the wide seas."</div>
+            </li>
+            <li>
+                <strong>For joy</strong>
+                <div class="definition">To enjoy something or to be happy; for the purpose of happiness.</div>
+                <div class="example">"She dances for joy when she hears good news."</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>Comprehension Questions</h2>
+        <ol>
+            <li>What are some things the young sailor "carries" with him?</li>
+            <li>What is the young sailor’s attitude toward money, wine, and women?</li>
+            <li>How does the sailor feel about "today" and "tomorrow"?</li>
+            <li>What do the "green sea" and "brown land" represent for the sailor?</li>
+            <li>What does "nothing hereafter" suggest about the sailor’s view of the future?</li>
+            <li>How would you describe the personality of the young sailor?</li>
+            <li>What is the main message of the poem?</li>
+        </ol>
+    </div>
+</main>
 </body>
 </html>

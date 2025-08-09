@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Community Garden – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* --- Your site-wide styles --- */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem;
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px;
+        }
+        .vocabulary-list .definition {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block;
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>A Community Garden</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>MARIA:</strong> (40s) A friendly, optimistic woman who has been a community garden member for years.</li>
+            <li><strong>JAVIER:</strong> (50s) A kind, quiet man who is new to the garden.</li>
+            <li><strong>LIAM:</strong> (20s) A young, energetic man who is also new.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Scene: A sunny afternoon in a community garden. MARIA is watering tomato plants. JAVIER is pulling weeds from his small plot. LIAM enters, looking frustrated with a small bag of tools.</p>
+
+    <div class="conversation-script">
+        <p><strong>LIAM:</strong> <span class="dialogue">(Sighing loudly) This is impossible. I give up.</span></p>
+        <p class="scene-direction">(Maria looks up and smiles warmly.)</p>
+        <p><strong>MARIA:</strong> <span class="dialogue">What's the matter, Liam? It’s your first week, right?</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Yeah. I don't know what I'm doing. My plants aren't growing. I think I put the wrong fertilizer on them.</span></p>
+        <p><strong>JAVIER:</strong> <span class="dialogue">Maybe it just needs more time. Some plants are slow at the beginning.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">I don't think so. I probably ruined them. I'm not good at this. I've watched all the videos, but it's not the same.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Hey, don't worry. We all started somewhere. When I first joined, I tried to grow peppers and ended up with tiny, sad-looking leaves.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">(Laughing a little) Really? You have the best garden here.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">(Smiling) Yes! But I learned from my mistakes, and I learned from my neighbors. That's the nice thing about a community garden. We help each other.</span></p>
+        <p class="scene-direction">(Maria walks over to Liam's plot and examines his plants.)</p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Hmm, these leaves look a little yellow. You might be giving them too much water.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Too much? I thought they needed a lot.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">A common mistake. Try watering them every other day instead of every day. And feel the soil first. If it's still wet, wait.</span></p>
+        <p><strong>JAVIER:</strong> <span class="dialogue">She's right. The soil is key. I can give you some of my compost if you want. It's very good for tomatoes.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">(Surprised) You would do that? Thank you, Javier. I don't have any good compost.</span></p>
+        <p><strong>JAVIER:</strong> <span class="dialogue">Of course. We share what we have. That's how we grow a good harvest together.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Exactly! We are a community. We share knowledge, we share tools, and sometimes, we share our vegetables. Last year, Javier gave me a huge zucchini!</span></p>
+        <p><strong>JAVIER:</strong> <span class="dialogue">(Chuckles) And Maria gave me some of her famous salsa. The recipe is a secret, though.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">(Winking at Liam) It’s a secret ingredient.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Wow. This is a lot nicer than I expected. I just thought it was a place to grow vegetables. I didn't think I would find friends.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Well, now you have both. Don't worry about the plants. We'll get them growing again. We’ll help you.</span></p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Thank you, both of you. I really appreciate it. I feel much better now.</span></p>
+        <p class="scene-direction">(Liam takes a deep breath and looks at his plot with a newfound determination.)</p>
+        <p><strong>LIAM:</strong> <span class="dialogue">Okay, let's try this again. What's the first step?</span></p>
+        <p class="scene-direction">(Javier and Maria smile at each other. The three of them stand together, looking at the small plants. The sun shines brightly.)</p>
+        <p class="scene-direction">(FADE OUT.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Community garden <span class="speaker-icon" onclick="speakWord('community garden')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kəˈmjuː.nə.ti ˈɡɑːr.dən/</span>
+                <span class="definition">(n.): A shared space where people from the neighborhood grow plants together.</span>
+                <span class="example">Example: I joined the community garden to learn about growing vegetables.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Fertilizer <span class="speaker-icon" onclick="speakWord('fertilizer')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈfɜːr.t̬əl.aɪ.zər/</span>
+                <span class="definition">(n.): A substance added to soil to help plants grow.</span>
+                <span class="example">Example: Too much fertilizer can harm your plants.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Plot <span class="speaker-icon" onclick="speakWord('plot')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/plɑːt/</span>
+                <span class="definition">(n.): A small area of land in a garden for growing plants.</span>
+                <span class="example">Example: Javier has a plot next to Maria's in the garden.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Weed <span class="speaker-icon" onclick="speakWord('weed')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/wiːd/</span>
+                <span class="definition">(n./v.): A plant that is not wanted in the garden; to remove such plants.</span>
+                <span class="example">Example: He spends Saturday mornings pulling weeds.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Harvest <span class="speaker-icon" onclick="speakWord('harvest')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈhɑːr.vɪst/</span>
+                <span class="definition">(n./v.): The process of gathering ripe crops from the garden.</span>
+                <span class="example">Example: We harvest tomatoes in late summer.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Compost <span class="speaker-icon" onclick="speakWord('compost')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkɒm.poʊst/</span>
+                <span class="definition">(n.): Decayed plant or food waste added to soil to help plants grow.</span>
+                <span class="example">Example: Good compost makes plants grow strong.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Vegetable <span class="speaker-icon" onclick="speakWord('vegetable')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈvedʒ.tə.bəl/</span>
+                <span class="definition">(n.): A plant or part of a plant used as food, such as tomatoes, peppers, or zucchini.</span>
+                <span class="example">Example: Liam wants to grow vegetables in his garden plot.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Soil <span class="speaker-icon" onclick="speakWord('soil')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/sɔɪl/</span>
+                <span class="definition">(n.): The top layer of earth where plants grow.</span>
+                <span class="example">Example: Check the soil before you water your plants.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

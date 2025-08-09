@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embedded Questions – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        /* Content specific styles */
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+        .content-container em {
+            font-style: italic;
+            color: #555;
+        }
+        .example {
+            background-color: #e8f5e9; /* Light green for examples */
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .example strong {
+            color: #2E7D32; /* Darker green for emphasis in examples */
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+
+        /* Styles for the table (from the image) */
+        .embedded-table-container {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .embedded-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .embedded-table th, .embedded-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        .embedded-table th {
+            background-color: #e8f5e9;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .embedded-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .embedded-table tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Introduction to Embedded Questions</h1>
+
+<div class="content-container">
+    <p>Embedded questions are **questions that are part of a larger sentence** rather than standing on their own. They're often used to make a question more polite or indirect, and they don't follow the typical question structure. They can be introduced by phrases like 'I wonder,' 'I don't know,' or 'Can you tell me.'</p>
+
+    <p>Unlike direct questions, embedded questions **do not follow a question structure** (like using an inverted subject-verb order) and they **end with a period** (.) instead of a question mark (?).</p>
+
+    <div class="embedded-table-container">
+        <table class="embedded-table">
+            <thead>
+                <tr>
+                    <th>Introductory Question</th>
+                    <th>Embedded Question</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Can you show me</td>
+                    <td>where Elm Street is?</td>
+                </tr>
+                <tr>
+                    <td>Do you know</td>
+                    <td>if there is a library near here?</td>
+                </tr>
+                <tr>
+                    <td>Can you tell me</td>
+                    <td>when the library opens?</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Key Rules for Embedded Questions</h2>
+    <p>When forming an embedded question, you need to remember a few main rules:</p>
+    <ul>
+        <li>**Subject-Verb Order:** In an embedded question, the subject always comes **before the verb**. This is a key difference from direct questions, which often invert this order. For instance:
+            <div class="example">
+                <strong>Incorrect:</strong> *Can you tell me where **is** the bus stop?*<br>
+                <strong>Correct:</strong> *Can you tell me where the bus stop **is**?*
+            </div>
+        </li>
+        <li>**Using 'If' or 'Whether' for Yes/No Questions:** If the original question is a simple yes/no question, you must use **'if' or 'whether'** to introduce the embedded question.
+            <div class="example">
+                <strong>Direct Question:</strong> *Is it raining?*<br>
+                <strong>Embedded Question:</strong> *He asked **if** it was raining.* or *He asked **whether** it was raining.*
+            </div>
+        </li>
+        <li>**Removing 'Do' or 'Does':** When a direct question uses *do* or *does*, you must **remove it** in the embedded question and adjust the verb form to agree with the subject.
+            <div class="example">
+                <strong>Direct Question:</strong> *When does the library open?*<br>
+                <strong>Embedded Question:</strong> *Can you tell me **when the library opens**?*
+            </div>
+        </li>
+        <li>**Punctuation:** The punctuation at the end of the sentence depends on the **main clause**. If the main clause is a statement, the sentence ends with a period. If the main clause is a question, it ends with a question mark.
+            <div class="example">
+                <strong>Statement:</strong> *I don't know why she left.*<br>
+                <strong>Question:</strong> *Do you know why she left?*
+            </div>
+        </li>
+    </ul>
+    
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

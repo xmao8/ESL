@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embedded Questions Worksheet – ESLnote </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        /* Content specific styles */
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+        .content-container em {
+            font-style: italic;
+            color: #555;
+        }
+        .example {
+            background-color: #e8f5e9; /* Light green for examples */
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .example strong {
+            color: #2E7D32; /* Darker green for emphasis in examples */
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+        .worksheet-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .worksheet-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .question-text {
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            min-height: 50px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Embedded Questions Worksheet</h1>
+
+<div class="content-container">
+    <h2>Instructions</h2>
+    <p>Practice forming embedded questions. For each direct question below, choose one of the introductory phrases and combine it with the question to form a complete, polite embedded question. Remember to change the word order and punctuation correctly!</p>
+
+    <h3>Introductory Phrases:</h3>
+    <ul>
+        <li>Do you know...</li>
+        <li>I was wondering...</li>
+        <li>Can you tell me...</li>
+        <li>I wonder...</li>
+        <li>He asked...</li>
+        <li>I'm not sure...</li>
+        <li>Could you explain...</li>
+        <li>I have no idea...</li>
+        <li>We need to find out...</li>
+    </ul>
+
+    <form class="worksheet-form" onsubmit="return false;">
+        <div class="worksheet-item">
+            <label for="q1" class="question-text">1. Where is the nearest bus stop?</label>
+            <textarea id="q1" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q2" class="question-text">2. What time does the bank close?</label>
+            <textarea id="q2" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q3" class="question-text">3. Is he a doctor?</label>
+            <textarea id="q3" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q4" class="question-text">4. Why did she leave early?</label>
+            <textarea id="q4" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q5" class="question-text">5. How much does this jacket cost?</label>
+            <textarea id="q5" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q6" class="question-text">6. When will the meeting end?</label>
+            <textarea id="q6" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q7" class="question-text">7. Do they like chocolate?</label>
+            <textarea id="q7" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q8" class="question-text">8. How old is your sister?</label>
+            <textarea id="q8" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q9" class="question-text">9. Who won the game?</label>
+            <textarea id="q9" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q10" class="question-text">10. Where did you go last night?</label>
+            <textarea id="q10" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <hr/>
+        <p>Now, practice with these questions about a community.</p>
+        <div class="worksheet-item">
+            <label for="q11" class="question-text">11. What is the community center's address?</label>
+            <textarea id="q11" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q12" class="question-text">12. Is there a park nearby?</label>
+            <textarea id="q12" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q13" class="question-text">13. Who is the mayor?</label>
+            <textarea id="q13" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q14" class="question-text">14. When are the community meetings?</label>
+            <textarea id="q14" placeholder="Write your embedded question here..."></textarea>
+        </div>
+        <div class="worksheet-item">
+            <label for="q15" class="question-text">15. How can I volunteer?</label>
+            <textarea id="q15" placeholder="Write your embedded question here..."></textarea>
+        </div>
+    </form>
+</div>
+
+<div class="buttons">
+    <a href="../practice.html">← Back to Practice</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

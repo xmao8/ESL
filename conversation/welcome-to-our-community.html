@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Our Community – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem;
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px;
+        }
+        .vocabulary-list .definition {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block;
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Welcome to Our Community</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>ANNA:</strong> New neighbor, shy, unsure.</li>
+            <li><strong>BRIAN:</strong> Friendly neighbor, welcoming.</li>
+            <li><strong>MAYA:</strong> Community leader, helpful.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: Outside an apartment building. Anna stands holding boxes, looking lost. Brian walks by.</p>
+
+    <div class="conversation-script">
+        <p><strong>BRIAN:</strong> <span class="dialogue">Hi there! You look new here. Can I help?</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Oh, hi... Yes, I just moved in today. I don't really know anyone.</span></p>
+        <p><strong>BRIAN:</strong> <span class="dialogue">Welcome to our community! I'm Brian, your neighbor from apartment 3C.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">I'm Anna. I'm in 2B. Is there a place I can meet people here?</span></p>
+        <p><strong>BRIAN:</strong> <span class="dialogue">Sure! We have a community center right around the corner. Actually, Maya from the center can tell you everything. She's right over there.</span></p>
+        <p class="scene-direction">(Maya walks towards them, smiling.)</p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Hi Brian! Oh, a new face! Welcome! I'm Maya, coordinator at the community center.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Nice to meet you, Maya. I'm Anna. Brian mentioned there's a community center nearby?</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Yes! It's a great place to make friends and get involved. We have language classes, art workshops, even yoga sessions. Do you like any of those?</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">I do! I'm learning English and yoga sounds great, too.</span></p>
+        <p><strong>BRIAN:</strong> <span class="dialogue">Perfect! Maya, isn't there an event tonight?</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">Yes, tonight we have our monthly community potluck dinner. It's the perfect opportunity for you, Anna. You can meet neighbors and try foods from different cultures.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Oh, that sounds wonderful, but I don't have any food to bring.</span></p>
+        <p><strong>BRIAN:</strong> <span class="dialogue">No worries! It's your first day. Just come and enjoy. Next month you can bring something special from your culture.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Thank you both! I'm starting to feel much better about moving here.</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">That's what community is all about—helping each other and making everyone feel at home.</span></p>
+        <p><strong>BRIAN:</strong> <span class="dialogue">Exactly. Plus, tonight I'll introduce you to some other neighbors. You'll see, everyone here is friendly.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">That's great! I'm really excited now. Where exactly is the community center?</span></p>
+        <p><strong>MAYA:</strong> <span class="dialogue">It's very close, just across the street behind the supermarket.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Got it! I'll unpack first and see you there tonight.</span></p>
+        <p><strong>BRIAN:</strong> <span class="dialogue">Great! Welcome again, Anna. We're happy you're here.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Thank you, Brian, Maya. It already feels like home.</span></p>
+        <p class="scene-direction">(Maya and Brian wave as Anna exits, smiling and confident.)</p>
+        <p class="scene-direction">(End of Scene)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Community <span class="speaker-icon" onclick="speakWord('community')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kəˈmjuː.nə.ti/</span>
+                <span class="definition">(n.): A group of people living in the same area and sharing common interests.</span>
+                <span class="example">Example: This is a friendly community.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Neighbor <span class="speaker-icon" onclick="speakWord('neighbor')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈneɪ.bər/</span>
+                <span class="definition">(n.): A person who lives near you.</span>
+                <span class="example">Example: My neighbor helped me carry my groceries.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Community center <span class="speaker-icon" onclick="speakWord('community center')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kəˈmjuː.nə.ti ˈsen.tər/</span>
+                <span class="definition">(n.): A place where people from the community can meet for events or activities.</span>
+                <span class="example">Example: The yoga class is at the community center.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Potluck <span class="speaker-icon" onclick="speakWord('potluck')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈpɒt.lʌk/</span>
+                <span class="definition">(n.): A meal or party where everyone brings a dish to share.</span>
+                <span class="example">Example: Everyone brought food to the potluck dinner.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Culture <span class="speaker-icon" onclick="speakWord('culture')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkʌl.tʃər/</span>
+                <span class="definition">(n.): The ideas, customs, and social behavior of a group or society.</span>
+                <span class="example">Example: We celebrate many different cultures in this neighborhood.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Get involved <span class="speaker-icon" onclick="speakWord('get involved')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɡɛt ɪnˈvɒlvd/</span>
+                <span class="definition">(phrase): To participate in activities with others.</span>
+                <span class="example">Example: It's easy to get involved in community events here.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Coordinator <span class="speaker-icon" onclick="speakWord('coordinator')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/koʊˈɔːr.dɪ.neɪ.tər/</span>
+                <span class="definition">(n.): A person who organizes events or activities.</span>
+                <span class="example">Example: Maya is the coordinator of the community center.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Unpack <span class="speaker-icon" onclick="speakWord('unpack')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ʌnˈpæk/</span>
+                <span class="definition">(v.): To take things out of boxes or bags after moving.</span>
+                <span class="example">Example: Anna needs to unpack her boxes.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

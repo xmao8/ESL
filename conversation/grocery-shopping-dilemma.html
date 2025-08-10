@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grocery Shopping Dilemma – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem;
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px;
+        }
+        .vocabulary-list .definition {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block;
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Grocery Shopping Dilemma</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>ANNA:</strong> (30s) A busy professional, organized and focused.</li>
+            <li><strong>MARK:</strong> (60s) A friendly, retired man who loves to chat.</li>
+            <li><strong>CHLOE:</strong> (20s) A young woman looking at her phone, a bit distracted.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">The scene opens in a supermarket aisle. Anna is pushing her cart, checking her shopping list on her phone. Mark is standing by a display of canned tomatoes, inspecting a label. Chloe walks into the aisle, her eyes glued to her phone, and bumps into Mark's cart.</p>
+
+    <div class="conversation-script">
+        <p><strong>CHLOE:</strong> <span class="dialogue">Oh, sorry! I wasn't looking.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">No problem at all, young lady. Just be careful, these supermarket carts can be dangerous. They have a mind of their own!</span></p>
+        <p class="scene-direction">(Anna walks past them, trying to get to the canned goods. She sees the different types of tomatoes and sighs in frustration.)</p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Canned tomatoes... crushed, diced, whole... there are too many options. This is why I hate grocery shopping.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">It can be a little overwhelming. But look, if you’re making a pasta sauce, the crushed ones are best. They make the sauce thicker. The diced ones are good for chili.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Oh, thank you. I am making pasta sauce. I just moved to this neighborhood and I don't know my way around this store yet.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">Ah, a new neighbor! I’m Mark. I've been shopping here for years. I know every aisle. You could say I'm an expert.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Anna. Nice to meet you. And thank you for the tip.</span></p>
+        <p class="scene-direction">(Chloe, who has been listening, puts her phone away and looks at a bag of lentils.)</p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Can I ask you something, too? I need to get some lentils, but I don’t know the difference between the brown ones and the red ones.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">The red ones cook much faster, and they turn into a sort of mush. They’re good for soups. The brown and green ones keep their shape better, so they're great for salads.</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Oh, that makes sense. I was going to use them for a salad. Thank you so much! My mom just gave me her old recipes, and I’m trying to cook more.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">That's wonderful. Cooking from a recipe is like following a map. And if you get lost, just ask!</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">It’s great that you're cooking more. It’s so much healthier and cheaper than eating out. I'm trying to do the same.</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Yeah, but it’s a lot of work. Especially when you don't know what to buy.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">We can help you. What else is on your list?</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">Let's see... a specific type of flour for bread. It's called... self-rising?</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">The self-rising flour is right next to the regular flour, a few aisles down. I can show you. I need to get some eggs over there anyway.</span></p>
+        <p><strong>CHLOE:</strong> <span class="dialogue">You would do that? Thank you, Anna!</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">See? Grocery shopping can be a team effort! Have a good day, you two!</span></p>
+        <p class="scene-direction">(Anna and Chloe smile and walk down the aisle together, a new friendship blooming amidst the rows of food. They continue their shopping, no longer feeling so lost.)</p>
+        <p class="scene-direction">(End of Scene)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Overwhelming <span class="speaker-icon" onclick="speakWord('overwhelming')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌoʊ.vərˈwel.mɪŋ/</span>
+                <span class="definition">(adj.): Too many things to deal with.</span>
+                <span class="example">Example: The number of choices in the store was overwhelming.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Aisle <span class="speaker-icon" onclick="speakWord('aisle')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/aɪl/</span>
+                <span class="definition">(n.): A path between shelves of goods in a supermarket.</span>
+                <span class="example">Example: The coffee is in aisle 5.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Canned goods <span class="speaker-icon" onclick="speakWord('canned goods')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kænd ɡʊdz/</span>
+                <span class="definition">(n.): Food that is sealed in a metal can.</span>
+                <span class="example">Example: Canned goods can last for a long time.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Chili <span class="speaker-icon" onclick="speakWord('chili')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈtʃɪl.i/</span>
+                <span class="definition">(n.): A spicy stew made with meat, beans, and chili peppers.</span>
+                <span class="example">Example: He made a delicious chili with diced tomatoes.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Lentils <span class="speaker-icon" onclick="speakWord('lentils')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈlen.t̬əlz/</span>
+                <span class="definition">(n.): Small, dried beans used in cooking, often for soups and salads.</span>
+                <span class="example">Example: Lentils are a good source of protein.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Self-rising flour <span class="speaker-icon" onclick="speakWord('self-rising flour')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/selfˈraɪ.zɪŋ ˈflaʊ.ər/</span>
+                <span class="definition">(n.): A type of flour that has baking powder and salt already mixed in.</span>
+                <span class="example">Example: You use self-rising flour to make bread and cakes.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Team effort <span class="speaker-icon" onclick="speakWord('team effort')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/tiːm ˈef.ət/</span>
+                <span class="definition">(idiom): The combined energy and work of a group of people.</span>
+                <span class="example">Example: We finished the project quickly; it was a real team effort.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

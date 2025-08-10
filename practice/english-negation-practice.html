@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>English Negation Practice – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; /* Adjust if your nav height is different */
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; /* Changed from 100vw to 100% */
+                height: calc(100vh - 56px); /* Adjust if your nav height is different */
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; /* Add horizontal padding to main content */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
+            }
+            .nav-links {
+                position: static; /* Links are part of the normal flow */
+                flex-direction: row; /* Links in a row */
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; /* Slightly smaller gap than desktop */
+                transform: none !important; /* Ensure no translation */
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on tablets */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
+            }
+        }
+
+        /* Content specific styles */
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; /* Wider for content pages */
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; /* Adjust max-width to suit content */
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left for readability */
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076; /* Make strong words stand out a bit more */
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+        
+        .submit-button {
+            background-color: #4CAF50;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .show-answers {
+            background-color: #f44336;
+        }
+        .show-answers:hover {
+            background-color: #d32f2f;
+        }
+        
+        .answers-section {
+            display: none;
+            margin-top: 2rem;
+            border-top: 2px solid #ccc;
+            padding-top: 1rem;
+        }
+        .answers-section h3 {
+            color: #4CAF50;
+        }
+        .answers-section ol {
+            text-align: left;
+            padding-left: 20px;
+        }
+        .answers-section li {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>English Negation Practice</h1>
+
+<div class="content-container">
+    <p>This worksheet will test your understanding of English negation. The questions are divided into two sections: converting positive sentences to negative ones and correcting common errors in negation.</p>
+    
+    <h2>Part 1: Making Sentences Negative</h2>
+    <p>Change the following positive sentences into negative sentences.</p>
+    <ol>
+        <li>He buys groceries at the local market.</li>
+        <li>The library is open on Sundays.</li>
+        <li>We found a parking spot near the mall.</li>
+        <li>She likes to shop for clothes online.</li>
+        <li>They have a new bakery in the neighborhood.</li>
+        <li>I saw my friend at the post office yesterday.</li>
+        <li>The community center offers art classes.</li>
+        <li>My parents will go to the farmers' market this weekend.</li>
+        <li>He can pay with a credit card.</li>
+        <li>The store has a sale on shoes today.</li>
+        <li>The delivery service is fast.</li>
+        <li>We are waiting in a long line at the checkout.</li>
+        <li>You should bring your reusable bags.</li>
+        <li>The coffee shop sells pastries.</li>
+        <li>I finished all my shopping.</li>
+    </ol>
+    
+    <hr style="margin: 2rem 0;">
+
+    <h2>Part 2: Correcting Negation Errors</h2>
+    <p>The following sentences contain errors in negation. Correct each sentence to make it grammatically sound. Some sentences may be double negatives.</p>
+    <ol start="16">
+        <li>She don't have no time for shopping.</li>
+        <li>I didn't saw anything at the craft fair.</li>
+        <li>They can't never find a parking space.</li>
+        <li>He is not wanting to buy that shirt.</li>
+        <li>There is no one that won't go to the community meeting.</li>
+        <li>We haven't got no fresh produce.</li>
+        <li>The bank do not open on Saturdays.</li>
+        <li>I don't need no help with my bags.</li>
+        <li>You must not to forget your wallet.</li>
+        <li>They was not at the town hall meeting.</li>
+        <li>He doesn't likes the new shopping center.</li>
+        <li>The store didn't had any milk.</li>
+        <li>We are no longer go to that shop.</li>
+        <li>I haven't not been to the city library.</li>
+        <li>The community garden don't get enough sunlight.</li>
+    </ol>
+
+    <div class="buttons">
+        <button id="showAnswersBtn" class="show-answers">Show Answers</button>
+    </div>
+    
+    <div id="answers" class="answers-section">
+        <h3>Answer Key</h3>
+        <p><strong>Part 1: Making Sentences Negative</strong></p>
+        <ol>
+            <li>He **does not** buy groceries at the local market. (or He **doesn't** buy...)</li>
+            <li>The library **is not** open on Sundays. (or The library **isn't** open...)</li>
+            <li>We **did not** find a parking spot near the mall. (or We **didn't** find...)</li>
+            <li>She **does not** like to shop for clothes online. (or She **doesn't** like...)</li>
+            <li>They **do not** have a new bakery in the neighborhood. (or They **don't** have...)</li>
+            <li>I **did not** see my friend at the post office yesterday. (or I **didn't** see...)</li>
+            <li>The community center **does not** offer art classes. (or The community center **doesn't** offer...)</li>
+            <li>My parents **will not** go to the farmers' market this weekend. (or My parents **won't** go...)</li>
+            <li>He **can not** pay with a credit card. (or He **can't** pay...)</li>
+            <li>The store **does not** have a sale on shoes today. (or The store **doesn't** have...)</li>
+            <li>The delivery service **is not** fast. (or The delivery service **isn't** fast.)</li>
+            <li>We **are not** waiting in a long line at the checkout. (or We **aren't** waiting...)</li>
+            <li>You **should not** bring your reusable bags. (or You **shouldn't** bring...)</li>
+            <li>The coffee shop **does not** sell pastries. (or The coffee shop **doesn't** sell...)</li>
+            <li>I **have not** finished all my shopping. (or I **haven't** finished...)</li>
+        </ol>
+
+        <p><strong>Part 2: Correcting Negation Errors</strong></p>
+        <ol start="16">
+            <li>She **doesn't** have **any** time for shopping. (or She has **no** time...)</li>
+            <li>I **didn't see** anything at the craft fair.</li>
+            <li>They **can never** find a parking space. (or They **can't** find a parking space.)</li>
+            <li>He **does not want** to buy that shirt.</li>
+            <li>There is **no one** that **will** go to the community meeting. (or There is **no one** that **goes**...)</li>
+            <li>We **haven't** got **any** fresh produce. (or We have **no** fresh produce.)</li>
+            <li>The bank **does not** open on Saturdays.</li>
+            <li>I **don't** need **any** help with my bags. (or I need **no** help...)</li>
+            <li>You **must not** forget your wallet. (Remove "to")</li>
+            <li>They **were not** at the town hall meeting.</li>
+            <li>He **doesn't like** the new shopping center.</li>
+            <li>The store **didn't have** any milk.</li>
+            <li>We **no longer go** to that shop.</li>
+            <li>I **haven't been** to the city library. (or I **have not been**...)</li>
+            <li>The community garden **doesn't** get enough sunlight.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    const showAnswersBtn = document.getElementById('showAnswersBtn');
+    const answersSection = document.getElementById('answers');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    if (showAnswersBtn && answersSection) {
+        showAnswersBtn.addEventListener('click', () => {
+            if (answersSection.style.display === 'block') {
+                answersSection.style.display = 'none';
+                showAnswersBtn.textContent = 'Show Answers';
+            } else {
+                answersSection.style.display = 'block';
+                showAnswersBtn.textContent = 'Hide Answers';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

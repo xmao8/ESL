@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Volunteering at the Food Bank – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem;
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px;
+        }
+        .vocabulary-list .definition {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block;
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Volunteering at the Food Bank</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>CARLA:</strong> (30s) A kind and energetic young professional, volunteering for the first time.</li>
+            <li><strong>DAVID:</strong> (40s) The experienced volunteer coordinator, calm and welcoming.</li>
+            <li><strong>SAMIRA:</strong> (20s) A university student, volunteering as part of a course requirement.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">The scene opens in the busy warehouse of a food bank. Boxes are stacked everywhere. The air is filled with a sense of purpose. Carla enters, looking a bit nervous.</p>
+
+    <div class="conversation-script">
+        <p><strong>CARLA:</strong> <span class="dialogue">Hi. I'm here to volunteer. My name is Carla. It's my first time.</span></p>
+        <p><strong>DAVID:</strong> <span class="dialogue">Welcome, Carla! I'm David. We're so happy to have you. Don't worry, everyone here started as a beginner. This is Samira. She's new, too.</span></p>
+        <p><strong>SAMIRA:</strong> <span class="dialogue">Hi! I'm trying to figure out which box these apples go in.</span></p>
+        <p><strong>DAVID:</strong> <span class="dialogue">So, we sort the food by type: grains, vegetables, canned goods, and so on. These apples go in the fresh produce box. The sign on the box says "Produce."</span></p>
+        <p><strong>CARLA:</strong> <span class="dialogue">So, this bag of rice goes in the "Grains" box?</span></p>
+        <p><strong>DAVID:</strong> <span class="dialogue">Exactly! You got it. It's really simple once you get the hang of it. The most important thing is to check the expiration dates on everything. We can only give out food that is not expired.</span></p>
+        <p><strong>SAMIRA:</strong> <span class="dialogue">Oh, I didn't think about that. My professor told me that volunteering would teach me new things, but I thought it would just be about helping people.</span></p>
+        <p><strong>DAVID:</strong> <span class="dialogue">It is, but helping people means doing things carefully and correctly. We want to make sure the families who get this food are safe. It's an important **responsibility**.</span></p>
+        <p><strong>CARLA:</strong> <span class="dialogue">That makes a lot of sense. My company encourages us to volunteer, but I chose to do this because I wanted to feel more connected to my community. I've been feeling a little lonely since I moved here.</span></p>
+        <p><strong>SAMIRA:</strong> <span class="dialogue">Me too! I've been so busy with my studies that I haven't met many people outside of my classes. It's nice to feel like I’m part of something bigger.</span></p>
+        <p><strong>DAVID:</strong> <span class="dialogue">That’s a big reason many people volunteer. It's a way to give back and also to find a place for yourself. It's a win-win.</span></p>
+        <p class="scene-direction">(Suddenly, David’s phone rings. He answers it, listens for a moment, and then hangs up.)</p>
+        <p><strong>DAVID:</strong> <span class="dialogue">Bad news. Our truck is delayed, but we have a big group of people arriving in an hour. We're going to have to work a little faster to get these boxes ready.</span></p>
+        <p><strong>CARLA:</strong> <span class="dialogue">We can do it! I'm good at organizing. Let’s make a plan.</span></p>
+        <p><strong>SAMIRA:</strong> <span class="dialogue">I’m ready! Just tell us what to do, David.</span></p>
+        <p><strong>DAVID:</strong> <span class="dialogue">Okay, teamwork! Carla, you check the dates. Samira, you sort the items. I'll get the boxes ready. Let's go!</span></p>
+        <p class="scene-direction">(The three of them get to work with a renewed sense of energy, laughing and talking as they move boxes and sort food. They work as a team, united by their shared purpose.)</p>
+        <p class="scene-direction">(End of Scene)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Volunteer <span class="speaker-icon" onclick="speakWord('volunteer')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌvɒl.ənˈtɪər/</span>
+                <span class="definition">(v.): To work for an organization without being paid.</span>
+                <span class="example">Example: He decided to volunteer at the local food bank.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Food bank <span class="speaker-icon" onclick="speakWord('food bank')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/fuːd bæŋk/</span>
+                <span class="definition">(n.): A place where food is collected and given to people who need it.</span>
+                <span class="example">Example: The food bank provides meals for many families.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Coordinator <span class="speaker-icon" onclick="speakWord('coordinator')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/koʊˈɔːr.dɪ.neɪ.tər/</span>
+                <span class="definition">(n.): A person who organizes and manages an activity.</span>
+                <span class="example">Example: The volunteer coordinator showed us what to do.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Grains <span class="speaker-icon" onclick="speakWord('grains')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɡreɪnz/</span>
+                <span class="definition">(n.): Small, hard seeds of plants like wheat, rice, or corn.</span>
+                <span class="example">Example: We put the rice and pasta in the grains box.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Expiration date <span class="speaker-icon" onclick="speakWord('expiration date')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌek.spəˈreɪ.ʃən deɪt/</span>
+                <span class="definition">(n.): The date after which a food product should not be eaten.</span>
+                <span class="example">Example: Always check the expiration date on the milk.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Responsibility <span class="speaker-icon" onclick="speakWord('responsibility')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/rɪˌspɒn.səˈbɪl.ə.ti/</span>
+                <span class="definition">(n.): A duty or task you are required to do.</span>
+                <span class="example">Example: It's my responsibility to take care of the dogs.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Give back <span class="speaker-icon" onclick="speakWord('give back')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɡɪv bæk/</span>
+                <span class="definition">(phrasal verb): To do something good for your community or for other people.</span>
+                <span class="example">Example: She volunteers because she wants to give back to her community.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Win-win <span class="speaker-icon" onclick="speakWord('win-win')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/wɪn wɪn/</span>
+                <span class="definition">(idiom): A situation where all people involved benefit.</span>
+                <span class="example">Example: Volunteering is a win-win because you help others and meet new people.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

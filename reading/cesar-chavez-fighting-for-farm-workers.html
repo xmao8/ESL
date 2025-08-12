@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Cesar Chavez – Fighting for Farm Workers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ... (Use the same CSS styles as your previous example for consistency) ... */
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Cesar Chavez – Fighting for Farm Workers</h1>
+    <main>
+        <div class="content-section passage">
+            <h2>Reading</h2>
+            <p>
+Cesar Chavez was born in 1927 in Arizona, USA. His family worked on a farm, and they were very poor. When Cesar was ten, a drought ruined their farm. The family had to leave their home and move to California to look for work.
+
+In California, Cesar and his family became migrant farm workers. They moved from place to place, picking fruit and vegetables. The work was hard, and the pay was very low. Many farm workers lived in small, crowded houses and could not send their children to school regularly. Cesar left school after eighth grade to work in the fields full time and help his family.
+
+As an adult, Cesar wanted to make life better for farm workers. In 1962, he started a group called the National Farm Workers Association. He believed in peaceful protest. He organized strikes, marches, and boycotts, asking people not to buy grapes until farm workers were treated fairly.
+
+Cesar also used the words “Sí, se puede!” which means “Yes, it can be done!” He wanted workers to feel strong and hopeful. Cesar and his supporters worked hard for many years. Finally, in the 1970s, farm workers won better pay and safer working conditions.
+
+Cesar Chavez is remembered for his nonviolent leadership. He showed that one person can help many people and that peaceful protest can bring change. Today, many schools, parks, and streets in America are named after him. His birthday, March 31, is celebrated as Cesar Chavez Day in several states.
+
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are some important words from the reading. Try to guess the meaning, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>farm worker</strong> <i class="fas fa-volume-up speaker-icon" data-word="farm worker" aria-label="Pronounce farm worker"></i>
+                    <div class="definition">A person who works on a farm, usually picking crops or taking care of animals.</div>
+                    <div class="example">"Cesar Chavez was a farm worker as a boy."</div>
+                </li>
+                <li>
+                    <strong>drought</strong> <i class="fas fa-volume-up speaker-icon" data-word="drought" aria-label="Pronounce drought"></i>
+                    <div class="definition">A long period with little or no rain.</div>
+                    <div class="example">"A drought ruined their farm."</div>
+                </li>
+                <li>
+                    <strong>migrant</strong> <i class="fas fa-volume-up speaker-icon" data-word="migrant" aria-label="Pronounce migrant"></i>
+                    <div class="definition">Moving from place to place, usually to find work.</div>
+                    <div class="example">"They became migrant farm workers."</div>
+                </li>
+                <li>
+                    <strong>crowded</strong> <i class="fas fa-volume-up speaker-icon" data-word="crowded" aria-label="Pronounce crowded"></i>
+                    <div class="definition">Having too many people in a small space.</div>
+                    <div class="example">"Many workers lived in crowded houses."</div>
+                </li>
+                <li>
+                    <strong>fields</strong> <i class="fas fa-volume-up speaker-icon" data-word="fields" aria-label="Pronounce fields"></i>
+                    <div class="definition">Large areas of land where crops are grown.</div>
+                    <div class="example">"Cesar worked in the fields to help his family."</div>
+                </li>
+                <li>
+                    <strong>protest</strong> <i class="fas fa-volume-up speaker-icon" data-word="protest" aria-label="Pronounce protest"></i>
+                    <div class="definition">To show that you do not agree with something, often in public.</div>
+                    <div class="example">"He believed in peaceful protest."</div>
+                </li>
+                <li>
+                    <strong>strike</strong> <i class="fas fa-volume-up speaker-icon" data-word="strike" aria-label="Pronounce strike"></i>
+                    <div class="definition">A period when workers stop working to try to get better pay or conditions.</div>
+                    <div class="example">"The workers organized a strike for better pay."</div>
+                </li>
+                <li>
+                    <strong>march</strong> <i class="fas fa-volume-up speaker-icon" data-word="march" aria-label="Pronounce march"></i>
+                    <div class="definition">A walk by many people to show support for a cause.</div>
+                    <div class="example">"Cesar led a march to support workers."</div>
+                </li>
+                <li>
+                    <strong>boycott</strong> <i class="fas fa-volume-up speaker-icon" data-word="boycott" aria-label="Pronounce boycott"></i>
+                    <div class="definition">To refuse to buy or use something as a form of protest.</div>
+                    <div class="example">"They organized a boycott of grapes."</div>
+                </li>
+                <li>
+                    <strong>fairly</strong> <i class="fas fa-volume-up speaker-icon" data-word="fairly" aria-label="Pronounce fairly"></i>
+                    <div class="definition">In a way that is right and treats people equally.</div>
+                    <div class="example">"Farm workers wanted to be treated fairly."</div>
+                </li>
+                <li>
+                    <strong>nonviolent</strong> <i class="fas fa-volume-up speaker-icon" data-word="nonviolent" aria-label="Pronounce nonviolent"></i>
+                    <div class="definition">Not using physical force or violence.</div>
+                    <div class="example">"Cesar Chavez believed in nonviolent leadership."</div>
+                </li>
+                <li>
+                    <strong>leadership</strong> <i class="fas fa-volume-up speaker-icon" data-word="leadership" aria-label="Pronounce leadership"></i>
+                    <div class="definition">The act of guiding or directing a group.</div>
+                    <div class="example">"He showed leadership in helping workers."</div>
+                </li>
+                <li>
+                    <strong>supporter</strong> <i class="fas fa-volume-up speaker-icon" data-word="supporter" aria-label="Pronounce supporter"></i>
+                    <div class="definition">A person who helps or believes in a cause.</div>
+                    <div class="example">"Cesar had many supporters."</div>
+                </li>
+                <li>
+                    <strong>condition</strong> <i class="fas fa-volume-up speaker-icon" data-word="condition" aria-label="Pronounce condition"></i>
+                    <div class="definition">The situation in which someone lives or works.</div>
+                    <div class="example">"They wanted better working conditions."</div>
+                </li>
+                <li>
+                    <strong>hopeful</strong> <i class="fas fa-volume-up speaker-icon" data-word="hopeful" aria-label="Pronounce hopeful"></i>
+                    <div class="definition">Feeling or showing hope; believing good things will happen.</div>
+                    <div class="example">"Cesar wanted workers to feel hopeful."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the reading.</p>
+            <ol>
+                <li>Where was Cesar Chavez born?</li>
+                <li>Why did Cesar’s family leave Arizona?</li>
+                <li>What kind of work did Cesar do as a boy?</li>
+                <li>What did Cesar do to help farm workers?</li>
+                <li>What does “Sí, se puede!” mean in English?</li>
+                <li>How is Cesar Chavez remembered in America today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

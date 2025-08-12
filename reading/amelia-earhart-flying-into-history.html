@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Amelia Earhart – Flying into History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Amelia Earhart – Flying into History</h1>
+    <main>
+        <div class="content-section passage">
+            <p>
+Amelia Earhart was born in 1897 in Kansas, USA. From a young age, she was adventurous and curious about the world. Unlike many women of her time, Amelia wanted a life beyond the traditional expectations of marriage and domestic work. She discovered her passion for flying in her early twenties, after taking a short airplane ride at an air show. The experience changed her life.
+
+Flying was still a new and risky field in the 1920s. Airplanes were often unreliable, and weather forecasting was limited. Despite these dangers, Amelia decided she wanted to become a pilot. She took lessons and saved money to buy her own small plane, which she named “The Canary” because of its bright yellow color. She soon began setting records for altitude and distance, proving her skill and determination.
+
+In 1928, Amelia gained worldwide fame when she became the first woman to fly across the Atlantic Ocean as part of a crew. Although she was not the pilot for that trip, her courage inspired many people. Determined to prove herself further, Amelia continued to train for even greater challenges.
+
+In 1932, she achieved her most famous accomplishment: flying solo across the Atlantic Ocean from Newfoundland, Canada, to Ireland. She faced freezing temperatures, mechanical problems, and exhaustion, but she landed safely after more than 14 hours in the air. This feat made her an international hero and a symbol of possibility for women everywhere.
+
+Amelia used her fame to promote aviation and encourage women to pursue careers in fields traditionally dominated by men. She wrote books, gave lectures, and worked to make air travel safer. She believed in pushing boundaries, both for herself and for society.
+
+In 1937, Amelia set out on her most ambitious goal: to fly around the world. She and her navigator, Fred Noonan, successfully completed most of the journey, but during the final stage over the Pacific Ocean, their plane disappeared. Despite an enormous search, no trace was found, and her fate remains one of the greatest mysteries in aviation history.
+
+Amelia Earhart’s legacy continues to inspire people to follow their dreams, face challenges with courage, and break barriers. She proved that determination and bravery can change how the world sees what is possible.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>adventurous</strong> <i class="fas fa-volume-up speaker-icon" data-word="adventurous"></i> <div class="definition">Willing to take risks or try new experiences.</div> <div class="example">"She was adventurous from a young age."</div></li>
+                <li><strong>domestic</strong> <i class="fas fa-volume-up speaker-icon" data-word="domestic"></i> <div class="definition">Related to home or family life.</div> <div class="example">"She wanted a life beyond domestic expectations."</div></li>
+                <li><strong>passion</strong> <i class="fas fa-volume-up speaker-icon" data-word="passion"></i> <div class="definition">A strong feeling of enthusiasm or love for something.</div> <div class="example">"Flying became her greatest passion."</div></li>
+                <li><strong>unreliable</strong> <i class="fas fa-volume-up speaker-icon" data-word="unreliable"></i> <div class="definition">Not dependable; likely to fail.</div> <div class="example">"Early airplanes were often unreliable."</div></li>
+                <li><strong>forecasting</strong> <i class="fas fa-volume-up speaker-icon" data-word="forecasting"></i> <div class="definition">The act of predicting future events, such as the weather.</div> <div class="example">"Weather forecasting was limited in the 1920s."</div></li>
+                <li><strong>altitude</strong> <i class="fas fa-volume-up speaker-icon" data-word="altitude"></i> <div class="definition">The height of something above sea level.</div> <div class="example">"She set records for altitude and distance."</div></li>
+                <li><strong>determination</strong> <i class="fas fa-volume-up speaker-icon" data-word="determination"></i> <div class="definition">The quality of trying to do something even when it is difficult.</div> <div class="example">"Her determination helped her succeed."</div></li>
+                <li><strong>feat</strong> <i class="fas fa-volume-up speaker-icon" data-word="feat"></i> <div class="definition">An impressive or difficult achievement.</div> <div class="example">"Flying solo across the Atlantic was a remarkable feat."</div></li>
+                <li><strong>exhaustion</strong> <i class="fas fa-volume-up speaker-icon" data-word="exhaustion"></i> <div class="definition">Extreme tiredness.</div> <div class="example">"She landed safely despite exhaustion."</div></li>
+                <li><strong>promote</strong> <i class="fas fa-volume-up speaker-icon" data-word="promote"></i> <div class="definition">To encourage or support something actively.</div> <div class="example">"She promoted aviation to the public."</div></li>
+                <li><strong>boundary</strong> <i class="fas fa-volume-up speaker-icon" data-word="boundary"></i> <div class="definition">A limit that marks the edge of an area or a limit to what is possible.</div> <div class="example">"She believed in pushing boundaries."</div></li>
+                <li><strong>ambitious</strong> <i class="fas fa-volume-up speaker-icon" data-word="ambitious"></i> <div class="definition">Having a strong desire to achieve big goals.</div> <div class="example">"Flying around the world was an ambitious goal."</div></li>
+                <li><strong>mystery</strong> <i class="fas fa-volume-up speaker-icon" data-word="mystery"></i> <div class="definition">Something that is not known or understood.</div> <div class="example">"Her disappearance remains a mystery."</div></li>
+                <li><strong>aviation</strong> <i class="fas fa-volume-up speaker-icon" data-word="aviation"></i> <div class="definition">The operation of aircraft and the industry around it.</div> <div class="example">"She became a leader in aviation."</div></li>
+                <li><strong>legacy</strong> <i class="fas fa-volume-up speaker-icon" data-word="legacy"></i> <div class="definition">Something handed down from the past, such as achievements or values.</div> <div class="example">"Her legacy inspires pilots and dreamers today."</div></li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <ol>
+                <li>Where was Amelia Earhart born?</li>
+                <li>What inspired her to become a pilot?</li>
+                <li>What records did she set before her famous Atlantic flight?</li>
+                <li>What challenges did she face during her solo Atlantic flight?</li>
+                <li>What happened to her in 1937?</li>
+                <li>Why is Amelia Earhart still remembered today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

@@ -142,6 +142,8 @@
 <div class="buttons">
   <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
   <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button id="autoplayBtn" onclick="toggleAutoplay()" aria-label="Autoplay flashcards">▶️ Autoplay</button>
+</div>
 </div>
 
 <script>
@@ -318,11 +320,11 @@ function showCard() {
   flashcard.classList.remove("flipped");
   flashcard.setAttribute("aria-pressed", "false");
   flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>
-                         <div class="ipa">${flashcards[index].ipa}</div>
-                         <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
+                           <div class="ipa">${flashcards[index].ipa}</div>
+                           <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
 }
 
-function flipCard() {
+function flipCard(fromAutoplay = false) {
   if (!flipped) {
     const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
     flashcard.innerHTML = `
@@ -340,8 +342,7 @@ function flipCard() {
     flashcard.classList.add("flipped");
     flashcard.setAttribute("aria-pressed", "true");
     flipped = true;
-
-    // Pronounce word when flipping
+    
     const speakerBtn = flashcard.querySelector(".speaker");
     function speak() {
       const utterance = new SpeechSynthesisUtterance(word);
@@ -358,49 +359,121 @@ function flipCard() {
     });
     // Auto pronounce once on flip
     speak();
-
   } else {
     showCard();
   }
+  if (!fromAutoplay && autoplay) stopAutoplay();
 }
 
-function nextCard() {
+function nextCard(fromAutoplay = false) {
   index = (index + 1) % flashcards.length;
   showCard();
+  if (!fromAutoplay && autoplay) stopAutoplay();
 }
 
-function prevCard() {
+function prevCard(fromAutoplay = false) {
   index = (index - 1 + flashcards.length) % flashcards.length;
   showCard();
+  if (!fromAutoplay && autoplay) stopAutoplay();
 }
 
 showCard();
-</script>
 
-<div class="buttons">
-  <a href="../flashcards.html">← Back to Flashcards</a>
-  <a href="../index.html">🏠 Home</a>
-</div>
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
 
-<script>
-  // Mobile nav toggle script
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
+/* ==================== AUTOPLAY FEATURE ==================== */
+
+let autoplay = false;
+let autoplayTimeout = null;
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function speakUtterance(text, lang = 'en-US', rate = 0.9) {
+  return new Promise((resolve) => {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = rate;
+    utter.onend = () => resolve();
+    speechSynthesis.speak(utter);
+  });
+}
+
+// Returns a promise that resolves after all repeats are done.
+async function autoplayCurrentCard() {
+  // Always show the back of the card for autoplay (definition view)
+  if (!flipped) flipCard(true);
+
+  // Wait for flip animation to finish for accessibility/UX (optional)
+  await new Promise(r => setTimeout(r, 300));
+
+  const card = flashcards[index];
+  // Speak word 3 times
+  for (let i = 0; i < 3; i++) {
+    await speakUtterance(card.word);
+    await new Promise(r => setTimeout(r, 350));
   }
+  // Speak example 2 times
+  for (let i = 0; i < 2; i++) {
+    await speakUtterance(card.example);
+    await new Promise(r => setTimeout(r, 400));
+  }
+}
+
+function runAutoplayLoop() {
+  if (!autoplay) return;
+
+  autoplayCurrentCard().then(() => {
+    // Next card after short pause
+    autoplayTimeout = setTimeout(() => {
+      nextCard(true);  // true: fromAutoplay
+      runAutoplayLoop();
+    }, 900); // Time between cards (can adjust)
+  });
+}
+
+function startAutoplay() {
+  if (autoplayTimeout) clearTimeout(autoplayTimeout);
+  autoplay = true;
+  autoplayBtn.classList.add("active");
+  autoplayBtn.textContent = '⏸️ Stop Autoplay';
+  runAutoplayLoop();
+}
+
+function stopAutoplay() {
+  autoplay = false;
+  autoplayBtn.classList.remove("active");
+  autoplayBtn.textContent = '▶️ Autoplay';
+  if (autoplayTimeout) clearTimeout(autoplayTimeout);
+  // Cancel any ongoing speech
+  if (window.speechSynthesis) speechSynthesis.cancel();
+}
+
+function toggleAutoplay() {
+  if (!autoplay) startAutoplay();
+  else stopAutoplay();
+}
+
+// Optional: stop autoplay on page unload
+window.addEventListener('beforeunload', () => {
+  if (autoplayTimeout) clearTimeout(autoplayTimeout);
+  if (window.speechSynthesis) speechSynthesis.cancel();
+});
 </script>
 
 </body>

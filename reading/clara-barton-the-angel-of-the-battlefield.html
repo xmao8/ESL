@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Clara Barton – The Angel of the Battlefield</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a {
+                width: auto; text-align: left; padding: 0.5rem 0;
+            }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li {
+                flex-direction: column; align-items: flex-start; padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Clara Barton – The Angel of the Battlefield</h1>
+    <main>
+        <div class="content-section passage">
+            <h2>Reading</h2>
+            <p>
+Clara Barton was born in 1821 in Massachusetts, USA. From a young age, she wanted to help people. When she was only 11 years old, she took care of her brother after he had an accident. She was calm, careful, and kind — even as a child.
+
+Before becoming famous, Clara worked as a teacher and then as a government worker in Washington, D.C. This was unusual because most women at that time did not work in offices. Clara was strong and determined. She believed that women could do anything men could do.
+
+In 1861, the American Civil War began. Many soldiers were injured, and there were not enough supplies or nurses. Clara wanted to help. She began collecting bandages, food, and medicine. Then, she went directly to the battlefield to care for wounded soldiers. This was dangerous, but she didn’t stop.
+
+She worked day and night, helping anyone who needed care. Soldiers called her the “Angel of the Battlefield” because she was so brave and kind. Clara believed that every human life was important.
+
+After the war, Clara traveled to Europe. While in Switzerland, she learned about the Red Cross, an organization that helped people during war and natural disasters. Clara thought America needed something like that, too.
+
+When she returned home, she worked for many years to start the American Red Cross. People said it wasn’t possible, but Clara kept going. Finally, in 1881, she founded the American Red Cross and became its first leader. She was 60 years old — but still full of energy.
+
+Under her leadership, the Red Cross helped in many disasters, like floods, fires, and earthquakes. Clara and her team brought food, blankets, and hope to people in need. She showed that one person with a strong heart could help thousands.
+
+Clara Barton died in 1912, but her legacy continues today. The American Red Cross is now one of the largest disaster relief organizations in the world. Thanks to Clara, millions of people have received help in their hardest times.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are some important words from the reading. Try to guess the meaning, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>battlefield</strong> <i class="fas fa-volume-up speaker-icon" data-word="battlefield" aria-label="Pronounce battlefield"></i>
+                    <div class="definition">A place where a battle is fought during a war.</div>
+                    <div class="example">"She went to the battlefield to help the wounded soldiers."</div>
+                </li>
+                <li>
+                    <strong>injured</strong> <i class="fas fa-volume-up speaker-icon" data-word="injured" aria-label="Pronounce injured"></i>
+                    <div class="definition">Hurt or wounded.</div>
+                    <div class="example">"Many soldiers were injured during the war."</div>
+                </li>
+                <li>
+                    <strong>supplies</strong> <i class="fas fa-volume-up speaker-icon" data-word="supplies" aria-label="Pronounce supplies"></i>
+                    <div class="definition">Things needed for a particular purpose (such as food, medicine, or equipment).</div>
+                    <div class="example">"They didn't have enough supplies for the sick and injured."</div>
+                </li>
+                <li>
+                    <strong>bandage</strong> <i class="fas fa-volume-up speaker-icon" data-word="bandage" aria-label="Pronounce bandage"></i>
+                    <div class="definition">A piece of cloth used to cover and protect a wound.</div>
+                    <div class="example">"Clara collected bandages for the wounded."</div>
+                </li>
+                <li>
+                    <strong>disaster</strong> <i class="fas fa-volume-up speaker-icon" data-word="disaster" aria-label="Pronounce disaster"></i>
+                    <div class="definition">A sudden bad event, such as a flood or earthquake, that causes damage or suffering.</div>
+                    <div class="example">"The Red Cross helps people after a disaster."</div>
+                </li>
+                <li>
+                    <strong>flood</strong> <i class="fas fa-volume-up speaker-icon" data-word="flood" aria-label="Pronounce flood"></i>
+                    <div class="definition">A large amount of water covering an area that is usually dry.</div>
+                    <div class="example">"After the flood, many people needed help."</div>
+                </li>
+                <li>
+                    <strong>earthquake</strong> <i class="fas fa-volume-up speaker-icon" data-word="earthquake" aria-label="Pronounce earthquake"></i>
+                    <div class="definition">A sudden, shaking movement of the ground.</div>
+                    <div class="example">"The Red Cross sent blankets and food after the earthquake."</div>
+                </li>
+                <li>
+                    <strong>care</strong> <i class="fas fa-volume-up speaker-icon" data-word="care" aria-label="Pronounce care"></i>
+                    <div class="definition">The process of helping or looking after someone.</div>
+                    <div class="example">"She went to care for the soldiers."</div>
+                </li>
+                <li>
+                    <strong>medicine</strong> <i class="fas fa-volume-up speaker-icon" data-word="medicine" aria-label="Pronounce medicine"></i>
+                    <div class="definition">Something used to treat illness or injury.</div>
+                    <div class="example">"They brought medicine to the battlefield."</div>
+                </li>
+                <li>
+                    <strong>nurse</strong> <i class="fas fa-volume-up speaker-icon" data-word="nurse" aria-label="Pronounce nurse"></i>
+                    <div class="definition">A person trained to care for sick or injured people.</div>
+                    <div class="example">"There were not enough nurses to help the soldiers."</div>
+                </li>
+                <li>
+                    <strong>determined</strong> <i class="fas fa-volume-up speaker-icon" data-word="determined" aria-label="Pronounce determined"></i>
+                    <div class="definition">Having a strong desire to do something and not give up.</div>
+                    <div class="example">"Clara was determined to help."</div>
+                </li>
+                <li>
+                    <strong>possible</strong> <i class="fas fa-volume-up speaker-icon" data-word="possible" aria-label="Pronounce possible"></i>
+                    <div class="definition">Able to be done.</div>
+                    <div class="example">"People said it wasn’t possible, but Clara kept going."</div>
+                </li>
+                <li>
+                    <strong>leader</strong> <i class="fas fa-volume-up speaker-icon" data-word="leader" aria-label="Pronounce leader"></i>
+                    <div class="definition">A person who guides or is in charge of others.</div>
+                    <div class="example">"She became the first leader of the American Red Cross."</div>
+                </li>
+                <li>
+                    <strong>help</strong> <i class="fas fa-volume-up speaker-icon" data-word="help" aria-label="Pronounce help"></i>
+                    <div class="definition">To make it easier or possible for someone to do something.</div>
+                    <div class="example>"She wanted to help people who were hurt."</div>
+                </li>
+                <li>
+                    <strong>brave</strong> <i class="fas fa-volume-up speaker-icon" data-word="brave" aria-label="Pronounce brave"></i>
+                    <div class="definition">Showing no fear in dangerous or difficult situations.</div>
+                    <div class="example">"Clara was brave when she went to the battlefield."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the reading.</p>
+            <ol>
+                <li>What was Clara Barton’s job before the Civil War?</li>
+                <li>Why did soldiers call her “The Angel of the Battlefield”?</li>
+                <li>What dangerous work did Clara do during the war?</li>
+                <li>What is the Red Cross, and why did Clara want to start it in America?</li>
+                <li>How old was Clara when she started the American Red Cross?</li>
+                <li>How does the Red Cross continue Clara’s work today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

@@ -97,13 +97,16 @@
     .buttons {
       margin: 2rem auto 3rem auto; display: flex; justify-content: center;
       gap: 1rem; max-width: 600px;
+      flex-wrap: wrap;
     }
     button, .buttons a {
       padding: 0.6rem 1.2rem; background: #3498db; color: white;
       border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
       text-decoration: none; display: inline-block; user-select: none;
+      transition: background 0.2s;
     }
     button:hover, .buttons a:hover { background: #2980b9; }
+    #autoplayBtn.active { background: #4caf50; }
   </style>
 </head>
 <body>
@@ -141,11 +144,15 @@
 <div class="buttons">
   <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
   <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button id="autoplayBtn" onclick="toggleAutoplay()" aria-label="Autoplay flashcards">▶️ Autoplay</button>
 </div>
 
 <script>
 const flashcards = [
-  {
+  // ... your flashcards data as before ...
+// For brevity, you can keep your flashcard data here. Not repeated to save space.
+  
+{
     word: "Tall",
     ipa: "/tɔːl/",
     definition: "Above average height.",
@@ -529,7 +536,7 @@ const flashcards = [
     chinese: "穿孔 (chuānkǒng)",
     spanish: "piercings"
   },
-  {
+{
     word: "Scars",
     ipa: "/skɑːrz/",
     definition: "Marks left on the skin after a wound has healed.",
@@ -623,6 +630,93 @@ if (menuToggle && navLinks) {
     });
   });
 }
+
+/* ==================== AUTOPLAY FEATURE ==================== */
+
+let autoplay = false;
+let autoplayTimeout = null;
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function speakUtterance(text, lang = 'en-US', rate = 0.9) {
+  return new Promise((resolve) => {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = rate;
+    utter.onend = () => resolve();
+    speechSynthesis.speak(utter);
+  });
+}
+
+// Returns a promise that resolves after all repeats are done.
+async function autoplayCurrentCard() {
+  // Always show the back of the card for autoplay (definition view)
+  if (!flipped) flipCard();
+
+  // Wait for flip animation to finish for accessibility/UX (optional)
+  await new Promise(r => setTimeout(r, 300));
+
+  const card = flashcards[index];
+  // Speak word 3 times
+  for (let i = 0; i < 3; i++) {
+    await speakUtterance(card.word);
+    // Short pause between repeats
+    await new Promise(r => setTimeout(r, 350));
+  }
+  // Speak example 2 times
+  for (let i = 0; i < 2; i++) {
+    await speakUtterance(card.example);
+    await new Promise(r => setTimeout(r, 400));
+  }
+}
+
+function runAutoplayLoop() {
+  if (!autoplay) return;
+
+  autoplayCurrentCard().then(() => {
+    // Next card after short pause
+    autoplayTimeout = setTimeout(() => {
+      nextCard();
+      runAutoplayLoop();
+    }, 900); // Time between cards (can adjust)
+  });
+}
+
+function startAutoplay() {
+  if (autoplayTimeout) clearTimeout(autoplayTimeout);
+  autoplay = true;
+  autoplayBtn.classList.add("active");
+  autoplayBtn.textContent = '⏸️ Stop Autoplay';
+  runAutoplayLoop();
+}
+
+function stopAutoplay() {
+  autoplay = false;
+  autoplayBtn.classList.remove("active");
+  autoplayBtn.textContent = '▶️ Autoplay';
+  if (autoplayTimeout) clearTimeout(autoplayTimeout);
+  // Cancel any ongoing speech
+  if (window.speechSynthesis) speechSynthesis.cancel();
+}
+
+function toggleAutoplay() {
+  if (!autoplay) startAutoplay();
+  else stopAutoplay();
+}
+
+// Stop autoplay if user manually interacts
+["flipCard", "nextCard", "prevCard"].forEach(fn => {
+  const orig = window[fn];
+  window[fn] = function() {
+    if (autoplay) stopAutoplay();
+    return orig.apply(this, arguments);
+  };
+});
+
+// Optional: stop autoplay on page unload
+window.addEventListener('beforeunload', () => {
+  if (autoplayTimeout) clearTimeout(autoplayTimeout);
+  if (window.speechSynthesis) speechSynthesis.cancel();
+});
 </script>
 
 <div class="buttons">

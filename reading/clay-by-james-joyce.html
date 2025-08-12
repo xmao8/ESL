@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Clay by James Joyce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>* { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        /* Reading passage styles */
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a {
+                width: auto; text-align: left; padding: 0.5rem 0;
+            }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li {
+                flex-direction: column; align-items: flex-start; padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Clay by James Joyce</h1>
+    <main>
+        <div class="content-section passage">
+            <p>
+The matron had given her leave to go out as soon as the women’s tea was over and Maria looked forward to her evening out. The kitchen was spick and span: the cook said you could see yourself in the big copper boilers. The fire was nice and bright and on one of the side-tables were four very big barmbracks. These barmbracks seemed uncut; but if you went closer you would see that they had been cut into long thick even slices and were ready to be handed round at tea. Maria had cut them herself.<br><br>
+Maria was a very, very small person indeed but she had a very long nose and a very long chin. She talked a little through her nose, always soothingly: “Yes, my dear,” and “No, my dear.” She was always sent for when the women quarrelled over their tubs and always succeeded in making peace. One day the matron had said to her:<br><br>
+“Maria, you are a veritable peace-maker!”<br><br>
+And the sub-matron and two of the Board ladies had heard the compliment. And Ginger Mooney was always saying what she wouldn’t do to the dummy who had charge of the irons if it wasn’t for Maria. Everyone was so fond of Maria.<br><br>
+The women would have their tea at six o’clock and she would be able to get away before seven. From Ballsbridge to the Pillar, twenty minutes; from the Pillar to Drumcondra, twenty minutes; and twenty minutes to buy the things. She would be there before eight. She took out her purse with the silver clasps and read again the words A Present from Belfast. She was very fond of that purse because Joe had brought it to her five years before when he and Alphy had gone to Belfast on a Whit-Monday trip. In the purse were two half-crowns and some coppers. She would have five shillings clear after paying tram fare. What a nice evening they would have, all the children singing! Only she hoped that Joe wouldn’t come in drunk. He was so different when he took any drink.<br><br>
+Often he had wanted her to go and live with them; but she would have felt herself in the way (though Joe’s wife was ever so nice with her) and she had become accustomed to the life of the laundry. Joe was a good fellow. She had nursed him and Alphy too; and Joe used often say:<br><br>
+“Mamma is mamma but Maria is my proper mother.”<br><br>
+After the break-up at home the boys had got her that position in the Dublin by Lamplight laundry, and she liked it. She used to have such a bad opinion of Protestants but now she thought they were very nice people, a little quiet and serious, but still very nice people to live with. Then she had her plants in the conservatory and she liked looking after them. She had lovely ferns and wax-plants and, whenever anyone came to visit her, she always gave the visitor one or two slips from her conservatory. There was one thing she didn’t like and that was the tracts on the walks; but the matron was such a nice person to deal with, so genteel.<br><br>
+When the cook told her everything was ready she went into the women’s room and began to pull the big bell. In a few minutes the women began to come in by twos and threes, wiping their steaming hands in their petticoats and pulling down the sleeves of their blouses over their red steaming arms. They settled down before their huge mugs which the cook and the dummy filled up with hot tea, already mixed with milk and sugar in huge tin cans. Maria superintended the distribution of the barmbrack and saw that every woman got her four slices. There was a great deal of laughing and joking during the meal. Lizzie Fleming said Maria was sure to get the ring and, though Fleming had said that for so many Hallow Eves, Maria had to laugh and say she didn’t want any ring or man either; and when she laughed her grey-green eyes sparkled with disappointed shyness and the tip of her nose nearly met the tip of her chin. Then Ginger Mooney lifted up her mug of tea and proposed Maria’s health while all the other women clattered with their mugs on the table, and said she was sorry she hadn’t a sup of porter to drink it in. And Maria laughed again till the tip of her nose nearly met the tip of her chin and till her minute body nearly shook itself asunder because she knew that Mooney meant well though, of course, she had the notions of a common woman.<br><br>
+But wasn’t Maria glad when the women had finished their tea and the cook and the dummy had begun to clear away the tea-things! She went into her little bedroom and, remembering that the next morning was a mass morning, changed the hand of the alarm from seven to six. Then she took off her working skirt and her house-boots and laid her best skirt out on the bed and her tiny dress-boots beside the foot of the bed. She changed her blouse too and, as she stood before the mirror, she thought of how she used to dress for mass on Sunday morning when she was a young girl; and she looked with quaint affection at the diminutive body which she had so often adorned. In spite of its years she found it a nice tidy little body.<br><br>
+When she got outside the streets were shining with rain and she was glad of her old brown waterproof. The tram was full and she had to sit on the little stool at the end of the car, facing all the people, with her toes barely touching the floor. She arranged in her mind all she was going to do and thought how much better it was to be independent and to have your own money in your pocket. She hoped they would have a nice evening. She was sure they would but she could not help thinking what a pity it was Alphy and Joe were not speaking. They were always falling out now but when they were boys together they used to be the best of friends: but such was life.<br><br>
+She got out of her tram at the Pillar and ferreted her way quickly among the crowds. She went into Downes’s cake-shop but the shop was so full of people that it was a long time before she could get herself attended to. She bought a dozen of mixed penny cakes, and at last came out of the shop laden with a big bag. Then she thought what else would she buy: she wanted to buy something really nice. They would be sure to have plenty of apples and nuts. It was hard to know what to buy and all she could think of was cake. She decided to buy some plumcake but Downes’s plumcake had not enough almond icing on top of it so she went over to a shop in Henry Street. Here she was a long time in suiting herself and the stylish young lady behind the counter, who was evidently a little annoyed by her, asked her was it wedding-cake she wanted to buy. That made Maria blush and smile at the young lady; but the young lady took it all very seriously and finally cut a thick slice of plumcake, parcelled it up and said:<br><br>
+“Two-and-four, please.”<br><br>
+She thought she would have to stand in the Drumcondra tram because none of the young men seemed to notice her but an elderly gentleman made room for her. He was a stout gentleman and he wore a brown hard hat; he had a square red face and a greyish moustache. Maria thought he was a colonel-looking gentleman and she reflected how much more polite he was than the young men who simply stared straight before them. The gentleman began to chat with her about Hallow Eve and the rainy weather. He supposed the bag was full of good things for the little ones and said it was only right that the youngsters should enjoy themselves while they were young. Maria agreed with him and favoured him with demure nods and hems. He was very nice with her, and when she was getting out at the Canal Bridge she thanked him and bowed, and he bowed to her and raised his hat and smiled agreeably, and while she was going up along the terrace, bending her tiny head under the rain, she thought how easy it was to know a gentleman even when he has a drop taken.<br><br>
+Everybody said: “O, here’s Maria!” when she came to Joe’s house. Joe was there, having come home from business, and all the children had their Sunday dresses on. There were two big girls in from next door and games were going on. Maria gave the bag of cakes to the eldest boy, Alphy, to divide and Mrs Donnelly said it was too good of her to bring such a big bag of cakes and made all the children say:<br><br>
+“Thanks, Maria.”<br><br>
+But Maria said she had brought something special for papa and mamma, something they would be sure to like, and she began to look for her plumcake. She tried in Downes’s bag and then in the pockets of her waterproof and then on the hallstand but nowhere could she find it. Then she asked all the children had any of them eaten it—by mistake, of course—but the children all said no and looked as if they did not like to eat cakes if they were to be accused of stealing. Everybody had a solution for the mystery and Mrs Donnelly said it was plain that Maria had left it behind her in the tram. Maria, remembering how confused the gentleman with the greyish moustache had made her, coloured with shame and vexation and disappointment. At the thought of the failure of her little surprise and of the two and fourpence she had thrown away for nothing she nearly cried outright.<br><br>
+But Joe said it didn’t matter and made her sit down by the fire. He was very nice with her. He told her all that went on in his office, repeating for her a smart answer which he had made to the manager. Maria did not understand why Joe laughed so much over the answer he had made but she said that the manager must have been a very overbearing person to deal with. Joe said he wasn’t so bad when you knew how to take him, that he was a decent sort so long as you didn’t rub him the wrong way. Mrs Donnelly played the piano for the children and they danced and sang. Then the two next-door girls handed round the nuts. Nobody could find the nutcrackers and Joe was nearly getting cross over it and asked how did they expect Maria to crack nuts without a nutcracker. But Maria said she didn’t like nuts and that they weren’t to bother about her. Then Joe asked would she take a bottle of stout and Mrs Donnelly said there was port wine too in the house if she would prefer that. Maria said she would rather they didn’t ask her to take anything: but Joe insisted.<br><br>
+So Maria let him have his way and they sat by the fire talking over old times and Maria thought she would put in a good word for Alphy. But Joe cried that God might strike him stone dead if ever he spoke a word to his brother again and Maria said she was sorry she had mentioned the matter. Mrs Donnelly told her husband it was a great shame for him to speak that way of his own flesh and blood but Joe said that Alphy was no brother of his and there was nearly being a row on the head of it. But Joe said he would not lose his temper on account of the night it was and asked his wife to open some more stout. The two next-door girls had arranged some Hallow Eve games and soon everything was merry again. Maria was delighted to see the children so merry and Joe and his wife in such good spirits. The next-door girls put some saucers on the table and then led the children up to the table, blindfold. One got the prayer-book and the other three got the water; and when one of the next-door girls got the ring Mrs Donnelly shook her finger at the blushing girl as much as to say: O, I know all about it! They insisted then on blindfolding Maria and leading her up to the table to see what she would get; and, while they were putting on the bandage, Maria laughed and laughed again till the tip of her nose nearly met the tip of her chin.<br><br>
+They led her up to the table amid laughing and joking and she put her hand out in the air as she was told to do. She moved her hand about here and there in the air and descended on one of the saucers. She felt a soft wet substance with her fingers and was surprised that nobody spoke or took off her bandage. There was a pause for a few seconds; and then a great deal of scuffling and whispering. Somebody said something about the garden, and at last Mrs Donnelly said something very cross to one of the next-door girls and told her to throw it out at once: that was no play. Maria understood that it was wrong that time and so she had to do it over again: and this time she got the prayer-book.<br><br>
+After that Mrs Donnelly played Miss McCloud’s Reel for the children and Joe made Maria take a glass of wine. Soon they were all quite merry again and Mrs Donnelly said Maria would enter a convent before the year was out because she had got the prayer-book. Maria had never seen Joe so nice to her as he was that night, so full of pleasant talk and reminiscences. She said they were all very good to her.<br><br>
+At last the children grew tired and sleepy and Joe asked Maria would she not sing some little song before she went, one of the old songs. Mrs Donnelly said “Do, please, Maria!” and so Maria had to get up and stand beside the piano. Mrs Donnelly bade the children be quiet and listen to Maria’s song. Then she played the prelude and said “Now, Maria!” and Maria, blushing very much began to sing in a tiny quavering voice. She sang I Dreamt that I Dwelt, and when she came to the second verse she sang again:<br><br>
+I dreamt that I dwelt in marble halls<br>
+    With vassals and serfs at my side<br>
+And of all who assembled within those walls<br>
+    That I was the hope and the pride.<br>
+I had riches too great to count, could boast<br>
+    Of a high ancestral name,<br>
+But I also dreamt, which pleased me most,<br>
+    That you loved me still the same.<br><br>
+But no one tried to show her her mistake; and when she had ended her song Joe was very much moved. He said that there was no time like the long ago and no music for him like poor old Balfe, whatever other people might say; and his eyes filled up so much with tears that he could not find what he was looking for and in the end he had to ask his wife to tell him where the corkscrew was.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li>
+                    <strong>matron</strong> <i class="fas fa-volume-up speaker-icon" data-word="matron" aria-label="Pronounce matron"></i>
+                    <div class="definition"><span class="ipa">/ˈmeɪ.trən/</span> — A woman in charge of a group, especially in an institution like a hospital or school.</div>
+                    <div class="example">"The matron had given her leave to go out."</div>
+                </li>
+                <li>
+                    <strong>spick and span</strong> <i class="fas fa-volume-up speaker-icon" data-word="spick and span" aria-label="Pronounce spick and span"></i>
+                    <div class="definition"><span class="ipa">/spɪk ənd spæn/</span> — Spotlessly clean and tidy.</div>
+                    <div class="example">"The kitchen was spick and span."</div>
+                </li>
+                <li>
+                    <strong>barmbrack</strong> <i class="fas fa-volume-up speaker-icon" data-word="barmbrack" aria-label="Pronounce barmbrack"></i>
+                    <div class="definition"><span class="ipa">/ˈbɑːrm.bræk/</span> — An Irish fruit bread, usually eaten at Halloween.</div>
+                    <div class="example">"On one of the side-tables were four very big barmbracks."</div>
+                </li>
+                <li>
+                    <strong>veritable</strong> <i class="fas fa-volume-up speaker-icon" data-word="veritable" aria-label="Pronounce veritable"></i>
+                    <div class="definition"><span class="ipa">/ˈvɛr.ɪ.tə.bəl/</span> — Used to emphasize that something is true or real.</div>
+                    <div class="example">"Maria, you are a veritable peace-maker!"</div>
+                </li>
+                <li>
+                    <strong>dummy</strong> <i class="fas fa-volume-up speaker-icon" data-word="dummy" aria-label="Pronounce dummy"></i>
+                    <div class="definition"><span class="ipa">/ˈdʌm.i/</span> — Here, a person who is mute or perhaps simple-minded (old-fashioned, sometimes offensive use).</div>
+                    <div class="example">"The dummy who had charge of the irons."</div>
+                </li>
+                <li>
+                    <strong>clasps</strong> <i class="fas fa-volume-up speaker-icon" data-word="clasps" aria-label="Pronounce clasps"></i>
+                    <div class="definition"><span class="ipa">/klæsps/</span> — Small metal fasteners that hold something closed.</div>
+                    <div class="example">"She took out her purse with the silver clasps."</div>
+                </li>
+                <li>
+                    <strong>accustomed</strong> <i class="fas fa-volume-up speaker-icon" data-word="accustomed" aria-label="Pronounce accustomed"></i>
+                    <div class="definition"><span class="ipa">/əˈkʌs.təmd/</span> — Familiar with something, used to it.</div>
+                    <div class="example">"She had become accustomed to the life of the laundry."</div>
+                </li>
+                <li>
+                    <strong>conservatory</strong> <i class="fas fa-volume-up speaker-icon" data-word="conservatory" aria-label="Pronounce conservatory"></i>
+                    <div class="definition"><span class="ipa">/kənˈsɜː.və.tɔːr.i/</span> — A glass room used for growing plants.</div>
+                    <div class="example">"She had her plants in the conservatory."</div>
+                </li>
+                <li>
+                    <strong>demure</strong> <i class="fas fa-volume-up speaker-icon" data-word="demure" aria-label="Pronounce demure"></i>
+                    <div class="definition"><span class="ipa">/dɪˈmjʊr/</span> — Quiet, polite, and not showing much emotion.</div>
+                    <div class="example">"Maria agreed with him and favoured him with demure nods and hems."</div>
+                </li>
+                <li>
+                    <strong>vexation</strong> <i class="fas fa-volume-up speaker-icon" data-word="vexation" aria-label="Pronounce vexation"></i>
+                    <div class="definition"><span class="ipa">/vɛkˈseɪ.ʃən/</span> — The state of being annoyed or worried.</div>
+                    <div class="example">"She coloured with shame and vexation and disappointment."</div>
+                </li>
+                <li>
+                    <strong>remonstrance</strong> <i class="fas fa-volume-up speaker-icon" data-word="remonstrance" aria-label="Pronounce remonstrance"></i>
+                    <div class="definition"><span class="ipa">/rɪˈmɒn.strəns/</span> — A protest or complaint about something.</div>
+                    <div class="example">"She made no remonstrance when asked to sing."</div>
+                </li>
+                <li>
+                    <strong>quavering</strong> <i class="fas fa-volume-up speaker-icon" data-word="quavering" aria-label="Pronounce quavering"></i>
+                    <div class="definition"><span class="ipa">/ˈkweɪ.vər.ɪŋ/</span> — Shaking or trembling, usually because of nervousness or emotion.</div>
+                    <div class="example">"She sang in a tiny quavering voice."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <ol>
+                <li>Where does Maria work, and what is her job like?</li>
+                <li>Why is Maria looking forward to her evening out?</li>
+                <li>How do people feel about Maria at work and at Joe's house?</li>
+                <li>What happens to the plumcake Maria buys?</li>
+                <li>What games do the children play at Joe's house, and what do they mean?</li>
+                <li>How does Maria feel at the end of the story, and why?</li>
+            </ol>
+        </div>
+    </main>
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

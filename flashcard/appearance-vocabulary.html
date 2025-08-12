@@ -560,7 +560,7 @@ function showCard() {
                            <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>`;
 }
 
-function flipCard() {
+function flipCard(fromAutoplay = false) {
   if (!flipped) {
     const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
     flashcard.innerHTML = `
@@ -598,16 +598,19 @@ function flipCard() {
   } else {
     showCard();
   }
+  if (!fromAutoplay && autoplay) stopAutoplay();
 }
 
-function nextCard() {
+function nextCard(fromAutoplay = false) {
   index = (index + 1) % flashcards.length;
   showCard();
+  if (!fromAutoplay && autoplay) stopAutoplay();
 }
 
-function prevCard() {
+function prevCard(fromAutoplay = false) {
   index = (index - 1 + flashcards.length) % flashcards.length;
   showCard();
+  if (!fromAutoplay && autoplay) stopAutoplay();
 }
 
 showCard();
@@ -650,7 +653,7 @@ function speakUtterance(text, lang = 'en-US', rate = 0.9) {
 // Returns a promise that resolves after all repeats are done.
 async function autoplayCurrentCard() {
   // Always show the back of the card for autoplay (definition view)
-  if (!flipped) flipCard();
+  if (!flipped) flipCard(true);
 
   // Wait for flip animation to finish for accessibility/UX (optional)
   await new Promise(r => setTimeout(r, 300));
@@ -659,7 +662,6 @@ async function autoplayCurrentCard() {
   // Speak word 3 times
   for (let i = 0; i < 3; i++) {
     await speakUtterance(card.word);
-    // Short pause between repeats
     await new Promise(r => setTimeout(r, 350));
   }
   // Speak example 2 times
@@ -675,7 +677,7 @@ function runAutoplayLoop() {
   autoplayCurrentCard().then(() => {
     // Next card after short pause
     autoplayTimeout = setTimeout(() => {
-      nextCard();
+      nextCard(true);  // true: fromAutoplay
       runAutoplayLoop();
     }, 900); // Time between cards (can adjust)
   });
@@ -702,15 +704,6 @@ function toggleAutoplay() {
   if (!autoplay) startAutoplay();
   else stopAutoplay();
 }
-
-// Stop autoplay if user manually interacts
-["flipCard", "nextCard", "prevCard"].forEach(fn => {
-  const orig = window[fn];
-  window[fn] = function() {
-    if (autoplay) stopAutoplay();
-    return orig.apply(this, arguments);
-  };
-});
 
 // Optional: stop autoplay on page unload
 window.addEventListener('beforeunload', () => {

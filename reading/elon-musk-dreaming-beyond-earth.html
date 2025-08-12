@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Elon Musk – Dreaming Beyond Earth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Elon Musk – Dreaming Beyond Earth</h1>
+    <main>
+        <div class="content-section passage">
+            <p>
+Elon Musk was born in South Africa in 1971. Even as a child, he was captivated by technology and science fiction. At the age of twelve, he created and sold his first computer game. After high school, Musk moved to Canada and then the United States, seeking new opportunities and a better future.
+
+He attended college at the University of Pennsylvania and earned degrees in both economics and physics. Musk soon realized that the internet was changing the world, so he started his first company, Zip2, which provided business directories and maps online. He sold this company for a large profit and then co-founded X.com, which later became PayPal, a company that revolutionized how people send money online.
+
+But Musk’s ambitions reached even higher. In 2002, he founded SpaceX, with the goal of making space travel more affordable and eventually sending humans to Mars. Many people doubted him. His early rockets failed multiple times, leading to financial risk and public criticism. However, Musk was resilient and refused to give up. Eventually, SpaceX successfully launched the Falcon 1 rocket into orbit, making history as the first privately developed rocket to do so.
+
+At the same time, Musk became the CEO of Tesla Motors. He wanted to accelerate the world’s transition to sustainable energy by creating electric cars that were both practical and desirable. Like SpaceX, Tesla faced setbacks, production delays, and skepticism from experts. Despite the challenges, Musk’s leadership helped Tesla become the most valuable car company in the world.
+
+Musk is also known for his work with SolarCity (solar power), Hyperloop (high-speed transportation), and Neuralink (brain-computer technology). He has become one of the most influential entrepreneurs of the 21st century. While some criticize his management style as demanding or unconventional, others admire his vision, risk-taking, and relentless pursuit of innovation.
+
+Elon Musk’s story is about perseverance, imagination, and the willingness to challenge what others believe is impossible. He continues to dream big and encourage others to think beyond the limits of today.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are some important words from the reading. Try to guess the meaning, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>captivated</strong> <i class="fas fa-volume-up speaker-icon" data-word="captivated" aria-label="Pronounce captivated"></i>
+                    <div class="definition">Very interested or attracted by something; fascinated.</div>
+                    <div class="example">"He was captivated by technology and science fiction."</div>
+                </li>
+                <li>
+                    <strong>opportunity</strong> <i class="fas fa-volume-up speaker-icon" data-word="opportunity" aria-label="Pronounce opportunity"></i>
+                    <div class="definition">A chance to do something or succeed.</div>
+                    <div class="example">"He moved to the United States, seeking new opportunities."</div>
+                </li>
+                <li>
+                    <strong>revolutionize</strong> <i class="fas fa-volume-up speaker-icon" data-word="revolutionize" aria-label="Pronounce revolutionize"></i>
+                    <div class="definition">To completely change something, especially in a way that makes it better.</div>
+                    <div class="example">"PayPal revolutionized how people send money online."</div>
+                </li>
+                <li>
+                    <strong>ambition</strong> <i class="fas fa-volume-up speaker-icon" data-word="ambition" aria-label="Pronounce ambition"></i>
+                    <div class="definition">A strong desire to achieve something, especially success.</div>
+                    <div class="example">"Musk’s ambitions reached even higher."</div>
+                </li>
+                <li>
+                    <strong>affordable</strong> <i class="fas fa-volume-up speaker-icon" data-word="affordable" aria-label="Pronounce affordable"></i>
+                    <div class="definition">Not too expensive; able to be paid for by most people.</div>
+                    <div class="example">"He wanted to make space travel more affordable."</div>
+                </li>
+                <li>
+                    <strong>resilient</strong> <i class="fas fa-volume-up speaker-icon" data-word="resilient" aria-label="Pronounce resilient"></i>
+                    <div class="definition">Able to recover quickly from difficulties or failure.</div>
+                    <div class="example">"Musk was resilient and refused to give up."</div>
+                </li>
+                <li>
+                    <strong>orbit</strong> <i class="fas fa-volume-up speaker-icon" data-word="orbit" aria-label="Pronounce orbit"></i>
+                    <div class="definition">The path one object in space takes around another object.</div>
+                    <div class="example">"The Falcon 1 rocket went into orbit."</div>
+                </li>
+                <li>
+                    <strong>transition</strong> <i class="fas fa-volume-up speaker-icon" data-word="transition" aria-label="Pronounce transition"></i>
+                    <div class="definition">A change from one state or condition to another.</div>
+                    <div class="example">"He wanted to accelerate the world’s transition to sustainable energy."</div>
+                </li>
+                <li>
+                    <strong>sustainable</strong> <i class="fas fa-volume-up speaker-icon" data-word="sustainable" aria-label="Pronounce sustainable"></i>
+                    <div class="definition">Able to continue over time without causing harm to the environment.</div>
+                    <div class="example">"Tesla creates sustainable electric cars."</div>
+                </li>
+                <li>
+                    <strong>setback</strong> <i class="fas fa-volume-up speaker-icon" data-word="setback" aria-label="Pronounce setback"></i>
+                    <div class="definition">A problem or difficulty that delays or prevents progress.</div>
+                    <div class="example">"Tesla faced many setbacks in production."</div>
+                </li>
+                <li>
+                    <strong>skepticism</strong> <i class="fas fa-volume-up speaker-icon" data-word="skepticism" aria-label="Pronounce skepticism"></i>
+                    <div class="definition">An attitude of doubting that something is true or will happen.</div>
+                    <div class="example">"Many experts expressed skepticism about Musk’s goals."</div>
+                </li>
+                <li>
+                    <strong>entrepreneur</strong> <i class="fas fa-volume-up speaker-icon" data-word="entrepreneur" aria-label="Pronounce entrepreneur"></i>
+                    <div class="definition">A person who starts and manages a new business, taking on financial risks.</div>
+                    <div class="example">"He became one of the world’s most famous entrepreneurs."</div>
+                </li>
+                <li>
+                    <strong>influential</strong> <i class="fas fa-volume-up speaker-icon" data-word="influential" aria-label="Pronounce influential"></i>
+                    <div class="definition">Having the power to change or affect people or things.</div>
+                    <div class="example">"He is an influential leader in technology."</div>
+                </li>
+                <li>
+                    <strong>unconventional</strong> <i class="fas fa-volume-up speaker-icon" data-word="unconventional" aria-label="Pronounce unconventional"></i>
+                    <div class="definition">Not following traditional ways; different from what is usual.</div>
+                    <div class="example">"Some say his management style is unconventional."</div>
+                </li>
+                <li>
+                    <strong>relentless</strong> <i class="fas fa-volume-up speaker-icon" data-word="relentless" aria-label="Pronounce relentless"></i>
+                    <div class="definition">Never stopping or giving up; continuing in a determined way.</div>
+                    <div class="example">"He is known for his relentless pursuit of innovation."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the reading.</p>
+            <ol>
+                <li>Where was Elon Musk born, and why did he move to the United States?</li>
+                <li>What was Musk’s first major business success?</li>
+                <li>What is the main goal of SpaceX?</li>
+                <li>What challenges did Tesla face in its early years?</li>
+                <li>List two other projects Musk is known for besides SpaceX and Tesla.</li>
+                <li>Which qualities helped Musk succeed, even when others doubted him?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Steve Jobs and the Founding of Apple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Use the same CSS as before for consistent style */
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Steve Jobs and the Founding of Apple</h1>
+    <main>
+        <div class="content-section passage">
+            <p>
+Steve Jobs was born in California in 1955 and was adopted as a baby. Growing up, he was curious and creative. He loved electronics and often took things apart to see how they worked. After high school, Steve went to college, but he dropped out after only six months. He wanted to learn in his own way.
+
+Jobs started working with his friend Steve Wozniak, who was also very skilled with computers. Together, in 1976, they built their first computer in a garage. They called their new company “Apple.” Their first product, the Apple I, was simple but innovative. Soon, the Apple II computer became very successful, and the company grew quickly.
+
+Jobs became known for his vision and perfectionism. He wanted computers to be easy for everyone to use, not just experts. He insisted on high standards for design and quality. However, as Apple got bigger, some people at the company thought Jobs was too demanding. In 1985, he was forced to leave the company he had helped create.
+
+Instead of giving up, Jobs started new companies, including Pixar, which made animated movies. After a few years, Apple invited him back because the company was struggling. Jobs returned and led the creation of new products like the iMac, iPod, iPhone, and iPad. These inventions changed the way people use technology around the world.
+
+Steve Jobs is remembered as a pioneer of technology and design. He faced many setbacks, but his determination and imagination helped him succeed. He inspired people to think differently and believe that even impossible ideas could become reality.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are some important words from the reading. Try to guess the meaning, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>adopt</strong> <i class="fas fa-volume-up speaker-icon" data-word="adopt" aria-label="Pronounce adopt"></i>
+                    <div class="definition">To take a child into your family and become their legal parent.</div>
+                    <div class="example">"Steve Jobs was adopted as a baby."</div>
+                </li>
+                <li>
+                    <strong>curious</strong> <i class="fas fa-volume-up speaker-icon" data-word="curious" aria-label="Pronounce curious"></i>
+                    <div class="definition">Eager to know or learn something new.</div>
+                    <div class="example">"He was curious and loved learning about electronics."</div>
+                </li>
+                <li>
+                    <strong>innovative</strong> <i class="fas fa-volume-up speaker-icon" data-word="innovative" aria-label="Pronounce innovative"></i>
+                    <div class="definition">Using new ideas or methods; creative and original.</div>
+                    <div class="example">"The Apple I was an innovative computer."</div>
+                </li>
+                <li>
+                    <strong>vision</strong> <i class="fas fa-volume-up speaker-icon" data-word="vision" aria-label="Pronounce vision"></i>
+                    <div class="definition">A clear idea about what should happen or be done in the future.</div>
+                    <div class="example">"Jobs was known for his vision of the future of computers."</div>
+                </li>
+                <li>
+                    <strong>perfectionism</strong> <i class="fas fa-volume-up speaker-icon" data-word="perfectionism" aria-label="Pronounce perfectionism"></i>
+                    <div class="definition">The wish to do everything perfectly without mistakes.</div>
+                    <div class="example">"He was famous for his perfectionism and high standards."</div>
+                </li>
+                <li>
+                    <strong>insist</strong> <i class="fas fa-volume-up speaker-icon" data-word="insist" aria-label="Pronounce insist"></i>
+                    <div class="definition">To say firmly that something must be done or is true.</div>
+                    <div class="example">"He insisted on high standards for design."</div>
+                </li>
+                <li>
+                    <strong>demanding</strong> <i class="fas fa-volume-up speaker-icon" data-word="demanding" aria-label="Pronounce demanding"></i>
+                    <div class="definition">Expecting a lot of effort or attention; hard to satisfy.</div>
+                    <div class="example">"Some people thought Jobs was too demanding."</div>
+                </li>
+                <li>
+                    <strong>garage</strong> <i class="fas fa-volume-up speaker-icon" data-word="garage" aria-label="Pronounce garage"></i>
+                    <div class="definition">A building or part of a building for keeping cars; also used as a workspace.</div>
+                    <div class="example">"They built their first computer in a garage."</div>
+                </li>
+                <li>
+                    <strong>setback</strong> <i class="fas fa-volume-up speaker-icon" data-word="setback" aria-label="Pronounce setback"></i>
+                    <div class="definition">A problem that makes progress more difficult; a delay or failure.</div>
+                    <div class="example">"Jobs faced many setbacks but did not give up."</div>
+                </li>
+                <li>
+                    <strong>struggle</strong> <i class="fas fa-volume-up speaker-icon" data-word="struggle" aria-label="Pronounce struggle"></i>
+                    <div class="definition">To experience difficulty or make a great effort to do something.</div>
+                    <div class="example">"Apple was struggling before Jobs returned."</div>
+                </li>
+                <li>
+                    <strong>pioneer</strong> <i class="fas fa-volume-up speaker-icon" data-word="pioneer" aria-label="Pronounce pioneer"></i>
+                    <div class="definition">A person who is among the first to do something important.</div>
+                    <div class="example">"Steve Jobs is a pioneer of technology."</div>
+                </li>
+                <li>
+                    <strong>determination</strong> <i class="fas fa-volume-up speaker-icon" data-word="determination" aria-label="Pronounce determination"></i>
+                    <div class="definition">The quality of continuing to try to do something even when it is difficult.</div>
+                    <div class="example">"His determination helped him succeed."</div>
+                </li>
+                <li>
+                    <strong>imagination</strong> <i class="fas fa-volume-up speaker-icon" data-word="imagination" aria-label="Pronounce imagination"></i>
+                    <div class="definition">The ability to think of new and interesting ideas.</div>
+                    <div class="example">"He used his imagination to create new products."</div>
+                </li>
+                <li>
+                    <strong>inspire</strong> <i class="fas fa-volume-up speaker-icon" data-word="inspire" aria-label="Pronounce inspire"></i>
+                    <div class="definition">To make someone feel they want to do something or be better.</div>
+                    <div class="example">"He inspired people to think differently."</div>
+                </li>
+                <li>
+                    <strong>reality</strong> <i class="fas fa-volume-up speaker-icon" data-word="reality" aria-label="Pronounce reality"></i>
+                    <div class="definition">The state of things as they actually exist.</div>
+                    <div class="example">"He turned impossible ideas into reality."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the reading.</p>
+            <ol>
+                <li>What did Steve Jobs and Steve Wozniak do in a garage?</li>
+                <li>Why did Jobs leave Apple in 1985?</li>
+                <li>What are some products Jobs helped create after returning to Apple?</li>
+                <li>What qualities made Jobs a successful leader?</li>
+                <li>How did Jobs handle setbacks in his career?</li>
+                <li>Why is Steve Jobs remembered as a pioneer?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

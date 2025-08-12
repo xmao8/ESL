@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Temple Grandin and the Power of Different Thinking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column;
+            min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        .passage {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            background-color: #f7fafc;
+            border-left: 5px solid #124076;
+            padding: 1.2em 1.5em 1.2em 2em;
+            margin-bottom: 1.8rem;
+            white-space: pre-line;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Temple Grandin and the Power of Different Thinking</h1>
+    <main>
+        <div class="content-section passage">
+            <p>
+Temple Grandin was born in Boston in 1947. When she was a child, she did not speak until she was almost four years old. She was diagnosed with autism, a condition that affects how a person communicates and relates to others. At the time, little was understood about autism, and many people believed that children like Temple could not succeed.
+
+However, Temple’s mother was determined to give her daughter every opportunity. Temple struggled in school, especially with social situations, but she excelled in subjects like science and math. She had a unique ability to think visually—she could imagine complex systems and machines in her mind.
+
+As a teenager, Temple became interested in animals and how they are treated on farms. She noticed that animals often became stressed in loud or confusing environments. Using her visual thinking skills, she invented more humane systems for handling cattle, which are now used around the world.
+
+Temple went on to earn a PhD in animal science and became a professor at Colorado State University. She has written many books and gives talks about autism and animal behavior. Temple is a passionate advocate for people with autism, encouraging society to value different ways of thinking.
+
+Her life’s work has helped both people and animals. Temple Grandin’s story shows that challenges can become strengths, and that thinking differently can change the world.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Here are some important words from the reading. Try to guess the meaning, then check the definitions.</p>
+            <ul>
+                <li>
+                    <strong>diagnose</strong> <i class="fas fa-volume-up speaker-icon" data-word="diagnose" aria-label="Pronounce diagnose"></i>
+                    <div class="definition">To identify a disease or condition by examining someone’s symptoms.</div>
+                    <div class="example">"She was diagnosed with autism as a young child."</div>
+                </li>
+                <li>
+                    <strong>autism</strong> <i class="fas fa-volume-up speaker-icon" data-word="autism" aria-label="Pronounce autism"></i>
+                    <div class="definition">A developmental condition that affects how a person communicates and interacts with others.</div>
+                    <div class="example">"Autism can affect people in different ways."</div>
+                </li>
+                <li>
+                    <strong>relate</strong> <i class="fas fa-volume-up speaker-icon" data-word="relate" aria-label="Pronounce relate"></i>
+                    <div class="definition">To understand or have a connection with others.</div>
+                    <div class="example">"She had difficulty relating to other children."</div>
+                </li>
+                <li>
+                    <strong>determined</strong> <i class="fas fa-volume-up speaker-icon" data-word="determined" aria-label="Pronounce determined"></i>
+                    <div class="definition">Having a strong desire to do something, even when it is difficult.</div>
+                    <div class="example">"Her mother was determined to help her succeed."</div>
+                </li>
+                <li>
+                    <strong>excel</strong> <i class="fas fa-volume-up speaker-icon" data-word="excel" aria-label="Pronounce excel"></i>
+                    <div class="definition">To do very well or be outstanding at something.</div>
+                    <div class="example">"Temple excelled in science and math."</div>
+                </li>
+                <li>
+                    <strong>unique</strong> <i class="fas fa-volume-up speaker-icon" data-word="unique" aria-label="Pronounce unique"></i>
+                    <div class="definition">Being the only one of its kind; special and different from others.</div>
+                    <div class="example">"She had a unique way of thinking."</div>
+                </li>
+                <li>
+                    <strong>visual</strong> <i class="fas fa-volume-up speaker-icon" data-word="visual" aria-label="Pronounce visual"></i>
+                    <div class="definition">Related to seeing or sight.</div>
+                    <div class="example">"Temple was a visual thinker."</div>
+                </li>
+                <li>
+                    <strong>humane</strong> <i class="fas fa-volume-up speaker-icon" data-word="humane" aria-label="Pronounce humane"></i>
+                    <div class="definition">Kind and gentle, especially to animals or people who are suffering.</div>
+                    <div class="example">"She invented humane systems for cattle."</div>
+                </li>
+                <li>
+                    <strong>system</strong> <i class="fas fa-volume-up speaker-icon" data-word="system" aria-label="Pronounce system"></i>
+                    <div class="definition">A set of connected things or parts working together for a purpose.</div>
+                    <div class="example">"She designed systems used on farms."</div>
+                </li>
+                <li>
+                    <strong>cattle</strong> <i class="fas fa-volume-up speaker-icon" data-word="cattle" aria-label="Pronounce cattle"></i>
+                    <div class="definition">Large animals like cows and bulls, often kept on farms.</div>
+                    <div class="example">"Her inventions improved the lives of cattle."</div>
+                </li>
+                <li>
+                    <strong>professor</strong> <i class="fas fa-volume-up speaker-icon" data-word="professor" aria-label="Pronounce professor"></i>
+                    <div class="definition">A teacher of the highest rank in a college or university.</div>
+                    <div class="example">"She became a professor at Colorado State University."</div>
+                </li>
+                <li>
+                    <strong>advocate</strong> <i class="fas fa-volume-up speaker-icon" data-word="advocate" aria-label="Pronounce advocate"></i>
+                    <div class="definition">A person who supports or argues for a cause or group.</div>
+                    <div class="example">"She is a passionate advocate for people with autism."</div>
+                </li>
+                <li>
+                    <strong>encourage</strong> <i class="fas fa-volume-up speaker-icon" data-word="encourage" aria-label="Pronounce encourage"></i>
+                    <div class="definition">To give someone hope or confidence; to support them in doing something.</div>
+                    <div class="example">"She encourages society to value different thinkers."</div>
+                </li>
+                <li>
+                    <strong>challenge</strong> <i class="fas fa-volume-up speaker-icon" data-word="challenge" aria-label="Pronounce challenge"></i>
+                    <div class="definition">Something that is difficult and requires effort to overcome.</div>
+                    <div class="example">"Temple turned challenges into strengths."</div>
+                </li>
+                <li>
+                    <strong>strength</strong> <i class="fas fa-volume-up speaker-icon" data-word="strength" aria-label="Pronounce strength"></i>
+                    <div class="definition">A quality that helps someone deal with problems; a strong point.</div>
+                    <div class="example">"Her different thinking became her greatest strength."</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the reading.</p>
+            <ol>
+                <li>What condition was Temple Grandin diagnosed with as a child?</li>
+                <li>How did Temple’s way of thinking help her as an inventor?</li>
+                <li>What did Temple notice about animals on farms?</li>
+                <li>How did she change the treatment of cattle?</li>
+                <li>What does Temple Grandin advocate for?</li>
+                <li>What lesson can people learn from Temple’s story?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

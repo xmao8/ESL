@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Present and Past Tense Practice - Travel – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+
+        /* Content specific styles */
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+
+        .question-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .option-label:hover {
+            background-color: #f0f8ff;
+            border-color: #3498db;
+        }
+        .option-label input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .feedback {
+            margin-top: 0.5rem;
+            font-style: italic;
+            display: none;
+            padding-left: 1rem;
+            border-left: 3px solid;
+        }
+
+        .feedback.correct {
+            color: #27ae60;
+            border-color: #27ae60;
+            display: block;
+        }
+        .feedback.incorrect {
+            color: #c0392b;
+            border-color: #c0392b;
+            display: block;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .show-answers {
+            background-color: #f44336;
+        }
+        .show-answers:hover {
+            background-color: #d32f2f;
+        }
+
+        .answers-section {
+            display: none;
+            margin-top: 2rem;
+            border-top: 2px solid #ccc;
+            padding-top: 1rem;
+        }
+        .answers-section h3 {
+            color: #4CAF50;
+        }
+        .answers-section ol {
+            text-align: left;
+            padding-left: 20px;
+        }
+        .answers-section li {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Present and Past Tense Practice - Travel</h1>
+
+<div class="content-container">
+    <p>Practice your knowledge of present and past tenses with these questions about traveling. Choose the correct verb form to complete each sentence.</p>
+
+    <div id="quiz-container">
+        </div>
+
+    <div class="buttons">
+        <button id="submitBtn" class="submit-button">Submit Answers</button>
+        <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
+    </div>
+
+    <div id="results" class="answers-section">
+        <h3>Your Results</h3>
+        <p>You got <span id="correctCount">0</span> out of 15 correct!</p>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    const quizData = {
+        "questions": [
+            {
+                "question": "Every summer, my family always __________ to a new city.",
+                "answerOptions": [
+                    { "text": "traveled", "isCorrect": false },
+                    { "text": "travels", "isCorrect": true },
+                    { "text": "is traveling", "isCorrect": false },
+                    { "text": "was traveling", "isCorrect": false }
+                ],
+                "hint": "The word 'always' indicates a recurring action, which requires the present tense."
+            },
+            {
+                "question": "Last year, we __________ our vacation in Italy.",
+                "answerOptions": [
+                    { "text": "spend", "isCorrect": false },
+                    { "text": "are spending", "isCorrect": false },
+                    { "text": "spent", "isCorrect": true },
+                    { "text": "have spent", "isCorrect": false }
+                ],
+                "hint": "The phrase 'Last year' is a key indicator of when the action happened."
+            },
+            {
+                "question": "Look! The plane __________ now.",
+                "answerOptions": [
+                    { "text": "take off", "isCorrect": false },
+                    { "text": "takes off", "isCorrect": false },
+                    { "text": "is taking off", "isCorrect": true },
+                    { "text": "has taken off", "isCorrect": false }
+                ],
+                "hint": "The word 'now' and the command 'Look!' signal an ongoing action."
+            },
+            {
+                "question": "They __________ their tickets two months ago.",
+                "answerOptions": [
+                    { "text": "buy", "isCorrect": false },
+                    { "text": "bought", "isCorrect": true },
+                    { "text": "will buy", "isCorrect": false },
+                    { "text": "are buying", "isCorrect": false }
+                ],
+                "hint": "The phrase 'two months ago' tells you that this is a past event."
+            },
+            {
+                "question": "We always __________ a map when we travel.",
+                "answerOptions": [
+                    { "text": "did use", "isCorrect": false },
+                    { "text": "do use", "isCorrect": true },
+                    { "text": "are using", "isCorrect": false },
+                    { "text": "have used", "isCorrect": false }
+                ],
+                "hint": "The adverb 'always' suggests a recurring action."
+            },
+            {
+                "question": "Before we left, we __________ our passports.",
+                "answerOptions": [
+                    { "text": "check", "isCorrect": false },
+                    { "text": "have checked", "isCorrect": false },
+                    { "text": "checked", "isCorrect": true },
+                    { "text": "are checking", "isCorrect": false }
+                ],
+                "hint": "The time marker 'Before we left' is a clue that the action is in the past."
+            },
+            {
+                "question": "Right now, I __________ to the airport to catch my flight.",
+                "answerOptions": [
+                    { "text": "drive", "isCorrect": false },
+                    { "text": "drove", "isCorrect": false },
+                    { "text": "is driving", "isCorrect": false },
+                    { "text": "am driving", "isCorrect": true }
+                ],
+                "hint": "The phrase 'Right now' tells you the action is currently in progress."
+            },
+            {
+                "question": "The tourist __________ a lot of photos during his trip last month.",
+                "answerOptions": [
+                    { "text": "takes", "isCorrect": false },
+                    { "text": "took", "isCorrect": true },
+                    { "text": "is taking", "isCorrect": false },
+                    { "text": "is taken", "isCorrect": false }
+                ],
+                "hint": "Look for the time frame provided in the sentence."
+            },
+            {
+                "question": "Usually, we __________ the train, but today we __________ a taxi because we are in a hurry.",
+                "answerOptions": [
+                    { "text": "take... are taking", "isCorrect": true },
+                    { "text": "took... took", "isCorrect": false },
+                    { "text": "are taking... are taking", "isCorrect": false },
+                    { "text": "take... took", "isCorrect": false }
+                ],
+                "hint": "The adverbs 'Usually' and 'today' signal different time frames and tenses."
+            },
+            {
+                "question": "Yesterday, my friends and I __________ a long hike to see the waterfall.",
+                "answerOptions": [
+                    { "text": "go", "isCorrect": false },
+                    { "text": "went", "isCorrect": true },
+                    { "text": "will go", "isCorrect": false },
+                    { "text": "are going", "isCorrect": false }
+                ],
+                "hint": "The word 'Yesterday' is a clear time marker for the past."
+            },
+            {
+                "question": "He __________ his flight a day before he left.",
+                "answerOptions": [
+                    { "text": "confirm", "isCorrect": false },
+                    { "text": "confirms", "isCorrect": false },
+                    { "text": "confirmed", "isCorrect": true },
+                    { "text": "is confirming", "isCorrect": false }
+                ],
+                "hint": "The action of confirming happened before another past action, so a past tense is needed."
+            },
+            {
+                "question": "My sister and I __________ on a cruise ship at this very moment.",
+                "answerOptions": [
+                    { "text": "are sailing", "isCorrect": true },
+                    { "text": "sail", "isCorrect": false },
+                    { "text": "sailed", "isCorrect": false },
+                    { "text": "were sailing", "isCorrect": false }
+                ],
+                "hint": "The phrase 'at this very moment' is a strong clue about the time of the action."
+            },
+            {
+                "question": "Last summer, we __________ a lot of different foods on our trip to Southeast Asia.",
+                "answerOptions": [
+                    { "text": "eats", "isCorrect": false },
+                    { "text": "eat", "isCorrect": false },
+                    { "text": "ate", "isCorrect": true },
+                    { "text": "are eating", "isCorrect": false }
+                ],
+                "hint": "The phrase 'Last summer' is a clear time marker for a past event."
+            },
+            {
+                "question": "I always __________ my suitcase the day before I go on a trip.",
+                "answerOptions": [
+                    { "text": "pack", "isCorrect": true },
+                    { "text": "am packing", "isCorrect": false },
+                    { "text": "packed", "isCorrect": false },
+                    { "text": "was packing", "isCorrect": false }
+                ],
+                "hint": "The adverb 'always' suggests a repeated action."
+            },
+            {
+                "question": "The children __________ excited for their first flight yesterday.",
+                "answerOptions": [
+                    { "text": "are", "isCorrect": false },
+                    { "text": "were", "isCorrect": true },
+                    { "text": "was", "isCorrect": false },
+                    { "text": "have been", "isCorrect": false }
+                ],
+                "hint": "The subject 'children' is plural and the time is in the past."
+            }
+        ]
+    };
+
+    const quizContainer = document.getElementById('quiz-container');
+    const submitBtn = document.getElementById('submitBtn');
+    const showAnswersBtn = document.getElementById('showAnswersBtn');
+    const resultsSection = document.getElementById('results');
+    const correctCountSpan = document.getElementById('correctCount');
+
+    function createQuiz() {
+        quizData.questions.forEach((q, index) => {
+            const questionItem = document.createElement('div');
+            questionItem.className = 'question-item';
+            questionItem.innerHTML = `
+                <p class="question-text">${index + 1}. ${q.question}</p>
+                <div class="options-container" data-question-index="${index}">
+                    ${q.answerOptions.map((option, i) => `
+                        <label class="option-label">
+                            <input type="radio" name="question-${index}" value="${i}" />
+                            ${option.text}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="feedback-${index}" class="feedback"></div>
+            `;
+            quizContainer.appendChild(questionItem);
+        });
+    }
+
+    function checkAnswers() {
+        let correctAnswers = 0;
+        quizData.questions.forEach((q, index) => {
+            const optionsContainer = document.querySelector(`.options-container[data-question-index="${index}"]`);
+            const selectedOption = optionsContainer.querySelector(`input[name="question-${index}"]:checked`);
+            const feedbackDiv = document.getElementById(`feedback-${index}`);
+
+            if (selectedOption) {
+                const selectedValue = parseInt(selectedOption.value);
+                if (q.answerOptions[selectedValue].isCorrect) {
+                    correctAnswers++;
+                    feedbackDiv.textContent = 'Correct!';
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.textContent = `Incorrect. The correct answer is: ${q.answerOptions.find(o => o.isCorrect).text}.`;
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+            } else {
+                feedbackDiv.textContent = `Incorrect. The correct answer is: ${q.answerOptions.find(o => o.isCorrect).text}.`;
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        });
+        correctCountSpan.textContent = correctAnswers;
+        resultsSection.style.display = 'block';
+        showAnswersBtn.style.display = 'block';
+        submitBtn.style.display = 'none';
+    }
+
+    function toggleAnswers() {
+        const answersVisible = showAnswersBtn.textContent === 'Hide Answers';
+        if (answersVisible) {
+            quizData.questions.forEach((q, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                feedbackDiv.style.display = 'none';
+            });
+            showAnswersBtn.textContent = 'Show Answers';
+        } else {
+            quizData.questions.forEach((q, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                feedbackDiv.style.display = 'block';
+            });
+            showAnswersBtn.textContent = 'Hide Answers';
+        }
+    }
+
+    // Event listeners
+    submitBtn.addEventListener('click', checkAnswers);
+    showAnswersBtn.addEventListener('click', toggleAnswers);
+
+    // Initial page load setup
+    window.onload = createQuiz;
+
+
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+</script>
+
+</body>
+</html>

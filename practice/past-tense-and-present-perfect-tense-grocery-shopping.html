@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Past Tense vs. Present Perfect Tense - Grocery Shopping – ESLnote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+
+        /* Content specific styles */
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+
+        .question-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .option-label:hover {
+            background-color: #f0f8ff;
+            border-color: #3498db;
+        }
+        .option-label input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .feedback {
+            margin-top: 0.5rem;
+            font-style: italic;
+            display: none;
+            padding-left: 1rem;
+            border-left: 3px solid;
+        }
+
+        .feedback.correct {
+            color: #27ae60;
+            border-color: #27ae60;
+            display: block;
+        }
+        .feedback.incorrect {
+            color: #c0392b;
+            border-color: #c0392b;
+            display: block;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .show-answers {
+            background-color: #f44336;
+        }
+        .show-answers:hover {
+            background-color: #d32f2f;
+        }
+
+        .answers-section {
+            display: none;
+            margin-top: 2rem;
+            border-top: 2px solid #ccc;
+            padding-top: 1rem;
+        }
+        .answers-section h3 {
+            color: #4CAF50;
+        }
+        .answers-section ol {
+            text-align: left;
+            padding-left: 20px;
+        }
+        .answers-section li {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Past Tense vs. Present Perfect Tense - Grocery Shopping</h1>
+
+<div class="content-container">
+    <p>Practice using the **past tense** and the **present perfect tense** correctly. Remember: The past tense is for a finished action at a specific past time. The present perfect is for an action that happened at an unspecified past time, or a past action that has a result in the present.</p>
+
+    <div id="quiz-container">
+        </div>
+
+    <div class="buttons">
+        <button id="submitBtn" class="submit-button">Submit Answers</button>
+        <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
+    </div>
+
+    <div id="results" class="answers-section">
+        <h3>Your Results</h3>
+        <p>You got <span id="correctCount">0</span> out of 15 correct!</p>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    const quizData = {
+        "questions": [
+            {
+                "question": "I __________ to the store a few hours ago, but I'm still here.",
+                "answerOptions": [
+                    { "text": "have gone", "isCorrect": false },
+                    { "text": "went", "isCorrect": true },
+                    { "text": "go", "isCorrect": false },
+                    { "text": "am going", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "She __________ a new kind of cheese. It looks delicious!",
+                "answerOptions": [
+                    { "text": "bought", "isCorrect": false },
+                    { "text": "has bought", "isCorrect": true },
+                    { "text": "buys", "isCorrect": false },
+                    { "text": "was buying", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "Last night, they __________ all the items on their list.",
+                "answerOptions": [
+                    { "text": "have found", "isCorrect": false },
+                    { "text": "found", "isCorrect": true },
+                    { "text": "find", "isCorrect": false },
+                    { "text": "are finding", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "We __________ our shopping. Now we can go home.",
+                "answerOptions": [
+                    { "text": "finished", "isCorrect": false },
+                    { "text": "have finished", "isCorrect": true },
+                    { "text": "finish", "isCorrect": false },
+                    { "text": "are finishing", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "How many times __________ you __________ at this market?",
+                "answerOptions": [
+                    { "text": "did ... shop", "isCorrect": false },
+                    { "text": "have ... shopped", "isCorrect": true },
+                    { "text": "do ... shop", "isCorrect": false },
+                    { "text": "are ... shopping", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "He __________ his wallet at the checkout counter ten minutes ago.",
+                "answerOptions": [
+                    { "text": "has forgotten", "isCorrect": false },
+                    { "text": "forgot", "isCorrect": true },
+                    { "text": "forgets", "isCorrect": false },
+                    { "text": "is forgetting", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "I __________ never __________ such a long line at the supermarket before!",
+                "answerOptions": [
+                    { "text": "did ... see", "isCorrect": false },
+                    { "text": "was ... seeing", "isCorrect": false },
+                    { "text": "have ... seen", "isCorrect": true },
+                    { "text": "am ... seeing", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "They __________ all the bananas, so I couldn't buy any.",
+                "answerOptions": [
+                    { "text": "have sold", "isCorrect": false },
+                    { "text": "sold", "isCorrect": true },
+                    { "text": "sell", "isCorrect": false },
+                    { "text": "are selling", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "My mom __________ the groceries from the car already. You don't have to help.",
+                "answerOptions": [
+                    { "text": "took", "isCorrect": false },
+                    { "text": "takes", "isCorrect": false },
+                    { "text": "has taken", "isCorrect": true },
+                    { "text": "is taking", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "What kind of coffee __________ you __________ when you were at the store yesterday?",
+                "answerOptions": [
+                    { "text": "have ... bought", "isCorrect": false },
+                    { "text": "did ... buy", "isCorrect": true },
+                    { "text": "do ... buy", "isCorrect": false },
+                    { "text": "are ... buying", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "I __________ to the supermarket this morning, so I don't need anything now.",
+                "answerOptions": [
+                    { "text": "have been", "isCorrect": true },
+                    { "text": "was", "isCorrect": false },
+                    { "text": "am", "isCorrect": false },
+                    { "text": "go", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "We __________ our reusable bags with us every time we go.",
+                "answerOptions": [
+                    { "text": "have forgotten", "isCorrect": false },
+                    { "text": "forgot", "isCorrect": false },
+                    { "text": "forget", "isCorrect": true },
+                    { "text": "are forgetting", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "He __________ his first time shopping alone last week.",
+                "answerOptions": [
+                    { "text": "has enjoyed", "isCorrect": false },
+                    { "text": "enjoyed", "isCorrect": true },
+                    { "text": "enjoys", "isCorrect": false },
+                    { "text": "is enjoying", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "I __________ the organic milk, but I still need to buy the rest of the items.",
+                "answerOptions": [
+                    { "text": "found", "isCorrect": false },
+                    { "text": "find", "isCorrect": false },
+                    { "text": "have found", "isCorrect": true },
+                    { "text": "am finding", "isCorrect": false }
+                ]
+            },
+            {
+                "question": "She __________ a shopping list on the fridge. It's still there.",
+                "answerOptions": [
+                    { "text": "has left", "isCorrect": true },
+                    { "text": "left", "isCorrect": false },
+                    { "text": "is leaving", "isCorrect": false },
+                    { "text": "leaves", "isCorrect": false }
+                ]
+            }
+        ]
+    };
+
+    const quizContainer = document.getElementById('quiz-container');
+    const submitBtn = document.getElementById('submitBtn');
+    const showAnswersBtn = document.getElementById('showAnswersBtn');
+    const resultsSection = document.getElementById('results');
+    const correctCountSpan = document.getElementById('correctCount');
+
+    function createQuiz() {
+        quizData.questions.forEach((q, index) => {
+            const questionItem = document.createElement('div');
+            questionItem.className = 'question-item';
+            questionItem.innerHTML = `
+                <p class="question-text">${index + 1}. ${q.question}</p>
+                <div class="options-container" data-question-index="${index}">
+                    ${q.answerOptions.map((option, i) => `
+                        <label class="option-label">
+                            <input type="radio" name="question-${index}" value="${i}" />
+                            ${option.text}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="feedback-${index}" class="feedback"></div>
+            `;
+            quizContainer.appendChild(questionItem);
+        });
+    }
+
+    function checkAnswers() {
+        let correctAnswers = 0;
+        quizData.questions.forEach((q, index) => {
+            const optionsContainer = document.querySelector(`.options-container[data-question-index="${index}"]`);
+            const selectedOption = optionsContainer.querySelector(`input[name="question-${index}"]:checked`);
+            const feedbackDiv = document.getElementById(`feedback-${index}`);
+            const correctAnswerText = q.answerOptions.find(o => o.isCorrect).text;
+
+            if (selectedOption) {
+                const selectedValue = parseInt(selectedOption.value);
+                if (q.answerOptions[selectedValue].isCorrect) {
+                    correctAnswers++;
+                    feedbackDiv.textContent = 'Correct!';
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.textContent = `Incorrect. The correct answer is: ${correctAnswerText}.`;
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+            } else {
+                feedbackDiv.textContent = `Incorrect. The correct answer is: ${correctAnswerText}.`;
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        });
+        correctCountSpan.textContent = correctAnswers;
+        resultsSection.style.display = 'block';
+        showAnswersBtn.style.display = 'block';
+        submitBtn.style.display = 'none';
+    }
+
+    function toggleAnswers() {
+        const answersVisible = showAnswersBtn.textContent === 'Hide Answers';
+        if (answersVisible) {
+            quizData.questions.forEach((q, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                feedbackDiv.style.display = 'none';
+            });
+            showAnswersBtn.textContent = 'Show Answers';
+        } else {
+            quizData.questions.forEach((q, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                feedbackDiv.style.display = 'block';
+            });
+            showAnswersBtn.textContent = 'Hide Answers';
+        }
+    }
+
+    // Event listeners
+    submitBtn.addEventListener('click', checkAnswers);
+    showAnswersBtn.addEventListener('click', toggleAnswers);
+
+    // Initial page load setup
+    window.onload = createQuiz;
+
+
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+</script>
+
+</body>
+</html>

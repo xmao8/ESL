@@ -1,239 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="/favicon.png" type="image/png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Past Progressive (Past Continuous) – Health – ESLnote</title>
+    <title>Past Progressive Tense – Health – ESLnote</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; }
-        nav { background: #124076; margin: 0; padding: 0; }
-        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
-        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
-        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
-        .nav-links { display: flex; gap: 1rem; }
-        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
-        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
-        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
-        @media (max-width: 600px) { .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start; } .nav-links.active { transform: translateX(0); } .menu-toggle { display: flex; } h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; } }
-        @media (min-width: 601px) and (max-width: 900px) { .nav-container { padding: 0.8rem 1.5rem; } .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; } .menu-toggle { display: none; } h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; } }
-        @media (min-width: 901px) { .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; } .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; } .menu-toggle { display: none; } body { padding: 0; } h1, .content-container, .buttons { padding: 0; } }
-        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
-        .content-container { background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.05rem; }
-        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.5rem; }
-        .content-container p { margin-bottom: 1rem; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
+        .content-container { background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); line-height: 1.6; font-size: 1.05rem; }
+        h1 { text-align: center; color: #2c3e50; }
         .question-item { margin-bottom: 0.9rem; }
-        .question-text { margin: 0; }
         .inline-feedback { margin-left: 0.5rem; font-style: italic; display: none; }
         .inline-feedback.correct { color: #27ae60; display: inline; }
         .inline-feedback.incorrect { color: #c0392b; display: inline; }
-        .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
-        button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
-        button:hover, .buttons a:hover { background: #2980b9; }
-        .submit-button { background-color: #4CAF50; }
-        .submit-button:hover { background-color: #45a049; }
-        .show-answers { background-color: #f44336; }
-        .show-answers:hover { background-color: #d32f2f; }
-        .reset-button { background-color: #7f8c8d; }
-        .reset-button:hover { background-color: #707b7c; }
-        .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
-        .answers-section h3 { color: #4CAF50; }
-        .answers-section ol { text-align: left; padding-left: 20px; }
-        .answers-section li { margin-bottom: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 0.7rem; }
-        .blank-input { display: inline-block; min-width: 7ch; max-width: 24ch; padding: 0.25rem 0.35rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; margin: 0 0.25rem; vertical-align: baseline; }
+        .blank-input { display: inline-block; min-width: 8ch; padding: 0.25rem 0.35rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; margin: 0 0.25rem; vertical-align: middle; }
         .blank-input.correct { border-color: #27ae60; }
         .blank-input.incorrect { border-color: #c0392b; }
+        .buttons { text-align: center; margin-top: 2rem; }
+        button { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 0 0.5rem; }
+        button:hover { background: #2980b9; }
+        .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
     </style>
 </head>
 <body>
-
-<nav aria-label="Main navigation">
-    <div class="nav-container">
-        <a href="../index.html" class="logo" aria-label="ESLnote Home">
-            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-            <span class="site-name">ESLnote</span>
-        </a>
-
-        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <div class="nav-links" id="primary-navigation">
-            <a href="../index.html">Home</a>
-            <a href="../flashcards.html">Flashcards</a>
-            <a href="../conversation.html">Conversations</a>
-            <a href="../grammar.html">Grammar</a>
-            <a href="../reading.html">Reading</a>
-            <a href="../listening.html">Listening</a>
-            <a href="../practice.html">Practices</a>
-        </div>
-    </div>
-</nav>
-
-<h1>Past Progressive (Past Continuous) – Health</h1>
-
+<h1>Past Progressive Tense – Health</h1>
 <div class="content-container">
-    <p><strong>Review:</strong> Use the <strong>past progressive</strong> (<em>was/were + -ing</em>) to describe an action that <em>was in progress</em> at a specific time in the past, or an ongoing past action interrupted by another action.</p>
-
+    <p><strong>Review:</strong> Use the <strong>past progressive</strong> (<em>was/were + verb-ing</em>) to describe an action in progress at a specific moment in the past, or an action interrupted by another action.</p>
     <h2>Part 1 – Fill in the Blanks</h2>
-    <p class="hint">Type directly in the blanks. Contractions like <em>wasn't</em>/<em>weren't</em> are accepted. Case-insensitive.</p>
-
     <div id="fill-blanks"></div>
-
     <h2>Part 2 – Story Completion</h2>
-    <p class="hint">Complete each blank with the correct past progressive form.</p>
     <div id="story-completion"></div>
-
     <div class="buttons">
-        <button id="submitBtn" class="submit-button">Submit Answers</button>
-        <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
-        <button id="resetBtn" class="reset-button">Reset</button>
+        <button id="submitBtn">Submit Answers</button>
+        <button id="showAnswersBtn" style="display:none;">Show Answers</button>
+        <button id="resetBtn">Reset</button>
     </div>
-
-    <div id="results" class="answers-section" aria-live="polite">
+    <div id="results" class="answers-section">
         <h3>Your Results</h3>
         <p>You got <span id="correctCount">0</span> out of <span id="totalCount">0</span> correct.</p>
     </div>
 </div>
-
-<div class="buttons">
-    <a href="../practice.html">← Back to Practice</a>
-    <a href="../index.html">🏠 Home</a>
-</div>
-
 <script>
-    const norm = s => s.toLowerCase().replace(/\s+/g,' ').replace(/’/g, "'").trim();
-
-    // {1}, {2} placeholders for inline blanks
-    const fillItems = [
-        { template: "At 7 a.m., I {1} to the clinic because I felt dizzy. (walk)", answers: [["was walking"]] },
-        { template: "When the doctor called, we {1} our blood pressure. (check)", answers: [["were checking"]] },
-        { template: "She {1} any medicine then, so the pain got worse. (not take)", answers: [["was not taking","wasn't taking"]] },
-        { template: "They {1} in the waiting room while the nurse prepared the room. (sit)", answers: [["were sitting"]] },
-        { template: "I hurt my ankle while I {1} on the treadmill. (run)", answers: [["was running"]] },
-        { template: "The pharmacist {1} the instructions when the alarm went off. (explain)", answers: [["was explaining"]] },
-        { template: "We {1} healthy meals during the week before the checkup. (cook)", answers: [["were cooking"]] },
-        { template: "He {1} the stairs and suddenly felt short of breath. (climb)", answers: [["was climbing"]] },
-        { template: "The patients {1} masks at the clinic last winter. (wear)", answers: [["were wearing"]] },
-        { template: "I {1} my symptoms to the doctor when the fire drill started. (describe)", answers: [["was describing"]] }
-    ];
-
-    const storyItems = [
-        { template: "Last Monday, the clinic was busy. At 9:00, the nurses {1} patients in quickly. (bring)", answers: [["were bringing"]] },
-        { template: "The waiting area was noisy because several children {1}. (cry)", answers: [["were crying"]] },
-        { template: "I {1} for my turn when I heard someone faint. (wait)", answers: [["was waiting"]] },
-        { template: "The doctor {1} to a patient when the lights flickered. (talk)", answers: [["was talking"]] },
-        { template: "While we {1} the health forms, the computer system went down. (complete)", answers: [["were completing"]] },
-        { template: "Outside, it {1} heavily, so many people arrived late. (rain)", answers: [["was raining"]] },
-        { template: "Two paramedics {1} a stretcher through the hallway. (push)", answers: [["were pushing"]] },
-        { template: "I {1} nervous because it was my first checkup in years. (feel)", answers: [["was feeling"]] },
-        { template: "When the power returned, the technicians {1} the machines again. (test)", answers: [["were testing"]] }
-    ];
-
-    const fillContainer = document.getElementById('fill-blanks');
-    const storyContainer = document.getElementById('story-completion');
-    const totalCountSpan = document.getElementById('totalCount');
-    const correctCountSpan = document.getElementById('correctCount');
-
-    function renderBlock(container, items, group) {
-        items.forEach((item, i) => {
-            let html = item.template;
-            const blanks = item.answers.length;
-            for (let b = 1; b <= blanks; b++) {
-                const input = `<input type=\"text\" class=\"blank-input\" aria-label=\"${group} blank ${i+1}-${b}\" data-group=\"${group}\" data-i=\"${i}\" data-b=\"${b-1}\" placeholder=\"\" />`;
-                html = html.replace(new RegExp('\\\\{' + b + '\\\\}', 'g'), input);
-            }
-            const wrapper = document.createElement('div');
-            wrapper.className = 'question-item';
-            wrapper.innerHTML = `<p class=\"question-text\">${i + 1}. ${html}<span id=\"fb-${group}-${i}\" class=\"inline-feedback\"></span></p>`;
-            container.appendChild(wrapper);
+const norm = s => s.toLowerCase().replace(/\s+/g,' ').replace(/’/g, "'").trim();
+const fillItems = [
+    { template: "When the doctor arrived, I {1} in the waiting room. (sit)", answers: [["was sitting"]] },
+    { template: "They {1} about healthy eating when the phone rang. (talk)", answers: [["were talking"]] },
+    { template: "While she {1} her morning jog, it started to rain. (do)", answers: [["was doing"]] },
+    { template: "We {1} for the bus to go to the clinic. (wait)", answers: [["were waiting"]] },
+    { template: "He hurt his ankle while he {1} basketball. (play)", answers: [["was playing"]] },
+    { template: "The nurse {1} my blood pressure when someone knocked on the door. (check)", answers: [["was checking"]] },
+    { template: "They {1} at the gym when they heard the news. (exercise)", answers: [["were exercising"]] },
+    { template: "I {1} a salad when my friend called. (make)", answers: [["was making"]] },
+    { template: "She {1} in the park to improve her fitness. (walk)", answers: [["was walking"]] },
+    { template: "We {1} about mental health during lunch break. (discuss)", answers: [["were discussing"]] }
+];
+const storyItems = [
+    { template: "Yesterday afternoon, I {1} at home when I suddenly felt dizzy. (rest)", answers: [["was resting"]] },
+    { template: "My brother {1} online about healthy recipes when the power went out. (read)", answers: [["was reading"]] },
+    { template: "We {1} yoga in the park when it started to rain. (do)", answers: [["were doing"]] },
+    { template: "While the doctor {1} to the patient, the nurse prepared the injection. (talk)", answers: [["was talking"]] },
+    { template: "They {1} for the health seminar to start when the fire alarm went off. (wait)", answers: [["were waiting"]] }
+];
+function renderBlock(containerId, items, group) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    items.forEach((item, i) => {
+        let html = item.template;
+        const blanks = item.answers.length;
+        for (let b = 1; b <= blanks; b++) {
+            const input = `<input type="text" class="blank-input" data-group="${group}" data-i="${i}" data-b="${b-1}" />`;
+            html = html.replace(new RegExp('\\{' + b + '\\}', 'g'), input);
+        }
+        container.innerHTML += `<div class="question-item"><p>${i + 1}. ${html}<span id="fb-${group}-${i}" class="inline-feedback"></span></p></div>`;
+    });
+}
+function checkGroup(items, group) {
+    let correct = 0;
+    items.forEach((item, i) => {
+        const fb = document.getElementById(`fb-${group}-${i}`);
+        let allCorrect = true;
+        item.answers.forEach((ansArr, b) => {
+            const inp = document.querySelector(`input[data-group="${group}"][data-i="${i}"][data-b="${b}"]`);
+            const ok = ansArr.map(norm).includes(norm(inp.value));
+            inp.classList.remove('correct','incorrect');
+            inp.classList.add(ok ? 'correct' : 'incorrect');
+            if (!ok) allCorrect = false;
         });
-    }
-
-    function checkGroup(items, group) {
-        let correct = 0;
-        items.forEach((item, i) => {
-            const fb = document.getElementById(`fb-${group}-${i}`);
-            const blanks = item.answers.length;
-            let allCorrect = true;
-            for (let b = 0; b < blanks; b++) {
-                const inp = document.querySelector(`input[data-group=\"${group}\"][data-i=\"${i}\"][data-b=\"${b}\"]`);
-                const val = norm(inp.value);
-                const allowed = item.answers[b].map(norm);
-                const ok = allowed.includes(val);
-                inp.classList.remove('correct','incorrect');
-                inp.classList.add(ok ? 'correct' : 'incorrect');
-                if (!ok) allCorrect = false;
-            }
-            if (allCorrect) { correct += 1; fb.textContent = ' ✓'; fb.className = 'inline-feedback correct'; }
-            else {
-                const key = item.answers.map(a => a[0]).join(' … ');
-                fb.textContent = ` ✗  (${key})`; fb.className = 'inline-feedback incorrect';
-            }
-        });
-        return correct;
-    }
-
-    function checkAll() {
-        const correctFill = checkGroup(fillItems, 'fill');
-        const correctStory = checkGroup(storyItems, 'story');
-        const total = fillItems.length + storyItems.length;
-        correctCountSpan.textContent = correctFill + correctStory;
-        totalCountSpan.textContent = total;
-        document.getElementById('results').style.display = 'block';
-        document.getElementById('showAnswersBtn').style.display = 'block';
-        document.getElementById('submitBtn').style.display = 'none';
-    }
-
-    function toggleAnswers() {
-        const btn = document.getElementById('showAnswersBtn');
-        const showing = btn.textContent === 'Hide Answers';
-        document.querySelectorAll('.inline-feedback').forEach(el => { el.style.display = showing ? 'none' : 'inline'; });
-        btn.textContent = showing ? 'Show Answers' : 'Hide Answers';
-    }
-
-    function resetAll() {
-        document.querySelectorAll('.blank-input').forEach(inp => { inp.value = ''; inp.classList.remove('correct','incorrect'); });
-        document.querySelectorAll('.inline-feedback').forEach(el => { el.textContent = ''; el.className = 'inline-feedback'; el.style.display = 'none'; });
-        document.getElementById('results').style.display = 'none';
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.style.display = 'inline-block';
-        const show = document.getElementById('showAnswersBtn');
-        show.style.display = 'none';
-        show.textContent = 'Show Answers';
-    }
-
-    // Render & events
-    renderBlock(fillContainer, fillItems, 'fill');
-    renderBlock(storyContainer, storyItems, 'story');
-    document.getElementById('submitBtn').addEventListener('click', checkAll);
-    document.getElementById('showAnswersBtn').addEventListener('click', toggleAnswers);
-    document.getElementById('resetBtn').addEventListener('click', resetAll);
-
-    // Nav toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('primary-navigation');
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
-        });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if(navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', false);
-                }
-            });
-        });
-    }
+        if (allCorrect) { correct++; fb.textContent = ' ✓'; fb.className = 'inline-feedback correct'; fb.style.display = 'inline'; }
+        else { fb.textContent = ` ✗ (${item.answers.map(a=>a[0]).join(' … ')})`; fb.className = 'inline-feedback incorrect'; fb.style.display = 'inline'; }
+    });
+    return correct;
+}
+const submitBtn = document.getElementById('submitBtn');
+const showAnswersBtn = document.getElementById('showAnswersBtn');
+const resultsSection = document.getElementById('results');
+const correctCountSpan = document.getElementById('correctCount');
+const totalCountSpan = document.getElementById('totalCount');
+function checkAll(){
+    const correctFill = checkGroup(fillItems, 'fill');
+    const correctStory = checkGroup(storyItems, 'story');
+    const total = fillItems.length + storyItems.length;
+    correctCountSpan.textContent = correctFill + correctStory;
+    totalCountSpan.textContent = total;
+    resultsSection.style.display = 'block';
+    showAnswersBtn.style.display = 'inline-block';
+    submitBtn.style.display = 'none';
+}
+function toggleAnswers(){
+    const showing = showAnswersBtn.textContent === 'Hide Answers';
+    document.querySelectorAll('.inline-feedback').forEach(el => el.style.display = showing ? 'none' : 'inline');
+    showAnswersBtn.textContent = showing ? 'Show Answers' : 'Hide Answers';
+}
+function resetAll(){
+    document.querySelectorAll('.blank-input').forEach(inp => inp.value = '');
+    document.querySelectorAll('.inline-feedback').forEach(el => { el.textContent = ''; el.style.display = 'none'; });
+    resultsSection.style.display = 'none';
+    submitBtn.style.display = 'inline-block';
+    showAnswersBtn.style.display = 'none';
+    showAnswersBtn.textContent = 'Show Answers';
+}
+renderBlock('fill-blanks', fillItems, 'fill');
+renderBlock('story-completion', storyItems, 'story');
+submitBtn.addEventListener('click', checkAll);
+showAnswersBtn.addEventListener('click', toggleAnswers);
+document.getElementById('resetBtn').addEventListener('click', resetAll);
 </script>
-
 </body>
 </html>

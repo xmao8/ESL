@@ -67,12 +67,11 @@
         .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
         .content-container li { margin-bottom: 0.7rem; }
         .content-container strong { color: #124076; }
-        .question-item { margin-bottom: 1.2rem; }
-        .question-text { font-weight: bold; margin-bottom: 0.3rem; }
-        .answer-input { width: 100%; max-width: 520px; padding: 0.55rem 0.7rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
-        .feedback { margin-top: 0.4rem; font-style: italic; display: none; padding-left: 0.8rem; border-left: 3px solid; }
-        .feedback.correct { color: #27ae60; border-color: #27ae60; display: block; }
-        .feedback.incorrect { color: #c0392b; border-color: #c0392b; display: block; }
+        .question-item { margin-bottom: 0.9rem; }
+        .question-text { margin: 0; }
+        .inline-feedback { margin-left: 0.5rem; font-style: italic; display: none; }
+        .inline-feedback.correct { color: #27ae60; display: inline; }
+        .inline-feedback.incorrect { color: #c0392b; display: inline; }
         .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
         button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
         button:hover, .buttons a:hover { background: #2980b9; }
@@ -86,9 +85,21 @@
         .answers-section h3 { color: #4CAF50; }
         .answers-section ol { text-align: left; padding-left: 20px; }
         .answers-section li { margin-bottom: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 0.7rem; }
-        .hint { color: #888; font-size: 0.95rem; margin-bottom: 1rem; }
-        .story-blank { font-weight: 600; color: #124076; }
-        .story-line { margin-bottom: 0.9rem; }
+
+        /* Inline blank inputs */
+        .blank-input {
+            display: inline-block;
+            min-width: 8ch;
+            max-width: 26ch;
+            padding: 0.25rem 0.35rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 0 0.25rem;
+            vertical-align: baseline;
+        }
+        .blank-input.correct { border-color: #27ae60; }
+        .blank-input.incorrect { border-color: #c0392b; }
     </style>
 </head>
 <body>
@@ -124,7 +135,7 @@
     <p><strong>Review:</strong> Use the <strong>past perfect</strong> (<em>had + past participle</em>) to describe an action that happened <em>before</em> another action in the past.</p>
 
     <h2>Part 1 – Fill in the Blanks</h2>
-    <p class="hint">Type the full past perfect form (e.g., <em>had checked in</em>). Spelling is case-insensitive. Contractions like <em>hadn't</em> are accepted where appropriate.</p>
+    <p class="hint">Type directly in the blanks. Contractions like <em>hadn't</em> are accepted. Spelling is case-insensitive.</p>
 
     <div id="fill-blanks"></div>
 
@@ -150,105 +161,97 @@
 </div>
 
 <script>
-    // ---------- DATA ----------
-    const fillBlankItems = [
-        { q: "By the time we got to the hotel, our friends __________ already __________. (check in)", answers: ["had checked in"] },
-        { q: "She was upset because she __________ her camera at home. (forget)", answers: ["had forgotten"] },
-        { q: "We were tired because we __________ all day. (travel)", answers: ["had traveled", "had travelled"] },
-        { q: "He couldn’t join the tour because he __________ breakfast yet. (not eat)", answers: ["had not eaten", "hadn't eaten"] },
-        { q: "The beach was crowded because many people __________ there early. (arrive)", answers: ["had arrived"] },
-        { q: "We were disappointed because the museum __________ when we got there. (close)", answers: ["had closed"] },
-        { q: "They missed the bus because they __________ too long at the café. (stay)", answers: ["had stayed"] },
-        { q: "I was surprised because I __________ him before at another resort. (meet)", answers: ["had met"] },
-        { q: "She couldn’t go swimming because she __________ her swimsuit. (lose)", answers: ["had lost"] },
-        { q: "By the time the sun set, we __________ hundreds of photos. (take)", answers: ["had taken"] }
+    // Normalizers
+    const norm = s => s.toLowerCase().replace(/\s+/g,' ').replace(/’/g, "'").trim();
+
+    // ------------- DATA (INLINE BLANKS) -------------
+    // Use {1}, {2}, ... as inline blank placeholders.
+    const fillItems = [
+        { template: "By the time we got to the hotel, our friends {1} already {2}. (check in)", answers: [["had"],["checked in"]] },
+        { template: "She was upset because she {1} her camera at home. (forget)", answers: [["had forgotten"]] },
+        { template: "We were tired because we {1} all day. (travel)", answers: [["had traveled","had travelled"]] },
+        { template: "He couldn’t join the tour because he {1} breakfast yet. (not eat)", answers: [["had not eaten","hadn't eaten"]] },
+        { template: "The beach was crowded because many people {1} there early. (arrive)", answers: [["had arrived"]] },
+        { template: "We were disappointed because the museum {1} when we got there. (close)", answers: [["had closed"]] },
+        { template: "They missed the bus because they {1} too long at the café. (stay)", answers: [["had stayed"]] },
+        { template: "I was surprised because I {1} him before at another resort. (meet)", answers: [["had met"]] },
+        { template: "She couldn’t go swimming because she {1} her swimsuit. (lose)", answers: [["had lost"]] },
+        { template: "By the time the sun set, we {1} hundreds of photos. (take)", answers: [["had taken"]] }
     ];
 
     const storyItems = [
-        { q: "Last summer, we went to Italy. By the time we reached Rome, we ________ (already / visit) three other cities.", answers: ["had already visited", "had visited already"] },
-        { q: "We were tired because we ________ (walk) for hours every day.", answers: ["had walked"] },
-        { q: "Our hotel was beautiful, but someone ________ (take) the towels from our room!", answers: ["had taken"] },
-        { q: "Luckily, we found the staff very friendly because they ________ (help) us before when we lost our luggage.", answers: ["had helped"] },
-        { q: "The next day, we went to see the Colosseum, but it was raining heavily. We realized we ________ (leave) our umbrellas at the hotel.", answers: ["had left"] },
-        { q: "By the time we got back, the rain ________ (stop) and the sun was shining again.", answers: ["had stopped"] },
-        { q: "In the evening, we went to a restaurant we ________ (hear) about from a friend.", answers: ["had heard"] },
-        { q: "Unfortunately, they ________ (run) out of the dish we wanted.", answers: ["had run"] },
-        { q: "We still enjoyed the meal because we ________ (never / try) real Italian pizza before.", answers: ["had never tried"] }
+        { template: "Last summer, we went to Italy. By the time we reached Rome, we {1} (already / visit) three other cities.", answers: [["had already visited","had visited already"]] },
+        { template: "We were tired because we {1} (walk) for hours every day.", answers: [["had walked"]] },
+        { template: "Our hotel was beautiful, but someone {1} (take) the towels from our room!", answers: [["had taken"]] },
+        { template: "Luckily, we found the staff very friendly because they {1} (help) us before when we lost our luggage.", answers: [["had helped"]] },
+        { template: "The next day, we went to see the Colosseum, but it was raining heavily. We realized we {1} (leave) our umbrellas at the hotel.", answers: [["had left"]] },
+        { template: "By the time we got back, the rain {1} (stop) and the sun was shining again.", answers: [["had stopped"]] },
+        { template: "In the evening, we went to a restaurant we {1} (hear) about from a friend.", answers: [["had heard"]] },
+        { template: "Unfortunately, they {1} (run) out of the dish we wanted.", answers: [["had run"]] },
+        { template: "We still enjoyed the meal because we {1} (never / try) real Italian pizza before.", answers: [["had never tried"]] }
     ];
 
-    // ---------- RENDER ----------
+    // ------------- RENDER -------------
     const fillContainer = document.getElementById('fill-blanks');
     const storyContainer = document.getElementById('story-completion');
     const totalCountSpan = document.getElementById('totalCount');
+    const correctCountSpan = document.getElementById('correctCount');
 
-    function renderFillBlanks() {
-        fillBlankItems.forEach((item, idx) => {
+    function renderBlock(container, items, group) {
+        items.forEach((item, i) => {
+            let html = item.template;
+            // Replace {n} with inputs
+            const blanks = item.answers.length; // number of blank groups in this item
+            for (let b = 1; b <= blanks; b++) {
+                const input = `<input type="text" class="blank-input" aria-label="${group} blank ${i+1}-${b}" data-group="${group}" data-i="${i}" data-b="${b-1}" placeholder="" />`;
+                html = html.replace(new RegExp('\\{' + b + '\\}', 'g'), input);
+            }
             const wrapper = document.createElement('div');
             wrapper.className = 'question-item';
-            wrapper.innerHTML = `
-                <p class="question-text">${idx + 1}. ${item.q}</p>
-                <input type="text" class="answer-input" aria-label="Answer for question ${idx + 1}" data-type="fill" data-index="${idx}" placeholder="Type here..." />
-                <div id="feedback-fill-${idx}" class="feedback"></div>
-            `;
-            fillContainer.appendChild(wrapper);
+            wrapper.innerHTML = `<p class="question-text">${i + 1}. ${html}<span id="fb-${group}-${i}" class="inline-feedback"></span></p>`;
+            container.appendChild(wrapper);
         });
     }
 
-    function renderStory() {
-        storyItems.forEach((item, idx) => {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'question-item story-line';
-            wrapper.innerHTML = `
-                <p class="question-text">${idx + 1}. ${item.q}</p>
-                <input type="text" class="answer-input" aria-label="Story blank ${idx + 1}" data-type="story" data-index="${idx}" placeholder="Type here..." />
-                <div id="feedback-story-${idx}" class="feedback"></div>
-            `;
-            storyContainer.appendChild(wrapper);
-        });
-    }
+    renderBlock(fillContainer, fillItems, 'fill');
+    renderBlock(storyContainer, storyItems, 'story');
 
-    // ---------- CHECKING ----------
+    // ------------- CHECKING -------------
     const submitBtn = document.getElementById('submitBtn');
     const showAnswersBtn = document.getElementById('showAnswersBtn');
     const resultsSection = document.getElementById('results');
-    const correctCountSpan = document.getElementById('correctCount');
 
-    function normalize(str) {
-        return str
-            .toLowerCase()
-            .replace(/\s+/g, ' ') // collapse spaces
-            .trim();
-    }
-
-    function isCorrect(userInput, answers) {
-        const u = normalize(userInput)
-            .replace(/’/g, "'");
-        return answers.map(a => normalize(a)).includes(u);
+    function checkGroup(items, group) {
+        let correct = 0;
+        items.forEach((item, i) => {
+            const fb = document.getElementById(`fb-${group}-${i}`);
+            const blanks = item.answers.length;
+            let allCorrect = true;
+            for (let b = 0; b < blanks; b++) {
+                const inp = document.querySelector(`input[data-group="${group}"][data-i="${i}"][data-b="${b}"]`);
+                const val = norm(inp.value);
+                const allowed = item.answers[b].map(norm);
+                const ok = allowed.includes(val);
+                inp.classList.remove('correct','incorrect');
+                inp.classList.add(ok ? 'correct' : 'incorrect');
+                if (!ok) allCorrect = false;
+            }
+            if (allCorrect) {
+                correct += 1; fb.textContent = ' ✓'; fb.className = 'inline-feedback correct';
+            } else {
+                // Build a compact answer key for this line
+                const key = item.answers.map(a => a[0]).join(' … ');
+                fb.textContent = ` ✗  (${key})`; fb.className = 'inline-feedback incorrect';
+            }
+        });
+        return correct;
     }
 
     function checkAll() {
-        let correct = 0;
-        const total = fillBlankItems.length + storyItems.length;
-
-        // Fill-in-the-blanks
-        fillBlankItems.forEach((item, idx) => {
-            const input = document.querySelector(`input[data-type="fill"][data-index="${idx}"]`);
-            const feedback = document.getElementById(`feedback-fill-${idx}`);
-            const ok = isCorrect(input.value, item.answers);
-            if (ok) { correct++; feedback.textContent = 'Correct!'; feedback.className = 'feedback correct'; }
-            else { feedback.textContent = `Incorrect. Correct answer: ${item.answers[0]}.`; feedback.className = 'feedback incorrect'; }
-        });
-
-        // Story
-        storyItems.forEach((item, idx) => {
-            const input = document.querySelector(`input[data-type="story"][data-index="${idx}"]`);
-            const feedback = document.getElementById(`feedback-story-${idx}`);
-            const ok = isCorrect(input.value, item.answers);
-            if (ok) { correct++; feedback.textContent = 'Correct!'; feedback.className = 'feedback correct'; }
-            else { feedback.textContent = `Incorrect. Correct answer: ${item.answers[0]}.`; feedback.className = 'feedback incorrect'; }
-        });
-
-        correctCountSpan.textContent = correct;
+        const correctFill = checkGroup(fillItems, 'fill');
+        const correctStory = checkGroup(storyItems, 'story');
+        const total = fillItems.length + storyItems.length;
+        correctCountSpan.textContent = correctFill + correctStory;
         totalCountSpan.textContent = total;
         resultsSection.style.display = 'block';
         showAnswersBtn.style.display = 'block';
@@ -256,39 +259,29 @@
     }
 
     function toggleAnswers() {
-        const answersVisible = showAnswersBtn.textContent === 'Hide Answers';
-        const toggles = [
-            ...fillBlankItems.map((_, i) => document.getElementById(`feedback-fill-${i}`)),
-            ...storyItems.map((_, i) => document.getElementById(`feedback-story-${i}`))
-        ];
-        if (answersVisible) {
-            toggles.forEach(el => el.style.display = 'none');
-            showAnswersBtn.textContent = 'Show Answers';
-        } else {
-            toggles.forEach(el => el.style.display = 'block');
-            showAnswersBtn.textContent = 'Hide Answers';
-        }
+        const showing = showAnswersBtn.textContent === 'Hide Answers';
+        document.querySelectorAll('.inline-feedback').forEach(el => {
+            el.style.display = showing ? 'none' : 'inline';
+        });
+        showAnswersBtn.textContent = showing ? 'Show Answers' : 'Hide Answers';
     }
 
     function resetAll() {
-        document.querySelectorAll('.answer-input').forEach(inp => inp.value = '');
-        document.querySelectorAll('.feedback').forEach(fb => { fb.textContent = ''; fb.className = 'feedback'; fb.style.display = 'none'; });
+        document.querySelectorAll('.blank-input').forEach(inp => {
+            inp.value = ''; inp.classList.remove('correct','incorrect');
+        });
+        document.querySelectorAll('.inline-feedback').forEach(el => { el.textContent = ''; el.className = 'inline-feedback'; el.style.display = 'none'; });
         resultsSection.style.display = 'none';
         submitBtn.style.display = 'inline-block';
         showAnswersBtn.style.display = 'none';
         showAnswersBtn.textContent = 'Show Answers';
     }
 
-    // Event listeners
     submitBtn.addEventListener('click', checkAll);
     showAnswersBtn.addEventListener('click', toggleAnswers);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
 
-    // Initial render
-    renderFillBlanks();
-    renderStory();
-
-    // Mobile nav toggle script
+    // ------------- NAV TOGGLE -------------
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('primary-navigation');
     if (menuToggle && navLinks) {
@@ -297,7 +290,6 @@
             menuToggle.setAttribute('aria-expanded', !expanded);
             navLinks.classList.toggle('active');
         });
-
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if(navLinks.classList.contains('active')) {

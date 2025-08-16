@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Understanding Food Labels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav {
+            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex; gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33; text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        .vocabulary-list ul {
+            list-style: none; padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .ipa {
+            font-size: 0.97em;
+            color: #666;
+            font-style: italic;
+            margin-right: 10px;
+            margin-left: 3px;
+        }
+        .vocabulary-list li .definition { flex-grow: 1; min-width: 180px;}
+        .vocabulary-list li .example {
+            font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px; width: 100%;
+        }
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a {
+                width: auto; text-align: left; padding: 0.5rem 0;
+            }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li {
+                flex-direction: column; align-items: flex-start; padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Understanding Food Labels</h1>
+    <main>
+        <div class="content-section">
+            <h2>Understanding Food Labels: Your Guide to Smarter Choices</h2>
+            <p>
+                When you're at the supermarket, knowing how to read a <strong>food label</strong> is a key skill for healthy eating. A food label, officially called the <strong>Nutrition Facts panel</strong>, is a legal document on every packaged food item. It tells you exactly what is in the food, helping you make informed decisions.
+            </p>
+            <p>
+                The first thing to look at is the <strong>serving size</strong> and <strong>servings per container</strong>. This is the foundation of the label. All the information that follows is based on a single serving. For example, if a bag of chips says "2 servings per container," and a serving has 150 calories, eating the whole bag means you consume 300 calories. Don't be tricked by packages that look like a single serving but are actually more!
+            </p>
+            <p>
+                <h3>The Core Nutrients and Daily Value</h3>
+            </p>
+            <p>
+                The main section of the label lists <strong>calories</strong> and key nutrients.
+                <ul>
+                    <li><strong>Calories</strong> are a measure of energy. The label shows the total calories per serving, as well as the calories from fat.</li>
+                    <li><strong>Fat:</strong> This includes total fat, and then breaks it down into <strong>saturated fat</strong> and <strong>trans fat</strong>. Saturated fat can raise your blood cholesterol, and trans fats are created by adding hydrogen to vegetable oils. It's important to limit these unhealthy fats.</li>
+                    <li><strong>Cholesterol</strong> and <strong>Sodium:</strong> Along with saturated fat, cholesterol amounts are important for anyone concerned about heart disease. <strong>Sodium</strong> is the amount of salt in the food. Too much sodium can also lead to heart disease and stroke.</li>
+                    <li><strong>Carbohydrates:</strong> These are split into two categories: <strong>complex carbohydrates</strong> (dietary fiber) and <strong>simple carbohydrates</strong> (sugars). You want to eat more complex carbs and fewer simple carbs. The label also lists <strong>Added Sugars</strong>, which is very helpful for identifying foods with extra sugar.</li>
+                    <li><strong>Dietary Fiber:</strong> Fiber consists of complex carbohydrates that cannot be absorbed by the body. It aids digestion and can help lower blood cholesterol.</li>
+                    <li><strong>Protein:</strong> This is a key <strong>macronutrient</strong> for building muscles and body tissue. The label doesn't specify a daily guideline because the amount of protein you need depends on your individual needs and activity level.</li>
+                    <li><strong>Vitamins and Minerals:</strong> This section lists vitamins and minerals that the company is required to show, and some that they voluntarily share.</li>
+                </ul>
+            </p>
+            <p>
+                One of the most useful parts of a food label is the <strong>Percent Daily Value (%DV)</strong>. This column shows you how much of a specific nutrient a serving provides compared to a standard 2,000-calorie daily diet. A general rule is:
+                <ul>
+                    <li><strong>5% DV or less</strong> is a <strong>low</strong> source of that nutrient.</li>
+                    <li><strong>20% DV or more</strong> is a <strong>high</strong> source.</li>
+                </ul>
+                Use the %DV to quickly see if a food is high in things you want less of (like sodium and saturated fat) and high in things you want more of (like fiber and vitamins).
+            </p>
+            <p>
+                <h3>The Ingredients List</h3>
+            </p>
+            <p>
+                Below the main nutrition panel, you will find the <strong>ingredients list</strong>. Ingredients are always listed in order of <strong>weight</strong>, from most to least. The first ingredient is the one that makes up the largest part of the food. This is a great way to check for added sugars, unhealthy oils, or any ingredients you may need to avoid due to allergies or medical conditions.
+            </p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>These words will help you understand the story. Listen, check the IPA, and read the definitions.</p>
+            <ul>
+                <li>
+                    <strong>Food label</strong>
+                    <span class="ipa">/fuːd ˈleɪ.bəl/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="food label" aria-label="Pronounce food label"></i>
+                    <div class="definition">Information on a food package, also called the Nutrition Facts panel.</div>
+                </li>
+                <li>
+                    <strong>Nutrition Facts panel</strong>
+                    <span class="ipa">/nuːˈtrɪʃ.ən fæks ˈpæn.əl/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="Nutrition Facts panel" aria-label="Pronounce Nutrition Facts panel"></i>
+                    <div class="definition">The official name for the food label.</div>
+                </li>
+                <li>
+                    <strong>Serving size</strong>
+                    <span class="ipa">/ˈsɜːr.vɪŋ saɪz/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="serving size" aria-label="Pronounce serving size"></i>
+                    <div class="definition">The amount of food a person typically eats at one time.</div>
+                </li>
+                <li>
+                    <strong>Servings per container</strong>
+                    <span class="ipa">/ˈsɜːr.vɪŋz pɜːr kənˈteɪ.nər/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="servings per container" aria-label="Pronounce servings per container"></i>
+                    <div class="definition">The total number of servings in the entire package.</div>
+                </li>
+                <li>
+                    <strong>Calories</strong>
+                    <span class="ipa">/ˈkæl.ə.riz/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="calories" aria-label="Pronounce calories"></i>
+                    <div class="definition">Units of energy that your body gets from food.</div>
+                </li>
+                <li>
+                    <strong>Saturated fat</strong>
+                    <span class="ipa">/ˈsætʃ.ə.reɪ.tɪd fæts/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="saturated fat" aria-label="Pronounce saturated fat"></i>
+                    <div class="definition">A type of unhealthy fat, typically from animal products.</div>
+                </li>
+                <li>
+                    <strong>Trans fat</strong>
+                    <span class="ipa">/trænz fæts/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="trans fat" aria-label="Pronounce trans fat"></i>
+                    <div class="definition">An artificially created unhealthy fat; should be avoided.</div>
+                </li>
+                <li>
+                    <strong>Sodium</strong>
+                    <span class="ipa">/ˈsoʊ.di.əm/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="sodium" aria-label="Pronounce sodium"></i>
+                    <div class="definition">Salt. It is important to limit the intake of this nutrient.</div>
+                </li>
+                <li>
+                    <strong>Carbohydrates</strong>
+                    <span class="ipa">/ˌkɑːr.boʊˈhaɪ.dreɪts/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="carbohydrates" aria-label="Pronounce carbohydrates"></i>
+                    <div class="definition">A macronutrient that provides energy; includes fiber and sugars.</div>
+                </li>
+                <li>
+                    <strong>Dietary fiber</strong>
+                    <span class="ipa">/ˈdaɪə.tə.ri ˈfaɪ.bər/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="dietary fiber" aria-label="Pronounce dietary fiber"></i>
+                    <div class="definition">A part of carbohydrates that helps with digestion.</div>
+                </li>
+                <li>
+                    <strong>Added Sugars</strong>
+                    <span class="ipa">/ˈæd.ɪd ˈʃʊɡ.ərz/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="added sugars" aria-label="Pronounce added sugars"></i>
+                    <div class="definition">Sugars that are put into a food during processing.</div>
+                </li>
+                <li>
+                    <strong>Macronutrient</strong>
+                    <span class="ipa">/ˌmæk.roʊˈnuː.tri.ənt/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="macronutrient" aria-label="Pronounce macronutrient"></i>
+                    <div class="definition">The main types of nutrients: fats, carbs, and proteins.</div>
+                </li>
+                <li>
+                    <strong>Percent Daily Value (%DV)</strong>
+                    <span class="ipa">/pərˈsent ˈdeɪ.li ˈvæl.juː/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="Percent Daily Value" aria-label="Pronounce Percent Daily Value"></i>
+                    <div class="definition">Shows how much a serving contributes to your daily diet.</div>
+                </li>
+                <li>
+                    <strong>Ingredients list</strong>
+                    <span class="ipa">/ɪnˈɡriː.di.ənts lɪst/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="ingredients list" aria-label="Pronounce ingredients list"></i>
+                    <div class="definition">A list of everything used to make the food product.</div>
+                </li>
+                <li>
+                    <strong>Allergens</strong>
+                    <span class="ipa">/ˈæl.ər.dʒənz/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="allergens" aria-label="Pronounce allergens"></i>
+                    <div class="definition">Substances that can cause a serious allergic reaction.</div>
+                </li>
+                <li>
+                    <strong>Expiration date</strong>
+                    <span class="ipa">/ˌek.spəˈreɪ.ʃən deɪt/</span>
+                    <i class="fas fa-volume-up speaker-icon" data-word="expiration date" aria-label="Pronounce expiration date"></i>
+                    <div class="definition">The date after which a food product should not be eaten.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the article "Understanding Food Labels."</p>
+            <ol>
+                <li>What is the main difference between "serving size" and "servings per container"?</li>
+                <li>What does the %DV tell you, and how can you use it to make quick decisions?</li>
+                <li>Why are "saturated fat" and "trans fat" unhealthy?</li>
+                <li>According to the article, what are the two types of carbohydrates and which one should you eat more of?</li>
+                <li>Why is the ingredients list a great way to check for unhealthy ingredients?</li>
+                <li>Besides nutrition, what two other important pieces of information are on the food label?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+        // Text-to-speech for vocabulary
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

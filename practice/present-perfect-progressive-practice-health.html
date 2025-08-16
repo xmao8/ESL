@@ -1,407 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Present Perfect Progressive Worksheet – ESLnote Practice</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-    <style>
-        /* General body and container styles */
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f4f4f9;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        nav {
-            background: #124076;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1100px; /* Max width for larger screens */
-            margin: 0 auto; /* Center the container */
-            padding: 0.8rem 1rem; /* Padding for all screen sizes */
-            box-sizing: border-box;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            color: #ff9800;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            text-decoration: none;
-        }
-        .logo-img {
-            width: 32px;
-            height: 32px;
-            margin-right: 0.5rem;
-        }
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-        }
-        .nav-links a {
-            color: white;
-            font-weight: 700;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-        .nav-links a:hover,
-        .nav-links a:focus {
-            color: #ffbb33;
-            outline: none;
-        }
-        /* Hamburger menu button */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-        }
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Present Perfect Progressive - Health</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-        /* --- Phone Layout (max-width: 600px) --- */
-        @media (max-width: 600px) {
-            .nav-links {
-                position: fixed;
-                top: 56px; /* Adjust if your nav height is different */
-                right: 0;
-                background: #124076;
-                flex-direction: column;
-                width: 100%; /* Changed from 100vw to 100% */
-                height: calc(100vh - 56px); /* Adjust if your nav height is different */
-                padding: 1rem 1.5rem 2rem 1.5rem;
-                gap: 1.2rem;
-                overflow-y: auto;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                border-radius: 0 0 0 10px;
-                z-index: 999;
-                box-sizing: border-box;
-                align-items: flex-start;
-            }
-            .nav-links.active {
-                transform: translateX(0);
-            }
-            .menu-toggle {
-                display: flex; /* Show hamburger on phones */
-            }
-            h1, .content-container, .buttons {
-                padding: 0 1rem; /* Add horizontal padding to main content */
-                box-sizing: border-box;
-            }
-        }
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%);
+                transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem; border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.05rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.5rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.7rem; }
+        .content-container strong { color: #124076; }
+        .question-item { margin-bottom: 0.9rem; }
+        .question-text { margin: 0; }
+        .inline-feedback { margin-left: 0.5rem; font-style: italic; display: none; }
+        .inline-feedback.correct { color: #27ae60; display: inline; }
+        .inline-feedback.incorrect { color: #c0392b; display: inline; }
+        .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+        button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+        button:hover, .buttons a:hover { background: #2980b9; }
+        .submit-button { background-color: #4CAF50; }
+        .submit-button:hover { background-color: #45a049; }
+        .show-answers { background-color: #f44336; }
+        .show-answers:hover { background-color: #d32f2f; }
+        .reset-button { background-color: #7f8c8d; }
+        .reset-button:hover { background-color: #707b7c; }
+        .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
+        .answers-section h3 { color: #4CAF50; }
+        .answers-section ol { text-align: left; padding-left: 20px; }
+        .answers-section li { margin-bottom: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 0.7rem; }
 
-        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
-        @media (min-width: 601px) and (max-width: 900px) {
-            .nav-container {
-                padding: 0.8rem 1.5rem; /* Slightly more padding for tablets */
-            }
-            .nav-links {
-                position: static; /* Links are part of the normal flow */
-                flex-direction: row; /* Links in a row */
-                background: none;
-                height: auto;
-                width: auto;
-                padding: 0;
-                gap: 1.3rem; /* Slightly smaller gap than desktop */
-                transform: none !important; /* Ensure no translation */
-                border-radius: 0;
-                align-items: center;
-                overflow: visible;
-            }
-            .menu-toggle {
-                display: none; /* Hide hamburger on tablets */
-            }
-            h1, .content-container, .buttons {
-                padding: 0 1.5rem; /* Add horizontal padding to main content for tablets */
-                box-sizing: border-box;
-            }
-        }
-
-        /* --- Desktop Layout (min-width: 901px) --- */
-        @media (min-width: 901px) {
-            .nav-container {
-                max-width: 1100px;
-                margin: 0 auto;
-                padding: 0.8rem 1rem;
-            }
-            .nav-links {
-                position: static;
-                flex-direction: row;
-                background: none;
-                height: auto;
-                width: auto;
-                padding: 0;
-                gap: 1.5rem;
-                transform: none !important;
-                border-radius: 0;
-                align-items: center;
-                overflow: visible;
-            }
-            .menu-toggle {
-                display: none; /* Hide hamburger on desktop */
-            }
-            body {
-                padding: 0;
-            }
-            h1, .content-container, .buttons {
-                padding: 0; /* Remove padding if not needed for large screens, or set specific values */
-            }
-        }
-
-        /* Content specific styles */
-        h1 {
-            margin: 2rem auto 1.5rem auto;
-            color: #2c3e50;
-            max-width: 800px; /* Wider for content pages */
-        }
-        .content-container {
-            background: white;
-            width: 90%;
-            max-width: 800px; /* Adjust max-width to suit content */
-            margin: 2rem auto;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: left; /* Align text left for readability */
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-        .content-container h2 {
-            color: #3498db;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            font-size: 1.6rem;
-        }
-        .content-container h3 {
-            color: #124076;
-            margin-top: 1.2rem;
-            margin-bottom: 0.6rem;
-            font-size: 1.3rem;
-        }
-        .content-container p {
-            margin-bottom: 1rem;
-        }
-        .content-container ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin-bottom: 1rem;
-        }
-        .content-container ol {
-            list-style-type: decimal;
-            padding-left: 20px;
-            margin-bottom: 1rem;
-        }
-        .content-container li {
-            margin-bottom: 0.5rem;
-        }
-        .content-container strong {
-            color: #124076; /* Make strong words stand out a bit more */
-        }
-        .content-container em {
-            font-style: italic;
-            color: #555;
-        }
-        .example {
-            background-color: #e8f5e9; /* Light green for examples */
-            border-left: 4px solid #4CAF50;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 5px;
-        }
-        .example strong {
-            color: #2E7D32; /* Darker green for emphasis in examples */
-        }
-        .buttons {
-            margin: 2rem auto 3rem auto;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            max-width: 600px;
-        }
-        button, .buttons a {
-            padding: 0.6rem 1.2rem;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            user-select: none;
-        }
-        button:hover, .buttons a:hover {
-            background: #2980b9;
-        }
-        .worksheet-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .worksheet-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .question-text {
-            font-weight: bold;
-        }
-        textarea {
-            width: 100%;
-            min-height: 50px;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-    </style>
+        /* Inline blank inputs */
+        .blank-input {
+            display: inline-block;
+            min-width: 8ch;
+            max-width: 26ch;
+            padding: 0.25rem 0.35rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 0 0.25rem;
+            vertical-align: baseline;
+        }
+        .blank-input.correct { border-color: #27ae60; }
+        .blank-input.incorrect { border-color: #c0392b; }
+    </style>
 </head>
 <body>
 
 <nav aria-label="Main navigation">
-    <div class="nav-container">
-        <a href="../index.html" class="logo" aria-label="ESLnote Home">
-            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-            <span class="site-name">ESLnote</span>
-        </a>
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
 
-        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
 
-        <div class="nav-links" id="primary-navigation">
-            <a href="../index.html">Home</a>
-            <a href="../flashcards.html">Flashcards</a>
-            <a href="../conversation.html">Conversations</a>
-            <a href="../grammar.html">Grammar</a>
-            <a href="../reading.html">Reading</a>
-            <a href="../listening.html">Listening</a>
-            <a href="../practice.html">Practices</a>
-        </div>
-    </div>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
 </nav>
 
-  <h1>Practice: Present Perfect Progressive <em>(Health)</em></h1>
+<h1>Present Perfect Progressive — Health</h1>
+<div class="content-container">
+    <p><strong>Review:</strong> Use the <strong>present perfect progressive</strong> (<em>have/has + been + verb-ing</em>) to talk about an action that started in the past and is still continuing now.</p>
+    <h2>Fill in the Blanks</h2>
+    <div id="fill-blanks"></div>
+    <div class="buttons">
+        <button id="submitBtn" class="submit-button">Submit Answers</button>
+        <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
+        <button id="resetBtn" class="reset-button">Reset</button>
+    </div>
+    <div id="results" class="answers-section">
+        <h3>Your Results</h3>
+        <p>You got <span id="correctCount">0</span> out of <span id="totalCount">0</span> correct.</p>
+    </div>
+</div>
 
-  <div class="content-container">
-    <div class="student-info">
-      <label>
-        Name
-        <input type="text" name="student-name" placeholder="Your name">
-      </label>
-      <label>
-        Date
-        <input type="date" name="date">
-      </label>
-    </div>
-
-    <p class="instructions">
-      Complete each sentence with the <strong>present perfect progressive</strong> form:
-      <strong>have/has + been + verb-ing</strong>. Use time words like <em>for, since, lately, all week</em> when needed.
-      <br><em>Example:</em> I ___ (walk) → <strong>I have been walking</strong>.
-    </p>
-
-    <ol>
-      <li>
-        <div class="sentence">I <input type="text" class="answer"> (try) to drink two liters of water every day this month.</div>
-      </li>
-      <li>
-        <div class="sentence">She <input type="text" class="answer"> (sleep) poorly since the baby arrived.</div>
-      </li>
-      <li>
-        <div class="sentence">We <input type="text" class="answer"> (cook) at home more instead of ordering fast food lately.</div>
-       </li>
-      <li>
-        <div class="sentence">My brother <input type="text" class="answer"> (train) for a 10K to improve his heart health.</div>
-        </li>
-      <li>
-        <div class="sentence">How long <input type="text" class="answer"> (you / cough)?</div>
-      </li>
-      <li>
-        <div class="sentence">They <input type="text" class="answer"> (avoid) sugary drinks since January.</div>
-      </li>
-      <li>
-        <div class="sentence">My grandpa <input type="text" class="answer"> (take) his blood pressure at home every morning this week.</div>
-      </li>
-      <li>
-        <div class="sentence"><input type="text" class="answer"> (she / do) her physiotherapy exercises regularly?</div>
-      </li>
-      <li>
-        <div class="sentence">The research team <input type="text" class="answer"> (study) stress and sleep patterns for months.</div>
-      </li>
-      <li>
-        <div class="sentence">I <input type="text" class="answer"> (see) a therapist to manage my anxiety lately.</div>
-      </li>
-      <li>
-        <div class="sentence">The students <input type="text" class="answer"> (practice) mindfulness for ten minutes each day.</div>
-      </li>
-      <li>
-        <div class="sentence">He <input type="text" class="answer"> (recover) slowly after the operation.</div>
-      </li>
-      <li>
-        <div class="sentence">Our class <input type="text" class="answer"> (learn) about healthy habits since the start of the term.</div>
-      </li>
-      <li>
-        <div class="sentence">You <input type="text" class="answer"> (skip) breakfast again lately, haven’t you?</div>
-      </li>
-      <li>
-        <div class="sentence">My neighbor <input type="text" class="answer"> (walk) 5,000 steps a day to lower his blood pressure.</div>
-      </li>
-    </ol>
-  </div>
-
-  <div class="buttons">
-    <a href="../practice.html">← Back to Practice</a>
-    <a href="../index.html">🏠 Home</a>
-  </div>
-    
+<div class="buttons">
+    <a href="../practice.html">← Back to Practice</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+        
 <script>
-    // Mobile nav toggle script
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('primary-navigation');
+const norm = s => s.toLowerCase().replace(/\s+/g, ' ').replace(/’/g, "'").trim();
+const fillItems = [
+    { template: "I {1} to drink two liters of water every day this month. (try)", answers: [["have been trying"]] },
+    { template: "She {1} poorly since the baby arrived. (sleep)", answers: [["has been sleeping"]] },
+    { template: "We {1} at home more instead of ordering fast food lately. (cook)", answers: [["have been cooking"]] },
+    { template: "My brother {1} for a 10K to improve his heart health. (train)", answers: [["has been training"]] },
+    { template: "How long {1}?", answers: [["have you been coughing"]] },
+    { template: "They {1} sugary drinks since January. (avoid)", answers: [["have been avoiding"]] },
+    { template: "My grandpa {1} his blood pressure at home every morning this week. (take)", answers: [["has been taking"]] },
+    { template: "How long {1} her physiotherapy exercises regularly? (she / do)", answers: [["has she been doing"]] },
+    { template: "The research team {1} stress and sleep patterns for months. (study)", answers: [["has been studying"]] },
+    { template: "I {1} a therapist to manage my anxiety lately. (see)", answers: [["have been seeing"]] },
+    { template: "The students {1} mindfulness for ten minutes each day. (practice)", answers: [["have been practicing"]] },
+    { template: "He {1} slowly after the operation. (recover)", answers: [["has been recovering"]] },
+    { template: "Our class {1} about healthy habits since the start of the term. (learn)", answers: [["has been learning"]] },
+    { template: "You {1} breakfast again lately, haven’t you? (skip)", answers: [["have been skipping"]] },
+    { template: "My neighbor {1} 5,000 steps a day to lower his blood pressure. (walk)", answers: [["has been walking"]] }
+];
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if(navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', false);
-                }
-            });
-        });
-    }
+function renderBlock(containerId, items, group) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    items.forEach((item, i) => {
+        let html = item.template;
+        const blanks = item.answers.length;
+        for (let b = 1; b <= blanks; b++) {
+            const input = `<input type="text" class="blank-input" data-group="${group}" data-i="${i}" data-b="${b-1}" />`;
+            html = html.replace(new RegExp('\\{' + b + '\\}', 'g'), input);
+        }
+        container.innerHTML += `<div class="question-item"><p>${i + 1}. ${html}<span id="fb-${group}-${i}" class="inline-feedback"></span></p></div>`;
+    });
+}
+function checkGroup(items, group) {
+    let correct = 0;
+    items.forEach((item, i) => {
+        const fb = document.getElementById(`fb-${group}-${i}`);
+        let allCorrect = true;
+        item.answers.forEach((ansArr, b) => {
+            const inp = document.querySelector(`input[data-group="${group}"][data-i="${i}"][data-b="${b}"]`);
+            const ok = ansArr.map(norm).includes(norm(inp.value));
+            inp.classList.remove('correct','incorrect');
+            inp.classList.add(ok ? 'correct' : 'incorrect');
+            if (!ok) allCorrect = false;
+        });
+        if (allCorrect) { correct++; fb.textContent = ' ✓'; fb.className = 'inline-feedback correct'; fb.style.display = 'inline'; }
+        else { fb.textContent = ` ✗ (${item.answers.map(a=>a[0]).join(' / ')})`; fb.className = 'inline-feedback incorrect'; fb.style.display = 'inline'; }
+    });
+    return correct;
+}
+const submitBtn = document.getElementById('submitBtn');
+const showAnswersBtn = document.getElementById('showAnswersBtn');
+const resultsSection = document.getElementById('results');
+const correctCountSpan = document.getElementById('correctCount');
+const totalCountSpan = document.getElementById('totalCount');
+function checkAll(){
+    const correctFill = checkGroup(fillItems, 'fill');
+    const total = fillItems.length;
+    correctCountSpan.textContent = correctFill;
+    totalCountSpan.textContent = total;
+    resultsSection.style.display = 'block';
+    showAnswersBtn.style.display = 'inline-block';
+    submitBtn.style.display = 'none';
+}
+function toggleAnswers(){
+    const showing = showAnswersBtn.textContent === 'Hide Answers';
+    document.querySelectorAll('.inline-feedback').forEach(el => el.style.display = showing ? 'none' : 'inline');
+    showAnswersBtn.textContent = showing ? 'Show Answers' : 'Hide Answers';
+}
+function resetAll(){
+    document.querySelectorAll('.blank-input').forEach(inp => inp.value = '');
+    document.querySelectorAll('.inline-feedback').forEach(el => { el.textContent = ''; el.style.display = 'none'; });
+    resultsSection.style.display = 'none';
+    submitBtn.style.display = 'inline-block';
+    showAnswersBtn.style.display = 'none';
+    showAnswersBtn.textContent = 'Show Answers';
+}
+renderBlock('fill-blanks', fillItems, 'fill');
+submitBtn.addEventListener('click', checkAll);
+showAnswersBtn.addEventListener('click', toggleAnswers);
+document.getElementById('resetBtn').addEventListener('click', resetAll);
 </script>
 </body>
 </html>

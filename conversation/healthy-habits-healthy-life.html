@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Healthy Habits, Healthy Life – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0;
+            }
+        }
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px;
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul, .content-container ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .conversation-script p {
+            margin-bottom: 0.8rem;
+        }
+        .conversation-script strong {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+            color: #124076;
+        }
+        .conversation-script span.dialogue {
+            display: inline;
+        }
+        .scene-direction {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .character-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .character-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .character-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .character-info li {
+            margin-bottom: 0.2rem;
+        }
+        .vocabulary-list ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        .vocabulary-list li {
+            margin-bottom: 0.8rem;
+        }
+        .vocabulary-list .vocab-word {
+            font-weight: bold;
+            color: #124076;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .vocabulary-list .speaker-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #3498db;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .vocabulary-list .speaker-icon:hover {
+            color: #2980b9;
+        }
+        .vocabulary-list .ipa {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            color: #666;
+            margin-left: 5px;
+        }
+        .vocabulary-list .definition {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .vocabulary-list .example {
+            display: block;
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Healthy Habits, Healthy Life</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>ANNA:</strong> A young professional who works long hours. She's often tired.</li>
+            <li><strong>BEN:</strong> Anna's colleague and friend. He is energetic and into fitness.</li>
+            <li><strong>MARIA:</strong> A retired neighbor. She is kind and wise.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">The scene opens in a park on a sunny Saturday morning. Anna is sitting on a bench, scrolling on her phone. Ben jogs up to her, full of energy.</p>
+
+    <div class="conversation-script">
+        <p><strong>BEN:</strong> <span class="dialogue">Anna! You made it! I didn't think you'd actually get out of bed.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Hey, Ben. My alarm went off, and I almost hit snooze. I just feel so tired all the time. Work has been crazy.</span></p>
+        <p><strong>BEN:</strong> <span class="dialogue">That’s exactly why we’re here! A little fresh air will do you good. Come on, let’s do a quick stretch.</span></p>
+        <p class="scene-direction">(Anna reluctantly stands up and imitates Ben's stretches. Maria, a kind-looking older woman, walks by with a small bag of groceries.)</p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Good morning, you two! It’s a beautiful day, isn’t it?</span></p>
+        <p><strong>BEN:</strong> <span class="dialogue">Good morning, Maria! It certainly is.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Hi, Maria.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">You seem a little low on energy, dear. Is everything alright?</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">I’m just so exhausted. I work late, I eat dinner on my sofa, and then I fall asleep with my laptop still on. I know it’s not good, but I don’t have time for anything else.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">I remember those days. But our bodies are like gardens. If we don’t take care of them, the flowers won’t grow. It’s not about having more time; it’s about using the time you have wisely.</span></p>
+        <p><strong>BEN:</strong> <span class="dialogue">Exactly! Like a little walk. Or drinking more water instead of coffee.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">And what you eat is so important. I walk to the market every morning to get fresh vegetables. A little soup, a little salad. It makes a big difference. It's my secret to having so much energy.</span></p>
+        <p class="scene-direction">(Maria holds up her small grocery bag with a smile. Anna looks from Maria to Ben, and then around the park at the other people walking and running.)</p>
+        <p><strong>ANNA:</strong> <span class="dialogue">So, a walk, a few fresh vegetables… it sounds so simple.</span></p>
+        <p><strong>BEN:</strong> <span class="dialogue">It is! We don’t have to run a marathon every day. Just a small, good habit. A few minutes of stretching, a walk around the block after work.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Think of it as an investment. You are investing in your own well-being. And the payoff is feeling good, having more energy.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Okay. I can try that. Maybe I can walk home from work instead of taking the bus one day this week.</span></p>
+        <p><strong>BEN:</strong> <span class="dialogue">Great idea! And I can help you find some quick, healthy dinner recipes. No more eating on the sofa.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">That's the spirit! One small step leads to another. And before you know it, you’ll be a beautiful garden yourself.</span></p>
+        <p class="scene-direction">(Maria smiles and continues on her way. Anna and Ben look at each other, then Anna takes a deep breath of fresh air.)</p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Alright, Ben. Let’s do it. What’s our first "small step"?</span></p>
+        <p class="scene-direction">(Ben grins, and they begin to do some light exercises together as the scene fades.)</p>
+        <p class="scene-direction">(End of Scene)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Snooze <span class="speaker-icon" onclick="speakWord('snooze')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/snuːz/</span>
+                <span class="definition">(v.): To sleep for a short time, especially to press a button on an alarm clock to stop it from ringing for a few minutes.</span>
+                <span class="example">Example: He hit snooze three times this morning.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Fresh air <span class="speaker-icon" onclick="speakWord('fresh air')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/frɛʃ ɛər/</span>
+                <span class="definition">(n.): The clean, cool air outside.</span>
+                <span class="example">Example: A walk in the park gives you fresh air and helps you feel better.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Stretching <span class="speaker-icon" onclick="speakWord('stretching')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈstrɛtʃɪŋ/</span>
+                <span class="definition">(n.): The act of making your muscles longer by moving them into a position that makes them tight.</span>
+                <span class="example">Example: I do some stretching before I exercise to warm up.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Low on energy <span class="speaker-icon" onclick="speakWord('low on energy')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/loʊ ɒn ˈɛnərdʒi/</span>
+                <span class="definition">(idiom): To feel tired and not have much physical or mental power.</span>
+                <span class="example">Example: After a long day at work, I was low on energy.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Exhausted <span class="speaker-icon" onclick="speakWord('exhausted')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɪɡˈzɔːstɪd/</span>
+                <span class="definition">(adj.): Very tired.</span>
+                <span class="example">Example: He was exhausted after running the race.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Wisely <span class="speaker-icon" onclick="speakWord('wisely')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈwaɪz.li/</span>
+                <span class="definition">(adv.): In a way that shows good judgment or knowledge.</span>
+                <span class="example">Example: She chose her healthy foods wisely.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Investment <span class="speaker-icon" onclick="speakWord('investment')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɪnˈvɛst.mənt/</span>
+                <span class="definition">(n.): The act of putting money, effort, or time into something to get a good result.</span>
+                <span class="example">Example: Taking care of your health is a great investment.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Payoff <span class="speaker-icon" onclick="speakWord('payoff')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈpeɪ.ɒf/</span>
+                <span class="definition">(n.): The good result or advantage that you get from a difficult situation.</span>
+                <span class="example">Example: The payoff for her hard work was a great grade.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Function to speak a word using Web Speech API
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

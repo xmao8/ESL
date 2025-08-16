@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice – Present Perfect Progressive (Health)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #124076;
+      padding: 0.5rem 1rem;
+    }
+    nav .logo {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav .logo img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    nav .site-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #ff9800;
+      font-weight: 700;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover {
+      color: #ffbb33;
+      text-decoration: underline;
+    }
+
+    /* PAGE TITLE */
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+    }
+
+    /* CONTENT CONTAINER */
+    .container {
+      flex: 1;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .student-info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .student-info label {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+    }
+    .student-info input {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .instructions {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    ol {
+      margin-left: 1.2rem;
+      padding: 0;
+    }
+    li {
+      margin: 1rem 0;
+    }
+    .sentence {
+      font-style: italic;
+    }
+    input.answer {
+      display: block;
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    /* BACK BUTTONS */
+    .buttons {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .buttons a {
+      text-decoration: none;
+      margin: 0 0.5rem;
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    .buttons a:hover {
+      background-color: #2980b9;
+    }
+
+    /* TABLET: ≤768px */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.6rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+      h1 { font-size: 2rem; }
+      .container { padding: 1.5rem; }
+      .student-info label { flex: 1 1 100%; }
+    }
+
+     /* PHONE: single-column, compact nav */
+    @media (max-width: 600px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 1rem;
+      }
+      nav .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+      nav .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      nav .nav-links a { width: 100%; text-align: center; }
+      nav .site-name { font-size: 1.2rem; }
+      h1 { font-size: 2rem; margin: 1.5rem 0 0.5rem; }
+      .container { padding: 1rem; gap: 1rem; }
+      .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav aria-label="Main navigation">
+    <div class="logo">
+      <img src="../favicon.png" alt="ESLnote Logo">
+      <span class="site-name">ESLnote</span>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../practice.html">Practice</a>
+    </div>
+  </nav>
+
+  <h1>Practice: Present Perfect Progressive <em>(Health)</em></h1>
+
+  <div class="container">
+    <div class="student-info">
+      <label>
+        Name
+        <input type="text" name="student-name" placeholder="Your name">
+      </label>
+      <label>
+        Date
+        <input type="date" name="date">
+      </label>
+    </div>
+
+    <p class="instructions">
+      Complete each sentence with the <strong>present perfect progressive</strong> form:
+      <strong>have/has + been + verb-ing</strong>. Use time words like <em>for, since, lately, all week</em> when needed.
+      <br><em>Example:</em> I ___ (walk) → <strong>I have been walking</strong>.
+    </p>
+
+    <ol>
+      <li>
+        <div class="sentence">I ___ (try) to drink two liters of water every day this month.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">She ___ (sleep) poorly since the baby arrived.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">We ___ (cook) at home more instead of ordering fast food lately.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">My brother ___ (train) for a 10K to improve his heart health.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">How long ___ (you / cough)?</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">They ___ (avoid) sugary drinks since January.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">My grandpa ___ (take) his blood pressure at home every morning this week.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">___ (she / do) her physiotherapy exercises regularly?</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">The research team ___ (study) stress and sleep patterns for months.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">I ___ (see) a therapist to manage my anxiety lately.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">The students ___ (practice) mindfulness for ten minutes each day.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">He ___ (recover) slowly after the operation.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">Our class ___ (learn) about healthy habits since the start of the term.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">You ___ (skip) breakfast again lately, haven’t you?</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+      <li>
+        <div class="sentence">My neighbor ___ (walk) 5,000 steps a day to lower his blood pressure.</div>
+        <input type="text" class="answer" placeholder="Type your answer here">
+      </li>
+    </ol>
+  </div>
+
+  <div class="buttons">
+    <a href="../practice.html">← Back to Practice</a>
+    <a href="../index.html">🏠 Home</a>
+  </div>
+
+</body>
+</html>

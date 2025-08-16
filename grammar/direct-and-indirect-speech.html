@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Direct & Indirect Speech – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a {
+            color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.3rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.5rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example {
+            background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+        .example strong { color: #2E7D32; }
+
+        .tip {
+            background: #fff9e6; border-left: 4px solid #ffbb33;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        pre.timeline {
+            background: #f7fafc; border-left: 4px solid #3498db; padding: 1rem;
+            overflow-x: auto; border-radius: 6px; font-family: Consolas, Monaco, monospace;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        .sr { position: absolute; left: -9999px; }
+        code.kbd { background:#eef3f8; padding:2px 6px; border-radius:4px; font-family:Consolas,Monaco,monospace; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html" aria-current="page">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Direct Speech and Indirect (Reported) Speech</h1>
+
+<div class="content-container">
+    <p>
+        We use <strong>direct speech</strong> to quote someone’s <em>exact words</em>, and <strong>indirect (reported) speech</strong> to report the idea without quotation marks.
+        When reporting, we often change <em>pronouns, verb tense</em>, and <em>time/place words</em>.
+    </p>
+
+    <div class="example" role="note" aria-label="Quick examples of direct vs indirect speech">
+        <strong>Direct:</strong> Maria said, “I am tired.”<br/>
+        <strong>Indirect:</strong> Maria said (that) she <strong>was</strong> tired.
+    </div>
+
+    <h2>1) Direct Speech: Form & Punctuation</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Direct speech punctuation rules">
+            <thead>
+                <tr><th>Feature</th><th>Rule (US style)</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Quotation Marks</td>
+                    <td>Put the speaker’s exact words inside “ ”.</td>
+                    <td>She said, “I’m ready.”</td>
+                </tr>
+                <tr>
+                    <td>Comma</td>
+                    <td>Use a comma before the opening quote when the reporting clause comes first.</td>
+                    <td>He said, “Let’s go.”</td>
+                </tr>
+                <tr>
+                    <td>Capitalization</td>
+                    <td>Capitalize the first word inside the quotation marks.</td>
+                    <td>They asked, “<strong>W</strong>here are you from?”</td>
+                </tr>
+                <tr>
+                    <td>Punctuation Inside</td>
+                    <td>Commas and periods go inside quotes in US English.</td>
+                    <td>“It’s late,” she whispered.</td>
+                </tr>
+                <tr>
+                    <td>Reporting Clause Position</td>
+                    <td>It can be before, after, or in the middle of the quote.</td>
+                    <td>“I’m hungry,” she said. / “I,” she said, “am hungry.”</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>2) Indirect Speech: Core Changes</h2>
+    <p>When the reporting verb is in the <strong>past</strong> (<em>said, told, asked</em>), we usually “shift” the tense back (backshift):</p>
+
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Backshift tense changes">
+            <thead>
+                <tr><th>Direct Speech</th><th>→ Indirect Speech</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Present Simple</td>
+                    <td>Past Simple</td>
+                    <td>“I like tea.” → He said he <strong>liked</strong> tea.</td>
+                </tr>
+                <tr>
+                    <td>Present Continuous</td>
+                    <td>Past Continuous</td>
+                    <td>“I’m working.” → She said she <strong>was working</strong>.</td>
+                </tr>
+                <tr>
+                    <td>Present Perfect</td>
+                    <td>Past Perfect</td>
+                    <td>“I’ve finished.” → He said he <strong>had finished</strong>.</td>
+                </tr>
+                <tr>
+                    <td>Past Simple</td>
+                    <td>Past Perfect (often)</td>
+                    <td>“I saw him.” → She said she <strong>had seen</strong> him.</td>
+                </tr>
+                <tr>
+                    <td>Past Continuous</td>
+                    <td>Past Perfect Continuous</td>
+                    <td>“I was waiting.” → He said he <strong>had been waiting</strong>.</td>
+                </tr>
+                <tr>
+                    <td><em>will</em></td>
+                    <td><em>would</em></td>
+                    <td>“I’ll call.” → She said she <strong>would</strong> call.</td>
+                </tr>
+                <tr>
+                    <td><em>can</em></td>
+                    <td><em>could</em></td>
+                    <td>“I can help.” → He said he <strong>could</strong> help.</td>
+                </tr>
+                <tr>
+                    <td><em>may</em></td>
+                    <td><em>might</em></td>
+                    <td>“It may rain.” → They said it <strong>might</strong> rain.</td>
+                </tr>
+                <tr>
+                    <td>Past Perfect</td>
+                    <td>(no change)</td>
+                    <td>“I had left.” → She said she <strong>had left</strong>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tip">
+        <strong>No backshift</strong> is common if the reporting verb is in the <em>present</em> (e.g., <em>He says</em>) or if the reported fact is still true:  
+        “The sun is hot.” → The teacher says (that) the sun <strong>is</strong> hot.
+    </div>
+
+    <h3>Pronouns & Time/Place Words</h3>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Pronoun and time/place changes">
+            <thead>
+                <tr><th>Direct</th><th>→ Indirect</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>I / we</td><td>he, she / they</td><td>Change to match the reporter’s perspective.</td></tr>
+                <tr><td>my / our</td><td>his, her / their</td><td>Possessives change similarly.</td></tr>
+                <tr><td>now</td><td>then</td><td></td></tr>
+                <tr><td>today / tonight</td><td>that day / that night</td><td></td></tr>
+                <tr><td>yesterday</td><td>the day before</td><td></td></tr>
+                <tr><td>tomorrow</td><td>the next / following day</td><td></td></tr>
+                <tr><td>last night/week</td><td>the night/week before</td><td></td></tr>
+                <tr><td>next week/month</td><td>the following week/month</td><td></td></tr>
+                <tr><td>here</td><td>there</td><td></td></tr>
+                <tr><td>this / these</td><td>that / those</td><td></td></tr>
+                <tr><td>… ago</td><td>… before</td><td>“two days ago” → “two days before”</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>3) Reporting Statements, Questions, and Commands</h2>
+
+    <h3>A) Statements</h3>
+    <p>Use <strong>say (that)</strong> or <strong>tell + object (that)</strong>. “That” is optional in spoken English.</p>
+    <div class="example">
+        Direct: “We are late.”<br/>
+        Indirect: She <strong>said (that)</strong> they were late. / She <strong>told me (that)</strong> they were late.
+    </div>
+
+    <h3>B) Yes/No Questions</h3>
+    <p>Use <strong>ask + if / whether</strong> + subject + verb (no question word order).</p>
+    <div class="example">
+        Direct: “Do you like sushi?”<br/>
+        Indirect: He <strong>asked if</strong> I liked sushi.
+    </div>
+
+    <h3>C) Wh- Questions</h3>
+    <p>Keep the wh-word, use normal statement order (no auxiliary inversion).</p>
+    <div class="example">
+        Direct: “Where are you going?”<br/>
+        Indirect: She <strong>asked where</strong> I was going.
+    </div>
+
+    <h3>D) Requests, Advice, and Commands</h3>
+    <p>Use <strong>tell/ask + object + to + base verb</strong>. For negatives, use <strong>not to</strong>.</p>
+    <div class="example">
+        Direct: “Please close the door.” / “Don’t be late.”<br/>
+        Indirect: She <strong>asked me to close</strong> the door. / He <strong>told me not to be</strong> late.
+    </div>
+
+    <h2>4) Common Reporting Verbs</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Common reporting verbs">
+            <thead>
+                <tr><th>Verb</th><th>Pattern</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>say</td>
+                    <td>say (that) + clause</td>
+                    <td>She <strong>said (that)</strong> she was busy.</td>
+                </tr>
+                <tr>
+                    <td>tell</td>
+                    <td>tell + object + (that) + clause</td>
+                    <td>He <strong>told me (that)</strong> it was late.</td>
+                </tr>
+                <tr>
+                    <td>ask</td>
+                    <td>ask + object + to V / ask + if/whether + clause / ask + wh-</td>
+                    <td>They <strong>asked if</strong> I could stay.</td>
+                </tr>
+                <tr>
+                    <td>advise / remind / warn</td>
+                    <td>verb + object + to V / not to V</td>
+                    <td>She <strong>advised me to</strong> rest.</td>
+                </tr>
+                <tr>
+                    <td>promise / refuse / agree</td>
+                    <td>verb + to V</td>
+                    <td>He <strong>promised to</strong> help.</td>
+                </tr>
+                <tr>
+                    <td>suggest / recommend</td>
+                    <td>verb + <em>that</em> + clause / verb + V-ing</td>
+                    <td>She <strong>suggested that</strong> we leave early.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>5) At-a-Glance Timeline</h2>
+    <pre class="timeline" aria-label="Backshift timeline">
+Direct time → Indirect time (when reporting from the past)
+now  → then
+today → that day
+yesterday → the day before
+tomorrow → the next/following day
+here → there
+this/these → that/those
+...ago → ...before
+    </pre>
+
+    <h2>6) Common Mistakes</h2>
+    <ul>
+        <li>❌ <em>She told that she was tired.</em> → ✅ <strong>She told me (that)</strong> she was tired. (<em>tell</em> needs an object)</li>
+        <li>❌ <em>He asked where was I.</em> → ✅ He <strong>asked where I was</strong>. (statement order in indirect questions)</li>
+        <li>❌ <em>He said me he was ready.</em> → ✅ He <strong>told me</strong> / He <strong>said (that)</strong> he was ready.</li>
+        <li>❌ Forgetting time word changes: <em>“I’ll come tomorrow.” → He said he would come tomorrow.</em> → ✅ <strong>the next day</strong>.</li>
+        <li>Avoid over-backshifting for universal truths: “Water boils at 100°C” → He said water <strong>boils</strong> at 100°C.</li>
+    </ul>
+
+    <h2>7) Quick Practice (non-interactive)</h2>
+    <ol>
+        <li>“I am studying English.” → She said (that) she __________ English.</li>
+        <li>“Can you help me?” → He asked if I __________ help him.</li>
+        <li>“Don’t use your phone.” → The teacher told us __________ our phones.</li>
+        <li>“Where did you go?” → She asked where I __________.</li>
+        <li>“We will call you tomorrow.” → They said they __________ call me __________.</li>
+    </ol>
+    <div class="tip">
+        Keys: 1) was studying  2) could  3) not to use  4) had gone  5) would, the next day
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a')?.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

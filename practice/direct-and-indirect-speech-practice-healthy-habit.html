@@ -7,7 +7,6 @@
   <title>Direct → Indirect Speech – Healthy Habits (Worksheet)</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* General body and container styles */
     * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -30,7 +29,6 @@
     .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
     .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-    /* --- Phone Layout --- */
     @media (max-width: 600px) {
       .nav-links {
         position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%;
@@ -41,14 +39,12 @@
       .menu-toggle { display: flex; }
       h1, .content-container, .buttons { padding: 0 1rem; }
     }
-    /* --- Tablet Layout --- */
     @media (min-width: 601px) and (max-width: 900px) {
       .nav-container { padding: 0.8rem 1.5rem; }
       .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
       .menu-toggle { display: none; }
       h1, .content-container, .buttons { padding: 0 1.5rem; }
     }
-    /* --- Desktop Layout --- */
     @media (min-width: 901px) {
       .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
       .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
@@ -57,20 +53,17 @@
       h1, .content-container, .buttons { padding: 0; }
     }
 
-    /* Content specific styles */
     h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
     .content-container {
       background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem; border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.05rem;
     }
     .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.5rem; }
-    .content-container p { margin-bottom: 1rem; }
     .question-item { margin-bottom: 1.1rem; }
     .question-text { margin: 0 0 0.2rem 0; }
     .inline-feedback { margin-left: 0.5rem; font-style: italic; display: none; }
     .inline-feedback.correct { color: #27ae60; display: inline; }
     .inline-feedback.incorrect { color: #c0392b; display: inline; }
-
     .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 650px; }
     button, .buttons a {
       padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
@@ -88,7 +81,6 @@
     .answers-section ol { text-align: left; padding-left: 20px; }
     .answers-section li { margin-bottom: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 0.7rem; }
 
-    /* Input styling */
     .full-line-input {
       width: 100%;
       max-width: 100%;
@@ -114,11 +106,9 @@
       <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
       <span class="site-name">ESLnote</span>
     </a>
-
     <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
-
     <div class="nav-links" id="primary-navigation">
       <a href="../index.html">Home</a>
       <a href="../flashcards.html">Flashcards</a>
@@ -134,8 +124,6 @@
 <h1>Direct → Indirect Speech — Healthy Habits</h1>
 
 <div class="content-container">
-  <p><strong>Instructions:</strong> Change each sentence from <strong>direct speech</strong> to <strong>indirect (reported) speech</strong>. Write one complete reported sentence for each item in the box provided.</p>
-
   <h2>Practice (15 items)</h2>
   <div id="worksheet"></div>
 
@@ -159,7 +147,6 @@
 </div>
 
 <script>
-  // Mobile nav toggle
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('primary-navigation');
   if (menuToggle && navLinks) {
@@ -178,131 +165,24 @@
     });
   }
 
-  // ----- Worksheet items -----
-  // Each item: direct quote shown; student writes full indirect sentence (blank only).
-  // 'keys' includes acceptable variants. We normalize user input heavily.
   const items = [
-    {
-      direct: `Tom said, “I drink water every morning.”`,
-      keys: [
-        "tom said that he drank water every morning",
-        "tom said he drank water every morning",
-        "tom said that he drinks water every morning",
-        "tom said he drinks water every morning"
-      ]
-    },
-    {
-      direct: `Maria said, “I go jogging three times a week.”`,
-      keys: [
-        "maria said that she went jogging three times a week",
-        "maria said she went jogging three times a week",
-        "maria said that she goes jogging three times a week",
-        "maria said she goes jogging three times a week"
-      ]
-    },
-    {
-      direct: `The doctor said, “You need to sleep at least 7 hours.”`,
-      keys: [
-        "the doctor said that i needed to sleep at least 7 hours",
-        "the doctor said i needed to sleep at least 7 hours",
-        "the doctor said that i need to sleep at least 7 hours",
-        "the doctor said i need to sleep at least 7 hours",
-        "the doctor said that i needed to sleep at least seven hours",
-        "the doctor said i needed to sleep at least seven hours"
-      ]
-    },
-    {
-      direct: `Sarah said, “I have started a yoga class.”`,
-      keys: [
-        "sarah said that she had started a yoga class",
-        "sarah said she had started a yoga class"
-      ]
-    },
-    {
-      direct: `John said, “I ate vegetables for lunch.”`,
-      keys: [
-        "john said that he had eaten vegetables for lunch",
-        "john said he had eaten vegetables for lunch"
-      ]
-    },
-    {
-      direct: `Emma asked, “Do you eat breakfast every day?”`,
-      keys: [
-        "emma asked if i ate breakfast every day",
-        "emma asked whether i ate breakfast every day",
-        "emma asked if i eat breakfast every day",
-        "emma asked whether i eat breakfast every day"
-      ]
-    },
-    {
-      direct: `The teacher asked, “Can you avoid junk food?”`,
-      keys: [
-        "the teacher asked if we could avoid junk food",
-        "the teacher asked whether we could avoid junk food",
-        "the teacher asked if we can avoid junk food",
-        "the teacher asked whether we can avoid junk food"
-      ]
-    },
-    {
-      direct: `My friend asked, “Will you join me at the gym tomorrow?”`,
-      keys: [
-        "my friend asked if i would join him at the gym the next day",
-        "my friend asked whether i would join him at the gym the next day",
-        "my friend asked if i would join her at the gym the next day",
-        "my friend asked whether i would join her at the gym the next day",
-        "my friend asked if i would join him at the gym the following day",
-        "my friend asked if i would join her at the gym the following day"
-      ]
-    },
-    {
-      direct: `The coach asked, “When do you usually exercise?”`,
-      keys: [
-        "the coach asked when i usually exercised",
-        "the coach asked when i usually exercise"
-      ]
-    },
-    {
-      direct: `The doctor asked, “How much water do you drink each day?”`,
-      keys: [
-        "the doctor asked how much water i drank each day",
-        "the doctor asked how much water i drink each day"
-      ]
-    },
-    {
-      direct: `Anna asked, “Where do you usually buy healthy food?”`,
-      keys: [
-        "anna asked where i usually bought healthy food",
-        "anna asked where i usually buy healthy food"
-      ]
-    },
-    {
-      direct: `Dad asked, “Why are you skipping your morning run?”`,
-      keys: [
-        "dad asked why i was skipping my morning run"
-      ]
-    },
-    {
-      direct: `The doctor said, “Drink more water.”`,
-      keys: [
-        "the doctor told me to drink more water"
-      ]
-    },
-    {
-      direct: `Mom said, “Don’t eat too much sugar.”`,
-      keys: [
-        "mom told me not to eat too much sugar"
-      ]
-    },
-    {
-      direct: `The trainer said, “Please stretch before exercising.”`,
-      keys: [
-        "the trainer asked me to stretch before exercising",
-        "the trainer told me to stretch before exercising"
-      ]
-    }
+    { direct: `Tom said, “I drink water every morning.”`, keys: ["tom said that he drank water every morning","tom said he drank water every morning","tom said that he drinks water every morning","tom said he drinks water every morning"] },
+    { direct: `Maria said, “I go jogging three times a week.”`, keys: ["maria said that she went jogging three times a week","maria said she went jogging three times a week","maria said that she goes jogging three times a week","maria said she goes jogging three times a week"] },
+    { direct: `The doctor said, “You need to sleep at least 7 hours.”`, keys: ["the doctor said that i needed to sleep at least 7 hours","the doctor said i needed to sleep at least 7 hours","the doctor said that i need to sleep at least 7 hours","the doctor said i need to sleep at least 7 hours"] },
+    { direct: `Sarah said, “I have started a yoga class.”`, keys: ["sarah said that she had started a yoga class","sarah said she had started a yoga class"] },
+    { direct: `John said, “I ate vegetables for lunch.”`, keys: ["john said that he had eaten vegetables for lunch","john said he had eaten vegetables for lunch"] },
+    { direct: `Emma asked, “Do you eat breakfast every day?”`, keys: ["emma asked if i ate breakfast every day","emma asked whether i ate breakfast every day","emma asked if i eat breakfast every day","emma asked whether i eat breakfast every day"] },
+    { direct: `The teacher asked, “Can you avoid junk food?”`, keys: ["the teacher asked if we could avoid junk food","the teacher asked whether we could avoid junk food","the teacher asked if we can avoid junk food","the teacher asked whether we can avoid junk food"] },
+    { direct: `My friend asked, “Will you join me at the gym tomorrow?”`, keys: ["my friend asked if i would join him at the gym the next day","my friend asked whether i would join him at the gym the next day","my friend asked if i would join her at the gym the next day","my friend asked whether i would join her at the gym the next day"] },
+    { direct: `The coach asked, “When do you usually exercise?”`, keys: ["the coach asked when i usually exercised","the coach asked when i usually exercise"] },
+    { direct: `The doctor asked, “How much water do you drink each day?”`, keys: ["the doctor asked how much water i drank each day","the doctor asked how much water i drink each day"] },
+    { direct: `Anna asked, “Where do you usually buy healthy food?”`, keys: ["anna asked where i usually bought healthy food","anna asked where i usually buy healthy food"] },
+    { direct: `Dad asked, “Why are you skipping your morning run?”`, keys: ["dad asked why i was skipping my morning run"] },
+    { direct: `The doctor said, “Drink more water.”`, keys: ["the doctor told me to drink more water"] },
+    { direct: `Mom said, “Don’t eat too much sugar.”`, keys: ["mom told me not to eat too much sugar"] },
+    { direct: `The trainer said, “Please stretch before exercising.”`, keys: ["the trainer asked me to stretch before exercising","the trainer told me to stretch before exercising"] }
   ];
 
-  // ----- Rendering -----
   function renderWorksheet() {
     const wrap = document.getElementById('worksheet');
     wrap.innerHTML = '';
@@ -311,28 +191,17 @@
       block.className = 'question-item';
       block.innerHTML = `
         <p class="question-text"><strong>${idx + 1}.</strong> <span class="quote">${it.direct}</span></p>
-        <label class="sr-only" for="q-${idx}">Write the indirect speech for item ${idx + 1}</label>
-        <input id="q-${idx}" type="text" class="full-line-input" placeholder="Write the indirect (reported) sentence here…" />
+        <input id="q-${idx}" type="text" class="full-line-input" />
         <span id="fb-${idx}" class="inline-feedback"></span>
       `;
       wrap.appendChild(block);
     });
     document.getElementById('totalCount').textContent = String(items.length);
-    // populate answer key (for teachers)
     const keyList = document.getElementById('answerKey');
     keyList.innerHTML = items.map(it => `<li>${capitalize(it.keys[0])}.</li>`).join('');
   }
 
-  // ----- Utilities -----
-  const normalize = s => s
-    .toLowerCase()
-    .replace(/[“”"]/g, '"')
-    .replace(/’/g, "'")
-    .replace(/\s+that\s+/g, ' ')     // make "that" optional
-    .replace(/\s+/g, ' ')
-    .replace(/[.?!]+$/g, '')         // trim end punctuation
-    .trim();
-
+  const normalize = s => s.toLowerCase().replace(/[“”"]/g,'"').replace(/’/g,"'").replace(/\s+that\s+/g,' ').replace(/\s+/g,' ').replace(/[.?!]+$/g,'').trim();
   const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
 
   function checkAll() {
@@ -342,7 +211,7 @@
       const fb = document.getElementById(`fb-${idx}`);
       const user = normalize(input.value);
       const ok = it.keys.map(normalize).includes(user);
-      input.classList.remove('correct', 'incorrect');
+      input.classList.remove('correct','incorrect');
       if (ok) {
         correct++;
         input.classList.add('correct');
@@ -351,7 +220,7 @@
         fb.style.display = 'inline';
       } else {
         input.classList.add('incorrect');
-        fb.textContent = ` ✗`;
+        fb.textContent = ' ✗';
         fb.className = 'inline-feedback incorrect';
         fb.style.display = 'inline';
       }
@@ -364,8 +233,8 @@
 
   function toggleAnswers() {
     const btn = document.getElementById('showAnswersBtn');
-    const showing = btn.textContent === 'Hide Answers';
     const key = document.getElementById('answerKey');
+    const showing = btn.textContent === 'Hide Answers';
     key.style.display = showing ? 'none' : 'block';
     btn.textContent = showing ? 'Show Answers' : 'Hide Answers';
   }
@@ -375,7 +244,7 @@
       const input = document.getElementById(`q-${idx}`);
       const fb = document.getElementById(`fb-${idx}`);
       input.value = '';
-      input.classList.remove('correct', 'incorrect');
+      input.classList.remove('correct','incorrect');
       fb.textContent = '';
       fb.style.display = 'none';
     });
@@ -385,7 +254,6 @@
     document.getElementById('submitBtn').style.display = 'inline-block';
   }
 
-  // Init
   renderWorksheet();
   document.getElementById('submitBtn').addEventListener('click', checkAll);
   document.getElementById('showAnswersBtn').addEventListener('click', toggleAnswers);

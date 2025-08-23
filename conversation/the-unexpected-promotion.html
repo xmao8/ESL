@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Unexpected Promotion – ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+                align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul, .content-container ol { margin-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .conversation-script p { margin-bottom: 0.8rem; }
+        .conversation-script strong {
+            display: inline-block; width: 100px; text-align: right; margin-right: 10px; color: #124076;
+        }
+        .conversation-script span.dialogue { display: inline; }
+        .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+        .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+        .character-info ul { list-style: none; padding: 0; margin: 0; }
+        .character-info li { margin-bottom: 0.2rem; }
+        .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+        .vocabulary-list li { margin-bottom: 0.8rem; }
+        .vocabulary-list .vocab-word {
+            font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.2rem; color: #3498db; user-select: none; transition: color 0.2s; }
+        .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+        .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+        .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+            cursor: pointer; text-decoration: none; display: inline-block; user-select: none;
+        }
+        button:hover, .buttons a:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>The Unexpected Promotion</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>LEO:</strong> A diligent and kind coffee shop barista.</li>
+            <li><strong>MARIA:</strong> A passionate and energetic co-worker, also a barista.</li>
+            <li><strong>MR. HARRISON:</strong> The serious but fair coffee shop owner.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Scene: A busy, modern coffee shop. It is late afternoon.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with LEO and MARIA wiping down the counter. The coffee machine hums softly.)</p>
+        <p><strong>MARIA:</strong> <span class="dialogue">Another long Saturday. My feet are killing me. I can’t wait to get home and just lie down.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">Me too. But at least we’re almost done. And you know, I like this job. I like the customers and the smell of coffee. It’s comforting.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">(Sighs) It’s okay, but it’s not my dream job. I want to be a journalist. I just need to save enough money to go back to school. What about you, Leo? What’s your dream job?</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">(Pauses, looks down) I don't really have one. I mean, I never thought about it much. I just… I like to work hard. My parents always told me that's the most important thing.</span></p>
+        <p class="scene-direction">(The bell on the door chimes. MR. HARRISON enters, holding a clipboard. He looks around the clean shop and nods approvingly.)</p>
+        <p><strong>MR. HARRISON:</strong> <span class="dialogue">Good work, you two. Everything looks spotless. Leo, could I have a word with you? In my office, please.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">(Looks at Maria, a little nervous) Of course, Mr. Harrison.</span></p>
+        <p class="scene-direction">(Leo follows Mr. Harrison into a small, glass-walled office. Maria watches them, her expression a mix of curiosity and concern.)</p>
+        <p><strong>MARIA:</strong> <span class="dialogue">(To herself) I hope he’s not in trouble. Leo is the best worker here.</span></p>
+        <p class="scene-direction">(In the office, Mr. Harrison gestures for Leo to sit. Leo sits on the edge of the chair, his hands clasped.)</p>
+        <p><strong>MR. HARRISON:</strong> <span class="dialogue">Leo, I’ve been watching you for the past six months. You’re always on time. You never complain. You help your colleagues without being asked. And the customers... they all love you. They say you remember their orders even better than I do.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">(Blushes) Thank you, sir. I just try to do my best.</span></p>
+        <p><strong>MR. HARRISON:</strong> <span class="dialogue">Well, your best is excellent. My head manager, Julia, is leaving next month. She’s moving to another city.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">Oh, I’m sorry to hear that. She's great.</span></p>
+        <p><strong>MR. HARRISON:</strong> <span class="dialogue">She is. But her leaving creates an opportunity. I’m promoting you to head manager. You’ll be in charge of scheduling, ordering supplies, and training new employees. It’s a significant pay raise, of course.</span></p>
+        <p class="scene-direction">(Leo's eyes widen in surprise. He is speechless.)</p>
+        <p><strong>LEO:</strong> <span class="dialogue">Me? A manager? But... but I'm just a barista.</span></p>
+        <p><strong>MR. HARRISON:</strong> <span class="dialogue">You were. Now you'll be a leader. You have the skills, Leo. The skills and the character. Think about it and let me know by the end of the week.</span></p>
+        <p class="scene-direction">(Mr. Harrison stands up, signaling the end of the meeting. Leo walks out, a dazed look on his face. Maria rushes over to him.)</p>
+        <p><strong>MARIA:</strong> <span class="dialogue">What happened? Are you okay?</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">He… he offered me Julia’s job. He wants me to be the new manager.</span></p>
+        <p><strong>MARIA:</strong> <span class="dialogue">(Gasps, a huge smile on her face) That’s amazing, Leo! I told you you were the best! You deserve it! See? Your dream job found you!</span></p>
+        <p class="scene-direction">(Leo looks at the bustling coffee shop, a newfound confidence in his eyes. He smiles.)</p>
+        <p><strong>LEO:</strong> <span class="dialogue">Maybe you’re right, Maria. Maybe you’re right.</span></p>
+        <p class="scene-direction">(Fade to black.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Diligent <span class="speaker-icon" onclick="speakWord('Diligent')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈdɪlɪdʒənt/</span>
+                <span class="definition">(adj.): Hard-working and careful.</span>
+                <span class="example">Example: He is a diligent student who always finishes his homework on time.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Barista <span class="speaker-icon" onclick="speakWord('Barista')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/bəˈrɪstə/</span>
+                <span class="definition">(n.): A person who makes and serves coffee in a coffee shop.</span>
+                <span class="example">Example: The barista made me a perfect latte this morning.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Promoting <span class="speaker-icon" onclick="speakWord('Promoting')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/prəˈmoʊtɪŋ/</span>
+                <span class="definition">(v.): To move someone to a higher position or rank in a job.</span>
+                <span class="example">Example: The company is promoting her to team leader next week.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Opportunity <span class="speaker-icon" onclick="speakWord('Opportunity')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌɑːpərˈtuːnəti/</span>
+                <span class="definition">(n.): A chance to do something.</span>
+                <span class="example">Example: This new job is a great opportunity for me.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Colleagues <span class="speaker-icon" onclick="speakWord('Colleagues')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkɑːliːɡz/</span>
+                <span class="definition">(n.): People you work with; co-workers.</span>
+                <span class="example">Example: I have great colleagues who always help me.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Character <span class="speaker-icon" onclick="speakWord('Character')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkærəktər/</span>
+                <span class="definition">(n.): The qualities that make up a person's personality and moral nature.</span>
+                <span class="example">Example: He has a strong character and is very honest.</span>
+            </li>
+            <li>
+                <span class="vocab-word">In charge of <span class="speaker-icon" onclick="speakWord('In charge of')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɪn tʃɑːrdʒ əv/</span>
+                <span class="definition">(phr.): Responsible for something or someone.</span>
+                <span class="example">Example: She is in charge of the whole project.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Significant <span class="speaker-icon" onclick="speakWord('Significant')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/sɪɡˈnɪfɪkənt/</span>
+                <span class="definition">(adj.): Important or large in amount or meaning.</span>
+                <span class="example">Example: There was a significant difference in the two reports.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Web Speech API pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

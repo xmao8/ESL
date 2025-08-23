@@ -89,7 +89,8 @@
     .flashcard.flipped .ipa { color: #e0e0e0; }
     .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
     .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
-    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .translation { font-size: 0.95rem; margin-top: 0.6rem; color: #cfe6fb; }
+    .translation b { color: #ffffff; font-weight: 700; }
     .speaker {
       cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
     }
@@ -139,54 +140,54 @@
 
 <div class="buttons">
   <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
-  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
 const flashcards = [
-  { word: "Ambitious", definition: "Having a strong desire and determination to succeed.", example: "She's an ambitious student who wants to get into a top university." },
-  { word: "Charismatic", definition: "Having a compelling charm that inspires devotion in others.", example: "The charismatic leader was able to inspire the whole team." },
-  { word: "Conscientious", definition: "Wishing to do one's work or duty well and thoroughly.", example: "A conscientious employee always double-checks their work." },
-  { word: "Courageous", definition: "Not deterred by danger or pain; brave.", example: "It was a courageous decision to quit his job and start a new business." },
-  { word: "Diligent", definition: "Having or showing care and conscientiousness in one's work or duties.", example: "He is diligent in his studies and always gets good grades." },
-  { word: "Empathetic", definition: "The ability to understand and share the feelings of another.", example: "An empathetic friend listens without judgment." },
-  { word: "Generous", definition: "Showing a readiness to give more of something, especially money or time, than is necessary or expected.", example: "He was generous and donated a lot of money to charity." },
-  { word: "Humble", definition: "Having or showing a modest or low estimate of one's own importance.", example: "Despite his success, he remained a humble person." },
-  { word: "Meticulous", definition: "Showing great attention to detail; very careful and precise.", example: "The architect was meticulous in his plans for the new building." },
-  { word: "Optimistic", definition: "Hopeful and confident about the future.", example: "Even in difficult times, she stays optimistic about her goals." },
-  { word: "Arrogant", definition: "Having an exaggerated sense of one's own importance or abilities.", example: "His arrogant attitude made it difficult to work with him." },
-  { word: "Callous", definition: "Showing or having an insensitive and cruel disregard for others.", example: "The company's callous disregard for employee safety was shocking." },
-  { word: "Cynical", definition: "Believing that people are motivated by self-interest; distrustful of human sincerity or integrity.", example: "After losing his job, he became cynical about the business world." },
-  { word: "Envious", definition: "Feeling or showing a desire to have what someone else has.", example: "She was envious of her friend's new car." },
-  { word: "Fickle", definition: "Changing frequently, especially as regards one's loyalties, interests, or affection.", example: "The fickle weather changed from sunny to rainy in minutes." },
-  { word: "Gullible", definition: "Easily persuaded to believe something; credulous.", example: "My little brother is so gullible; he believes everything I tell him." },
-  { word: "Impulsive", definition: "Acting or done without forethought.", example: "Making an impulsive purchase is fun but can be expensive." },
-  { word: "Insecure", definition: "Not confident or assured; uncertain and anxious about oneself.", example: "He feels insecure about his ability to pass the exam." },
-  { word: "Petty", definition: "Of little importance; trivial. Also, characterized by an excessive concern with minor details or rules.", example: "Don't waste time on petty arguments." },
-  { word: "Vain", definition: "Having or showing an excessively high opinion of one's appearance, abilities, or worth.", example: "The vain actor constantly checked his reflection in the mirror." },
-  { word: "Assertive", definition: "Having or showing a confident and forceful personality.", example: "You need to be more assertive to get what you want." },
-  { word: "Eccentric", definition: "Unconventional and slightly strange.", example: "The eccentric artist wore a different-colored sock on each foot." },
-  { word: "Introverted", definition: "Characterized by a preoccupation with one's own thoughts and feelings; not very outgoing or socially oriented.", example: "An introverted person might prefer to stay home and read." },
-  { word: "Mischievous", definition: "Causing or showing a fondness for causing trouble in a playful way.", example: "The mischievous child hid his sister's favorite toy." },
-  { word: "Naïve", definition: "Showing a lack of experience, wisdom, or judgment.", example: "She was so naïve that she believed the prince's story." },
-  { word: "Pensive", definition: "Engaged in, involving, or reflecting deep or serious thought.", example: "He sat in a pensive mood, thinking about the future." },
-  { word: "Reserved", definition: "Slow to reveal emotion or opinions.", example: "The reserved man rarely spoke about his feelings." },
-  { word: "Sarcastic", definition: "Using remarks that clearly mean the opposite of what is said, in order to mock or annoy someone.", example: "His sarcastic comment about my cooking was not appreciated." },
-  { word: "Spontaneous", definition: "Acting on impulse rather than on a plan.", example: "We made a spontaneous decision to go on a road trip." },
-  { word: "Witty", definition: "Showing or characterized by quick and inventive humor.", example: "His witty remarks made everyone laugh." },
-  { word: "a quick learner", definition: "Someone who is able to understand new information and skills quickly.", example: "As a new employee, she proved to be a quick learner." },
-  { word: "creative", definition: "Relating to or involving the use of the imagination or original ideas to create something.", example: "He is a creative problem-solver who thinks outside the box." },
-  { word: "dependable", definition: "Trustworthy and reliable.", example: "A dependable friend is always there for you." },
-  { word: "detail-oriented", definition: "Paying close attention to all the small particulars.", example: "Her detail-oriented approach ensures nothing is missed." },
-  { word: "efficient", definition: "Achieving maximum productivity with minimum wasted effort or expense.", example: "The new system is more efficient and saves us a lot of time." },
-  { word: "flexible", definition: "Able to change or be changed easily according to the situation.", example: "You need to be flexible to work in a fast-paced environment." },
-  { word: "good with numbers", definition: "Having a strong ability in mathematics and data.", example: "She's good with numbers and handles all the company's finances." },
-  { word: "great with people", definition: "Having excellent social and communication skills.", example: "As a salesperson, being great with people is a huge advantage." },
-  { word: "hardworking", definition: "Tending to work with energy and commitment; diligent.", example: "Her hardworking nature helped her get a promotion." },
-  { word: "well-organized", definition: "Arranged in an orderly and efficient way.", example: "He is a well-organized person who keeps a tidy desk." },
-  { word: "willing to accept responsibility", definition: "Prepared to take on accountability for tasks and outcomes.", example: "A good leader is willing to accept responsibility for their team's mistakes." },
-  { word: "works well under pressure", definition: "Able to perform effectively when faced with demanding or stressful situations.", example: "Our team leader works well under pressure and stays calm during deadlines." },
+  { word: "Ambitious", definition: "Having a strong desire and determination to succeed.", example: "She's an ambitious student who wants to get into a top university.", translation: "<b>中文</b>：有雄心的 (yǒu xióngxīn de)　<b>Español</b>：ambicioso/a" },
+  { word: "Charismatic", definition: "Having a compelling charm that inspires devotion in others.", example: "The charismatic leader was able to inspire the whole team.", translation: "<b>中文</b>：有魅力的 (yǒu mèilì de)　<b>Español</b>：carismático/a" },
+  { word: "Conscientious", definition: "Wishing to do one's work or duty well and thoroughly.", example: "A conscientious employee always double-checks their work.", translation: "<b>中文</b>：认真的 (rènzhēn de)　<b>Español</b>：concienzudo/a" },
+  { word: "Courageous", definition: "Not deterred by danger or pain; brave.", example: "It was a courageous decision to quit his job and start a new business.", translation: "<b>中文</b>：勇敢的 (yǒnggǎn de)　<b>Español</b>：valiente" },
+  { word: "Diligent", definition: "Having or showing care and conscientiousness in one's work or duties.", example: "He is diligent in his studies and always gets good grades.", translation: "<b>中文</b>：勤奋的 (qínfèn de)　<b>Español</b>：diligente" },
+  { word: "Empathetic", definition: "The ability to understand and share the feelings of another.", example: "An empathetic friend listens without judgment.", translation: "<b>中文</b>：有同理心的 (yǒu tónglǐxīn de)　<b>Español</b>：empático/a" },
+  { word: "Generous", definition: "Showing a readiness to give more of something, especially money or time, than is necessary or expected.", example: "He was generous and donated a lot of money to charity.", translation: "<b>中文</b>：慷慨的 (kāngkǎi de)　<b>Español</b>：generoso/a" },
+  { word: "Humble", definition: "Having or showing a modest or low estimate of one's own importance.", example: "Despite his success, he remained a humble person.", translation: "<b>中文</b>：谦虚的 (qiānxū de)　<b>Español</b>：humilde" },
+  { word: "Meticulous", definition: "Showing great attention to detail; very careful and precise.", example: "The architect was meticulous in his plans for the new building.", translation: "<b>中文</b>：一丝不苟的 (yīsī bù gǒu de)　<b>Español</b>：meticuloso/a" },
+  { word: "Optimistic", definition: "Hopeful and confident about the future.", example: "Even in difficult times, she stays optimistic about her goals.", translation: "<b>中文</b>：乐观的 (lèguān de)　<b>Español</b>：optimista" },
+  { word: "Arrogant", definition: "Having an exaggerated sense of one's own importance or abilities.", example: "His arrogant attitude made it difficult to work with him.", translation: "<b>中文</b>：傲慢的 (àomàn de)　<b>Español</b>：arrogante" },
+  { word: "Callous", definition: "Showing or having an insensitive and cruel disregard for others.", example: "The company's callous disregard for employee safety was shocking.", translation: "<b>中文</b>：冷酷的；无情的 (lěngkù de; wúqíng de)　<b>Español</b>：despiadado/a; insensible" },
+  { word: "Cynical", definition: "Believing that people are motivated by self-interest; distrustful of human sincerity or integrity.", example: "After losing his job, he became cynical about the business world.", translation: "<b>中文</b>：愤世嫉俗的 (fènshì jísú de)　<b>Español</b>：cínico/a" },
+  { word: "Envious", definition: "Feeling or showing a desire to have what someone else has.", example: "She was envious of her friend's new car.", translation: "<b>中文</b>：嫉妒的 (jídù de)　<b>Español</b>：envidioso/a" },
+  { word: "Fickle", definition: "Changing frequently, especially as regards one's loyalties, interests, or affection.", example: "The fickle weather changed from sunny to rainy in minutes.", translation: "<b>中文</b>：反复无常的 (fǎnfù wúcháng de)　<b>Español</b>：inconstante / cambiante" },
+  { word: "Gullible", definition: "Easily persuaded to believe something; credulous.", example: "My little brother is so gullible; he believes everything I tell him.", translation: "<b>中文</b>：容易受骗的 (róngyì shòupiàn de)　<b>Español</b>：crédulo/a" },
+  { word: "Impulsive", definition: "Acting or done without forethought.", example: "Making an impulsive purchase is fun but can be expensive.", translation: "<b>中文</b>：冲动的 (chōngdòng de)　<b>Español</b>：impulsivo/a" },
+  { word: "Insecure", definition: "Not confident or assured; uncertain and anxious about oneself.", example: "He feels insecure about his ability to pass the exam.", translation: "<b>中文</b>：缺乏自信的 (quēfá zìxìn de)　<b>Español</b>：inseguro/a" },
+  { word: "Petty", definition: "Of little importance; trivial. Also, characterized by an excessive concern with minor details or rules.", example: "Don't waste time on petty arguments.", translation: "<b>中文</b>：琐碎的；小气的 (suǒsuì de; xiǎoqì de)　<b>Español</b>：mezquino/a" },
+  { word: "Vain", definition: "Having or showing an excessively high opinion of one's appearance, abilities, or worth.", example: "The vain actor constantly checked his reflection in the mirror.", translation: "<b>中文</b>：虚荣的 (xūróng de)　<b>Español</b>：vanidoso/a" },
+  { word: "Assertive", definition: "Having or showing a confident and forceful personality.", example: "You need to be more assertive to get what you want.", translation: "<b>中文</b>：坚定自信的 (jiāndìng zìxìn de)　<b>Español</b>：asertivo/a" },
+  { word: "Eccentric", definition: "Unconventional and slightly strange.", example: "The eccentric artist wore a different-colored sock on each foot.", translation: "<b>中文</b>：古怪的 (gǔguài de)　<b>Español</b>：excéntrico/a" },
+  { word: "Introverted", definition: "Characterized by a preoccupation with one's own thoughts and feelings; not very outgoing or socially oriented.", example: "An introverted person might prefer to stay home and read.", translation: "<b>中文</b>：内向的 (nèixiàng de)　<b>Español</b>：introvertido/a" },
+  { word: "Mischievous", definition: "Causing or showing a fondness for causing trouble in a playful way.", example: "The mischievous child hid his sister's favorite toy.", translation: "<b>中文</b>：淘气的 (táoqì de)　<b>Español</b>：travieso/a" },
+  { word: "Naïve", definition: "Showing a lack of experience, wisdom, or judgment.", example: "She was so naïve that she believed the prince's story.", translation: "<b>中文</b>：天真的 (tiānzhēn de)　<b>Español</b>：ingenuo/a" },
+  { word: "Pensive", definition: "Engaged in, involving, or reflecting deep or serious thought.", example: "He sat in a pensive mood, thinking about the future.", translation: "<b>中文</b>：沉思的 (chénsī de)　<b>Español</b>：pensativo/a" },
+  { word: "Reserved", definition: "Slow to reveal emotion or opinions.", example: "The reserved man rarely spoke about his feelings.", translation: "<b>中文</b>：矜持的 (jīnchí de)　<b>Español</b>：reservado/a" },
+  { word: "Sarcastic", definition: "Using remarks that clearly mean the opposite of what is said, in order to mock or annoy someone.", example: "His sarcastic comment about my cooking was not appreciated.", translation: "<b>中文</b>：讽刺的 (fěngcì de)　<b>Español</b>：sarcástico/a" },
+  { word: "Spontaneous", definition: "Acting on impulse rather than on a plan.", example: "We made a spontaneous decision to go on a road trip.", translation: "<b>中文</b>：自发的 (zìfā de)　<b>Español</b>：espontáneo/a" },
+  { word: "Witty", definition: "Showing or characterized by quick and inventive humor.", example: "His witty remarks made everyone laugh.", translation: "<b>中文</b>：机智的 (jīzhì de)　<b>Español</b>：ingenioso/a" },
+  { word: "a quick learner", definition: "Someone who is able to understand new information and skills quickly.", example: "As a new employee, she proved to be a quick learner.", translation: "<b>中文</b>：学习很快的人 (xuéxí hěn kuài de rén)　<b>Español</b>：aprende rápido" },
+  { word: "creative", definition: "Relating to or involving the use of the imagination or original ideas to create something.", example: "He is a creative problem-solver who thinks outside the box.", translation: "<b>中文</b>：有创造力的 (yǒu chuàngzàolì de)　<b>Español</b>：creativo/a" },
+  { word: "dependable", definition: "Trustworthy and reliable.", example: "A dependable friend is always there for you.", translation: "<b>中文</b>：可靠的 (kěkào de)　<b>Español</b>：confiable" },
+  { word: "detail-oriented", definition: "Paying close attention to all the small particulars.", example: "Her detail-oriented approach ensures nothing is missed.", translation: "<b>中文</b>：注重细节的 (zhùzhòng xìjié de)　<b>Español</b>：detallista" },
+  { word: "efficient", definition: "Achieving maximum productivity with minimum wasted effort or expense.", example: "The new system is more efficient and saves us a lot of time.", translation: "<b>中文</b>：高效的 (gāoxiào de)　<b>Español</b>：eficiente" },
+  { word: "flexible", definition: "Able to change or be changed easily according to the situation.", example: "You need to be flexible to work in a fast-paced environment.", translation: "<b>中文</b>：灵活的 (línghuó de)　<b>Español</b>：flexible" },
+  { word: "good with numbers", definition: "Having a strong ability in mathematics and data.", example: "She's good with numbers and handles all the company's finances.", translation: "<b>中文</b>：擅长数字的 (shàncháng shùzì de)　<b>Español</b>：bueno/a con los números" },
+  { word: "great with people", definition: "Having excellent social and communication skills.", example: "As a salesperson, being great with people is a huge advantage.", translation: "<b>中文</b>：善于与人相处的 (shànyú yǔ rén xiāngchǔ de)　<b>Español</b>：bueno/a con la gente" },
+  { word: "hardworking", definition: "Tending to work with energy and commitment; diligent.", example: "Her hardworking nature helped her get a promotion.", translation: "<b>中文</b>：勤劳的 (qínláo de)　<b>Español</b>：trabajador/a" },
+  { word: "well-organized", definition: "Arranged in an orderly and efficient way.", example: "He is a well-organized person who keeps a tidy desk.", translation: "<b>中文</b>：有条理的 (yǒu tiáolǐ de)　<b>Español</b>：organizado/a" },
+  { word: "willing to accept responsibility", definition: "Prepared to take on accountability for tasks and outcomes.", example: "A good leader is willing to accept responsibility for their team's mistakes.", translation: "<b>中文</b>：愿意承担责任的 (yuànyì chéngdān zérèn de)　<b>Español</b>：dispuesto/a a aceptar responsabilidad" },
+  { word: "works well under pressure", definition: "Able to perform effectively when faced with demanding or stressful situations.", example: "Our team leader works well under pressure and stays calm during deadlines.", translation: "<b>中文</b>：能在压力下很好工作 (néng zài yālì xià hěn hǎo gōngzuò)　<b>Español</b>：trabaja bien bajo presión" },
 ];
 
 let index = 0;
@@ -207,7 +208,7 @@ function showCard() {
 
 function flipCard() {
   if (!flipped) {
-    const { word, definition, example } = flashcards[index];
+    const { word, definition, example, translation } = flashcards[index];
     flashcard.innerHTML = `
       <div class="word">
         ${word}
@@ -215,6 +216,7 @@ function flipCard() {
       </div>
       <div class="definition">${definition}</div>
       <div class="example">"${example}"</div>
+      <div class="translation">${translation}</div>
       <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
     flashcard.classList.add("flipped");
@@ -338,9 +340,12 @@ function stopAutoplayOnUserAction() {
     clearAutoplayTimeouts();
   }
 }
-flashcard.addEventListener('click', stopAutoplayOnUserAction);
-document.querySelector('.buttons button[aria-label="Previous flashcard"]').addEventListener('click', stopAutoplayOnUserAction);
-document.querySelector('.buttons button[aria-label="Next flashcard"]').addEventListener('click', stopAutoplayOnUserAction);
+const flashcardEl = document.getElementById('flashcard');
+if (flashcardEl) flashcardEl.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn) prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+if (nextBtn) nextBtn.addEventListener('click', stopAutoplayOnUserAction);
 </script>
 
 <div class="buttons">

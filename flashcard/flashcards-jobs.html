@@ -1,209 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Job Flashcards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jobs Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f9;
+      background: #f4f4f9;
+      text-align: center;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      overflow-x: hidden;
     }
-
-    nav {
-      background-color: #2c3e50;
-      width: 100%;
-      padding: 1rem;
-      text-align: center;
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
     }
-
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
     }
-
-    nav a:hover {
-      text-decoration: underline;
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
     }
-
-    h1 {
-      margin: 2rem 0 1rem;
-      color: #2c3e50;
+    .nav-links a:hover { color: #ffbb33; }
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; user-select: none;
     }
-
-    #flashcard {
-      background: white;
-      width: 90%;
-      max-width: 500px;
-      height: 200px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      text-align: center;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      cursor: pointer;
-      margin-bottom: 1rem;
-      transition: background-color 0.3s ease;
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
     }
-
-    #flashcard.flipped {
-      background-color: #3498db;
-      color: white;
+    .definition { margin-top: 1rem; font-size: 1.1rem; }
+    .example { font-style: italic; margin-top: 0.3rem; }
+    .translation { font-size: 0.95rem; margin-top: 0.6rem; color: #cfe6fb; }
+    .translation b { color: #fff; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; transition: color 0.2s;
     }
-
+    .speaker:hover { color: #f0c040; }
     .buttons {
-      margin: 1rem auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem;
     }
-
-    button {
-      padding: 0.6rem 1.2rem;
-      border: none;
-      background-color: #3498db;
-      color: white;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #2980b9;
-    }
-
-    .nav-buttons {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .nav-buttons a {
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
       text-decoration: none;
-      margin: 0 0.5rem;
-      background-color: #3498db;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
     }
-
-    .nav-buttons a:hover {
-      background-color: #2980b9;
-    }
+    button:hover, .buttons a:hover { background: #2980b9; }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../flashcards.html">Flashcards</a>
-    <a href="../conversation.html">Conversations</a>
-    <a href="../grammar.html">Grammar</a>
-    <a href="../reading.html">Reading</a>
-    <a href="../practice.html">Practices</a>    
-  </nav>
-
-  <h1>Job Flashcards</h1>
-
-  <div id="flashcard" onclick="flipCard()">Click to flip</div>
-
-  <div class="buttons">
-    <button onclick="prevCard()">⬅ Previous</button>
-    <button onclick="nextCard()">Next ➡</button>
+<nav>
+  <div class="nav-container">
+    <a href="../index.html" class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
   </div>
+</nav>
 
-  <div class="nav-buttons">
-    <a href="../flashcards.html">← Back to Flashcards</a>
-    <a href="../index.html">🏠 Home</a>
-  </div>
+<h1>Jobs Vocabulary Flashcards</h1>
 
-  <script>
-    const flashcards = [
-      ["Cleans buildings like schools, offices, and hospitals.", "Janitor / Cleaner"],
-      ["Cleans and maintains homes or hotel rooms.", "Housekeeper"],
-      ["Takes care of outdoor spaces like lawns, gardens, and parks.", "Landscaper / Groundskeeper"],
-      ["Prepares food in restaurants or cafeterias.", "Cook / Line Cook"],
-      ["Washes dishes, pots, and pans in kitchens.", "Dishwasher"],
-      ["Takes food orders and serves customers in restaurants.", "Server / Waiter / Waitress"],
-      ["Prepares and serves food in fast food restaurants.", "Fast Food Worker"],
-      ["Handles payments at a store or restaurant.", "Cashier"],
-      ["Helps customers find and buy items in a store.", "Sales Associate"],
-      ["Assists customers with questions or problems, often by phone or in person.", "Customer Service Representative"],
-      ["Builds houses, roads, and buildings.", "Construction Worker"],
-      ["Paints buildings, walls, and other surfaces.", "Painter"],
-      ["Fixes cars, trucks, or machines.", "Mechanic"],
-      ["Helps elderly or sick people with daily tasks at home.", "Home Health Aide"],
-      ["Assists nurses in caring for patients in hospitals or care homes.", "Nursing Assistant (CNA)"],
-      ["Supports doctors by taking vital signs, preparing exam rooms, and helping with paperwork.", "Medical Assistant"],
-      ["Assists teachers in the classroom, especially in early education.", "Teacher’s Aide"],
-      ["Cares for children in daycares or after-school programs.", "Childcare Worker"],
-      ["Delivers packages, food, or other items to homes and businesses.", "Delivery Driver"],
-      ["Packs, loads, and moves goods in storage or shipping facilities.", "Warehouse Worker"],
-      ["Teaches and conducts research at a college or university.", "Professor"],
-      ["Leads and manages a school.", "Principal"],
-      ["Helps students with academic, personal, or social challenges.", "School Counselor"],
-      ["Manages books and information resources in libraries.", "Librarian"],
-      ["Makes legal decisions in a court of law.", "Judge"],
-      ["Represents clients in legal matters.", "Lawyer / Attorney"],
-      ["Enforces laws and keeps communities safe.", "Police Officer"],
-      ["Supports individuals and families through social services.", "Social Worker"],
-      ["Diagnoses and treats illnesses.", "Doctor / Physician"],
-      ["Performs operations on patients.", "Surgeon"],
-      ["Treats teeth and oral health problems.", "Dentist"],
-      ["Prepares and gives medicine to patients.", "Pharmacist"],
-      ["Treats mental and emotional issues.", "Psychologist"],
-      ["Helps people cope with life challenges and mental health.", "Therapist / Counselor"],
-      ["Manages money and financial records for businesses or individuals.", "Accountant"],
-      ["Studies market trends to help businesses or clients invest wisely.", "Financial Analyst"],
-      ["Hires and supports employees in a company.", "Human Resources Manager"],
-      ["Designs and builds machines, structures, or systems.", "Engineer"],
-      ["Creates computer programs and apps.", "Software Developer"],
-      ["Researches and studies natural phenomena to gain knowledge or solve problems.", "Scientist"]
-    ];
+<div id="flashcard" class="flashcard" onclick="flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
 
-    let index = 0;
-    let flipped = false;
-    const card = document.getElementById("flashcard");
+<div class="buttons">
+  <button id="autoplayBtn">▶ Autoplay Off</button>
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
+</div>
 
-    function showCard() {
-      card.classList.remove("flipped");
-      flipped = false;
-      card.textContent = flashcards[index][0]; // Show description
-    }
+<script>
+const flashcards = [
+  { word: "Accountant", definition: "A person who manages financial accounts.", example: "The accountant prepared the company’s tax report.", translation: "<b>中文</b>：会计 (kuàijì)　<b>Español</b>：contador/a" },
+  { word: "Administrative assistant", definition: "A person who provides office support, like scheduling and paperwork.", example: "The administrative assistant organized the meeting.", translation: "<b>中文</b>：行政助理 (xíngzhèng zhùlǐ)　<b>Español</b>：asistente administrativo/a" },
+  { word: "Business owner", definition: "A person who owns and runs a business.", example: "The business owner decided to expand into new markets.", translation: "<b>中文</b>：企业主 (qǐyèzhǔ)　<b>Español</b>：empresario/a" },
+  { word: "Cashier", definition: "A person who handles payments in a store or restaurant.", example: "The cashier gave me the correct change.", translation: "<b>中文</b>：收银员 (shōuyínyuán)　<b>Español</b>：cajero/a" },
+  { word: "Computer technician", definition: "A person who fixes and maintains computers.", example: "The computer technician repaired my laptop.", translation: "<b>中文</b>：电脑技术员 (diànnǎo jìshùyuán)　<b>Español</b>：técnico/a en computación" },
+  { word: "Construction worker", definition: "A person who works on building projects.", example: "The construction worker wore a hard hat for safety.", translation: "<b>中文</b>：建筑工人 (jiànzhù gōngrén)　<b>Español</b>：obrero/a de construcción" },
+  { word: "Delivery person", definition: "A person who delivers packages or food.", example: "The delivery person dropped off the package.", translation: "<b>中文</b>：送货员 (sònghuòyuán)　<b>Español</b>：repartidor/a" },
+  { word: "Dental assistant", definition: "A person who helps the dentist in treating patients.", example: "The dental assistant handed tools to the dentist.", translation: "<b>中文</b>：牙科助理 (yákē zhùlǐ)　<b>Español</b>：asistente dental" },
+  { word: "Electrician", definition: "A person who installs and repairs electrical systems.", example: "The electrician fixed the broken light.", translation: "<b>中文</b>：电工 (diàngōng)　<b>Español</b>：electricista" },
+  { word: "Firefighter", definition: "A person who puts out fires and rescues people.", example: "The firefighter saved the family from the fire.", translation: "<b>中文</b>：消防员 (xiāofángyuán)　<b>Español</b>：bombero/a" },
+  { word: "Garment worker", definition: "A person who makes clothes in a factory.", example: "The garment worker sewed shirts all day.", translation: "<b>中文</b>：制衣工人 (zhìyī gōngrén)　<b>Español</b>：trabajador/a textil" },
+  { word: "Hairstylist", definition: "A person who cuts and styles hair.", example: "The hairstylist gave me a new haircut.", translation: "<b>中文</b>：发型师 (fàxíngshī)　<b>Español</b>：peluquero/a" },
+  { word: "Homemaker", definition: "A person who manages the household.", example: "The homemaker takes care of the children and house.", translation: "<b>中文</b>：家庭主妇 / 主夫 (jiātíng zhǔfù / zhǔfū)　<b>Español</b>：amo/a de casa" },
+  { word: "Landscape architect", definition: "A person who designs outdoor spaces like gardens and parks.", example: "The landscape architect designed the new park.", translation: "<b>中文</b>：景观设计师 (jǐngguān shèjìshī)　<b>Español</b>：arquitecto/a paisajista" },
+  { word: "Lawyer", definition: "A person who practices law and represents clients in court.", example: "The lawyer defended her client.", translation: "<b>中文</b>：律师 (lǜshī)　<b>Español</b>：abogado/a" },
+  { word: "Mail carrier", definition: "A person who delivers mail and packages.", example: "The mail carrier delivered letters to my house.", translation: "<b>中文</b>：邮递员 (yóudìyuán)　<b>Español</b>：cartero/a" },
+  { word: "Reporter", definition: "A person who reports news stories.", example: "The reporter covered the election live.", translation: "<b>中文</b>：记者 (jìzhě)　<b>Español</b>：periodista" },
+  { word: "Salesperson", definition: "A person who sells products or services.", example: "The salesperson helped me choose a phone.", translation: "<b>中文</b>：销售员 (xiāoshòuyuán)　<b>Español</b>：vendedor/a" },
+  { word: "Security guard", definition: "A person who protects property and people.", example: "The security guard checked our bags at the entrance.", translation: "<b>中文</b>：保安 (bǎo’ān)　<b>Español</b>：guardia de seguridad" },
+];
 
-    function flipCard() {
-      if (flipped) {
-        card.textContent = flashcards[index][0];
-        card.classList.remove("flipped");
-      } else {
-        card.textContent = flashcards[index][1];
-        card.classList.add("flipped");
-      }
-      flipped = !flipped;
-    }
+let index = 0;
+let flipped = false;
+const flashcard = document.getElementById("flashcard");
 
-    function nextCard() {
-      index = (index + 1) % flashcards.length;
-      showCard();
-    }
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  const { word } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
 
-    function prevCard() {
-      index = (index - 1 + flashcards.length) % flashcards.length;
-      showCard();
-    }
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, example, translation } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">${word}
+        <span class="speaker" role="button" tabindex="0">🔊</span>
+      </div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">${translation}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee;">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flipped = true;
+    const speakerBtn = flashcard.querySelector(".speaker");
+    speakerBtn.addEventListener("click", () => {
+      const utter = new SpeechSynthesisUtterance(word);
+      utter.lang = 'en-US';
+      speechSynthesis.speak(utter);
+    });
+  } else { showCard(); }
+}
 
-    showCard();
-  </script>
+function nextCard() { index = (index + 1) % flashcards.length; showCard(); }
+function prevCard() { index = (index - 1 + flashcards.length) % flashcards.length; showCard(); }
+
+showCard();
+
+// Autoplay
+let autoplay = false;
+let autoplayBtn = document.getElementById("autoplayBtn");
+autoplayBtn.addEventListener("click", () => {
+  autoplay = !autoplay;
+  autoplayBtn.textContent = autoplay ? "⏸ Autoplay On" : "▶ Autoplay Off";
+  if (autoplay) autoplaySequence();
+});
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard(); await new Promise(r => setTimeout(r, 500));
+    flipCard(); await new Promise(r => setTimeout(r, 2000));
+    nextCard();
+  }
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
 
 </body>
 </html>

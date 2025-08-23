@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quantifiers & Determiners – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a {
+            color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.3rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.5rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example {
+            background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+        .example strong { color: #2E7D32; }
+
+        .tip {
+            background: #fff9e6; border-left: 4px solid #ffbb33;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        .practice-card {
+            background: #eef6ff; border-left: 4px solid #3498db;
+            padding: 1rem; border-radius: 8px; margin: 1rem 0;
+        }
+        .q {
+            display: grid; grid-template-columns: 1fr; gap: .5rem; margin: .6rem 0;
+        }
+        .q label { font-weight: 600; color: #2c3e50; }
+        .q input[type="text"], .q select {
+            padding: .55rem .7rem; border: 1px solid #cfd8e3; border-radius: 8px; width: 100%; font-size: 1rem;
+        }
+        .check-btn { margin-top: .8rem; padding: .6rem 1rem; border-radius: 8px; background: #124076; color: #fff; border: none; cursor: pointer; font-weight: 700; }
+        .check-btn:hover { opacity: .95; }
+        .result { margin-top: .6rem; font-weight: 700; }
+        .ok { color: #0f9d58; }
+        .bad { color: #c62828; }
+        .explain { color: #374151; font-size: .98rem; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html" aria-current="page">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Quantifiers & Determiners</h1>
+
+<div class="content-container">
+    <p>
+        <strong>Determiners</strong> come before a noun to tell us <em>which one</em>, <em>whose</em>, or <em>how many/how much</em>.
+        <strong>Quantifiers</strong> are determiners that show <em>amount or number</em>.
+    </p>
+
+    <div class="example" role="note" aria-label="Quick examples of determiners and quantifiers">
+        <strong>Determiners:</strong> <em>this</em> book, <em>my</em> car, <em>that</em> idea, <em>her</em> job.<br/>
+        <strong>Quantifiers:</strong> <em>many</em> friends, <em>much</em> money, <em>a few</em> minutes, <em>a lot of</em> water.
+    </div>
+
+    <h2>1) Core Determiner Types</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Determiner types and examples">
+            <thead>
+                <tr><th>Type</th><th>Examples</th><th>Use</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Articles</td>
+                    <td><strong>a/an</strong>, <strong>the</strong>, Ø (no article)</td>
+                    <td><em>a/an</em> = one, non-specific; <em>the</em> = specific; Ø with plural/uncountable general nouns ("I like coffee").</td>
+                </tr>
+                <tr>
+                    <td>Demonstratives</td>
+                    <td><strong>this/that</strong>, <strong>these/those</strong></td>
+                    <td>Show distance or emphasis: <em>this pen</em>, <em>those people</em>.</td>
+                </tr>
+                <tr>
+                    <td>Possessives</td>
+                    <td><strong>my, your, his, her, its, our, their</strong></td>
+                    <td>Show ownership: <em>my keys</em>, <em>their house</em>.</td>
+                </tr>
+                <tr>
+                    <td>Quantifiers</td>
+                    <td><strong>some, any, much, many, a lot of, few/a few, little/a little, several, all, no, none, enough, each, every</strong></td>
+                    <td>Show amount or number (see sections below).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>2) Quantifiers by Noun Type</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Quantifiers with countable and uncountable nouns">
+            <thead>
+                <tr><th>Noun Type</th><th>Common Quantifiers</th><th>Examples</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Countable (books, chairs)</td>
+                    <td><strong>many</strong>, <strong>a few</strong> / <strong>few</strong>, <strong>several</strong>, <strong>each</strong>, <strong>every</strong>, <strong>a lot of / lots of</strong></td>
+                    <td>We have <strong>a few</strong> questions. / <strong>Many</strong> people agree.</td>
+                </tr>
+                <tr>
+                    <td>Uncountable (water, time)</td>
+                    <td><strong>much</strong>, <strong>a little</strong> / <strong>little</strong>, <strong>a lot of / lots of</strong>, <strong>enough</strong></td>
+                    <td>We don't have <strong>much</strong> time. / She needs <strong>a little</strong> sugar.</td>
+                </tr>
+                <tr>
+                    <td>Both</td>
+                    <td><strong>some</strong> / <strong>any</strong>, <strong>plenty of</strong>, <strong>all</strong>, <strong>no</strong>, <strong>none</strong>, <strong>enough</strong></td>
+                    <td>There are <strong>some</strong> apples. / There is <strong>some</strong> milk.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tip">
+        <strong>Few/Little vs. A few/A little</strong><br/>
+        <em>few/little</em> = almost none (negative idea). <em>a few/a little</em> = some (positive idea).<br/>
+        👉 <em>We have <strong>a few</strong> options.</em> vs. <em>We have <strong>few</strong> options.</em>
+    </div>
+
+    <h2>3) Quick Rules</h2>
+    <ul>
+        <li>Use <strong>much/many</strong> mostly in questions and negatives: <em>Do you have many friends?</em> / <em>I don't have much time.</em></li>
+        <li>Use <strong>a lot of/lots of</strong> in positive sentences: <em>She has a lot of books.</em></li>
+        <li><strong>Some</strong> in positive; <strong>any</strong> in negatives/questions: <em>There aren't any tickets.</em></li>
+        <li><strong>Each</strong> (every single one, focus on individuals) vs. <strong>Every</strong> (all, as a group): <em>Each student has a card. Every student has homework.</em></li>
+        <li><strong>None</strong> + singular/plural verb depending on focus: <em>None of the information is…</em> / <em>None of the students are/is…</em></li>
+    </ul>
+
+    <h2>4) Common Patterns</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Common quantifier patterns">
+            <thead>
+                <tr><th>Pattern</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>quantifier + of + determiner/pronoun + noun</strong></td>
+                    <td><em>some of the students</em>, <em>many of them</em>, <em>none of the money</em></td>
+                </tr>
+                <tr>
+                    <td><strong>enough + noun</strong> / <strong>adjective + enough</strong></td>
+                    <td><em>enough time</em> / <em>warm enough</em></td>
+                </tr>
+                <tr>
+                    <td><strong>too much/too many + noun</strong> / <strong>too + adjective</strong></td>
+                    <td><em>too many emails</em> / <em>too expensive</em></td>
+                </tr>
+                <tr>
+                    <td><strong>no + noun</strong> (more direct than "not any")</td>
+                    <td><em>There is <strong>no</strong> milk.</em> (= There isn't <em>any</em> milk.)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+  
+    <h2>5) Common Mistakes</h2>
+    <ul>
+        <li>❌ <em>There are much people here.</em> → ✅ <strong>There are many people</strong> here. (<em>people</em> is countable)</li>
+        <li>❌ <em>I don't have many time.</em> → ✅ I don't have <strong>much time</strong>. (<em>time</em> is uncountable)</li>
+        <li>❌ <em>She has a little friends.</em> → ✅ She has <strong>a few friends</strong>. (<em>friends</em> are countable)</li>
+        <li>❌ <em>Every of the students…</em> → ✅ <strong>Each of the students</strong> / <strong>Every student</strong>…</li>
+        <li>❌ <em>None of the information are…</em> → ✅ <strong>None of the information is</strong>… (<em>information</em> is uncountable)</li>
+    </ul>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a')?.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // Mini practice checker
+    const ids = [1,2,3,4,5,6];
+    function checkOne(id){
+        const sel = document.getElementById('q'+id);
+        const res = document.getElementById('r'+id);
+        if(!sel || !res) return 0;
+        const correct = sel.dataset.answer?.trim();
+        const got = sel.value.trim();
+        if(!got){ res.textContent = ''; return 0; }
+        if(got.toLowerCase() === correct.toLowerCase()){
+            res.textContent = '✓ Correct';
+            res.className = 'result ok';
+            return 1;
+        } else {
+            res.textContent = '✗ Try again';
+            res.className = 'result bad';
+            return 0;
+        }
+    }
+    document.getElementById('check')?.addEventListener('click', ()=>{
+        let score = 0;
+        ids.forEach(id=>{ score += checkOne(id); });
+        const scoreBox = document.getElementById('score');
+        scoreBox.textContent = `Score: ${score} / ${ids.length}`;
+        scoreBox.className = 'result ' + (score===ids.length? 'ok':'');
+    });
+</script>
+
+</body>
+</html>

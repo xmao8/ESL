@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Imperatives & Politeness – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a {
+            color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.3rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.5rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example {
+            background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+        .example strong { color: #2E7D32; }
+
+        .tip {
+            background: #fff9e6; border-left: 4px solid #ffbb33;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        .practice-card {
+            background: #eef6ff; border-left: 4px solid #3498db;
+            padding: 1rem; border-radius: 8px; margin: 1rem 0;
+        }
+        .q {
+            display: grid; grid-template-columns: 1fr; gap: .5rem; margin: .6rem 0;
+        }
+        .q label { font-weight: 600; color: #2c3e50; }
+        .q input[type="text"], .q select {
+            padding: .55rem .7rem; border: 1px solid #cfd8e3; border-radius: 8px; width: 100%; font-size: 1rem;
+        }
+        .check-btn { margin-top: .8rem; padding: .6rem 1rem; border-radius: 8px; background: #124076; color: #fff; border: none; cursor: pointer; font-weight: 700; }
+        .check-btn:hover { opacity: .95; }
+        .result { margin-top: .6rem; font-weight: 700; }
+        .ok { color: #0f9d58; }
+        .bad { color: #c62828; }
+        .explain { color: #374151; font-size: .98rem; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html" aria-current="page">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Imperatives & Politeness</h1>
+
+<div class="content-container">
+    <p>
+        The <strong>imperative</strong> tells someone what to do. We use it for <em>commands</em>, <em>instructions</em>, <em>advice</em>, and <em>requests</em>.
+        Imperatives use the <strong>base form</strong> of the verb and usually have no subject: <em>(You) Open the door.</em>
+    </p>
+
+    <div class="example" role="note" aria-label="Quick imperative examples">
+        <strong>Affirmative:</strong> <em>Take a seat.</em> &nbsp;|&nbsp;
+        <strong>Negative:</strong> <em>Don’t touch that.</em> &nbsp;|&nbsp;
+        <strong>Polite:</strong> <em>Please wait here.</em>
+    </div>
+
+    <h2>1) How to Form Imperatives</h2>
+    <ul>
+        <li><strong>Base verb</strong> only: <em>Speak louder.</em> / <em>Check your email.</em></li>
+        <li><strong>Negative</strong>: <em>Don’t forget your keys.</em> / <em>Don’t run.</em></li>
+        <li><strong>Let’s</strong> for shared actions: <em>Let’s start.</em> / <em>Let’s take a break.</em></li>
+    </ul>
+
+    <h2>2) Common Uses</h2>
+    <ol>
+        <li><strong>Commands / Orders</strong>: <em>Stop talking.</em></li>
+        <li><strong>Instructions / Recipes / Directions</strong>: <em>Turn left.</em> / <em>Mix the sugar and butter.</em></li>
+        <li><strong>Advice / Suggestions</strong>: <em>Try again.</em> / <em>Take an umbrella.</em></li>
+        <li><strong>Requests</strong>: <em>Please email me today.</em></li>
+    </ol>
+
+    <h2>3) Politeness Strategies</h2>
+    <p>Imperatives can sound <em>friendly</em> or <em>rude</em> depending on the words we add and our tone.</p>
+
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Politeness strategies with imperatives">
+            <thead>
+                <tr><th>Strategy</th><th>Pattern</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Use “please”</strong></td>
+                    <td><em>Please + base verb</em></td>
+                    <td><em>Please close the window.</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Softeners</strong> (just, a moment, a bit)</td>
+                    <td><em>Just + verb</em> / <em>verb + for a moment</em></td>
+                    <td><em>Just have a seat for a moment.</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Positive framing</strong></td>
+                    <td><em>Be careful… / Remember to…</em></td>
+                    <td><em>Be careful not to touch that.</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Let’s</strong> (inclusive)</td>
+                    <td><em>Let’s + base verb</em></td>
+                    <td><em>Let’s begin the meeting.</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Question-style requests</strong></td>
+                    <td><em>Could you / Would you + base verb, please?</em></td>
+                    <td><em>Could you send the file, please?</em></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tip">
+        <strong>Tone matters:</strong> A friendly voice and a smile make imperatives sound like <em>requests</em>, not <em>orders</em>.
+        Add <em>please, just, for a moment, if you can</em> to sound softer.
+    </div>
+
+    <h2>4) Quick Comparison</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Rude vs Polite imperatives">
+            <thead>
+                <tr><th>Direct / Rude</th><th>Polite / Friendly</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Shut the door.</td><td>Please close the door.</td></tr>
+                <tr><td>Give me your pen.</td><td>Could you lend me your pen, please?</td></tr>
+                <tr><td>Wait.</td><td>Just wait a moment, please.</td></tr>
+                <tr><td>Don’t talk.</td><td>Could you be quiet, please?</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>5) Common Mistakes</h2>
+    <ul>
+        <li>Using a subject: ❌ <em>You open the book.</em> → ✅ <strong>Open the book.</strong></li>
+        <li>Forgetting the negative: ❌ <em>Touch that.</em> (when you mean “don’t”) → ✅ <strong>Don’t touch that.</strong></li>
+        <li>Sounds too strong: ❌ <em>Close the window.</em> (to a teacher/stranger) → ✅ <strong>Please close the window.</strong></li>
+    </ul>
+
+    <div class="practice-card" aria-label="Politeness practice">
+        <h3>Mini Practice: Choose the more polite option</h3>
+        <p class="explain">Select the best polite version of each sentence. Click <strong>Check</strong> to see your score.</p>
+
+        <div class="q">
+            <label for="q1">1) “Close the window.” →</label>
+            <select id="q1" data-answer="Please close the window.">
+                <option value="">— Choose —</option>
+                <option>Close the window now.</option>
+                <option>Please close the window.</option>
+                <option>Let’s close the window.</option>
+            </select>
+            <div id="r1" class="result" aria-live="polite"></div>
+        </div>
+
+        <div class="q">
+            <label for="q2">2) “Don’t be late.” →</label>
+            <select id="q2" data-answer="Please try not to be late.">
+                <option value="">— Choose —</option>
+                <option>Don’t be late.</option>
+                <option>Please try not to be late.</option>
+                <option>Let’s not be late.</option>
+            </select>
+            <div id="r2" class="result" aria-live="polite"></div>
+        </div>
+
+        <div class="q">
+            <label for="q3">3) “Give me your phone.” →</label>
+            <select id="q3" data-answer="Could you lend me your phone, please?">
+                <option value="">— Choose —</option>
+                <option>Give me your phone.</option>
+                <option>Please give me your phone.</option>
+                <option>Could you lend me your phone, please?</option>
+            </select>
+            <div id="r3" class="result" aria-live="polite"></div>
+        </div>
+
+        <div class="q">
+            <label for="q4">4) Shared action: “_____ start the meeting.”</label>
+            <select id="q4" data-answer="Let's">
+                <option value="">— Choose —</option>
+                <option>Let us</option>
+                <option>Let's</option>
+                <option>Please</option>
+            </select>
+            <div id="r4" class="result" aria-live="polite"></div>
+        </div>
+
+        <div class="q">
+            <label for="q5">5) “Don’t touch the screen.” →</label>
+            <select id="q5" data-answer="Please don’t touch the screen.">
+                <option value="">— Choose —</option>
+                <option>Don’t touch the screen.</option>
+                <option>Please don’t touch the screen.</option>
+                <option>Just touch the screen for a moment.</option>
+            </select>
+            <div id="r5" class="result" aria-live="polite"></div>
+        </div>
+
+        <div class="q">
+            <label for="q6">6) “Wait here.” →</label>
+            <select id="q6" data-answer="Please wait here.">
+                <option value="">— Choose —</option>
+                <option>Wait here.</option>
+                <option>Please wait here.</option>
+                <option>Let’s wait here.</option>
+            </select>
+            <div id="r6" class="result" aria-live="polite"></div>
+        </div>
+
+        <button id="check" class="check-btn" aria-label="Check answers">Check</button>
+        <div id="score" class="result" aria-live="polite"></div>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a')?.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // Mini practice checker
+    const ids = [1,2,3,4,5,6];
+    function checkOne(id){
+        const sel = document.getElementById('q'+id);
+        const res = document.getElementById('r'+id);
+        if(!sel || !res) return 0;
+        const correct = sel.dataset.answer?.trim();
+        const got = sel.value.trim();
+        if(!got){ res.textContent = ''; return 0; }
+        if(got.toLowerCase() === correct.toLowerCase()){
+            res.textContent = '✓ Correct';
+            res.className = 'result ok';
+            return 1;
+        } else {
+            res.textContent = '✗ Try again';
+            res.className = 'result bad';
+            return 0;
+        }
+    }
+    document.getElementById('check')?.addEventListener('click', ()=>{
+        let score = 0;
+        ids.forEach(id=>{ score += checkOne(id); });
+        const scoreBox = document.getElementById('score');
+        scoreBox.textContent = `Score: ${score} / ${ids.length}`;
+        scoreBox.className = 'result ' + (score===ids.length? 'ok':'');
+
+        // Move focus to score for accessibility feedback
+        scoreBox.setAttribute('tabindex','-1');
+        scoreBox.focus();
+        setTimeout(()=>scoreBox.blur(), 200);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emergency Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.95rem; margin-top: 0.6rem; color: #cfe6fb; }
+    .translation b { color: #ffffff; font-weight: 700; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Emergency Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Emergency", definition: "A serious, unexpected situation that needs immediate action.", example: "In an emergency, stay calm and call for help.", translation: "<b>中文</b>：紧急情况 (jǐnjí qíngkuàng)　<b>Español</b>：emergencia" },
+  { word: "Ambulance", definition: "A vehicle that takes sick or injured people to the hospital.", example: "The ambulance arrived within minutes.", translation: "<b>中文</b>：救护车 (jiùhùchē)　<b>Español</b>：ambulancia" },
+  { word: "Paramedic", definition: "A medical professional trained to give emergency care outside the hospital.", example: "A paramedic checked his pulse and breathing.", translation: "<b>中文</b>：护理急救员 (hùlǐ jíjiùyuán)　<b>Español</b>：paramédico/a" },
+  { word: "Dispatcher", definition: "A person who answers emergency calls and sends help.", example: "The dispatcher told her to stay on the line.", translation: "<b>中文</b>：调度员 (diàodùyuán)　<b>Español</b>：operador/a de emergencias" },
+  { word: "Police officer", definition: "A person who keeps public order and safety.", example: "A police officer blocked the road after the crash.", translation: "<b>中文</b>：警察 (jǐngchá)　<b>Español</b>：policía" },
+  { word: "Firefighter", definition: "A person whose job is to put out fires and rescue people.", example: "Firefighters evacuated the building.", translation: "<b>中文</b>：消防员 (xiāofángyuán)　<b>Español</b>：bombero/a" },
+  { word: "First aid", definition: "Immediate care given to a sick or injured person before professional help arrives.", example: "She gave first aid and stopped the bleeding.", translation: "<b>中文</b>：急救 (jíjiù)　<b>Español</b>：primeros auxilios" },
+  { word: "First aid kit", definition: "A small box with basic medical supplies for emergencies.", example: "Keep a first aid kit in your car.", translation: "<b>中文</b>：急救箱 (jíjiùxiāng)　<b>Español</b>：botiquín" },
+  { word: "CPR", definition: "A life-saving technique that uses chest compressions and breaths.", example: "He performed CPR until the ambulance arrived.", translation: "<b>中文</b>：心肺复苏 (xīnfèi fùsū)　<b>Español</b>：RCP (reanimación cardiopulmonar)" },
+  { word: "Choking", definition: "When something blocks the airway and a person cannot breathe.", example: "The child was choking on a grape.", translation: "<b>中文</b>：窒息 (zhìxī)　<b>Español</b>：atragantamiento" },
+  { word: "Bleeding", definition: "Losing blood from a cut or injury.", example: "Apply pressure to stop the bleeding.", translation: "<b>中文</b>：出血 (chūxuè)　<b>Español</b>：sangrado" },
+  { word: "Burn", definition: "An injury caused by heat, fire, or chemicals.", example: "Cool the burn under running water.", translation: "<b>中文</b>：烧伤/烫伤 (shāoshāng/tàngshāng)　<b>Español</b>：quemadura" },
+  { word: "Fracture", definition: "A broken bone.", example: "X-rays showed a small fracture in his wrist.", translation: "<b>中文</b>：骨折 (gǔzhé)　<b>Español</b>：fractura" },
+  { word: "Sprain", definition: "An injury to a ligament from sudden twisting.", example: "She sprained her ankle while running.", translation: "<b>中文</b>：扭伤 (niǔshāng)　<b>Español</b>：esguince" },
+  { word: "Concussion", definition: "A mild brain injury caused by a hit to the head.", example: "After the fall, he had a concussion and felt dizzy.", translation: "<b>中文</b>：脑震荡 (nǎo zhèndàng)　<b>Español</b>：conmoción cerebral" },
+  { word: "Allergic reaction", definition: "A harmful response of the body to certain foods, insects, or medicines.", example: "She had an allergic reaction to peanuts.", translation: "<b>中文</b>：过敏反应 (guòmǐn fǎnyìng)　<b>Español</b>：reacción alérgica" },
+  { word: "Asthma attack", definition: "A sudden worsening of asthma symptoms like wheezing and trouble breathing.", example: "An inhaler can help during an asthma attack.", translation: "<b>中文</b>：哮喘发作 (xiàochuǎn fāzuò)　<b>Español</b>：ataque de asma" },
+  { word: "Seizure", definition: "A sudden change in the brain’s activity that can cause shaking or confusion.", example: "They moved furniture away to keep him safe during the seizure.", translation: "<b>中文</b>：癫痫发作 (diānxián fāzuò)　<b>Español</b>：convulsión" },
+  { word: "Stroke", definition: "A serious condition when blood flow to the brain is blocked.", example: "Call an ambulance immediately if you suspect a stroke.", translation: "<b>中文</b>：中风 (zhòngfēng)　<b>Español</b>：derrame cerebral / ictus" },
+  { word: "Heart attack", definition: "A serious condition when blood flow to the heart is blocked.", example: "Chest pain can be a sign of a heart attack.", translation: "<b>中文</b>：心脏病发作 (xīnzàngbìng fāzuò)　<b>Español</b>：ataque al corazón" },
+  { word: "Unconscious", definition: "Not awake and not aware of what is happening.", example: "He was unconscious but breathing.", translation: "<b>中文</b>：失去意识的 (shīqù yìshí de)　<b>Español</b>：inconsciente" },
+  { word: "Pulse", definition: "The regular beating of the heart felt in the arteries.", example: "The paramedic checked her pulse.", translation: "<b>中文</b>：脉搏 (màibó)　<b>Español</b>：pulso" },
+  { word: "Breathing", definition: "The process of taking air into and out of the lungs.", example: "Is the patient breathing normally?", translation: "<b>中文</b>：呼吸 (hūxī)　<b>Español</b>：respiración" },
+  { word: "Evacuate", definition: "To leave a dangerous place for safety.", example: "Residents were told to evacuate immediately.", translation: "<b>中文</b>：疏散；撤离 (shūsàn; chèlí)　<b>Español</b>：evacuar" },
+  { word: "Shelter in place", definition: "To stay indoors for safety during an emergency.", example: "They were asked to shelter in place during the storm.", translation: "<b>中文</b>：就地避难 (jiùdì bìnàn)　<b>Español</b>：refugiarse en el lugar" },
+  { word: "Fire extinguisher", definition: "A device that sprays chemicals to put out small fires.", example: "Use a fire extinguisher only if it’s safe to do so.", translation: "<b>中文</b>：灭火器 (mièhuǒqì)　<b>Español</b>：extintor" },
+  { word: "Smoke alarm", definition: "A device that makes a loud sound when it detects smoke.", example: "The smoke alarm went off at night.", translation: "<b>中文</b>：烟雾报警器 (yānwù bào jǐng qì)　<b>Español</b>：alarma de humo" },
+  { word: "Carbon monoxide alarm", definition: "A device that warns you about dangerous CO gas.", example: "Install a carbon monoxide alarm near bedrooms.", translation: "<b>中文</b>：一氧化碳报警器 (yīyǎnghuàtàn bào jǐng qì)　<b>Español</b>：alarma de monóxido de carbono" },
+  { word: "Rescue", definition: "To save someone from danger.", example: "Lifeguards rescued two swimmers.", translation: "<b>中文</b>：营救；救援 (yíngjiù; jiùyuán)　<b>Español</b>：rescatar" },
+  { word: "Stabilize", definition: "To make someone’s condition safe and steady.", example: "Doctors stabilized the patient in the ER.", translation: "<b>中文</b>：稳定病情 (wěndìng bìngqíng)　<b>Español</b>：estabilizar" },
+  { word: "Apply pressure", definition: "To press firmly on a wound to stop bleeding.", example: "Use a clean cloth and apply pressure.", translation: "<b>中文</b>：加压止血 (jiāyā zhǐxuè)　<b>Español</b>：aplicar presión" },
+  { word: "Bandage", definition: "A strip of material used to cover and protect a wound.", example: "She put a bandage on the cut.", translation: "<b>中文</b>：绷带 (bēngdài)　<b>Español</b>：vendaje" },
+  { word: "Splint", definition: "A device used to keep an injured body part still.", example: "They used a splint for his broken finger.", translation: "<b>中文</b>：夹板 (jiábǎn)　<b>Español</b>：férula" },
+  { word: "Dehydration", definition: "A condition when the body loses too much water.", example: "Drink fluids to prevent dehydration in hot weather.", translation: "<b>中文</b>：脱水 (tuōshuǐ)　<b>Español</b>：deshidratación" },
+  { word: "Hypothermia", definition: "A dangerous drop in body temperature.", example: "Wet clothes can lead to hypothermia in winter.", translation: "<b>中文</b>：体温过低 (tǐwēn guò dī)　<b>Español</b>：hipotermia" },
+  { word: "Evacuation route", definition: "A planned path to leave a building or area safely.", example: "Follow the green signs to the evacuation route.", translation: "<b>中文</b>：疏散路线 (shūsàn lùxiàn)　<b>Español</b>：ruta de evacuación" },
+  { word: "Stay on the line", definition: "Do not hang up the phone during an emergency call.", example: "Please stay on the line until help arrives.", translation: "<b>中文</b>：不要挂断 (bú yào guàduàn)　<b>Español</b>：no cuelgue la llamada" },
+  { word: "Help is on the way", definition: "Rescuers are coming to assist you.", example: "Remain calm—help is on the way.", translation: "<b>中文</b>：救援正在路上 (jiùyuán zhèngzài lùshang)　<b>Español</b>：la ayuda va en camino" },
+  { word: "Remain calm", definition: "Stay relaxed and do not panic.", example: "Take a deep breath and remain calm.", translation: "<b>中文</b>：保持冷静 (bǎochí lěngjìng)　<b>Español</b>：mantenga la calma" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, example, translation } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">${translation}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+const flashcardEl = document.getElementById('flashcard');
+if (flashcardEl) flashcardEl.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn) prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+if (nextBtn) nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

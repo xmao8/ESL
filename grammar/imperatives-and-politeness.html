@@ -97,8 +97,6 @@
             background-color: #e8f5e9; border-left: 4px solid #4CAF50;
             padding: 1rem; margin: 1rem 0; border-radius: 5px;
         }
-        .example strong { color: #2E7D32; }
-
         .tip {
             background: #fff9e6; border-left: 4px solid #ffbb33;
             padding: 1rem; margin: 1rem 0; border-radius: 5px;
@@ -111,6 +109,35 @@
         .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
         .grammar-table tr:hover { background-color: #f1f1f1; }
 
+        /* Politeness scale layout */
+        .scale-wrap {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+        .scale-label {
+            background: #eef2ff;
+            border-left: 4px solid #6366f1;
+            border-radius: 8px;
+            padding: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+            height: fit-content;
+        }
+        .scale-label small { display: block; color: #4b5563; font-weight: 600; margin-top: .25rem; }
+        .arrow-col {
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            height: 100%;
+        }
+        .arrow {
+            width: 2px; background: #9ca3af; flex: 1; margin: .2rem 0;
+        }
+        .arrow-tip {
+            width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent;
+            border-top: 10px solid #9ca3af; margin-top: 6px;
+        }
+
         .buttons {
             margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
         }
@@ -120,24 +147,6 @@
             text-decoration: none; display: inline-block; user-select: none;
         }
         .buttons a:hover { background: #2980b9; }
-
-        .practice-card {
-            background: #eef6ff; border-left: 4px solid #3498db;
-            padding: 1rem; border-radius: 8px; margin: 1rem 0;
-        }
-        .q {
-            display: grid; grid-template-columns: 1fr; gap: .5rem; margin: .6rem 0;
-        }
-        .q label { font-weight: 600; color: #2c3e50; }
-        .q input[type="text"], .q select {
-            padding: .55rem .7rem; border: 1px solid #cfd8e3; border-radius: 8px; width: 100%; font-size: 1rem;
-        }
-        .check-btn { margin-top: .8rem; padding: .6rem 1rem; border-radius: 8px; background: #124076; color: #fff; border: none; cursor: pointer; font-weight: 700; }
-        .check-btn:hover { opacity: .95; }
-        .result { margin-top: .6rem; font-weight: 700; }
-        .ok { color: #0f9d58; }
-        .bad { color: #c62828; }
-        .explain { color: #374151; font-size: .98rem; }
     </style>
 </head>
 <body>
@@ -194,143 +203,68 @@
         <li><strong>Requests</strong>: <em>Please email me today.</em></li>
     </ol>
 
-    <h2>3) Politeness Strategies</h2>
-    <p>Imperatives can sound <em>friendly</em> or <em>rude</em> depending on the words we add and our tone.</p>
+    <h2>3) Politeness Scale</h2>
+    <p>
+        Imperatives can be expressed in different ways, from very direct (least polite) to very indirect (most polite).
+        The forms below use <em>new example sentences</em> different from the screenshot you shared.
+    </p>
 
-    <div class="grammar-table-container">
-        <table class="grammar-table" aria-label="Politeness strategies with imperatives">
-            <thead>
-                <tr><th>Strategy</th><th>Pattern</th><th>Example</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Use “please”</strong></td>
-                    <td><em>Please + base verb</em></td>
-                    <td><em>Please close the window.</em></td>
-                </tr>
-                <tr>
-                    <td><strong>Softeners</strong> (just, a moment, a bit)</td>
-                    <td><em>Just + verb</em> / <em>verb + for a moment</em></td>
-                    <td><em>Just have a seat for a moment.</em></td>
-                </tr>
-                <tr>
-                    <td><strong>Positive framing</strong></td>
-                    <td><em>Be careful… / Remember to…</em></td>
-                    <td><em>Be careful not to touch that.</em></td>
-                </tr>
-                <tr>
-                    <td><strong>Let’s</strong> (inclusive)</td>
-                    <td><em>Let’s + base verb</em></td>
-                    <td><em>Let’s begin the meeting.</em></td>
-                </tr>
-                <tr>
-                    <td><strong>Question-style requests</strong></td>
-                    <td><em>Could you / Would you + base verb, please?</em></td>
-                    <td><em>Could you send the file, please?</em></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="scale-wrap" role="group" aria-label="Politeness scale from least to most polite">
+        <div class="scale-label">
+            Least Polite
+            <small>(most direct)</small>
+            <div class="arrow" style="height:12px; background:transparent;"></div>
+            <div class="arrow"></div>
+            <div class="arrow-tip" aria-hidden="true"></div>
+            <small style="margin-top:.5rem;">→ Most Polite</small>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table" aria-label="Politeness strategies with new examples">
+                <thead>
+                    <tr><th>Form</th><th>Example</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Imperative — elliptical</strong></td>
+                        <td>A cup of tea.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Imperative</strong></td>
+                        <td>Pass me the salt.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Declarative — no modal (want/need)</strong></td>
+                        <td>I need a ride to the station.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Declarative — historically present tense modal</strong></td>
+                        <td>I’ll take the chicken soup.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Declarative — historically past tense modal</strong></td>
+                        <td>I’d like a window seat, please.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interrogative — no modal</strong></td>
+                        <td>Do you have an extra pen?</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interrogative — historically present tense modal</strong></td>
+                        <td>Can you open the window?</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interrogative — historically past tense modal</strong></td>
+                        <td>Could you help me with this homework?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="tip">
-        <strong>Tone matters:</strong> A friendly voice and a smile make imperatives sound like <em>requests</em>, not <em>orders</em>.
-        Add <em>please, just, for a moment, if you can</em> to sound softer.
-    </div>
-
-    <h2>4) Quick Comparison</h2>
-    <div class="grammar-table-container">
-        <table class="grammar-table" aria-label="Rude vs Polite imperatives">
-            <thead>
-                <tr><th>Direct / Rude</th><th>Polite / Friendly</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Shut the door.</td><td>Please close the door.</td></tr>
-                <tr><td>Give me your pen.</td><td>Could you lend me your pen, please?</td></tr>
-                <tr><td>Wait.</td><td>Just wait a moment, please.</td></tr>
-                <tr><td>Don’t talk.</td><td>Could you be quiet, please?</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h2>5) Common Mistakes</h2>
-    <ul>
-        <li>Using a subject: ❌ <em>You open the book.</em> → ✅ <strong>Open the book.</strong></li>
-        <li>Forgetting the negative: ❌ <em>Touch that.</em> (when you mean “don’t”) → ✅ <strong>Don’t touch that.</strong></li>
-        <li>Sounds too strong: ❌ <em>Close the window.</em> (to a teacher/stranger) → ✅ <strong>Please close the window.</strong></li>
-    </ul>
-
-    <div class="practice-card" aria-label="Politeness practice">
-        <h3>Mini Practice: Choose the more polite option</h3>
-        <p class="explain">Select the best polite version of each sentence. Click <strong>Check</strong> to see your score.</p>
-
-        <div class="q">
-            <label for="q1">1) “Close the window.” →</label>
-            <select id="q1" data-answer="Please close the window.">
-                <option value="">— Choose —</option>
-                <option>Close the window now.</option>
-                <option>Please close the window.</option>
-                <option>Let’s close the window.</option>
-            </select>
-            <div id="r1" class="result" aria-live="polite"></div>
-        </div>
-
-        <div class="q">
-            <label for="q2">2) “Don’t be late.” →</label>
-            <select id="q2" data-answer="Please try not to be late.">
-                <option value="">— Choose —</option>
-                <option>Don’t be late.</option>
-                <option>Please try not to be late.</option>
-                <option>Let’s not be late.</option>
-            </select>
-            <div id="r2" class="result" aria-live="polite"></div>
-        </div>
-
-        <div class="q">
-            <label for="q3">3) “Give me your phone.” →</label>
-            <select id="q3" data-answer="Could you lend me your phone, please?">
-                <option value="">— Choose —</option>
-                <option>Give me your phone.</option>
-                <option>Please give me your phone.</option>
-                <option>Could you lend me your phone, please?</option>
-            </select>
-            <div id="r3" class="result" aria-live="polite"></div>
-        </div>
-
-        <div class="q">
-            <label for="q4">4) Shared action: “_____ start the meeting.”</label>
-            <select id="q4" data-answer="Let's">
-                <option value="">— Choose —</option>
-                <option>Let us</option>
-                <option>Let's</option>
-                <option>Please</option>
-            </select>
-            <div id="r4" class="result" aria-live="polite"></div>
-        </div>
-
-        <div class="q">
-            <label for="q5">5) “Don’t touch the screen.” →</label>
-            <select id="q5" data-answer="Please don’t touch the screen.">
-                <option value="">— Choose —</option>
-                <option>Don’t touch the screen.</option>
-                <option>Please don’t touch the screen.</option>
-                <option>Just touch the screen for a moment.</option>
-            </select>
-            <div id="r5" class="result" aria-live="polite"></div>
-        </div>
-
-        <div class="q">
-            <label for="q6">6) “Wait here.” →</label>
-            <select id="q6" data-answer="Please wait here.">
-                <option value="">— Choose —</option>
-                <option>Wait here.</option>
-                <option>Please wait here.</option>
-                <option>Let’s wait here.</option>
-            </select>
-            <div id="r6" class="result" aria-live="polite"></div>
-        </div>
-
-        <button id="check" class="check-btn" aria-label="Check answers">Check</button>
-        <div id="score" class="result" aria-live="polite"></div>
+        <strong>Remember:</strong> The more indirect the form, the more polite it sounds.  
+        Use indirect forms with strangers, teachers, or in formal situations; use direct imperatives for clear instructions, emergencies, or among close friends.
     </div>
 </div>
 
@@ -358,38 +292,6 @@
             });
         });
     }
-
-    // Mini practice checker
-    const ids = [1,2,3,4,5,6];
-    function checkOne(id){
-        const sel = document.getElementById('q'+id);
-        const res = document.getElementById('r'+id);
-        if(!sel || !res) return 0;
-        const correct = sel.dataset.answer?.trim();
-        const got = sel.value.trim();
-        if(!got){ res.textContent = ''; return 0; }
-        if(got.toLowerCase() === correct.toLowerCase()){
-            res.textContent = '✓ Correct';
-            res.className = 'result ok';
-            return 1;
-        } else {
-            res.textContent = '✗ Try again';
-            res.className = 'result bad';
-            return 0;
-        }
-    }
-    document.getElementById('check')?.addEventListener('click', ()=>{
-        let score = 0;
-        ids.forEach(id=>{ score += checkOne(id); });
-        const scoreBox = document.getElementById('score');
-        scoreBox.textContent = `Score: ${score} / ${ids.length}`;
-        scoreBox.className = 'result ' + (score===ids.length? 'ok':'');
-
-        // Move focus to score for accessibility feedback
-        scoreBox.setAttribute('tabindex','-1');
-        scoreBox.focus();
-        setTimeout(()=>scoreBox.blur(), 200);
-    });
 </script>
 
 </body>

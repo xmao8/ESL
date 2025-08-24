@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fire Emergency - ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+                align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul, .content-container ol { margin-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .conversation-script p { margin-bottom: 0.8rem; }
+        .conversation-script strong {
+            display: inline-block; width: 100px; text-align: right; margin-right: 10px; color: #124076;
+        }
+        .conversation-script span.dialogue { display: inline; }
+        .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+        .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+        .character-info ul { list-style: none; padding: 0; margin: 0; }
+        .character-info li { margin-bottom: 0.2rem; }
+        .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+        .vocabulary-list li { margin-bottom: 0.8rem; }
+        .vocabulary-list .vocab-word {
+            font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.2rem; color: #3498db; user-select: none; transition: color 0.2s; }
+        .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+        .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+        .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+            cursor: pointer; text-decoration: none; display: inline-block; user-select: none;
+        }
+        button:hover, .buttons a:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>During a Fire Emergency 🔥</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>MARK:</strong> A resident in an apartment building.</li>
+            <li><strong>LENA:</strong> Mark's neighbor.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Scene: Inside an apartment building hallway.</p>
+
+    <div class="conversation-script">
+        <p class="scene-direction">(The scene opens with MARK and LENA in the hallway, looking concerned.)</p>
+        <p><strong>MARK:</strong> <span class="dialogue">Lena, do you smell that? It smells like smoke.</span></p>
+        <p><strong>LENA:</strong> <span class="dialogue">Oh no, you're right! It's coming from the third floor, I think. We need to **evacuate** immediately!</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">The fire alarm isn't going off. Maybe it's not a big fire?</span></p>
+        <p><strong>LENA:</strong> <span class="dialogue">Don't wait for the alarm! We have to get out now. Do you remember the **fire escape** plan?</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">Yes, go down the stairs and meet at the assembly point.</span></p>
+        <p><strong>LENA:</strong> <span class="dialogue">Exactly. We should go together. Take the stairs, never the elevator.</span></p>
+        <p class="scene-direction">(They quickly walk down the stairs to the ground floor.)</p>
+        <p><strong>LENA:</strong> <span class="dialogue">Okay, we're outside. Now we need to **call for help**. Do you have your phone?</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">Yes. I'm calling 911 right now.</span></p>
+        <p class="scene-direction">(Mark holds his phone to his ear. A dispatcher's voice is heard.)</p>
+        <p><strong>DISPATCHER:</strong> <span class="dialogue">911 Emergency. What is your emergency?</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">Hello, there's a fire at 123 Pine Street, Apartment 3C. We saw smoke.</span></p>
+        <p><strong>DISPATCHER:</strong> <span class="dialogue">Okay, sir. We're sending the fire department right away. Is anyone still inside?</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">I'm not sure. We knocked on our neighbors' doors, but they didn't answer.</span></p>
+        <p><strong>LENA:</strong> <span class="dialogue">Wait, what about Mrs. Jones from apartment 3A? I saw her car was here.</span></p>
+        <p><strong>MARK:</strong> <span class="dialogue">I told them about the address. The fire department will check for everyone. Let’s go to our **assembly point**, which is across the street near the big oak tree.</span></p>
+        <p><strong>LENA:</strong> <span class="dialogue">Good idea. We need to stay calm and wait for the firefighters.</span></p>
+        <p class="scene-direction">(They walk toward the street. The sound of sirens can be heard getting closer.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Evacuate <span class="speaker-icon" onclick="speakWord('Evacuate')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ɪˈvækjueɪt/</span>
+                <span class="definition">(v.): To move from a dangerous place to a safe one.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Fire Escape <span class="speaker-icon" onclick="speakWord('Fire Escape')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈfaɪər ɪˈskeɪp/</span>
+                <span class="definition">(n.): A special staircase on the outside of a building, used for leaving during a fire.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Assembly Point <span class="speaker-icon" onclick="speakWord('Assembly Point')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/əˈsembli pɔɪnt/</span>
+                <span class="definition">(n.): A pre-arranged safe place to meet after leaving a building during an emergency.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Call for help <span class="speaker-icon" onclick="speakWord('Call for help')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kɔl fɔr hɛlp/</span>
+                <span class="definition">(phr.): To phone emergency services like the police or fire department.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Fire Department <span class="speaker-icon" onclick="speakWord('Fire Department')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈfaɪər dɪˈpɑrtmənt/</span>
+                <span class="definition">(n.): An organization that puts out fires and rescues people.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Firefighter <span class="speaker-icon" onclick="speakWord('Firefighter')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈfaɪərˌfaɪtər/</span>
+                <span class="definition">(n.): A person who works to put out fires.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Dispatcher <span class="speaker-icon" onclick="speakWord('Dispatcher')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/dɪˈspætʃər/</span>
+                <span class="definition">(n.): The person who answers emergency calls and sends help.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Web Speech API pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Past & Past Progressive – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a {
+            color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.3rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.5rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example {
+            background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+        .example strong { color: #2E7D32; }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        pre.timeline {
+            background: #f7fafc; border-left: 4px solid #3498db; padding: 1rem;
+            overflow-x: auto; border-radius: 6px; font-family: Consolas, Monaco, monospace;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        .note { font-size: 0.98rem; color: #444; }
+        .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Simple Past & Past Progressive (Continuous)</h1>
+
+<div class="content-container">
+    <p>
+        We use <strong>past tenses</strong> to talk about actions that <strong>already happened</strong>. Two key forms are the
+        <strong>Simple Past</strong> and the <strong>Past Progressive</strong><span class="tag" aria-label="also called Past Continuous">also called Past Continuous</span>.
+    </p>
+
+    <h2>Quick Overview</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Simple past vs past progressive overview">
+            <thead>
+                <tr><th>Form</th><th>Structure</th><th>Meaning</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Simple Past</td>
+                    <td>subject + <strong>V2</strong> (past form)</td>
+                    <td>Completed action in the past</td>
+                    <td>She <strong>went</strong> home at 7 p.m.</td>
+                </tr>
+                <tr>
+                    <td>Past Progressive</td>
+                    <td>subject + <strong>was/were + V-ing</strong></td>
+                    <td>Action in progress at a time in the past</td>
+                    <td>She <strong>was walking</strong> home at 7 p.m.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>1) Simple Past</h2>
+    <p><strong>Use:</strong> A finished action or state at a specific past time.</p>
+    <div class="example">
+        I <strong>visited</strong> my grandparents last weekend.<br/>
+        They <strong>did</strong> their homework yesterday.
+    </div>
+
+    <h3>Form</h3>
+    <ul>
+        <li><strong>Affirmative:</strong> subject + V2 (regular: V + <em>-ed</em>; irregular: special form)</li>
+        <li><strong>Negative:</strong> subject + <strong>did not (didn't)</strong> + base verb</li>
+        <li><strong>Questions:</strong> <strong>Did</strong> + subject + base verb…?</li>
+    </ul>
+
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Simple past forms">
+            <thead>
+                <tr><th>Type</th><th>Structure</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Affirmative</td>
+                    <td>I/you/we/they/he/she/it + <strong>V2</strong></td>
+                    <td>We <strong>arrived</strong> on time.</td>
+                </tr>
+                <tr>
+                    <td>Negative</td>
+                    <td>subject + <strong>didn't</strong> + base verb</td>
+                    <td>He <strong>didn't eat</strong> breakfast.</td>
+                </tr>
+                <tr>
+                    <td>Questions</td>
+                    <td><strong>Did</strong> + subject + base verb…?</td>
+                    <td><strong>Did</strong> you <strong>see</strong> the movie?</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note"><strong>Time expressions:</strong> yesterday, last night/week/year, in 2019, two days ago, this morning (finished).</p>
+    <p class="note"><strong>-ed spelling:</strong> stop → <em>stopped</em>; study → <em>studied</em>; plan → <em>planned</em>; play → <em>played</em>.</p>
+    <p class="note"><strong>Irregular verbs (V2):</strong> go → <em>went</em>; have → <em>had</em>; see → <em>saw</em>; buy → <em>bought</em>.</p>
+
+    <h2>2) Past Progressive</h2>
+    <p><strong>Use:</strong> An action that was <strong>in progress</strong> at a particular time in the past. It often sets the <strong>background</strong> for another, shorter action.</p>
+    <div class="example">
+        I <strong>was reading</strong> at 8 p.m.<br/>
+        They <strong>were watching</strong> TV when the phone <strong>rang</strong>.
+    </div>
+
+    <h3>Form</h3>
+    <ul>
+        <li><strong>Affirmative:</strong> subject + <strong>was/were</strong> + V-ing</li>
+        <li><strong>Negative:</strong> subject + <strong>wasn't/weren't</strong> + V-ing</li>
+        <li><strong>Questions:</strong> <strong>Was/Were</strong> + subject + V-ing…?</li>
+    </ul>
+
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Past progressive forms">
+            <thead>
+                <tr><th>Type</th><th>Structure</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Affirmative</td>
+                    <td>I/He/She/It <strong>was</strong> + V-ing; You/We/They <strong>were</strong> + V-ing</td>
+                    <td>She <strong>was waiting</strong> at the bus stop.</td>
+                </tr>
+                <tr>
+                    <td>Negative</td>
+                    <td>I/He/She/It <strong>wasn't</strong> + V-ing; You/We/They <strong>weren't</strong> + V-ing</td>
+                    <td>We <strong>weren't studying</strong> at noon.</td>
+                </tr>
+                <tr>
+                    <td>Questions</td>
+                    <td><strong>Was/Were</strong> + subject + V-ing…?</td>
+                    <td><strong>Were</strong> you <strong>working</strong> at 9 a.m.?</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note"><strong>Common time markers:</strong> at 7 o'clock, at that moment, when, while, as, all morning/day, during.</p>
+    <p class="note"><strong>-ing spelling:</strong> make → <em>making</em>; run → <em>running</em>; lie → <em>lying</em>.</p>
+    
+    <h2>How They Work Together</h2>
+    <p>Use <strong>Past Progressive</strong> for the longer background action and <strong>Simple Past</strong> for the shorter interrupting action.</p>
+    <div class="example">
+        I <strong>was walking</strong> home <em>(background)</em> when it <strong>started</strong> to rain <em>(interruption)</em>.
+    </div>
+
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Comparison of uses">
+            <thead>
+                <tr><th>Focus</th><th>Simple Past</th><th>Past Progressive</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Completed action</td>
+                    <td>✔️</td>
+                    <td>❌</td>
+                </tr>
+                <tr>
+                    <td>Action in progress at a time</td>
+                    <td>❌</td>
+                    <td>✔️</td>
+                </tr>
+                <tr>
+                    <td>Interruption pattern</td>
+                    <td>Shorter/interrupting action</td>
+                    <td>Longer/background action</td>
+                </tr>
+                <tr>
+                    <td>Two actions at the same time</td>
+                    <td>—</td>
+                    <td>She <strong>was cooking</strong> while he <strong>was studying</strong>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Timelines</h2>
+    <pre class="timeline" aria-label="Simple past timeline">
+Simple Past:  |----X (finished)----|  specific past time
+Example: She went home at 7 p.m.
+    </pre>
+    <pre class="timeline" aria-label="Past progressive timeline">
+Past Progressive:  |==== in progress ====|  at a past time
+Example: She was walking home at 7 p.m.
+    </pre>
+
+    <h2>Stative (Non-action) Verbs</h2>
+    <p>Some verbs (e.g., <em>know, believe, like, love, understand, need, own</em>) are usually <strong>not</strong> used in progressive forms.</p>
+    <div class="example">
+        ✅ I <strong>knew</strong> the answer.  ❌ I <strong>was knowing</strong> the answer.
+    </div>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+        <li>❌ <em>I was study English yesterday.</em> → ✅ I <strong>studied</strong> English yesterday. (<em>simple past</em>)</li>
+        <li>❌ <em>She didn't went.</em> → ✅ She <strong>didn't go</strong>.</li>
+        <li>❌ <em>He was know the answer.</em> → ✅ He <strong>knew</strong> the answer.</li>
+        <li>❌ <em>She was cry when I called.</em> → ✅ She <strong>was crying</strong> when I called. (<em>-ing spelling</em>)</li>
+    </ul>
+
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

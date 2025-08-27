@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Irregular Verbs – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;text-align:center;margin:0;padding:0;overflow-x:hidden}
+    nav{background:#124076;margin:0;padding:0}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none;transition:color .2s ease}
+    .nav-links a:hover,.nav-links a:focus{color:#ffbb33;outline:none}
+    .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+    .menu-toggle .bar{width:25px;height:3px;background:#fff;border-radius:2px}
+
+    /* Phone */
+    @media (max-width:600px){
+      .nav-links{position:fixed;top:56px;right:0;background:#124076;flex-direction:column;width:100%;height:calc(100vh - 56px);padding:1rem 1.5rem 2rem 1.5rem;gap:1.2rem;overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;border-radius:0 0 0 10px;z-index:999;align-items:flex-start}
+      .nav-links.active{transform:translateX(0)}
+      .menu-toggle{display:flex}
+      h1,.content-container,.buttons{padding:0 1rem}
+    }
+    /* Tablet */
+    @media (min-width:601px) and (max-width:900px){
+      .nav-container{padding:.8rem 1.5rem}
+      .nav-links{position:static;flex-direction:row;background:none;height:auto;width:auto;padding:0;gap:1.3rem;transform:none !important;border-radius:0;align-items:center;overflow:visible}
+      .menu-toggle{display:none}
+      h1,.content-container,.buttons{padding:0 1.5rem}
+    }
+    /* Desktop */
+    @media (min-width:901px){
+      .nav-container{max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+      .nav-links{position:static;flex-direction:row;background:none;height:auto;width:auto;padding:0;gap:1.5rem;transform:none !important;border-radius:0;align-items:center;overflow:visible}
+      .menu-toggle{display:none}
+      body{padding:0}
+      h1,.content-container,.buttons{padding:0}
+    }
+
+    h1{margin:2rem auto 1.5rem auto;color:#2c3e50;max-width:900px}
+    .content-container{background:#fff;width:92%;max-width:1000px;margin:2rem auto;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.6;font-size:1.06rem}
+    .content-container h2{color:#3498db;margin-top:1.5rem;margin-bottom:.8rem;font-size:1.6rem}
+    .content-container h3{color:#124076;margin-top:1.2rem;margin-bottom:.6rem;font-size:1.25rem}
+    .content-container p{margin-bottom:1rem}
+    .content-container strong{color:#124076}
+    .content-container em{color:#555}
+
+    .example{background:#e8f5e9;border-left:4px solid #2e7d32;padding:1rem;margin:1rem 0;border-radius:6px}
+
+    .grammar-table-container{width:100%;margin:1rem 0 1.5rem 0;overflow-x:auto}
+    .grammar-table{width:100%;border-collapse:collapse;text-align:left}
+    .grammar-table th,.grammar-table td{padding:10px 12px;border:1px solid #ddd;vertical-align:top}
+    .grammar-table th{background:#e8f5e9;color:#2c3e50;font-weight:700}
+    .grammar-table tr:nth-child(even){background:#f9f9f9}
+    .grammar-table tr:hover{background:#f1f1f1}
+
+    .note{font-size:.98rem;color:#444}
+
+    .buttons{margin:2rem auto 3rem auto;display:flex;justify-content:center;gap:1rem;max-width:600px}
+    .buttons a{padding:.6rem 1.2rem;background:#3498db;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;user-select:none}
+    .buttons a:hover{background:#2980b9}
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Irregular Verbs</h1>
+
+<div class="content-container">
+  <p>
+    <strong>Irregular verbs</strong> do not make the past simple (<strong>V2</strong>) and past participle (<strong>V3</strong>) with <em>-ed</em>. You must learn their special forms. Use <strong>V2</strong> for the <em>past simple</em> and <strong>V3</strong> after <em>have/has/had</em> (present/past perfect) and in the <em>passive voice</em>.
+  </p>
+
+  <div class="example">
+    I <strong>went</strong> home at 7. (past simple of <em>go</em>)<br>
+    She has <strong>gone</strong> home. (present perfect, V3)<br>
+    The door was <strong>broken</strong> by the wind. (passive, V3)
+  </div>
+
+  <h2>Quick Overview</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Irregular vs regular">
+      <thead>
+        <tr><th>Type</th><th>Past Simple (V2)</th><th>Past Participle (V3)</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Regular</td><td>work<strong>ed</strong></td><td>work<strong>ed</strong></td><td>They <strong>worked</strong> late. / They have <strong>worked</strong> hard.</td>
+        </tr>
+        <tr>
+          <td>Irregular</td><td>went</td><td>gone</td><td>He <strong>went</strong> home. / He has <strong>gone</strong> home.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Common Irregular Verbs (Classroom List)</h2>
+  <p class="note">Pronunciation tip: <strong>read</strong> is written the same in V1/V2/V3 but V2/V3 are pronounced <em>/red/</em>.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common irregular verbs">
+      <thead>
+        <tr><th>Base (V1)</th><th>Past (V2)</th><th>Past Participle (V3)</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>be</td><td>was/were</td><td>been</td><td>She <strong>was</strong> tired; she has <strong>been</strong> busy.</td></tr>
+        <tr><td>have</td><td>had</td><td>had</td><td>We <strong>had</strong> lunch; we have <strong>had</strong> enough.</td></tr>
+        <tr><td>do</td><td>did</td><td>done</td><td>They <strong>did</strong> it; they have <strong>done</strong> it.</td></tr>
+        <tr><td>go</td><td>went</td><td>gone</td><td>I <strong>went</strong> out; I have <strong>gone</strong> out.</td></tr>
+        <tr><td>get</td><td>got</td><td>got/gotten</td><td>She <strong>got</strong> a job; she has <strong>gotten</strong> better. (<em>gotten</em> US)</td></tr>
+        <tr><td>come</td><td>came</td><td>come</td><td>He <strong>came</strong> early; he has <strong>come</strong> early.</td></tr>
+        <tr><td>make</td><td>made</td><td>made</td><td>We <strong>made</strong> soup; we have <strong>made</strong> plans.</td></tr>
+        <tr><td>take</td><td>took</td><td>taken</td><td>She <strong>took</strong> notes; she has <strong>taken</strong> notes.</td></tr>
+        <tr><td>say</td><td>said</td><td>said</td><td>He <strong>said</strong> no; he has <strong>said</strong> no.</td></tr>
+        <tr><td>see</td><td>saw</td><td>seen</td><td>I <strong>saw</strong> it; I have <strong>seen</strong> it.</td></tr>
+        <tr><td>give</td><td>gave</td><td>given</td><td>They <strong>gave</strong> help; they have <strong>given</strong> help.</td></tr>
+        <tr><td>find</td><td>found</td><td>found</td><td>We <strong>found</strong> it; we have <strong>found</strong> it.</td></tr>
+        <tr><td>think</td><td>thought</td><td>thought</td><td>She <strong>thought</strong> so; she has <strong>thought</strong> about it.</td></tr>
+        <tr><td>know</td><td>knew</td><td>known</td><td>I <strong>knew</strong> him; I have <strong>known</strong> him.</td></tr>
+        <tr><td>tell</td><td>told</td><td>told</td><td>He <strong>told</strong> me; he has <strong>told</strong> me.</td></tr>
+        <tr><td>leave</td><td>left</td><td>left</td><td>She <strong>left</strong>; she has <strong>left</strong>.</td></tr>
+        <tr><td>feel</td><td>felt</td><td>felt</td><td>They <strong>felt</strong> happy; they have <strong>felt</strong> happy.</td></tr>
+        <tr><td>become</td><td>became</td><td>become</td><td>He <strong>became</strong> a chef; he has <strong>become</strong> a chef.</td></tr>
+        <tr><td>bring</td><td>brought</td><td>brought</td><td>She <strong>brought</strong> snacks; she has <strong>brought</strong> snacks.</td></tr>
+        <tr><td>begin</td><td>began</td><td>begun</td><td>It <strong>began</strong> to rain; it has <strong>begun</strong> to rain.</td></tr>
+        <tr><td>keep</td><td>kept</td><td>kept</td><td>We <strong>kept</strong> quiet; we have <strong>kept</strong> quiet.</td></tr>
+        <tr><td>hold</td><td>held</td><td>held</td><td>She <strong>held</strong> it; she has <strong>held</strong> it.</td></tr>
+        <tr><td>write</td><td>wrote</td><td>written</td><td>He <strong>wrote</strong> a letter; he has <strong>written</strong> it.</td></tr>
+        <tr><td>stand</td><td>stood</td><td>stood</td><td>They <strong>stood</strong> up; they have <strong>stood</strong> up.</td></tr>
+        <tr><td>hear</td><td>heard</td><td>heard</td><td>I <strong>heard</strong> you; I have <strong>heard</strong> you.</td></tr>
+        <tr><td>meet</td><td>met</td><td>met</td><td>We <strong>met</strong> once; we have <strong>met</strong> before.</td></tr>
+        <tr><td>set</td><td>set</td><td>set</td><td>She <strong>set</strong> the table; she has <strong>set</strong> the table.</td></tr>
+        <tr><td>speak</td><td>spoke</td><td>spoken</td><td>He <strong>spoke</strong> quickly; he has <strong>spoken</strong> quickly.</td></tr>
+        <tr><td>pay</td><td>paid</td><td>paid</td><td>We <strong>paid</strong> cash; we have <strong>paid</strong>.</td></tr>
+        <tr><td>sit</td><td>sat</td><td>sat</td><td>She <strong>sat</strong> down; she has <strong>sat</strong> down.</td></tr>
+        <tr><td>grow</td><td>grew</td><td>grown</td><td>The tree <strong>grew</strong>; it has <strong>grown</strong>.</td></tr>
+        <tr><td>lose</td><td>lost</td><td>lost</td><td>I <strong>lost</strong> keys; I have <strong>lost</strong> keys.</td></tr>
+        <tr><td>send</td><td>sent</td><td>sent</td><td>He <strong>sent</strong> it; he has <strong>sent</strong> it.</td></tr>
+        <tr><td>build</td><td>built</td><td>built</td><td>They <strong>built</strong> it; they have <strong>built</strong> it.</td></tr>
+        <tr><td>break</td><td>broke</td><td>broken</td><td>She <strong>broke</strong> it; it is <strong>broken</strong>.</td></tr>
+        <tr><td>buy</td><td>bought</td><td>bought</td><td>We <strong>bought</strong> a car; we have <strong>bought</strong> one.</td></tr>
+        <tr><td>choose</td><td>chose</td><td>chosen</td><td>I <strong>chose</strong> this; I have <strong>chosen</strong> this.</td></tr>
+        <tr><td>drive</td><td>drove</td><td>driven</td><td>He <strong>drove</strong> home; he has <strong>driven</strong> home.</td></tr>
+        <tr><td>eat</td><td>ate</td><td>eaten</td><td>She <strong>ate</strong>; she has <strong>eaten</strong>.</td></tr>
+        <tr><td>fall</td><td>fell</td><td>fallen</td><td>He <strong>fell</strong>; he has <strong>fallen</strong>.</td></tr>
+        <tr><td>fly</td><td>flew</td><td>flown</td><td>We <strong>flew</strong>; we have <strong>flown</strong>.</td></tr>
+        <tr><td>forget</td><td>forgot</td><td>forgotten</td><td>I <strong>forgot</strong>; I have <strong>forgotten</strong>.</td></tr>
+        <tr><td>freeze</td><td>froze</td><td>frozen</td><td>It <strong>froze</strong>; it has <strong>frozen</strong>.</td></tr>
+        <tr><td>hide</td><td>hid</td><td>hidden</td><td>She <strong>hid</strong>; she has <strong>hidden</strong>.</td></tr>
+        <tr><td>hit</td><td>hit</td><td>hit</td><td>He <strong>hit</strong> it; he has <strong>hit</strong> it.</td></tr>
+        <tr><td>hurt</td><td>hurt</td><td>hurt</td><td>I <strong>hurt</strong> my leg; I have <strong>hurt</strong> it.</td></tr>
+        <tr><td>lead</td><td>led</td><td>led</td><td>She <strong>led</strong> the team; she has <strong>led</strong> the team.</td></tr>
+        <tr><td>learn</td><td>learned/learnt</td><td>learned/learnt</td><td>We <strong>learned</strong> a lot; we have <strong>learned</strong>.</td></tr>
+        <tr><td>let</td><td>let</td><td>let</td><td>They <strong>let</strong> him in; they have <strong>let</strong> him in.</td></tr>
+        <tr><td>lie (recline)</td><td>lay</td><td>lain</td><td>She <strong>lay</strong> down; she has <strong>lain</strong> down.</td></tr>
+        <tr><td>lay (put)</td><td>laid</td><td>laid</td><td>He <strong>laid</strong> the book; he has <strong>laid</strong> it.</td></tr>
+        <tr><td>mean</td><td>meant</td><td>meant</td><td>I <strong>meant</strong> it; I have <strong>meant</strong> it.</td></tr>
+        <tr><td>read</td><td>read</td><td>read</td><td>I <strong>read</strong> it; I have <strong>read</strong> it. (pronounced /red/)</td></tr>
+        <tr><td>run</td><td>ran</td><td>run</td><td>She <strong>ran</strong>; she has <strong>run</strong>.</td></tr>
+        <tr><td>sell</td><td>sold</td><td>sold</td><td>We <strong>sold</strong> it; we have <strong>sold</strong> it.</td></tr>
+        <tr><td>shake</td><td>shook</td><td>shaken</td><td>He <strong>shook</strong> hands; he has <strong>shaken</strong> hands.</td></tr>
+        <tr><td>show</td><td>showed</td><td>shown</td><td>They <strong>showed</strong> me; they have <strong>shown</strong> me.</td></tr>
+        <tr><td>sing</td><td>sang</td><td>sung</td><td>She <strong>sang</strong>; she has <strong>sung</strong>.</td></tr>
+        <tr><td>sleep</td><td>slept</td><td>slept</td><td>He <strong>slept</strong>; he has <strong>slept</strong>.</td></tr>
+        <tr><td>spend</td><td>spent</td><td>spent</td><td>We <strong>spent</strong> money; we have <strong>spent</strong> money.</td></tr>
+        <tr><td>swim</td><td>swam</td><td>swum</td><td>They <strong>swam</strong>; they have <strong>swum</strong>.</td></tr>
+        <tr><td>teach</td><td>taught</td><td>taught</td><td>She <strong>taught</strong>; she has <strong>taught</strong>.</td></tr>
+        <tr><td>throw</td><td>threw</td><td>thrown</td><td>He <strong>threw</strong> it; he has <strong>thrown</strong> it.</td></tr>
+        <tr><td>understand</td><td>understood</td><td>understood</td><td>I <strong>understood</strong>; I have <strong>understood</strong>.</td></tr>
+        <tr><td>wear</td><td>wore</td><td>worn</td><td>She <strong>wore</strong> it; she has <strong>worn</strong> it.</td></tr>
+        <tr><td>win</td><td>won</td><td>won</td><td>They <strong>won</strong>; they have <strong>won</strong>.</td></tr>
+        <tr><td>catch</td><td>caught</td><td>caught</td><td>She <strong>caught</strong> it; she has <strong>caught</strong> it.</td></tr>
+        <tr><td>cost</td><td>cost</td><td>cost</td><td>It <strong>cost</strong> a lot; it has <strong>cost</strong> a lot.</td></tr>
+        <tr><td>cut</td><td>cut</td><td>cut</td><td>He <strong>cut</strong> it; he has <strong>cut</strong> it.</td></tr>
+        <tr><td>deal</td><td>dealt</td><td>dealt</td><td>We <strong>dealt</strong> cards; we have <strong>dealt</strong> cards.</td></tr>
+        <tr><td>dig</td><td>dug</td><td>dug</td><td>They <strong>dug</strong> a hole; they have <strong>dug</strong> a hole.</td></tr>
+        <tr><td>drink</td><td>drank</td><td>drunk</td><td>I <strong>drank</strong> tea; I have <strong>drunk</strong> tea.</td></tr>
+        <tr><td>feed</td><td>fed</td><td>fed</td><td>She <strong>fed</strong> the cat; she has <strong>fed</strong> it.</td></tr>
+        <tr><td>fight</td><td>fought</td><td>fought</td><td>They <strong>fought</strong>; they have <strong>fought</strong>.</td></tr>
+        <tr><td>stand</td><td>stood</td><td>stood</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Patterns You Can Learn</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Irregular patterns">
+      <thead>
+        <tr><th>Pattern</th><th>Examples</th><th>Model Sentences</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>No change</strong> (V1=V2=V3)</td>
+          <td>set, cut, put, let, cost, hit, hurt</td>
+          <td>I <strong>set</strong> the alarm; I have <strong>set</strong> the alarm.</td>
+        </tr>
+        <tr>
+          <td><strong>Vowel change</strong> (V1→V2→V3)</td>
+          <td>sing–sang–sung; swim–swam–swum; begin–began–begun</td>
+          <td>She <strong>sang</strong> yesterday; she has <strong>sung</strong> on stage.</td>
+        </tr>
+        <tr>
+          <td><strong>–t</strong> ending in V2/V3</td>
+          <td>keep–kept–kept; feel–felt–felt; build–built–built</td>
+          <td>We <strong>built</strong> it; we have <strong>built</strong> it.</td>
+        </tr>
+        <tr>
+          <td><strong>–aught/–ought</strong></td>
+          <td>teach–taught–taught; buy–bought–bought; think–thought–thought</td>
+          <td>He <strong>taught</strong> us; he has <strong>taught</strong> us.</td>
+        </tr>
+        <tr>
+          <td><strong>–ew / –own</strong></td>
+          <td>grow–grew–grown; fly–flew–flown; throw–threw–thrown</td>
+          <td>The tree <strong>grew</strong>; it has <strong>grown</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Common Mistakes</h2>
+  <ul>
+    <li>❌ <em>I have went</em> → ✅ I have <strong>gone</strong>.</li>
+    <li>❌ <em>He didn't ate</em> → ✅ He didn't <strong>eat</strong>. (use base form after <em>didn't</em>)</li>
+    <li>❌ <em>She has wrote</em> → ✅ She has <strong>written</strong>.</li>
+    <li>❌ <em>He laid on the bed</em> (recline) → ✅ He <strong>lay</strong> on the bed. (<em>lie</em> → lay → lain)</li>
+  </ul>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

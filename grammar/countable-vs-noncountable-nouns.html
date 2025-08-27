@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Countable vs Noncountable Nouns – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a {
+            color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.3rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.5rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example {
+            background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+        .example strong { color: #2E7D32; }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        .note { font-size: 0.98rem; color: #444; }
+        .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+
+        /* Multi-column list for long vocab */
+        .columns { columns: 2; column-gap: 2rem; }
+        @media (max-width: 600px) { .columns { columns: 1; } }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Countable & Noncountable Nouns</h1>
+
+<div class="content-container">
+    <p>
+        In English, nouns can be <strong>countable</strong> or <strong>noncountable</strong><span class="tag" aria-label="also called uncountable">also called uncountable</span>.
+        Knowing the difference helps you choose the right articles, quantifiers, and verb forms.
+    </p>
+
+    <h2>Quick Overview</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Countable vs noncountable overview">
+            <thead>
+                <tr><th>Type</th><th>Form</th><th>Can you count it?</th><th>Articles/Quantifiers</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Countable</td>
+                    <td>Singular & plural forms</td>
+                    <td>✅ Yes (one, two, three…)</td>
+                    <td><strong>a/an, many, a few, several, a number of</strong></td>
+                    <td>one <strong>apple</strong>, two <strong>apples</strong></td>
+                </tr>
+                <tr>
+                    <td>Noncountable</td>
+                    <td>Usually no plural</td>
+                    <td>❌ No (use units/containers)</td>
+                    <td><strong>some, much, a little, a lot of, a piece of, a bottle of</strong></td>
+                    <td>some <strong>water</strong>; a piece of <strong>advice</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>1) Countable Nouns</h2>
+    <p><strong>Use:</strong> Things we can count as individual items.</p>
+    <div class="example">
+        I have <strong>three books</strong>. / There are <strong>a few chairs</strong> in the room.
+    </div>
+
+    <h3>Forms</h3>
+    <ul>
+        <li><strong>Singular:</strong> Use <em>a/an</em> → <em>a</em> cat, <em>an</em> orange.</li>
+        <li><strong>Plural:</strong> Add <em>-s/-es</em> (irregular plurals exist) → cat<strong>s</strong>, bus<strong>es</strong>, child → <em>children</em>.</li>
+        <li><strong>Questions/negatives:</strong> Use <em>any</em> → Do you have <em>any</em> pens? / I don’t have <em>any</em> tickets.</li>
+    </ul>
+
+    <h2>2) Noncountable Nouns</h2>
+    <p><strong>Use:</strong> Substances, abstract ideas, categories, or activities that we do not count individually.</p>
+    <div class="example">
+        I need some <strong>information</strong>. / She drank a glass of <strong>milk</strong>.
+    </div>
+
+    <h3>How to Measure Noncountable Nouns</h3>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Units and containers for noncountable nouns">
+            <thead>
+                <tr><th>Unit / Container</th><th>Examples</th><th>Model sentence</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>a piece of</td>
+                    <td>advice, furniture, news, paper</td>
+                    <td>I got <strong>three pieces of advice</strong>.</td>
+                </tr>
+                <tr>
+                    <td>a bottle/glass/cup of</td>
+                    <td>water, juice, milk, tea, coffee</td>
+                    <td>She drank <strong>a glass of water</strong>.</td>
+                </tr>
+                <tr>
+                    <td>a loaf/bag of</td>
+                    <td>bread, rice, flour</td>
+                    <td>We bought <strong>two loaves of bread</strong>.</td>
+                </tr>
+                <tr>
+                    <td>a bit of / a little (bit of)</td>
+                    <td>salt, sugar, help, luck</td>
+                    <td>Add <strong>a bit of salt</strong>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Common Quantifiers</h3>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Quantifiers">
+            <thead>
+                <tr><th>For Countable</th><th>For Noncountable</th><th>Both</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>many, a few, few, several</td>
+                    <td>much, a little, little</td>
+                    <td>some, a lot of, lots of, plenty of, enough</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Expanded List of Common Noncountable Nouns</h2>
+    <p class="note">These nouns do not take <em>-s</em> in the plural: ❌ <em>informations</em>, ❌ <em>advices</em>, ❌ <em>furnitures</em>.</p>
+
+    <h3>Food & Drink</h3>
+    <div class="columns">
+        <ul>
+            <li>rice</li><li>bread</li><li>meat</li><li>fish</li><li>cheese</li><li>butter</li><li>fruit</li><li>pasta</li><li>soup</li><li>coffee</li><li>tea</li><li>juice</li><li>milk</li><li>water</li>
+        </ul>
+    </div>
+
+    <h3>Materials & Substances</h3>
+    <div class="columns">
+        <ul>
+            <li>sugar</li><li>salt</li><li>flour</li><li>oil</li><li>sand</li><li>gold</li><li>silver</li><li>iron</li><li>wood</li><li>glass</li><li>plastic</li><li>paper</li>
+        </ul>
+    </div>
+
+    <h3>Weather & Nature</h3>
+    <div class="columns">
+        <ul>
+            <li>rain</li><li>snow</li><li>ice</li><li>sunshine</li><li>thunder</li><li>lightning</li><li>wind</li>
+        </ul>
+    </div>
+
+    <h3>Abstract Ideas & School/Work</h3>
+    <div class="columns">
+        <ul>
+            <li>advice</li><li>information</li><li>knowledge</li><li>research</li><li>homework</li><li>progress</li><li>work</li><li>help</li><li>experience</li><li>time</li><li>patience</li>
+            <li>love</li><li>happiness</li><li>peace</li><li>beauty</li><li>health</li><li>safety</li><li>education</li><li>freedom</li><li>fun</li>
+        </ul>
+    </div>
+
+    <h3>Categories, Activities & Other</h3>
+    <div class="columns">
+        <ul>
+            <li>money</li><li>furniture</li><li>equipment</li><li>luggage</li><li>baggage</li><li>clothing</li><li>jewelry</li><li>traffic</li><li>news</li><li>music</li><li>grammar</li><li>shopping</li><li>travel</li>
+        </ul>
+    </div>
+
+    <h2>Countable or Noncountable? (Compare)</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Compare pairs">
+            <thead>
+                <tr><th>Countable</th><th>Noncountable</th><th>Example sentences</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>a cake / cakes</td>
+                    <td>cake (as a food)</td>
+                    <td>We baked <strong>two cakes</strong>. / I ate some <strong>cake</strong>.</td>
+                </tr>
+                <tr>
+                    <td>a hair / hairs</td>
+                    <td>hair (on your head)</td>
+                    <td>I found <strong>a hair</strong> on the table. / She has long <strong>hair</strong>.</td>
+                </tr>
+                <tr>
+                    <td>a paper / papers</td>
+                    <td>paper (material)</td>
+                    <td>I read <strong>a paper</strong>. / This box is made of <strong>paper</strong>.</td>
+                </tr>
+                <tr>
+                    <td>a coffee / coffees (cups)</td>
+                    <td>coffee (drink in general)</td>
+                    <td>Two <strong>coffees</strong>, please. / I like <strong>coffee</strong>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+        <li>❌ <em>I have many informations.</em> → ✅ I have <strong>much/ a lot of information</strong>.</li>
+        <li>❌ <em>She gave me an advice.</em> → ✅ She gave me <strong>some advice</strong> / <strong>a piece of advice</strong>.</li>
+        <li>❌ <em>These furnitures are expensive.</em> → ✅ <strong>This furniture</strong> is expensive.</li>
+        <li>❌ <em>There isn’t many traffic today.</em> → ✅ There isn’t <strong>much traffic</strong> today.</li>
+    </ul>
+
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

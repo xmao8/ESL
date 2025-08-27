@@ -111,6 +111,17 @@
         /* Multi-column list for long vocab */
         .columns { columns: 2; column-gap: 2rem; }
         @media (max-width: 600px) { .columns { columns: 1; } }
+
+        /* Buttons */
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
     </style>
 </head>
 <body>

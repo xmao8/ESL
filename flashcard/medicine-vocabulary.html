@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medicine Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa { font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666; }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.95rem; margin-top: 0.6rem; color: #cfe6fb; }
+    .translation b { color: #ffffff; font-weight: 700; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Medicine Vocabulary – Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Aspirin", definition: "Medicine used for pain, fever, and inflammation.", example: "I took aspirin for my headache.", translation: "<b>中文</b>：阿司匹林　<b>Español</b>：aspirina" },
+  { word: "Ibuprofen", definition: "Pain reliever and anti-inflammatory.", example: "Ibuprofen helped reduce the swelling.", translation: "<b>中文</b>：布洛芬　<b>Español</b>：ibuprofeno" },
+  { word: "Acetaminophen", definition: "Pain reliever and fever reducer.", example: "Take acetaminophen if you have a fever.", translation: "<b>中文</b>：对乙酰氨基酚　<b>Español</b>：paracetamol/acetaminofén" },
+  { word: "Antibiotic", definition: "Medicine that fights bacterial infections.", example: "The doctor prescribed an antibiotic for the infection.", translation: "<b>中文</b>：抗生素　<b>Español</b>：antibiótico" },
+  { word: "Antacid", definition: "Medicine for stomach upset or heartburn.", example: "An antacid can relieve heartburn.", translation: "<b>中文</b>：抗酸药　<b>Español</b>：antiácido" },
+  { word: "Cough syrup", definition: "Liquid medicine for cough.", example: "He took cough syrup before bed.", translation: "<b>中文</b>：止咳糖浆　<b>Español</b>：jarabe para la tos" },
+  { word: "Decongestant", definition: "Relieves a stuffy nose.", example: "A decongestant helped me breathe through my nose.", translation: "<b>中文</b>：减充血剂　<b>Español</b>：descongestionante" },
+  { word: "Antihistamine", definition: "Medicine for allergies.", example: "This antihistamine makes me sleepy.", translation: "<b>中文</b>：抗组胺药　<b>Español</b>：antihistamínico" },
+  { word: "Insulin", definition: "Medicine that controls blood sugar in diabetes.", example: "She injects insulin every day.", translation: "<b>中文</b>：胰岛素　<b>Español</b>：insulina" },
+  { word: "Inhaler", definition: "Device that delivers asthma medicine to the lungs.", example: "Use your inhaler during an asthma attack.", translation: "<b>中文</b>：吸入器　<b>Español</b>：inhalador" },
+  { word: "Nasal spray", definition: "Medicine sprayed into the nose.", example: "Use the nasal spray twice a day.", translation: "<b>中文</b>：鼻喷剂　<b>Español</b>：spray nasal" },
+  { word: "Eye drops", definition: "Liquid medicine for the eyes.", example: "Put two eye drops in each eye.", translation: "<b>中文</b>：眼药水　<b>Español</b>：gotas para los ojos" },
+  { word: "Ear drops", definition: "Liquid medicine for the ears.", example: "The doctor gave me ear drops for the infection.", translation: "<b>中文</b>：滴耳液　<b>Español</b>：gotas para los oídos" },
+  { word: "Laxative", definition: "Helps relieve constipation.", example: "A mild laxative may help you go to the bathroom.", translation: "<b>中文</b>：泻药　<b>Español</b>：laxante" },
+  { word: "Sleeping pills", definition: "Medicine that helps with insomnia.", example: "Avoid driving after taking sleeping pills.", translation: "<b>中文</b>：安眠药　<b>Español</b>：pastillas para dormir" },
+  { word: "Antidepressant", definition: "Medicine for depression.", example: "Antidepressants can take a few weeks to work.", translation: "<b>中文</b>：抗抑郁药　<b>Español</b>：antidepresivo" },
+  { word: "Blood pressure medicine", definition: "Medicine that lowers high blood pressure.", example: "He takes blood pressure medicine every morning.", translation: "<b>中文</b>：降压药　<b>Español</b>：medicina para la presión" },
+  { word: "Cholesterol medicine", definition: "Lowers cholesterol levels.", example: "Statins are common cholesterol medicine.", translation: "<b>中文</b>：降脂药　<b>Español</b>：medicina para el colesterol" },
+  { word: "Vaccine", definition: "Medicine that prevents disease.", example: "The flu vaccine is available in the fall.", translation: "<b>中文</b>：疫苗　<b>Español</b>：vacuna" },
+  { word: "Cream", definition: "Soft medicine for skin problems.", example: "Apply the cream to the rash twice a day.", translation: "<b>中文</b>：药膏（乳膏）　<b>Español</b>：crema" },
+  { word: "Ointment", definition: "Thick medicine for skin healing.", example: "Use an antibiotic ointment on the cut.", translation: "<b>中文</b>：软膏　<b>Español</b>：pomada" },
+  { word: "Gel", definition: "Medicine with a jelly-like texture for skin pain or irritation.", example: "Rub the gel onto your sore muscles.", translation: "<b>中文</b>：凝胶　<b>Español</b>：gel" },
+  { word: "Lozenge", definition: "Small tablet that dissolves for a sore throat.", example: "She sucked on a throat lozenge.", translation: "<b>中文</b>：含片　<b>Español</b>：pastilla para la garganta" },
+  { word: "Syringe", definition: "A tool used to inject liquid medicine.", example: "The nurse used a sterile syringe.", translation: "<b>中文</b>：注射器　<b>Español</b>：jeringa" },
+  { word: "Patch", definition: "A medicated sticker that delivers medicine through the skin.", example: "He wears a nicotine patch.", translation: "<b>中文</b>：贴剂　<b>Español</b>：parche" },
+  { word: "Suppository", definition: "Medicine inserted into the rectum.", example: "The child received a fever suppository.", translation: "<b>中文</b>：栓剂　<b>Español</b>：supositorio" },
+  { word: "Steroid", definition: "Medicine that reduces swelling and inflammation.", example: "The doctor prescribed a short course of steroids.", translation: "<b>中文</b>：类固醇　<b>Español</b>：esteroide" },
+  { word: "Antifungal", definition: "Fights fungal infections.", example: "Use an antifungal cream for athlete’s foot.", translation: "<b>中文</b>：抗真菌药　<b>Español</b>：antifúngico" },
+  { word: "Antiviral", definition: "Fights viral infections.", example: "An antiviral can shorten the flu.", translation: "<b>中文</b>：抗病毒药　<b>Español</b>：antiviral" },
+  { word: "Chemotherapy", definition: "Strong medicine used to treat cancer.", example: "Chemotherapy can cause side effects.", translation: "<b>中文</b>：化疗　<b>Español</b>：quimioterapia" },
+  { word: "Hormone replacement", definition: "Medicine to restore hormone balance.", example: "She takes hormone replacement after surgery.", translation: "<b>中文</b>：激素替代疗法　<b>Español</b>：terapia de reemplazo hormonal" },
+  { word: "Painkiller", definition: "General word for medicine that reduces pain.", example: "Over-the-counter painkillers can help with cramps.", translation: "<b>中文</b>：止痛药　<b>Español</b>：analgésico" },
+  { word: "Antiseptic", definition: "Kills germs on the skin to prevent infection.", example: "Clean the cut with an antiseptic.", translation: "<b>中文</b>：消毒剂　<b>Español</b>：antiséptico" },
+  { word: "Oral rehydration salts", definition: "Powder mixed with water to treat dehydration.", example: "Give oral rehydration salts after vomiting.", translation: "<b>中文</b>：口服补盐液/补液盐　<b>Español</b>：sales de rehidratación oral" },
+  { word: "Antacid chewable", definition: "Tablet you chew to relieve heartburn.", example: "Chew one tablet after meals.", translation: "<b>中文</b>：咀嚼型抗酸片　<b>Español</b>：antiácido masticable" },
+  { word: "Antidiarrheal", definition: "Medicine that slows diarrhea.", example: "He took an antidiarrheal before traveling.", translation: "<b>中文</b>：止泻药　<b>Español</b>：antidiarreico" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, definition, example, translation } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">${translation}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+const flashcardEl = document.getElementById('flashcard');
+if (flashcardEl) flashcardEl.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn) prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+if (nextBtn) nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

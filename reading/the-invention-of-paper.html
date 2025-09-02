@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Invention of Paper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .logo { display: flex; align-items: center; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start; flex-wrap: wrap;
+        }
+        .vocabulary-list li strong { color: #124076; margin-right: 8px; font-size: 1.1em; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+        .buttons { text-align: center; margin: 2rem auto; }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>The Invention of Paper</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>Cai Lun and a World-Changing Idea</h2>
+            <p>Long ago, in the year 105 CE, during the Han Dynasty, an official named <em>Cai Lun</em> made an important invention in China. Before his time, people wrote on bamboo, silk, or animal bones. These materials were heavy, expensive, or hard to carry. Cai Lun wanted to create something lighter and easier to use.</p>
+            <p>He experimented with tree bark, old rags, hemp, and fishing nets. He broke these materials into small fibers, mixed them with water, and pressed them flat. When the mixture dried, it became a thin sheet—this was the first paper.</p>
+            <p>Paper quickly spread across China. It was cheaper than silk and easier than bamboo. Students, officials, and poets loved it. Books could be made faster, and ideas could travel farther. The invention of paper helped knowledge grow.</p>
+            <p>Later, paper spread to other countries along the Silk Road. By the 8th century, it reached the Middle East, and by the 11th century, it arrived in Europe. Eventually, paper changed the whole world. It made it possible to print books, share education, and keep records. Even today, we still use paper in schools, offices, and homes.</p>
+            <p>Cai Lun’s simple idea helped connect people through writing. He is remembered as one of the greatest inventors in history, and his creation continues to shape our daily lives.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>dynasty</strong> <i class="fas fa-volume-up speaker-icon" data-word="dynasty"></i> <div class="definition">A line of rulers from the same family.</div></li>
+                <li><strong>official</strong> <i class="fas fa-volume-up speaker-icon" data-word="official"></i> <div class="definition">A person with an important job in the government.</div></li>
+                <li><strong>bamboo</strong> <i class="fas fa-volume-up speaker-icon" data-word="bamboo"></i> <div class="definition">A tall plant with a hard, woody stem.</div></li>
+                <li><strong>rag</strong> <i class="fas fa-volume-up speaker-icon" data-word="rag"></i> <div class="definition">An old piece of cloth.</div></li>
+                <li><strong>fiber</strong> <i class="fas fa-volume-up speaker-icon" data-word="fiber"></i> <div class="definition">A thin thread from plants or cloth.</div></li>
+                <li><strong>sheet</strong> <i class="fas fa-volume-up speaker-icon" data-word="sheet"></i> <div class="definition">A thin, flat piece of material.</div></li>
+                <li><strong>poet</strong> <i class="fas fa-volume-up speaker-icon" data-word="poet"></i> <div class="definition">A person who writes poems.</div></li>
+                <li><strong>spread</strong> <i class="fas fa-volume-up speaker-icon" data-word="spread"></i> <div class="definition">To move or reach from one place to another.</div></li>
+                <li><strong>record</strong> <i class="fas fa-volume-up speaker-icon" data-word="record"></i> <div class="definition">Information that is written down and kept.</div></li>
+                <li><strong>inventor</strong> <i class="fas fa-volume-up speaker-icon" data-word="inventor"></i> <div class="definition">A person who creates something new.</div></li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <ol>
+                <li>Who invented paper, and when did he live?</li>
+                <li>What materials did people use for writing before paper?</li>
+                <li>Why was paper better than silk or bamboo?</li>
+                <li>How did paper spread to other parts of the world?</li>
+                <li>Why is Cai Lun remembered as an important inventor?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

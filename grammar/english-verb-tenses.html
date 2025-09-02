@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>English Verb Tenses – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;text-align:center;margin:0;padding:0;overflow-x:hidden}
+    nav{background:#124076;margin:0;padding:0}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none;transition:color .2s ease}
+    .nav-links a:hover,.nav-links a:focus{color:#ffbb33;outline:none}
+    .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+    .menu-toggle .bar{width:25px;height:3px;background:#fff;border-radius:2px}
+
+    /* Phone */
+    @media (max-width:600px){
+      .nav-links{position:fixed;top:56px;right:0;background:#124076;flex-direction:column;width:100%;height:calc(100vh - 56px);padding:1rem 1.5rem 2rem 1.5rem;gap:1.2rem;overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;border-radius:0 0 0 10px;z-index:999;align-items:flex-start}
+      .nav-links.active{transform:translateX(0)}
+      .menu-toggle{display:flex}
+      h1,.content-container,.buttons{padding:0 1rem}
+    }
+    /* Tablet */
+    @media (min-width:601px) and (max-width:900px){
+      .nav-container{padding:.8rem 1.5rem}
+      .nav-links{position:static;flex-direction:row;background:none;height:auto;width:auto;padding:0;gap:1.3rem;transform:none !important;border-radius:0;align-items:center;overflow:visible}
+      .menu-toggle{display:none}
+      h1,.content-container,.buttons{padding:0 1.5rem}
+    }
+    /* Desktop */
+    @media (min-width:901px){
+      .nav-container{max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+      .nav-links{position:static;flex-direction:row;background:none;height:auto;width:auto;padding:0;gap:1.5rem;transform:none !important;border-radius:0;align-items:center;overflow:visible}
+      .menu-toggle{display:none}
+      body{padding:0}
+      h1,.content-container,.buttons{padding:0}
+    }
+
+    h1{margin:2rem auto 1.5rem auto;color:#2c3e50;max-width:900px}
+    .content-container{background:#fff;width:92%;max-width:1000px;margin:2rem auto;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.6;font-size:1.06rem}
+    .content-container h2{color:#3498db;margin-top:1.5rem;margin-bottom:.8rem;font-size:1.6rem}
+    .content-container h3{color:#124076;margin-top:1.2rem;margin-bottom:.6rem;font-size:1.25rem}
+    .content-container p{margin-bottom:1rem}
+    .content-container strong{color:#124076}
+    .content-container em{color:#555}
+
+    .example{background:#e8f5e9;border-left:4px solid #2e7d32;padding:1rem;margin:1rem 0;border-radius:6px}
+
+    .grammar-table-container{width:100%;margin:1rem 0 1.5rem 0;overflow-x:auto}
+    .grammar-table{width:100%;border-collapse:collapse;text-align:left}
+    .grammar-table caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:.4rem;color:#2c3e50}
+    .grammar-table th,.grammar-table td{padding:10px 12px;border:1px solid #ddd;vertical-align:top}
+    .grammar-table th{background:#e8f5e9;color:#2c3e50;font-weight:700}
+    .grammar-table tr:nth-child(even){background:#f9f9f9}
+    .grammar-table tr:hover{background:#f1f1f1}
+    .tense-name{white-space:nowrap}
+
+    .note{font-size:.98rem;color:#444}
+
+    .buttons{margin:2rem auto 3rem auto;display:flex;justify-content:center;gap:1rem;max-width:600px}
+    .buttons a{padding:.6rem 1.2rem;background:#3498db;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;user-select:none}
+    .buttons a:hover{background:#2980b9}
+
+    /* Small helper badges */
+    .chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#eef5ff;color:#124076;font-size:.82rem;margin-left:.35rem}
+    .signal{font-size:.95rem;color:#444}
+    .signal strong{color:#2e7d32}
+    code{background:#f5f7fb;border:1px solid #e5e8ef;border-radius:6px;padding:.05rem .35rem;font-size:.95em}
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>English Verb Tenses</h1>
+
+<div class="content-container">
+  <p>
+    English verbs change form to show <strong>time</strong> and <strong>aspect</strong>. The three times are <em>present</em>, <em>past</em>, and <em>future</em>. Each time has four aspects: <em>simple</em>, <em>continuous (progressive)</em>, <em>perfect</em>, and <em>perfect continuous</em>. Together they make the <strong>12 basic tenses</strong>.
+  </p>
+
+  <div class="example">
+    <strong>Aspect quick view:</strong><br>
+    <strong>Simple</strong> = a fact or habit &nbsp;•&nbsp;
+    <strong>Continuous</strong> = in progress &nbsp;•&nbsp;
+    <strong>Perfect</strong> = before another time &nbsp;•&nbsp;
+    <strong>Perfect Continuous</strong> = how long, up to a time
+  </div>
+
+  <h2>All 12 Tenses (Forms, Uses & Examples)</h2>
+  <p class="note">Use <code>V</code> for base verb (go), <code>V-s</code> for 3rd person singular (goes), <code>V-ing</code> (going), and <code>V3</code> for past participle (gone).</p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="12 English verb tenses">
+      <thead>
+        <tr>
+          <th scope="col">Tense</th>
+          <th scope="col">Form</th>
+          <th scope="col">Main Use</th>
+          <th scope="col">Example</th>
+          <th scope="col">Signal Words</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- PRESENT -->
+        <tr>
+          <td class="tense-name"><strong>Present Simple</strong><span class="chip">Present</span></td>
+          <td><code>V</code> / <code>V-s</code></td>
+          <td>Habits, facts, schedules</td>
+          <td><em>She <strong>works</strong> at a hospital.</em></td>
+          <td class="signal"><strong>always</strong>, usually, often, every day, on Mondays</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Present Continuous</strong></td>
+          <td><code>am/is/are + V-ing</code></td>
+          <td>Action happening now; temporary plans</td>
+          <td><em>They <strong>are studying</strong> right now.</em></td>
+          <td class="signal">now, at the moment, today, this week</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Present Perfect</strong></td>
+          <td><code>have/has + V3</code></td>
+          <td>Life experience; result now; unfinished time</td>
+          <td><em>I <strong>have visited</strong> Japan twice.</em></td>
+          <td class="signal">ever, never, already, yet, so far, since, for</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Present Perfect Continuous</strong></td>
+          <td><code>have/has been + V-ing</code></td>
+          <td>Duration up to now; recently stopped</td>
+          <td><em>She <strong>has been reading</strong> for two hours.</em></td>
+          <td class="signal">for, since, lately, recently, all day</td>
+        </tr>
+
+        <!-- PAST -->
+        <tr>
+          <td class="tense-name"><strong>Past Simple</strong><span class="chip">Past</span></td>
+          <td><code>V2</code> (worked/went)</td>
+          <td>Finished action at a finished time</td>
+          <td><em>We <strong>watched</strong> a movie yesterday.</em></td>
+          <td class="signal">yesterday, last…, in 2019, ago, then</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Past Continuous</strong></td>
+          <td><code>was/were + V-ing</code></td>
+          <td>Action in progress at a time in the past; background</td>
+          <td><em>I <strong>was cooking</strong> when he called.</em></td>
+          <td class="signal">while, when, at 6 pm</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Past Perfect</strong></td>
+          <td><code>had + V3</code></td>
+          <td>Earlier past (before another past event)</td>
+          <td><em>They <strong>had left</strong> before the rain started.</em></td>
+          <td class="signal">by the time, before, after, already</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Past Perfect Continuous</strong></td>
+          <td><code>had been + V-ing</code></td>
+          <td>How long before a past point</td>
+          <td><em>She <strong>had been studying</strong> for hours when I arrived.</em></td>
+          <td class="signal">for, since, before</td>
+        </tr>
+
+        <!-- FUTURE -->
+        <tr>
+          <td class="tense-name"><strong>Future Simple (will)</strong><span class="chip">Future</span></td>
+          <td><code>will + V</code></td>
+          <td>Decisions now; predictions; promises</td>
+          <td><em>I <strong>will help</strong> you with the report.</em></td>
+          <td class="signal">I think, probably, promise, don't worry</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Future Continuous</strong></td>
+          <td><code>will be + V-ing</code></td>
+          <td>Action in progress at a future time</td>
+          <td><em>This time tomorrow, we <strong>will be flying</strong>.</em></td>
+          <td class="signal">this time tomorrow, at 6 pm next…</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Future Perfect</strong></td>
+          <td><code>will have + V3</code></td>
+          <td>Finished before a future time</td>
+          <td><em>By Friday, she <strong>will have finished</strong> the project.</em></td>
+          <td class="signal">by, by the time, before</td>
+        </tr>
+        <tr>
+          <td class="tense-name"><strong>Future Perfect Continuous</strong></td>
+          <td><code>will have been + V-ing</code></td>
+          <td>Duration up to a future time</td>
+          <td><em>Next month, I <strong>will have been working</strong> here for 5 years.</em></td>
+          <td class="signal">for, since, by</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Quick Patterns & Notes</h2>
+  <ul>
+    <li><strong>Questions</strong>: move the first helper (auxiliary) before the subject. <em>She is working → Is she working?</em> / <em>They have finished → Have they finished?</em></li>
+    <li><strong>Negatives</strong>: add <em>not</em> after the first helper. <em>is not / are not / do not / did not / will not</em>. Present Simple/Past Simple use <em>do/does/did + not + V</em>.</li>
+    <li><strong>Since/for</strong> go with perfect tenses to show duration or start time: <em>since 2019, for three hours</em>.</li>
+    <li><strong>State verbs</strong> (know, love, believe, own, understand, need, want) are <em>not</em> usually used in continuous forms: say <em>I know</em>, not <em>I am knowing</em>.</li>
+  </ul>
+
+  <h2>Common Mistakes</h2>
+  <ul>
+    <li>❌ <em>I am agree</em> → ✅ <strong>I agree</strong>. (state verb)</li>
+    <li>❌ <em>He don’t works</em> → ✅ <strong>He doesn’t work</strong>. (base form after <em>doesn’t</em>)</li>
+    <li>❌ <em>I have went</em> → ✅ <strong>I have gone</strong>. (use V3 after <em>have/has</em>)</li>
+    <li>❌ <em>By 6, I will finish</em> (result before a future time) → ✅ <strong>By 6, I will have finished</strong>.</li>
+  </ul>
+
+  <h2>Mini Timeline</h2>
+  <p class="note">
+    <strong>Past</strong> — <em>had (V3)</em> → <strong>Now</strong> — <em>have/has (V3)</em> → <strong>Future</strong> — <em>will have (V3)</em>.<br>
+    Continuous forms focus on the action <em>in progress</em>: <em>was/are/will be (V-ing)</em>. Perfect continuous adds <em>been</em>: <em>has been / had been / will have been (V-ing)</em>.
+  </p>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

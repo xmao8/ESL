@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Confucius and His Teachings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .logo { display: flex; align-items: center; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold;
+        }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+        h1 { text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        p { line-height: 1.5; margin: 0.5rem 0; }
+        .content-section {
+            background-color: #fff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; flex-wrap: wrap; align-items: flex-start;
+        }
+        .vocabulary-list li strong { color: #124076; margin-right: 8px; font-size: 1.1em; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+        .buttons { text-align: center; margin: 2rem auto; }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Confucius and His Teachings</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>The Teacher of China</h2>
+            <p>More than 2,500 years ago, during the Spring and Autumn Period, a man named <em>Confucius</em> was born in Qufu, in the state of Lu. He grew up in a time when China was divided into many small states that often fought wars. Confucius dreamed of a peaceful and fair society.</p>
+            <p>Confucius was not a king or a soldier. He was a teacher and a thinker. He believed that respect, kindness, and good behavior were the keys to harmony. He taught that children should honor their parents, rulers should care for their people, and friends should be loyal to one another.</p>
+            <p>He also said that learning was very important. “Study the past,” he told his students, “to understand the present.” His words were written down in a book called the <em>Analects</em>. These teachings became the foundation of <strong>Confucianism</strong>.</p>
+            <p>At first, Confucius had trouble finding leaders who would follow his advice. He traveled from state to state, offering his ideas, but many rulers ignored him. Still, he continued teaching his students. Over time, his ideas spread widely.</p>
+            <p>Hundreds of years later, Chinese emperors used Confucianism to guide the government. Officials studied his teachings and had to pass exams based on them. His influence shaped Chinese education, politics, and family life for centuries.</p>
+            <p>Today, people around the world still read Confucius’s sayings. His wisdom about respect, honesty, and learning continues to inspire us. Although he lived long ago, Confucius’s dream of harmony still speaks to the modern world.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>harmony</strong> <i class="fas fa-volume-up speaker-icon" data-word="harmony"></i> <div class="definition">Peace and agreement between people.</div></li>
+                <li><strong>respect</strong> <i class="fas fa-volume-up speaker-icon" data-word="respect"></i> <div class="definition">A positive feeling of admiration or honor for someone.</div></li>
+                <li><strong>loyal</strong> <i class="fas fa-volume-up speaker-icon" data-word="loyal"></i> <div class="definition">Showing strong support or faithfulness.</div></li>
+                <li><strong>Analects</strong> <i class="fas fa-volume-up speaker-icon" data-word="Analects"></i> <div class="definition">A collection of Confucius’s sayings written by his students.</div></li>
+                <li><strong>Confucianism</strong> <i class="fas fa-volume-up speaker-icon" data-word="Confucianism"></i> <div class="definition">A system of thought based on the teachings of Confucius.</div></li>
+                <li><strong>thinker</strong> <i class="fas fa-volume-up speaker-icon" data-word="thinker"></i> <div class="definition">A person who thinks deeply about ideas.</div></li>
+                <li><strong>influence</strong> <i class="fas fa-volume-up speaker-icon" data-word="influence"></i> <div class="definition">The power to change or affect others.</div></li>
+                <li><strong>exam</strong> <i class="fas fa-volume-up speaker-icon" data-word="exam"></i> <div class="definition">A formal test of knowledge or ability.</div></li>
+                <li><strong>wisdom</strong> <i class="fas fa-volume-up speaker-icon" data-word="wisdom"></i> <div class="definition">The ability to use knowledge and experience to make good decisions.</div></li>
+                <li><strong>modern</strong> <i class="fas fa-volume-up speaker-icon" data-word="modern"></i> <div class="definition">Relating to the present time, not the past.</div></li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <ol>
+                <li>Who was Confucius, and when did he live?</li>
+                <li>What were the main values that Confucius taught?</li>
+                <li>What is the name of the book that contains his sayings?</li>
+                <li>How did later emperors use Confucianism in government?</li>
+                <li>Why is Confucius still remembered today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        } else {
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

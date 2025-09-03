@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Barack Obama — A Journey of Hope</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General styling and box model */
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        
+        /* Navigation Bar */
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links { display: flex; gap: 1.5rem; }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        
+        /* Headings and Text */
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        h3 { margin: 1rem 0 0.5rem; font-style: italic; }
+        p { line-height: 1.6; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        
+        /* Content Sections */
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        
+        /* Vocabulary List Styling */
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; min-width: 180px;}
+        
+        /* Buttons at the bottom */
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        
+        /* Responsive Design */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li { flex-direction: column; align-items: flex-start; padding: 10px; }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Barack Obama — A Journey of Hope</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>From Student to President</h2>
+            <p>In 2008, history was made in the United States when <strong>Barack Obama</strong> was elected the first African American president. His story is one of determination, education, and belief in change.</p>
+            <p>Barack Obama was born on August 4, 1961, in Honolulu, Hawaii. His father was from Kenya, and his mother was from Kansas in the United States. When he was young, his parents separated, and his mother later remarried. Obama spent part of his childhood in Indonesia before returning to Hawaii to live with his grandparents. Moving between different cultures gave him a broad <em>perspective</em> on the world.</p>
+            <p>As a student, Obama showed curiosity and ambition. He studied at Columbia University and then attended Harvard Law School. At Harvard, he became the first African American president of the Harvard Law Review. Instead of choosing a highly paid job, Obama worked as a <em>community organizer</em> in Chicago, helping neighborhoods fight for better housing, jobs, and schools.</p>
+            <p>In 1996, Obama won a seat in the Illinois State Senate. In 2004, he was elected to the U.S. Senate and gave a powerful speech about unity and hope. By 2008, he ran for president with the campaign slogan “Yes We Can,” inspiring millions of people, especially young voters.</p>
+            <p>As president, Obama faced an <em>economic crisis</em>, wars in Iraq and Afghanistan, and deep divisions in the country. In 2010, he signed the <em>Affordable Care Act</em> (“Obamacare”), which helped millions of Americans get health <em>insurance</em>. In 2011, he ordered the mission that led to the death of Osama bin Laden, a leader behind the September 11 attacks.</p>
+            <p>Obama served two terms, from 2009 to 2017, and won the <em>Nobel Peace Prize</em> in 2009 for his efforts in international <em>diplomacy</em>. After leaving office, he continued to speak, write, and support young leaders. His memoir, <em>A Promised Land</em>, tells the story of his journey and time in the White House.</p>
+            <p>Barack Obama’s story reminds us that education, hard work, and hope can lead to extraordinary achievements. He once said, “The best way to not feel hopeless is to get up and do something.” His life continues to teach lessons about leadership, perseverance, and unity.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>These words will help you understand the story. Tap the speaker to hear each word.</p>
+            <ul>
+                <li>
+                    <strong>determination</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="determination" aria-label="Pronounce determination"></i>
+                    <div class="definition">The quality of not giving up; strong will.</div>
+                </li>
+                <li>
+                    <strong>perspective</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="perspective" aria-label="Pronounce perspective"></i>
+                    <div class="definition">A way of thinking about or understanding something.</div>
+                </li>
+                <li>
+                    <strong>community organizer</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="community organizer" aria-label="Pronounce community organizer"></i>
+                    <div class="definition">A person who helps local people work together to solve problems.</div>
+                </li>
+                <li>
+                    <strong>campaign</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="campaign" aria-label="Pronounce campaign"></i>
+                    <div class="definition">Organized activities to reach a goal, especially to win an election.</div>
+                </li>
+                <li>
+                    <strong>slogan</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="slogan" aria-label="Pronounce slogan"></i>
+                    <div class="definition">A short, memorable phrase used to express an idea.</div>
+                </li>
+                <li>
+                    <strong>economic crisis</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="economic crisis" aria-label="Pronounce economic crisis"></i>
+                    <div class="definition">A time when the economy is very weak and people lose jobs and money.</div>
+                </li>
+                <li>
+                    <strong>Affordable Care Act</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="Affordable Care Act" aria-label="Pronounce Affordable Care Act"></i>
+                    <div class="definition">A U.S. law that expanded access to health insurance.</div>
+                </li>
+                <li>
+                    <strong>insurance</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="insurance" aria-label="Pronounce insurance"></i>
+                    <div class="definition">A system you pay into so that costs are covered if something happens.</div>
+                </li>
+                <li>
+                    <strong>diplomacy</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="diplomacy" aria-label="Pronounce diplomacy"></i>
+                    <div class="definition">Managing relationships between countries through discussion, not war.</div>
+                </li>
+                <li>
+                    <strong>Nobel Peace Prize</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="Nobel Peace Prize" aria-label="Pronounce Nobel Peace Prize"></i>
+                    <div class="definition">A major award given to people who work for peace.</div>
+                </li>
+                <li>
+                    <strong>memoir</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="memoir" aria-label="Pronounce memoir"></i>
+                    <div class="definition">A book someone writes about their own life and experiences.</div>
+                </li>
+                <li>
+                    <strong>unity</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="unity" aria-label="Pronounce unity"></i>
+                    <div class="definition">Being joined together as one group.</div>
+                </li>
+                <li>
+                    <strong>ambition</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="ambition" aria-label="Pronounce ambition"></i>
+                    <div class="definition">A strong desire to succeed.</div>
+                </li>
+                <li>
+                    <strong>reform</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="reform" aria-label="Pronounce reform"></i>
+                    <div class="definition">Changes made to improve a system or law.</div>
+                </li>
+                <li>
+                    <strong>mission</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="mission" aria-label="Pronounce mission"></i>
+                    <div class="definition">A planned operation to achieve a goal.</div>
+                </li>
+                <li>
+                    <strong>perseverance</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="perseverance" aria-label="Pronounce perseverance"></i>
+                    <div class="definition">Continuing to try even when it is difficult.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about Barack Obama’s life and presidency.</p>
+            <ol>
+                <li>Where was Barack Obama born, and how did his childhood in different places shape his perspective?</li>
+                <li>What important achievement did Obama have at Harvard Law School?</li>
+                <li>Why did Obama work as a community organizer instead of taking a high-paying job?</li>
+                <li>What was the message of his 2008 campaign, and why did it inspire many people?</li>
+                <li>Name two major actions or achievements from Obama’s presidency.</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            // Hide the speaker icons if the browser doesn't support the API
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

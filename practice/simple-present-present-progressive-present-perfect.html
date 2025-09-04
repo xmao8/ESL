@@ -1,226 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simple Present, Present Progressive & Present Perfect – Jobs • Travel • Community</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-  <style>
-    * { box-sizing: border-box; }
-    body { font-family:'Segoe UI',sans-serif; background:#f4f4f9; text-align:center; margin:0; padding:0; overflow-x:hidden; }
-    nav { background:#124076; margin:0; padding:0; }
-    .nav-container { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
-    .logo { display:flex; align-items:center; color:#ff9800; font-family:'Poppins',sans-serif; font-weight:700; font-size:1.3rem; text-decoration:none; }
-    .logo-img { width:32px; height:32px; margin-right:0.5rem; }
-    .nav-links { display:flex; gap:1rem; }
-    .nav-links a { color:#fff; font-weight:700; text-decoration:none; transition:color .2s ease; }
-    .nav-links a:hover,.nav-links a:focus{ color:#ffbb33; outline:none; }
-    .menu-toggle{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; }
-    .menu-toggle .bar{ width:25px; height:3px; background:#fff; border-radius:2px; }
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Present · Present Progressive · Present Perfect — Jobs · Travel · Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-    @media (max-width:600px){
-      .nav-links{ position:fixed; top:56px; right:0; background:#124076; flex-direction:column; width:100%; height:calc(100vh - 56px);
-        padding:1rem 1.5rem 2rem; gap:1.2rem; overflow-y:auto; transform:translateX(100%); transition:transform .3s ease; border-radius:0 0 0 10px; z-index:999; align-items:flex-start; }
-      .nav-links.active{ transform:translateX(0); }
-      .menu-toggle{ display:flex; }
-      h1,.content-container,.buttons{ padding:0 1rem; box-sizing:border-box; }
-    }
-    @media (min-width:601px) and (max-width:900px){
-      .nav-container{ padding:0.8rem 1.5rem; }
-      .nav-links{ position:static; flex-direction:row; background:none; height:auto; width:auto; padding:0; gap:1.3rem; transform:none!important; border-radius:0; align-items:center; overflow:visible; }
-      .menu-toggle{ display:none; }
-      h1,.content-container,.buttons{ padding:0 1.5rem; box-sizing:border-box; }
-    }
-    @media (min-width:901px){
-      .nav-container{ max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
-      .nav-links{ position:static; flex-direction:row; background:none; height:auto; width:auto; padding:0; gap:1.5rem; transform:none!important; border-radius:0; align-items:center; overflow:visible; }
-      .menu-toggle{ display:none; }
-      h1,.content-container,.buttons{ padding:0; }
-    }
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%);
+                transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem; border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.05rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.5rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.7rem; }
+        .content-container strong { color: #124076; }
+        .question-item { margin-bottom: 0.9rem; }
+        .question-text { margin: 0; }
+        .inline-feedback { margin-left: 0.5rem; font-style: italic; display: none; }
+        .inline-feedback.correct { color: #27ae60; display: inline; }
+        .inline-feedback.incorrect { color: #c0392b; display: inline; }
+        .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+        button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+        button:hover, .buttons a:hover { background: #2980b9; }
+        .submit-button { background-color: #4CAF50; }
+        .submit-button:hover { background-color: #45a049; }
+        .show-answers { background-color: #f44336; }
+        .show-answers:hover { background-color: #d32f2f; }
+        .reset-button { background-color: #7f8c8d; }
+        .reset-button:hover { background-color: #707b7c; }
+        .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
+        .answers-section h3 { color: #4CAF50; }
+        .answers-section ol { text-align: left; padding-left: 20px; }
+        .answers-section li { margin-bottom: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 0.7rem; }
 
-    h1{ margin:2rem auto 1.5rem; color:#2c3e50; max-width:800px; }
-    .content-container{ background:#fff; width:90%; max-width:800px; margin:2rem auto; padding:2rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.1);
-      text-align:left; line-height:1.6; font-size:1.05rem; }
-    .content-container h2{ color:#3498db; margin-top:1.5rem; margin-bottom:0.8rem; font-size:1.5rem; }
-    .content-container p{ margin-bottom:1rem; }
-    .content-container ol{ list-style-type:decimal; padding-left:20px; margin-bottom:1rem; }
-    .question-item{ margin-bottom:0.9rem; }
-    .inline-feedback{ margin-left:0.5rem; font-style:italic; display:none; }
-    .inline-feedback.correct{ color:#27ae60; display:inline; }
-    .inline-feedback.incorrect{ color:#c0392b; display:inline; }
-    .buttons{ margin:2rem auto 3rem; display:flex; justify-content:center; gap:1rem; max-width:600px; flex-wrap:wrap; }
-    button,.buttons a{ padding:0.6rem 1.2rem; background:#3498db; color:#fff; border:none; border-radius:8px; font-weight:bold; cursor:pointer; text-decoration:none; display:inline-block; user-select:none; }
-    button:hover,.buttons a:hover{ background:#2980b9; }
-    .submit-button{ background:#4CAF50; } .submit-button:hover{ background:#45a049; }
-    .show-answers{ background:#f44336; } .show-answers:hover{ background:#d32f2f; }
-    .reset-button{ background:#7f8c8d; } .reset-button:hover{ background:#707b7c; }
-    .answers-section{ display:none; margin-top:2rem; border-top:2px solid #ccc; padding-top:1rem; }
-    .answers-section h3{ color:#4CAF50; }
-    .answers-section p{ margin:0.5rem 0; }
-
-    .blank-input{
-      display:inline-block; min-width:8ch; max-width:26ch; padding:0.25rem 0.35rem; border:1px solid #ddd; border-radius:6px; font-size:1rem; margin:0 0.25rem; vertical-align:baseline;
-    }
-    .blank-input.correct{ border-color:#27ae60; }
-    .blank-input.incorrect{ border-color:#c0392b; }
-  </style>
+        /* Inline blank inputs */
+        .blank-input {
+            display: inline-block;
+            min-width: 8ch;
+            max-width: 26ch;
+            padding: 0.25rem 0.35rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 0 0.25rem;
+            vertical-align: baseline;
+        }
+        .blank-input.correct { border-color: #27ae60; }
+        .blank-input.incorrect { border-color: #c0392b; }
+    </style>
 </head>
 <body>
 
 <nav aria-label="Main navigation">
-  <div class="nav-container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
-      <span class="site-name">ESLnote</span>
-    </a>
-    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-    <div class="nav-links" id="primary-navigation">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../listening.html">Listening</a>
-      <a href="../practice.html">Practices</a>
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
     </div>
-  </div>
 </nav>
 
-<h1>Simple Present • Present Progressive • Present Perfect — Jobs • Travel • Community</h1>
-
+<h1>Simple Present · Present Progressive · Present Perfect — Jobs · Travel · Community</h1>
 <div class="content-container">
-  <p><strong>Review:</strong> Use the <strong>simple present</strong> for routines/facts, the <strong>present progressive</strong> (<em>am/is/are + -ing</em>) for actions happening now/temporary situations, and the <strong>present perfect</strong> (<em>have/has + V3</em>) for experiences or results up to now.</p>
-  <h2>Fill in the Blanks (20)</h2>
-  <div id="fill-blanks"></div>
+    <p><strong>Review:</strong> Use the <strong>simple present</strong> for habits and facts (<em>she helps</em>), the <strong>present progressive</strong> for actions happening <em>right now</em> (<em>she is helping</em>), and the <strong>present perfect</strong> for life experience or actions that started in the past and continue now (<em>she has helped / has worked</em>).</p>
 
-  <div class="buttons">
-    <button id="submitBtn" class="submit-button">Submit Answers</button>
-    <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
-    <button id="resetBtn" class="reset-button">Reset</button>
-  </div>
-
-  <div id="results" class="answers-section">
-    <h3>Your Results</h3>
-    <p>You got <span id="correctCount">0</span> out of <span id="totalCount">0</span> correct.</p>
-  </div>
+    <h2>Fill in the Blanks</h2>
+    <div id="fill-blanks"></div>
+    <div class="buttons">
+        <button id="submitBtn" class="submit-button">Submit Answers</button>
+        <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
+        <button id="resetBtn" class="reset-button">Reset</button>
+    </div>
+    <div id="results" class="answers-section">
+        <h3>Your Results</h3>
+        <p>You got <span id="correctCount">0</span> out of <span id="totalCount">0</span> correct.</p>
+    </div>
 </div>
 
 <div class="buttons">
-  <a href="../practice.html">← Back to Practice</a>
-  <a href="../index.html">🏠 Home</a>
+    <a href="../practice.html">← Back to Practice</a>
+    <a href="../index.html">🏠 Home</a>
 </div>
-
+        
 <script>
-  // Mobile nav toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
       const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
       menuToggle.setAttribute('aria-expanded', !expanded);
       navLinks.classList.toggle('active');
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
+          if(navLinks.classList.contains('active')) {
+              navLinks.classList.remove('active');
+              menuToggle.setAttribute('aria-expanded', false);
+          }
       });
-    });
-  }
+  });
+}
 
-  // Practice data
-  const norm = s => s.toLowerCase().replace(/\s+/g,' ').replace(/’/g,"'").trim();
-  const fillItems = [
-    { template:"She usually {1} at the library, but today she {2} at the community center. (work / help)", answers:[["works"],["is helping"]] },
-    { template:"I {1} Japan, but I really want to go. (never/visit)", answers:[["have never visited"]] },
-    { template:"My brother {1} to London every summer for work. (travel)", answers:[["travels"]] },
-    { template:"Right now, we {1} plans for the town festival. (discuss)", answers:[["are discussing"]] },
-    { template:"They {1} the project yet; they still need more volunteers. (not/finish)", answers:[["have not finished","haven't finished"]] },
-    { template:"The bus driver usually {1} at 7:30 a.m. (arrive)", answers:[["arrives"]] },
-    { template:"I {1} that new art exhibition downtown. (already/see)", answers:[["have already seen","have seen already"]] },
-    { template:"Look! The children {1} flowers in the park today. (plant)", answers:[["are planting"]] },
-    { template:"She often {1} English to new immigrants in the community. (teach)", answers:[["teaches"]] },
-    { template:"We {1} from our vacation in Mexico. (just/return)", answers:[["have just returned","have returned just"]] },
-    { template:"My father usually {1} dinner, but tonight my mother {2} pasta. (cook / make)", answers:[["cooks"],["is making"]] },
-    { template:"He {1} a job yet, but he keeps applying. (not/find)", answers:[["has not found","hasn't found"]] },
-    { template:"They {1} a trip to Italy right now. (plan)", answers:[["are planning"]] },
-    { template:"She always {1} her neighbors when they need something. (help)", answers:[["helps"]] },
-    { template:"We {1} the bus to work every day. (take)", answers:[["take"]] },
-    { template:"He {1} in an airplane before. (never/fly)", answers:[["has never flown"]] },
-    { template:"Right now, the mayor {1} about the new community center. (talk)", answers:[["is talking"]] },
-    { template:"Our team {1} three championships this year. (already/win)", answers:[["has already won","has won already"]] },
-    { template:"The travel agent usually {1} emails quickly. (answer)", answers:[["answers"]] },
-    { template:"Look! The tourists {1} pictures in front of the museum. (take)", answers:[["are taking"]] }
-  ];
+// Practice logic
+const norm = s => s.toLowerCase().replace(/\s+/g, ' ').replace(/’/g, "'").trim();
+const fillItems = [
+  { template: "She always {1} her coworkers when they are busy. (help)", answers: [["helps"]] },
+  { template: "Right now, the manager {1} to a customer about a complaint. (talk)", answers: [["is talking"]] },
+  { template: "I {1} in this company since 2019. (work)", answers: [["have worked"]] },
+  { template: "They usually {1} the train to work. (take)", answers: [["take"]] },
+  { template: "At the moment, the volunteers {1} food for the community center. (collect)", answers: [["are collecting"]] },
+  { template: "We {1} to Spain twice in our lives. (travel)", answers: [["have traveled","have travelled"]] },
+  { template: "He often {1} his grandmother on Sundays. (visit)", answers: [["visits"]] },
+  { template: "I {1} you at the office this week. (not/see)", answers: [["have not seen","haven't seen"]] },
+  { template: "Right now, she {1} her suitcase for the business trip. (pack)", answers: [["is packing"]] },
+  { template: "Our teacher {1} the rules of grammar very clearly every day. (explain)", answers: [["explains"]] },
+  { template: "I {1} in this town for ten years. (live)", answers: [["have lived"]] },
+  { template: "The children {1} outside while their parents work. (play)", answers: [["play"]] },
+  { template: "My brother {1} on an airplane before. (never/fly)", answers: [["has never flown","hasn't flown"]] },
+  { template: "They usually {1} community events at the park. (organize)", answers: [["organize"]] },
+  { template: "Look! The bus {1} around the corner. (come)", answers: [["is coming"]] },
+  { template: "She {1} her report for today. (already/finish)", answers: [["has already finished","has finished already"]] },
+  { template: "We often {1} lunch together at the office. (eat)", answers: [["eat"]] },
+  { template: "Right now, I {1} an email to the travel agency. (write)", answers: [["am writing"]] },
+  { template: "He {1} a taxi driver for more than 15 years. (be)", answers: [["has been"]] },
+  { template: "Our friends {1} a trip to Italy at the moment. (plan)", answers: [["are planning"]] }
+];
 
-  function renderBlock(containerId, items, group){
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    items.forEach((item,i)=>{
+function renderBlock(containerId, items, group) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  items.forEach((item, i) => {
       let html = item.template;
-      for(let b=1;b<=item.answers.length;b++){
-        const input = `<input type="text" class="blank-input" data-group="${group}" data-i="${i}" data-b="${b-1}" />`;
-        html = html.replace(new RegExp('\\{'+b+'\\}','g'), input);
+      const blanks = item.answers.length;
+      for (let b = 1; b <= blanks; b++) {
+          const input = `<input type="text" class="blank-input" data-group="${group}" data-i="${i}" data-b="${b-1}" />`;
+          html = html.replace(new RegExp('\\{' + b + '\\}', 'g'), input);
       }
-      container.innerHTML += `<div class="question-item"><p>${i+1}. ${html}<span id="fb-${group}-${i}" class="inline-feedback"></span></p></div>`;
-    });
-  }
-
-  function checkGroup(items, group){
-    let correct = 0;
-    items.forEach((item,i)=>{
+      container.innerHTML += `<div class="question-item"><p>${i + 1}. ${html}<span id="fb-${group}-${i}" class="inline-feedback"></span></p></div>`;
+  });
+}
+function checkGroup(items, group) {
+  let correct = 0;
+  items.forEach((item, i) => {
       const fb = document.getElementById(`fb-${group}-${i}`);
       let allCorrect = true;
-      item.answers.forEach((ansArr,b)=>{
-        const inp = document.querySelector(\`input[data-group="${group}"][data-i="${i}"][data-b="${b}"]\`);
-        const ok = ansArr.map(norm).includes(norm(inp.value));
-        inp.classList.remove('correct','incorrect');
-        inp.classList.add(ok ? 'correct' : 'incorrect');
-        if(!ok) allCorrect = false;
+      item.answers.forEach((ansArr, b) => {
+          const inp = document.querySelector(`input[data-group="${group}"][data-i="${i}"][data-b="${b}"]`);
+          const ok = ansArr.map(norm).includes(norm(inp.value));
+          inp.classList.remove('correct','incorrect');
+          inp.classList.add(ok ? 'correct' : 'incorrect');
+          if (!ok) allCorrect = false;
       });
-      if(allCorrect){ correct++; fb.textContent=' ✓'; fb.className='inline-feedback correct'; fb.style.display='inline'; }
-      else { fb.textContent=' ✗'; fb.className='inline-feedback incorrect'; fb.style.display='inline'; }
-    });
-    return correct;
-  }
-
-  const submitBtn = document.getElementById('submitBtn');
-  const showAnswersBtn = document.getElementById('showAnswersBtn');
-  const resultsSection = document.getElementById('results');
-  const correctCountSpan = document.getElementById('correctCount');
-  const totalCountSpan = document.getElementById('totalCount');
-
-  function checkAll(){
-    const correct = checkGroup(fillItems,'fill');
-    correctCountSpan.textContent = correct;
-    totalCountSpan.textContent = fillItems.length;
-    resultsSection.style.display='block';
-    showAnswersBtn.style.display='inline-block';
-    submitBtn.style.display='none';
-  }
-  function toggleAnswers(){
-    const showing = showAnswersBtn.textContent === 'Hide Answers';
-    document.querySelectorAll('.inline-feedback').forEach(el => el.style.display = showing ? 'none' : 'inline');
-    showAnswersBtn.textContent = showing ? 'Show Answers' : 'Hide Answers';
-  }
-  function resetAll(){
-    document.querySelectorAll('.blank-input').forEach(inp => inp.value='');
-    document.querySelectorAll('.inline-feedback').forEach(el => { el.textContent=''; el.style.display='none'; });
-    resultsSection.style.display='none';
-    submitBtn.style.display='inline-block';
-    showAnswersBtn.style.display='none';
-    showAnswersBtn.textContent='Show Answers';
-  }
-
-  renderBlock('fill-blanks', fillItems, 'fill');
-  document.getElementById('submitBtn').addEventListener('click', checkAll);
-  document.getElementById('showAnswersBtn').addEventListener('click', toggleAnswers);
-  document.getElementById('resetBtn').addEventListener('click', resetAll);
+      if (allCorrect) { correct++; fb.textContent = ' ✓'; fb.className = 'inline-feedback correct'; fb.style.display = 'inline'; }
+      else { fb.textContent = ` ✗ (${item.answers.map(a=>a[0]).join(' / ')})`; fb.className = 'inline-feedback incorrect'; fb.style.display = 'inline'; }
+  });
+  return correct;
+}
+const submitBtn = document.getElementById('submitBtn');
+const showAnswersBtn = document.getElementById('showAnswersBtn');
+const resultsSection = document.getElementById('results');
+const correctCountSpan = document.getElementById('correctCount');
+const totalCountSpan = document.getElementById('totalCount');
+function checkAll(){
+  const correctFill = checkGroup(fillItems, 'fill');
+  const total = fillItems.length;
+  correctCountSpan.textContent = correctFill;
+  totalCountSpan.textContent = total;
+  resultsSection.style.display = 'block';
+  showAnswersBtn.style.display = 'inline-block';
+  submitBtn.style.display = 'none';
+}
+function toggleAnswers(){
+  const showing = showAnswersBtn.textContent === 'Hide Answers';
+  document.querySelectorAll('.inline-feedback').forEach(el => el.style.display = showing ? 'none' : 'inline');
+  showAnswersBtn.textContent = showing ? 'Show Answers' : 'Hide Answers';
+}
+function resetAll(){
+  document.querySelectorAll('.blank-input').forEach(inp => { inp.value = ''; inp.classList.remove('correct','incorrect'); });
+  document.querySelectorAll('.inline-feedback').forEach(el => { el.textContent = ''; el.style.display = 'none'; });
+  resultsSection.style.display = 'none';
+  submitBtn.style.display = 'inline-block';
+  showAnswersBtn.style.display = 'none';
+  showAnswersBtn.textContent = 'Show Answers';
+}
+renderBlock('fill-blanks', fillItems, 'fill');
+// Attach handlers
+submitBtn.addEventListener('click', checkAll);
+showAnswersBtn.addEventListener('click', toggleAnswers);
+resetBtn.addEventListener('click', resetAll);
 </script>
 </body>
 </html>

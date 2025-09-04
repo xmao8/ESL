@@ -7,71 +7,67 @@
     <title>Irregular Verbs Worksheet – ESLnote Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f4f4f9;
-            margin: 0; padding: 0; text-align: center;
-        }
+        *{box-sizing:border-box}
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; margin: 0; padding: 0; text-align: center; }
         nav { background: #124076; margin: 0; padding: 0; }
-        .nav-container {
-            display: flex; align-items: center; justify-content: space-between;
-            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
-        }
-        .logo {
-            display: flex; align-items: center; color: #ff9800;
-            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
-            text-decoration: none;
-        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
         .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
         .nav-links { display: flex; gap: 1rem; }
-        .nav-links a { color: white; font-weight: 700; text-decoration: none; }
-        h1 { margin: 2rem auto 1rem auto; color: #2c3e50; }
-
-        .content-container {
-            background: white; width: 90%; max-width: 900px;
-            margin: 2rem auto; padding: 2rem;
-            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: left; font-size: 1.05rem; line-height: 1.6;
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color .2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; }
+        .menu-toggle .bar { width:25px; height:3px; background:#fff; border-radius:2px; }
+        @media (max-width:600px){
+          .menu-toggle{display:flex}
+          .nav-links{ position:fixed; top:56px; right:0; background:#124076; flex-direction:column; width:100%; height:calc(100vh - 56px); padding:1rem 1.5rem 2rem; gap:1.2rem; overflow-y:auto; transform:translateX(100%); transition:transform .3s ease; z-index:999; align-items:flex-start; }
+          .nav-links.active{ transform:translateX(0); }
+          h1,.content-container,.buttons{ padding:0 1rem; box-sizing:border-box; }
         }
+        @media (min-width:601px) and (max-width:900px){
+          .nav-container{ padding:0.8rem 1.5rem; }
+          h1,.content-container,.buttons{ padding:0 1.5rem; box-sizing:border-box; }
+        }
+        h1 { margin: 2rem auto 1rem auto; color: #2c3e50; max-width:900px; }
+        .content-container { background: white; width: 90%; max-width: 900px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; font-size: 1.05rem; line-height: 1.6; }
         .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; }
         .content-container p { margin-bottom: 1rem; }
-        ol { margin-left: 1.2rem; }
+        ol { margin-left: 1.2rem; padding-left:1.2rem; }
         .question { margin-bottom: 1rem; }
-        input[type="text"] {
-            padding: 0.4rem 0.6rem; border: 1px solid #ccc; border-radius: 6px;
-            font-size: 1rem; width: 160px;
-        }
-
-        .buttons { text-align: center; margin-top: 2rem; }
-        .buttons a, .buttons button {
-            padding: 0.6rem 1.2rem; margin: 0.5rem;
-            background: #3498db; color: white; border: none;
-            border-radius: 8px; font-weight: bold; cursor: pointer;
-            text-decoration: none; display: inline-block;
-        }
+        .blank-input { padding: 0.4rem 0.6rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; width: 180px; max-width:100%; }
+        .blank-input.correct { border-color:#2e7d32; }
+        .blank-input.incorrect { border-color:#c62828; }
+        .buttons { text-align: center; margin: 1.5rem auto 2.4rem; display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; }
+        .buttons a, .buttons button { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
         .buttons a:hover, .buttons button:hover { background: #2980b9; }
-
+        .submit-button{ background:#4CAF50; }
+        .reset-button{ background:#7f8c8d; }
         .feedback { margin-left: 0.5rem; font-weight: bold; }
         .correct { color: #2e7d32; }
         .incorrect { color: #c62828; }
+        .explain { display:block; font-size:.92rem; color:#555; margin-top:.25rem; }
+        .score { margin:1rem auto 0; font-weight:700; text-align:center; }
     </style>
 </head>
 <body>
 
 <nav aria-label="Main navigation">
     <div class="nav-container">
-        <a href="../index.html" class="logo">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
             <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
             <span class="site-name">ESLnote</span>
         </a>
-        <div class="nav-links">
-        <a href="../index.html">Home</a>
-        <a href="../flashcards.html">Flashcards</a>
-        <a href="../conversation.html">Conversations</a>
-        <a href="../grammar.html">Grammar</a>
-        <a href="../reading.html">Reading</a>
-        <a href="../listening.html">Listening</a>
-        <a href="../practice.html">Practices</a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+          <a href="../index.html">Home</a>
+          <a href="../flashcards.html">Flashcards</a>
+          <a href="../conversation.html">Conversations</a>
+          <a href="../grammar.html">Grammar</a>
+          <a href="../reading.html">Reading</a>
+          <a href="../listening.html">Listening</a>
+          <a href="../practice.html">Practices</a>
         </div>
     </div>
 </nav>
@@ -83,64 +79,121 @@
 
     <h2>Part A – Past Simple</h2>
     <ol>
-        <li class="question">Yesterday, I <input type="text" data-answer="went"/> (go) to the park.</li>
-        <li class="question">She <input type="text" data-answer="ate"/> (eat) pizza for lunch.</li>
-        <li class="question">We <input type="text" data-answer="saw"/> (see) a rainbow after the storm.</li>
-        <li class="question">They <input type="text" data-answer="took"/> (take) the wrong bus.</li>
-        <li class="question">He <input type="text" data-answer="wrote"/> (write) a letter to his friend.</li>
+        <li class="question">Yesterday, I <input class="blank-input" type="text" data-answers="went"/> (go) to the park.</li>
+        <li class="question">She <input class="blank-input" type="text" data-answers="ate"/> (eat) pizza for lunch.</li>
+        <li class="question">We <input class="blank-input" type="text" data-answers="saw"/> (see) a rainbow after the storm.</li>
+        <li class="question">They <input class="blank-input" type="text" data-answers="took"/> (take) the wrong bus.</li>
+        <li class="question">He <input class="blank-input" type="text" data-answers="wrote"/> (write) a letter to his friend.</li>
     </ol>
 
     <h2>Part B – Past Participle</h2>
     <ol start="6">
-        <li class="question">I have never <input type="text" data-answer="been"/> (be) to Japan.</li>
-        <li class="question">She has <input type="text" data-answer="begun"/> (begin) her new job.</li>
-        <li class="question">The dog has <input type="text" data-answer="broken"/> (break) the toy.</li>
-        <li class="question">We have <input type="text" data-answer="drunk"/> (drink) too much coffee today.</li>
-        <li class="question">They have <input type="text" data-answer="made"/> (make) a big mistake.</li>
+        <li class="question">I have never <input class="blank-input" type="text" data-answers="been"/> (be) to Japan.</li>
+        <li class="question">She has <input class="blank-input" type="text" data-answers="begun"/> (begin) her new job.</li>
+        <li class="question">The dog has <input class="blank-input" type="text" data-answers="broken"/> (break) the toy.</li>
+        <li class="question">We have <input class="blank-input" type="text" data-answers="drunk"/> (drink) too much coffee today.</li>
+        <li class="question">They have <input class="blank-input" type="text" data-answers="made"/> (make) a big mistake.</li>
     </ol>
 
     <h2>Part C – Mixed</h2>
     <ol start="11">
-        <li class="question">He <input type="text" data-answer="bought"/> (buy) a new phone last week.</li>
-        <li class="question">She has <input type="text" data-answer="come"/> (come) back from vacation.</li>
-        <li class="question">I <input type="text" data-answer="did"/> (do) my homework yesterday.</li>
-        <li class="question">We have <input type="text" data-answer="seen"/> (see) that movie already.</li>
-        <li class="question">They <input type="text" data-answer="went"/> (go) to London last summer.</li>
-        <li class="question">She has <input type="text" data-answer="taken"/> (take) some photos.</li>
-        <li class="question">He <input type="text" data-answer="drank"/> (drink) milk with breakfast this morning.</li>
-        <li class="question">I have <input type="text" data-answer="written"/> (write) three emails today.</li>
-        <li class="question">We <input type="text" data-answer="had"/> (have) a great time at the party.</li>
-        <li class="question">They have <input type="text" data-answer="eaten"/> (eat) all the cookies.</li>
+        <li class="question">He <input class="blank-input" type="text" data-answers="bought"/> (buy) a new phone last week.</li>
+        <li class="question">She has <input class="blank-input" type="text" data-answers="come"/> (come) back from vacation.</li>
+        <li class="question">I <input class="blank-input" type="text" data-answers="did"/> (do) my homework yesterday.</li>
+        <li class="question">We have <input class="blank-input" type="text" data-answers="seen"/> (see) that movie already.</li>
+        <li class="question">They <input class="blank-input" type="text" data-answers="went"/> (go) to London last summer.</li>
+        <li class="question">She has <input class="blank-input" type="text" data-answers="taken"/> (take) some photos.</li>
+        <li class="question">He <input class="blank-input" type="text" data-answers="drank"/> (drink) milk with breakfast this morning.</li>
+        <li class="question">I have <input class="blank-input" type="text" data-answers="written"/> (write) three emails today.</li>
+        <li class="question">We <input class="blank-input" type="text" data-answers="had"/> (have) a great time at the party.</li>
+        <li class="question">They have <input class="blank-input" type="text" data-answers="eaten"/> (eat) all the cookies.</li>
     </ol>
+
+    <div id="overallScore" class="score" aria-live="polite"></div>
 </div>
 
 <div class="buttons">
-    <button id="checkBtn">Check Answers</button>
+    <button id="checkBtn" class="submit-button">Check Answers</button>
+    <button id="resetBtn" class="reset-button" type="button">Reset</button>
     <a href="../practice.html">← Back to Practice</a>
     <a href="../index.html">🏠 Home</a>
 </div>
 
 <script>
-    document.getElementById('checkBtn').addEventListener('click', () => {
-        const inputs = document.querySelectorAll('input[type="text"]');
-        inputs.forEach(input => {
-            const answer = input.getAttribute('data-answer');
-            const val = input.value.trim().toLowerCase();
-            let fb = input.nextElementSibling;
-            if (!fb || !fb.classList.contains('feedback')) {
-                fb = document.createElement('span');
-                fb.classList.add('feedback');
-                input.after(fb);
-            }
-            if (val === answer) {
-                fb.textContent = ' ✓';
-                fb.className = 'feedback correct';
-            } else {
-                fb.textContent = ' ✗';
-                fb.className = 'feedback incorrect';
-            }
-        });
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if(menuToggle && navLinks){
+  menuToggle.addEventListener('click', ()=>{
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      if(navLinks.classList.contains('active')){
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
     });
+  });
+}
+
+function normalize(s){ return s.trim().toLowerCase().replace(/\s+/g,' '); }
+function parseAnswers(attr){ return attr.split(',').map(a => normalize(a)); }
+
+function checkAll(){
+  const inputs = document.querySelectorAll('input[type="text"]');
+  let firstWrong = null; let correctCount = 0;
+
+  inputs.forEach(input => {
+    const accepted = parseAnswers(input.getAttribute('data-answers'));
+    const val = normalize(input.value);
+
+    let fb = input.nextElementSibling;
+    if (!fb || !fb.classList.contains('feedback')) {
+      fb = document.createElement('span');
+      fb.classList.add('feedback');
+      input.after(fb);
+    }
+    let expl = fb.nextElementSibling;
+    if (expl && expl.classList && expl.classList.contains('explain')) expl.remove();
+
+    if (accepted.includes(val)) {
+      fb.textContent = ' ✓';
+      fb.className = 'feedback correct';
+      input.classList.remove('incorrect');
+      input.classList.add('correct');
+      correctCount++;
+    } else {
+      fb.textContent = ' ✗';
+      fb.className = 'feedback incorrect';
+      input.classList.remove('correct');
+      input.classList.add('incorrect');
+      if (!firstWrong) firstWrong = input;
+      const hint = document.createElement('small');
+      hint.className = 'explain';
+      const pretty = accepted.map(a => `“${a}”`).join(' or ');
+      hint.innerHTML = `Hint: Try ${pretty}.`;
+      fb.after(hint);
+    }
+  });
+
+  if (firstWrong) { firstWrong.scrollIntoView({ behavior: 'smooth', block: 'center' }); firstWrong.focus(); }
+
+  const score = document.getElementById('overallScore');
+  score.textContent = `Score: ${correctCount}/20`;
+  score.style.color = (correctCount===20? '#2e7d32' : '#c62828');
+}
+
+document.getElementById('checkBtn').addEventListener('click', checkAll);
+document.getElementById('resetBtn').addEventListener('click', () => {
+  document.querySelectorAll('input[type="text"]').forEach(i => { i.value=''; i.classList.remove('correct','incorrect'); });
+  document.querySelectorAll('.feedback').forEach(el => el.remove());
+  document.querySelectorAll('.explain').forEach(el => el.remove());
+  const score = document.getElementById('overallScore');
+  score.textContent = '';
+});
 </script>
 
 </body>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jobs Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Jobs Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "employee", ipa: "/ɛmˈplɔɪ.iː/", definition: "A person who works for a company or person.", example: "Each employee must complete the safety training.", chinese: "雇员", spanish: "empleado/a" },
+  { word: "employer", ipa: "/ɛmˈplɔɪ.ər/", definition: "A person or company that hires workers.", example: "The employer offers health insurance.", chinese: "雇主", spanish: "empleador/a" },
+  { word: "career", ipa: "/kəˈrɪər/", definition: "A long-term job path in one field.", example: "She is building a career in healthcare.", chinese: "职业生涯", spanish: "carrera profesional" },
+  { word: "occupation", ipa: "/ˌɒk.jʊˈpeɪ.ʃən/", definition: "A person’s job or type of work.", example: "Please write your occupation on the form.", chinese: "职业", spanish: "ocupación" },
+  { word: "profession", ipa: "/prəˈfɛʃ.ən/", definition: "A job that needs special training or education.", example: "Teaching is a respected profession.", chinese: "专业；职业", spanish: "profesión" },
+  { word: "position", ipa: "/pəˈzɪʃ.ən/", definition: "A specific job role at a company.", example: "She applied for the position of project coordinator.", chinese: "职位", spanish: "puesto" },
+  { word: "interview", ipa: "/ˈɪn.tə.vjuː/", definition: "A meeting to decide if you are right for a job.", example: "He prepared carefully for the interview.", chinese: "面试", spanish: "entrevista" },
+  { word: "resume", ipa: "/ˈrɛz.jʊ.meɪ/ (US) /CV/", definition: "A document listing your education and experience.", example: "Update your resume before applying.", chinese: "简历", spanish: "currículum (CV)" },
+  { word: "salary", ipa: "/ˈsæl.ər.i/", definition: "Money paid to an employee each month or year.", example: "The job offers a competitive salary.", chinese: "薪水", spanish: "salario" },
+  { word: "wage", ipa: "/weɪdʒ/", definition: "Money paid by the hour or day.", example: "The wage for this role starts at $18 per hour.", chinese: "工资（时薪/日薪）", spanish: "salario/hora" },
+  { word: "full-time", ipa: "/ˈfʊl taɪm/", definition: "Working about 35–40 hours each week.", example: "She works full-time at the hospital.", chinese: "全职", spanish: "tiempo completo" },
+  { word: "part-time", ipa: "/ˈpɑːt taɪm/", definition: "Working fewer hours than full-time.", example: "He has a part-time job on weekends.", chinese: "兼职", spanish: "medio tiempo/tiempo parcial" },
+  { word: "overtime", ipa: "/ˈoʊ.vər.taɪm/", definition: "Extra hours worked beyond normal time.", example: "We get paid overtime for night shifts.", chinese: "加班时间", spanish: "horas extra" },
+  { word: "shift", ipa: "/ʃɪft/", definition: "A scheduled block of working hours.", example: "My shift starts at 7 a.m.", chinese: "班次；轮班", spanish: "turno" },
+  { word: "promotion", ipa: "/prəˈmoʊ.ʃən/", definition: "Moving to a higher position.", example: "She earned a promotion after a successful year.", chinese: "晋升", spanish: "ascenso" },
+  { word: "demotion", ipa: "/dɪˈmoʊ.ʃən/", definition: "Moving to a lower position.", example: "Repeated lateness can lead to demotion.", chinese: "降职", spanish: "degradación" },
+  { word: "training", ipa: "/ˈtreɪ.nɪŋ/", definition: "Activities that teach how to do a job.", example: "New hires attend training in their first week.", chinese: "培训", spanish: "formación/capacitación" },
+  { word: "skills", ipa: "/skɪlz/", definition: "Abilities you can use at work.", example: "Communication and time management are key skills.", chinese: "技能", spanish: "habilidades" },
+  { word: "experience", ipa: "/ɪkˈspɪə.ri.əns/", definition: "Knowledge from doing something over time.", example: "They want two years of experience.", chinese: "经验", spanish: "experiencia" },
+  { word: "qualification", ipa: "/ˌkwɒ.lɪ.fɪˈkeɪ.ʃən/", definition: "Education, certificates, or skills for a job.", example: "A driver’s license is a qualification for this role.", chinese: "资格；资历", spanish: "cualificación" },
+  { word: "apprentice", ipa: "/əˈprɛn.tɪs/", definition: "A worker who learns a trade from a master.", example: "She is an apprentice electrician.", chinese: "学徒", spanish: "aprendiz" },
+  { word: "intern", ipa: "/ˈɪn.tɜːrn/", definition: "A student/trainee who works to gain experience.", example: "The company hired five summer interns.", chinese: "实习生", spanish: "interno/a; pasante" },
+  { word: "manager", ipa: "/ˈmæn.ɪ.dʒər/", definition: "A person who leads a team or department.", example: "Ask your manager for approval.", chinese: "经理", spanish: "gerente" },
+  { word: "supervisor", ipa: "/ˈsuː.pər.vaɪ.zər/", definition: "A person who oversees work and workers.", example: "The supervisor checked our progress.", chinese: "主管；监督人", spanish: "supervisor/a" },
+  { word: "colleague", ipa: "/ˈkɒl.iːɡ/", definition: "A person you work with.", example: "My colleagues are very supportive.", chinese: "同事", spanish: "compañero/a de trabajo" },
+  { word: "teamwork", ipa: "/ˈtiːm.wɜːrk/", definition: "Working well with others.", example: "Good teamwork improves results.", chinese: "团队合作", spanish: "trabajo en equipo" },
+  { word: "responsibility", ipa: "/rɪˌspɒn.səˈbɪl.ə.ti/", definition: "Something you must do or take care of.", example: "Customer safety is our responsibility.", chinese: "责任", spanish: "responsabilidad" },
+  { word: "opportunity", ipa: "/ˌɒp.əˈtjuː.nɪ.ti/", definition: "A good chance to do something.", example: "This job is an opportunity to learn new skills.", chinese: "机会", spanish: "oportunidad" },
+  { word: "job market", ipa: "/dʒɒb ˈmɑːr.kɪt/", definition: "The number of available jobs and workers.", example: "The job market is strong for nurses.", chinese: "就业市场", spanish: "mercado laboral" },
+  { word: "retirement", ipa: "/rɪˈtaɪə(r)mənt/", definition: "The time when you stop working permanently.", example: "He saved money for retirement.", chinese: "退休", spanish: "jubilación" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

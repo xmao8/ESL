@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Present Tenses Challenge – ESLnote Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Universal Box-Sizing */
+        * { box-sizing: border-box; }
+
+        /* PAGE SETUP */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        main { flex: 1; padding: 2rem 1rem; }
+        a { text-decoration: none; color: inherit; }
+        h1, h2, h3 {
+            color: #124076;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* NAVBAR (same style as example) */
+        nav { background-color: #124076; width: 100%; padding: 0.8rem 1rem; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; text-decoration: none; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800;
+            font-weight: 700; white-space: nowrap;
+        }
+        .nav-container .nav-links { display: flex; gap: 1.5rem; }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold; transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover, .nav-container .nav-links a:focus {
+            color: #ffbb33; text-decoration: underline; outline: none;
+        }
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none; border: none;
+            cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+        /* CONTAINER */
+        .game-container {
+            max-width: 1050px;
+            margin: 2rem auto 3rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .game-container h1 {
+            font-size: 2.8rem; margin: 0 0 2rem; color: #124076; text-align: center; letter-spacing: 1px;
+        }
+        #scores {
+            display: flex; justify-content: center; gap: 4rem; font-size: 1.6rem;
+            margin-bottom: 2rem; font-weight: bold; color: #2c3e50;
+        }
+
+        /* BOARD */
+        .board {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 10px; padding: 15px; background: #e0e7ed; border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+        .cell {
+            background: #124076; border: 1px solid #0d9ddb; padding: 20px; font-size: 1.8rem;
+            min-height: 120px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; text-align: center; color: white; font-weight: bold;
+            border-radius: 6px; transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cell:hover:not(.disabled):not(.category) {
+            background: #0d9ddb; transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .cell.disabled {
+            background: #95a5a6; color: #e0e7ed; pointer-events: none; box-shadow: inset 0 0 8px rgba(0,0,0,0.2); cursor: default;
+        }
+        .category {
+            background: #2c3e50; font-weight: bold; color: white; font-size: 1.2rem;
+            text-transform: uppercase; letter-spacing: 0.5px; padding: 10px;
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 1000;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: white; color: #333; padding: 2rem 2rem 2.2rem; max-width: 700px;
+            border-radius: 12px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease-out; border: 1px solid #ddd;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.8rem; }
+        .modal-title { font-size: 1.8rem; color: #124076; margin: 0; font-family: 'Poppins', sans-serif; }
+        .modal-points { font-weight: 700; color: #2c3e50; }
+        .modal-body { margin-top: 0.5rem; }
+        .question-text { font-size: 1.15rem; line-height: 1.55; margin-bottom: 1rem; }
+        .options { margin: 0.8rem 0 0.6rem; display: grid; gap: 0.5rem; }
+        .options label { display: flex; align-items: flex-start; gap: 0.5rem; }
+        .fib-input { width: 100%; padding: 0.75rem 0.9rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 8px; }
+        .feedback { margin-top: 0.6rem; font-weight: 700; }
+        .feedback.correct { color: #1e7e34; }
+        .feedback.incorrect { color: #c0392b; }
+        .answer-reveal { margin-top: 0.2rem; font-size: 0.95rem; color: #124076; }
+
+        .modal-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+        .modal-content button {
+            padding: 12px 22px; font-size: 1rem; cursor: pointer; border: none; border-radius: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2); font-weight: bold;
+        }
+        .modal-content button:hover { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.3); }
+
+        /* Button colors */
+        .btn-primary { background-color: #ff9800; color: white; }
+        .btn-primary:hover { background-color: #e68900; }
+        .btn-green { background-color: #28a745; color: white; }
+        .btn-green:hover { background-color: #218838; }
+        .btn-blue { background-color: #007bff; color: white; }
+        .btn-blue:hover { background-color: #0056b3; }
+        .btn-gray { background-color: #6c757d; color: white; }
+        .btn-gray:hover { background-color: #5a6268; }
+
+        /* Responsive (mirrors your example) */
+        @media (min-width: 601px) and (max-width: 991px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-container .nav-links { gap: 1.2rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .game-container { padding: 2rem; margin: 1.8rem auto 2.5rem; }
+            .game-container h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+            #scores { font-size: 1.5rem; gap: 3rem; }
+            .cell { font-size: 1.6rem; min-height: 100px; padding: 15px; }
+            .category { font-size: 1.1rem; }
+            .modal-content { padding: 1.7rem; max-width: 640px; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { padding: 0.6rem 0.8rem; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .menu-toggle { display: flex; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%;
+                height: calc(100vh - 56px); padding: 1.5rem; gap: 1rem; overflow-y: auto; transform: translateX(100%);
+                transition: transform 0.3s ease-out; z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
+            .game-container { padding: 1rem; margin: 1.5rem auto; }
+            .game-container h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+            #scores { font-size: 1.3rem; gap: 2rem; margin-bottom: 1.5rem; }
+            .board { gap: 5px; padding: 8px; }
+            .cell { font-size: 1.3rem; min-height: 80px; padding: 10px; }
+            .category { font-size: 0.95rem; }
+            .modal-content { padding: 1.2rem; max-width: 92%; }
+            .modal-title { font-size: 1.4rem; }
+            .modal-content button { padding: 10px 15px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu" id="menuToggle">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="game-container">
+        <h1>Present Tenses Challenge (Beginner–High)</h1>
+        <div id="scores">
+            <div>Team A: <span id="scoreA">0</span></div>
+            <div>Team B: <span id="scoreB">0</span></div>
+        </div>
+
+        <div class="board" id="board"></div>
+
+        <!-- MODAL -->
+        <div class="modal" id="modal">
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle">Question</h2>
+                    <div class="modal-points" id="modalPoints"></div>
+                </div>
+                <div class="modal-body">
+                    <div id="questionText" class="question-text"></div>
+
+                    <!-- Multiple Choice -->
+                    <div id="mcBlock" style="display:none;" class="options"></div>
+
+                    <!-- Fill in the blank -->
+                    <div id="fibBlock" style="display:none;">
+                        <input id="fibInput" class="fib-input" type="text" placeholder="Type your answer here…" autocomplete="off">
+                    </div>
+
+                    <div id="feedback" class="feedback" aria-live="polite"></div>
+                    <div id="answerReveal" class="answer-reveal" style="display:none;"></div>
+
+                    <div class="modal-actions">
+                        <button class="btn-primary" id="checkBtn">Check Answer</button>
+                        <button class="btn-primary" id="showBtn">Show Answer</button>
+                        <button class="btn-green" id="teamABtn">Team A Correct</button>
+                        <button class="btn-blue" id="teamBBtn">Team B Correct</button>
+                        <button class="btn-gray" id="closeBtn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <audio id="clickSound" src="click.mp3"></audio>
+    <audio id="correctSound" src="correct.mp3"></audio>
+
+    <script>
+        /* --------------------------
+           Categories and Questions
+           -------------------------- */
+        const categories = [
+            "Present Simple",
+            "Present Continuous",
+            "Present Perfect",
+            "Mixed – Multiple Choice",
+            "Mixed – Fill in"
+        ];
+
+        // Each entry is { type: 'mc'|'fib', prompt, points, options?, correctIndex?, answers? (array of acceptable strings), explanation? }
+        const questions = {
+            "Present Simple": [
+                { type: 'fib', points: 100, prompt: "Complete: She ___ (go) to school every day.", answers: ["goes"], explanation: "3rd person singular takes -s/-es: goes." },
+                { type: 'mc', points: 200, prompt: "Choose the correct sentence.", options: ["She go to work.", "She goes to work.", "She going to work."], correctIndex: 1, explanation: "Present simple with 3rd person singular: goes." },
+                { type: 'fib', points: 300, prompt: "Make it negative: I ___ ___ (not like) coffee.", answers: ["do not like", "don't like"], explanation: "Use do not / don't + base verb." },
+                { type: 'mc', points: 400, prompt: "Where should the adverb go? \"I ___ drink tea.\" (often)", options: ["I often drink tea.", "I drink often tea.", "I drink tea oftenly."], correctIndex: 0, explanation: "Frequency adverbs usually go before the main verb." },
+                { type: 'fib', points: 500, prompt: "Make a question: ___ you ___ (speak) Spanish?", answers: ["do you speak"], explanation: "Use Do + subject + base verb for questions." },
+            ],
+            "Present Continuous": [
+                { type: 'fib', points: 100, prompt: "Complete: They ___ (play) soccer now.", answers: ["are playing"], explanation: "Be + verb-ing for actions happening now." },
+                { type: 'mc', points: 200, prompt: "Which sentence describes an action happening right now?", options: ["She cooks dinner every day.", "She is cooking dinner.", "She cooked dinner yesterday."], correctIndex: 1, explanation: "Present continuous shows action in progress now." },
+                { type: 'fib', points: 300, prompt: "Make it negative: He ___ ___ (not study) at the moment.", answers: ["is not studying", "isn't studying"], explanation: "Be (is) + not + verb-ing." },
+                { type: 'mc', points: 400, prompt: "Which sentence shows a future plan using present continuous?", options: ["I meet my friend yesterday.", "I'm meeting my friend tomorrow.", "I met my friend tomorrow."], correctIndex: 1, explanation: "Present continuous can express arranged future plans." },
+                { type: 'fib', points: 500, prompt: "Question word order: What ___ you ___ (do)?", answers: ["are you doing"], explanation: "Question: Wh- + be + subject + verb-ing." },
+            ],
+            "Present Perfect": [
+                { type: 'fib', points: 100, prompt: "Complete: She ___ (live) here since 2018.", answers: ["has lived"], explanation: "Have/has + past participle for unfinished time up to now." },
+                { type: 'mc', points: 200, prompt: "Choose the best use of 'ever/never'.", options: ["Have you ever been to Japan?", "Did you ever went to Japan?", "I never have saw Japan."], correctIndex: 0, explanation: "Present perfect: have/has + past participle; 'ever' in questions." },
+                { type: 'fib', points: 300, prompt: "Complete: I ___ just ___ (finish) my homework.", answers: ["have just finished"], explanation: "Adverbs like 'just' go between have/has and the past participle." },
+                { type: 'mc', points: 400, prompt: "Choose the correct 'for/since' usage.", options: ["I've lived here for 2018.", "I've lived here since two years.", "I've lived here for two years."], correctIndex: 2, explanation: "Use 'for' + period; 'since' + point in time." },
+                { type: 'fib', points: 500, prompt: "Question: ___ you ever ___ (try) sushi?", answers: ["have you ever tried"], explanation: "Have/has + subject + ever + past participle." },
+            ],
+            "Mixed – Multiple Choice": [
+                { type: 'mc', points: 100, prompt: "Choose the correct tense: \"Listen! The baby ___ .\"", options: ["cries", "is crying", "has cried"], correctIndex: 1, explanation: "An action happening now → present continuous." },
+                { type: 'mc', points: 200, prompt: "Choose the correct sentence.", options: ["He don't like tea.", "He doesn't like tea.", "He isn't like tea."], correctIndex: 1, explanation: "Present simple negative with do/does + not + base." },
+                { type: 'mc', points: 300, prompt: "Best option for experience up to now:", options: ["I am seeing that movie.", "I have seen that movie.", "I see that movie yesterday."], correctIndex: 1, explanation: "Present perfect for life experience." },
+                { type: 'mc', points: 400, prompt: "Choose the correct question.", options: ["Do you are hungry?", "Are you hungry?", "Have you are hungry?"], correctIndex: 1, explanation: "Be-verb questions invert subject and 'be'." },
+                { type: 'mc', points: 500, prompt: "Choose the natural sentence.", options: ["I've known her since years.", "I know her since 2019.", "I've known her since 2019."], correctIndex: 2, explanation: "Present perfect + since + point in time." },
+            ],
+            "Mixed – Fill in": [
+                { type: 'fib', points: 100, prompt: "Complete: We ___ (not work) on Sundays.", answers: ["do not work", "don't work"], explanation: "Present simple negative." },
+                { type: 'fib', points: 200, prompt: "Complete: The dog ___ (bark) right now.", answers: ["is barking"], explanation: "Action in progress → present continuous." },
+                { type: 'fib', points: 300, prompt: "Complete: She ___ already ___ (finish) the task.", answers: ["has already finished"], explanation: "'Already' typically after has/have." },
+                { type: 'fib', points: 400, prompt: "Complete: Why ___ he ___ (wear) a coat? It's hot!", answers: ["is he wearing"], explanation: "Question with present continuous." },
+                { type: 'fib', points: 500, prompt: "Complete: They ___ (go) to the gym every morning.", answers: ["go"], explanation: "Habit → present simple base form with 'they'." },
+            ],
+        };
+
+        /* --------------------------
+           State and Elements
+           -------------------------- */
+        let scoreA = 0, scoreB = 0;
+        let currentCell = null;
+        let currentQ = null;
+
+        const board = document.getElementById('board');
+        const modal = document.getElementById('modal');
+        const clickSound = document.getElementById('clickSound');
+        const correctSound = document.getElementById('correctSound');
+
+        const scoreAEl = document.getElementById('scoreA');
+        const scoreBEl = document.getElementById('scoreB');
+
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPoints = document.getElementById('modalPoints');
+        const questionText = document.getElementById('questionText');
+        const mcBlock = document.getElementById('mcBlock');
+        const fibBlock = document.getElementById('fibBlock');
+        const fibInput = document.getElementById('fibInput');
+        const feedback = document.getElementById('feedback');
+        const answerReveal = document.getElementById('answerReveal');
+
+        const checkBtn = document.getElementById('checkBtn');
+        const showBtn = document.getElementById('showBtn');
+        const teamABtn = document.getElementById('teamABtn');
+        const teamBBtn = document.getElementById('teamBBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        /* --------------------------
+           Build Board
+           -------------------------- */
+        board.innerHTML = '';
+        // Category headers
+        categories.forEach(cat => {
+            const cell = document.createElement('div');
+            cell.className = 'cell category';
+            cell.textContent = cat;
+            board.appendChild(cell);
+        });
+
+        // 5 rows of questions
+        for (let row = 0; row < 5; row++) {
+            categories.forEach(cat => {
+                const q = questions[cat][row];
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.textContent = q.points;
+                cell.dataset.category = cat;
+                cell.dataset.row = row;
+                cell.dataset.value = q.points;
+
+                cell.addEventListener('click', () => {
+                    if (cell.classList.contains('disabled')) return;
+                    if (clickSound) clickSound.play();
+                    currentCell = cell;
+                    currentQ = q;
+                    openModal(q, cat);
+                });
+
+                board.appendChild(cell);
+            });
+        }
+
+        /* --------------------------
+           Modal Control
+           -------------------------- */
+        function openModal(q, category) {
+            modal.classList.add('show');
+            modalTitle.textContent = `${category}`;
+            modalPoints.textContent = `${q.points} pts`;
+            questionText.textContent = q.prompt;
+            feedback.textContent

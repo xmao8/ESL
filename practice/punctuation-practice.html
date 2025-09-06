@@ -4,20 +4,18 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Punctuation Practice — Rewrite the Paragraph | ESLnote</title>
+  <title>Punctuation Practice — Fill in the Blanks | ESLnote</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* Base layout */
-    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
-      margin: 0; padding: 0; overflow-x: hidden; color: #333; text-align: center;
+      margin: 0; padding: 0; color: #333; line-height: 1.7;
     }
     nav { background: #124076; }
     .nav-container {
       display: flex; align-items: center; justify-content: space-between;
-      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+      max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
     }
     .logo {
       display: flex; align-items: center; color: #ff9800;
@@ -25,102 +23,39 @@
     }
     .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
     .nav-links { display: flex; gap: 1rem; }
-    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
-    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
-    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
-    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
-
-    /* Responsive nav */
-    @media (max-width: 600px) {
-      .nav-links {
-        position: fixed; top: 56px; right: 0; background: #124076;
-        flex-direction: column; width: 100%; height: calc(100vh - 56px);
-        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
-        transform: translateX(100%); transition: transform 0.3s ease;
-        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
-      }
-      .nav-links.active { transform: translateX(0); }
-      .menu-toggle { display: flex; }
-      h1, .container, .buttons { padding: 0 1rem; }
-    }
-    @media (min-width: 601px) and (max-width: 900px) {
-      .nav-container { padding: 0.8rem 1.5rem; }
-      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
-      .menu-toggle { display: none; }
-      h1, .container, .buttons { padding: 0 1.5rem; }
-    }
-
-    /* Page content */
-    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; }
+    h1 { text-align: center; margin: 2rem auto 1rem; color: #2c3e50; }
     .container {
-      background: white; width: 90%; max-width: 900px; margin: 2rem auto; padding: 2rem;
-      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left;
+      background: #fff; max-width: 900px; margin: 1.5rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    .intro {
-      background: #f8fbff; border-left: 4px solid #3498db;
-      padding: 1rem 1.2rem; border-radius: 8px; line-height: 1.6;
-    }
-    .prompt {
-      margin: 1.2rem 0 0.6rem; color: #124076; font-weight: 700;
-    }
-    .source {
-      background: #fff; border: 1px dashed #cfd8dc; border-radius: 8px; padding: 1rem;
-      line-height: 1.65; font-size: 1.05rem;
-    }
-    .label {
-      display: inline-block; font-size: 0.9rem; color: #666; margin-top: 0.4rem;
-    }
-    textarea {
-      width: 100%; min-height: 220px; resize: vertical; margin-top: 0.5rem;
-      padding: 0.8rem 0.9rem; border: 1px solid #cfd8dc; border-radius: 10px; font-size: 1.02rem; line-height: 1.6;
+    .prompt { margin-bottom: 1rem; font-weight: bold; }
+    input.blank {
+      width: 2ch; text-align: center; border: 1px solid #ccc;
+      border-radius: 4px; font-size: 1rem; margin: 0 2px; padding: 2px;
     }
     .buttons {
-      margin: 1.5rem auto 0; display: flex; gap: 0.8rem; justify-content: flex-start; flex-wrap: wrap;
+      margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;
     }
-    button, .link-btn {
-      padding: 0.6rem 1.1rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; color: white; text-decoration: none;
-    }
-    .btn-show { background: #f44336; }
-    .btn-show:hover { background: #d32f2f; }
-    .btn-copy { background: #3498db; }
-    .btn-copy:hover { background: #2980b9; }
-    .btn-clear { background: #7f8c8d; }
-    .btn-clear:hover { background: #707b7c; }
-
-    details {
-      margin-top: 1rem; border-top: 1px solid #e6e6e6; padding-top: 0.8rem;
-    }
-    summary { font-weight: 700; color: #2e7d32; cursor: pointer; }
-    .answer {
-      background: #e8f5e9; border-left: 4px solid #4caf50; padding: 0.9rem 1rem; border-radius: 8px; margin-top: 0.6rem; line-height: 1.7;
-    }
-
-    /* Footer buttons row */
-    .footer-buttons {
-      margin: 2rem auto 3rem; display: flex; justify-content: center; gap: 1rem; max-width: 620px;
-    }
-    .footer-buttons a {
+    button, .buttons a {
       padding: 0.6rem 1.2rem; background: #3498db; color: white;
       border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
-      text-decoration: none; display: inline-block; user-select: none;
+      text-decoration: none;
     }
-    .footer-buttons a:hover { background: #2980b9; }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .answer { display: none; background: #e8f5e9; border-left: 4px solid #4caf50;
+      padding: 1rem; margin-top: 1rem; border-radius: 6px; }
   </style>
 </head>
 <body>
 
-<nav aria-label="Main navigation">
+<nav>
   <div class="nav-container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+    <a href="../index.html" class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
       <span class="site-name">ESLnote</span>
     </a>
-
-    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-
-    <div class="nav-links" id="primary-navigation">
+    <div class="nav-links">
       <a href="../index.html">Home</a>
       <a href="../flashcards.html">Flashcards</a>
       <a href="../conversation.html">Conversations</a>
@@ -132,91 +67,54 @@
   </div>
 </nav>
 
-<h1>Punctuation Practice — Rewrite the Paragraph</h1>
+<h1>Punctuation Practice — Fill in the Blanks</h1>
 
-<div class="container" role="main">
-  <div class="intro">
-    <strong>Instructions:</strong> Rewrite the paragraph with correct punctuation and capitalization.
-    Add periods, commas, apostrophes, quotation marks, question marks, exclamation marks, and capital letters where needed.
-  </div>
+<div class="container">
+  <p class="prompt">Add punctuation marks into the blanks below:</p>
 
-  <p class="prompt">Unpunctuated paragraph (reference):</p>
-  <div class="source" aria-label="Unpunctuated source paragraph">
-    last saturday my friend anna invited me to her house for dinner she said would you like to come at seven oclock i was very excited because anna is a great cook when i arrived she welcomed me warmly and said im so glad you came we had pasta salad and bread for dinner everything was delicious after dinner we watched a movie called the secret garden it was really good i asked anna have you seen it before she laughed and answered yes but i still love it we finished the evening with coffee and cake what a wonderful night
-    <div class="label">≈ 100 words · no punctuation or capitalization</div>
-  </div>
-
-  <p class="prompt" style="margin-top:1.2rem;">Your rewrite (add punctuation & capitals):</p>
-  <label for="studentText" class="sr-only" style="position:absolute;left:-9999px;">Type your correctly punctuated version</label>
-  <textarea id="studentText" placeholder="Type your corrected paragraph here…"></textarea>
+  <p>
+    Last Saturday<input class="blank" /> my friend Anna invited me to her house for dinner<input class="blank" />
+    She said<input class="blank" />Would you like to come at seven o’clock<input class="blank" />
+    I was very excited because Anna is a great cook<input class="blank" />
+    When I arrived<input class="blank" /> she welcomed me warmly and said<input class="blank" />I’m so glad you came<input class="blank" />
+    We had pasta<input class="blank" /> salad<input class="blank" /> and bread for dinner<input class="blank" /> everything was delicious<input class="blank" />
+    After dinner<input class="blank" /> we watched a movie called <em>The Secret Garden</em><input class="blank" />
+    It was really good<input class="blank" />
+    I asked Anna<input class="blank" />Have you seen it before<input class="blank" />
+    She laughed and answered<input class="blank" />Yes<input class="blank" /> but I still love it<input class="blank" />
+    We finished the evening with coffee and cake<input class="blank" />
+    What a wonderful night<input class="blank" />
+  </p>
 
   <div class="buttons">
-    <button class="btn-copy" id="copySourceBtn" type="button" title="Copy the source into the box so you can edit it">Copy Source into Box</button>
-    <button class="btn-clear" id="clearBtn" type="button">Clear</button>
-    <button class="btn-show" id="toggleAnswerBtn" type="button" aria-expanded="false" aria-controls="answerKey">Show Suggested Answer</button>
+    <button id="toggleAnswer">Show Suggested Answer</button>
   </div>
 
-  <details id="answerKey">
-    <summary>Suggested Answer (Teacher Key)</summary>
-    <div class="answer" id="answerText">
-      Last Saturday, my friend Anna invited me to her house for dinner. She said, “Would you like to come at seven o’clock?” I was very excited because Anna is a great cook. When I arrived, she welcomed me warmly and said, “I’m so glad you came.” We had pasta, salad, and bread for dinner; everything was delicious. After dinner, we watched a movie called <em>The Secret Garden</em>. It was really good. I asked Anna, “Have you seen it before?” She laughed and answered, “Yes, but I still love it.” We finished the evening with coffee and cake. What a wonderful night!
-    </div>
-  </details>
+  <div class="answer" id="answerBox">
+    Last Saturday, my friend Anna invited me to her house for dinner. She said, “Would you like to come at seven o’clock?”  
+    I was very excited because Anna is a great cook. When I arrived, she welcomed me warmly and said, “I’m so glad you came.”  
+    We had pasta, salad, and bread for dinner; everything was delicious. After dinner, we watched a movie called <em>The Secret Garden</em>.  
+    It was really good. I asked Anna, “Have you seen it before?” She laughed and answered, “Yes, but I still love it.”  
+    We finished the evening with coffee and cake. What a wonderful night!
+  </div>
 </div>
 
-<div class="footer-buttons">
+<div class="buttons" style="margin-bottom:2rem;">
   <a href="../practice.html">← Back to Practice</a>
   <a href="../index.html">🏠 Home</a>
 </div>
 
 <script>
-  // Mobile nav toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
-  }
-
-  // Practice helpers
-  const srcText = `last saturday my friend anna invited me to her house for dinner she said would you like to come at seven oclock i was very excited because anna is a great cook when i arrived she welcomed me warmly and said im so glad you came we had pasta salad and bread for dinner everything was delicious after dinner we watched a movie called the secret garden it was really good i asked anna have you seen it before she laughed and answered yes but i still love it we finished the evening with coffee and cake what a wonderful night`;
-  const copyBtn = document.getElementById('copySourceBtn');
-  const clearBtn = document.getElementById('clearBtn');
-  const toggleBtn = document.getElementById('toggleAnswerBtn');
-  const textarea = document.getElementById('studentText');
-  const answerKey = document.getElementById('answerKey');
-
-  copyBtn.addEventListener('click', () => {
-    textarea.value = srcText;
-    textarea.focus();
-  });
-
-  clearBtn.addEventListener('click', () => {
-    textarea.value = '';
-    textarea.focus();
-  });
-
-  toggleBtn.addEventListener('click', () => {
-    const open = answerKey.hasAttribute('open');
-    if (open) {
-      answerKey.removeAttribute('open');
-      toggleBtn.textContent = 'Show Suggested Answer';
-      toggleBtn.setAttribute('aria-expanded', 'false');
+  // Toggle answer
+  const btn = document.getElementById('toggleAnswer');
+  const ans = document.getElementById('answerBox');
+  btn.addEventListener('click', () => {
+    if(ans.style.display === 'block'){
+      ans.style.display = 'none';
+      btn.textContent = 'Show Suggested Answer';
     } else {
-      answerKey.setAttribute('open', 'open');
-      toggleBtn.textContent = 'Hide Suggested Answer';
-      toggleBtn.setAttribute('aria-expanded', 'true');
+      ans.style.display = 'block';
+      btn.textContent = 'Hide Suggested Answer';
     }
   });
 </script>

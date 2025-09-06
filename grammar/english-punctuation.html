@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>English Punctuation — ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.4rem; color: #2c3e50; max-width: 860px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.7; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.2rem; margin-bottom: 0.8rem; font-size: 1.5rem; }
+    .content-container h3 { color: #124076; margin-top: 1rem; margin-bottom: 0.4rem; font-size: 1.22rem; }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { list-style: disc; padding-left: 20px; margin: 0.6rem 0 1rem; }
+    .content-container li { margin-bottom: 0.45rem; }
+    .example {
+      background: #f8fbff; border-left: 4px solid #3498db; padding: 0.8rem 1rem; border-radius: 8px; margin: 0.8rem 0 1.2rem;
+    }
+    .example strong { color: #1b5e20; }
+    .tip {
+      display: inline-block; background: #fff3cd; color: #8a6d3b;
+      padding: 4px 10px; border-radius: 12px; font-size: 0.9rem; margin-left: 6px;
+    }
+    .pair {
+      display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin: 0.6rem 0 1rem;
+    }
+    .pair .bad { background:#fdecea; border-left:4px solid #e53935; padding:0.6rem 0.8rem; border-radius:6px; }
+    .pair .good { background:#e8f5e9; border-left:4px solid #4caf50; padding:0.6rem 0.8rem; border-radius:6px; }
+    code.inline { background:#eef5ff; padding:2px 6px; border-radius:4px; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem; display: flex; justify-content: center; gap: 1rem; max-width: 620px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>English Punctuation</h1>
+
+<div class="content-container" role="main">
+  <p>
+    <strong>Punctuation</strong> is the set of marks we use in writing to organize ideas, show pauses, and make meaning clear.
+    Careful punctuation helps your reader understand your message quickly and correctly.
+  </p>
+
+  <div class="example">
+    <div class="pair">
+      <div class="bad"><strong>Without punctuation:</strong> lets eat grandma</div>
+      <div class="good"><strong>With punctuation:</strong> Let’s eat, Grandma!</div>
+    </div>
+    <p>The comma changes the meaning completely.</p>
+  </div>
+
+  <h2>Main Punctuation Marks</h2>
+
+  <h3>1) Period <code class="inline">.</code></h3>
+  <ul>
+    <li>Ends a statement: <em>She lives in New York.</em></li>
+    <li>Used in abbreviations: <em>Dr.</em>, <em>Mr.</em>, <em>a.m.</em>, <em>p.m.</em></li>
+  </ul>
+
+  <h3>2) Question Mark <code class="inline">?</code></h3>
+  <ul>
+    <li>Ends a direct question: <em>Where are you going?</em></li>
+  </ul>
+
+  <h3>3) Exclamation Mark <code class="inline">!</code></h3>
+  <ul>
+    <li>Shows strong feeling (surprise, anger, excitement): <em>Wow! That’s amazing!</em></li>
+    <li>Use sparingly in formal writing.</li>
+  </ul>
+
+  <h3>4) Comma <code class="inline">,</code></h3>
+  <ul>
+    <li>Separates items in a list: <em>We bought apples, oranges, and bananas.</em></li>
+    <li>Marks off introductory words/phrases: <em>After dinner, we went for a walk.</em></li>
+    <li>Separates clauses in compound sentences: <em>I like coffee, but I don’t like tea.</em></li>
+  </ul>
+
+  <h3>5) Quotation Marks <code class="inline">“ ”</code></h3>
+  <ul>
+    <li>Show someone’s exact words: <em>She said, “I’m tired.”</em></li>
+    <li>In American English, commas and periods go <strong>inside</strong> the quotation marks: <em>“I like this book,” he said.</em></li>
+  </ul>
+
+  <h3>6) Apostrophe <code class="inline">’</code></h3>
+  <ul>
+    <li>Shows possession: <em>Maria’s book</em> (= the book of Maria).</li>
+    <li>Makes contractions: <em>don’t</em> (= do not), <em>it’s</em> (= it is / it has).</li>
+  </ul>
+  <div class="example">
+    <strong>Common mix-up:</strong> <em>its</em> (possessive, no apostrophe) vs. <em>it’s</em> (it is / it has).
+  </div>
+
+  <h3>7) Colon <code class="inline">:</code></h3>
+  <ul>
+    <li>Introduces a list, explanation, or example: <em>We need three things: bread, milk, and eggs.</em></li>
+    <li>Can introduce a quotation in formal writing: <em>The teacher said: “Read chapter five.”</em></li>
+  </ul>
+
+  <h3>8) Semicolon <code class="inline">;</code></h3>
+  <ul>
+    <li>Connects two related sentences without a conjunction: <em>I have a meeting tomorrow; I need to prepare.</em></li>
+    <li>Separates items in a complex list: <em>Paris, France; Rome, Italy; and Berlin, Germany.</em></li>
+  </ul>
+
+  <h3>9) Dash <code class="inline">– / —</code> <span class="tip" aria-label="em dash or en dash">em/en dash</span></h3>
+  <ul>
+    <li>Adds extra information or emphasis: <em>I need three things—bread, milk, and eggs.</em></li>
+    <li>Use the long dash (em dash) in most cases for a stronger break.</li>
+  </ul>
+
+  <h3>10) Parentheses <code class="inline">( )</code></h3>
+  <ul>
+    <li>Add extra or less important information: <em>She loves traveling (especially to Europe).</em></li>
+  </ul>
+
+  <h3>11) Hyphen <code class="inline">-</code></h3>
+  <ul>
+    <li>Joins words to make compound words: <em>part-time job, twenty-one, well-known</em>.</li>
+  </ul>
+
+  <h3>12) Ellipsis <code class="inline">…</code></h3>
+  <ul>
+    <li>Shows something is missing or a pause in thought: <em>I was thinking… maybe we should leave early.</em></li>
+  </ul>
+
+  <h2>Why Punctuation Matters</h2>
+  <ul>
+    <li>Makes writing <strong>clear</strong> and <strong>organized</strong>.</li>
+    <li>Shows the writer’s <strong>tone</strong> (serious, excited, questioning).</li>
+    <li>Prevents misunderstandings and improves readability.</li>
+  </ul>
+
+  <h2>Quick Tips</h2>
+  <ul>
+    <li>When in doubt, write shorter sentences and separate ideas with a period.</li>
+    <li>Use commas carefully—avoid comma splices. Prefer: <em>I was tired, so I went home.</em></li>
+    <li>Be consistent with style (American vs. British punctuation conventions).</li>
+  </ul>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

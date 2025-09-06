@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Opinion Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Opinion Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Agree", ipa: "/əˈɡriː/", definition: "To have the same opinion as someone else.", example: "I agree with your point.", chinese: "同意", spanish: "estar de acuerdo" },
+  { word: "Disagree", ipa: "/ˌdɪsəˈɡriː/", definition: "To have a different opinion.", example: "I disagree with the final decision.", chinese: "不同意", spanish: "no estar de acuerdo; disentir" },
+  { word: "Believe", ipa: "/bɪˈliːv/", definition: "To accept something as true or real.", example: "I believe that practice leads to success.", chinese: "相信", spanish: "creer" },
+  { word: "Think", ipa: "/θɪŋk/", definition: "To form an opinion or idea.", example: "I think the movie was overrated.", chinese: "认为", spanish: "pensar" },
+  { word: "Suppose", ipa: "/səˈpoʊz/", definition: "To guess or imagine that something is true.", example: "I suppose we could try a different approach.", chinese: "猜想", spanish: "suponer" },
+  { word: "Reckon", ipa: "/ˈrɛkən/", definition: "(Informal) To think or believe.", example: "I reckon it's going to rain later.", chinese: "认为（口语）", spanish: "creer (coloquial)" },
+  { word: "Consider", ipa: "/kənˈsɪdər/", definition: "To think carefully about something.", example: "Please consider the long-term effects.", chinese: "考虑", spanish: "considerar" },
+  { word: "Suggest", ipa: "/səˈdʒɛst/", definition: "To put forward an idea or plan for others to think about.", example: "I suggest we start earlier tomorrow.", chinese: "建议", spanish: "sugerir" },
+  { word: "Argue", ipa: "/ˈɑrɡju/", definition: "To give reasons for or against an idea; to disagree strongly.", example: "She argued that the law was unfair.", chinese: "争论；主张", spanish: "argumentar; discutir" },
+  { word: "Claim", ipa: "/kleɪm/", definition: "To say that something is true, often without proof.", example: "He claims he saw a UFO.", chinese: "声称", spanish: "afirmar" },
+  { word: "Assert", ipa: "/əˈsɜːrt/", definition: "To state something confidently and firmly.", example: "The author asserts that empathy can be taught.", chinese: "断言", spanish: "aseverar; afirmar" },
+  { word: "Contend", ipa: "/kənˈtɛnd/", definition: "To argue or state that something is true.", example: "Scientists contend that the data is incomplete.", chinese: "主张", spanish: "sostener; afirmar" },
+  { word: "Maintain", ipa: "/meɪnˈteɪn/", definition: "To continue to assert; to state that something is still true.", example: "They maintain that the policy works.", chinese: "坚称", spanish: "mantener; sostener" },
+  { word: "Insist", ipa: "/ɪnˈsɪst/", definition: "To demand something forcefully; to say firmly.", example: "She insisted on paying the bill.", chinese: "坚持", spanish: "insistir" },
+  { word: "Doubt", ipa: "/daʊt/", definition: "To feel uncertain about something.", example: "I doubt he will change his mind.", chinese: "怀疑", spanish: "dudar" },
+  { word: "Question", ipa: "/ˈkwɛs.tʃən/", definition: "To express doubt about something; to ask for more information.", example: "Many people question the study's methods.", chinese: "质疑", spanish: "cuestionar" },
+  { word: "Imply", ipa: "/ɪmˈplaɪ/", definition: "To suggest something without saying it directly.", example: "His tone implied that he was annoyed.", chinese: "暗示", spanish: "implicar; dar a entender" },
+  { word: "Infer", ipa: "/ɪnˈfɜːr/", definition: "To form an opinion based on evidence and reasoning.", example: "From the results, we can infer a trend.", chinese: "推断", spanish: "inferir" },
+  { word: "Persuade", ipa: "/pərˈsweɪd/", definition: "To make someone do or believe something by giving reasons.", example: "He persuaded her to join the team.", chinese: "说服", spanish: "persuadir" },
+  { word: "Convince", ipa: "/kənˈvɪns/", definition: "To cause someone to firmly believe something is true.", example: "The evidence convinced the jury.", chinese: "使信服", spanish: "convencer" },
+  { word: "Viewpoint", ipa: "/ˈvjuːˌpɔɪnt/", definition: "A particular way of looking at something.", example: "From my viewpoint, it's a fair compromise.", chinese: "观点", spanish: "punto de vista" },
+  { word: "Perspective", ipa: "/pərˈspɛktɪv/", definition: "A particular attitude toward something; a broader view.", example: "Travel can broaden your perspective.", chinese: "视角；观点", spanish: "perspectiva" },
+  { word: "Stance", ipa: "/stæns/", definition: "A stated opinion or position on an issue.", example: "What is the team's stance on overtime?", chinese: "立场", spanish: "postura" },
+  { word: "Bias", ipa: "/ˈbaɪəs/", definition: "An unfair preference for or against something.", example: "We must be aware of our bias.", chinese: "偏见", spanish: "sesgo" },
+  { word: "Subjective", ipa: "/səbˈdʒɛktɪv/", definition: "Based on personal feelings or opinions.", example: "Taste in music is subjective.", chinese: "主观的", spanish: "subjetivo/a" },
+  { word: "Objective", ipa: "/əbˈdʒɛktɪv/", definition: "Not influenced by personal feelings; based on facts.", example: "Let's take an objective look at the facts.", chinese: "客观的", spanish: "objetivo/a" },
+  { word: "Consensus", ipa: "/kənˈsɛnsəs/", definition: "General agreement among a group.", example: "The group reached a consensus quickly.", chinese: "共识", spanish: "consenso" },
+  { word: "Controversy", ipa: "/kənˈtrɑːvərsi/", definition: "Public disagreement over an important issue.", example: "The decision sparked public controversy.", chinese: "争议", spanish: "controversia; polémica" },
+  { word: "Critique", ipa: "/krɪˈtiːk/", definition: "A detailed analysis and evaluation of something.", example: "She wrote a thoughtful critique of the book.", chinese: "批评；评论", spanish: "crítica (sustantivo)" },
+  { word: "Feedback", ipa: "/ˈfiːdbæk/", definition: "Comments that help improve performance or work.", example: "Your feedback helped me improve.", chinese: "反馈", spanish: "retroalimentación" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

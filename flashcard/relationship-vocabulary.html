@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Relationship Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Relationship Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Acquaintance", ipa: "/əˈkweɪntəns/", definition: "Someone you know slightly but are not close to.", example: "He's more of an acquaintance than a close friend.", chinese: "熟人", spanish: "conocido/a" },
+  { word: "Initial", ipa: "/ɪˈnɪʃəl/", definition: "Happening at the beginning.", example: "In the initial stages of the relationship, they were very shy.", chinese: "最初的", spanish: "inicial" },
+  { word: "Chemistry", ipa: "/ˈkɛmɪstri/", definition: "A strong, natural feeling of connection between two people.", example: "There was an undeniable chemistry between them from the start.", chinese: "化学反应；默契", spanish: "química" },
+  { word: "Flirt", ipa: "/flɜːrt/", definition: "To behave in a way that suggests romantic interest.", example: "She couldn't help but flirt with him at the party.", chinese: "调情", spanish: "coquetear" },
+  { word: "Attraction", ipa: "/əˈtrækʃən/", definition: "The feeling of being drawn to someone.", example: "Physical attraction is often the first step.", chinese: "吸引力", spanish: "atracción" },
+  { word: "Dating", ipa: "/ˈdeɪtɪŋ/", definition: "Regularly spending time with someone you are romantically interested in.", example: "They've been dating for six months.", chinese: "约会", spanish: "citas" },
+  { word: "Compatibility", ipa: "/kəmˌpætəˈbɪlɪti/", definition: "The ability to exist or live together harmoniously.", example: "Their compatibility was evident in how easily they communicated.", chinese: "兼容性；协调性", spanish: "compatibilidad" },
+  { word: "Bond", ipa: "/bɒnd/", definition: "A strong connection or feeling of closeness.", example: "They formed a strong bond during their time at university.", chinese: "纽带；联系", spanish: "vínculo" },
+  { word: "Trust", ipa: "/trʌst/", definition: "Firm belief in the reliability, truth, ability, or strength of someone or something.", example: "Trust is the foundation of any healthy relationship.", chinese: "信任", spanish: "confianza" },
+  { word: "Loyalty", ipa: "/ˈlɔɪəlti/", definition: "Faithfulness or a devotion to a person, country, or cause.", example: "Her loyalty to her friends never wavered.", chinese: "忠诚", spanish: "lealtad" },
+  { word: "Support", ipa: "/səˈpɔːrt/", definition: "To give assistance to someone, especially when they are in trouble or in need.", example: "He always offered his support during difficult times.", chinese: "支持", spanish: "apoyo" },
+  { word: "Understanding", ipa: "/ˌʌndərˈstændɪŋ/", definition: "Sympathy or tolerance.", example: "A good relationship requires mutual understanding.", chinese: "理解", spanish: "comprensión" },
+  { word: "Intimacy", ipa: "/ˈɪntɪməsi/", definition: "Close familiarity or friendship; closeness.", example: "They shared a deep emotional intimacy.", chinese: "亲密", spanish: "intimidad" },
+  { word: "Commitment", ipa: "/kəˈmɪtmənt/", definition: "A pledge or undertaking.", example: "Marriage requires a serious commitment.", chinese: "承诺；投入", spanish: "compromiso" },
+  { word: "Partnership", ipa: "/ˈpɑːrtnərʃɪp/", definition: "An association of two or more people formed to carry on a business. (Can also apply to romantic relationships).", example: "Their business partnership was very successful.", chinese: "伙伴关系", spanish: "asociación; sociedad" },
+  { word: "Soulmate", ipa: "/ˈsoʊlmeɪt/", definition: "A person ideally suited to another by temperament or outlook.", example: "She believes she has found her soulmate.", chinese: "灵魂伴侣", spanish: "alma gemela" },
+  { word: "Devotion", ipa: "/dɪˈvoʊʃən/", definition: "Love, loyalty, or allegiance.", example: "His devotion to his family was remarkable.", chinese: "奉献；忠诚", spanish: "devoción" },
+  { word: "Unconditional", ipa: "/ˌʌnkənˈdɪʃənəl/", definition: "Not subject to any conditions or restrictions. (e.g., unconditional love).", example: "Parents often give unconditional love.", chinese: "无条件的", spanish: "incondicional" },
+  { word: "Marry", ipa: "/ˈmæri/", definition: "To become legally joined to someone as husband or wife.", example: "They decided to marry after dating for three years.", chinese: "结婚", spanish: "casarse" },
+  { word: "Spouse", ipa: "/spaʊs/", definition: "A husband or wife, regarded in relation to the other person to whom they are married.", example: "He introduced his spouse to the guests.", chinese: "配偶", spanish: "cónyuge" },
+  { word: "Conflict", ipa: "/ˈkɒnflɪkt/", definition: "A serious disagreement or argument.", example: "They had a conflict over household chores.", chinese: "冲突", spanish: "conflicto" },
+  { word: "Misunderstanding", ipa: "/ˌmɪsʌndərˈstændɪŋ/", definition: "A failure to understand something correctly.", example: "A simple misunderstanding led to a big argument.", chinese: "误解", spanish: "malentendido" },
+  { word: "Apologize", ipa: "/əˈpɒlədʒaɪz/", definition: "To express regret for something that one has done wrong.", example: "He should apologize for his rude behavior.", chinese: "道歉", spanish: "disculparse" },
+  { word: "Forgive", ipa: "/fərˈɡɪv/", definition: "To stop feeling angry or resentful towards someone for an offense, flaw, or mistake.", example: "It's important to forgive and move on.", chinese: "原谅", spanish: "perdonar" },
+  { word: "Compromise", ipa: "/ˈkɒmprəmaɪz/", definition: "An agreement or settlement of a dispute that is reached by each side making concessions.", example: "They reached a compromise on the wedding plans.", chinese: "妥协；让步", spanish: "compromiso" },
+  { word: "Disagreement", ipa: "/ˌdɪsəˈɡriːmənt/", definition: "Lack of consensus or approval.", example: "They had a minor disagreement about where to go on vacation.", chinese: "分歧；不同意", spanish: "desacuerdo" },
+  { word: "Breakup", ipa: "/ˈbreɪkʌp/", definition: "The end of a romantic relationship.", example: "The breakup was difficult for both of them.", chinese: "分手", spanish: "ruptura" },
+  { word: "Estranged", ipa: "/ɪˈstreɪndʒd/", definition: "No longer close or on friendly terms with someone.", example: "They became estranged after the inheritance dispute.", chinese: "疏远的", spanish: "distanciado/a; alejado/a" },
+  { word: "Reconciliation", ipa: "/ˌriːkənˌsɪliˈeɪʃən/", definition: "The restoration of friendly relations.", example: "They are working towards reconciliation after years of not speaking.", chinese: "和解", spanish: "reconciliación" },
+  { word: "Loneliness", ipa: "/ˈloʊnlinəs/", definition: "Sadness because one has no friends or company.", example: "Loneliness can be a difficult emotion to deal with.", chinese: "孤独", spanish: "soledad" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passive Voice with Modals – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Base & Layout */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9; color: #333;
+      margin: 0; padding: 0; text-align: center; overflow-x: hidden;
+    }
+    nav { background: #124076; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive Nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 { color: #3498db; margin: 1.5rem 0 0.8rem; font-size: 1.6rem; }
+    .content-container h3 { color: #124076; margin: 1.2rem 0 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin: 0.6rem 0 1rem; }
+    .content-container ul, .content-container ol { padding-left: 1.1rem; margin: 0.4rem 0 1rem 0.4rem; }
+    .content-container li { margin-bottom: 0.45rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { color: #555; }
+
+    .example {
+      background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+      padding: 1rem; margin: 1rem 0; border-radius: 6px;
+    }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+
+    /* Practice */
+    .practice {
+      background: #f8fbff; border-left: 4px solid #3498db;
+      padding: 1rem 1.2rem; border-radius: 6px; margin: 1.2rem 0;
+    }
+    .item { margin: 0.8rem 0; }
+    .item label { display: block; font-weight: 600; margin-bottom: 0.25rem; color: #124076; }
+    .item input[type="text"] {
+      width: 100%; max-width: 680px; padding: 10px 12px; border: 1px solid #cfd8dc; border-radius: 8px; font-size: 1rem;
+    }
+    .feedback { margin-top: 0.3rem; font-size: 0.95rem; }
+    .ok { color: #2e7d32; }
+    .no { color: #c62828; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+    }
+    .buttons a, .btn {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover, .btn:hover { background: #2980b9; }
+    .btn.secondary { background: #7b8a97; }
+    .btn.secondary:hover { background: #65727c; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .small { font-size: 0.95rem; color: #555; }
+    code.inline { background: #eef5ff; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Passive Voice with Modals</h1>
+
+<div class="content-container">
+  <p>
+    The <strong>passive voice</strong> focuses on the <em>action</em> and the <em>receiver of the action</em>, not the doer.
+    With <strong>modals</strong> (can, should, must, may, might, could, will, would), the structure is:
+    <span class="tag" aria-label="formula">modal + be + past participle</span>
+  </p>
+
+  <h2>1) Form & Meaning</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Form of passive with modals">
+      <thead>
+        <tr><th>Modal</th><th>Passive Structure</th><th>Example (Passive)</th><th>Why Passive?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>can / could</td>
+          <td><strong>can/could + be + V<sub>3</sub></strong></td>
+          <td>The mountains <strong>can be seen</strong> from here.</td>
+          <td>Focus on possibility/result.</td>
+        </tr>
+        <tr>
+          <td>should</td>
+          <td><strong>should + be + V<sub>3</sub></strong></td>
+          <td>Phones <strong>should be turned off</strong> in class.</td>
+          <td>Polite rules/recommendations.</td>
+        </tr>
+        <tr>
+          <td>must</td>
+          <td><strong>must + be + V<sub>3</sub></strong></td>
+          <td>Assignments <strong>must be submitted</strong> by Friday.</td>
+          <td>Requirement/obligation.</td>
+        </tr>
+        <tr>
+          <td>may / might</td>
+          <td><strong>may/might + be + V<sub>3</sub></strong></td>
+          <td>You <strong>might be contacted</strong> later.</td>
+          <td>Uncertainty/possibility.</td>
+        </tr>
+        <tr>
+          <td>will / would</td>
+          <td><strong>will/would + be + V<sub>3</sub></strong></td>
+          <td>The results <strong>will be announced</strong> tomorrow.</td>
+          <td>Future plan or schedule.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="example">
+    <p><strong>Active → Passive (with modals)</strong></p>
+    <ul>
+      <li>Active: People <em>can</em> see the mountains. → Passive: The mountains <strong>can be seen</strong>.</li>
+      <li>Active: They <em>must</em> finish the project. → Passive: The project <strong>must be finished</strong>.</li>
+      <li>Active: Someone <em>might</em> call you later. → Passive: You <strong>might be called</strong> later.</li>
+    </ul>
+  </div>
+
+  <h2>2) When to Use Passive with Modals</h2>
+  <ul>
+    <li><strong>Action/result is more important</strong> than the doer: “The rules <strong>must be followed</strong>.”</li>
+    <li><strong>Impersonal / formal tone</strong>: “Documents <strong>should be submitted</strong> online.”</li>
+    <li><strong>Doer is unknown/obvious</strong>: “The problem <strong>can be solved</strong>.”</li>
+  </ul>
+
+  <h2>3) Common Mistakes</h2>
+  <ul>
+    <li>❌ The homework <em>should finished</em>. → ✅ The homework <strong>should be finished</strong>.</li>
+    <li>❌ The report <em>must completed</em> today. → ✅ The report <strong>must be completed</strong> today.</li>
+    <li>❌ The winner <em>will announced</em> soon. → ✅ The winner <strong>will be announced</strong> soon.</li>
+  </ul>
+
+  <h2>4) Quick Practice – Transform to Passive</h2>
+  <p class="small">Type the passive sentence with the correct modal. Ignore capitalization. (Examples provided below each prompt.)</p>
+
+  <div class="practice" id="practice">
+    <div class="item" data-answer="the game can be played online|this game can be played online">
+      <label>1) People can play this game online.</label>
+      <input type="text" aria-label="Answer for item 1" placeholder="The game can be played online." />
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+
+    <div class="item" data-answer="uniforms must be worn at school|school uniforms must be worn">
+      <label>2) Students must wear uniforms at school.</label>
+      <input type="text" aria-label="Answer for item 2" placeholder="Uniforms must be worn at school." />
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+
+    <div class="item" data-answer="the winner will be announced tomorrow">
+      <label>3) They will announce the winner tomorrow.</label>
+      <input type="text" aria-label="Answer for item 3" placeholder="The winner will be announced tomorrow." />
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+
+    <div class="item" data-answer="the package might be delivered tonight">
+      <label>4) Someone might deliver the package tonight.</label>
+      <input type="text" aria-label="Answer for item 4" placeholder="The package might be delivered tonight." />
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+
+    <div class="item" data-answer="plastic bottles should be recycled|bottles should be recycled|plastic should be recycled">
+      <label>5) We should recycle plastic bottles.</label>
+      <input type="text" aria-label="Answer for item 5" placeholder="Plastic bottles should be recycled." />
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <button class="btn" id="checkBtn">Check Answers</button>
+      <button class="btn secondary" id="showBtn" aria-expanded="false" aria-controls="answerKey">Show Answer Key</button>
+    </div>
+
+    <details id="answerKey" style="margin-top: 0.8rem;">
+      <summary><strong>Answer Key</strong></summary>
+      <ol>
+        <li>The game <strong>can be played</strong> online.</li>
+        <li>Uniforms <strong>must be worn</strong> at school.</li>
+        <li>The winner <strong>will be announced</strong> tomorrow.</li>
+        <li>The package <strong>might be delivered</strong> tonight.</li>
+        <li>Plastic bottles <strong>should be recycled</strong>.</li>
+      </ol>
+    </details>
+  </div>
+
+  <h2>5) Mini Test Yourself</h2>
+  <ol>
+    <li>Change to passive: “People could solve the issue.” → <em>The issue …</em></li>
+    <li>Choose the best option: “Your order ___ by 6 p.m.” (will deliver / will be delivered)</li>
+    <li>Fix the error: “The forms should submit today.”</li>
+  </ol>
+  <p class="note">Hint: Remember the formula <code class="inline">modal + be + V3</code>.</p>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Practice checker
+  function normalize(s) {
+    return s
+      .toLowerCase()
+      .replace(/[.,!?;:]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  const checkBtn = document.getElementById('checkBtn');
+  const showBtn = document.getElementById('showBtn');
+  const answerKey = document.getElementById('answerKey');
+
+  checkBtn?.addEventListener('click', () => {
+    document.querySelectorAll('.practice .item').forEach((item) => {
+      const input = item.querySelector('input');
+      const fb = item.querySelector('.feedback');
+      const user = normalize(input.value);
+      const acceptable = item.dataset.answer.split('|').map(normalize);
+
+      if (user && acceptable.includes(user)) {
+        fb.textContent = '✔ Correct';
+        fb.className = 'feedback ok';
+      } else if (!user) {
+        fb.textContent = 'Type your answer using: modal + be + past participle.';
+        fb.className = 'feedback no';
+      } else {
+        fb.textContent = '✘ Not quite. Check your modal + be + past participle and word order.';
+        fb.className = 'feedback no';
+      }
+    });
+  });
+
+  showBtn?.addEventListener('click', () => {
+    const expanded = showBtn.getAttribute('aria-expanded') === 'true';
+    showBtn.setAttribute('aria-expanded', String(!expanded));
+    if (!expanded) answerKey.setAttribute('open', 'open');
+    else answerKey.removeAttribute('open');
+  });
+</script>
+
+</body>
+</html>

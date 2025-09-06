@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conversation: The Debate Club Decision — ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Base & layout */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9; color: #333; margin: 0; padding: 0; overflow-x: hidden; text-align: center;
+    }
+    nav { background: #124076; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800; text-decoration: none;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Mobile menu */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column;
+        width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .container, .buttons { padding: 0; }
+    }
+
+    /* Page */
+    h1 { margin: 2rem auto 1rem; color: #2c3e50; max-width: 900px; }
+    .subtitle { color: #124076; margin: 0 auto 1.2rem; }
+    .container {
+      background: #fff; width: 92%; max-width: 900px; margin: 1.5rem auto 2rem; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.7; font-size: 1.06rem;
+    }
+    .scene-note {
+      background: #f8fbff; border-left: 4px solid #3498db; padding: 0.9rem 1rem; border-radius: 8px; margin-bottom: 1rem;
+    }
+    .line { margin: 0.35rem 0; }
+    .name {
+      display: inline-block; min-width: 70px; font-weight: 700; color: #124076;
+    }
+    .aside {
+      font-style: italic; color: #555;
+    }
+
+    /* Vocabulary block */
+    .vocab {
+      margin-top: 2rem; background: #fcfcff; border: 1px solid #e7e9f0; border-radius: 10px; padding: 1rem 1.2rem;
+    }
+    .vocab h2 { color: #3498db; margin-top: 0; }
+    .vocab ul { list-style: none; padding-left: 0; columns: 2; column-gap: 2rem; }
+    .vocab li {
+      margin: 0.35rem 0; padding: 0.4rem 0.5rem; border-radius: 6px; background: #ffffff;
+      border: 1px solid #eef1f6;
+    }
+    .vocab li strong { color: #124076; }
+    @media (max-width: 600px) { .vocab ul { columns: 1; } }
+
+    /* Buttons row */
+    .buttons {
+      margin: 0 auto 2.2rem; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: #fff; border: none; border-radius: 8px; text-decoration: none; font-weight: 700;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Debate Club Decision</h1>
+<p class="subtitle">A short drama about sharing and defending opinions — 3 characters</p>
+
+<div class="container" role="main">
+  <div class="scene-note"><strong>Scene:</strong> A school classroom after lessons. Three students prepare for their English Debate Club.</div>
+
+  <p class="line"><span class="name">Anna:</span> <span>Okay, so we need to choose a topic for next week’s debate. Our teacher said it should be about something students really care about. Any ideas?</span></p>
+
+  <p class="line"><span class="name">Ben:</span> <span class="aside">(raising his hand dramatically)</span> <span>I’ve got one! <em>Social media should be banned in schools.</em> What do you think?</span></p>
+
+  <p class="line"><span class="name">Clara:</span> <span>Hmm. That’s interesting. In my opinion, banning it completely is too extreme. Students use social media to connect, to share homework, even to relax.</span></p>
+
+  <p class="line"><span class="name">Anna:</span> <span>I agree with Clara. I think social media can be distracting, but it can also be useful. Maybe the real question is: <em>Should schools limit social media instead of banning it?</em></span></p>
+
+  <p class="line"><span class="name">Ben:</span> <span class="aside">(shaking his head)</span> <span>I don’t know… Personally, I feel that students spend too much time online. It affects their concentration. From my point of view, banning it in schools would help everyone focus more on learning.</span></p>
+
+  <p class="line"><span class="name">Clara:</span> <span>I see your point, Ben. But don’t you think students should learn how to use social media responsibly, instead of avoiding it completely?</span></p>
+
+  <p class="line"><span class="name">Anna:</span> <span>Yes, exactly. In my opinion, if we ban it, students might just use it secretly. That could make things worse.</span></p>
+
+  <p class="line"><span class="name">Ben:</span> <span>Maybe. But I believe strict rules are necessary. For example, if phones are collected at the beginning of class, students can’t check Instagram every five minutes.</span></p>
+
+  <p class="line"><span class="name">Clara:</span> <span>That’s true, but rules don’t have to mean a total ban. We could allow social media during breaks or for projects.</span></p>
+
+  <p class="line"><span class="name">Anna:</span> <span class="aside">(nodding)</span> <span>I think we’ve found two clear sides for our debate: Ben can argue for banning, and Clara and I can argue for limiting. That makes it more interesting.</span></p>
+
+  <p class="line"><span class="name">Ben:</span> <span class="aside">(smiling)</span> <span>Fine with me! But I warn you, I’m going to win.</span></p>
+
+  <p class="line"><span class="name">Clara:</span> <span class="aside">(laughs)</span> <span>We’ll see. Remember, it’s not just about winning. It’s about learning to express opinions politely.</span></p>
+
+  <p class="line"><span class="name">Anna:</span> <span>Speaking of that, let’s practice some opinion phrases. I’ll start: <em>In my opinion, social media is part of modern life, so schools should teach students how to use it well.</em></span></p>
+
+  <p class="line"><span class="name">Ben:</span> <span>Okay, my turn: <em>I strongly believe social media distracts students, so it should be banned at school.</em></span></p>
+
+  <p class="line"><span class="name">Clara:</span> <span>And mine: <em>Personally, I think balance is better. Social media should be allowed sometimes, but with clear limits.</em></span></p>
+
+  <p class="line"><span class="name">Anna:</span> <span>Perfect. Now we’re ready for next week’s debate.</span></p>
+
+  <p class="line"><span class="name">Ben:</span> <span class="aside">(pointing at Clara)</span> <span>Get ready, because I’ll convince the audience.</span></p>
+
+  <p class="line"><span class="name">Clara:</span> <span class="aside">(laughs)</span> <span>We’ll let them decide!</span></p>
+
+  <p class="line"><span class="name">Anna:</span> <span>Great teamwork, everyone. Let’s finish for today.</span></p>
+
+  <!-- Vocabulary list -->
+  <div class="vocab" aria-labelledby="vocab-title">
+    <h2 id="vocab-title">Vocabulary & Phrases</h2>
+    <ul>
+      <li><strong>in my opinion</strong> — my personal view</li>
+      <li><strong>personally, I feel (that)…</strong> — how I feel about something</li>
+      <li><strong>from my point of view</strong> — from my perspective</li>
+      <li><strong>I see your point</strong> — I understand your argument</li>
+      <li><strong>ban / banned</strong> — to forbid officially</li>
+      <li><strong>limit / limiting</strong> — to control or reduce something</li>
+      <li><strong>responsibly</strong> — in a careful, sensible way</li>
+      <li><strong>distracting</strong> — taking attention away from something</li>
+      <li><strong>strict rules</strong> — very firm or strong rules</li>
+      <li><strong>make things worse</strong> — cause more problems</li>
+      <li><strong>convince</strong> — to make someone believe or agree</li>
+      <li><strong>polite/politely</strong> — showing good manners and respect</li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entertainment Vocabulary – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 600px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.4rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+    .example { font-style: italic; opacity: 0.9; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Entertainment Vocabulary Flashcards</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Audience", ipa: "/ˈɔːdiəns/", definition: "The people who watch or listen to a performance.", example: "The audience clapped loudly after the show.", chinese: "观众", spanish: "audiencia" },
+  { word: "Broadcast", ipa: "/ˈbrɔːdkæst/", definition: "To send out programs by radio, TV, or online.", example: "The concert will be broadcast live on TV.", chinese: "播出", spanish: "transmitir; emisión" },
+  { word: "Celebrity", ipa: "/səˈlɛbrəti/", definition: "A famous person, especially in entertainment.", example: "The actor became a celebrity after the film’s success.", chinese: "名人", spanish: "celebridad" },
+  { word: "Comedian", ipa: "/kəˈmiːdiən/", definition: "Someone who entertains people by telling jokes.", example: "The comedian filled the theater with laughter.", chinese: "喜剧演员", spanish: "comediante" },
+  { word: "Concert", ipa: "/ˈkɑːnsɚt/", definition: "A live music performance.", example: "We bought tickets for the rock concert.", chinese: "音乐会", spanish: "concierto" },
+  { word: "Critic", ipa: "/ˈkrɪtɪk/", definition: "A person who evaluates books, films, or shows.", example: "The critic gave the play a positive review.", chinese: "评论家", spanish: "crítico/a" },
+  { word: "Drama", ipa: "/ˈdrɑːmə/", definition: "A serious play, movie, or TV show.", example: "She prefers drama to comedy.", chinese: "剧情片；戏剧", spanish: "drama" },
+  { word: "Festival", ipa: "/ˈfɛstɪvəl/", definition: "A special event with performances and celebrations.", example: "The city holds a film festival every summer.", chinese: "节日；艺术节", spanish: "festival" },
+  { word: "Genre", ipa: "/ˈʒɑːnrə/", definition: "A category of art, music, or literature.", example: "Horror is my least favorite movie genre.", chinese: "类型（体裁）", spanish: "género" },
+  { word: "Host", ipa: "/hoʊst/", definition: "The person who presents a show or event.", example: "The host introduced the singers on stage.", chinese: "主持人", spanish: "presentador/a" },
+  { word: "Interactive", ipa: "/ˌɪntərˈæktɪv/", definition: "Involving active participation by the audience.", example: "The museum has interactive exhibits for kids and adults.", chinese: "互动的", spanish: "interactivo/a" },
+  { word: "Live", ipa: "/laɪv/", definition: "Performed in front of an audience, not recorded.", example: "I love watching live theater.", chinese: "现场的", spanish: "en vivo" },
+  { word: "Musical", ipa: "/ˈmjuːzɪkəl/", definition: "A play or film that includes singing and dancing.", example: "We went to see a Broadway musical.", chinese: "音乐剧", spanish: "musical" },
+  { word: "Performer", ipa: "/pərˈfɔːrmər/", definition: "Someone who entertains an audience.", example: "The street performer played guitar for tips.", chinese: "表演者", spanish: "intérprete" },
+  { word: "Playlist", ipa: "/ˈpleɪlɪst/", definition: "A selected list of songs for listening.", example: "I made a playlist for the party.", chinese: "播放列表", spanish: "lista de reproducción" },
+  { word: "Premiere", ipa: "/ˌprɛm.iˈeər/", definition: "The first public showing of a movie or play.", example: "The film premiere attracted many celebrities.", chinese: "首映", spanish: "estreno" },
+  { word: "Producer", ipa: "/prəˈduːsər/", definition: "The person responsible for making a film or show.", example: "The producer managed the budget and schedule.", chinese: "制片人", spanish: "productor/a" },
+  { word: "Reality show", ipa: "/riˈæləti ʃoʊ/", definition: "A program that shows unscripted situations with real people.", example: "She enjoys watching cooking reality shows.", chinese: "真人秀", spanish: "programa de telerrealidad" },
+  { word: "Script", ipa: "/skrɪpt/", definition: "The written text of a play or film.", example: "The actors read the script before rehearsals.", chinese: "剧本", spanish: "guion" },
+  { word: "Soundtrack", ipa: "/ˈsaʊndtræk/", definition: "The recorded music for a movie or show.", example: "The soundtrack of the film is very popular.", chinese: "原声带", spanish: "banda sonora" },
+  { word: "Stage", ipa: "/steɪdʒ/", definition: "The platform where performers act or play music.", example: "The singer walked onto the stage with confidence.", chinese: "舞台", spanish: "escenario" },
+  { word: "Subtitles", ipa: "/ˈsʌbˌtaɪtəlz/", definition: "Written translation of dialogue on screen.", example: "I watch movies with English subtitles to learn.", chinese: "字幕", spanish: "subtítulos" },
+  { word: "Venue", ipa: "/ˈvɛnjuː/", definition: "The place where an event or concert happens.", example: "The concert venue was full of fans.", chinese: "场地；场馆", spanish: "lugar del evento; recinto" },
+  { word: "Box office", ipa: "/ˈbɑːks ˌɔːfɪs/", definition: "The place where tickets are sold, or the money a film earns.", example: "The movie broke records at the box office.", chinese: "票房；售票处", spanish: "taquilla; recaudación" },
+  { word: "Cameo", ipa: "/ˈkæmioʊ/", definition: "A short appearance by a famous person in a film/show.", example: "The singer had a cameo in the action film.", chinese: "客串", spanish: "cameo; aparición especial" },
+  { word: "Cliffhanger", ipa: "/ˈklɪfˌhæŋər/", definition: "An ending that leaves the audience in suspense.", example: "The episode ended with a cliffhanger.", chinese: "悬念式结尾", spanish: "final en suspenso" },
+  { word: "Encore", ipa: "/ˈɑːŋkɔːr/", definition: "An additional performance demanded by the audience.", example: "The band played two encores after the concert.", chinese: "返场", spanish: "bis" },
+  { word: "Standing ovation", ipa: "/ˌstændɪŋ oʊˈveɪʃən/", definition: "When the audience stands up to applaud.", example: "The actor received a standing ovation on opening night.", chinese: "起立鼓掌", spanish: "ovación de pie" },
+  { word: "Understudy", ipa: "/ˈʌndərˌstʌdi/", definition: "A performer who can replace another in a role.", example: "The understudy replaced the lead due to illness.", chinese: "替补演员", spanish: "suplente (de teatro)" },
+  { word: "Blockbuster", ipa: "/ˈblɑːkˌbʌstər/", definition: "A very successful and popular film.", example: "That blockbuster attracted millions of viewers.", chinese: "卖座大片", spanish: "taquillazo" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

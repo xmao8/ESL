@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The TV Show Debate - ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+                align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul, .content-container ol { margin-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .conversation-script p { margin-bottom: 0.8rem; }
+        .conversation-script strong {
+            display: inline-block; width: 110px; text-align: right; margin-right: 10px; color: #124076;
+        }
+        .conversation-script span.dialogue { display: inline; }
+        .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+        .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+        .character-info ul { list-style: none; padding: 0; margin: 0; }
+        .character-info li { margin-bottom: 0.2rem; }
+        .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+        .vocabulary-list li { margin-bottom: 0.8rem; }
+        .vocabulary-list .vocab-word {
+            font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.2rem; color: #3498db; user-select: none; transition: color 0.2s; }
+        .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+        .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+        .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+            cursor: pointer; text-decoration: none; display: inline-block; user-select: none;
+        }
+        button:hover, .buttons a:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>The TV Show Debate</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>Maria:</strong> Loves drama series; very expressive.</li>
+            <li><strong>James:</strong> Enjoys documentaries; curious and calm.</li>
+            <li><strong>Lina:</strong> Prefers reality shows; playful and practical.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Scene: A cozy café on Saturday afternoon. Maria, James, and Lina are at a small table with coffee.</p>
+
+    <div class="conversation-script">
+        <h3>Scene 1</h3>
+        <p><strong>Maria:</strong> <span class="dialogue">(Excited) So, what are you both watching these days? I just started a drama called <em>City Lights</em>. It’s amazing!</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">(Smiles) Oh no, not another drama! Don’t you get tired of tears and love triangles?</span></p>
+        <p><strong>Maria:</strong> <span class="dialogue">(Laughs) No way! The characters feel so real. I couldn’t stop watching—I <strong>binge-watched</strong> three episodes last night.</span></p>
+        <p><strong>James:</strong> <span class="dialogue">(Shakes head) I prefer something educational. I’m watching a space documentary. They think a new planet might support life.</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">(Teasing) James, you’re a teacher even outside class! Still, that sounds interesting. But I like something lighter. Reality shows are my favorite.</span></p>
+        <p><strong>Maria:</strong> <span class="dialogue">Reality shows? Come on, Lina, those are so fake.</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">Not all of them! I’m watching <em>Master Cook Challenge</em>. Real people <strong>compete</strong>, and the food looks amazing. Last episode, a cook made a dessert with chili peppers!</span></p>
+        <p><strong>James:</strong> <span class="dialogue">(Laughs) That doesn’t sound tasty at all—but it’s fun to watch.</span></p>
+
+        <h3>Scene 2</h3>
+        <p class="scene-direction">They sip their coffee and think about their reasons.</p>
+        <p><strong>Maria:</strong> <span class="dialogue">I like following one big story, episode by episode. I feel like I know the characters personally.</span></p>
+        <p><strong>James:</strong> <span class="dialogue">For me, if I spend an hour watching, I want to finish with new knowledge.</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">And I just want to relax and laugh. Life is stressful enough!</span></p>
+        <p><strong>Maria:</strong> <span class="dialogue">Okay, which type of show is best—drama, documentary, or reality?</span></p>
+        <p><strong>James:</strong> <span class="dialogue">(Smiling) Impossible question. It depends on the person.</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">Maybe we can’t choose one answer.</span></p>
+        <p><strong>Maria:</strong> <span class="dialogue">I have an idea. What if we watch each other’s favorite shows this week? Then we’ll compare next Saturday.</span></p>
+        <p><strong>James:</strong> <span class="dialogue">(Nods) Deal. I’ll watch <em>City Lights</em>.</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">I’ll try the space documentary—if it’s not too boring.</span></p>
+        <p><strong>Maria:</strong> <span class="dialogue">And I’ll watch <em>Master Cook Challenge</em>.</span></p>
+        <p><strong>James:</strong> <span class="dialogue">Next Saturday, same café, same time?</span></p>
+        <p><strong>Lina:</strong> <span class="dialogue">Deal!</span></p>
+        <p><strong>Maria:</strong> <span class="dialogue">(Raises her cup) To new shows and <strong>open minds</strong>!</span></p>
+        <p><strong>All:</strong> <span class="dialogue">Cheers!</span></p>
+        <p class="scene-direction"><strong>THE END</strong></p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Binge-watch <span class="speaker-icon" onclick="speakWord('binge-watch')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈbɪndʒ wɒtʃ/</span>
+                <span class="definition">(v.) To watch many episodes of a TV show in one sitting.</span>
+                <span class="example">Example: I binge-watched three episodes last night.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Documentary <span class="speaker-icon" onclick="speakWord('documentary')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌdɒk.jʊˈmɛn.tər.i/</span>
+                <span class="definition">(n.) A non-fiction film or TV program that provides facts about a subject.</span>
+                <span class="example">Example: James is watching a space documentary.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Reality show <span class="speaker-icon" onclick="speakWord('reality show')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/riˈæl.ɪ.ti ʃoʊ/</span>
+                <span class="definition">(n.) A TV program featuring ordinary people in real-life situations or competitions.</span>
+                <span class="example">Example: Lina prefers reality shows.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Compete <span class="speaker-icon" onclick="speakWord('compete')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kəmˈpiːt/</span>
+                <span class="definition">(v.) To try to win against others.</span>
+                <span class="example">Example: Real people compete on the cooking show.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Episode <span class="speaker-icon" onclick="speakWord('episode')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈɛpɪsoʊd/</span>
+                <span class="definition">(n.) One part of a TV series.</span>
+                <span class="example">Example: I watched three episodes in a row.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Character <span class="speaker-icon" onclick="speakWord('character')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈkærək.tər/</span>
+                <span class="definition">(n.) A person in a story, movie, or TV show.</span>
+                <span class="example">Example: The characters feel so real.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Plot twist <span class="speaker-icon" onclick="speakWord('plot twist')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/plɒt twɪst/</span>
+                <span class="definition">(n.) A surprising change in the story.</span>
+                <span class="example">Example: The drama had a shocking plot twist.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Open-minded <span class="speaker-icon" onclick="speakWord('open-minded')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌoʊpənˈmaɪndɪd/</span>
+                <span class="definition">(adj.) Willing to consider new ideas or opinions.</span>
+                <span class="example">Example: Let’s watch each other’s shows and stay open-minded.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Web Speech API pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

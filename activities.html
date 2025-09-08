@@ -8,9 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Base styles */
-        * {
-            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
-        }
+        * { box-sizing: border-box; }
         body {
             display: flex;
             flex-direction: column;
@@ -19,75 +17,47 @@
             font-family: 'Segoe UI', sans-serif;
             background-color: #f0f4f8;
             color: #333;
-            overflow-x: hidden; /* Prevent horizontal scroll issues */
+            overflow-x: hidden;
         }
-        main {
-            flex: 1; /* Allows main content to grow and push the footer down */
-        }
+        main { flex: 1; }
 
         /* NAVBAR */
-        nav {
-            background-color: #124076;
-            padding: 0.8rem 1rem;
-            width: 100%; /* Ensure nav takes full width */
-        }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
         .nav-container {
             display: flex;
-            justify-content: space-between; /* Puts logo on left, links on right by default */
+            justify-content: space-between;
             align-items: center;
-            max-width: 1100px; /* Max width for desktop nav content */
-            margin: 0 auto; /* Center the nav content */
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 0;
         }
-        .nav-container .logo {
-            display: flex;
-            align-items: center;
-        }
-        .nav-container .logo-img {
-            width: 32px;
-            height: 32px;
-            margin-right: 0.5rem;
-        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
         .nav-container .site-name {
             font-family: 'Poppins', sans-serif;
             font-size: 1.3rem;
             color: #ff9800;
             font-weight: bold;
-            white-space: nowrap; /* Prevent site name from wrapping */
+            white-space: nowrap;
         }
-        .nav-container .nav-links {
-            display: flex;
-            gap: 1.5rem; /* Larger gap for desktop */
-        }
+        .nav-container .nav-links { display: flex; gap: 1.5rem; }
         .nav-container .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
+            color: white; text-decoration: none; font-weight: bold; transition: color 0.2s;
         }
-        .nav-container .nav-links a:hover {
-            color: #ffbb33;
-            text-decoration: underline;
-        }
+        .nav-container .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
 
-        /* Hamburger menu button styles (hidden by default) */
+        /* Hamburger */
         .menu-toggle {
-            display: none; /* Hidden on desktop and tablet */
+            display: none;
             flex-direction: column;
             gap: 5px;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
-            z-index: 1000; /* Ensure it's above the menu when active */
+            z-index: 1000;
         }
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s; }
 
         /* PAGE TITLE */
         h1 {
@@ -99,7 +69,7 @@
             padding: 0 1rem;
         }
 
-        /* GRAMMAR LINKS */
+        /* LINKS */
         .container {
             max-width: 800px;
             margin: auto;
@@ -118,10 +88,7 @@
             font-size: 1.1rem;
             transition: background-color 0.2s, transform 0.2s;
         }
-        .label-link:hover {
-            background-color: #eef6fb;
-            transform: translateY(-2px);
-        }
+        .label-link:hover { background-color: #eef6fb; transform: translateY(-2px); }
 
         /* BACK BUTTONS */
         .buttons {
@@ -141,113 +108,65 @@
             transition: background-color 0.2s;
             display: inline-block;
         }
-        .buttons a:hover {
-            background-color: #2980b9;
-        }
+        .buttons a:hover { background-color: #2980b9; }
 
-        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        /* --- Tablet --- */
         @media (min-width: 601px) and (max-width: 900px) {
-            .nav-container {
-                padding: 0.8rem 1.2rem; /* Slightly less padding on edges to give more room */
-            }
+            .nav-container { padding: 0.8rem 1.2rem; }
             .nav-container .nav-links {
-                flex-wrap: nowrap; /* CRUCIAL: Prevent links from wrapping */
-                justify-content: flex-end; /* Align links to the right */
-                gap: 0.8rem; /* **Adjusted for tighter fit** */
-                font-size: 0.95rem; /* **Slightly smaller font-size for links** */
+                flex-wrap: nowrap;
+                justify-content: flex-end;
+                gap: 0.8rem;
+                font-size: 0.95rem;
             }
-            .nav-container .site-name {
-                font-size: 1.25rem;
-            }
-            .menu-toggle {
-                display: none; /* Hide hamburger on tablets */
-            }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
 
-            h1 {
-                font-size: 2.2rem;
-                margin: 1.8rem auto 0.8rem;
-                padding: 0 1.5rem;
-            }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
             .container {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
                 padding: 1.5rem;
             }
-            .label-link {
-                margin: 0;
-                font-size: 1.05rem;
-                padding: 0.9rem 1.2rem;
-            }
-            .buttons {
-                padding: 0 1.5rem;
-            }
+            .label-link { margin: 0; font-size: 1.05rem; padding: 0.9rem 1.2rem; }
+            .buttons { padding: 0 1.5rem; }
         }
 
-        /* --- Phone Layout (max-width: 600px) --- */
+        /* --- Phone --- */
         @media (max-width: 600px) {
             .nav-container {
-                flex-direction: row; /* Keep logo and toggle in a row */
-                justify-content: space-between; /* Push logo left, toggle right */
+                flex-direction: row;
+                justify-content: space-between;
                 padding: 0.6rem 0.8rem;
             }
-            .nav-container .logo {
-                margin-bottom: 0;
-            }
-            .nav-container .site-name {
-                font-size: 1.2rem;
-            }
+            .nav-container .site-name { font-size: 1.2rem; }
             .nav-container .nav-links {
-                position: fixed; /* Position fixed relative to viewport */
-                top: 56px; /* Adjust based on your nav height */
+                position: fixed;
+                top: 56px;
                 right: 0;
                 background: #124076;
-                flex-direction: column; /* Stack links vertically */
-                width: 100%; /* Full width menu */
-                height: calc(100vh - 56px); /* Full height minus nav bar */
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
                 padding: 1rem 1.5rem;
                 gap: 1rem;
                 overflow-y: auto;
-                transform: translateX(100%); /* Start off-screen */
+                transform: translateX(100%);
                 transition: transform 0.3s ease;
-                z-index: 998; /* Below toggle, above content */
-                align-items: flex-start; /* Align links to the left inside the menu */
-                border-radius: 0 0 0 10px; /* Optional: rounded bottom-left corner */
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
             }
-            .nav-container .nav-links.active {
-                transform: translateX(0); /* Slide in */
-            }
-            .nav-container .nav-links a {
-                width: auto; /* Allow links to naturally size */
-                text-align: left; /* Align text to left */
-                padding: 0.5rem 0; /* Add vertical padding */
-            }
-            .menu-toggle {
-                display: flex; /* Show hamburger on phones */
-            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
+            .menu-toggle { display: flex; }
 
-            h1 {
-                font-size: 1.8rem;
-                margin: 1.5rem auto 0.5rem;
-                padding: 0 0.8rem;
-            }
-            .container {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
-                padding: 0.8rem;
-            }
-            .label-link {
-                font-size: 1rem;
-                padding: 0.8rem 1rem;
-            }
-            .buttons {
-                padding: 0 0.8rem;
-            }
-            .buttons a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-                margin: 0 0.3rem;
-            }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            .container { grid-template-columns: 1fr; gap: 0.8rem; padding: 0.8rem; }
+            .label-link { font-size: 1rem; padding: 0.8rem 1rem; }
+            .buttons { padding: 0 0.8rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; margin: 0 0.3rem; }
         }
     </style>
 </head>
@@ -266,7 +185,7 @@
                 <span class="bar"></span>
             </button>
 
-<div class="nav-links" id="primary-navigation">
+            <div class="nav-links" id="primary-navigation">
                 <a href="index.html">Home</a>
                 <a href="flashcards.html">Flashcards</a>
                 <a href="conversation.html">Conversations</a>
@@ -280,9 +199,19 @@
 
     <h1>Activities & Games</h1>
 
-   <main>
-        <div class="container">
+    <main>
+        <!-- NEW: search bar (matches Reading page styling) -->
+        <div style="max-width:800px;margin:auto;padding:1rem;">
+            <input
+                type="text"
+                id="search-bar"
+                placeholder="Search activities..."
+                aria-label="Search activities"
+                style="width:100%;padding:10px;font-size:1.05rem;border-radius:6px;border:1px solid #ccc;margin-bottom:1.2rem;"
+            >
+        </div>
 
+        <div class="container">
             <a class="label-link" href="activities/project-my-favorite-movie-or-tv-show.html">[Project] My Favorite Movie or TV Show </a>
             <a class="label-link" href="activities/present-tenses-challenge-intermediate-high.html">[Game] Present Tenses(present simple, progressive and perfect) Challenge (Intermediate High)</a>
             <a class="label-link" href="activities/present-tenses-challenge.html">[Game] Present Tenses(present simple, progressive and perfect) Challenge </a>
@@ -298,7 +227,6 @@
             <a class="label-link" href="activities/esl-challenge-american-states.html">[Game] US State Acronyms </a>
             <a class="label-link" href="activities/esl-activities-find-someone-who-hobby.html">[Activity] Find Someone Who, Hobby Edition</a>
             <a class="label-link" href="activities/esl-activity-find-someone-who-travel.html">[Activity] Find Someone Who, Travel America</a>
-
         </div>
     </main>
 
@@ -317,13 +245,22 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked (useful for single-page apps or when navigating)
+        // Close menu when a link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if(navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', false);
                 }
+            });
+        });
+
+        // NEW: live filter (same logic as Reading page)
+        document.getElementById('search-bar').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const items = document.querySelectorAll('.container .label-link');
+            items.forEach(item => {
+                item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
             });
         });
     </script>

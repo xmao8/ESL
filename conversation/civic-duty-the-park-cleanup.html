@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Civic Duty: The Park Cleanup - ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+                align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul, .content-container ol { margin-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .conversation-script p { margin-bottom: 0.8rem; }
+        .conversation-script strong {
+            display: inline-block; width: 110px; text-align: right; margin-right: 10px; color: #124076;
+        }
+        .conversation-script span.dialogue { display: inline; }
+        .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+        .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+        .character-info ul { list-style: none; padding: 0; margin: 0; }
+        .character-info li { margin-bottom: 0.2rem; }
+        .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+        .vocabulary-list li { margin-bottom: 0.8rem; }
+        .vocabulary-list .vocab-word {
+            font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.2rem; color: #3498db; user-select: none; transition: color 0.2s; }
+        .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+        .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+        .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+            cursor: pointer; text-decoration: none; display: inline-block; user-select: none;
+        }
+        button:hover, .buttons a:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Civic Duty: The Park Cleanup</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>ANNA:</strong> A new high school student, 16 years old. She is hesitant and a little shy.</li>
+            <li><strong>LEO:</strong> Anna's classmate, 16 years old. He is enthusiastic and organized.</li>
+            <li><strong>MR. JENKINS:</strong> A kind, older man, the park's caretaker.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Scene: A local community park. It's a sunny Saturday morning. There are a few bags of trash and some rakes nearby.</p>
+
+    <div class="conversation-script">
+        <h3>Scene 1</h3>
+        <p><strong>ANNA:</strong> <span class="dialogue">Leo, are you sure about this? It's a beautiful day. We could be doing anything else right now.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">(Smiling) Of course, I'm sure! It's our city's "Community Service Day." Plus, Mr. Jenkins needs our help. He takes care of this whole park by himself. It's a **civic responsibility**.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">What does that really mean? "Civic responsibility." Is it just... a fancy name for work?</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">(Putting the map away) No. It's about being an active **citizen** in our **community**. It means we have a **duty** to make our city better. It's not just about our **rights**, like voting or speaking freely. It's also about helping.</span></p>
+        <p><strong>MR. JENKINS:</strong> <span class="dialogue">Good morning, you two! Thank you for **volunteering**. I saw the **petition** you started last month to get more funding for the park. That was wonderful.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">(Blushing) Oh, that was Leo's idea. I just signed it.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">She helped me **advocate** for it online! It's a team effort. You know, Mr. Jenkins, we learned about government **policy** in class. We want to **contribute** to making things better, not just complain.</span></p>
+        <p><strong>MR. JENKINS:</strong> <span class="dialogue">That's the spirit! It's this kind of **participation** that keeps a community strong. This park is for everyone. It's a place for families to spend time together. It’s a great example of being **cooperative**.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">(Looking around) So, what's our job? Picking up trash?</span></p>
+        <p><strong>MR. JENKINS:</strong> <span class="dialogue">Yes, and raking leaves. We need to **protect** this place. It’s our shared space.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">(Puts her phone in her pocket. She picks up a rake and starts raking a pile of leaves.) Okay, I get it now. It's not just work. It's like... we're taking care of our home.</span></p>
+        <p><strong>LEO:</strong> <span class="dialogue">Exactly! And we're setting an example for others. Maybe next year more people will **serve** with us.</span></p>
+        <p><strong>MR. JENKINS:</strong> <span class="dialogue">You are both doing a great **service**. This is what makes a democracy successful. When we all **obey** the laws and **respect** our shared spaces, we can make this a great place to live. Thank you.</span></p>
+        <p><strong>ANNA:</strong> <span class="dialogue">Let’s start over there, Leo. We can finish this fast.</span></p>
+        <p class="scene-direction">**THE END**</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li>
+                <span class="vocab-word">Citizen <span class="speaker-icon" onclick="speakWord('Citizen')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈsɪtɪzən/</span>
+                <span class="definition">(n.) A person who belongs to a country and has certain rights and duties.</span>
+                <span class="example">Example: He is a citizen of this country.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Community <span class="speaker-icon" onclick="speakWord('Community')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kəˈmjuːnəti/</span>
+                <span class="definition">(n.) A group of people living in the same place or having a particular characteristic in common.</span>
+                <span class="example">Example: We should help our local community.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Responsibility <span class="speaker-icon" onclick="speakWord('Responsibility')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/rɪˌspɑːnsəˈbɪləti/</span>
+                <span class="definition">(n.) A duty or obligation to do something.</span>
+                <span class="example">Example: Voting is a civic responsibility.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Rights <span class="speaker-icon" onclick="speakWord('Rights')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/raɪts/</span>
+                <span class="definition">(n.) Moral or legal entitlements to have or obtain something or to act in a certain way.</span>
+                <span class="example">Example: Everyone has the right to an education.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Duty <span class="speaker-icon" onclick="speakWord('Duty')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈduːti/</span>
+                <span class="definition">(n.) A moral or legal obligation.</span>
+                <span class="example">Example: It's our duty to respect the law.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Volunteer <span class="speaker-icon" onclick="speakWord('Volunteer')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˌvɑːlənˈtɪər/</span>
+                <span class="definition">(v.) To offer to do something without being paid.</span>
+                <span class="example">Example: We volunteer at the hospital on weekends.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Petition <span class="speaker-icon" onclick="speakWord('Petition')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/pəˈtɪʃən/</span>
+                <span class="definition">(n.) A formal written request, signed by many people, appealing to authority.</span>
+                <span class="example">Example: They started a petition to change the park rules.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Advocate <span class="speaker-icon" onclick="speakWord('Advocate')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈædvəkeɪt/</span>
+                <span class="definition">(v.) To publicly support a particular cause or policy.</span>
+                <span class="example">Example: She advocates for animal rights.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Policy <span class="speaker-icon" onclick="speakWord('Policy')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/ˈpɑːləsi/</span>
+                <span class="definition">(n.) A course or principle of action adopted or proposed by a government.</span>
+                <span class="example">Example: The new government policy will affect many people.</span>
+            </li>
+            <li>
+                <span class="vocab-word">Contribute <span class="speaker-icon" onclick="speakWord('Contribute')" title="Pronounce">🔊</span></span>
+                <span class="ipa">/kənˈtrɪbjuːt/</span>
+                <span class="definition">(v.) To give something, such as money, time, or effort, to help a cause.</span>
+                <span class="example">Example: Everyone can contribute to the team's success.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Web Speech API pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

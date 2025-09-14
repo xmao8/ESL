@@ -4,88 +4,104 @@
     <link rel="icon" href="/favicon.png" type="image/png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Reading: "Hope" is the thing with feathers</title>
+    <title>Reading: Hope is the Thing with Feathers</title>
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
-        /* Base layout */
+        /* General styling and box model */
         * { box-sizing: border-box; }
         body {
             display: flex; flex-direction: column; min-height: 100vh; margin: 0;
-            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333; overflow-x: hidden;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
         }
         main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
 
-        nav {
-            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
-        }
+        /* Navigation Bar */
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
         .nav-container {
             display: flex; justify-content: space-between; align-items: center;
             max-width: 1100px; margin: 0 auto; padding: 0;
         }
-        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo { display: flex; align-items: center; text-decoration: none; }
         .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
         .nav-container .site-name {
             font-family: 'Poppins', sans-serif; font-size: 1.3rem;
             color: #ff9800; font-weight: bold; white-space: nowrap;
         }
-        .nav-container .nav-links {
-            display: flex; gap: 1.5rem;
-        }
+        .nav-container .nav-links { display: flex; gap: 1.5rem; }
         .nav-container .nav-links a {
-            color: white; text-decoration: none; font-weight: bold; transition: color 0.2s;
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
         }
-        .nav-container .nav-links a:hover {
-            color: #ffbb33; text-decoration: underline;
-        }
+        .nav-container .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+        /* Mobile Menu Toggle */
         .menu-toggle {
-            display: none; flex-direction: column; gap: 5px; background: none; border: none;
-            cursor: pointer; padding: 0; z-index: 1000;
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
         }
         .menu-toggle .bar {
-            width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s;
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
         }
 
+        /* Headings and Text */
         h1 {
             text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
             color: #2c3e50; max-width: 800px; padding: 0 1rem;
         }
         h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
         h3 { margin: 1rem 0 0.5rem; font-style: italic; }
-        p { line-height: 1.5; margin: 0.5rem 0; }
+        p { line-height: 1.6; margin: 0.5rem 0; }
         ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
         ul li, ol li { margin-bottom: 0.3rem; }
 
+        /* Content Sections */
         .content-section {
-            background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 1.5rem; margin-bottom: 2rem;
         }
         .content-section ol { list-style-type: decimal; margin-left: 20px; }
         .content-section li { margin-bottom: 0.8rem; }
-        .poem-text p {
-            font-family: 'Times New Roman', serif; font-size: 1.2rem; line-height: 1.8;
-            text-indent: 1.5rem;
-        }
 
+        /* Poem block */
+        .poem {
+            font-family: Georgia, 'Times New Roman', serif;
+            white-space: pre-line; line-height: 1.9;
+            background: #fbfdff; border: 1px solid #e6eef6;
+            border-radius: 8px; padding: 1rem 1.2rem;
+        }
+        .poem .title { font-weight: bold; text-align: center; margin-bottom: 0.3rem; }
+        .poem .author { text-align: center; color: #5a6b7a; margin-bottom: 1rem; font-style: italic; }
+
+        /* Vocabulary List Styling */
         .vocabulary-list ul { list-style: none; padding-left: 0; }
         .vocabulary-list li {
-            background-color: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
-            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-direction: column;
-            align-items: flex-start; box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+            flex-wrap: wrap;
         }
-        .vocabulary-list li strong { color: #124076; font-size: 1.1em; flex-shrink: 0; }
-        .vocabulary-list li .definition { font-size: 1em; margin-top: 5px; color: #555; }
-        .vocabulary-list li .translation { font-size: 0.9em; color: #777; margin-top: 5px; font-style: italic; }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
         .speaker-icon {
-            color: #3498db; cursor: pointer; margin-left: 5px; font-size: 0.9em; transition: color 0.2s;
-            flex-shrink: 0; margin-top: 2px;
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
         }
         .speaker-icon:hover { color: #2980b9; }
-        .vocabulary-item-header { display: flex; align-items: center; }
-        .vocabulary-item-header strong { margin-right: 5px; }
+        .vocabulary-list li .definition { flex-grow: 1; min-width: 180px; }
 
+        /* Buttons at the bottom */
         .buttons {
-            text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem;
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
         }
         .buttons a {
             text-decoration: none; background-color: #3498db; color: white;
@@ -94,9 +110,13 @@
         }
         .buttons a:hover { background-color: #2980b9; }
 
+        /* Responsive Design */
         @media (min-width: 601px) and (max-width: 900px) {
             .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
             .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
             h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
             main { padding: 1.5rem; }
             h2 { font-size: 1.6rem; }
@@ -106,11 +126,14 @@
         }
         @media (max-width: 600px) {
             .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
             .nav-container .site-name { font-size: 1.2rem; }
             .nav-container .nav-links {
-                position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column;
-                width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
-                transform: translateX(100%); transition: transform 0.3s; z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
             }
             .nav-container .nav-links.active { transform: translateX(0); }
             .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
@@ -124,17 +147,20 @@
             .vocabulary-list li { flex-direction: column; align-items: flex-start; padding: 10px; }
             .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
             .speaker-icon { margin-left: 0; margin-bottom: 5px; }
-            .vocabulary-list li .definition { font-size: 0.9em; }
-            .vocabulary-list li .translation { font-size: 0.85em; }
+            .vocabulary-list li .definition { font-size: 0.95rem; }
         }
         @media (max-width: 380px) {
             .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
             h1 { font-size: 1.6rem; }
         }
+
+        /* Small utilities */
+        .meta { text-align: center; color: #5a6b7a; margin-top: 0.2rem; font-size: 0.95rem; }
+        .badge { display:inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; background:#eef5ff; color:#2b5ca8; font-size:0.8rem; margin-left:0.3rem;}
+        .note { background:#fff7e6; border:1px solid #ffe1a6; padding:0.7rem 0.9rem; border-radius:8px; }
     </style>
 </head>
 <body>
-
     <nav aria-label="Main navigation">
         <div class="nav-container">
             <a href="../index.html" class="logo" aria-label="ESLnote Home">
@@ -142,9 +168,7 @@
                 <span class="site-name">ESLnote</span>
             </a>
             <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </button>
             <div class="nav-links" id="primary-navigation">
                 <a href="../index.html">Home</a>
@@ -158,112 +182,121 @@
         </div>
     </nav>
 
-    <h1>"Hope" is the thing with feathers<br><span style="font-size:1.2rem; font-weight:400;">by Emily Dickinson</span></h1>
+    <h1>Hope is the Thing with Feathers</h1>
+    <p class="meta">by Emily Dickinson <span class="badge" aria-label="Public Domain">Public Domain</span></p>
 
     <main>
-        <div class="content-section poem-text">
-            <h2>"Hope" is the thing with feathers</h2>
-            <p>
-            “Hope” is the thing with <strong>feathers</strong> –<br>
-            That <strong>perches</strong> in the soul –<br>
-            And sings the tune without the words –<br>
-            And never stops – at all –
-            </p>
-            <p>
-            And <strong>sweetest</strong> – in the <strong>Gale</strong> – is heard –<br>
-            And <strong>sore</strong> must be the storm –<br>
-            That could <strong>abash</strong> the little Bird<br>
-            That kept so many warm –
-            </p>
-            <p>
-            I’ve heard it in the <strong>chillest</strong> land –<br>
-            And on the <strong>strangest</strong> Sea –<br>
-            Yet – never – in <strong>Extremity</strong>,<br>
-            It asked a <strong>crumb</strong> – of me.
-            </p>
-        </div>
+        <!-- Poem -->
+        <section class="content-section" aria-labelledby="poemHeading">
+            <h2 id="poemHeading">Poem</h2>
+            <div class="poem" role="article" aria-label="Poem text">
+                <div class="title">Hope is the Thing with Feathers</div>
+                <div class="author">Emily Dickinson (c. 1861)</div>
+                Hope is the thing with feathers
+                That perches in the soul,
+                And sings the tune without the words,
+                And never stops at all,
 
-        <div class="content-section vocabulary-list">
-            <h2>Vocabulary List</h2>
-            <p>Click the <i class="fas fa-volume-up" style="color:#3498db;"></i> icon to hear the word. Try to guess the meaning, then read the definition and translation.</p>
+                And sweetest in the gale is heard;
+                And sore must be the storm
+                That could abash the little bird
+                That kept so many warm.
+
+                I’ve heard it in the chillest land,
+                And on the strangest sea;
+                Yet, never, in extremity,
+                It asked a crumb of me.
+            </div>
+            <p class="note" aria-live="polite">Teacher tip: Read aloud once for rhythm, then have students choral-read by stanza.</p>
+        </section>
+
+        <!-- Vocabulary -->
+        <section class="content-section vocabulary-list" aria-labelledby="vocabHeading">
+            <h2 id="vocabHeading">Vocabulary List <span class="badge">Tap 🔊</span></h2>
+            <p>Tap the speaker to hear each word.</p>
             <ul>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Feathers</strong> <i class="fas fa-volume-up speaker-icon" data-word="Feathers" aria-label="Pronounce Feathers"></i>
-                    </div>
-                    <div class="definition">The soft, light covering of a bird’s body.</div>
-                    <div class="translation">IPA: /ˈfeðərz/ | Chinese: 羽毛 (yǔmáo) | Spanish: plumas</div>
+                    <strong>feathers</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="feathers" aria-label="Pronounce feathers"></i>
+                    <div class="definition">Soft parts that cover a bird’s body.</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Perches</strong> <i class="fas fa-volume-up speaker-icon" data-word="Perches" aria-label="Pronounce Perches"></i>
-                    </div>
-                    <div class="definition">Sits or rests on something, usually above the ground.</div>
-                    <div class="translation">IPA: /pɜːrtʃɪz/ | Chinese: 栖息 (qīxī) | Spanish: se posa</div>
+                    <strong>perch</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="perch" aria-label="Pronounce perch"></i>
+                    <div class="definition">To sit or rest, like a bird on a branch.</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Gale</strong> <i class="fas fa-volume-up speaker-icon" data-word="Gale" aria-label="Pronounce Gale"></i>
-                    </div>
+                    <strong>soul</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="soul" aria-label="Pronounce soul"></i>
+                    <div class="definition">A person’s inner spirit or heart.</div>
+                </li>
+                <li>
+                    <strong>tune</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="tune" aria-label="Pronounce tune"></i>
+                    <div class="definition">A melody; a simple song.</div>
+                </li>
+                <li>
+                    <strong>gale</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="gale" aria-label="Pronounce gale"></i>
                     <div class="definition">A very strong wind.</div>
-                    <div class="translation">IPA: /ɡeɪl/ | Chinese: 大风 (dàfēng) | Spanish: vendaval</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Sore</strong> <i class="fas fa-volume-up speaker-icon" data-word="Sore" aria-label="Pronounce Sore"></i>
-                    </div>
-                    <div class="definition">Very serious; severe; also means painful.</div>
-                    <div class="translation">IPA: /sɔːr/ | Chinese: 严重的/疼痛的 (yánzhòng de/téngtòng de) | Spanish: severo/dolorido</div>
+                    <strong>sore</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="sore" aria-label="Pronounce sore"></i>
+                    <div class="definition">Very strong or severe (old-fashioned use).</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Abash</strong> <i class="fas fa-volume-up speaker-icon" data-word="Abash" aria-label="Pronounce Abash"></i>
-                    </div>
-                    <div class="definition">To make someone feel embarrassed, ashamed, or unable to respond.</div>
-                    <div class="translation">IPA: /əˈbæʃ/ | Chinese: 使羞愧 (shǐ xiūkuì) | Spanish: avergonzar</div>
+                    <strong>abash</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="abash" aria-label="Pronounce abash"></i>
+                    <div class="definition">To make someone feel embarrassed or quiet.</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Chillest</strong> <i class="fas fa-volume-up speaker-icon" data-word="Chillest" aria-label="Pronounce Chillest"></i>
-                    </div>
-                    <div class="definition">Coldest; most cold.</div>
-                    <div class="translation">IPA: /ˈtʃɪlɪst/ | Chinese: 最冷的 (zuì lěng de) | Spanish: el más frío</div>
+                    <strong>chillest</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="chillest" aria-label="Pronounce chillest"></i>
+                    <div class="definition">Coldest.</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Strangest</strong> <i class="fas fa-volume-up speaker-icon" data-word="Strangest" aria-label="Pronounce Strangest"></i>
-                    </div>
-                    <div class="definition">Most unusual or surprising.</div>
-                    <div class="translation">IPA: /ˈstreɪndʒɪst/ | Chinese: 最奇怪的 (zuì qíguài de) | Spanish: el más extraño</div>
+                    <strong>extremity</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="extremity" aria-label="Pronounce extremity"></i>
+                    <div class="definition">A very difficult or dangerous situation.</div>
                 </li>
                 <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Extremity</strong> <i class="fas fa-volume-up speaker-icon" data-word="Extremity" aria-label="Pronounce Extremity"></i>
-                    </div>
-                    <div class="definition">A very difficult or dangerous situation; the furthest point or limit.</div>
-                    <div class="translation">IPA: /ɪkˈstrɛm.ə.t̬i/ | Chinese: 极端情况 (jíduān qíngkuàng) | Spanish: extremo</div>
-                </li>
-                <li>
-                    <div class="vocabulary-item-header">
-                        <strong>Crumb</strong> <i class="fas fa-volume-up speaker-icon" data-word="Crumb" aria-label="Pronounce Crumb"></i>
-                    </div>
-                    <div class="definition">A very small piece of bread, cake, or other food.</div>
-                    <div class="translation">IPA: /krʌm/ | Chinese: 面包屑 (miànbāo xiè) | Spanish: miga</div>
+                    <strong>crumb</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="crumb" aria-label="Pronounce crumb"></i>
+                    <div class="definition">A very small piece of bread or food.</div>
                 </li>
             </ul>
-        </div>
+        </section>
 
-        <div class="content-section">
-            <h2>Comprehension Questions</h2>
-            <p>Answer these questions about the poem, "Hope" is the thing with feathers.</p>
+        <!-- Meaning -->
+        <section class="content-section" aria-labelledby="meaningHeading">
+            <h2 id="meaningHeading">Meaning</h2>
+            <p>Emily Dickinson compares <strong>hope</strong> to a <strong>bird</strong> that lives inside us. This bird <em>sings all the time</em>, even during storms and cold weather. Hard times cannot silence it. Hope gives us warmth and strength and never asks for payment.</p>
+        </section>
+
+        <!-- Comprehension Questions -->
+        <section class="content-section" aria-labelledby="compHeading">
+            <h2 id="compHeading">Comprehension Questions</h2>
+            <p>Answer the questions based on the poem.</p>
             <ol>
-                <li>What is “the thing with feathers” a metaphor for?</li>
-                <li>Where does “hope” live, according to the poem?</li>
-                <li>When is hope “sweetest”?</li>
-                <li>What does the bird do in “the chillest land and on the strangest Sea”?</li>
-                <li>What does hope ask for in return?</li>
+                <li>What is hope compared to in the poem?</li>
+                <li>Where does the “little bird” live?</li>
+                <li>When is the bird’s song “sweetest,” and why is that important?</li>
+                <li>What kind of storm would it take to silence the bird?</li>
+                <li>What does the poem say hope asks for in return?</li>
             </ol>
-        </div>
+        </section>
+
+        <!-- Discussion Prompts -->
+        <section class="content-section" aria-labelledby="discussionHeading">
+            <h2 id="discussionHeading">Discussion Prompts</h2>
+            <ul>
+                <li>Describe a time when hope helped you in a difficult situation.</li>
+                <li>Why do you think Dickinson chose a <em>bird</em> to represent hope?</li>
+                <li>What lines from the poem are most meaningful to you? Explain.</li>
+                <li>Is hope always positive? Can it ever be unrealistic? Discuss.</li>
+            </ul>
+        </section>
     </main>
 
     <div class="buttons">
@@ -272,7 +305,7 @@
     </div>
 
     <script>
-        // Mobile nav toggle
+        // Mobile navigation toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('primary-navigation');
         if (menuToggle && navLinks) {
@@ -281,11 +314,9 @@
                 menuToggle.setAttribute('aria-expanded', !expanded);
                 navLinks.classList.toggle('active');
             });
-            navLinks.querySelectorAll
-            // Close mobile menu when a nav link is clicked
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    if(navLinks.classList.contains('active')) {
+                    if (navLinks.classList.contains('active')) {
                         navLinks.classList.remove('active');
                         menuToggle.setAttribute('aria-expanded', false);
                     }
@@ -297,17 +328,18 @@
         const speakerIcons = document.querySelectorAll('.speaker-icon');
         if ('speechSynthesis' in window) {
             speakerIcons.forEach(icon => {
-                icon.addEventListener('click', function() {
+                icon.addEventListener('click', function () {
                     const wordToSpeak = this.dataset.word;
                     if (wordToSpeak) {
                         const utterance = new SpeechSynthesisUtterance(wordToSpeak);
                         utterance.lang = 'en-US';
+                        window.speechSynthesis.cancel(); // stop previous
                         window.speechSynthesis.speak(utterance);
                     }
                 });
             });
         } else {
-            // Optionally, hide icons if TTS not supported
+            // Hide the speaker icons if the browser doesn't support the API
             speakerIcons.forEach(icon => icon.style.display = 'none');
         }
     </script>

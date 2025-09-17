@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Grand Canyon — A Natural Wonder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General styling and box model */
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            overflow-x: hidden;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        
+        /* Navigation Bar */
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0;
+        }
+        .nav-container .logo { display: flex; align-items: center; }
+        .nav-container .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+            color: #ff9800; font-weight: bold; white-space: nowrap;
+        }
+        .nav-container .nav-links { display: flex; gap: 1.5rem; }
+        .nav-container .nav-links a {
+            color: white; text-decoration: none; font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 0; z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px; height: 3px; background: white;
+            border-radius: 2px; transition: all 0.3s ease-in-out;
+        }
+        
+        /* Headings and Text */
+        h1 {
+            text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem;
+            color: #2c3e50; max-width: 800px; padding: 0 1rem;
+        }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        p { line-height: 1.6; margin: 0.5rem 0; }
+        ul, ol { margin: 0.5rem 0 1rem 1.5rem; padding: 0; }
+        ul li, ol li { margin-bottom: 0.3rem; }
+        
+        /* Content Sections */
+        .content-section {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .content-section ol { list-style-type: decimal; margin-left: 20px; }
+        .content-section li { margin-bottom: 0.8rem; }
+        
+        /* Vocabulary List Styling */
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background-color: #fdfdff; border: 1px solid #e0e0e0;
+            border-radius: 6px; margin-bottom: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.4;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list li strong {
+            color: #124076; margin-right: 8px; font-size: 1.1em; flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db; cursor: pointer; margin-left: 5px;
+            font-size: 0.9em; transition: color 0.2s; flex-shrink: 0; margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; min-width: 180px;}
+        
+        /* Buttons at the bottom */
+        .buttons {
+            text-align: center; margin: 2rem auto;
+            max-width: 800px; padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none; background-color: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s; display: inline-block;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+        
+        /* Responsive Design */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .logo { margin-bottom: 0; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                z-index: 998; align-items: flex-start; border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
+            .menu-toggle { display: flex; }
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .vocabulary-list li { flex-direction: column; align-items: flex-start; padding: 10px; }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+        }
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>The Grand Canyon — A Natural Wonder</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>A Window into Deep Time</h2>
+            <p>The Grand Canyon, in the state of Arizona in the United States, is one of Earth’s most famous natural wonders. Carved by the Colorado River over millions of years, the canyon stretches about 446 kilometers, reaches up to 29 kilometers wide, and drops more than 1.8 kilometers deep. Standing at the rim—the edge—many visitors feel amazed and humbled by its size and beauty.</p>
+            <p>Its colorful rock layers are like pages in a history book. Some rocks are nearly two billion years old. Each layer shows a different environment: ancient seas, deserts, and volcanic activity. By reading these layers, scientists learn how the land changed over time. In this way, the canyon is a classroom for geology, the study of Earth’s materials and processes.</p>
+            <p>The Grand Canyon is also a place of living culture. For thousands of years, Native American tribes—including the Hopi, Navajo, Havasupai, and Hualapai—have lived in and around the canyon. For many, it is a sacred place connected to traditions and stories. Their communities continue to care for the land and share their knowledge with visitors today.</p>
+            <p>In 1919, the U.S. government created Grand Canyon National Park to protect this special landscape. People come to hike along trails, camp under clear night skies, and ride rafts on the Colorado River. From the hot desert at the bottom to cool forests near the top, plants and animals change with the elevation. Wildlife such as bighorn sheep, elk, and many kinds of birds make their homes here.</p>
+            <p>Like many natural places, the Grand Canyon faces challenges. Climate change can increase heat and reduce water. Heavy tourism can damage fragile areas, and development near the park can affect air quality and wildlife habitats. Park rangers, scientists, and local communities work together to preserve the canyon while welcoming visitors.</p>
+            <p>The Grand Canyon reminds us of nature’s power and time’s great scale. When you look across its wide spaces, you can feel both the excitement of the present and the mystery of the past. It is truly a place where science, culture, and adventure meet—and a reminder to protect our planet’s wonders.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>These words will help you understand the article. Tap the speaker to hear each word.</p>
+            <ul>
+                <li>
+                    <strong>canyon</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="canyon" aria-label="Pronounce canyon"></i>
+                    <div class="definition">A deep, narrow valley with steep sides.</div>
+                </li>
+                <li>
+                    <strong>rim</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="rim" aria-label="Pronounce rim"></i>
+                    <div class="definition">The outer edge of something, like the edge of the canyon.</div>
+                </li>
+                <li>
+                    <strong>layer</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="layer" aria-label="Pronounce layer"></i>
+                    <div class="definition">One level on top of another; a sheet of rock or material.</div>
+                </li>
+                <li>
+                    <strong>geology</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="geology" aria-label="Pronounce geology"></i>
+                    <div class="definition">The science that studies Earth, rocks, and how landforms change.</div>
+                </li>
+                <li>
+                    <strong>sacred</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="sacred" aria-label="Pronounce sacred"></i>
+                    <div class="definition">Holy or very important in a spiritual way.</div>
+                </li>
+                <li>
+                    <strong>tribe</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="tribe" aria-label="Pronounce tribe"></i>
+                    <div class="definition">A community of people with shared culture and ancestors.</div>
+                </li>
+                <li>
+                    <strong>erosion</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="erosion" aria-label="Pronounce erosion"></i>
+                    <div class="definition">The process of wearing away rock by water, wind, or ice.</div>
+                </li>
+                <li>
+                    <strong>elevation</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="elevation" aria-label="Pronounce elevation"></i>
+                    <div class="definition">Height above sea level.</div>
+                </li>
+                <li>
+                    <strong>wildlife</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="wildlife" aria-label="Pronounce wildlife"></i>
+                    <div class="definition">Animals that live naturally in an area.</div>
+                </li>
+                <li>
+                    <strong>raft</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="raft" aria-label="Pronounce raft"></i>
+                    <div class="definition">To travel on a river using a small, flat boat.</div>
+                </li>
+                <li>
+                    <strong>national park</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="national park" aria-label="Pronounce national park"></i>
+                    <div class="definition">A protected area kept for nature and public enjoyment.</div>
+                </li>
+                <li>
+                    <strong>preserve</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="preserve" aria-label="Pronounce preserve"></i>
+                    <div class="definition">To protect and keep something in good condition.</div>
+                </li>
+                <li>
+                    <strong>Colorado River</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="Colorado River" aria-label="Pronounce Colorado River"></i>
+                    <div class="definition">The river that carved the Grand Canyon.</div>
+                </li>
+                <li>
+                    <strong>vast</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="vast" aria-label="Pronounce vast"></i>
+                    <div class="definition">Very large in size or area.</div>
+                </li>
+                <li>
+                    <strong>climate change</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="climate change" aria-label="Pronounce climate change"></i>
+                    <div class="definition">Long-term changes in temperature and weather patterns.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the Grand Canyon.</p>
+            <ol>
+                <li>How was the Grand Canyon formed, and which river helped shape it?</li>
+                <li>Why do scientists study the rock layers in the Grand Canyon?</li>
+                <li>How do Native American tribes relate to the canyon today?</li>
+                <li>What activities can visitors do in Grand Canyon National Park?</li>
+                <li>What challenges does the canyon face, and who is working to protect it?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            // Hide the speaker icons if the browser doesn't support the API
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

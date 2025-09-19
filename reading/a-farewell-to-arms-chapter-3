@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: A Farewell to Arms — Chapter III (Excerpt)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Navigation */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name {
+      font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+      color: #ff9800; font-weight: bold;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+    /* Headings & text */
+    h1 {
+      text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem;
+      color: #2c3e50;
+    }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+    .byline { text-align: center; color: #555; margin-top: -0.4rem; }
+
+    /* Containers */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocab list */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Questions */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white;
+      padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+      transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>A Farewell to Arms — Chapter III (Excerpt)</h1>
+  <div class="byline">By Ernest Hemingway</div>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note">
+        <strong>Note for learners:</strong> This excerpt from Chapter III continues Hemingway’s wartime narrative. Vocabulary and questions are provided below for ESL study.
+      </div>
+
+      <h2>Text</h2>
+      <p>When I came back to the front we still lived in that town. There were many more guns in the country around and the spring had come. The fields were green and there were small green shoots on the vines, the trees along the road had small leaves and a breeze came from the sea. I saw the town with the hill and the old castle above it in a cup in the hills with the mountains beyond, brown mountains with a little green on their slopes. In the town there were more guns, there were some new hospitals, you met British men and sometimes women, on the street, and a few more houses had been hit by shell fire. It was warm and like the spring and I walked down the alleyway of trees, warmed from the sun on the wall, and found we still lived in the same house and that it all looked the same as when I had left it...</p>
+
+      <p>[Full original text of Chapter III continues here — shortened in this sample for space.]</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary Support</h2>
+      <ul>
+        <li><strong>sniper</strong> <i class="fas fa-volume-up speaker-icon" data-word="sniper"></i> — A soldier trained to shoot from a hidden position.</li>
+        <li><strong>tunics</strong> <i class="fas fa-volume-up speaker-icon" data-word="tunic"></i> — Military uniforms worn as a coat or jacket.</li>
+        <li><strong>mess</strong> <i class="fas fa-volume-up speaker-icon" data-word="mess"></i> — A place where soldiers eat together.</li>
+        <li><strong>Strega</strong> <i class="fas fa-volume-up speaker-icon" data-word="Strega"></i> — A strong Italian liqueur, often yellow in color.</li>
+        <li><strong>cafés</strong> <i class="fas fa-volume-up speaker-icon" data-word="cafes"></i> — Small restaurants serving drinks and light meals.</li>
+        <li><strong>financial protector</strong> <i class="fas fa-volume-up speaker-icon" data-word="financial protector"></i> — A humorous phrase meaning someone who lends or gives money.</li>
+        <li><strong>priest</strong> <i class="fas fa-volume-up speaker-icon" data-word="priest"></i> — A religious leader in the Catholic Church.</li>
+        <li><strong>offensive</strong> <i class="fas fa-volume-up speaker-icon" data-word="offensive"></i> — A planned attack in a war.</li>
+        <li><strong>Abruzzi</strong> <i class="fas fa-volume-up speaker-icon" data-word="Abruzzi"></i> — A mountainous region in Italy mentioned by the priest.</li>
+        <li><strong>argument</strong> <i class="fas fa-volume-up speaker-icon" data-word="argument"></i> — A discussion where people disagree strongly.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What changes does the narrator notice in the town when he returns in the spring?</li>
+        <li>Who is Rinaldi, and how does he greet the narrator?</li>
+        <li>What does Rinaldi ask to borrow, and why?</li>
+        <li>Why is the priest disappointed, and how does the narrator explain his decision?</li>
+        <li>How does Hemingway contrast the narrator’s nights of drinking with the idea of visiting the Abruzzi?</li>
+        <li>What disagreements arise at the mess table about religion and the war?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

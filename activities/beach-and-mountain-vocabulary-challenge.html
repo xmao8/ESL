@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beach & Mountain Vocabulary Challenge – ESLnote Style</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { display:flex; flex-direction:column; min-height:100vh; margin:0; font-family:'Segoe UI', Arial, sans-serif; background:#f0f4f8; color:#333; line-height:1.6; }
+    main { flex:1; padding:2rem 1rem; }
+    h1 { color:#124076; font-family:'Poppins',sans-serif; font-weight:700; }
+
+    nav { background:#124076; width:100%; padding:.8rem 1rem; }
+    .nav-container{ display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto; }
+    .logo{ display:flex; align-items:center; }
+    .logo-img{ width:32px; height:32px; margin-right:.5rem; }
+    .site-name{ font-family:'Poppins',sans-serif; font-size:1.3rem; color:#ff9800; font-weight:700; white-space:nowrap; }
+    .nav-links{ display:flex; gap:1.5rem; }
+    .nav-links a{ color:#fff; font-weight:700; }
+    .nav-links a:hover{ color:#ffbb33; text-decoration:underline; }
+
+    .game-container{ max-width:1200px; margin:2rem auto 3rem; background:#fff; padding:2.5rem; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,.1); }
+    .game-container h1{ font-size:2.4rem; text-align:center; margin-bottom:1rem; }
+
+    #scores{ display:flex; justify-content:center; gap:4rem; font-size:1.4rem; margin-bottom:1.25rem; font-weight:700; color:#2c3e50; }
+
+    .board{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:15px; background:#e0e7ed; border-radius:8px; }
+    .cell{ background:#124076; border:1px solid #0d9ddb; padding:18px; font-size:1.3rem; min-height:100px; display:flex; align-items:center; justify-content:center; cursor:pointer; text-align:center; color:#fff; font-weight:800; border-radius:8px; transition:background-color .2s, transform .1s, box-shadow .2s; box-shadow:0 4px 8px rgba(0,0,0,.1); }
+    .cell:hover:not(.disabled):not(.category){ background:#0d9ddb; transform:translateY(-3px); box-shadow:0 6px 12px rgba(0,0,0,.2); }
+    .cell.disabled{ background:#95a5a6; color:#e0e7ed; pointer-events:none; }
+    .category{ background:#2c3e50; color:#fff; font-size:1.05rem; text-transform:uppercase; }
+
+    .modal{ position:fixed; inset:0; background:rgba(0,0,0,.8); display:none; align-items:center; justify-content:center; z-index:1000; }
+    .modal.show{ display:flex; }
+    .modal-content{ background:#fff; color:#333; padding:2rem; max-width:750px; width:min(92%,750px); border-radius:12px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,.5); border:1px solid #ddd; }
+    #question{ font-size:1.6rem; margin-bottom:1rem; color:#124076; font-family:'Poppins',sans-serif; }
+    #answerBlock{ display:none; margin-top:.75rem; }
+    #answer{ font-weight:700; }
+    #explanation{ font-size:.95rem; color:#555; margin-top:.3rem; }
+    .options{ display:grid; gap:.5rem; max-width:500px; margin:1rem auto; text-align:left; }
+    .option{ background:#f6f9fc; border:1px solid #dbe6f6; padding:.65rem .8rem; border-radius:10px; }
+
+    .controls{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-top:1rem; }
+    .btn{ padding:12px 22px; border:none; border-radius:10px; font-weight:800; cursor:pointer; box-shadow:0 3px 6px rgba(0,0,0,.2); }
+    .btn-primary{ background:#ff9800; color:#fff; }
+    .btn-success{ background:#28a745; color:#fff; }
+    .btn-blue{ background:#007bff; color:#fff; }
+    .btn-gray{ background:#6c757d; color:#fff; }
+    .btn-outline{ background:#fff; color:#124076; border:2px solid #124076; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+        <span class="site-name">ESLnote</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../practice.html">Practice</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="game-container">
+    <h1>Beach & Mountain Vocabulary Challenge</h1>
+    <p style="text-align:center;">Explore 20 words related to the beach and the mountains.</p>
+
+    <div id="scores">
+      <div>Team A: <span id="scoreA">0</span></div>
+      <div>Team B: <span id="scoreB">0</span></div>
+    </div>
+
+    <div class="board" id="board"></div>
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <h2 id="question">Question</h2>
+        <div id="mcWrapper"><div id="options" class="options"></div></div>
+        <div id="answerBlock">
+          <p><strong>Answer:</strong> <span id="answer"></span></p>
+          <div id="explanation"></div>
+        </div>
+        <div class="controls">
+          <button id="checkBtn" class="btn btn-primary">Check</button>
+          <button id="showAnswerButton" class="btn btn-outline">Show Answer</button>
+          <button class="btn btn-success" onclick="claimPoints('A')">Team A Correct</button>
+          <button class="btn btn-blue" onclick="claimPoints('B')">Team B Correct</button>
+          <button class="btn btn-gray" onclick="closeModal(true)">Close</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const categories=['Beach Objects','Beach Activities','Mountain Objects','Mountain Activities'];
+
+    const questions={
+      'Beach Objects':[
+        {q:'You lie on this to relax on the sand.', options:['blanket','towel','mat','sheet'], a:['towel'], exp:'People lie on a beach towel.'},
+        {q:'You wear these on your feet to walk on hot sand.', options:['boots','sandals','slippers','socks'], a:['sandals'], exp:'Sandals are common at the beach.'},
+        {q:'This protects your skin from the sun.', options:['soap','sunscreen','lotion','perfume'], a:['sunscreen'], exp:'Sunscreen protects against UV rays.'},
+        {q:'A ball used to play in the water is a ___.', options:['tennis ball','volleyball','soccer ball','basketball'], a:['volleyball'], exp:'Beach volleyball is popular.'},
+        {q:'You wear these to see under water.', options:['helmet','goggles','glasses','mask'], a:['goggles'], exp:'Swimming goggles help you see underwater.'}
+      ],
+      'Beach Activities':[
+        {q:'Building shapes with sand is called making a ___.', options:['sandcastle','statue','house','tower'], a:['sandcastle'], exp:'Children build sandcastles at the beach.'},
+        {q:'Riding waves on a board is called ___.', options:['swimming','surfing','sailing','diving'], a:['surfing'], exp:'Surfing = riding waves on a surfboard.'},
+        {q:'Walking along the water is called a beach ___.', options:['hike','stroll','walk','trip'], a:['walk'], exp:'A beach walk or stroll.'},
+        {q:'Looking at the sun going down is called watching the ___.', options:['sunset','sunrise','moon','sky'], a:['sunset'], exp:'At the beach people enjoy sunsets.'},
+        {q:'Cooking food outside near the beach is called a ___.', options:['picnic','barbecue','dinner','snack'], a:['barbecue'], exp:'Barbecue = cooking outdoors.'}
+      ],
+      'Mountain Objects':[
+        {q:'Shoes for climbing are called hiking ___.', options:['sandals','boots','shoes','sneakers'], a:['boots'], exp:'Hiking boots protect your feet.'},
+        {q:'You may sleep in a ___.', options:['tent','house','hotel','room'], a:['tent'], exp:'Campers use tents in the mountains.'},
+        {q:'You carry supplies in a ___.', options:['suitcase','backpack','bag','basket'], a:['backpack'], exp:'Hikers use backpacks.'},
+        {q:'To keep warm at night you use a sleeping ___.', options:['bag','cover','sheet','blanket'], a:['bag'], exp:'A sleeping bag is essential for camping.'},
+        {q:'People climb these rocky walls: ___.', options:['cliffs','roads','caves','fields'], a:['cliffs'], exp:'Climbers go up cliffs.'}
+      ],
+      'Mountain Activities':[
+        {q:'Walking in nature is called ___.', options:['running','hiking','cycling','swimming'], a:['hiking'], exp:'Hiking = walking in mountains.'},
+        {q:'Sliding on snow with skis is ___.', options:['skating','skiing','sledding','surfing'], a:['skiing'], exp:'Skiing = sport on snow.'},
+        {q:'Climbing a vertical rock is called rock ___.', options:['hiking','climbing','jumping','riding'], a:['climbing'], exp:'Rock climbing is a mountain sport.'},
+        {q:'Looking at scenery from a high place is enjoying the ___.', options:['view','picture','scene','land'], a:['view'], exp:'Enjoying the view = looking at scenery.'},
+        {q:'Going down snow on a board is called ___.', options:['surfing','sledding','snowboarding','skiing'], a:['snowboarding'], exp:'Snowboarding = using a board on snow.'}
+      ]
+    };
+
+    const board=document.getElementById('board');
+    categories.forEach(cat=>{
+      const head=document.createElement('div');
+      head.className='cell category';
+      head.textContent=cat;
+      board.appendChild(head);
+    });
+
+    for(let row=0; row<5; row++){
+      categories.forEach(cat=>{
+        const q=questions[cat][row];
+        const value=(row+1)*100;
+        const cell=document.createElement('div');
+        cell.className='cell';
+        cell.textContent=value+' 🅰️';
+        cell.addEventListener('click',()=>openQuestion(cat,row,cell,value));
+        board.appendChild(cell);
+      });
+    }
+
+    let scoreA=0,scoreB=0,currentCell=null,currentQ=null,currentValue=0;
+    const scoreAEl=document.getElementById('scoreA');
+    const scoreBEl=document.getElementById('scoreB');
+    const modal=document.getElementById('modal');
+    const questionEl=document.getElementById('question');
+    const optionsDiv=document.getElementById('options');
+    const answerBlock=document.getElementById('answerBlock');
+    const answerEl=document.getElementById('answer');
+    const explanationEl=document.getElementById('explanation');
+
+    function openQuestion(cat,idx,cell,value){
+      currentCell=cell; currentQ=questions[cat][idx]; currentValue=value;
+      questionEl.textContent=currentQ.q;
+      optionsDiv.innerHTML='';
+      currentQ.options.forEach(opt=>{
+        const label=document.createElement('label');
+        label.className='option';
+        label.innerHTML=`<input type=\"radio\" name=\"mc\" value=\"${opt}\"> ${opt}`;
+        optionsDiv.appendChild(label);
+      });
+      answerBlock.style.display='none';
+      modal.classList.add('show');
+    }
+
+    function checkAnswer(){
+      const chosen=document.querySelector('input[name=\"mc\"]:checked');
+      if(!chosen){return;}
+      answerBlock.style.display='block';
+      answerEl.textContent=currentQ.a.join(', ');
+      explanationEl.textContent=currentQ.exp;
+    }
+
+    function showSolution(){
+      answerBlock.style.display='block';
+      answerEl.textContent=currentQ.a.join(', ');
+      explanationEl.textContent=currentQ.exp;
+    }
+
+    function claimPoints(team){
+      if(!currentCell||currentCell.classList.contains('disabled')) return;
+      const points=currentValue;
+      if(team==='A'){ scoreA+=points; scoreAEl.textContent=scoreA; }
+      else { scoreB+=points; scoreBEl.textContent=scoreB; }
+      currentCell.classList.add('disabled');
+      currentCell.textContent='';
+      closeModal(false);
+    }
+
+    function closeModal(disableCell){
+      modal.classList.remove('show');
+      if(currentCell && disableCell){ currentCell.classList.add('disabled'); currentCell.textContent=''; }
+      currentCell=null; currentQ=null; currentValue=0;
+    }
+
+    document.getElementById('checkBtn').addEventListener('click',checkAnswer);
+    document.getElementById('showAnswerButton').addEventListener('click',showSolution);
+  </script>
+</body>
+</html>

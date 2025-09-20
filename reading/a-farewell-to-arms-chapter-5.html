@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: A Farewell to Arms — Chapter V (Excerpt)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Navigation */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name {
+      font-family: 'Poppins', sans-serif; font-size: 1.3rem;
+      color: #ff9800; font-weight: bold; white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      color: white; text-decoration: none; font-weight: bold; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings & text */
+    h1 {
+      text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem;
+      color: #2c3e50; max-width: 800px; padding: 0 1rem;
+    }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+    .byline { text-align: center; color: #555; margin-top: -0.4rem; }
+
+    /* Containers */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocab list */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Questions */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.8rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>A Farewell to Arms — Chapter V (Excerpt)</h1>
+  <div class="byline">By Ernest Hemingway</div>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>Note for learners:</strong> This is the Chapter V excerpt you provided. The original language is preserved to keep Hemingway’s style. Vocabulary and questions below support intermediate-high readers.
+      </div>
+
+      <h2>Text</h2>
+      <p>The next afternoon I went to call on Miss Barkley again. She was not in the garden and I went to the side door of the villa where the ambulances drove up. Inside I saw the head nurse, who said Miss Barkley was on duty—“there’s a war on, you know.”</p>
+      <p>I said I knew.</p>
+      <p>“You’re the American in the Italian army?” she asked.</p>
+      <p>“Yes, ma’am.”</p>
+      <p>“How did you happen to do that? Why didn’t you join up with us?”</p>
+      <p>“I don’t know,” I said. “Could I join now?”</p>
+      <p>“I’m afraid not now. Tell me. Why did you join up with the Italians?”</p>
+      <p>“I was in Italy,” I said, “and I spoke Italian.”</p>
+      <p>“Oh,” she said. “I’m learning it. It’s a beautiful language.”</p>
+      <p>“Somebody said you should be able to learn it in two weeks.”</p>
+      <p>“Oh, I’ll not learn it in two weeks. I’ve studied it for months now. You may come and see her after seven o’clock if you wish. She’ll be off then. But don’t bring a lot of Italians.”</p>
+      <p>“Not even for the beautiful language?”</p>
+      <p>“No. Nor for the beautiful uniforms.”</p>
+      <p>“Good-evening,” I said.</p>
+      <p>“A rivederci, Tenente.”</p>
+      <p>“A rivederla.” I saluted and went out. It was impossible to salute foreigners as an Italian, without embarrassment. The Italian salute never seemed made for export.</p>
+      <p>The day had been hot. I had been up the river to the bridgehead at Plava. It was there that the offensive was to begin. It had been impossible to advance on the far side the year before because there was only one road leading down from the pass to the pontoon bridge and it was under machine-gun and shell fire for nearly a mile. It was not wide enough either to carry all the transport for an offensive and the Austrians could make a shambles out of it. But the Italians had crossed and spread out a little way on the far side to hold about a mile and a half on the Austrian side of the river. It was a nasty place and the Austrians should not have let them hold it. I suppose it was mutual tolerance because the Austrians still kept a bridgehead further down the river. The Austrian trenches were above on the hillside only a few yards from the Italian lines. There had been a little town but it was all rubble. There was what was left of a railway station and a smashed permanent bridge that could not be repaired and used because it was in plain sight.</p>
+      <p>I went along the narrow road down toward the river, left the car at the dressing station under the hill, crossed the pontoon bridge, which was protected by a shoulder of the mountain, and went through the trenches in the smashed-down town and along the edge of the slope. Everybody was in the dugouts. There were racks of rockets standing to be touched off to call for help from the artillery or to signal with if the telephone wires were cut. It was quiet, hot and dirty. I looked across the wire at the Austrian lines. Nobody was in sight. I had a drink with a captain that I knew in one of the dugouts and went back across the bridge.</p>
+      <p>A new wide road was being finished that would go over the mountain and zig-zag down to the bridge. When this road was finished the offensive would start. It came down through the forest in sharp turns. The system was to bring everything down the new road and take the empty trucks, carts and loaded ambulances and all returning traffic up the old narrow road. The dressing station was on the Austrian side of the river under the edge of the hill and stretcher-bearers would bring the wounded back across the pontoon bridge. It would be the same when the offensive started. As far as I could make out the last mile or so of the new road where it started to level out would be able to be shelled steadily by the Austrians. It looked as though it might be a mess. But I found a place where the cars would be sheltered after they had passed that last bad-looking bit and could wait for the wounded to be brought across the pontoon bridge. I would have liked to drive over the new road but it was not yet finished. It looked wide and well made with a good grade and the turns looked very impressive where you could see them through openings in the forest on the mountain side. The cars would be all right with their good metal-to-metal brakes and anyway, coming down, they would not be loaded. I drove back up the narrow road.</p>
+      <p>Two carabinieri held the car up. A shell had fallen and while we waited three others fell up the road. They were seventy-sevens and came with a whishing rush of air, a hard bright burst and flash and then gray smoke that blew across the road. The carabinieri waved us to go on. Passing where the shells had landed I avoided the small broken places and smelled the high explosive and the smell of blasted clay and stone and freshly shattered flint. I drove back to Gorizia and our villa and, as I said, went to call on Miss Barkley, who was on duty.</p>
+      <p>At dinner I ate very quickly and left for the villa where the British had their hospital. It was really very large and beautiful and there were fine trees in the grounds. Miss Barkley was sitting on a bench in the garden. Miss Ferguson was with her. They seemed glad to see me and in a little while Miss Ferguson excused herself and went away.</p>
+      <p>“I’ll leave you two,” she said. “You get along very well without me.”</p>
+      <p>“Don’t go, Helen,” Miss Barkley said.</p>
+      <p>“I’d really rather. I must write some letters.”</p>
+      <p>“Good-night,” I said.</p>
+      <p>“Good-night, Mr. Henry.”</p>
+      <p>“Don’t write anything that will bother the censor.”</p>
+      <p>“Don’t worry. I only write about what a beautiful place we live in and how brave the Italians are.”</p>
+      <p>“That way you’ll be decorated.”</p>
+      <p>“That will be nice. Good-night, Catherine.”</p>
+      <p>“I’ll see you in a little while,” Miss Barkley said. Miss Ferguson walked away in the dark.</p>
+      <p>“She’s nice,” I said.</p>
+      <p>“Oh, yes, she’s very nice. She’s a nurse.”</p>
+      <p>“Aren’t you a nurse?”</p>
+      <p>“Oh, no. I’m something called a V. A. D. We work very hard but no one trusts us.”</p>
+      <p>“Why not?”</p>
+      <p>“They don’t trust us when there’s nothing going on. When there is really work they trust us.”</p>
+      <p>“What is the difference?”</p>
+      <p>“A nurse is like a doctor. It takes a long time to be. A V. A. D. is a short cut.”</p>
+      <p>“I see.”</p>
+      <p>“The Italians didn’t want women so near the front. So we’re all on very special behavior. We don’t go out.”</p>
+      <p>“I can come here though.”</p>
+      <p>“Oh, yes. We’re not cloistered.”</p>
+      <p>“Let’s drop the war.”</p>
+      <p>“It’s very hard. There’s no place to drop it.”</p>
+      <p>“Let’s drop it anyway.”</p>
+      <p>“All right.”</p>
+      <p>We looked at each other in the dark. I thought she was very beautiful and I took her hand. She let me take it and I held it and put my arm around under her arm.</p>
+      <p>“No,” she said. I kept my arm where it was.</p>
+      <p>“Why not?”</p>
+      <p>“No.”</p>
+      <p>“Yes,” I said. “Please.” I leaned forward in the dark to kiss her and there was a sharp stinging flash. She had slapped my face hard. Her hand had hit my nose and eyes, and tears came in my eyes from the reflex.</p>
+      <p>“I’m so sorry,” she said. I felt I had a certain advantage.</p>
+      <p>“You were quite right.”</p>
+      <p>“I’m dreadfully sorry,” she said. “I just couldn’t stand the nurse’s-evening-off aspect of it. I didn’t mean to hurt you. I did hurt you, didn’t I?”</p>
+      <p>She was looking at me in the dark. I was angry and yet certain, seeing it all ahead like the moves in a chess game.</p>
+      <p>“You did exactly right,” I said. “I don’t mind at all.”</p>
+      <p>“Poor man.”</p>
+      <p>“You see I’ve been leading a sort of a funny life. And I never even talk English. And then you are so very beautiful.” I looked at her.</p>
+      <p>“You don’t need to say a lot of nonsense. I said I was sorry. We do get along.”</p>
+      <p>“Yes,” I said. “And we have gotten away from the war.”</p>
+      <p>She laughed. It was the first time I had ever heard her laugh. I watched her face.</p>
+      <p>“You are sweet,” she said.</p>
+      <p>“No, I’m not.”</p>
+      <p>“Yes. You are a dear. I’d be glad to kiss you if you don’t mind.”</p>
+      <p>I looked in her eyes and put my arm around her as I had before and kissed her. I kissed her hard and held her tight and tried to open her lips; they were closed tight. I was still angry and as I held her suddenly she shivered. I held her close against me and could feel her heart beating and her lips opened and her head went back against my hand and then she was crying on my shoulder.</p>
+      <p>“Oh, darling,” she said. “You will be good to me, won’t you?”</p>
+      <p>What the hell, I thought. I stroked her hair and patted her shoulder. She was crying.</p>
+      <p>“You will, won’t you?” She looked up at me. “Because we’re going to have a strange life.”</p>
+      <p>After a while I walked with her to the door of the villa and she went in and I walked home. Back at the villa I went upstairs to the room. Rinaldi was lying on his bed. He looked at me.</p>
+      <p>“So you make progress with Miss Barkley?”</p>
+      <p>“We are friends.”</p>
+      <p>“You have that pleasant air of a dog in heat.”</p>
+      <p>I did not understand the word.</p>
+      <p>“Of a what?”</p>
+      <p>He explained.</p>
+      <p>“You,” I said, “have that pleasant air of a dog who—”</p>
+      <p>“Stop it,” he said. “In a little while we would say insulting things.” He laughed.</p>
+      <p>“Good-night,” I said.</p>
+      <p>“Good-night, little puppy.”</p>
+      <p>I knocked over his candle with the pillow and got into bed in the dark.</p>
+      <p>Rinaldi picked up the candle, lit it and went on reading.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary Support</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>bridgehead</strong> <i class="fas fa-volume-up speaker-icon" data-word="bridgehead"></i> — A secured position on the enemy’s side of a river.</li>
+        <li><strong>pontoon bridge</strong> <i class="fas fa-volume-up speaker-icon" data-word="pontoon bridge"></i> — A temporary floating bridge.</li>
+        <li><strong>shambles</strong> <i class="fas fa-volume-up speaker-icon" data-word="shambles"></i> — A scene of total disorder or destruction.</li>
+        <li><strong>dugout</strong> <i class="fas fa-volume-up speaker-icon" data-word="dugout"></i> — A shelter dug into the ground for soldiers.</li>
+        <li><strong>rockets</strong> <i class="fas fa-volume-up speaker-icon" data-word="rockets"></i> — Signal flares used to request help or send messages.</li>
+        <li><strong>carabinieri</strong> <i class="fas fa-volume-up speaker-icon" data-word="carabinieri"></i> — Italian military police.</li>
+        <li><strong>censor</strong> <i class="fas fa-volume-up speaker-icon" data-word="censor"></i> — An official who checks letters for military secrets.</li>
+        <li><strong>decorated</strong> <i class="fas fa-volume-up speaker-icon" data-word="decorated"></i> — Given a medal or honor for service.</li>
+        <li><strong>V.A.D.</strong> <i class="fas fa-volume-up speaker-icon" data-word="V. A. D."></i> — Voluntary Aid Detachment; a wartime volunteer nurse aide.</li>
+        <li><strong>cloistered</strong> <i class="fas fa-volume-up speaker-icon" data-word="cloistered"></i> — Kept apart from the outside world; sheltered.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>Why is Miss Barkley unavailable when the narrator first visits the villa?</li>
+        <li>Describe the tactical situation at Plava and why the area is dangerous.</li>
+        <li>What logistics plan is set for the new road, old road, and pontoon bridge during the offensive?</li>
+        <li>Which details show the constant risk from artillery on the roads?</li>
+        <li>What is the difference between a trained nurse and a V.A.D., according to Catherine?</li>
+        <li>How does the garden conversation move from awkwardness to intimacy?</li>
+        <li>What line suggests Catherine expects “a strange life” ahead, and why might she say this?</li>
+        <li>How does Rinaldi react to the narrator’s evening, and what does this reveal about their friendship?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const wordToSpeak = this.dataset.word;
+          if (wordToSpeak) {
+            const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+          }
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

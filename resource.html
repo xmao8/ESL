@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Learning Resource – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; }
+    nav { background: #124076; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 1.5rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+
+    .content-container { background: white; width: 90%; max-width: 1100px; margin: 2rem auto; padding: 2rem 2rem 1rem 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.1rem; }
+
+    .search-bar-container { max-width: 600px; margin: 0 auto 1.2rem auto; text-align: center; }
+    #search-bar { width: 100%; padding: 10px; font-size: 1.05rem; border-radius: 6px; border: 1px solid #ccc; background: #fff; }
+
+    .blocks-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 0.5rem; }
+    @media (max-width: 900px) { .blocks-row { grid-template-columns: 1fr; } }
+
+    .resource-card { background: #f6faff; border-radius: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: stretch; margin: 0; height: auto; transition: box-shadow 0.2s; }
+    .resource-card[hidden] { display: none !important; }
+
+    .resource-label { background: #e8eefc; border-radius: 14px 14px 0 0; padding: 1rem; text-align: center; }
+    .resource-label h2 { margin: 0; color: #124076; font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; }
+
+    .resource-embed { border-radius: 0 0 14px 14px; }
+    .embed-frame { width: 100%; height: 600px; background: #ddd; border-radius: 0 0 14px 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.09); overflow: hidden; }
+    .embed-frame iframe, .embed-frame div { width: 100%; height: 100%; border: 0; display: block; }
+
+    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+    button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Learning Resource</h1>
+
+<div class="content-container">
+  <div class="search-bar-container">
+    <input type="text" id="search-bar" placeholder="Search resources..." autocomplete="off" />
+  </div>
+  <div class="blocks-row" id="blocks">
+    <div class="resource-card" data-title="[Tool] YouGlish">
+      <div class="resource-label">
+        <h2>YouGlish</h2>
+      </div>
+      <div class="resource-embed">
+        <div class="embed-frame">
+          <a id="yg-widget-0" class="youglish-widget" data-query="great%20power" data-lang="english" data-components="8415" data-bkg-color="theme_light" rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a>
+          <script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+   <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  const searchInput = document.getElementById('search-bar');
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.resource-card').forEach(card => {
+        const text = card.querySelector('.resource-label h2')?.textContent.toLowerCase() || '';
+        card.hidden = !text.includes(q);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

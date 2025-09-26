@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: Health & Wellness — Balancing Work, Rest, and Play</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Health & Wellness — Balancing Work, Rest, and Play</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> This ~500-word passage targets intermediate-high ESL readers. Use the vocabulary list and questions to practice comprehension.
+      </div>
+
+      <h2>Article</h2>
+      <p>In modern life, many people are busy with work, school, or family responsibilities. It is easy to feel that there is never enough time. While hard work is important, too much work without rest can damage health and wellness. Finding balance between work, rest, and play is necessary for a healthy life.</p>
+
+      <p><strong>The problem of stress.</strong> Stress is a natural reaction to pressure or challenge. A little stress can motivate people to finish tasks or reach goals. But constant stress can harm the body and mind. Physical effects include headaches, muscle pain, or trouble sleeping. Mental effects include anxiety, irritability, or difficulty focusing. Over time, stress can increase the risk of serious health problems like heart disease.</p>
+
+      <p><strong>Work–life balance.</strong> Work–life balance means giving enough attention to different areas of life—work, family, social time, and personal health. Without balance, people may spend all their energy on one area and ignore the others. For example, working long hours may bring money but harm relationships or physical health. Balance does not mean equal time for everything; it means enough time for what matters most.</p>
+
+      <p><strong>Managing time wisely.</strong> Good time management helps reduce stress. Making a daily or weekly schedule gives structure and shows how to use time effectively. Prioritizing tasks—deciding what is most important—helps people focus on what truly matters. Taking small breaks during work improves productivity and prevents burnout.</p>
+
+      <p><strong>The role of rest.</strong> Rest is more than sleeping at night. Short breaks, naps, or quiet time during the day also give the brain and body a chance to recover. Rest improves creativity, problem solving, and emotional control. Without rest, people become tired, less effective, and more stressed. Sleep is especially important. Most adults need 7–9 hours of quality sleep each night.</p>
+
+      <p><strong>The importance of play.</strong> Play is often forgotten, especially by adults. Yet fun activities are part of wellness. Hobbies, sports, games, music, or time in nature bring joy and reduce stress. Play is not wasted time; it refreshes the mind and body, making people more productive afterward.</p>
+
+      <p><strong>Social connections.</strong> Balance also means making time for family and friends. Strong social ties give emotional support and reduce loneliness. Talking, laughing, or sharing meals together strengthens relationships and improves wellness. Even short interactions can lift mood and provide comfort.</p>
+
+      <p><strong>Strategies for balance.</strong></p>
+      <ul>
+        <li><strong>Set limits:</strong> Avoid taking on too much work or too many responsibilities.</li>
+        <li><strong>Create routines:</strong> Regular habits for meals, exercise, and rest build stability.</li>
+        <li><strong>Learn to say no:</strong> Protect time for health and relationships.</li>
+        <li><strong>Use relaxation techniques:</strong> Deep breathing, stretching, or meditation calm the body.</li>
+        <li><strong>Ask for help:</strong> Sharing tasks with others reduces pressure.</li>
+      </ul>
+
+      <p><strong>Conclusion.</strong> Health and wellness are not only about diet and exercise. They also depend on how we balance work, rest, and play. Stress is part of life, but with good time management, regular rest, enjoyable activities, and strong relationships, stress can be managed. A balanced life leads to more energy, better health, and greater happiness.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>work–life balance</strong> <i class="fas fa-volume-up speaker-icon" data-word="work life balance"></i> — A healthy mix of time for work and personal life.</li>
+        <li><strong>stress</strong> <i class="fas fa-volume-up speaker-icon" data-word="stress"></i> — Tension or pressure caused by challenging situations.</li>
+        <li><strong>burnout</strong> <i class="fas fa-volume-up speaker-icon" data-word="burnout"></i> — Extreme tiredness from long-term stress.</li>
+        <li><strong>prioritize</strong> <i class="fas fa-volume-up speaker-icon" data-word="prioritize"></i> — To decide what is most important.</li>
+        <li><strong>productivity</strong> <i class="fas fa-volume-up speaker-icon" data-word="productivity"></i> — How much useful work is done in a time period.</li>
+        <li><strong>irritability</strong> <i class="fas fa-volume-up speaker-icon" data-word="irritability"></i> — Becoming angry or annoyed easily.</li>
+        <li><strong>routine</strong> <i class="fas fa-volume-up speaker-icon" data-word="routine"></i> — A regular schedule of actions.</li>
+        <li><strong>responsibility</strong> <i class="fas fa-volume-up speaker-icon" data-word="responsibility"></i> — Something a person must take care of.</li>
+        <li><strong>relaxation</strong> <i class="fas fa-volume-up speaker-icon" data-word="relaxation"></i> — Activities that calm the body and mind.</li>
+        <li><strong>wellness</strong> <i class="fas fa-volume-up speaker-icon" data-word="wellness"></i> — Habits and choices that support a healthy life.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>Why can constant stress be harmful to health?</li>
+        <li>What does work–life balance mean in this article?</li>
+        <li>Name two time-management strategies that reduce stress.</li>
+        <li>Why is rest more than just night-time sleep?</li>
+        <li>How does play improve wellness and productivity?</li>
+        <li>What role do social connections play in a balanced life?</li>
+        <li>Which strategy for balance will you try first, and why?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

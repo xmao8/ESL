@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: Health & Wellness — Caring for the Body and Mind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Health & Wellness — Caring for the Body and Mind</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> This passage (≈500 words) targets intermediate-high ESL readers. Use the vocabulary list and questions to build comprehension and fluency.
+      </div>
+
+      <h2>Article</h2>
+      <p><strong>Health and wellness</strong> are not only about how strong or fast the body is. They also include how the mind feels and how both body and mind work together. The connection between physical health and mental health is very strong. When one is weak, the other often suffers too. Learning to take care of the whole self—body, mind, and emotions—is called <em>holistic wellness</em>.</p>
+
+      <p><strong>The mind–body connection.</strong> Have you noticed how stress can make your stomach hurt, or how a bad mood can cause you to feel tired? This is the mind–body connection. Our thoughts and emotions affect our bodies, and our physical state affects our minds. For example, exercise not only builds muscle but also reduces stress and improves mood. In the same way, constant worry can lead to headaches, sleep problems, or even heart issues.</p>
+
+      <p><strong>Physical care.</strong> To support both body and mind, it is important to stay active. Exercise increases blood flow, strengthens the heart, and releases chemicals in the brain called endorphins that make us feel happier. Even simple activities such as walking, stretching, or light yoga can make a big difference.</p>
+
+      <p>Eating well also supports mental wellness. Foods rich in vitamins, minerals, and healthy fats—like fish, nuts, and leafy greens—help the brain work better. On the other hand, too much sugar, caffeine, or fast food can lead to energy crashes and mood swings. Drinking enough water keeps the brain focused and alert.</p>
+
+      <p><strong>Emotional balance.</strong> Caring for emotional health is part of wellness, too. Everyone feels sad, angry, or stressed sometimes. What matters is how we respond. Healthy strategies include talking with a friend, writing feelings in a journal, or practicing relaxation techniques such as deep breathing. People who take time to understand their emotions are often better at solving problems and making decisions.</p>
+
+      <p><strong>The role of rest.</strong> The body and mind both need rest to stay healthy. Sleep is the main form of rest, and most adults need 7–9 hours each night. Without enough sleep, concentration decreases, emotions become harder to control, and the immune system weakens. Short breaks during the day also refresh the brain. Closing your eyes for a few minutes, taking a walk, or listening to calm music can restore energy.</p>
+
+      <p><strong>Social connections.</strong> Humans are social beings, and relationships are an important part of wellness. Sharing meals, joining group activities, or volunteering all strengthen social bonds. Positive relationships provide support during hard times and increase feelings of happiness and belonging.</p>
+
+      <p><strong>A holistic approach.</strong> Holistic wellness means caring for the whole person. This includes physical activity, good nutrition, sleep, emotional health, and social life. It also means recognizing that balance is important. Too much focus on work, study, or even exercise can cause stress if other areas are ignored. Small daily choices—like eating a healthy breakfast, going for a short walk, or calling a friend—create long-term benefits.</p>
+
+      <p><strong>Conclusion.</strong> Health and wellness involve more than avoiding illness. They mean living with energy, balance, and joy. By paying attention to both body and mind, and by practicing holistic habits every day, we can create stronger health and greater happiness.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>holistic</strong> <i class="fas fa-volume-up speaker-icon" data-word="holistic"></i> — Considering the whole person: body, mind, and emotions.</li>
+        <li><strong>mind–body connection</strong> <i class="fas fa-volume-up speaker-icon" data-word="mind body connection"></i> — How thoughts and feelings affect the body, and the body affects the mind.</li>
+        <li><strong>endorphins</strong> <i class="fas fa-volume-up speaker-icon" data-word="endorphins"></i> — Natural chemicals that reduce pain and improve mood.</li>
+        <li><strong>mood swings</strong> <i class="fas fa-volume-up speaker-icon" data-word="mood swings"></i> — Quick changes in emotions.</li>
+        <li><strong>journal</strong> <i class="fas fa-volume-up speaker-icon" data-word="journal"></i> — A notebook for writing personal thoughts and feelings.</li>
+        <li><strong>relaxation techniques</strong> <i class="fas fa-volume-up speaker-icon" data-word="relaxation techniques"></i> — Methods like deep breathing or meditation to reduce stress.</li>
+        <li><strong>immune system</strong> <i class="fas fa-volume-up speaker-icon" data-word="immune system"></i> — The body’s defense against illness.</li>
+        <li><strong>belonging</strong> <i class="fas fa-volume-up speaker-icon" data-word="belonging"></i> — Feeling accepted in a group.</li>
+        <li><strong>balance</strong> <i class="fas fa-volume-up speaker-icon" data-word="balance"></i> — A healthy mix of different parts of life.</li>
+        <li><strong>well-being</strong> <i class="fas fa-volume-up speaker-icon" data-word="well being"></i> — A state of being healthy and comfortable.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What is holistic wellness, and why is it important?</li>
+        <li>Give two examples that show the mind–body connection.</li>
+        <li>Which simple physical activities can help both body and mind?</li>
+        <li>How can food and water affect mental wellness?</li>
+        <li>List two strategies for managing emotions in a healthy way.</li>
+        <li>Why are sleep and short breaks important for wellness?</li>
+        <li>How do social connections support health and happiness?</li>
+        <li>What daily choices can create long-term wellness benefits?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

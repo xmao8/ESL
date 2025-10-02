@@ -8,12 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ===== Base frame & site styles (matched to ESLnote reading page) ===== */
+    /* ===== Base ESLnote frame ===== */
     * { box-sizing: border-box; }
     body { display:flex; flex-direction:column; min-height:100vh; margin:0; font-family:'Segoe UI', sans-serif; background-color:#f0f4f8; color:#333; overflow-x:hidden; }
     main { flex:1; max-width:1100px; margin:auto; padding:1rem; }
 
-    /* Nav */
     nav { background-color:#124076; padding:0.8rem 1rem; width:100%; }
     .nav-container { display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto; }
     .logo { display:flex; align-items:center; text-decoration:none; }
@@ -25,16 +24,14 @@
     .menu-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; }
     .menu-toggle .bar { width:25px; height:3px; background:#fff; border-radius:2px; transition:all 0.3s ease-in-out; }
 
-    /* Headings */
     h1 { text-align:center; font-size:2.2rem; margin:2rem auto 1rem; color:#2c3e50; }
     h2 { color:#124076; margin:1.2rem 0; }
 
-    /* Content sections */
     .content-section { background:#fff; border-radius:8px; padding:1.5rem; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:1.5rem; }
     .meta-note { font-size:0.95rem; color:#555; background:#eef6ff; border-left:4px solid #3498db; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem; }
 
-    /* ===== Crossword-specific styles ===== */
-    :root{ --cell:42px; --gap:4px; --accent:#3498db; --ink:#0b2533; }
+    /* ===== Crossword-specific ===== */
+    :root{ --cell:42px; --gap:4px; --accent:#3498db; }
     .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:0.5rem 0 0.25rem; }
     .toolbar button { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 12px; font-weight:700; cursor:pointer; transition:background-color .2s, transform .02s; }
     .toolbar button:hover { background:#2980b9; }
@@ -63,12 +60,10 @@
     .chips { display:flex; flex-wrap:wrap; gap:8px; }
     .chip { border:1px dashed #98c7e8; padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.5px; color:#124076; background:#f7fbff; }
 
-    /* Buttons row to match site */
     .buttons { text-align:center; margin: 1rem auto 2rem; max-width:1100px; padding:0 1rem; }
     .buttons a { text-decoration:none; background:#3498db; color:#fff; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold; transition:background-color 0.2s; display:inline-block; margin:0 .3rem; }
     .buttons a:hover { background:#2980b9; }
 
-    /* Responsive nav menu */
     @media (max-width: 600px) {
       .nav-links { position:fixed; top:56px; right:0; background:#124076; flex-direction:column; width:100%; height:calc(100vh - 56px); padding:1rem 1.5rem; gap:1rem; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s ease; z-index:998; }
       .nav-links.active { transform:translateX(0); }
@@ -121,7 +116,7 @@
       <!-- 1) Crossword board -->
       <div class="content-section board-wrap">
         <div id="board" class="board" aria-label="crossword grid"></div>
-        <div class="hint">Tip: Start with words you know. All answers are fruit names.</div>
+        <div class="hint">Tip: All answers are fruit names. Many words cross in the center.</div>
       </div>
 
       <!-- 2) Clues (between board and word bank) -->
@@ -167,9 +162,11 @@
       });
     }
 
-    // ===== Crossword: 20 Fruit Words =====
+    // ===== Crossword: Interlocking 15x15 grid (20 fruit words) =====
     const WORDS=[
-      {w:"APPLE",d:"a round fruit with red, green, or yellow skin and crisp flesh",pos:"noun"},
+      {w:"PINEAPPLE",d:"a large tropical fruit with spiky skin and sweet yellow flesh",pos:"noun"},
+      {w:"NECTARINE",d:"a smooth-skinned fruit similar to a peach",pos:"noun"},
+      {w:"APRICOT",d:"a small orange fruit with soft skin and a single pit",pos:"noun"},
       {w:"BANANA",d:"a long yellow fruit that you peel before eating",pos:"noun"},
       {w:"ORANGE",d:"a round, sweet citrus fruit with orange skin",pos:"noun"},
       {w:"MANGO",d:"a sweet tropical fruit with yellow-orange flesh and a large pit",pos:"noun"},
@@ -181,62 +178,65 @@
       {w:"LIME",d:"a small green citrus fruit with sour taste",pos:"noun"},
       {w:"PAPAYA",d:"an orange tropical fruit with many black seeds in the middle",pos:"noun"},
       {w:"GUAVA",d:"a tropical fruit with green skin and pink or white flesh",pos:"noun"},
-      {w:"APRICOT",d:"a small orange fruit with soft skin and a single pit",pos:"noun"},
       {w:"PLUM",d:"a small fruit with smooth skin and a stone (pit) inside",pos:"noun"},
       {w:"FIG",d:"a soft sweet fruit with many tiny seeds inside",pos:"noun"},
       {w:"DATE",d:"a sweet brown fruit that grows on palm trees",pos:"noun"},
       {w:"MELON",d:"a large fruit with thick skin and sweet juicy flesh",pos:"noun"},
-      {w:"BERRY",d:"a small juicy fruit like strawberry or blueberry",pos:"noun"},
-      {w:"PINEAPPLE",d:"a large tropical fruit with spiky skin and sweet yellow flesh",pos:"noun"},
-      {w:"NECTARINE",d:"a smooth-skinned fruit similar to a peach",pos:"noun"},
+      {w:"APPLE",d:"a round fruit with red, green, or yellow skin and crisp flesh",pos:"noun"},
+      {w:"PEAR",d:"a sweet fruit with green or yellow skin and soft white flesh",pos:"noun"},
     ];
     const META=Object.fromEntries(WORDS.map(x=>[x.w,{d:x.d,pos:x.pos}]));
 
-    const SIZE=21;
-    // Simple layout: mostly across to keep it readable and reliable
+    const SIZE=15; // 15x15 crossword
+    // Hand-crafted interlocking placements (r = row, c = col, 0-indexed)
     const PLACEMENTS=[
-      {w:'APPLE',r:0,c:0,dir:'A'},
-      {w:'BANANA',r:1,c:0,dir:'A'},
-      {w:'ORANGE',r:2,c:0,dir:'A'},
-      {w:'MANGO',r:3,c:0,dir:'A'},
-      {w:'GRAPE',r:4,c:0,dir:'A'},
-      {w:'PEACH',r:5,c:0,dir:'A'},
-      {w:'CHERRY',r:6,c:0,dir:'A'},
-      {w:'KIWI',r:7,c:0,dir:'A'},
-      {w:'LEMON',r:8,c:0,dir:'A'},
-      {w:'LIME',r:9,c:0,dir:'A'},
-      {w:'PAPAYA',r:10,c:0,dir:'A'},
-      {w:'GUAVA',r:11,c:0,dir:'A'},
-      {w:'APRICOT',r:12,c:0,dir:'A'},
-      {w:'PLUM',r:13,c:0,dir:'A'},
-      {w:'FIG',r:14,c:0,dir:'A'},
-      {w:'DATE',r:15,c:0,dir:'A'},
-      {w:'MELON',r:16,c:0,dir:'A'},
-      {w:'BERRY',r:17,c:0,dir:'A'},
-      {w:'PINEAPPLE',r:18,c:0,dir:'A'},
-      {w:'NECTARINE',r:19,c:0,dir:'A'},
+      {w:'PINEAPPLE',r:7,c:2,dir:'A'},
+      {w:'NECTARINE',r:3,c:6,dir:'D'},
+      {w:'APRICOT',r:6,c:2,dir:'D'},
+      {w:'BANANA',r:5,c:4,dir:'D'},
+      {w:'ORANGE',r:2,c:5,dir:'D'},
+      {w:'MANGO',r:2,c:1,dir:'A'},
+      {w:'GRAPE',r:4,c:7,dir:'D'},
+      {w:'PEACH',r:7,c:7,dir:'D'},
+      {w:'CHERRY',r:5,c:10,dir:'D'},
+      {w:'KIWI',r:6,c:3,dir:'D'},
+      {w:'LEMON',r:7,c:9,dir:'D'},
+      {w:'LIME',r:11,c:3,dir:'A'},
+      {w:'PAPAYA',r:7,c:8,dir:'D'},
+      {w:'GUAVA',r:4,c:1,dir:'A'},
+      {w:'PLUM',r:10,c:3,dir:'D'},
+      {w:'FIG',r:0,c:4,dir:'D'},
+      {w:'DATE',r:12,c:7,dir:'A'},
+      {w:'MELON',r:13,c:3,dir:'A'},
+      {w:'APPLE',r:4,c:9,dir:'D'},
+      {w:'PEAR',r:3,c:2,dir:'A'},
     ];
 
     // Build board
     const board=Array.from({length:SIZE},()=>Array(SIZE).fill('#'));
     for(const p of PLACEMENTS){
       const dr=p.dir==='A'?0:1, dc=p.dir==='A'?1:0;
-      for(let i=0;i<p.w.length;i++){ board[p.r+dr*i][p.c+dc*i]=p.w[i]; }
+      for(let i=0;i<p.w.length;i++){
+        board[p.r+dr*i][p.c+dc*i]=p.w[i];
+      }
     }
 
     // Number starts
     const startNum=Array.from({length:SIZE},()=>Array(SIZE).fill(null));
-    let num=1; function isLetter(r,c){return r>=0&&c>=0&&r<SIZE&&c<SIZE&&board[r][c]!=='#';}
+    let num=1; 
+    function isLetter(r,c){return r>=0&&c>=0&&r<SIZE&&c<SIZE&&board[r][c]!=='#';}
     for(let r=0;r<SIZE;r++){
       for(let c=0;c<SIZE;c++){
         if(!isLetter(r,c)) continue;
         const startsAcross=(!isLetter(r,c-1))&&isLetter(r,c+1);
         const startsDown=(!isLetter(r-1,c))&&isLetter(r+1,c);
-        if(startsAcross||startsDown){ if(startNum[r][c]==null){ startNum[r][c]=num++; } }
+        if(startsAcross||startsDown){
+          if(startNum[r][c]==null){ startNum[r][c]=num++; }
+        }
       }
     }
 
-    // Build clues
+    // Build clue lists from placements (only words that start here)
     const acrossClues=[], downClues=[];
     for(let r=0;r<SIZE;r++){
       for(let c=0;c<SIZE;c++){
@@ -304,12 +304,12 @@
     function prevCell(r,c,dir){ return dir==='A'?[r,c-1]:[r-1,c]; }
     let activeDir='A';
 
-    // Click & direction
+    // Click-to-focus & direction selection
     boardEl.addEventListener('click',e=>{
       const inp=e.target.closest('input'); if(!inp) return;
       const r=+inp.dataset.r, c=+inp.dataset.c;
-      const leftBlock=c===0||board[r][c-1]==='#';
-      const upBlock=r===0||board[r-1][c]==='#';
+      const leftBlock=c===0||!isLetter(r,c-1);
+      const upBlock=r===0||!isLetter(r-1,c);
       activeDir=leftBlock?'A':(upBlock?'D':activeDir);
       inp.focus(); inp.select();
     });

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crossword: Fruit Vocabulary (20 words)</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== Base frame & site styles (matched to ESLnote reading page) ===== */
+    * { box-sizing: border-box; }
+    body { display:flex; flex-direction:column; min-height:100vh; margin:0; font-family:'Segoe UI', sans-serif; background-color:#f0f4f8; color:#333; overflow-x:hidden; }
+    main { flex:1; max-width:1100px; margin:auto; padding:1rem; }
+
+    /* Nav */
+    nav { background-color:#124076; padding:0.8rem 1rem; width:100%; }
+    .nav-container { display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto; }
+    .logo { display:flex; align-items:center; text-decoration:none; }
+    .logo-img { width:32px; height:32px; margin-right:0.5rem; }
+    .site-name { font-family:'Poppins', sans-serif; font-size:1.3rem; color:#ff9800; font-weight:bold; }
+    .nav-links { display:flex; gap:1.5rem; }
+    .nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:color 0.2s; }
+    .nav-links a:hover { color:#ffbb33; text-decoration:underline; }
+    .menu-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; }
+    .menu-toggle .bar { width:25px; height:3px; background:#fff; border-radius:2px; transition:all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align:center; font-size:2.2rem; margin:2rem auto 1rem; color:#2c3e50; }
+    h2 { color:#124076; margin:1.2rem 0; }
+
+    /* Content sections */
+    .content-section { background:#fff; border-radius:8px; padding:1.5rem; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:1.5rem; }
+    .meta-note { font-size:0.95rem; color:#555; background:#eef6ff; border-left:4px solid #3498db; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem; }
+
+    /* ===== Crossword-specific styles ===== */
+    :root{ --cell:42px; --gap:4px; --accent:#3498db; --ink:#0b2533; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:0.5rem 0 0.25rem; }
+    .toolbar button { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 12px; font-weight:700; cursor:pointer; transition:background-color .2s, transform .02s; }
+    .toolbar button:hover { background:#2980b9; }
+    .toolbar button:active { transform:translateY(1px); }
+    .toolbar button.secondary { background:#e8f3f9; color:#124076; }
+
+    .grid-wrap { display:flex; flex-direction:column; gap:1rem; }
+
+    .board-wrap { display:flex; flex-direction:column; gap:.5rem; }
+    .board { display:grid; gap:var(--gap); background:#0b2533; padding:var(--gap); border-radius:12px; width:max-content; margin:auto; }
+    .cell { width:var(--cell); height:var(--cell); display:grid; place-items:center; background:#fff; position:relative; }
+    .cell.block { background:#0b2533; }
+    .num { position:absolute; top:2px; left:4px; font-size:10px; color:#0b2533; }
+    .cell input { width:100%; height:100%; border:none; outline:none; text-transform:uppercase; font-weight:700; font-size:18px; text-align:center; background:transparent; color:#0b2533; }
+    .cell input:disabled { color:#245; opacity:.6 }
+
+    .legend h3 { margin:.25rem 0 .5rem; font-size:18px; color:#0b2533; }
+    .legend ol { margin:0; padding-left:20px; }
+    .legend li { margin:.35rem 0; font-size:15px; line-height:1.4; }
+    .legend em { color:#335; font-style:normal; opacity:.85 }
+
+    .hint { font-size:12px; color:#31586b; }
+    .footer-note { font-size:12px; color:#567; margin-top:10px; }
+
+    .bank h3 { margin:.25rem 0 .5rem; font-size:18px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .chip { border:1px dashed #98c7e8; padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.5px; color:#124076; background:#f7fbff; }
+
+    /* Buttons row to match site */
+    .buttons { text-align:center; margin: 1rem auto 2rem; max-width:1100px; padding:0 1rem; }
+    .buttons a { text-decoration:none; background:#3498db; color:#fff; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold; transition:background-color 0.2s; display:inline-block; margin:0 .3rem; }
+    .buttons a:hover { background:#2980b9; }
+
+    /* Responsive nav menu */
+    @media (max-width: 600px) {
+      .nav-links { position:fixed; top:56px; right:0; background:#124076; flex-direction:column; width:100%; height:calc(100vh - 56px); padding:1rem 1.5rem; gap:1rem; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s ease; z-index:998; }
+      .nav-links.active { transform:translateX(0); }
+      .menu-toggle { display:flex; }
+      h1 { font-size:1.9rem; margin:1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Site Nav -->
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Fruit Vocabulary Crossword — 20 Words</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> Click a numbered square to start typing. Use the arrow keys to move. Check or reveal answers with the buttons.
+      </div>
+
+      <div class="toolbar" role="group" aria-label="Crossword controls">
+        <button id="btnCheck" title="Check your entries">Check answers</button>
+        <button id="btnReveal" title="Reveal everything">Reveal all</button>
+        <button id="btnShowAnswer" title="Fill with correct letters">Show Answer</button>
+        <button id="btnClear" class="secondary" title="Clear the board">Clear</button>
+        <button id="btnPrint" class="secondary" title="Print this page">Print page</button>
+      </div>
+    </div>
+
+    <div class="grid-wrap">
+      <!-- 1) Crossword board -->
+      <div class="content-section board-wrap">
+        <div id="board" class="board" aria-label="crossword grid"></div>
+        <div class="hint">Tip: Start with words you know. All answers are fruit names.</div>
+      </div>
+
+      <!-- 2) Clues (between board and word bank) -->
+      <div class="content-section legend">
+        <h2>Clues</h2>
+        <h3>Across</h3>
+        <ol id="across"></ol>
+        <h3>Down</h3>
+        <ol id="down"></ol>
+        <div class="footer-note">Definitions adapted for intermediate ESL learners.</div>
+      </div>
+
+      <!-- 3) Word bank -->
+      <div class="content-section bank">
+        <h2>Word Bank</h2>
+        <div id="bankList" class="chips" aria-label="word bank"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../practice.html">⬅️ Back to Practices</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // ===== Crossword: 20 Fruit Words =====
+    const WORDS=[
+      {w:"APPLE",d:"a round fruit with red, green, or yellow skin and crisp flesh",pos:"noun"},
+      {w:"BANANA",d:"a long yellow fruit that you peel before eating",pos:"noun"},
+      {w:"ORANGE",d:"a round, sweet citrus fruit with orange skin",pos:"noun"},
+      {w:"MANGO",d:"a sweet tropical fruit with yellow-orange flesh and a large pit",pos:"noun"},
+      {w:"GRAPE",d:"a small juicy fruit that grows in bunches on vines",pos:"noun"},
+      {w:"PEACH",d:"a soft fruit with fuzzy skin and a pit inside",pos:"noun"},
+      {w:"CHERRY",d:"a small round fruit with a pit, usually red or dark red",pos:"noun"},
+      {w:"KIWI",d:"a small brown fruit with green flesh and tiny black seeds",pos:"noun"},
+      {w:"LEMON",d:"a yellow citrus fruit that tastes sour",pos:"noun"},
+      {w:"LIME",d:"a small green citrus fruit with sour taste",pos:"noun"},
+      {w:"PAPAYA",d:"an orange tropical fruit with many black seeds in the middle",pos:"noun"},
+      {w:"GUAVA",d:"a tropical fruit with green skin and pink or white flesh",pos:"noun"},
+      {w:"APRICOT",d:"a small orange fruit with soft skin and a single pit",pos:"noun"},
+      {w:"PLUM",d:"a small fruit with smooth skin and a stone (pit) inside",pos:"noun"},
+      {w:"FIG",d:"a soft sweet fruit with many tiny seeds inside",pos:"noun"},
+      {w:"DATE",d:"a sweet brown fruit that grows on palm trees",pos:"noun"},
+      {w:"MELON",d:"a large fruit with thick skin and sweet juicy flesh",pos:"noun"},
+      {w:"BERRY",d:"a small juicy fruit like strawberry or blueberry",pos:"noun"},
+      {w:"PINEAPPLE",d:"a large tropical fruit with spiky skin and sweet yellow flesh",pos:"noun"},
+      {w:"NECTARINE",d:"a smooth-skinned fruit similar to a peach",pos:"noun"},
+    ];
+    const META=Object.fromEntries(WORDS.map(x=>[x.w,{d:x.d,pos:x.pos}]));
+
+    const SIZE=21;
+    // Simple layout: mostly across to keep it readable and reliable
+    const PLACEMENTS=[
+      {w:'APPLE',r:0,c:0,dir:'A'},
+      {w:'BANANA',r:1,c:0,dir:'A'},
+      {w:'ORANGE',r:2,c:0,dir:'A'},
+      {w:'MANGO',r:3,c:0,dir:'A'},
+      {w:'GRAPE',r:4,c:0,dir:'A'},
+      {w:'PEACH',r:5,c:0,dir:'A'},
+      {w:'CHERRY',r:6,c:0,dir:'A'},
+      {w:'KIWI',r:7,c:0,dir:'A'},
+      {w:'LEMON',r:8,c:0,dir:'A'},
+      {w:'LIME',r:9,c:0,dir:'A'},
+      {w:'PAPAYA',r:10,c:0,dir:'A'},
+      {w:'GUAVA',r:11,c:0,dir:'A'},
+      {w:'APRICOT',r:12,c:0,dir:'A'},
+      {w:'PLUM',r:13,c:0,dir:'A'},
+      {w:'FIG',r:14,c:0,dir:'A'},
+      {w:'DATE',r:15,c:0,dir:'A'},
+      {w:'MELON',r:16,c:0,dir:'A'},
+      {w:'BERRY',r:17,c:0,dir:'A'},
+      {w:'PINEAPPLE',r:18,c:0,dir:'A'},
+      {w:'NECTARINE',r:19,c:0,dir:'A'},
+    ];
+
+    // Build board
+    const board=Array.from({length:SIZE},()=>Array(SIZE).fill('#'));
+    for(const p of PLACEMENTS){
+      const dr=p.dir==='A'?0:1, dc=p.dir==='A'?1:0;
+      for(let i=0;i<p.w.length;i++){ board[p.r+dr*i][p.c+dc*i]=p.w[i]; }
+    }
+
+    // Number starts
+    const startNum=Array.from({length:SIZE},()=>Array(SIZE).fill(null));
+    let num=1; function isLetter(r,c){return r>=0&&c>=0&&r<SIZE&&c<SIZE&&board[r][c]!=='#';}
+    for(let r=0;r<SIZE;r++){
+      for(let c=0;c<SIZE;c++){
+        if(!isLetter(r,c)) continue;
+        const startsAcross=(!isLetter(r,c-1))&&isLetter(r,c+1);
+        const startsDown=(!isLetter(r-1,c))&&isLetter(r+1,c);
+        if(startsAcross||startsDown){ if(startNum[r][c]==null){ startNum[r][c]=num++; } }
+      }
+    }
+
+    // Build clues
+    const acrossClues=[], downClues=[];
+    for(let r=0;r<SIZE;r++){
+      for(let c=0;c<SIZE;c++){
+        if(!isLetter(r,c)) continue;
+        const n=startNum[r][c]; if(n==null) continue;
+        if(!isLetter(r,c-1)&&isLetter(r,c+1)){
+          const p=PLACEMENTS.find(pp=>pp.r===r&&pp.c===c&&pp.dir==='A');
+          if(p){ const meta=META[p.w]; acrossClues.push({num:n,w:p.w,d:meta.d,pos:meta.pos}); }
+        }
+        if(!isLetter(r-1,c)&&isLetter(r+1,c)){
+          const p=PLACEMENTS.find(pp=>pp.r===r&&pp.c===c&&pp.dir==='D');
+          if(p){ const meta=META[p.w]; downClues.push({num:n,w:p.w,d:meta.d,pos:meta.pos}); }
+        }
+      }
+    }
+
+    // Render board
+    const boardEl=document.getElementById('board');
+    boardEl.style.gridTemplateColumns=`repeat(${SIZE}, var(--cell))`;
+    boardEl.style.gridTemplateRows=`repeat(${SIZE}, var(--cell))`;
+
+    for(let r=0;r<SIZE;r++){
+      for(let c=0;c<SIZE;c++){
+        const cell=document.createElement('div');
+        const val=board[r][c];
+        if(val==='#'){
+          cell.className='cell block';
+        } else {
+          cell.className='cell';
+          const inp=document.createElement('input');
+          inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c; cell.appendChild(inp);
+          const n=startNum[r][c];
+          if(n){ const numEl=document.createElement('div'); numEl.className='num'; numEl.textContent=n; cell.appendChild(numEl); }
+        }
+        boardEl.appendChild(cell);
+      }
+    }
+
+    // Render clues
+    const acrossEl=document.getElementById('across');
+    const downEl=document.getElementById('down');
+    for(const item of acrossClues){
+      const li=document.createElement('li');
+      li.innerHTML=`${item.num}. ${item.d} <em>(${item.pos})</em>`;
+      acrossEl.appendChild(li);
+    }
+    for(const item of downClues){
+      const li=document.createElement('li');
+      li.innerHTML=`${item.num}. ${item.d} <em>(${item.pos})</em>`;
+      downEl.appendChild(li);
+    }
+
+    // Word bank
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a }
+    const bankWords=shuffle(WORDS.map(x=>x.w.toUpperCase()));
+    const bankList=document.getElementById('bankList');
+    for(const w of bankWords){
+      const span=document.createElement('span');
+      span.className='chip';
+      span.textContent=w;
+      bankList.appendChild(span);
+    }
+
+    function nextCell(r,c,dir){ return dir==='A'?[r,c+1]:[r+1,c]; }
+    function prevCell(r,c,dir){ return dir==='A'?[r,c-1]:[r-1,c]; }
+    let activeDir='A';
+
+    // Click & direction
+    boardEl.addEventListener('click',e=>{
+      const inp=e.target.closest('input'); if(!inp) return;
+      const r=+inp.dataset.r, c=+inp.dataset.c;
+      const leftBlock=c===0||board[r][c-1]==='#';
+      const upBlock=r===0||board[r-1][c]==='#';
+      activeDir=leftBlock?'A':(upBlock?'D':activeDir);
+      inp.focus(); inp.select();
+    });
+
+    // Keyboard navigation
+    boardEl.addEventListener('keydown',e=>{
+      const inp=e.target.closest('input'); if(!inp) return;
+      const r=+inp.dataset.r, c=+inp.dataset.c; const key=e.key;
+      const move=(dr,dc)=>{
+        let nr=r+dr, nc=c+dc; if(nr<0||nc<0||nr>=SIZE||nc>=SIZE) return;
+        const idx=nr*SIZE+nc; const next=boardEl.children[idx];
+        if(next&&!next.classList.contains('block')){ const n=next.querySelector('input'); n.focus(); n.select(); }
+      };
+      if(key==='ArrowRight'){ e.preventDefault(); move(0,1); activeDir='A'; }
+      else if(key==='ArrowLeft'){ e.preventDefault(); move(0,-1); activeDir='A'; }
+      else if(key==='ArrowDown'){ e.preventDefault(); move(1,0); activeDir='D'; }
+      else if(key==='ArrowUp'){ e.preventDefault(); move(-1,0); activeDir='D'; }
+      else if(key.length===1&&/[a-z]/i.test(key)){
+        inp.value=key.toUpperCase();
+        const [nr,nc]=nextCell(r,c,activeDir); const idx=nr*SIZE+nc; const next=boardEl.children[idx];
+        if(next&&!next.classList.contains('block')){ const n=next.querySelector('input'); n.focus(); n.select(); }
+        e.preventDefault();
+      } else if(key==='Backspace'){
+        if(inp.value){ inp.value=''; e.preventDefault(); return; }
+        const [pr,pc]=prevCell(r,c,activeDir); const idx=pr*SIZE+pc; const prev=boardEl.children[idx];
+        if(prev&&!prev.classList.contains('block')){ const p=prev.querySelector('input'); p.focus(); p.select(); }
+      }
+    });
+
+    // Checking & reveal
+    function solutionAt(r,c){ return board[r][c]; }
+    function checkAll(reveal=false){
+      let correct=0,total=0;
+      for(let r=0;r<SIZE;r++){
+        for(let c=0;c<SIZE;c++){
+          const idx=r*SIZE+c; const cell=boardEl.children[idx];
+          if(cell.classList.contains('block')) continue;
+          const inp=cell.querySelector('input'); const sol=solutionAt(r,c); total++;
+          if(!inp.value){
+            cell.style.outline='2px solid transparent';
+            if(reveal){ inp.value=sol; inp.disabled=true; }
+            continue;
+          }
+          if(inp.value.toUpperCase()===sol){
+            correct++; cell.style.outline='2px solid #7ac142';
+          } else {
+            cell.style.outline='2px solid #e53935';
+            if(reveal){ inp.value=sol; inp.disabled=true; }
+          }
+        }
+      }
+      return {correct,total};
+    }
+
+    btnCheck.onclick=()=>{ const {correct,total}=checkAll(false); alert(`Correct letters: ${correct} / ${total}`); };
+    btnReveal.onclick=()=>{ checkAll(true); };
+    btnShowAnswer.onclick=()=>{ checkAll(true); alert("All answers shown."); };
+    btnClear.onclick=()=>{ for(const el of boardEl.querySelectorAll('input')){ el.value=''; el.disabled=false; } for(const cell of boardEl.children){ cell.style.outline='2px solid transparent'; } };
+    btnPrint.onclick=()=>window.print();
+  </script>
+</body>
+</html>

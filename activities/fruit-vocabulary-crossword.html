@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ===== Base ESLnote frame ===== */
+    /* ===== ESLnote frame ===== */
     * { box-sizing: border-box; }
     body { display:flex; flex-direction:column; min-height:100vh; margin:0; font-family:'Segoe UI', sans-serif; background-color:#f0f4f8; color:#333; overflow-x:hidden; }
     main { flex:1; max-width:1100px; margin:auto; padding:1rem; }
@@ -30,8 +30,8 @@
     .content-section { background:#fff; border-radius:8px; padding:1.5rem; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:1.5rem; }
     .meta-note { font-size:0.95rem; color:#555; background:#eef6ff; border-left:4px solid #3498db; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem; }
 
-    /* ===== Crossword-specific ===== */
-    :root{ --cell:42px; --gap:4px; --accent:#3498db; }
+    /* ===== Crossword visuals ===== */
+    :root{ --cell:42px; --gap:4px; --accent:#3498db; --ink:#0b2533; }
     .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:0.5rem 0 0.25rem; }
     .toolbar button { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 12px; font-weight:700; cursor:pointer; transition:background-color .2s, transform .02s; }
     .toolbar button:hover { background:#2980b9; }
@@ -116,7 +116,7 @@
       <!-- 1) Crossword board -->
       <div class="content-section board-wrap">
         <div id="board" class="board" aria-label="crossword grid"></div>
-        <div class="hint">Tip: All answers are fruit names. Many words cross in the center.</div>
+        <div class="hint">Tip: All answers are fruit names. This is a standard interlocking crossword.</div>
       </div>
 
       <!-- 2) Clues (between board and word bank) -->
@@ -143,7 +143,7 @@
   </div>
 
   <script>
-    // Mobile navigation toggle
+    /* ===== Mobile navigation toggle ===== */
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('primary-navigation');
     if (menuToggle && navLinks) {
@@ -162,8 +162,8 @@
       });
     }
 
-    // ===== Crossword: Interlocking 15x15 grid (20 fruit words) =====
-    const WORDS=[
+    /* ===== Crossword generator (interlocking, consistent numbering) ===== */
+    const WORDS = [
       {w:"PINEAPPLE",d:"a large tropical fruit with spiky skin and sweet yellow flesh",pos:"noun"},
       {w:"NECTARINE",d:"a smooth-skinned fruit similar to a peach",pos:"noun"},
       {w:"APRICOT",d:"a small orange fruit with soft skin and a single pit",pos:"noun"},
@@ -171,183 +171,307 @@
       {w:"ORANGE",d:"a round, sweet citrus fruit with orange skin",pos:"noun"},
       {w:"MANGO",d:"a sweet tropical fruit with yellow-orange flesh and a large pit",pos:"noun"},
       {w:"GRAPE",d:"a small juicy fruit that grows in bunches on vines",pos:"noun"},
-      {w:"PEACH",d:"a soft fruit with fuzzy skin and a pit inside",pos:"noun"},
-      {w:"CHERRY",d:"a small round fruit with a pit, usually red or dark red",pos:"noun"},
-      {w:"KIWI",d:"a small brown fruit with green flesh and tiny black seeds",pos:"noun"},
-      {w:"LEMON",d:"a yellow citrus fruit that tastes sour",pos:"noun"},
-      {w:"LIME",d:"a small green citrus fruit with sour taste",pos:"noun"},
-      {w:"PAPAYA",d:"an orange tropical fruit with many black seeds in the middle",pos:"noun"},
       {w:"GUAVA",d:"a tropical fruit with green skin and pink or white flesh",pos:"noun"},
-      {w:"PLUM",d:"a small fruit with smooth skin and a stone (pit) inside",pos:"noun"},
-      {w:"FIG",d:"a soft sweet fruit with many tiny seeds inside",pos:"noun"},
-      {w:"DATE",d:"a sweet brown fruit that grows on palm trees",pos:"noun"},
+      {w:"PEACH",d:"a soft fruit with fuzzy skin and a pit inside",pos:"noun"},
+      {w:"LEMON",d:"a yellow citrus fruit that tastes sour",pos:"noun"},
       {w:"MELON",d:"a large fruit with thick skin and sweet juicy flesh",pos:"noun"},
       {w:"APPLE",d:"a round fruit with red, green, or yellow skin and crisp flesh",pos:"noun"},
       {w:"PEAR",d:"a sweet fruit with green or yellow skin and soft white flesh",pos:"noun"},
-    ];
-    const META=Object.fromEntries(WORDS.map(x=>[x.w,{d:x.d,pos:x.pos}]));
-
-    const SIZE=15; // 15x15 crossword
-    // Hand-crafted interlocking placements (r = row, c = col, 0-indexed)
-    const PLACEMENTS=[
-      {w:'PINEAPPLE',r:7,c:2,dir:'A'},
-      {w:'NECTARINE',r:3,c:6,dir:'D'},
-      {w:'APRICOT',r:6,c:2,dir:'D'},
-      {w:'BANANA',r:5,c:4,dir:'D'},
-      {w:'ORANGE',r:2,c:5,dir:'D'},
-      {w:'MANGO',r:2,c:1,dir:'A'},
-      {w:'GRAPE',r:4,c:7,dir:'D'},
-      {w:'PEACH',r:7,c:7,dir:'D'},
-      {w:'CHERRY',r:5,c:10,dir:'D'},
-      {w:'KIWI',r:6,c:3,dir:'D'},
-      {w:'LEMON',r:7,c:9,dir:'D'},
-      {w:'LIME',r:11,c:3,dir:'A'},
-      {w:'PAPAYA',r:7,c:8,dir:'D'},
-      {w:'GUAVA',r:4,c:1,dir:'A'},
-      {w:'PLUM',r:10,c:3,dir:'D'},
-      {w:'FIG',r:0,c:4,dir:'D'},
-      {w:'DATE',r:12,c:7,dir:'A'},
-      {w:'MELON',r:13,c:3,dir:'A'},
-      {w:'APPLE',r:4,c:9,dir:'D'},
-      {w:'PEAR',r:3,c:2,dir:'A'},
+      {w:"PLUM",d:"a small fruit with smooth skin and a stone (pit) inside",pos:"noun"},
+      {w:"CHERRY",d:"a small round fruit with a pit, usually red or dark red",pos:"noun"},
+      {w:"PAPAYA",d:"an orange tropical fruit with many black seeds in the middle",pos:"noun"},
+      {w:"KIWI",d:"a small brown fruit with green flesh and tiny black seeds",pos:"noun"},
+      {w:"LIME",d:"a small green citrus fruit with sour taste",pos:"noun"},
+      {w:"DATE",d:"a sweet brown fruit that grows on palm trees",pos:"noun"},
+      {w:"FIG",d:"a soft sweet fruit with many tiny seeds inside",pos:"noun"}
     ];
 
-    // Build board
-    const board=Array.from({length:SIZE},()=>Array(SIZE).fill('#'));
-    for(const p of PLACEMENTS){
-      const dr=p.dir==='A'?0:1, dc=p.dir==='A'?1:0;
-      for(let i=0;i<p.w.length;i++){
-        board[p.r+dr*i][p.c+dc*i]=p.w[i];
+    const SIZE = 15; // 15x15 standard grid
+    const board = Array.from({length:SIZE}, () => Array(SIZE).fill('#'));
+    const placements = []; // {w, r, c, dir}
+    const DIRS = {A:[0,1], D:[1,0]};
+
+    function inBounds(r,c){ return r>=0 && c>=0 && r<SIZE && c<SIZE; }
+    function isEmpty(r,c){ return inBounds(r,c) && board[r][c] === '#'; }
+    function isLetter(r,c){ return inBounds(r,c) && board[r][c] !== '#'; }
+
+    function canPlace(word, r, c, dir){
+      const [dr,dc] = DIRS[dir];
+      const L = word.length;
+
+      // Start/end boundaries (no letters immediately before/after)
+      const br = r - dr, bc = c - dc;
+      const ar = r + dr*L, ac = c + dc*L;
+      if (inBounds(br,bc) && isLetter(br,bc)) return false;
+      if (inBounds(ar,ac) && isLetter(ar,ac)) return false;
+
+      for(let i=0;i<L;i++){
+        const rr = r + dr*i, cc = c + dc*i;
+        if(!inBounds(rr,cc)) return false;
+
+        const cell = board[rr][cc];
+        const ch = word[i];
+        if(cell !== '#' && cell !== ch) return false;
+
+        // No side-touching along the run (avoid creating unwanted parallel words)
+        if(cell === '#'){ // only enforce when we newly occupy
+          if(dir==='A'){
+            if(inBounds(rr-1,cc) && isLetter(rr-1,cc)) return false;
+            if(inBounds(rr+1,cc) && isLetter(rr+1,cc)) return false;
+          } else { // 'D'
+            if(inBounds(rr,cc-1) && isLetter(rr,cc-1)) return false;
+            if(inBounds(rr,cc+1) && isLetter(rr,cc+1)) return false;
+          }
+        }
       }
+
+      // Must have at least one crossing with existing letters (except the very first word)
+      const anyLetters = placements.length>0;
+      if(anyLetters){
+        let crosses=0;
+        for(let i=0;i<L;i++){
+          const rr = r + dr*i, cc = c + dc*i;
+          if(isLetter(rr,cc)) crosses++;
+        }
+        if(crosses===0) return false;
+      }
+      return true;
     }
 
-    // Number starts
-    const startNum=Array.from({length:SIZE},()=>Array(SIZE).fill(null));
-    let num=1; 
-    function isLetter(r,c){return r>=0&&c>=0&&r<SIZE&&c<SIZE&&board[r][c]!=='#';}
+    function place(word, r, c, dir){
+      const [dr,dc] = DIRS[dir];
+      for(let i=0;i<word.length;i++){
+        const rr=r+dr*i, cc=c+dc*i;
+        board[rr][cc] = word[i];
+      }
+      placements.push({w:word, r, c, dir});
+    }
+
+    function allBoardLetters(){
+      for(let r=0;r<SIZE;r++){
+        for(let c=0;c<SIZE;c++){
+          if(isLetter(r,c)) return true;
+        }
+      }
+      return false;
+    }
+
+    function randomChoice(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    function tryBuild(){
+      // Reset
+      for(let r=0;r<SIZE;r++) for(let c=0;c<SIZE;c++) board[r][c]='#';
+      placements.length = 0;
+
+      // Words sorted by length desc (long first)
+      const pool = [...WORDS.map(x=>x.w)].sort((a,b)=>b.length - a.length);
+
+      // 1) Seed: put the longest word across in the center
+      const seed = pool.shift();
+      const row = Math.floor(SIZE/2);
+      const col = Math.floor((SIZE - seed.length)/2);
+      place(seed, row, col, 'A');
+
+      // 2) Place remaining words by crossing
+      let restarts = 0;
+      while(pool.length){
+        let progressed = false;
+        // choose next word (shuffle small subset for variety)
+        const idx = Math.floor(Math.random()*Math.min(pool.length,4));
+        const word = pool.splice(idx,1)[0];
+
+        // candidate intersections: find all board letters equal to any letter in the word
+        const candidates = [];
+        for(let r=0;r<SIZE;r++){
+          for(let c=0;c<SIZE;c++){
+            if(!isLetter(r,c)) continue;
+            const ch = board[r][c];
+            for(let k=0;k<word.length;k++){
+              if(word[k]!==ch) continue;
+              // Try place across crossing here
+              const cStart = c - k;
+              if(canPlace(word, r, cStart, 'A')) candidates.push({word, r, c:cStart, dir:'A'});
+              // Try place down crossing here
+              const rStart = r - k;
+              if(canPlace(word, rStart, c, 'D')) candidates.push({word, r:rStart, c, dir:'D'});
+            }
+          }
+        }
+
+        if(candidates.length){
+          // prefer more crossings = more interlocking
+          function crossingScore(cand){
+            const [dr,dc] = DIRS[cand.dir];
+            let sc=0;
+            for(let i=0;i<cand.word.length;i++){
+              const rr=cand.r+dr*i, cc=cand.c+dc*i;
+              if(isLetter(rr,cc)) sc++;
+            }
+            return sc;
+          }
+          const scored = candidates.map(c=>({...c,score:crossingScore(c)}));
+          const maxScore = Math.max(...scored.map(s=>s.score));
+          const top = scored.filter(s=>s.score===maxScore);
+          const chosen = randomChoice(top);
+          place(chosen.word, chosen.r, chosen.c, chosen.dir);
+          progressed = true;
+        }
+
+        if(!progressed){
+          // couldn't place: put word back near end and count a soft-restart
+          pool.push(word);
+          restarts++;
+          if(restarts > 200){ // if too stuck, rebuild from scratch
+            return false;
+          }
+        } else {
+          restarts = 0;
+        }
+      }
+      return true;
+    }
+
+    // Keep trying until a full placement is found
+    let ok=false, attempts=0;
+    while(!ok && attempts<20){ ok = tryBuild(); attempts++; }
+    if(!ok){
+      alert("Couldn't generate a full interlocking grid after several tries. Reload to try again.");
+    }
+
+    // Numbering
+    const startNum = Array.from({length:SIZE},()=>Array(SIZE).fill(null));
+    let n=1;
+    function isStartAcross(r,c){ return isLetter(r,c) && !isLetter(r,c-1) && isLetter(r,c+1); }
+    function isStartDown(r,c){ return isLetter(r,c) && !isLetter(r-1,c) && isLetter(r+1,c); }
     for(let r=0;r<SIZE;r++){
       for(let c=0;c<SIZE;c++){
-        if(!isLetter(r,c)) continue;
-        const startsAcross=(!isLetter(r,c-1))&&isLetter(r,c+1);
-        const startsDown=(!isLetter(r-1,c))&&isLetter(r+1,c);
-        if(startsAcross||startsDown){
-          if(startNum[r][c]==null){ startNum[r][c]=num++; }
+        if(isStartAcross(r,c) || isStartDown(r,c)){
+          startNum[r][c] = n++;
         }
       }
     }
 
-    // Build clue lists from placements (only words that start here)
-    const acrossClues=[], downClues=[];
-    for(let r=0;r<SIZE;r++){
-      for(let c=0;c<SIZE;c++){
-        if(!isLetter(r,c)) continue;
-        const n=startNum[r][c]; if(n==null) continue;
-        if(!isLetter(r,c-1)&&isLetter(r,c+1)){
-          const p=PLACEMENTS.find(pp=>pp.r===r&&pp.c===c&&pp.dir==='A');
-          if(p){ const meta=META[p.w]; acrossClues.push({num:n,w:p.w,d:meta.d,pos:meta.pos}); }
-        }
-        if(!isLetter(r-1,c)&&isLetter(r+1,c)){
-          const p=PLACEMENTS.find(pp=>pp.r===r&&pp.c===c&&pp.dir==='D');
-          if(p){ const meta=META[p.w]; downClues.push({num:n,w:p.w,d:meta.d,pos:meta.pos}); }
-        }
-      }
-    }
+    // Map placement => number
+    function getNumberFor(rc){ const {r,c}=rc; return startNum[r][c] || ""; }
 
-    // Render board
-    const boardEl=document.getElementById('board');
-    boardEl.style.gridTemplateColumns=`repeat(${SIZE}, var(--cell))`;
-    boardEl.style.gridTemplateRows=`repeat(${SIZE}, var(--cell))`;
+    // Build board DOM
+    const boardEl = document.getElementById('board');
+    boardEl.style.gridTemplateColumns = `repeat(${SIZE}, var(--cell))`;
+    boardEl.style.gridTemplateRows = `repeat(${SIZE}, var(--cell))`;
 
     for(let r=0;r<SIZE;r++){
       for(let c=0;c<SIZE;c++){
-        const cell=document.createElement('div');
-        const val=board[r][c];
-        if(val==='#'){
+        const cell = document.createElement('div');
+        if(board[r][c] === '#'){
           cell.className='cell block';
         } else {
           cell.className='cell';
           const inp=document.createElement('input');
-          inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c; cell.appendChild(inp);
-          const n=startNum[r][c];
-          if(n){ const numEl=document.createElement('div'); numEl.className='num'; numEl.textContent=n; cell.appendChild(numEl); }
+          inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c;
+          cell.appendChild(inp);
+          if(startNum[r][c]){
+            const numEl=document.createElement('div');
+            numEl.className='num';
+            numEl.textContent = startNum[r][c];
+            cell.appendChild(numEl);
+          }
         }
         boardEl.appendChild(cell);
       }
     }
 
-    // Render clues
+    // Build clues from placements + numbering
+    const META = Object.fromEntries(WORDS.map(x=>[x.w,{d:x.d,pos:x.pos}]));
     const acrossEl=document.getElementById('across');
     const downEl=document.getElementById('down');
-    for(const item of acrossClues){
-      const li=document.createElement('li');
-      li.innerHTML=`${item.num}. ${item.d} <em>(${item.pos})</em>`;
-      acrossEl.appendChild(li);
-    }
-    for(const item of downClues){
-      const li=document.createElement('li');
-      li.innerHTML=`${item.num}. ${item.d} <em>(${item.pos})</em>`;
-      downEl.appendChild(li);
+
+    // Index placements by start cell (merge duplicates if any)
+    function key(p){ return p.r+','+p.c+','+p.dir; }
+    const seen = new Set();
+    for(const p of placements){
+      const k=key(p); if(seen.has(k)) continue; seen.add(k);
+      const num = getNumberFor(p);
+      const meta = META[p.w] || {d:"(fruit)",pos:"noun"};
+      const li = document.createElement('li');
+      li.innerHTML = `${num}. ${meta.d} <em>(${meta.pos})</em>`;
+      if(p.dir==='A') acrossEl.appendChild(li);
+      else downEl.appendChild(li);
     }
 
     // Word bank
-    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a }
-    const bankWords=shuffle(WORDS.map(x=>x.w.toUpperCase()));
     const bankList=document.getElementById('bankList');
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    const bankWords=shuffle(WORDS.map(x=>x.w.toUpperCase()));
     for(const w of bankWords){
-      const span=document.createElement('span');
-      span.className='chip';
-      span.textContent=w;
-      bankList.appendChild(span);
+      const chip=document.createElement('span');
+      chip.className='chip';
+      chip.textContent=w;
+      bankList.appendChild(chip);
     }
 
+    // Input navigation
     function nextCell(r,c,dir){ return dir==='A'?[r,c+1]:[r+1,c]; }
     function prevCell(r,c,dir){ return dir==='A'?[r,c-1]:[r-1,c]; }
     let activeDir='A';
 
-    // Click-to-focus & direction selection
     boardEl.addEventListener('click',e=>{
       const inp=e.target.closest('input'); if(!inp) return;
       const r=+inp.dataset.r, c=+inp.dataset.c;
-      const leftBlock=c===0||!isLetter(r,c-1);
-      const upBlock=r===0||!isLetter(r-1,c);
-      activeDir=leftBlock?'A':(upBlock?'D':activeDir);
+      const leftBlock = !isLetter(r,c-1);
+      const upBlock   = !isLetter(r-1,c);
+      activeDir = leftBlock ? 'A' : (upBlock ? 'D' : activeDir);
       inp.focus(); inp.select();
     });
 
-    // Keyboard navigation
     boardEl.addEventListener('keydown',e=>{
       const inp=e.target.closest('input'); if(!inp) return;
       const r=+inp.dataset.r, c=+inp.dataset.c; const key=e.key;
+
       const move=(dr,dc)=>{
-        let nr=r+dr, nc=c+dc; if(nr<0||nc<0||nr>=SIZE||nc>=SIZE) return;
-        const idx=nr*SIZE+nc; const next=boardEl.children[idx];
-        if(next&&!next.classList.contains('block')){ const n=next.querySelector('input'); n.focus(); n.select(); }
+        let nr=r+dr, nc=c+dc;
+        if(!inBounds(nr,nc)) return;
+        const idx=nr*SIZE+nc; const cell=boardEl.children[idx];
+        if(cell && !cell.classList.contains('block')){
+          const n=cell.querySelector('input'); n.focus(); n.select();
+        }
       };
+
       if(key==='ArrowRight'){ e.preventDefault(); move(0,1); activeDir='A'; }
       else if(key==='ArrowLeft'){ e.preventDefault(); move(0,-1); activeDir='A'; }
       else if(key==='ArrowDown'){ e.preventDefault(); move(1,0); activeDir='D'; }
       else if(key==='ArrowUp'){ e.preventDefault(); move(-1,0); activeDir='D'; }
-      else if(key.length===1&&/[a-z]/i.test(key)){
-        inp.value=key.toUpperCase();
-        const [nr,nc]=nextCell(r,c,activeDir); const idx=nr*SIZE+nc; const next=boardEl.children[idx];
-        if(next&&!next.classList.contains('block')){ const n=next.querySelector('input'); n.focus(); n.select(); }
+      else if(key.length===1 && /[a-z]/i.test(key)){
+        inp.value = key.toUpperCase();
+        const [nr,nc]=nextCell(r,c,activeDir);
+        if(inBounds(nr,nc)){
+          const idx=nr*SIZE+nc; const next=boardEl.children[idx];
+          if(next && !next.classList.contains('block')){
+            const n=next.querySelector('input'); n.focus(); n.select();
+          }
+        }
         e.preventDefault();
       } else if(key==='Backspace'){
         if(inp.value){ inp.value=''; e.preventDefault(); return; }
-        const [pr,pc]=prevCell(r,c,activeDir); const idx=pr*SIZE+pc; const prev=boardEl.children[idx];
-        if(prev&&!prev.classList.contains('block')){ const p=prev.querySelector('input'); p.focus(); p.select(); }
+        const [pr,pc]=prevCell(r,c,activeDir);
+        if(inBounds(pr,pc)){
+          const idx=pr*SIZE+pc; const prev=boardEl.children[idx];
+          if(prev && !prev.classList.contains('block')){
+            const p=prev.querySelector('input'); p.focus(); p.select();
+          }
+        }
       }
     });
 
     // Checking & reveal
-    function solutionAt(r,c){ return board[r][c]; }
     function checkAll(reveal=false){
       let correct=0,total=0;
       for(let r=0;r<SIZE;r++){
         for(let c=0;c<SIZE;c++){
           const idx=r*SIZE+c; const cell=boardEl.children[idx];
           if(cell.classList.contains('block')) continue;
-          const inp=cell.querySelector('input'); const sol=solutionAt(r,c); total++;
+          const inp=cell.querySelector('input');
+          const sol=board[r][c];
+          total++;
           if(!inp.value){
             cell.style.outline='2px solid transparent';
             if(reveal){ inp.value=sol; inp.disabled=true; }
@@ -367,7 +491,10 @@
     btnCheck.onclick=()=>{ const {correct,total}=checkAll(false); alert(`Correct letters: ${correct} / ${total}`); };
     btnReveal.onclick=()=>{ checkAll(true); };
     btnShowAnswer.onclick=()=>{ checkAll(true); alert("All answers shown."); };
-    btnClear.onclick=()=>{ for(const el of boardEl.querySelectorAll('input')){ el.value=''; el.disabled=false; } for(const cell of boardEl.children){ cell.style.outline='2px solid transparent'; } };
+    btnClear.onclick=()=>{ 
+      for(const el of boardEl.querySelectorAll('input')){ el.value=''; el.disabled=false; }
+      for(const cell of boardEl.children){ cell.style.outline='2px solid transparent'; }
+    };
     btnPrint.onclick=()=>window.print();
   </script>
 </body>

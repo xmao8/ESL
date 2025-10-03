@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>School Vocabulary – Flashcards (Intermediate, Full Deck)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 820px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.6rem; max-width: 700px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .muted { color: #666; font-size: 0.9rem; margin-top: -0.6rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>School Vocabulary Flashcards – Intermediate (Intermediate)</h1>
+<p class="muted" id="progress">Card 1 of 45</p>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  // --- Original intermediate school list (30) ---
+  { word: "Assignment", ipa: "/əˈsaɪnmənt/", definition: "A task given by a teacher or professor.", example: "We have a reading assignment due on Friday.", chinese: "作业；任务", spanish: "tarea; encargo" },
+  { word: "Subject", ipa: "/ˈsʌbdʒɪkt/", definition: "An area of study, such as math or history.", example: "Biology is a challenging subject.", chinese: "科目", spanish: "asignatura" },
+  { word: "Lecture", ipa: "/ˈlɛktʃər/", definition: "A talk given to teach something, especially at college.", example: "The lecture on world history was engaging.", chinese: "讲座；授课", spanish: "clase magistral; conferencia" },
+  { word: "Principal", ipa: "/ˈprɪnsəpəl/", definition: "The head or leader of a school.", example: "The principal welcomed new students at the assembly.", chinese: "校长", spanish: "director/a (de escuela)" },
+  { word: "Counselor", ipa: "/ˈkaʊnsələr/", definition: "A person who gives academic or personal advice at school.", example: "She met the school counselor to discuss careers.", chinese: "辅导员；顾问", spanish: "orientador/a; consejero/a" },
+  { word: "Attendance", ipa: "/əˈtɛndəns/", definition: "The act of being present at school or class.", example: "Good attendance helps you keep up with lessons.", chinese: "出勤；到场", spanish: "asistencia" },
+  { word: "Schedule", ipa: "/ˈskɛdʒuːl/", definition: "A plan that shows when classes and activities happen.", example: "My schedule is full on Tuesdays.", chinese: "时间表；日程", spanish: "horario" },
+  { word: "Uniform", ipa: "/ˈjuːnɪfɔːrm/", definition: "Special clothing that students must wear at some schools.", example: "All students must wear the school uniform.", chinese: "校服；制服", spanish: "uniforme" },
+  { word: "Library", ipa: "/ˈlaɪˌbrɛri/", definition: "A place with books and resources for study.", example: "He borrowed a novel from the library.", chinese: "图书馆", spanish: "biblioteca" },
+  { word: "Essay", ipa: "/ˈɛˌseɪ/", definition: "A short piece of writing on a topic.", example: "We wrote an essay about climate change.", chinese: "短文；论文", spanish: "ensayo; redacción" },
+  { word: "Laboratory", ipa: "/ˈlæbrəˌtɔːri/", definition: "A room equipped for scientific experiments.", example: "The chemistry laboratory has new equipment.", chinese: "实验室", spanish: "laboratorio" },
+  { word: "Boarding school", ipa: "/ˈbɔːrdɪŋ skuːl/", definition: "A school where students also live.", example: "He spent two years at a boarding school.", chinese: "寄宿学校", spanish: "internado" },
+  { word: "Scholarship", ipa: "/ˈskɑːlərʃɪp/", definition: "Money given to help pay for education.", example: "She received a scholarship to study abroad.", chinese: "奖学金", spanish: "beca" },
+  { word: "Diploma", ipa: "/dɪˈploʊmə/", definition: "An official document showing you finished a course of study.", example: "He framed his high school diploma.", chinese: "毕业证书", spanish: "diploma" },
+  { word: "Tuition", ipa: "/tuːˈɪʃən/", definition: "Money paid for instruction at a school or college.", example: "College tuition increased again this year.", chinese: "学费", spanish: "matrícula; colegiatura" },
+  { word: "Kindergarten", ipa: "/ˈkɪndərˌɡɑːrtən/", definition: "The first level of school for young children.", example: "Her son just started kindergarten.", chinese: "幼儿园", spanish: "jardín de infancia; kinder" },
+  { word: "High school", ipa: "/ˈhaɪ ˌskuːl/", definition: "The final stage before college.", example: "She teaches English at a high school.", chinese: "高中", spanish: "escuela secundaria" },
+  { word: "College", ipa: "/ˈkɑːlɪdʒ/", definition: "An institution for higher education.", example: "He hopes to go to college next year.", chinese: "大学", spanish: "universidad" },
+  { word: "Recess", ipa: "/ˈriːsɛs/", definition: "A short break during the school day.", example: "The children played outside at recess.", chinese: "课间休息", spanish: "recreo" },
+  { word: "Semester", ipa: "/sɪˈmɛstər/", definition: "One of two main periods of the academic year.", example: "This semester I'm taking four classes.", chinese: "学期", spanish: "semestre" },
+  { word: "Whiteboard", ipa: "/ˈwaɪtˌbɔːrd/", definition: "A smooth board teachers write on with markers.", example: "She wrote the answer on the whiteboard.", chinese: "白板", spanish: "pizarra blanca" },
+  { word: "Quiz", ipa: "/kwɪz/", definition: "A short test to check knowledge.", example: "We had a pop quiz in history class.", chinese: "小测验", spanish: "prueba corta" },
+  { word: "Teamwork", ipa: "/ˈtiːmwɜːrk/", definition: "Working together as a group to reach a goal.", example: "The project required strong teamwork.", chinese: "团队合作", spanish: "trabajo en equipo" },
+  { word: "Discipline", ipa: "/ˈdɪsəplɪn/", definition: "Controlled behavior and following rules; also training to improve this.", example: "The school has strict discipline policies.", chinese: "纪律；自律", spanish: "disciplina" },
+  { word: "Graduation", ipa: "/ˌɡrædʒuˈeɪʃən/", definition: "The ceremony of completing a course of study.", example: "Her family attended her graduation ceremony.", chinese: "毕业典礼", spanish: "graduación" },
+  { word: "Curriculum", ipa: "/kəˈrɪkjələm/", definition: "The subjects and materials taught in a program.", example: "The new curriculum includes computer science.", chinese: "课程；课程体系", spanish: "plan de estudios" },
+  { word: "Syllabus", ipa: "/ˈsɪləbəs/", definition: "A detailed outline of a course's topics and rules.", example: "Please read the syllabus before the first class.", chinese: "课程大纲", spanish: "programa (de la asignatura)" },
+  { word: "Tutorial", ipa: "/tuːˈtɔːriəl/", definition: "A small-group or one-to-one lesson.", example: "She attended a tutorial to review grammar.", chinese: "辅导课；教程", spanish: "tutoría" },
+  { word: "Extracurricular", ipa: "/ˌɛkstrəkəˈrɪkjələr/", definition: "Activities outside normal classes, like clubs or sports.", example: "He joined several extracurricular activities.", chinese: "课外的；课外活动", spanish: "extracurricular" },
+  { word: "Procrastination", ipa: "/proʊˌkræstəˈneɪʃən/", definition: "Delaying tasks instead of doing them.", example: "Procrastination makes studying more stressful.", chinese: "拖延", spanish: "procrastinación" },
+
+  // --- Added academic terms from your list (de-duplicated) ---
+  { word: "Enroll", ipa: "/ɪnˈroʊl/", definition: "To officially register as a member of a course, school, or group.", example: "She enrolled in an evening ESL course.", chinese: "注册；入学", spanish: "inscribirse; matricularse" },
+  { word: "Tutor", ipa: "/ˈtuːtər/", definition: "(n) A private teacher; (v) to teach or instruct.", example: "He tutors first-year students in algebra.", chinese: "导师；辅导", spanish: "tutor; enseñar" },
+  { word: "Transcript", ipa: "/ˈtrænskrɪpt/", definition: "An official record of a student's courses and grades.", example: "The university asked for my transcript.", chinese: "成绩单", spanish: "expediente académico" },
+  { word: "Graduate", ipa: "/ˈɡrædʒueɪt/", definition: "(v) To successfully complete a course of study.", example: "She will graduate in June.", chinese: "毕业（动词）", spanish: "graduarse" },
+  { word: "Thesis", ipa: "/ˈθiːsɪs/", definition: "A long research essay written for a degree.", example: "His thesis analyzes bilingual education.", chinese: "论文", spanish: "tesis" },
+  { word: "Plagiarism", ipa: "/ˈpleɪdʒərɪzəm/", definition: "Taking someone else's work or ideas and passing them off as your own.", example: "Plagiarism can lead to failing the course.", chinese: "抄袭", spanish: "plagio" },
+  { word: "Alumnus / Alumna", ipa: "/əˈlʌmnəs/ /əˈlʌmnə/", definition: "A former student of a school or university (male/female).",
+    example: "As an alumna, she donates to the scholarship fund.", chinese: "校友", spanish: "exalumno/a" },
+  { word: "Dean", ipa: "/diːn/", definition: "An administrator in charge of a college or a division.", example: "The dean approved the new program.", chinese: "院长", spanish: "decano/a" },
+  { word: "Deadline", ipa: "/ˈdɛdlaɪn/", definition: "The latest time or date by which something must be completed.", example: "The application deadline is May 1st.", chinese: "截止日期", spanish: "fecha límite" },
+  { word: "Major", ipa: "/ˈmeɪdʒər/", definition: "A student's principal subject of study.", example: "She is a biology major.", chinese: "主修", spanish: "carrera principal" },
+  { word: "Minor", ipa: "/ˈmaɪnər/", definition: "A secondary subject of study.", example: "He has a minor in psychology.", chinese: "辅修", spanish: "carrera secundaria" },
+  { word: "Cram", ipa: "/kræm/", definition: "To study intensively over a short period just before an exam.", example: "They crammed the night before the final.", chinese: "突击学习", spanish: "empollar" },
+  { word: "Prerequisite", ipa: "/priːˈrɛkwəzɪt/", definition: "A requirement that must be met before taking a course.", example: "Calculus is a prerequisite for physics.", chinese: "先修课；先决条件", spanish: "prerrequisito" },
+  { word: "Elective", ipa: "/ɪˈlɛktɪv/", definition: "An optional course a student chooses to take.", example: "Photography is a popular elective.", chinese: "选修课", spanish: "optativa" },
+  { word: "Commencement", ipa: "/kəˈmɛnsmənt/", definition: "A ceremony where degrees are awarded; graduation.", example: "Commencement will be held outdoors.", chinese: "毕业典礼", spanish: "ceremonia de graduación" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){
+  progress.textContent = `Card ${index + 1} of ${flashcards.length}`;
+}
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove('flipped');
+  flashcard.setAttribute('aria-pressed', 'false');
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa || ''}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+  updateProgress();
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa || ''}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese || '—'}</div>
+      <div class="translation">Spanish: ${spanish || '—'}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add('flipped');
+    flashcard.setAttribute('aria-pressed', 'true');
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector('.speaker');
+    function speak() {
+      try { speechSynthesis.cancel(); } catch(e){}
+      const utterance = new SpeechSynthesisUtterance(flashcards[index].word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener('click', speak);
+    speakerBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+function shuffleDeck(){
+  // Fisher–Yates
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+  index = 0;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  try { speechSynthesis.cancel(); } catch(e){}
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    try { speechSynthesis.cancel(); } catch(e){}
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+shuffleBtn.addEventListener('click', () => {
+  stopAutoplayOnUserAction();
+  shuffleDeck();
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

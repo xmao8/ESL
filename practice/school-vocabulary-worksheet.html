@@ -232,27 +232,28 @@ const norm = s => s
   .trim();
 
 // Data: 20 vocabulary items for fill-in-the-blank
+// I have removed the extra dashes from the prompt strings.
 const items = [
-  { prompt: "The updated school **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** now includes a mandatory course on digital literacy for all freshmen.", answer: "Curriculum" },
-  { prompt: "She was excited to **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** in the new Coding Boot Camp, which starts next month.", answer: "Enroll" },
-  { prompt: "To get a high score on the research paper **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**, you need to use at least five academic sources.", answer: "Assignment" },
-  { prompt: "Since I missed the last class, I asked a classmate for notes from the professor's **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** on ancient philosophy.", answer: "Lecture" },
-  { prompt: "If your grades are low, you might consider hiring a private **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** to help you catch up in math.", answer: "Tutor" },
-  { prompt: "The university sent my official **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** of grades to my potential employer.", answer: "Transcript" },
-  { prompt: "Because of her poor **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** record (missing 15 classes), the student was dropped from the course.", answer: "Attendance" },
-  { prompt: "After you **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** from the university, you will receive your diploma in the mail.", answer: "Graduate" },
-  { prompt: "The graduate student is currently writing her 100-page **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** on renewable energy sources.", answer: "Thesis" },
-  { prompt: "The university is very strict about **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**; copying work from the internet will result in immediate failure.", answer: "Plagiarism" },
-  { prompt: "Every year, the university invites a famous **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** to speak at the graduation ceremony.", answer: ["Alumnus", "Alumna"] }, 
-  { prompt: "The **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** of the College of Arts and Sciences handles all disciplinary issues and academic appeals.", answer: "Dean" },
-  { prompt: "If you want financial help for your studies, you should apply for a **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** based on your academic performance.", answer: "Scholarship" },
-  { prompt: "I need to submit my application by the **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** of Friday at 5:00 PM, or they won't accept it.", answer: "Deadline" },
-  { prompt: "My **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** is in Economics, but I also enjoy literature so I chose English as my minor.", answer: "Major" },
-  { prompt: "My major is in Economics, but I also enjoy literature so I chose English as my **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**.", answer: "Minor" },
-  { prompt: "He waited until the last night and had to **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** for 10 hours straight before the final exam.", answer: "Cram" },
-  { prompt: "Before I could take the advanced chemistry course, I had to finish the introductory class first, which was a **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**.", answer: "Prerequisite" },
-  { prompt: "I had to choose two **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** courses this semester, so I picked Photography and Creative Writing.", answer: "Elective" },
-  { prompt: "We are looking forward to the **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** ceremony in May when all the graduates receive their degrees.", answer: "Commencement" }
+  { prompt: "The updated school __________ now includes a mandatory course on digital literacy for all freshmen.", answer: "Curriculum" },
+  { prompt: "She was excited to __________ in the new Coding Boot Camp, which starts next month.", answer: "Enroll" },
+  { prompt: "To get a high score on the research paper __________ you need to use at least five academic sources.", answer: "Assignment" },
+  { prompt: "Since I missed the last class, I asked a classmate for notes from the professor's __________ on ancient philosophy.", answer: "Lecture" },
+  { prompt: "If your grades are low, you might consider hiring a private __________ to help you catch up in math.", answer: "Tutor" },
+  { prompt: "The university sent my official __________ of grades to my potential employer.", answer: "Transcript" },
+  { prompt: "Because of her poor __________ record (missing 15 classes), the student was dropped from the course.", answer: "Attendance" },
+  { prompt: "After you __________ from the university, you will receive your diploma in the mail.", answer: "Graduate" },
+  { prompt: "The graduate student is currently writing her 100-page __________ on renewable energy sources.", answer: "Thesis" },
+  { prompt: "The university is very strict about __________; copying work from the internet will result in immediate failure.", answer: "Plagiarism" },
+  { prompt: "Every year, the university invites a famous __________ to speak at the graduation ceremony.", answer: ["Alumnus", "Alumna"] }, 
+  { prompt: "The __________ of the College of Arts and Sciences handles all disciplinary issues and academic appeals.", answer: "Dean" },
+  { prompt: "If you want financial help for your studies, you should apply for a __________ based on your academic performance.", answer: "Scholarship" },
+  { prompt: "I need to submit my application by the __________ of Friday at 5:00 PM, or they won't accept it.", answer: "Deadline" },
+  { prompt: "My __________ is in Economics, but I also enjoy literature so I chose English as my minor.", answer: "Major" },
+  { prompt: "My major is in Economics, but I also enjoy literature so I chose English as my __________.", answer: "Minor" },
+  { prompt: "He waited until the last night and had to __________ for 10 hours straight before the final exam.", answer: "Cram" },
+  { prompt: "Before I could take the advanced chemistry course, I had to finish the introductory class first, which was a __________.", answer: "Prerequisite" },
+  { prompt: "I had to choose two __________ courses this semester, so I picked Photography and Creative Writing.", answer: "Elective" },
+  { prompt: "We are looking forward to the __________ ceremony in May when all the graduates receive their degrees.", answer: "Commencement" }
 ];
 
 // Render questions
@@ -261,11 +262,8 @@ items.forEach((it, idx) => {
   const li = document.createElement('li');
   const input = `<input type=\"text\" class=\"blank-input\" aria-label=\"Answer for item ${idx + 1}\" data-i=\"${idx}\" />`;
   
-  // Remove ** before replacing the blank placeholder
-  const cleanPrompt = it.prompt.replace(/\*\*/g, ''); 
-  
   // Use replace to put the input field where the placeholder is
-  const promptHtml = cleanPrompt.replace(/__________/, input);
+  const promptHtml = it.prompt.replace(/__________/, input);
   
   li.innerHTML = `<span>${promptHtml}</span><span id=\"fb-${idx}\" class=\"inline-feedback\"></span>`;
   list.appendChild(li);

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crossword: Vegetable Vocabulary (20 words)</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== ESLnote frame ===== */
+    * { box-sizing: border-box; }
+    body { display:flex; flex-direction:column; min-height:100vh; margin:0; font-family:'Segoe UI', sans-serif; background-color:#f0f4f8; color:#333; overflow-x:hidden; }
+    main { flex:1; max-width:1100px; margin:auto; padding:1rem; }
+
+    nav { background-color:#124076; padding:0.8rem 1rem; width:100%; }
+    .nav-container { display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto; }
+    .logo { display:flex; align-items:center; text-decoration:none; }
+    .logo-img { width:32px; height:32px; margin-right:0.5rem; }
+    .site-name { font-family:'Poppins', sans-serif; font-size:1.3rem; color:#ff9800; font-weight:bold; }
+    .nav-links { display:flex; gap:1.5rem; }
+    .nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:color 0.2s; }
+    .nav-links a:hover { color:#ffbb33; text-decoration:underline; }
+    .menu-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; }
+    .menu-toggle .bar { width:25px; height:3px; background:#fff; border-radius:2px; transition:all 0.3s ease-in-out; }
+
+    h1 { text-align:center; font-size:2.2rem; margin:2rem auto 1rem; color:#2c3e50; }
+    h2 { color:#124076; margin:1.2rem 0; }
+
+    .content-section { background:#fff; border-radius:8px; padding:1.5rem; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:1.5rem; }
+    .meta-note { font-size:0.95rem; color:#555; background:#eef6ff; border-left:4px solid #3498db; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem; }
+
+    /* ===== Crossword visuals ===== */
+    :root{ --cell:42px; --gap:4px; --accent:#3498db; --ink:#0b2533; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:0.5rem 0 0.25rem; }
+    .toolbar button { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 12px; font-weight:700; cursor:pointer; transition:background-color .2s, transform .02s; }
+    .toolbar button:hover { background:#2980b9; }
+    .toolbar button:active { transform:translateY(1px); }
+    .toolbar button.secondary { background:#e8f3f9; color:#124076; }
+
+    .grid-wrap { display:flex; flex-direction:column; gap:1rem; }
+
+    .board-wrap { display:flex; flex-direction:column; gap:.5rem; }
+    .board { display:grid; gap:var(--gap); background:#0b2533; padding:var(--gap); border-radius:12px; width:max-content; margin:auto; }
+    .cell { width:var(--cell); height:var(--cell); display:grid; place-items:center; background:#fff; position:relative; }
+    .cell.block { background:#0b2533; }
+    .num { position:absolute; top:2px; left:4px; font-size:10px; color:#0b2533; }
+    .cell input { width:100%; height:100%; border:none; outline:none; text-transform:uppercase; font-weight:700; font-size:18px; text-align:center; background:transparent; color:#0b2533; }
+    .cell input:disabled { color:#245; opacity:.6 }
+
+    .legend h3 { margin:.25rem 0 .5rem; font-size:18px; color:#0b2533; }
+    .legend ol { margin:0; padding-left:20px; }
+    .legend li { margin:.35rem 0; font-size:15px; line-height:1.4; }
+    .legend em { color:#335; font-style:normal; opacity:.85 }
+
+    .hint { font-size:12px; color:#31586b; }
+    .footer-note { font-size:12px; color:#567; margin-top:10px; }
+
+    .bank h3 { margin:.25rem 0 .5rem; font-size:18px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .chip { border:1px dashed #98c7e8; padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.5px; color:#124076; background:#f7fbff; }
+
+    .buttons { text-align:center; margin: 1rem auto 2rem; max-width:1100px; padding:0 1rem; }
+    .buttons a { text-decoration:none; background:#3498db; color:#fff; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold; transition:background-color 0.2s; display:inline-block; margin:0 .3rem; }
+    .buttons a:hover { background:#2980b9; }
+
+    @media (max-width: 600px) {
+      .nav-links { position:fixed; top:56px; right:0; background:#124076; flex-direction:column; width:100%; height:calc(100vh - 56px); padding:1rem 1.5rem; gap:1rem; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s ease; z-index:998; }
+      .nav-links.active { transform:translateX(0); }
+      .menu-toggle { display:flex; }
+      h1 { font-size:1.9rem; margin:1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Site Nav -->
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Vegetable Vocabulary Crossword — 20 Words</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> Click a numbered square to start typing. Use the arrow keys to move. Check or reveal answers with the buttons.
+      </div>
+
+      <div class="toolbar" role="group" aria-label="Crossword controls">
+        <button id="btnCheck" title="Check your entries">Check answers</button>
+        <button id="btnReveal" title="Reveal everything">Reveal all</button>
+        <button id="btnShowAnswer" title="Fill with correct letters">Show Answer</button>
+        <button id="btnClear" class="secondary" title="Clear the board">Clear</button>
+        <button id="btnPrint" class="secondary" title="Print this page">Print page</button>
+      </div>
+    </div>
+
+    <div class="grid-wrap">
+      <!-- 1) Crossword board -->
+      <div class="content-section board-wrap">
+        <div id="board" class="board" aria-label="crossword grid"></div>
+        <div class="hint">Tip: All answers are vegetable names (everyday cooking words).</div>
+      </div>
+
+      <!-- 2) Clues (between board and word bank) -->
+      <div class="content-section legend">
+        <h2>Clues</h2>
+        <h3>Across</h3>
+        <ol id="across"></ol>
+        <h3>Down</h3>
+        <ol id="down"></ol>
+        <div class="footer-note">Definitions adapted for intermediate ESL learners.</div>
+      </div>
+
+      <!-- 3) Word bank -->
+      <div class="content-section bank">
+        <h2>Word Bank</h2>
+        <div id="bankList" class="chips" aria-label="word bank"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../practice.html">⬅️ Back to Practices</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    /* ===== Mobile navigation toggle ===== */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    /* ===== Crossword generator (interlocking, consistent numbering) ===== */
+    const WORDS = [
+      {w:"CAULIFLOWER", d:"a white vegetable with a large head made of tight flower buds", pos:"noun"},
+      {w:"ASPARAGUS",   d:"a long green vegetable with tender tips", pos:"noun"},
+      {w:"BROCCOLI",    d:"a green vegetable with a thick stalk and tree-like heads", pos:"noun"},
+      {w:"ZUCCHINI",    d:"a long green summer squash", pos:"noun"},
+      {w:"EGGPLANT",    d:"a purple vegetable with smooth skin (aubergine)", pos:"noun"},
+      {w:"CUCUMBER",    d:"a long green vegetable used in salads; crisp and watery", pos:"noun"},
+      {w:"LETTUCE",     d:"leafy green used for salads and sandwiches", pos:"noun"},
+      {w:"SPINACH",     d:"dark green leaves eaten raw or cooked; rich in iron", pos:"noun"},
+      {w:"CABBAGE",     d:"a round leafy vegetable used in salads and cooked dishes", pos:"noun"},
+      {w:"TOMATO",      d:"a red vegetable in cooking and salads (botanically a fruit)", pos:"noun"},
+      {w:"POTATO",      d:"a starchy root vegetable with brown skin", pos:"noun"},
+      {w:"CARROT",      d:"a crunchy orange root vegetable rich in vitamin A", pos:"noun"},
+      {w:"ONION",       d:"a round vegetable with layers and a strong smell", pos:"noun"},
+      {w:"GARLIC",      d:"small white cloves with a strong flavor and smell", pos:"noun"},
+      {w:"PEPPER",      d:"a vegetable that can be sweet (bell) or spicy (chili)", pos:"noun"},
+      {w:"CELERY",      d:"long pale green stalks with a crunchy texture", pos:"noun"},
+      {w:"RADISH",      d:"a small root with a peppery taste", pos:"noun"},
+      {w:"KALE",        d:"curly dark green leaves; a type of cabbage", pos:"noun"},
+      {w:"OKRA",        d:"green pods used in soups and stews", pos:"noun"},
+      {w:"PUMPKIN",     d:"a large orange squash used in soups and pies", pos:"noun"}
+    ];
+
+    const SIZE = 15; // standard 15x15
+    const board = Array.from({length:SIZE}, () => Array(SIZE).fill('#'));
+    const placements = []; // {w, r, c, dir}
+    const DIRS = {A:[0,1], D:[1,0]};
+
+    function inBounds(r,c){ return r>=0 && c>=0 && r<SIZE && c<SIZE; }
+    function isEmpty(r,c){ return inBounds(r,c) && board[r][c] === '#'; }
+    function isLetter(r,c){ return inBounds(r,c) && board[r][c] !== '#'; }
+
+    function canPlace(word, r, c, dir){
+      const [dr,dc] = DIRS[dir];
+      const L = word.length;
+
+      // Start/end boundaries (no letters immediately before/after)
+      const br = r - dr, bc = c - dc;
+      const ar = r + dr*L, ac = c + dc*L;
+      if (inBounds(br,bc) && isLetter(br,bc)) return false;
+      if (inBounds(ar,ac) && isLetter(ar,ac)) return false;
+
+      for(let i=0;i<L;i++){
+        const rr = r + dr*i, cc = c + dc*i;
+        if(!inBounds(rr,cc)) return false;
+
+        const cell = board[rr][cc];
+        const ch = word[i];
+        if(cell !== '#' && cell !== ch) return false;
+
+        // No side-touching along the run
+        if(cell === '#'){ // only enforce when newly occupying
+          if(dir==='A'){
+            if(inBounds(rr-1,cc) && isLetter(rr-1,cc)) return false;
+            if(inBounds(rr+1,cc) && isLetter(rr+1,cc)) return false;
+          } else { // 'D'
+            if(inBounds(rr,cc-1) && isLetter(rr,cc-1)) return false;
+            if(inBounds(rr,cc+1) && isLetter(rr,cc+1)) return false;
+          }
+        }
+      }
+
+      // Must cross at least one existing letter (except the first word)
+      if(placements.length>0){
+        let crosses=0;
+        for(let i=0;i<L;i++){
+          const rr = r + dr*i, cc = c + dc*i;
+          if(isLetter(rr,cc)) crosses++;
+        }
+        if(crosses===0) return false;
+      }
+      return true;
+    }
+
+    function place(word, r, c, dir){
+      const [dr,dc] = DIRS[dir];
+      for(let i=0;i<word.length;i++){
+        const rr=r+dr*i, cc=c+dc*i;
+        board[rr][cc] = word[i];
+      }
+      placements.push({w:word, r, c, dir});
+    }
+
+    function randomChoice(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    function tryBuild(){
+      // Reset board & placements
+      for(let r=0;r<SIZE;r++) for(let c=0;c<SIZE;c++) board[r][c]='#';
+      placements.length = 0;
+
+      // Sort by length desc (place long ones first)
+      const pool = [...WORDS.map(x=>x.w)].sort((a,b)=>b.length - a.length);
+
+      // Seed with the longest word across the center
+      const seed = pool.shift();
+      const row = Math.floor(SIZE/2);
+      const col = Math.floor((SIZE - seed.length)/2);
+      place(seed, row, col, 'A');
+
+      let restarts = 0;
+      while(pool.length){
+        let progressed = false;
+
+        // Pick from the top few for variety
+        const idx = Math.floor(Math.random()*Math.min(pool.length,4));
+        const word = pool.splice(idx,1)[0];
+
+        // Find crossing candidates
+        const candidates = [];
+        for(let r=0;r<SIZE;r++){
+          for(let c=0;c<SIZE;c++){
+            if(!isLetter(r,c)) continue;
+            const ch = board[r][c];
+            for(let k=0;k<word.length;k++){
+              if(word[k]!==ch) continue;
+              // Try across with this crossing
+              const startC = c - k;
+              if(canPlace(word, r, startC, 'A')) candidates.push({w:word, r, c:startC, dir:'A'});
+              // Try down with this crossing
+              const startR = r - k;
+              if(canPlace(word, startR, c, 'D')) candidates.push({w:word, r:startR, c, dir:'D'});
+            }
+          }
+        }
+
+        if(candidates.length){
+          // Prefer options with more crossings
+          const DIRS_LOCAL = DIRS;
+          function crossingScore(cand){
+            const [dr,dc] = DIRS_LOCAL[cand.dir];
+            let sc=0;
+            for(let i=0;i<cand.w.length;i++){
+              const rr=cand.r+dr*i, cc=cand.c+dc*i;
+              if(isLetter(rr,cc)) sc++;
+            }
+            return sc;
+          }
+          const scored = candidates.map(c=>({...c, score:crossingScore(c)}));
+          const maxScore = Math.max(...scored.map(s=>s.score));
+          const top = scored.filter(s=>s.score===maxScore);
+          const chosen = randomChoice(top);
+          place(chosen.w, chosen.r, chosen.c, chosen.dir);
+          progressed = true;
+        }
+
+        if(!progressed){
+          // couldn't place this word now; try later
+          pool.push(word);
+          restarts++;
+          if(restarts > 400){ // too stuck -> rebuild
+            return false;
+          }
+        } else {
+          restarts = 0;
+        }
+      }
+      return true;
+    }
+
+    // Attempt multiple builds for a clean grid
+    let ok=false, attempts=0;
+    while(!ok && attempts<40){ ok = tryBuild(); attempts++; }
+    if(!ok){
+      alert("Couldn't generate a full interlocking grid after several tries. Reload to try again.");
+    }
+
+    // Numbering (standard crossword rules)
+    const startNum = Array.from({length:SIZE},()=>Array(SIZE).fill(null));
+    let num=1;
+    function isStartAcross(r,c){ return isLetter(r,c) && !isLetter(r,c-1) && isLetter(r,c+1); }
+    function isStartDown(r,c){ return isLetter(r,c) && !isLetter(r-1,c) && isLetter(r+1,c); }
+    for(let r=0;r<SIZE;r++){
+      for(let c=0;c<SIZE;c++){
+        if(isStartAcross(r,c) || isStartDown(r,c)){
+          startNum[r][c] = num++;
+        }
+      }
+    }
+
+    // Render board
+    const boardEl = document.getElementById('board');
+    boardEl.style.gridTemplateColumns = `repeat(${SIZE}, var(--cell))`;
+    boardEl.style.gridTemplateRows = `repeat(${SIZE}, var(--cell))`;
+
+    for(let r=0;r<SIZE;r++){
+      for(let c=0;c<SIZE;c++){
+        const cell = document.createElement('div');
+        if(board[r][c] === '#'){
+          cell.className='cell block';
+        } else {
+          cell.className='cell';
+          const inp=document.createElement('input');
+          inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c;
+          cell.appendChild(inp);
+          if(startNum[r][c]){
+            const numEl=document.createElement('div');
+            numEl.className='num';
+            numEl.textContent = startNum[r][c];
+            cell.appendChild(numEl);
+          }
+        }
+        boardEl.appendChild(cell);
+      }
+    }
+
+    // Build clues from actual placed starts (sorted by number)
+    const META = Object.fromEntries(WORDS.map(x=>[x.w,{d:x.d,pos:x.pos}]));
+    const acrossEl=document.getElementById('across');
+    const downEl=document.getElementById('down');
+
+    // Collect proper starts by scanning grid rather than trusting placements order
+    const acrossClues=[], downClues=[];
+    // Find full words for each start
+    function readWord(r,c,dir){
+      const [dr,dc] = dir==='A' ? [0,1] : [1,0];
+      let s="", rr=r, cc=c;
+      while(isLetter(rr,cc)){ s+=board[rr][cc]; rr+=dr; cc+=dc; }
+      return s;
+    }
+
+    for(let r=0;r<SIZE;r++){
+      for(let c=0;c<SIZE;c++){
+        if(isStartAcross(r,c)){
+          const n=startNum[r][c];
+          const w = readWord(r,c,'A');
+          const meta = META[w] || {d:"(vegetable)",pos:"noun"};
+          acrossClues.push({num:n, w, d:meta.d, pos:meta.pos});
+        }
+        if(isStartDown(r,c)){
+          const n=startNum[r][c];
+          const w = readWord(r,c,'D');
+          const meta = META[w] || {d:"(vegetable)",pos:"noun"};
+          downClues.push({num:n, w, d:meta.d, pos:meta.pos});
+        }
+      }
+    }
+    acrossClues.sort((a,b)=>a.num-b.num);
+    downClues.sort((a,b)=>a.num-b.num);
+
+    for(const item of acrossClues){
+      const li=document.createElement('li');
+      li.innerHTML = `${item.num}. ${item.d} <em>(${item.pos})</em>`;
+      acrossEl.appendChild(li);
+    }
+    for(const item of downClues){
+      const li=document.createElement('li');
+      li.innerHTML = `${item.num}. ${item.d} <em>(${item.pos})</em>`;
+      downEl.appendChild(li);
+    }
+
+    // Word bank (shuffled)
+    const bankList=document.getElementById('bankList');
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    const bankWords=shuffle(WORDS.map(x=>x.w.toUpperCase()));
+    for(const w of bankWords){
+      const chip=document.createElement('span');
+      chip.className='chip';
+      chip.textContent=w;
+      bankList.appendChild(chip);
+    }
+
+    // Input navigation
+    function nextCell(r,c,dir){ return dir==='A'?[r,c+1]:[r+1,c]; }
+    function prevCell(r,c,dir){ return dir==='A'?[r,c-1]:[r-1,c]; }
+    let activeDir='A';
+
+    boardEl.addEventListener('click',e=>{
+      const inp=e.target.closest('input'); if(!inp) return;
+      const r=+inp.dataset.r, c=+inp.dataset.c;
+      const leftBlock = !isLetter(r,c-1);
+      const upBlock   = !isLetter(r-1,c);
+      activeDir = leftBlock ? 'A' : (upBlock ? 'D' : activeDir);
+      inp.focus(); inp.select();
+    });
+
+    boardEl.addEventListener('keydown',e=>{
+      const inp=e.target.closest('input'); if(!inp) return;
+      const r=+inp.dataset.r, c=+inp.dataset.c; const key=e.key;
+
+      const move=(dr,dc)=>{
+        let nr=r+dr, nc=c+dc;
+        if(!inBounds(nr,nc)) return;
+        const idx=nr*SIZE+nc; const cell=boardEl.children[idx];
+        if(cell && !cell.classList.contains('block')){
+          const n=cell.querySelector('input'); n.focus(); n.select();
+        }
+      };
+
+      if(key==='ArrowRight'){ e.preventDefault(); move(0,1); activeDir='A'; }
+      else if(key==='ArrowLeft'){ e.preventDefault(); move(0,-1); activeDir='A'; }
+      else if(key==='ArrowDown'){ e.preventDefault(); move(1,0); activeDir='D'; }
+      else if(key==='ArrowUp'){ e.preventDefault(); move(-1,0); activeDir='D'; }
+      else if(key.length===1 && /[a-z]/i.test(key)){
+        inp.value = key.toUpperCase();
+        const [nr,nc]=nextCell(r,c,activeDir);
+        if(inBounds(nr,nc)){
+          const idx=nr*SIZE+nc; const next=boardEl.children[idx];
+          if(next && !next.classList.contains('block')){
+            const n=next.querySelector('input'); n.focus(); n.select();
+          }
+        }
+        e.preventDefault();
+      } else if(key==='Backspace'){
+        if(inp.value){ inp.value=''; e.preventDefault(); return; }
+        const [pr,pc]=prevCell(r,c,activeDir);
+        if(inBounds(pr,pc)){
+          const idx=pr*SIZE+pc; const prev=boardEl.children[idx];
+          if(prev && !prev.classList.contains('block')){
+            const p=prev.querySelector('input'); p.focus(); p.select();
+          }
+        }
+      }
+    });
+
+    // Checking & reveal
+    function checkAll(reveal=false){
+      let correct=0,total=0;
+      for(let r=0;r<SIZE;r++){
+        for(let c=0;c<SIZE;c++){
+          const idx=r*SIZE+c; const cell=boardEl.children[idx];
+          if(cell.classList.contains('block')) continue;
+          const inp=cell.querySelector('input');
+          const sol=board[r][c];
+          total++;
+          if(!inp.value){
+            cell.style.outline='2px solid transparent';
+            if(reveal){ inp.value=sol; inp.disabled=true; }
+            continue;
+          }
+          if(inp.value.toUpperCase()===sol){
+            correct++; cell.style.outline='2px solid #7ac142';
+          } else {
+            cell.style.outline='2px solid #e53935';
+            if(reveal){ inp.value=sol; inp.disabled=true; }
+          }
+        }
+      }
+      return {correct,total};
+    }
+
+    btnCheck.onclick=()=>{ const {correct,total}=checkAll(false); alert(`Correct letters: ${correct} / ${total}`); };
+    btnReveal.onclick=()=>{ checkAll(true); };
+    btnShowAnswer.onclick=()=>{ checkAll(true); alert("All answers shown."); };
+    btnClear.onclick=()=>{ 
+      for(const el of boardEl.querySelectorAll('input')){ el.value=''; el.disabled=false; }
+      for(const cell of boardEl.children){ cell.style.outline='2px solid transparent'; }
+    };
+    btnPrint.onclick=()=>window.print();
+  </script>
+</body>
+</html>

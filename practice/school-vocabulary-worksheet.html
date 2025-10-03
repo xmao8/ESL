@@ -156,7 +156,7 @@
 <h1>School Vocabulary Fill-in-the-Blank</h1>
 
 <div class="content-container">
-  <p class="hint"> Complete the following sentences using one of the 20 vocabulary words provided in the list below. Use each word only **once**. You may need to change the verb form (e.g., *graduate* $\rightarrow$ *graduated*).</p>
+  <p class="hint"> Complete the following sentences using one of the 20 vocabulary words provided in the list below. Use each word only once. You may need to change the verb form (e.g., graduate/graduated).</p>
 
   <h2>Word Choices</h2>
   <div class="word-list">
@@ -232,7 +232,6 @@ const norm = s => s
   .trim();
 
 // Data: 20 vocabulary items for fill-in-the-blank
-// Note: 'answer' holds the base word for correct display. The check logic adds variations.
 const items = [
   { prompt: "The updated school __________ now includes a mandatory course on digital literacy for all freshmen.", answer: "Curriculum" },
   { prompt: "She was excited to __________ in the new Coding Boot Camp, which starts next month.", answer: "Enroll" },
@@ -277,25 +276,22 @@ function checkAll(){
     const fb = document.getElementById(`fb-${idx}`);
     const user = norm(inp.value);
     
-    // --- START: Answer List Generation (including variations for checking) ---
-    // Start with the base answer(s)
+    // --- START: Answer List Generation (for checking) and Display Word Determination ---
     let okList = Array.isArray(it.answer) ? it.answer.map(norm) : [norm(it.answer)];
+    let baseDisplayWord = Array.isArray(it.answer) ? it.answer.join(' / ') : it.answer;
     
-    // Determine the base word for display, handling arrays
-    const baseDisplayWord = Array.isArray(it.answer) ? it.answer.join(' / ') : it.answer;
-    
-    // Add acceptable verb tense variations for 'Graduate' and 'Enroll'
+    // Handle specific verb tense variations for checking
     if (norm(it.answer) === 'graduate') {
         okList.push('graduates', 'graduated', 'graduating');
-    }
-    if (norm(it.answer) === 'enroll') {
+        baseDisplayWord = 'Graduate (or Graduates/Graduated)';
+    } else if (norm(it.answer) === 'enroll') {
         okList.push('enrolled', 'enrolling', 'enrolls');
+        baseDisplayWord = 'Enroll (or Enrolled/Enrolls)';
+    } else if (norm(it.answer) === 'alumnus' || norm(it.answer) === 'alumna') {
+        okList.push('alumnus', 'alumna', 'alumni');
+        baseDisplayWord = 'Alumnus / Alumna';
     }
-    // Add acceptable noun variations for 'Alumnus/Alumna'
-    if (norm(it.answer) === 'alumnus' || norm(it.answer) === 'alumna') {
-        okList.push('alumnus', 'alumna', 'alumni'); // Alumni is the common plural/gender neutral
-    }
-    // --- END: Answer List Generation ---
+    // --- END: Answer List Generation and Display Word Determination ---
 
     const ok = user && okList.includes(user);
     

@@ -156,7 +156,7 @@
 <h1>School Vocabulary Fill-in-the-Blank</h1>
 
 <div class="content-container">
-  <p class="hint"> Complete the following sentences using one of the 20 vocabulary words provided in the list below. Use each word only **once**. You may need to change the verb form (e.g., *graduate* $\rightarrow$ *graduated*).</p>
+  <p class="hint"> Complete the following sentences using one of the 20 vocabulary words provided in the list below. Use each word only once. You may need to change the verb form (e.g., graduate/graduated).</p>
 
   <h2>Word Choices</h2>
   <div class="word-list">
@@ -232,7 +232,7 @@ const norm = s => s
   .trim();
 
 // Data: 20 vocabulary items for fill-in-the-blank
-// I have removed the extra dashes from the prompt strings.
+// Note: 'answer' holds the base word for correct display. The check logic adds variations.
 const items = [
   { prompt: "The updated school __________ now includes a mandatory course on digital literacy for all freshmen.", answer: "Curriculum" },
   { prompt: "She was excited to __________ in the new Coding Boot Camp, which starts next month.", answer: "Enroll" },
@@ -277,8 +277,12 @@ function checkAll(){
     const fb = document.getElementById(`fb-${idx}`);
     const user = norm(inp.value);
     
-    // Normalize the correct answer(s)
+    // --- START: Answer List Generation (including variations for checking) ---
+    // Start with the base answer(s)
     let okList = Array.isArray(it.answer) ? it.answer.map(norm) : [norm(it.answer)];
+    
+    // Determine the base word for display, handling arrays
+    const baseDisplayWord = Array.isArray(it.answer) ? it.answer.join(' / ') : it.answer;
     
     // Add acceptable verb tense variations for 'Graduate' and 'Enroll'
     if (norm(it.answer) === 'graduate') {
@@ -291,9 +295,9 @@ function checkAll(){
     if (norm(it.answer) === 'alumnus' || norm(it.answer) === 'alumna') {
         okList.push('alumnus', 'alumna', 'alumni'); // Alumni is the common plural/gender neutral
     }
+    // --- END: Answer List Generation ---
 
     const ok = user && okList.includes(user);
-    const displayedAnswer = Array.isArray(it.answer) ? it.answer.join(' / ') : it.answer;
     
     inp.classList.remove('correct','incorrect');
     if (ok) {
@@ -304,7 +308,8 @@ function checkAll(){
       correct++;
     } else {
       inp.classList.add('incorrect');
-      fb.textContent = ` ✗ (${displayedAnswer})`;
+      // Use the determined baseDisplayWord for the error feedback
+      fb.textContent = ` ✗ (${baseDisplayWord})`;
       fb.className = 'inline-feedback incorrect';
       fb.style.display = 'inline';
     }

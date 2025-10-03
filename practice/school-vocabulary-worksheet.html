@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>School Vocabulary — Intermediate ESL Practice</title>
+  <title>School Vocabulary Practice — Intermediate ESL</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -73,6 +73,26 @@
     .content-container li { margin-bottom: 0.85rem; }
     .content-container strong { color: #124076; }
     .hint { background: #f8fbff; border-left: 4px solid #3498db; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1rem; }
+    
+    /* Word List specific styles */
+    .word-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #ecf0f1;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: 1px dashed #bdc3c7;
+    }
+    .word-list span {
+        white-space: nowrap;
+        color: #124076;
+    }
+
 
     /* Inputs & feedback */
     .blank-input {
@@ -133,10 +153,34 @@
   </div>
 </nav>
 
-<h1>School Vocabulary Practice (20 Words)</h1>
+<h1>School Vocabulary Fill-in-the-Blank</h1>
 
 <div class="content-container">
-  <p class="hint"> Complete the following sentences using one of the 20 school-related vocabulary words. Each word is used only <strong>once</strong>. You may need to change the verb form of a word like 'graduate' (e.g., graduated, graduates). </p>
+  <p class="hint"> Complete the following sentences using one of the 20 vocabulary words provided in the list below. Use each word only **once**. You may need to change the verb form (e.g., *graduate* $\rightarrow$ *graduated*).</p>
+
+  <h2>Word Choices</h2>
+  <div class="word-list">
+    <span>Assignment</span>
+    <span>Alumnus/Alumna</span>
+    <span>Attendance</span>
+    <span>Commencement</span>
+    <span>Cram</span>
+    <span>Curriculum</span>
+    <span>Deadline</span>
+    <span>Dean</span>
+    <span>Elective</span>
+    <span>Enroll</span>
+    <span>Graduate</span>
+    <span>Lecture</span>
+    <span>Major</span>
+    <span>Minor</span>
+    <span>Plagiarism</span>
+    <span>Prerequisite</span>
+    <span>Scholarship</span>
+    <span>Thesis</span>
+    <span>Transcript</span>
+    <span>Tutor</span>
+  </div>
 
   <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList">
@@ -188,7 +232,6 @@ const norm = s => s
   .trim();
 
 // Data: 20 vocabulary items for fill-in-the-blank
-// Each item has a prompt and a single correct answer (though checking allows for slight variations like 'alumnus'/'alumna')
 const items = [
   { prompt: "The updated school **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** now includes a mandatory course on digital literacy for all freshmen.", answer: "Curriculum" },
   { prompt: "She was excited to **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** in the new Coding Boot Camp, which starts next month.", answer: "Enroll" },
@@ -200,7 +243,7 @@ const items = [
   { prompt: "After you **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** from the university, you will receive your diploma in the mail.", answer: "Graduate" },
   { prompt: "The graduate student is currently writing her 100-page **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** on renewable energy sources.", answer: "Thesis" },
   { prompt: "The university is very strict about **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**; copying work from the internet will result in immediate failure.", answer: "Plagiarism" },
-  { prompt: "Every year, the university invites a famous **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** to speak at the graduation ceremony.", answer: ["Alumnus", "Alumna"] }, // Accepts either for the role
+  { prompt: "Every year, the university invites a famous **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** to speak at the graduation ceremony.", answer: ["Alumnus", "Alumna"] }, 
   { prompt: "The **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** of the College of Arts and Sciences handles all disciplinary issues and academic appeals.", answer: "Dean" },
   { prompt: "If you want financial help for your studies, you should apply for a **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** based on your academic performance.", answer: "Scholarship" },
   { prompt: "I need to submit my application by the **\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_** of Friday at 5:00 PM, or they won't accept it.", answer: "Deadline" },
@@ -217,14 +260,8 @@ const list = document.getElementById('questionsList');
 items.forEach((it, idx) => {
   const li = document.createElement('li');
   const input = `<input type=\"text\" class=\"blank-input\" aria-label=\"Answer for item ${idx + 1}\" data-i=\"${idx}\" />`;
-  // Use a regex to find the last instance of '__________' for replacement
-  const promptHtml = it.prompt.replace(/__________/g, (match, offset, string) => {
-    // Check if this is the last occurrence (simple for one blank per sentence)
-    if (string.indexOf(match, offset + 1) === -1) {
-      return input;
-    }
-    return match; // return the original if it's not the last (though shouldn't happen here)
-  });
+  // Use replace to put the input field where the placeholder is
+  const promptHtml = it.prompt.replace(/__________/, input);
   
   li.innerHTML = `<span>${promptHtml}</span><span id=\"fb-${idx}\" class=\"inline-feedback\"></span>`;
   list.appendChild(li);
@@ -241,14 +278,16 @@ function checkAll(){
     // Normalize the correct answer(s)
     let okList = Array.isArray(it.answer) ? it.answer.map(norm) : [norm(it.answer)];
     
-    // Handle specific verb tense changes (e.g., graduate -> graduated)
+    // Add acceptable verb tense variations for 'Graduate' and 'Enroll'
     if (norm(it.answer) === 'graduate') {
         okList.push('graduates', 'graduated', 'graduating');
     }
-
-    // Handle noun variations (e.g., alumnus/alumna)
-    if (norm(it.answer) === 'alumnus') {
-        okList.push('alumna', 'alumni', 'alumnas');
+    if (norm(it.answer) === 'enroll') {
+        okList.push('enrolled', 'enrolling', 'enrolls');
+    }
+    // Add acceptable noun variations for 'Alumnus/Alumna'
+    if (norm(it.answer) === 'alumnus' || norm(it.answer) === 'alumna') {
+        okList.push('alumnus', 'alumna', 'alumni'); // Alumni is the common plural/gender neutral
     }
 
     const ok = user && okList.includes(user);

@@ -260,8 +260,12 @@ const list = document.getElementById('questionsList');
 items.forEach((it, idx) => {
   const li = document.createElement('li');
   const input = `<input type=\"text\" class=\"blank-input\" aria-label=\"Answer for item ${idx + 1}\" data-i=\"${idx}\" />`;
+  
+  // Remove ** before replacing the blank placeholder
+  const cleanPrompt = it.prompt.replace(/\*\*/g, ''); 
+  
   // Use replace to put the input field where the placeholder is
-  const promptHtml = it.prompt.replace(/__________/, input);
+  const promptHtml = cleanPrompt.replace(/__________/, input);
   
   li.innerHTML = `<span>${promptHtml}</span><span id=\"fb-${idx}\" class=\"inline-feedback\"></span>`;
   list.appendChild(li);

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adverbs of Frequency — Daily Routine · ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin: 1.4rem 0 0.8rem; font-size: 1.45rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.85rem; }
+    .content-container strong { color: #124076; }
+    .hint { background: #f8fbff; border-left: 4px solid #3498db; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1rem; }
+
+    /* Inputs & feedback */
+    .blank-input {
+      display: inline-block; min-width: 12ch; max-width: 40ch;
+      padding: 0.25rem 0.4rem; border: 1px solid #cfd8dc; border-radius: 6px; font-size: 1rem; margin: 0 0.25rem;
+    }
+    .blank-input.correct { border-color: #27ae60; }
+    .blank-input.incorrect { border-color: #c0392b; }
+    .inline-feedback { margin-left: 0.5rem; font-style: italic; display: none; }
+    .inline-feedback.correct { color: #27ae60; display: inline; }
+    .inline-feedback.incorrect { color: #c0392b; display: inline; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem; display: flex; justify-content: center; gap: 1rem; max-width: 620px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .submit-button { background-color: #4CAF50; }
+    .submit-button:hover { background-color: #45a049; }
+    .show-answers { background-color: #f44336; }
+    .show-answers:hover { background-color: #d32f2f; }
+    .reset-button { background-color: #7f8c8d; }
+    .reset-button:hover { background-color: #707b7c; }
+
+    /* Results */
+    .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
+    .answers-section h3 { color: #4CAF50; }
+    .answers-section p { margin: 0.3rem 0 0.8rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Adverbs of Frequency — Daily Routine</h1>
+
+<div class="content-container">
+  <p class="hint">
+    Type the best adverb of frequency or phrase in each blank.<br>
+    <strong>Tip:</strong> Put adverbs of frequency <strong>before</strong> the main verb
+    (<em>I <strong>often</strong> exercise</em>), <strong>after</strong> <em>be</em>
+    (<em>She <strong>is usually</strong> on time</em>), and <strong>after the first auxiliary/modal</strong>
+    (<em>We <strong>can usually</strong> eat together</em>).
+  </p>
+
+  <h2>Fill in the Blanks (20)</h2>
+  <ol id="questionsList">
+    <!-- Items will be rendered by JS -->
+  </ol>
+
+  <div class="buttons">
+    <button id="submitBtn" class="submit-button">Submit Answers</button>
+    <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+
+  <div id="results" class="answers-section" aria-live="polite">
+    <h3>Your Results</h3>
+    <p>You got <span id="correctCount">0</span> out of <span id="totalCount">0</span> correct.</p>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Utility: normalize strings
+const norm = s => s
+  .toLowerCase()
+  .replace(/[.,!?;:]/g, '')
+  .replace(/\s+/g, ' ')
+  .replace(/’/g, "'")
+  .trim();
+
+// Adverb sets
+const ADV = ["always","usually","often","sometimes","occasionally","rarely","seldom","hardly ever","never"]; // master list
+const POS_ADV = ["always","usually","often","sometimes","occasionally"]; // positive/neutral
+const NEG_ADV = ["rarely","seldom","hardly ever","never"]; // negative tendency
+
+// Helper generators
+const beForms = (copula, list = ADV) => list.map(a => `${copula} ${a}`);
+const modalForms = (modal, list = ADV) => list.map(a => `${modal} ${a}`);
+const haveForms = (list = ADV) => list.map(a => `have ${a}`);
+
+// Data: 20 daily-routine items
+const items = [
+  { prompt: "I __________ drink coffee before 7 a.m.", answers: ADV, eg: "usually" },
+  { prompt: "My bus __________ late in the morning.", answers: beForms("is", POS_ADV), eg: "is often" },
+  { prompt: "She __________ takes a quick walk at lunch.", answers: ADV, eg: "often" },
+  { prompt: "We __________ have breakfast together on weekdays.", answers: ADV, eg: "usually" },
+  { prompt: "I __________ check my email before getting out of bed.", answers: ADV, eg: "sometimes" },
+  { prompt: "He __________ forgets his keys when he leaves.", answers: NEG_ADV, eg: "rarely" },
+  { prompt: "They __________ tired on Monday mornings.", answers: beForms("are", POS_ADV), eg: "are usually" },
+  { prompt: "I __________ take the elevator; I prefer the stairs.", answers: NEG_ADV, eg: "rarely" },
+  { prompt: "You __________ start work at nine, depending on meetings.", answers: modalForms("can", POS_ADV), eg: "can usually" },
+  { prompt: "The gym __________ crowded after 5 p.m.", answers: beForms("is", POS_ADV), eg: "is often" },
+  { prompt: "My phone __________ rings during dinner.", answers: NEG_ADV.concat(["sometimes"]), eg: "seldom" },
+  { prompt: "I __________ finished cooking breakfast by 8 a.m. (present perfect)", answers: haveForms(POS_ADV.concat(["always","never"])), eg: "have usually" },
+  { prompt: "She __________ in a good mood in the morning.", answers: beForms("is", POS_ADV), eg: "is usually" },
+  { prompt: "We __________ take a family walk after dinner.", answers: ADV, eg: "sometimes" },
+  { prompt: "I __________ read before bed, even if I’m tired.", answers: ADV, eg: "often" },
+  { prompt: "He __________ watches TV before finishing his homework.", answers: NEG_ADV, eg: "never" },
+  { prompt: "My manager __________ checks in with us on Slack.", answers: ADV, eg: "often" },
+  { prompt: "I __________ running late for class.", answers: beForms("am", NEG_ADV), eg: "am rarely" },
+  { prompt: "You __________ skip breakfast; it’s not a good habit.", answers: NEG_ADV, eg: "should never" }, // Accept plain neg adverbs
+  { prompt: "We __________ meet for a quick coffee before work.", answers: modalForms("can", ADV), eg: "can sometimes" }
+];
+
+// Render questions
+const list = document.getElementById('questionsList');
+items.forEach((it, idx) => {
+  const li = document.createElement('li');
+  const input = `<input type="text" class="blank-input" aria-label="Answer for item ${idx + 1}" data-i="${idx}" />`;
+  li.innerHTML = `<span>${it.prompt.replace("__________", input)}</span><span id="fb-${idx}" class="inline-feedback"></span>`;
+  list.appendChild(li);
+});
+
+// Check logic
+function checkAll(){
+  let correct = 0;
+  items.forEach((it, idx) => {
+    const inp = document.querySelector(`input[data-i="${idx}"]`);
+    const fb = document.getElementById(`fb-${idx}`);
+    const user = norm(inp.value);
+    const okList = it.answers.map(norm);
+    const ok = user && okList.includes(user);
+    inp.classList.remove('correct','incorrect');
+    if (ok) {
+      inp.classList.add('correct');
+      fb.textContent = ' ✓';
+      fb.className = 'inline-feedback correct';
+      fb.style.display = 'inline';
+      correct++;
+    } else {
+      inp.classList.add('incorrect');
+      fb.textContent = ` ✗ (e.g., ${it.eg || it.answers[0]})`;
+      fb.className = 'inline-feedback incorrect';
+      fb.style.display = 'inline';
+    }
+  });
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('totalCount').textContent = items.length;
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('showAnswersBtn').style.display = 'inline-block';
+  document.getElementById('submitBtn').style.display = 'none';
+}
+
+function toggleAnswers(){
+  const btn = document.getElementById('showAnswersBtn');
+  const showing = btn.textContent === 'Hide Answers';
+  document.querySelectorAll('.inline-feedback').forEach(el => {
+    el.style.display = showing ? 'none' : 'inline';
+  });
+  btn.textContent = showing ? 'Show Answers' : 'Hide Answers';
+}
+
+function resetAll(){
+  document.querySelectorAll('.blank-input').forEach(inp => {
+    inp.value = '';
+    inp.classList.remove('correct','incorrect');
+  });
+  document.querySelectorAll('.inline-feedback').forEach(el => {
+    el.textContent = '';
+    el.style.display = 'none';
+    el.className = 'inline-feedback';
+  });
+  document.getElementById('results').style.display = 'none';
+  const showBtn = document.getElementById('showAnswersBtn');
+  showBtn.style.display = 'none';
+  showBtn.textContent = 'Show Answers';
+  document.getElementById('submitBtn').style.display = 'inline-block';
+}
+
+// Bind buttons
+document.getElementById('submitBtn').addEventListener('click', checkAll);
+document.getElementById('showAnswersBtn').addEventListener('click', toggleAnswers);
+document.getElementById('resetBtn').addEventListener('click', resetAll);
+</script>
+</body>
+</html>

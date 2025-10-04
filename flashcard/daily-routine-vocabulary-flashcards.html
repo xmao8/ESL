@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Routine – Flashcards (Intermediate)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 820px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.6rem; max-width: 700px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .muted { color: #666; font-size: 0.9rem; margin-top: -0.6rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Daily Routine Vocabulary Flashcards – Intermediate</h1>
+<p class="muted" id="progress">Card 1 of 30</p>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Awaken", ipa: "/əˈweɪkən/", definition: "To stop sleeping; to become alert.", example: "I usually awaken before my alarm on weekdays.", chinese: "醒来；唤醒", spanish: "despertar" },
+  { word: "Stretch", ipa: "/strɛtʃ/", definition: "To extend your muscles to feel less tight.", example: "She likes to stretch for five minutes after getting out of bed.", chinese: "伸展", spanish: "estirar(se)" },
+  { word: "Hydrate", ipa: "/ˈhaɪdreɪt/", definition: "To drink enough water or other liquids.", example: "Remember to hydrate before your morning run.", chinese: "补水；补充水分", spanish: "hidratar(se)" },
+  { word: "Groom", ipa: "/ɡruːm/", definition: "To clean and make yourself neat (hair, beard, nails).", example: "He takes a few minutes to groom before work calls.", chinese: "打理（个人仪容）", spanish: "arreglar(se); acicalar(se)" },
+  { word: "Dress", ipa: "/drɛs/", definition: "To put on clothes for the day.", example: "I dress casually when I work from home.", chinese: "穿衣", spanish: "vestir(se)" },
+  { word: "Commute", ipa: "/kəˈmjuːt/", definition: "To travel regularly between home and work or school.", example: "She commutes by train to avoid traffic.", chinese: "通勤", spanish: "viajar/ir al trabajo; desplazarse" },
+  { word: "Office", ipa: "/ˈɔːfɪs/", definition: "A place where people work, usually at desks.", example: "Tomorrow I’ll be at the office for meetings.", chinese: "办公室", spanish: "oficina" },
+  { word: "Attend", ipa: "/əˈtɛnd/", definition: "To be present at an event, meeting, or class.", example: "We attend a daily stand-up at 9 a.m.", chinese: "出席；参加", spanish: "asistir" },
+  { word: "Focus", ipa: "/ˈfoʊkəs/", definition: "To concentrate on something carefully.", example: "Close the door so I can focus on this report.", chinese: "专注；集中", spanish: "concentrarse" },
+  { word: "Deadline", ipa: "/ˈdɛdlaɪn/", definition: "The latest time or date to finish something.", example: "The deadline for the proposal is this Friday.", chinese: "截止日期", spanish: "fecha límite" },
+  { word: "Respond", ipa: "/rɪˈspɑːnd/", definition: "To reply to a message, email, or question.", example: "I try to respond to emails before lunch.", chinese: "回复；回应", spanish: "responder" },
+  { word: "Task", ipa: "/tæsk/", definition: "A specific piece of work to do.", example: "I added the new task to my to-do list.", chinese: "任务", spanish: "tarea" },
+  { word: "Meeting", ipa: "/ˈmiːtɪŋ/", definition: "A planned discussion with colleagues or classmates.", example: "Our weekly team meeting starts at ten o’clock.", chinese: "会议", spanish: "reunión" },
+  { word: "Errand", ipa: "/ˈɛrənd/", definition: "A short trip to do something (buy, deliver, or pick up).", example: "I’ll run an errand to the pharmacy after work.", chinese: "跑腿；差事", spanish: "mandado; recado" },
+  { word: "Grocery", ipa: "/ˈɡroʊsəri/", definition: "Food and household items bought for daily use.", example: "We need to pick up some grocery essentials tonight.", chinese: "杂货；食品", spanish: "comestibles; víveres" },
+  { word: "Laundry", ipa: "/ˈlɔːndri/", definition: "Clothes, sheets, etc., that need washing.", example: "He does laundry every Saturday morning.", chinese: "要洗/洗好的衣物；洗衣", spanish: "ropa sucia; lavandería" },
+  { word: "Iron", ipa: "/ˈaɪərn/", definition: "To remove wrinkles from clothes using heat.", example: "She irons her shirt before the interview.", chinese: "熨烫", spanish: "planchar" },
+  { word: "Exercise", ipa: "/ˈɛksərsaɪz/", definition: "To do physical activity to stay healthy.", example: "They exercise at the gym three times a week.", chinese: "锻炼；运动", spanish: "hacer ejercicio" },
+  { word: "Prepare", ipa: "/prɪˈpɛr/", definition: "To make something ready (like food or materials).", example: "I prepare tomorrow’s lunch in the evening.", chinese: "准备；预备", spanish: "preparar" },
+  { word: "Dinner", ipa: "/ˈdɪnər/", definition: "The main evening meal.", example: "We usually eat dinner around seven.", chinese: "晚餐", spanish: "cena" },
+  { word: "Cleanse", ipa: "/klɛnz/", definition: "To clean thoroughly, especially skin or face.", example: "I cleanse my face before bed.", chinese: "清洁（深层）", spanish: "limpiar a fondo; limpiar (la piel)" },
+  { word: "Tidy", ipa: "/ˈtaɪdi/", definition: "To put things in order; to clean up a space.", example: "Please tidy the living room before guests arrive.", chinese: "整理；收拾整洁", spanish: "ordenar; arreglar" },
+  { word: "Unwind", ipa: "/ʌnˈwaɪnd/", definition: "To relax after stress or work.", example: "He unwinds by listening to music.", chinese: "放松；解压", spanish: "relajarse" },
+  { word: "Socialize", ipa: "/ˈsoʊʃəlaɪz/", definition: "To spend time with people in a friendly way.", example: "We socialize with neighbors on weekends.", chinese: "社交；交际", spanish: "socializar" },
+  { word: "Meditate", ipa: "/ˈmɛdɪteɪt/", definition: "To focus the mind for calm and clarity.", example: "She meditates for ten minutes every morning.", chinese: "冥想；打坐", spanish: "meditar" },
+  { word: "Journal", ipa: "/ˈdʒɜːrnəl/", definition: "To write daily thoughts or events in a notebook.", example: "I journal at night to reflect on my day.", chinese: "写日记；日记本", spanish: "escribir un diario; diario" },
+  { word: "Reflect", ipa: "/rɪˈflɛkt/", definition: "To think carefully about something.", example: "Take a moment to reflect on your progress.", chinese: "反思；沉思", spanish: "reflexionar" },
+  { word: "Pajamas", ipa: "/pəˈdʒɑːməz/", definition: "Clothes worn for sleeping.", example: "He changed into pajamas before watching a movie.", chinese: "睡衣", spanish: "pijama" },
+  { word: "Routine", ipa: "/ruːˈtiːn/", definition: "A regular sequence of actions you do repeatedly.", example: "A steady morning routine can boost productivity.", chinese: "常规；日常安排", spanish: "rutina" },
+  { word: "Sleep", ipa: "/sliːp/", definition: "To rest naturally at night.", example: "Most adults need seven to nine hours of sleep.", chinese: "睡觉；睡眠", spanish: "dormir; sueño" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){
+  progress.textContent = `Card ${index + 1} of ${flashcards.length}`;
+}
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove('flipped');
+  flashcard.setAttribute('aria-pressed', 'false');
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa || ''}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+  updateProgress();
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa || ''}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese || '—'}</div>
+      <div class="translation">Spanish: ${spanish || '—'}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add('flipped');
+    flashcard.setAttribute('aria-pressed', 'true');
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector('.speaker');
+    function speak() {
+      try { speechSynthesis.cancel(); } catch(e){}
+      const utterance = new SpeechSynthesisUtterance(flashcards[index].word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener('click', speak);
+    speakerBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+function shuffleDeck(){
+  // Fisher–Yates
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+  index = 0;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  try { speechSynthesis.cancel(); } catch(e){}
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    try { speechSynthesis.cancel(); } catch(e){}
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+shuffleBtn.addEventListener('click', () => {
+  stopAutoplayOnUserAction();
+  shuffleDeck();
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

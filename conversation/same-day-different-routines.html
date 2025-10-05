@@ -75,6 +75,12 @@
     }
     .conversation-script span.dialogue { display: inline; }
 
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word { font-weight: bold; color: #124076; }
+    .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+    .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
     .buttons {
       margin: 2rem auto 3rem; display: flex; justify-content: center; gap: 1rem; max-width: 620px;
     }
@@ -124,78 +130,70 @@
 
   <div class="conversation-script" role="dialog" aria-label="Daily routine conversation script">
     <h3>Scene 1</h3>
-    <p><strong>TOM:</strong> <span class="dialogue">Morning, Maya. You’re up <em>so early</em> again.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">(laughs) I <em>usually</em> start at seven. I <em>always</em> pack my lunch the night before. Saves time.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">I <em>often</em> hit snooze and then rush. My train leaves at 7:10, but I’m <em>sometimes</em> late.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">You should try a checklist. I <em>always</em> make coffee, stretch for five minutes, and check my schedule.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">(smiles) My routine is… less organized. I <em>usually</em> scroll on my phone too long.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">(hurrying) Hey, neighbors! Sorry—<em>I’m rarely</em> this awake. I closed at the café last night.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">Good morning, Aisha. Do you have class today?</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">Yes, a seminar at nine. I <em>usually</em> read on the bus, but today I <em>might</em> grab an espresso first.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">Let’s walk to the corner together. I <em>always</em> feel more awake after fresh air.</span></p>
-
-    <p class="scene-direction">Scene 2: Bus stop near the bakery, 7:00 a.m. A bus approaches; a train whistle sounds.</p>
+    <p><strong>TOM:</strong> Morning, Maya. You’re up <em>so early</em> again.</p>
+    <p><strong>MAYA:</strong> (laughs) I <em>usually</em> start at seven. I <em>always</em> pack my lunch the night before. Saves time.</p>
+    <p><strong>TOM:</strong> I <em>often</em> hit snooze and then rush. My train leaves at 7:10, but I’m <em>sometimes</em> late.</p>
+    <p><strong>MAYA:</strong> You should try a checklist. I <em>always</em> make coffee, stretch for five minutes, and check my schedule.</p>
+    <p><strong>TOM:</strong> (smiles) My routine is… less organized. I <em>usually</em> scroll on my phone too long.</p>
+    <p><strong>AISHA:</strong> (hurrying) Hey, neighbors! Sorry—<em>I’m rarely</em> this awake. I closed at the café last night.</p>
+    <p><strong>MAYA:</strong> Good morning, Aisha. Do you have class today?</p>
+    <p><strong>AISHA:</strong> Yes, a seminar at nine. I <em>usually</em> read on the bus, but today I <em>might</em> grab an espresso first.</p>
+    <p><strong>TOM:</strong> Let’s walk to the corner together. I <em>always</em> feel more awake after fresh air.</p>
 
     <h3>Scene 2</h3>
-    <p><strong>MAYA:</strong> <span class="dialogue">I <em>often</em> see families at the clinic in the morning—kids with coughs, routine checkups.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">Do you ever skip breakfast?</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue"><em>Almost never.</em> If I do, I feel tired by ten. Greek yogurt is my quick option.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">I <em>sometimes</em> skip it, then I <em>usually</em> buy a muffin near the office. Not ideal.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">My routine changes with shifts. On class days, I <em>usually</em> meditate for five minutes. It helps me focus.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">That sounds useful. I <em>should probably</em> try that before emails.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">What about exercise?</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">I <em>often</em> jog after work, unless I stay late.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">I <em>rarely</em> have energy at night, so I <em>sometimes</em> do a short yoga video in the morning.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">I <em>usually</em> walk home from the hospital to clear my mind.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">That’s my bus. See you this evening?</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">I finish at three. I <em>usually</em> prep dinners for the week on Mondays.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">I’ll be back around six. Maybe we can share a simple meal?</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">Perfect. I’ll bring salad and bread.</span></p>
-
-    <p class="scene-direction">Scene 3: Shared kitchen, 6:45 p.m. Soup, salad, and bread on the table.</p>
+    <p class="scene-direction">Bus stop near the bakery, 7:00 a.m. A bus approaches; a train whistle sounds.</p>
+    <p><strong>MAYA:</strong> I <em>often</em> see families at the clinic in the morning—kids with coughs, routine checkups.</p>
+    <p><strong>AISHA:</strong> Do you ever skip breakfast?</p>
+    <p><strong>MAYA:</strong> <em>Almost never.</em> If I do, I feel tired by ten. Greek yogurt is my quick option.</p>
+    <p><strong>TOM:</strong> I <em>sometimes</em> skip it, then I <em>usually</em> buy a muffin near the office. Not ideal.</p>
+    <p><strong>AISHA:</strong> My routine changes with shifts. On class days, I <em>usually</em> meditate for five minutes. It helps me focus.</p>
+    <p><strong>TOM:</strong> That sounds useful. I <em>should probably</em> try that before emails.</p>
+    <p><strong>MAYA:</strong> What about exercise?</p>
+    <p><strong>TOM:</strong> I <em>often</em> jog after work, unless I stay late.</p>
+    <p><strong>AISHA:</strong> I <em>rarely</em> have energy at night, so I <em>sometimes</em> do a short yoga video in the morning.</p>
+    <p><strong>MAYA:</strong> I <em>usually</em> walk home from the hospital to clear my mind.</p>
+    <p><strong>AISHA:</strong> That’s my bus. See you this evening?</p>
+    <p><strong>MAYA:</strong> I finish at three. I <em>usually</em> prep dinners for the week on Mondays.</p>
+    <p><strong>TOM:</strong> I’ll be back around six. Maybe we can share a simple meal?</p>
+    <p><strong>AISHA:</strong> Perfect. I’ll bring salad and bread.</p>
 
     <h3>Scene 3</h3>
-    <p><strong>MAYA:</strong> <span class="dialogue">Today went smoothly. I <em>always</em> feel better when I plan.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">I tried your advice—no phone for the first thirty minutes. I actually caught the earlier train.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">And my espresso plan worked. I <em>usually</em> crash at noon, but not today.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">What will you change tomorrow?</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">I’ll <em>usually</em> prep breakfast at night—oats and fruit.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">I’ll keep the morning yoga, even if it’s just ten minutes.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">And I’ll set a reminder to stretch at lunch. I <em>sometimes</em> forget.</span></p>
-    <p><strong>TOM:</strong> <span class="dialogue">Funny—our lives are different, but the same rules help: plan a little, move a little, rest a little.</span></p>
-    <p><strong>AISHA:</strong> <span class="dialogue">And eat together <em>whenever possible</em>.</span></p>
-    <p><strong>MAYA:</strong> <span class="dialogue">Deal. New routine: neighbors’ dinner <em>once a week</em>.</span></p>
-    <p><strong>ALL:</strong> <span class="dialogue">(clink glasses) Cheers—to small habits and good friends!</span></p>
-
+    <p class="scene-direction">Shared kitchen, 6:45 p.m. Soup, salad, and bread on the table.</p>
+    <p><strong>MAYA:</strong> Today went smoothly. I <em>always</em> feel better when I plan.</p>
+    <p><strong>TOM:</strong> I tried your advice—no phone for the first thirty minutes. I actually caught the earlier train.</p>
+    <p><strong>AISHA:</strong> And my espresso plan worked. I <em>usually</em> crash at noon, but not today.</p>
+    <p><strong>MAYA:</strong> What will you change tomorrow?</p>
+    <p><strong>TOM:</strong> I’ll <em>usually</em> prep breakfast at night—oats and fruit.</p>
+    <p><strong>AISHA:</strong> I’ll keep the morning yoga, even if it’s just ten minutes.</p>
+    <p><strong>MAYA:</strong> And I’ll set a reminder to stretch at lunch. I <em>sometimes</em> forget.</p>
+    <p><strong>TOM:</strong> Funny—our lives are different, but the same rules help: plan a little, move a little, rest a little.</p>
+    <p><strong>AISHA:</strong> And eat together <em>whenever possible</em>.</p>
+    <p><strong>MAYA:</strong> Deal. New routine: neighbors’ dinner <em>once a week</em>.</p>
+    <p><strong>ALL:</strong> (clink glasses) Cheers—to small habits and good friends!</p>
     <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li><span class="vocab-word">Routine</span> <span class="definition">(n.) a regular way of doing things in a particular order.</span> <span class="example">Example: My morning routine includes coffee and a short walk.</span></li>
+      <li><span class="vocab-word">Schedule</span> <span class="definition">(n.) a plan for when things will happen.</span> <span class="example">Example: I checked my schedule for tomorrow’s shift.</span></li>
+      <li><span class="vocab-word">Shift</span> <span class="definition">(n.) a period of work time, especially in hospitals or factories.</span> <span class="example">Example: Maya works the early shift at the clinic.</span></li>
+      <li><span class="vocab-word">Commute</span> <span class="definition">(v.) to travel to and from work every day.</span> <span class="example">Example: Tom commutes to the city by train.</span></li>
+      <li><span class="vocab-word">Prepare</span> <span class="definition">(v.) to make something ready in advance.</span> <span class="example">Example: She prepares her lunch the night before.</span></li>
+      <li><span class="vocab-word">Meditate</span> <span class="definition">(v.) to focus your mind quietly for relaxation or spiritual reasons.</span> <span class="example">Example: Aisha meditates for five minutes each morning.</span></li>
+      <li><span class="vocab-word">Stretch</span> <span class="definition">(v.) to extend your body or limbs to relax muscles.</span> <span class="example">Example: Maya stretches before work to stay healthy.</span></li>
+      <li><span class="vocab-word">Healthy</span> <span class="definition">(adj.) good for your body or mind.</span> <span class="example">Example: Eating breakfast is a healthy habit.</span></li>
+      <li><span class="vocab-word">Plan</span> <span class="definition">(v./n.) to decide what you will do and when you will do it.</span> <span class="example">Example: They planned to eat dinner together once a week.</span></li>
+      <li><span class="vocab-word">Skip</span> <span class="definition">(v.) to not do something that you usually do.</span> <span class="example">Example: Tom sometimes skips breakfast when he’s late.</span></li>
+      <li><span class="vocab-word">Focus</span> <span class="definition">(v.) to give attention to one thing.</span> <span class="example">Example: Meditation helps Aisha focus before class.</span></li>
+      <li><span class="vocab-word">Relax</span> <span class="definition">(v.) to rest and stop being stressed.</span> <span class="example">Example: They relax by cooking and eating together.</span></li>
+      <li><span class="vocab-word">Habit</span> <span class="definition">(n.) something you do often, usually without thinking about it.</span> <span class="example">Example: Drinking coffee early is a habit for Maya.</span></li>
+      <li><span class="vocab-word">Energy</span> <span class="definition">(n.) the strength to do activities.</span> <span class="example">Example: Aisha rarely has energy at night after work.</span></li>
+      <li><span class="vocab-word">Organized</span> <span class="definition">(adj.) able to plan and arrange things well.</span> <span class="example">Example: Maya is organized, but Tom is learning to be.</span></li>
+    </ul>
   </div>
 </div>
 
-<div class="buttons" role="navigation" aria-label="Page navigation">
-  <a href="../conversation.html">← Back to Conversations</a>
-  <a href="../index.html">🏠 Home</a>
-</div>
-
-<script>
-  // Mobile nav toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('primary-navigation');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
-    });
-  }
-</script>
-
-</body>
-</html>
+<div class="buttons" role="navigation" aria-label="Page navigation

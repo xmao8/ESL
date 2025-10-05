@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Same Day, Different Routines - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      color: #2c3e50;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto 1.5rem; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.3rem; margin-bottom: 0.7rem; font-size: 1.45rem; }
+    .content-container h3 { color: #124076; margin-top: 1.1rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 0.85rem; }
+    .character-info { margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px dashed #cfd8dc; }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.25rem; }
+    .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+    .conversation-script p { margin-bottom: 0.78rem; }
+    .conversation-script strong {
+      display: inline-block; width: 120px; text-align: right; margin-right: 10px; color: #124076;
+    }
+    .conversation-script span.dialogue { display: inline; }
+
+    .buttons {
+      margin: 2rem auto 3rem; display: flex; justify-content: center; gap: 1rem; max-width: 620px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white; border-radius: 8px; font-weight: 700;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Same Day, Different Routines</h1>
+
+<div class="content-container">
+  <h2>Characters</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>MAYA:</strong> A nursing assistant who works early shifts.</li>
+      <li><strong>TOM:</strong> An office worker who commutes by train.</li>
+      <li><strong>AISHA:</strong> A graduate student and part-time barista.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Scene 1: Apartment hallway, 6:30 a.m. Maya locks her door; Tom steps out. Aisha rushes up the stairs.</p>
+
+  <div class="conversation-script" role="dialog" aria-label="Daily routine conversation script">
+    <h3>Scene 1</h3>
+    <p><strong>TOM:</strong> <span class="dialogue">Morning, Maya. You’re up <em>so early</em> again.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">(laughs) I <em>usually</em> start at seven. I <em>always</em> pack my lunch the night before. Saves time.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">I <em>often</em> hit snooze and then rush. My train leaves at 7:10, but I’m <em>sometimes</em> late.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">You should try a checklist. I <em>always</em> make coffee, stretch for five minutes, and check my schedule.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">(smiles) My routine is… less organized. I <em>usually</em> scroll on my phone too long.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">(hurrying) Hey, neighbors! Sorry—<em>I’m rarely</em> this awake. I closed at the café last night.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Good morning, Aisha. Do you have class today?</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">Yes, a seminar at nine. I <em>usually</em> read on the bus, but today I <em>might</em> grab an espresso first.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Let’s walk to the corner together. I <em>always</em> feel more awake after fresh air.</span></p>
+
+    <p class="scene-direction">Scene 2: Bus stop near the bakery, 7:00 a.m. A bus approaches; a train whistle sounds.</p>
+
+    <h3>Scene 2</h3>
+    <p><strong>MAYA:</strong> <span class="dialogue">I <em>often</em> see families at the clinic in the morning—kids with coughs, routine checkups.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">Do you ever skip breakfast?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue"><em>Almost never.</em> If I do, I feel tired by ten. Greek yogurt is my quick option.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">I <em>sometimes</em> skip it, then I <em>usually</em> buy a muffin near the office. Not ideal.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">My routine changes with shifts. On class days, I <em>usually</em> meditate for five minutes. It helps me focus.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">That sounds useful. I <em>should probably</em> try that before emails.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">What about exercise?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">I <em>often</em> jog after work, unless I stay late.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">I <em>rarely</em> have energy at night, so I <em>sometimes</em> do a short yoga video in the morning.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">I <em>usually</em> walk home from the hospital to clear my mind.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">That’s my bus. See you this evening?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">I finish at three. I <em>usually</em> prep dinners for the week on Mondays.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">I’ll be back around six. Maybe we can share a simple meal?</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">Perfect. I’ll bring salad and bread.</span></p>
+
+    <p class="scene-direction">Scene 3: Shared kitchen, 6:45 p.m. Soup, salad, and bread on the table.</p>
+
+    <h3>Scene 3</h3>
+    <p><strong>MAYA:</strong> <span class="dialogue">Today went smoothly. I <em>always</em> feel better when I plan.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">I tried your advice—no phone for the first thirty minutes. I actually caught the earlier train.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">And my espresso plan worked. I <em>usually</em> crash at noon, but not today.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">What will you change tomorrow?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">I’ll <em>usually</em> prep breakfast at night—oats and fruit.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">I’ll keep the morning yoga, even if it’s just ten minutes.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">And I’ll set a reminder to stretch at lunch. I <em>sometimes</em> forget.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Funny—our lives are different, but the same rules help: plan a little, move a little, rest a little.</span></p>
+    <p><strong>AISHA:</strong> <span class="dialogue">And eat together <em>whenever possible</em>.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Deal. New routine: neighbors’ dinner <em>once a week</em>.</span></p>
+    <p><strong>ALL:</strong> <span class="dialogue">(clink glasses) Cheers—to small habits and good friends!</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

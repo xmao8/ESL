@@ -150,28 +150,7 @@
   </p>
 
   <h2>Word Choices</h2>
-  <div class="word-list" id="wordChoices">
-    <span>Awaken</span>
-    <span>Stretch</span>
-    <span>Hydrate</span>
-    <span>Groom</span>
-    <span>Commute</span>
-    <span>Attend</span>
-    <span>Focus</span>
-    <span>Deadline</span>
-    <span>Respond</span>
-    <span>Task</span>
-    <span>Errand</span>
-    <span>Laundry</span>
-    <span>Exercise</span>
-    <span>Prepare</span>
-    <span>Cleanse</span>
-    <span>Tidy</span>
-    <span>Unwind</span>
-    <span>Meditate</span>
-    <span>Journal</span>
-    <span>Reflect</span>
-  </div>
+  <div class="word-list" id="wordChoices"></div>
 
   <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList"></ol>
@@ -256,6 +235,22 @@ items.forEach((it, idx) => {
 });
 document.getElementById('totalCount').textContent = items.length;
 
+// Word Choices: build from answers, then shuffle so order differs from questions
+function renderWordChoices(){
+  const container = document.getElementById('wordChoices');
+  // Collect answers (unique in case of duplicates)
+  const choices = items.map(it => it.answer);
+  const unique = [...new Set(choices)];
+
+  // Fisher–Yates shuffle
+  for (let i = unique.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [unique[i], unique[j]] = [unique[j], unique[i]];
+  }
+  container.innerHTML = unique.map(w => `<span>${w}</span>`).join(' ');
+}
+renderWordChoices();
+
 // Checker supporting arrays & inflections
 function checkAll(){
   let correct = 0;
@@ -310,6 +305,8 @@ function resetAll(){
   showBtn.style.display = 'none';
   showBtn.textContent = 'Show Answers';
   document.getElementById('submitBtn').style.display = 'inline-block';
+  // Re-shuffle word choices on reset
+  renderWordChoices();
 }
 
 // Bind buttons

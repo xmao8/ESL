@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice: Have/Get Something Done — Daily Life & Shopping</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      margin: 0; padding: 0; overflow-x: hidden; color: #2c3e50;
+      text-align: center;
+    }
+    nav { background: #124076; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    h1 { margin: 2rem auto 0.5rem; max-width: 900px; }
+    .subtitle { color: #555; margin: 0 auto 1.2rem; max-width: 900px; }
+    .container {
+      width: 92%; max-width: 900px; margin: 1.2rem auto 2rem;
+      background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; padding: 1.5rem;
+    }
+    .container h2 { color: #3498db; margin: 0.4rem 0 0.8rem; }
+    .container p.leadin { margin-top: 0; color: #444; }
+    .item { padding: 0.8rem 0; border-bottom: 1px dashed #e0e0e0; }
+    .item:last-child { border-bottom: none; }
+    .num { font-weight: 700; color: #124076; margin-right: 6px; }
+    .inputs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    input[type="text"], textarea {
+      width: 100%; max-width: 460px; padding: 10px 12px; border-radius: 8px; border: 1px solid #d0d7de;
+      font-size: 1rem; line-height: 1.4;
+    }
+    .two-blanks input { max-width: 200px; }
+    .hint { font-size: 0.95rem; color: #666; margin-top: 6px; }
+    .result { margin-top: 6px; font-size: 0.95rem; }
+    .ok { color: #2e7d32; }
+    .bad { color: #c62828; }
+    .example { background: #eef6ff; border-left: 4px solid #3498db; padding: 0.8rem; border-radius: 6px; margin: 0.6rem 0; }
+
+    .buttons {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;
+      margin: 1.2rem auto 2.2rem;
+    }
+    .buttons button, .buttons a {
+      padding: 0.7rem 1.2rem; background: #3498db; color: #fff; border: none;
+      border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none;
+    }
+    .buttons button:hover, .buttons a:hover { background: #2980b9; }
+    .secondary { background: #6c757d; }
+    .secondary:hover { background: #5a6268; }
+    .linkish { background: #124076; }
+    .linkish:hover { background: #0d3258; }
+
+    details.answer-key { margin-top: 0.8rem; }
+    details.answer-key summary {
+      cursor: pointer; font-weight: 700; color: #124076; outline: none;
+    }
+    .answer-body {
+      background: #f9fbff; border: 1px solid #e6eefc; border-radius: 8px; padding: 0.8rem; margin-top: 0.6rem;
+      font-size: 0.98rem;
+    }
+
+    .score { font-weight: 700; color: #124076; margin: 0.6rem 0 0; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .subtitle { padding: 0 1rem; }
+      .container { padding: 1.1rem; }
+      .two-blanks input { max-width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Practice — <em>Have/Get Something Done</em></h1>
+<p class="subtitle">Theme: Daily Life & Shopping • Level: Intermediate (Adults)</p>
+
+<div class="container" id="partA">
+  <h2>Part A — Fill in the blanks (12)</h2>
+  <p class="leadin">Use the correct form of <strong>have</strong> or <strong>get</strong> in the first blank, and the <strong>past participle</strong> in the second blank. <em>(Verb given in parentheses.)</em></p>
+
+  <div class="item two-blanks"><span class="num">1)</span> I need to ____ my phone ____ by Friday. (repair)
+    <div class="inputs">
+      <input id="a1x" type="text" placeholder="have / get / am getting..." />
+      <input id="a1y" type="text" placeholder="repaired" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">2)</span> She usually ____ her nails ____ before the weekend. (do)
+    <div class="inputs">
+      <input id="a2x" type="text" placeholder="has / gets..." />
+      <input id="a2y" type="text" placeholder="done" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">3)</span> We ____ our groceries ____ every Saturday morning. (deliver)
+    <div class="inputs">
+      <input id="a3x" type="text" />
+      <input id="a3y" type="text" placeholder="delivered" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">4)</span> He’s going to ____ his watch ____; it stopped working. (fix)
+    <div class="inputs">
+      <input id="a4x" type="text" />
+      <input id="a4y" type="text" placeholder="fixed" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">5)</span> They ____ their hair ____ for the wedding yesterday. (style)
+    <div class="inputs">
+      <input id="a5x" type="text" />
+      <input id="a5y" type="text" placeholder="styled" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">6)</span> I’ll ____ my suit ____ at the dry cleaners this afternoon. (clean)
+    <div class="inputs">
+      <input id="a6x" type="text" />
+      <input id="a6y" type="text" placeholder="cleaned" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">7)</span> My sister ____ her car ____ last week; it looks brand new! (wash)
+    <div class="inputs">
+      <input id="a7x" type="text" />
+      <input id="a7y" type="text" placeholder="washed" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">8)</span> We’re ____ our kitchen ____ next month. (paint)
+    <div class="inputs">
+      <input id="a8x" type="text" />
+      <input id="a8y" type="text" placeholder="painted" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">9)</span> The company ____ their website ____ last year. (redesign)
+    <div class="inputs">
+      <input id="a9x" type="text" />
+      <input id="a9y" type="text" placeholder="redesigned" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">10)</span> I just ____ my shoes ____ — they look much better now. (polish)
+    <div class="inputs">
+      <input id="a10x" type="text" />
+      <input id="a10y" type="text" placeholder="polished" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">11)</span> He wants to ____ his laptop ____ before the new project starts. (upgrade)
+    <div class="inputs">
+      <input id="a11x" type="text" />
+      <input id="a11y" type="text" placeholder="upgraded" />
+    </div>
+  </div>
+  <div class="item two-blanks"><span class="num">12)</span> We finally ____ our air conditioner ____ — it’s perfect now! (repair)
+    <div class="inputs">
+      <input id="a12x" type="text" />
+      <input id="a12y" type="text" placeholder="repaired" />
+    </div>
+  </div>
+
+  <details class="answer-key">
+    <summary>Show sample answers (Part A)</summary>
+    <div class="answer-body">
+      <strong>Auxiliaries can vary</strong> (have/has/had/get/gets/got; am/is/are having/getting; will have/get). Past participles are fixed. One set of possible answers:<br>
+      1) get / repaired &nbsp; 2) has / done &nbsp; 3) get / delivered &nbsp; 4) get / fixed &nbsp; 5) had / styled &nbsp; 6) have / cleaned &nbsp; 7) had / washed &nbsp; 8) are having / painted &nbsp; 9) had / redesigned &nbsp; 10) had / polished &nbsp; 11) get / upgraded &nbsp; 12) got / repaired
+    </div>
+  </details>
+</div>
+
+<div class="container" id="partC">
+  <h2>Part C — Rewrite the sentences (8)</h2>
+  <p class="leadin">Rewrite using <strong>have/get something done</strong>. Tenses should match the original meaning.</p>
+
+  <div class="item"><span class="num">1)</span> A mechanic repaired my car yesterday.
+    <div class="example">→ e.g., I <strong>had</strong> my car <strong>repaired</strong> yesterday.</div>
+    <div class="inputs"><textarea id="c1" rows="2" placeholder="Type your sentence here..."></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">2)</span> A cleaner is washing our windows today.
+    <div class="inputs"><textarea id="c2" rows="2"></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">3)</span> The tailor will make my dress next week.
+    <div class="inputs"><textarea id="c3" rows="2"></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">4)</span> The store delivered the furniture last Friday.
+    <div class="inputs"><textarea id="c4" rows="2"></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">5)</span> The hairdresser cut Sarah’s hair this morning.
+    <div class="inputs"><textarea id="c5" rows="2"></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">6)</span> The web designer updated our online shop.
+    <div class="inputs"><textarea id="c6" rows="2"></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">7)</span> The electrician is checking our lights today.
+    <div class="inputs"><textarea id="c7" rows="2"></textarea></div>
+  </div>
+
+  <div class="item"><span class="num">8)</span> A professional photographer took our family photos.
+    <div class="inputs"><textarea id="c8" rows="2"></textarea></div>
+  </div>
+
+  <details class="answer-key">
+    <summary>Show sample answers (Part C)</summary>
+    <div class="answer-body">
+      1) I <strong>had</strong> my car <strong>repaired</strong> yesterday.<br>
+      2) We <strong>are having</strong> our windows <strong>washed</strong> today. / We’re <strong>getting</strong> our windows <strong>washed</strong> today.<br>
+      3) I <strong>will have</strong> my dress <strong>made</strong> next week. / I’ll <strong>get</strong> my dress <strong>made</strong> next week.<br>
+      4) We <strong>had</strong> the furniture <strong>delivered</strong> last Friday.<br>
+      5) Sarah <strong>had</strong> her hair <strong>cut</strong> this morning.<br>
+      6) We <strong>had</strong> our online shop <strong>updated</strong>. / We <strong>got</strong> our online shop <strong>updated</strong>.<br>
+      7) We <strong>are having</strong> our lights <strong>checked</strong> today. / We’re <strong>getting</strong> our lights <strong>checked</strong> today.<br>
+      8) We <strong>had</strong> our family photos <strong>taken</strong>.
+    </div>
+  </details>
+</div>
+
+<div class="buttons">
+  <button id="checkBtn">Check Answers</button>
+  <button id="resetBtn" class="secondary">Reset</button>
+  <a class="linkish" href="../practice.html">← Back to Practices</a>
+  <a class="linkish" href="../index.html">🏠 Home</a>
+</div>
+
+<div id="scoreArea" class="score"></div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // ---------- Practice Logic ----------
+  // Acceptable auxiliaries for causative (various tenses)
+  const AUX_SET = new Set([
+    "have","has","had","get","gets","got",
+    "am having","is having","are having",
+    "am getting","is getting","are getting",
+    "will have","will get","’m having","’re having","’s having","’m getting","’re getting","’s getting","i'm having","i'm getting","we're having","we're getting","she's having","she's getting","he's having","he's getting"
+  ]);
+
+  // Expected participles for Part A
+  const A_PARTICIPLES = {
+    1: "repaired",
+    2: "done",
+    3: "delivered",
+    4: "fixed",
+    5: "styled",
+    6: "cleaned",
+    7: "washed",
+    8: "painted",
+    9: "redesigned",
+    10: "polished",
+    11: "upgraded",
+    12: "repaired"
+  };
+
+  // Utility: normalize spaces & quotes
+  const norm = s => (s || "")
+    .toLowerCase()
+    .replace(/\u2019/g,"'")
+    .replace(/\s+/g," ")
+    .trim();
+
+  function auxIsOk(val) {
+    const v = norm(val);
+    if (AUX_SET.has(v)) return true;
+    // Allow contractions typed without apostrophes: im/youre etc.
+    const relaxed = v.replace(/i m/g,"i'm").replace(/we re/g,"we're").replace(/she s/g,"she's").replace(/he s/g,"he's");
+    if (AUX_SET.has(relaxed)) return true;
+    // Also accept forms like "to get", "to have" (infinitive context)
+    if (v === "to have" || v === "to get") return true;
+    return false;
+  }
+
+  // Part C heuristics: check for have/get + object + participle and key object word
+  const C_CHECKS = [
+    { id:"c1", obj:"car", part:["repaired","fixed"] },
+    { id:"c2", obj:"windows", part:["washed","cleaned"] },
+    { id:"c3", obj:"dress", part:["made","sewn","tailored"] },
+    { id:"c4", obj:"furniture", part:["delivered"] },
+    { id:"c5", obj:["hair","sarah"], part:["cut","styled"] },
+    { id:"c6", obj:["shop","store","online"], part:["updated","redesigned","revamped"] },
+    { id:"c7", obj:["lights","lighting"], part:["checked","inspected"] },
+    { id:"c8", obj:["photos","pictures"], part:["taken","shot"] },
+  ];
+
+  function containsObj(txt, obj) {
+    const t = norm(txt);
+    if (Array.isArray(obj)) return obj.some(o => t.includes(o));
+    return t.includes(obj);
+  }
+
+  function hasCausative(txt) {
+    const t = norm(txt);
+    // a simple pattern for have/get + ... + past participle near the end
+    if (!/(have|has|had|get|gets|got|having|getting)\b/.test(t)) return false;
+    if (!/\b(got|had|have|has|get|gets|having|getting)\b.+\b(\w+ed|cut|done|made|taken|sewn|shot)\b/.test(t)) return false;
+    return true;
+  }
+
+  function partMatches(txt, parts) {
+    const t = norm(txt);
+    return parts.some(p => t.includes(p));
+  }
+
+  function mark(el, ok, msg) {
+    el.nextElementSibling?.classList?.contains('result') ? el.nextElementSibling.remove() : null;
+    const span = document.createElement('div');
+    span.className = 'result ' + (ok ? 'ok' : 'bad');
+    span.textContent = msg;
+    el.insertAdjacentElement('afterend', span);
+  }
+
+  function checkA() {
+    let score = 0;
+    for (let i=1;i<=12;i++){
+      const ax = document.getElementById(`a${i}x`);
+      const ay = document.getElementById(`a${i}y`);
+      const okAux = auxIsOk(ax.value);
+      const okPart = norm(ay.value) === A_PARTICIPLES[i];
+
+      mark(ax, okAux, okAux ? "✓ auxiliary ok" : "✗ use have/get (any correct tense)");
+      mark(ay, okPart, okPart ? "✓ participle ok" : `✗ expected “${A_PARTICIPLES[i]}”`);
+
+      if (okAux) score += 0.5;
+      if (okPart) score += 0.5;
+    }
+    return score; // out of 24 points
+  }
+
+  function checkC() {
+    let score = 0;
+    C_CHECKS.forEach((row, idx) => {
+      const ta = document.getElementById(row.id);
+      const t = ta.value;
+      const okCaus = hasCausative(t);
+      const okObj = containsObj(t, row.obj);
+      const okPart = partMatches(t, row.part);
+
+      // Create / update feedback line
+      ta.nextElementSibling?.classList?.contains('result') ? ta.nextElementSibling.remove() : null;
+      const fb = document.createElement('div');
+      fb.className = 'result';
+      let msgs = [];
+      msgs.push(okCaus ? "✓ causative" : "✗ add have/get + object + past participle");
+      msgs.push(okObj ? "✓ object" : "✗ include the key object");
+      msgs.push(okPart ? "✓ participle" : "✗ use a correct participle");
+      const okCount = [okCaus, okObj, okPart].filter(Boolean).length;
+      fb.classList.add(okCount >= 2 ? 'ok' : 'bad');
+      fb.textContent = msgs.join(" • ");
+      ta.insertAdjacentElement('afterend', fb);
+
+      score += okCount / 3; // partial credit
+    });
+    return score; // out of 8 points
+  }
+
+  function totalScoreMessage(aScore, cScore) {
+    const raw = aScore + cScore; // max 32 points (24 + ~8)
+    const percent = Math.round( (raw / 32) * 100 );
+    return `Score: ${raw.toFixed(1)} / 32 (${percent}%) — Part A: ${aScore.toFixed(1)} / 24, Part C: ${cScore.toFixed(1)} / 8`;
+  }
+
+  document.getElementById('checkBtn').addEventListener('click', () => {
+    const aScore = checkA();
+    const cScore = checkC();
+    document.getElementById('scoreArea').textContent = totalScoreMessage(aScore, cScore);
+    window.scrollTo({ top: document.getElementById('scoreArea').offsetTop - 80, behavior: 'smooth' });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    // Clear inputs
+    for (let i=1;i<=12;i++){
+      document.getElementById(`a${i}x`).value = "";
+      document.getElementById(`a${i}y`).value = "";
+      document.getElementById(`a${i}x`).nextElementSibling?.remove();
+      document.getElementById(`a${i}y`).nextElementSibling?.remove();
+    }
+    C_CHECKS.forEach(row => {
+      const ta = document.getElementById(row.id);
+      ta.value = "";
+      ta.nextElementSibling?.remove();
+    });
+    document.getElementById('scoreArea').textContent = "";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>

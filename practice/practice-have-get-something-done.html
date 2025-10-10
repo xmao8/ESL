@@ -211,18 +211,18 @@ const isAuxOK = v => {
 
 /* ===== Data: Part A (12 items) with two blanks each ===== */
 const partA = [
-  { text: "I need to ____ my phone ____ by Friday. (repair)", part: "repaired", auxHint: "get/to get" },
-  { text: "She usually ____ her nails ____ before the weekend. (do)", part: "done", auxHint: "has/gets" },
-  { text: "We ____ our groceries ____ every Saturday morning. (deliver)", part: "delivered", auxHint: "get/have" },
-  { text: "He’s going to ____ his watch ____; it stopped working. (fix)", part: "fixed", auxHint: "get" },
-  { text: "They ____ their hair ____ for the wedding yesterday. (style)", part: "styled", auxHint: "had/got" },
-  { text: "I’ll ____ my suit ____ at the dry cleaners this afternoon. (clean)", part: "cleaned", auxHint: "have/get" },
-  { text: "My sister ____ her car ____ last week; it looks brand new! (wash)", part: "washed", auxHint: "had/got" },
-  { text: "We’re ____ our kitchen ____ next month. (paint)", part: "painted", auxHint: "are having/are getting" },
-  { text: "The company ____ their website ____ last year. (redesign)", part: "redesigned", auxHint: "had/got" },
-  { text: "I just ____ my shoes ____ — they look much better now. (polish)", part: "polished", auxHint: "had/got" },
-  { text: "He wants to ____ his laptop ____ before the new project starts. (upgrade)", part: "upgraded", auxHint: "get/have" },
-  { text: "We finally ____ our air conditioner ____ — it’s working perfectly now! (repair)", part: "repaired", auxHint: "got/had" }
+  { text: "I need to ____ my phone ____ by Friday. (repair)", part: "repaired" },
+  { text: "She usually ____ her nails ____ before the weekend. (do)", part: "done" },
+  { text: "We ____ our groceries ____ every Saturday morning. (deliver)", part: "delivered" },
+  { text: "He’s going to ____ his watch ____; it stopped working. (fix)", part: "fixed" },
+  { text: "They ____ their hair ____ for the wedding yesterday. (style)", part: "styled" },
+  { text: "I’ll ____ my suit ____ at the dry cleaners this afternoon. (clean)", part: "cleaned" },
+  { text: "My sister ____ her car ____ last week; it looks brand new! (wash)", part: "washed" },
+  { text: "We’re ____ our kitchen ____ next month. (paint)", part: "painted" },
+  { text: "The company ____ their website ____ last year. (redesign)", part: "redesigned" },
+  { text: "I just ____ my shoes ____ — they look much better now. (polish)", part: "polished" },
+  { text: "He wants to ____ his laptop ____ before the new project starts. (upgrade)", part: "upgraded" },
+  { text: "We finally ____ our air conditioner ____ — it’s working perfectly now! (repair)", part: "repaired" }
 ];
 
 /* ===== Data: Part C (8 items) rewrite ===== */
@@ -237,26 +237,25 @@ const partC = [
   { base: "A professional photographer took our family photos.", obj: ["photos","pictures"], part: ["taken","shot"], tense: "past" }
 ];
 
-/* ===== Render Part A ===== */
+/* ===== Render Part A (NO placeholders) ===== */
 const aList = document.getElementById('partAList');
 partA.forEach((item, idx) => {
   const li = document.createElement('li');
-  const aux = `<input type="text" class="blank-input short" aria-label="Auxiliary for item ${idx+1}" id="a${idx+1}x" placeholder="${item.auxHint}" />`;
-  const part = `<input type="text" class="blank-input short" aria-label="Participle for item ${idx+1}" id="a${idx+1}y" placeholder="${item.part}" />`;
+  const aux = `<input type="text" class="blank-input short" aria-label="Auxiliary for item ${idx+1}" id="a${idx+1}x" />`;
+  const part = `<input type="text" class="blank-input short" aria-label="Participle for item ${idx+1}" id="a${idx+1}y" />`;
   const fb = `<span id="afb-${idx+1}" class="inline-feedback"></span>`;
   li.innerHTML = `<span>${item.text.replace("____", aux).replace("____", part)}</span>${fb}`;
   aList.appendChild(li);
 });
 
-/* ===== Render Part C ===== */
+/* ===== Render Part C (NO placeholders) ===== */
 const cList = document.getElementById('partCList');
 partC.forEach((item, idx) => {
   const li = document.createElement('li');
-  const n = idx + 13; // numbering continues
   li.innerHTML = `
     <div><strong>Original:</strong> ${item.base}</div>
     <div style="margin-top:0.4rem;">
-      <input type="text" class="blank-input" id="c${idx+1}" placeholder="Rewrite using have/get + object + past participle" style="width:100%;" />
+      <input type="text" class="blank-input" id="c${idx+1}" style="width:100%;" />
       <span id="cfb-${idx+1}" class="inline-feedback"></span>
     </div>
   `;
@@ -281,7 +280,7 @@ function checkPartA() {
     if (partOk) { ay.classList.add('correct'); } else { ay.classList.add('incorrect'); }
 
     fb.className = 'inline-feedback ' + ((auxOk && partOk) ? 'correct' : 'incorrect');
-    fb.textContent = (auxOk && partOk) ? ' ✓' : ` ✗ (e.g., ${partA[i-1].auxHint} … ${A_PARTS[i]})`;
+    fb.textContent = (auxOk && partOk) ? ' ✓' : ' ✗';
     fb.style.display = 'inline';
 
     if (auxOk) correct++;
@@ -323,7 +322,7 @@ function checkPartC() {
     inp.classList.add(okAll ? 'correct' : 'incorrect');
 
     fb.className = 'inline-feedback ' + (okAll ? 'correct' : 'incorrect');
-    fb.textContent = okAll ? ' ✓' : ' ✗ (Tip: use have/get + object + past participle and include the key object)';
+    fb.textContent = okAll ? ' ✓' : ' ✗';
     fb.style.display = 'inline';
 
     if (okAll) correct++;
@@ -336,7 +335,6 @@ function checkAll(){
   const aScore = checkPartA();     // max 24
   const cScore = checkPartC();     // max 8
   const total = aScore + cScore;   // max 32
-  const correctCount = (Math.round((total / 32) * 20 * 10) / 10); // scaled approximate to 20 for display
   document.getElementById('correctCount').textContent = `${(total/32*20).toFixed(1)} (≈ out of 20)`;
   document.getElementById('results').style.display = 'block';
   document.getElementById('showAnswersBtn').style.display = 'inline-block';
@@ -379,7 +377,7 @@ function resetAll(){
   document.getElementById('submitBtn').style.display = 'inline-block';
 }
 
-/* ===== Render answer key when "Show Answers" visible ===== */
+/* ===== Bind ===== */
 document.getElementById('submitBtn').addEventListener('click', checkAll);
 document.getElementById('showAnswersBtn').addEventListener('click', toggleAnswers);
 document.getElementById('resetBtn').addEventListener('click', resetAll);

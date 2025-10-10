@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Causatives: Have/Get Something Done – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        /* Hamburger menu button */
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+        .example strong { color: #2E7D32; }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        .note { font-size: 0.98rem; color: #444; }
+        .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+
+        .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+        .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+        .buttons a:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Causatives: <em>Have/Get Something Done</em></h1>
+
+<div class="content-container">
+    <p>
+        We use <strong>have something done</strong> and <strong>get something done</strong> when we <strong>arrange for another person</strong> to do a job or service for us.
+        It often describes services (haircuts, repairs, cleaning) or results that happen to us (good or bad).
+        <span class="tag">Intermediate</span>
+    </p>
+
+    <h2>Quick Overview</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Causatives overview">
+            <thead>
+                <tr><th>Form</th><th>Structure</th><th>Meaning</th><th>Register</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>have</strong> something done</td>
+                    <td><strong>have + object + past participle</strong></td>
+                    <td>You arrange for someone to do it</td>
+                    <td>Neutral / formal</td>
+                    <td>We <strong>had our house painted</strong> last summer.</td>
+                </tr>
+                <tr>
+                    <td><strong>get</strong> something done</td>
+                    <td><strong>get + object + past participle</strong></td>
+                    <td>Same meaning as <em>have</em></td>
+                    <td>More informal / conversational</td>
+                    <td>I’ll <strong>get my phone fixed</strong> tomorrow.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Meaning & Use</h2>
+    <ul>
+        <li><strong>Services / arrangements:</strong> I <strong>had my hair cut</strong> on Friday. (A hairdresser did it.)</li>
+        <li><strong>Repairs / improvements:</strong> They <strong>got their roof repaired</strong> after the storm.</li>
+        <li><strong>Unfortunate events (not by choice):</strong> She <strong>had her wallet stolen</strong> on the bus.</li>
+    </ul>
+
+    <h2>Word Order & Form</h2>
+    <p><strong>have/get + object + past participle</strong> (same participle as in the passive: cut, cleaned, repaired, delivered, installed, stolen, etc.)</p>
+    <div class="example">
+        <strong>Subject</strong> + <strong>have/get</strong> (+ tense) + <strong>object</strong> + <strong>past participle</strong><br>
+        We <strong>are having</strong> the kitchen <strong>renovated</strong> this month.
+    </div>
+
+    <h2>Tense Patterns</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Tense patterns for causatives">
+            <thead>
+                <tr><th>Tense</th><th>Pattern</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Present Simple</td>
+                    <td>have/get + obj + past participle</td>
+                    <td>I <strong>have</strong> my nails <strong>done</strong> every month.</td>
+                </tr>
+                <tr>
+                    <td>Past Simple</td>
+                    <td>had/got + obj + past participle</td>
+                    <td>We <strong>had</strong> the windows <strong>replaced</strong> last year.</td>
+                </tr>
+                <tr>
+                    <td>Present Continuous</td>
+                    <td>am/is/are having/getting + obj + past participle</td>
+                    <td>They <strong>are getting</strong> their car <strong>serviced</strong> today.</td>
+                </tr>
+                <tr>
+                    <td>Future (will)</td>
+                    <td>will have/get + obj + past participle</td>
+                    <td>She <strong>will have</strong> the report <strong>printed</strong> by noon.</td>
+                </tr>
+                <tr>
+                    <td>Present Perfect</td>
+                    <td>have/has had/gotten + obj + past participle</td>
+                    <td>He <strong>has had</strong> the locks <strong>changed</strong>.</td>
+                </tr>
+                <tr>
+                    <td>Modals</td>
+                    <td>can/should/must + have/get + obj + past participle</td>
+                    <td>You <strong>should get</strong> your eyes <strong>checked</strong>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>“Have/Get” vs. Doing It Yourself</h2>
+    <div class="example">
+        🚫 I <strong>cut my hair</strong> (= I did it myself).<br>
+        ✅ I <strong>had my hair cut</strong> (= someone did it for me).
+    </div>
+
+    <h2>Notes on Style & Nuance</h2>
+    <ul>
+        <li><strong>Have</strong> is slightly more formal or neutral; <strong>get</strong> sounds more casual and is common in speech.</li>
+        <li>With <em>unfortunate events</em>, we usually use <strong>have</strong>: They <strong>had their car stolen</strong>.</li>
+        <li>In British English, both <em>got</em> and <em>gotten</em> exist, but <strong>got</strong> is more common. In American English, the perfect form often uses <strong>gotten</strong> (<em>has gotten</em>).</li>
+    </ul>
+
+    <h2>Common Verbs in the Past Participle (Results)</h2>
+    <p class="note">These show typical <em>results</em> after arrangements or events:</p>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Common participles for causatives">
+            <thead>
+                <tr><th>Services / Repairs</th><th>Home / Office</th><th>Unfortunate Events</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>repaired, fixed, serviced, checked</td>
+                    <td>cleaned, painted, installed, delivered</td>
+                    <td>stolen, broken, damaged, lost</td>
+                </tr>
+                <tr>
+                    <td>cut, styled, dyed (hair)</td>
+                    <td>replaced, upgraded, assembled</td>
+                    <td>scratched, smashed, hacked (accounts)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+        <li>✖️ <em>I had cut my hair.</em> (suggests you did it yourself) → ✔️ <strong>I had my hair cut.</strong></li>
+        <li>✖️ <em>He had his car to repair.</em> → ✔️ <strong>He had his car repaired.</strong></li>
+        <li>✖️ <em>We got our roof to be fixed.</em> → ✔️ <strong>We got our roof fixed.</strong></li>
+        <li>Word order: keep the <strong>object</strong> before the <strong>past participle</strong>.<br>
+            ✔️ She <strong>had the documents printed</strong>. ✖️ She <em>had printed the documents</em> (this means she printed them herself).</li>
+    </ul>
+
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

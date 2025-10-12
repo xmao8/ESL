@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comparatives & Superlatives – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a {
+            color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.3rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none;
+                height: auto; width: auto; padding: 0; gap: 1.5rem;
+                transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; line-height: 1.6; font-size: 1.1rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example {
+            background-color: #e8f5e9; border-left: 4px solid #4CAF50;
+            padding: 1rem; margin: 1rem 0; border-radius: 5px;
+        }
+        .example strong { color: #2E7D32; }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        pre.timeline {
+            background: #f7fafc; border-left: 4px solid #3498db; padding: 1rem;
+            overflow-x: auto; border-radius: 6px; font-family: Consolas, Monaco, monospace;
+        }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white;
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        .note { font-size: 0.98rem; color: #444; }
+        .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Comparatives & Superlatives</h1>
+
+<div class="content-container">
+    <p>
+        We use <strong>comparatives</strong> to compare <strong>two</strong> people or things, and <strong>superlatives</strong> to compare <strong>three or more</strong> and show the extreme (the most/least). Use <strong>than</strong> with comparatives and <strong>the</strong> with superlatives.
+    </p>
+
+    <h2>Quick Overview</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Comparatives and superlatives overview">
+            <thead>
+                <tr><th>Type</th><th>Structure</th><th>Meaning</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Comparative (short adj.)</td>
+                    <td>adjective + <strong>-er</strong> + than</td>
+                    <td>More of a quality</td>
+                    <td>My car is <strong>faster</strong> <em>than</em> yours.</td>
+                </tr>
+                <tr>
+                    <td>Comparative (long adj.)</td>
+                    <td><strong>more</strong> + adjective + than</td>
+                    <td>More of a quality</td>
+                    <td>This task is <strong>more difficult</strong> <em>than</em> that one.</td>
+                </tr>
+                <tr>
+                    <td>Superlative (short adj.)</td>
+                    <td><strong>the</strong> + adjective + <strong>-est</strong></td>
+                    <td>Most in a group</td>
+                    <td>June is <strong>the hottest</strong> month here.</td>
+                </tr>
+                <tr>
+                    <td>Superlative (long adj.)</td>
+                    <td><strong>the most</strong> + adjective</td>
+                    <td>Most in a group</td>
+                    <td>She is <strong>the most creative</strong> designer on the team.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>1) Forming Comparatives</h2>
+    <h3>A) Short adjectives (one syllable)</h3>
+    <ul>
+        <li><strong>Adj + -er + than</strong></li>
+        <li class="note"><strong>Spelling:</strong> 
+            <ul>
+                <li>big → <em>bigger</em> (double final consonant CVC)</li>
+                <li>nice → <em>nicer</em> (drop silent <em>e</em>)</li>
+                <li>hot → <em>hotter</em> (double final consonant CVC)</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="example">
+        This street is <strong>narrower</strong> than that one.<br/>
+        My phone is <strong>faster</strong> than my old one.
+    </div>
+
+    <h3>B) Two-syllable adjectives ending in <em>-y</em></h3>
+    <ul>
+        <li>Change <em>y → i</em> + <strong>-er</strong> + than</li>
+    </ul>
+    <div class="example">
+        Today is <strong>windier</strong> than yesterday.<br/>
+        He is <strong>happier</strong> than before.
+    </div>
+
+    <h3>C) Long adjectives (two+ syllables)</h3>
+    <ul>
+        <li><strong>more</strong> + adjective + than</li>
+    </ul>
+    <div class="example">
+        This book is <strong>more interesting</strong> than the movie.<br/>
+        The new route is <strong>more convenient</strong> than the old one.
+    </div>
+
+    <p class="note"><strong>Adverbs:</strong> Most adverbs use <strong>more</strong> and <strong>most</strong> (e.g., <em>carefully → more carefully</em>). Irregular adverbs: <em>well → better</em>, <em>badly → worse</em>, <em>fast → faster</em>.</p>
+
+    <h2>2) Forming Superlatives</h2>
+    <h3>A) Short adjectives (one syllable)</h3>
+    <ul>
+        <li><strong>the</strong> + adjective + <strong>-est</strong></li>
+        <li class="note"><strong>Spelling:</strong>
+            <ul>
+                <li>big → <em>the biggest</em></li>
+                <li>nice → <em>the nicest</em></li>
+                <li>hot → <em>the hottest</em></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="example">
+        August is <strong>the driest</strong> month in my city.<br/>
+        She climbed <strong>the highest</strong> mountain in the region.
+    </div>
+
+    <h3>B) Two-syllable adjectives ending in <em>-y</em></h3>
+    <ul>
+        <li><strong>the</strong> + change <em>y → i</em> + <strong>-est</strong></li>
+    </ul>
+    <div class="example">
+        It was <strong>the funniest</strong> show I’ve seen this year.
+    </div>
+
+    <h3>C) Long adjectives (two+ syllables)</h3>
+    <ul>
+        <li><strong>the most</strong> + adjective</li>
+        <li><strong>the least</strong> + adjective (for the opposite)</li>
+    </ul>
+    <div class="example">
+        That was <strong>the most memorable</strong> trip of my life.<br/>
+        This is <strong>the least expensive</strong> option.
+    </div>
+
+    <h2>3) Irregular Forms</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Irregular comparative and superlative forms">
+            <thead>
+                <tr><th>Base</th><th>Comparative</th><th>Superlative</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>good / well</td><td><strong>better</strong></td><td><strong>the best</strong></td><td></td></tr>
+                <tr><td>bad / badly</td><td><strong>worse</strong></td><td><strong>the worst</strong></td><td></td></tr>
+                <tr><td>far</td><td><strong>farther / further</strong></td><td><strong>the farthest / the furthest</strong></td><td>Both are common.</td></tr>
+                <tr><td>little (amount)</td><td><strong>less</strong></td><td><strong>the least</strong></td><td></td></tr>
+                <tr><td>many / much</td><td><strong>more</strong></td><td><strong>the most</strong></td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>4) Common Patterns</h2>
+    <h3>A) Using <em>than</em> with comparatives</h3>
+    <div class="example">
+        The train is <strong>cheaper</strong> than the plane.<br/>
+        This one is <strong>more reliable</strong> than that one.
+    </div>
+
+    <h3>B) Modifying comparatives</h3>
+    <p>Use words to show degree:</p>
+    <ul>
+        <li><strong>much / far / a lot</strong> + comparative → big difference</li>
+        <li><strong>a little / slightly</strong> + comparative → small difference</li>
+    </ul>
+    <div class="example">
+        This laptop is <strong>much lighter</strong> than mine.<br/>
+        The new policy is <strong>a little more flexible</strong> than the old one.
+    </div>
+
+    <h3>C) With superlatives: groups and places</h3>
+    <p>Use <strong>in</strong> or <strong>of</strong> to show the group.</p>
+    <div class="example">
+        She is <strong>the youngest</strong> <em>in</em> her family.<br/>
+        It’s <strong>the most popular</strong> app <em>of</em> the three.
+    </div>
+
+    <h3>D) Equality: <em>as … as</em></h3>
+    <div class="example">
+        The test was <strong>as hard as</strong> last time.<br/>
+        This room isn’t <strong>as bright as</strong> the kitchen.
+    </div>
+
+    <h2>5) Forms at a Glance</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Forms at a glance">
+            <thead>
+                <tr><th>Type</th><th>Structure</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Comparative (short)</td>
+                    <td>Adj + <strong>-er</strong> + than</td>
+                    <td>This road is <strong>wider</strong> than that one.</td>
+                </tr>
+                <tr>
+                    <td>Comparative (long)</td>
+                    <td><strong>more</strong> + adj + than</td>
+                    <td>He is <strong>more patient</strong> than I am.</td>
+                </tr>
+                <tr>
+                    <td>Superlative (short)</td>
+                    <td><strong>the</strong> + adj + <strong>-est</strong></td>
+                    <td>Winter is <strong>the coldest</strong> season here.</td>
+                </tr>
+                <tr>
+                    <td>Superlative (long)</td>
+                    <td><strong>the most</strong> + adj</td>
+                    <td>That was <strong>the most exciting</strong> match of the year.</td>
+                </tr>
+                <tr>
+                    <td>Equality</td>
+                    <td><strong>as</strong> + adj + <strong>as</strong></td>
+                    <td>The soup is <strong>as spicy as</strong> yesterday’s.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>6) Timelines (Meaning Focus)</h2>
+    <pre class="timeline" aria-label="Comparative meaning">
+Comparative:  A < B  →  A has more/less of a quality than B
+Example: This route is more direct than the other.
+    </pre>
+    <pre class="timeline" aria-label="Superlative meaning">
+Superlative:  A is the most/least in a group  →  extreme level
+Example: That tower is the tallest in the city.
+    </pre>
+
+    <h2>7) Adjective & Spelling Guide</h2>
+
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Spelling rules">
+            <thead>
+                <tr><th>Rule</th><th>Comparative</th><th>Superlative</th><th>Examples</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>One syllable</td>
+                    <td>-er</td>
+                    <td>-est</td>
+                    <td>tall → taller → the tallest</td>
+                </tr>
+                <tr>
+                    <td>Ends with silent -e</td>
+                    <td>-r</td>
+                    <td>-st</td>
+                    <td>nice → nicer → the nicest</td>
+                </tr>
+                <tr>
+                    <td>CVC (consonant–vowel–consonant)</td>
+                    <td>double last consonant + -er</td>
+                    <td>double last consonant + -est</td>
+                    <td>big → bigger → the biggest</td>
+                </tr>
+                <tr>
+                    <td>Ends in -y (two syllables)</td>
+                    <td>y → i + -er</td>
+                    <td>y → i + -est</td>
+                    <td>happy → happier → the happiest</td>
+                </tr>
+                <tr>
+                    <td>Two+ syllables (most others)</td>
+                    <td>more + adj</td>
+                    <td>the most + adj</td>
+                    <td>expensive → more/most expensive</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>8) Common Mistakes</h2>
+    <ul>
+        <li>❌ <em>She is more tall than me.</em> → ✅ She is <strong>taller</strong> than <strong>I am</strong> / <strong>me</strong>.</li>
+        <li>❌ <em>This is the most cheapest option.</em> → ✅ This is <strong>the cheapest</strong> option. (Don’t use <em>most</em> with <em>-est</em>)</li>
+        <li>❌ <em>He is the most fastest runner.</em> → ✅ He is <strong>the fastest</strong> runner.</li>
+        <li>❌ <em>My score is more better.</em> → ✅ My score is <strong>better</strong>. (Irregular form)</li>
+        <li>❌ <em>She’s the tallest of the two.</em> → ✅ She’s <strong>taller</strong> (use comparative for two).</li>
+        <li>❌ <em>He is as more confident as before.</em> → ✅ He is <strong>more confident than</strong> before <em>or</em> <strong>as confident as</strong> before.</li>
+    </ul>
+
+    <h2>9) Extra Tips</h2>
+    <ul>
+        <li><strong>Ever</strong> with superlatives: “It’s <em>the best</em> movie I’ve <strong>ever</strong> seen.”</li>
+        <li><strong>One of + the + superlative + plural noun</strong>: “She is <em>one of the best</em> players.”</li>
+        <li><strong>Adverbs of degree</strong> with comparatives: “far/much/a lot/slightly + comparative.”</li>
+        <li><strong>Than + subject pronoun</strong>: In formal English, use subject forms: “taller than <em>I</em> (am).” Both <em>than I</em> and <em>than me</em> are common in speech.</li>
+    </ul>
+
+    <h2>10) Practice Prompts (for class use)</h2>
+    <ol>
+        <li>Compare two cities you know using three comparatives.</li>
+        <li>Describe the <em>best</em> restaurant in your area using two superlatives.</li>
+        <li>Write two sentences with <em>as … as</em> and two with <em>not as … as</em>.</li>
+    </ol>
+
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

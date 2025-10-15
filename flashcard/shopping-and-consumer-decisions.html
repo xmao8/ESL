@@ -367,8 +367,8 @@ function stopAutoplayOnUserAction() {
   }
 }
 flashcard.addEventListener('click', stopAutoplayOnUserAction);
-const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]']);
-const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]']);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
 if (prevBtn && nextBtn) {
   prevBtn.addEventListener('click', stopAutoplayOnUserAction);
   nextBtn.addEventListener('click', stopAutoplayOnUserAction);

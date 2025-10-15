@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Decision‑Making Tool: Scoring a Purchase – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;text-align:center;margin:0;padding:0;overflow-x:hidden}
+    nav{background:#124076;margin:0;padding:0}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none;transition:color .2s ease}
+    .nav-links a:hover,.nav-links a:focus{color:#ffbb33;outline:none}
+    .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0}
+    .menu-toggle .bar{width:25px;height:3px;background:#fff;border-radius:2px}
+
+    /* Phone */
+    @media (max-width:600px){
+      .nav-links{position:fixed;top:56px;right:0;background:#124076;flex-direction:column;width:100%;height:calc(100vh - 56px);padding:1rem 1.5rem 2rem 1.5rem;gap:1.2rem;overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;border-radius:0 0 0 10px;z-index:999;align-items:flex-start}
+      .nav-links.active{transform:translateX(0)}
+      .menu-toggle{display:flex}
+      h1,.content-container,.buttons{padding:0 1rem}
+    }
+    /* Tablet */
+    @media (min-width:601px) and (max-width:900px){
+      .nav-container{padding:.8rem 1.5rem}
+      .nav-links{position:static;flex-direction:row;background:none;height:auto;width:auto;padding:0;gap:1.3rem;transform:none !important;border-radius:0;align-items:center;overflow:visible}
+      .menu-toggle{display:none}
+      h1,.content-container,.buttons{padding:0 1.5rem}
+    }
+    /* Desktop */
+    @media (min-width:901px){
+      .nav-container{max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+      .nav-links{position:static;flex-direction:row;background:none;height:auto;width:auto;padding:0;gap:1.5rem;transform:none !important;border-radius:0;align-items:center;overflow:visible}
+      .menu-toggle{display:none}
+      body{padding:0}
+      h1,.content-container,.buttons{padding:0}
+    }
+
+    h1{margin:2rem auto 1.5rem auto;color:#2c3e50;max-width:900px}
+    .content-container{background:#fff;width:92%;max-width:1000px;margin:2rem auto;padding:0;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.6}
+
+    /* Header area for worksheet */
+    .pdf-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid #e5e7eb}
+    .pdf-title{font-weight:700;color:#124076;font-size:1.15rem}
+    .pdf-actions{display:flex;gap:.6rem}
+    .btn{padding:.5rem 1rem;background:#3498db;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;user-select:none}
+    .btn:hover{background:#2980b9}
+
+    /* Worksheet body */
+    .worksheet{padding:1.25rem}
+    .intro{color:#374151;margin:.5rem 0 1rem 0}
+    .section{margin:1rem 0}
+    fieldset{border:1px solid #e5e7eb;border-radius:12px;padding:1rem}
+    legend{padding:0 .5rem;color:#124076;font-weight:700}
+    .q{margin:.8rem 0;padding:.6rem;border:1px dashed #e5e7eb;border-radius:10px;background:#fafbff}
+    .prompt{font-weight:600;margin-bottom:.4rem}
+    .options{display:grid;gap:.5rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    label.option{display:flex;align-items:center;gap:.5rem;background:#fff;padding:.6rem;border-radius:8px;border:1px solid #e5e7eb;cursor:pointer}
+    label.option:hover{border-color:#c7d2fe}
+    .small{font-size:.95rem;color:#6b7280}
+    .section-score{font-weight:700;color:#124076}
+
+    /* Right side summary */
+    .grid-two{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media (min-width:900px){.grid-two{grid-template-columns:2fr 1fr}}
+
+    .result-box{border-top:1px solid #e5e7eb;padding:1rem 1.25rem;background:#f8fafc;border-radius:0 0 12px 12px}
+    .score-card{border:1px solid #e5e7eb;border-radius:10px;padding:1rem;background:#fff}
+    .kpi{font-size:2rem;font-weight:800}
+    .muted{color:#6b7280}
+    .bar-wrap{position:relative;height:14px;background:#eef3fb;border:1px solid #e5e7eb;border-radius:999px;overflow:hidden;margin:.5rem 0}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg,#ef4444,#eab308,#22c55e);transition:width .4s ease}
+    .unanswered{color:#b45309;font-weight:700}
+
+    /* Footer navigation buttons (match example) */
+    .buttons{margin:2rem auto 3rem auto;display:flex;justify-content:center;gap:1rem;max-width:600px}
+    .buttons a{padding:.6rem 1.2rem;background:#3498db;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;user-select:none}
+    .buttons a:hover{background:#2980b9}
+
+    @media print{
+      nav,.buttons{display:none!important}
+      body{background:#fff;color:#000}
+      .content-container{box-shadow:none;border-radius:0;margin:0;padding:0}
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Decision‑Making Tool: Scoring a Purchase</h1>
+
+<div class="content-container" role="region" aria-label="Interactive worksheet">
+  <div class="pdf-header">
+    <div class="pdf-title">Interactive Worksheet</div>
+    <div class="pdf-actions">
+      <button class="btn" onclick="window.print()">Print</button>
+      <button class="btn" id="save">Save</button>
+      <button class="btn" id="load">Load</button>
+      <button class="btn" id="reset">Reset</button>
+    </div>
+  </div>
+
+  <div class="worksheet">
+    <p class="intro">Answer all 15 questions honestly. Max score: <strong>100</strong>. Rule of thumb: <strong>&gt; 70</strong> = likely buy; <strong>≤ 70</strong> = reconsider or research more.</p>
+
+    <div class="grid-two">
+      <form id="score-form" aria-describedby="rules" autocomplete="off">
+        <!-- I. Need & Benefit (20) -->
+        <section class="section" data-section-id="I" data-section-max="20">
+          <fieldset>
+            <legend>I. Need &amp; Benefit (Max 20)</legend>
+
+            <div class="q" data-question="q1">
+              <div class="prompt">Is this a genuine need or will it significantly improve my life?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q1" value="10" /> High Need/Benefit (10)</label>
+                <label class="option"><input type="radio" name="q1" value="5" /> Moderate (5)</label>
+                <label class="option"><input type="radio" name="q1" value="0" /> Low / Pure Want (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q2">
+              <div class="prompt">What specific problem does it solve or benefit does it provide?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q2" value="5" /> Clear &amp; Important (5)</label>
+                <label class="option"><input type="radio" name="q2" value="2" /> Minor / Unclear (2)</label>
+                <label class="option"><input type="radio" name="q2" value="0" /> None (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q3">
+              <div class="prompt">Do I already own something similar and adequate?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q3" value="5" /> No (5)</label>
+                <label class="option"><input type="radio" name="q3" value="2" /> Yes, but inadequate (2)</label>
+                <label class="option"><input type="radio" name="q3" value="0" /> Yes, adequate (0)</label>
+              </div>
+            </div>
+
+            <div class="small">Section score: <span class="section-score" id="score-I">0</span> / 20</div>
+          </fieldset>
+        </section>
+
+        <!-- II. Financial Sense (25) -->
+        <section class="section" data-section-id="II" data-section-max="25">
+          <fieldset>
+            <legend>II. Financial Sense (Max 25)</legend>
+
+            <div class="q" data-question="q4">
+              <div class="prompt">Is the price affordable within my comfortable budget?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q4" value="10" /> Very Affordable (10)</label>
+                <label class="option"><input type="radio" name="q4" value="7" /> Affordable (7)</label>
+                <label class="option"><input type="radio" name="q4" value="3" /> Stretches Budget (3)</label>
+                <label class="option"><input type="radio" name="q4" value="0" /> Unaffordable (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q5">
+              <div class="prompt">Considering expected lifespan &amp; extra costs, is it a good value?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q5" value="8" /> Excellent Value (8)</label>
+                <label class="option"><input type="radio" name="q5" value="5" /> Good Value (5)</label>
+                <label class="option"><input type="radio" name="q5" value="2" /> Fair Value (2)</label>
+                <label class="option"><input type="radio" name="q5" value="0" /> Poor Value (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q6">
+              <div class="prompt">Does this purchase align with my overall financial goals?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q6" value="7" /> Yes (7)</label>
+                <label class="option"><input type="radio" name="q6" value="3" /> Neutral (3)</label>
+                <label class="option"><input type="radio" name="q6" value="0" /> No (0)</label>
+              </div>
+            </div>
+
+            <div class="small">Section score: <span class="section-score" id="score-II">0</span> / 25</div>
+          </fieldset>
+        </section>
+
+        <!-- III. Quality & Function (20) -->
+        <section class="section" data-section-id="III" data-section-max="20">
+          <fieldset>
+            <legend>III. Quality &amp; Function (Max 20)</legend>
+
+            <div class="q" data-question="q7">
+              <div class="prompt">Based on research, what is the expected quality and durability?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q7" value="8" /> Excellent (8)</label>
+                <label class="option"><input type="radio" name="q7" value="5" /> Good (5)</label>
+                <label class="option"><input type="radio" name="q7" value="2" /> Fair (2)</label>
+                <label class="option"><input type="radio" name="q7" value="0" /> Poor (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q8">
+              <div class="prompt">Does it have the essential features and will it perform its intended function well?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q8" value="8" /> Yes, all essential (8)</label>
+                <label class="option"><input type="radio" name="q8" value="4" /> Missing some (4)</label>
+                <label class="option"><input type="radio" name="q8" value="0" /> Lacks essential (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q9">
+              <div class="prompt">Is it easy to use and reliable based on available information?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q9" value="4" /> Very Easy &amp; Reliable (4)</label>
+                <label class="option"><input type="radio" name="q9" value="2" /> Moderately Easy/Reliable (2)</label>
+                <label class="option"><input type="radio" name="q9" value="0" /> Difficult/Unreliable (0)</label>
+              </div>
+            </div>
+
+            <div class="small">Section score: <span class="section-score" id="score-III">0</span> / 20</div>
+          </fieldset>
+        </section>
+
+        <!-- IV. Personal Fit & Satisfaction (15) -->
+        <section class="section" data-section-id="IV" data-section-max="15">
+          <fieldset>
+            <legend>IV. Personal Fit &amp; Satisfaction (Max 15)</legend>
+
+            <div class="q" data-question="q10">
+              <div class="prompt">Does this align with my personal needs, preferences, and lifestyle?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q10" value="8" /> Strongly Aligns (8)</label>
+                <label class="option"><input type="radio" name="q10" value="4" /> Moderately Aligns (4)</label>
+                <label class="option"><input type="radio" name="q10" value="1" /> Weakly Aligns (1)</label>
+                <label class="option"><input type="radio" name="q10" value="0" /> Doesn’t Align (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q11">
+              <div class="prompt">How much long‑term satisfaction or happiness do I expect this to bring?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q11" value="7" /> High (7)</label>
+                <label class="option"><input type="radio" name="q11" value="4" /> Medium (4)</label>
+                <label class="option"><input type="radio" name="q11" value="1" /> Low (1)</label>
+                <label class="option"><input type="radio" name="q11" value="0" /> None (0)</label>
+              </div>
+            </div>
+
+            <div class="small">Section score: <span class="section-score" id="score-IV">0</span> / 15</div>
+          </fieldset>
+        </section>
+
+        <!-- V. External Factors & Reflection (20) -->
+        <section class="section" data-section-id="V" data-section-max="20">
+          <fieldset>
+            <legend>V. External Factors &amp; Reflection (Max 20)</legend>
+
+            <div class="q" data-question="q12">
+              <div class="prompt">What are the general reviews and reputation of this product/brand?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q12" value="8" /> Positive (8)</label>
+                <label class="option"><input type="radio" name="q12" value="4" /> Mixed (4)</label>
+                <label class="option"><input type="radio" name="q12" value="0" /> Negative (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q13">
+              <div class="prompt">Is the warranty and return policy satisfactory?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q13" value="5" /> Good (5)</label>
+                <label class="option"><input type="radio" name="q13" value="2" /> Fair (2)</label>
+                <label class="option"><input type="radio" name="q13" value="0" /> Poor / None (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q14">
+              <div class="prompt">Can this purchase realistically wait without significant negative impact?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q14" value="4" /> Yes, comfortably (4)</label>
+                <label class="option"><input type="radio" name="q14" value="2" /> Yes, minor inconvenience (2)</label>
+                <label class="option"><input type="radio" name="q14" value="0" /> No (0)</label>
+              </div>
+            </div>
+
+            <div class="q" data-question="q15">
+              <div class="prompt">Have I considered alternatives and am I not impulse‑buying?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="q15" value="3" /> Yes, thoroughly considered (3)</label>
+                <label class="option"><input type="radio" name="q15" value="1" /> Briefly considered (1)</label>
+                <label class="option"><input type="radio" name="q15" value="0" /> No consideration (0)</label>
+              </div>
+            </div>
+
+            <div class="small">Section score: <span class="section-score" id="score-V">0</span> / 20</div>
+          </fieldset>
+        </section>
+
+        <div class="small" style="margin-top:.5rem">Your answers can be saved locally using the buttons above.</div>
+      </form>
+
+      <aside class="score-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem">
+          <div>
+            <div class="muted">Total Score</div>
+            <div class="kpi" id="total">0 <small>/ 100</small></div>
+          </div>
+          <div style="flex:1">
+            <div class="bar-wrap"><div class="bar" id="bar"></div></div>
+          </div>
+        </div>
+        <div id="summary" class="muted" style="margin-top:.5rem">Select answers, then use the buttons above or below to calculate.</div>
+        <ul class="muted" style="margin-top:.6rem; padding-left:18px;">
+          <li>I. Need &amp; Benefit: <strong id="bI">0</strong> / 20</li>
+          <li>II. Financial Sense: <strong id="bII">0</strong> / 25</li>
+          <li>III. Quality &amp; Function: <strong id="bIII">0</strong> / 20</li>
+          <li>IV. Personal Fit &amp; Satisfaction: <strong id="bIV">0</strong> / 15</li>
+          <li>V. External Factors &amp; Reflection: <strong id="bV">0</strong> / 20</li>
+        </ul>
+        <div id="unanswered" class="unanswered" style="display:none;"></div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem">
+          <button class="btn" id="calc">Calculate Score</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="result-box">
+    <strong>Guidance:</strong> > 70 = Likely buy • ≤ 70 = Reconsider or research more.
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../activities.html">← Back to Activities</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle (same as example)
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Worksheet logic (ported from previous version)
+  (function(){
+    const form = document.getElementById('score-form');
+    const sections = Array.from(form.querySelectorAll('section[data-section-id]'));
+    const totalOut = document.getElementById('total');
+    const bar = document.getElementById('bar');
+    const summary = document.getElementById('summary');
+    const unansweredBox = document.getElementById('unanswered');
+
+    const sectionIDs = ['I','II','III','IV','V'];
+
+    function calcSectionScore(sec){
+      const inputs = sec.querySelectorAll('input[type="radio"]:checked');
+      let sum = 0; inputs.forEach(i => sum += Number(i.value));
+      return sum;
+    }
+    function setText(id, val){ const el = document.getElementById(id); if (el) el.textContent = val; }
+    function updateLiveSectionScores(){
+      sections.forEach(sec => {
+        const id = sec.dataset.sectionId;
+        const s = calcSectionScore(sec);
+        setText('score-' + id, s);
+        setText('b' + id, s);
+      });
+    }
+    form.addEventListener('change', updateLiveSectionScores);
+
+    function calculate(){
+      let total = 0; let unanswered = [];
+      sections.forEach(sec => {
+        const radios = sec.querySelectorAll('input[type="radio"]');
+        const qGroups = new Map();
+        radios.forEach(r => qGroups.set(r.name, (qGroups.get(r.name)||[]).concat(r)));
+        total += calcSectionScore(sec);
+        for (const [name, group] of qGroups) {
+          if (!group.some(r => r.checked)) unanswered.push(name);
+        }
+      });
+      totalOut.innerHTML = total + ' <small>/ 100</small>';
+      bar.style.width = Math.min(100, total) + '%';
+      let msg = total > 70 ? 'Recommendation: Your score suggests you should likely buy this item (>70).' : 'Recommendation: Score ≤ 70. Consider waiting, comparing alternatives, or gathering more info.';
+      if (unanswered.length) {
+        unansweredBox.style.display = 'block';
+        unansweredBox.textContent = 'Unanswered questions: ' + unanswered.map(n => n.toUpperCase()).join(', ');
+      } else { unansweredBox.style.display = 'none'; unansweredBox.textContent = ''; }
+      updateLiveSectionScores();
+      summary.innerHTML = msg;
+      return { total, unanswered };
+    }
+
+    document.getElementById('calc').addEventListener('click', calculate);
+    document.getElementById('reset').addEventListener('click', () => { form.reset(); updateLiveSectionScores(); totalOut.innerHTML = '0 <small>/ 100</small>'; bar.style.width = '0%'; summary.textContent = 'Select answers, then Calculate Score.'; unansweredBox.style.display='none'; });
+
+    function saveProgress(){
+      const data = {}; const inputs = form.querySelectorAll('input[type="radio"]');
+      inputs.forEach(inp => { if (inp.checked) data[inp.name] = inp.value; });
+      localStorage.setItem('purchase-scoring-v1', JSON.stringify(data));
+      alert('Progress saved on this device.');
+    }
+    function loadProgress(){
+      const raw = localStorage.getItem('purchase-scoring-v1'); if (!raw) { alert('No saved data found.'); return; }
+      const data = JSON.parse(raw); const inputs = form.querySelectorAll('input[type="radio"]');
+      inputs.forEach(inp => { inp.checked = (String(data[inp.name]) === String(inp.value)); });
+      updateLiveSectionScores();
+      alert('Saved answers loaded (if available).');
+    }
+    document.getElementById('save').addEventListener('click', saveProgress);
+    document.getElementById('load').addEventListener('click', loadProgress);
+
+    updateLiveSectionScores();
+  })();
+</script>
+
+</body>
+</html>

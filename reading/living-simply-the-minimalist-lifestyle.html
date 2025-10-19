@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: Living Simply — The Minimalist Lifestyle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Living Simply — The Minimalist Lifestyle</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> This ~500-word article is written for adult ESL students at an intermediate level. Use the vocabulary list and questions to practice reading skills.
+      </div>
+
+      <h2>Article</h2>
+      <p>In today’s world, people are surrounded by things—clothes, furniture, technology, and endless products. Many people feel pressure to buy more and own more. However, some are choosing to live differently. They are becoming <strong>minimalists</strong>, people who focus on living with less and finding happiness in simplicity.</p>
+
+      <p><strong>What is minimalism?</strong> Minimalism is a lifestyle that values quality over quantity. It means keeping only the things that are truly useful or meaningful and removing the rest. A minimalist home is usually clean, open, and organized. But minimalism is not just about how many objects someone owns. It is also about time, relationships, and mental space. A minimalist tries to focus on what really matters and avoid distractions.</p>
+
+      <p><strong>The benefits of minimalism.</strong> Living with less can bring many benefits. First, it reduces stress. A cluttered space can make the mind feel chaotic, while a clean space feels peaceful. When there are fewer possessions, there is less to clean, fix, and worry about.</p>
+
+      <p>Second, minimalism can save money. Buying fewer items means spending less. People who live simply often realize that they need much less than they thought to be happy. The money saved can be used for experiences like travel, education, or helping others.</p>
+
+      <p>Third, minimalism helps the environment. Buying and wasting less reduces pollution and protects natural resources. Many minimalists choose to recycle, reuse, and buy second-hand items. In this way, minimalism becomes not only a personal choice but also a responsible one.</p>
+
+      <p><strong>Minimalism in everyday life.</strong> Minimalism looks different for everyone. Some people sell most of their possessions and live in very small homes. Others simply start by cleaning one drawer or closet at a time. A good first step is to ask, “Do I use this? Does it make me happy?” If the answer is no, it might be time to let it go.</p>
+
+      <p><strong>Digital minimalism</strong> is also becoming popular. This means reducing screen time, deleting unnecessary apps, and checking messages less often. Too much technology can create stress and distraction. By limiting screen time, people can focus more on real-life connections and experiences.</p>
+
+      <p>Minimalism can also apply to <strong>time</strong>. Many people fill their schedules with work, meetings, or social events and feel constantly busy. A minimalist approach to time means saying no to activities that are not meaningful and leaving space for rest, creativity, or relationships.</p>
+
+      <p><strong>Challenges of minimalism.</strong> At first, minimalism can feel difficult. People may worry about missing out or may have emotional connections to their things. It takes time to decide what to keep and what to give away. But with practice, many find that letting go brings freedom.</p>
+
+      <p><strong>Conclusion.</strong> Minimalism is not about living with nothing—it is about living with purpose. By choosing less, we often discover more: more peace, more time, and more appreciation for the things and people we truly value. Living simply helps us live better.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>minimalist</strong> <i class="fas fa-volume-up speaker-icon" data-word="minimalist"></i> — A person who chooses to live with fewer things.</li>
+        <li><strong>cluttered</strong> <i class="fas fa-volume-up speaker-icon" data-word="cluttered"></i> — Messy; too full of objects.</li>
+        <li><strong>quality over quantity</strong> <i class="fas fa-volume-up speaker-icon" data-word="quality over quantity"></i> — Better to have a few good things than many weak ones.</li>
+        <li><strong>second-hand</strong> <i class="fas fa-volume-up speaker-icon" data-word="second hand"></i> — Used by someone else before.</li>
+        <li><strong>recycle</strong> <i class="fas fa-volume-up speaker-icon" data-word="recycle"></i> — To process used items so they can be used again.</li>
+        <li><strong>distraction</strong> <i class="fas fa-volume-up speaker-icon" data-word="distraction"></i> — Something that takes attention away.</li>
+        <li><strong>screen time</strong> <i class="fas fa-volume-up speaker-icon" data-word="screen time"></i> — The time spent using phones, computers, or TVs.</li>
+        <li><strong>organized</strong> <i class="fas fa-volume-up speaker-icon" data-word="organized"></i> — Neat and well arranged.</li>
+        <li><strong>meaningful</strong> <i class="fas fa-volume-up speaker-icon" data-word="meaningful"></i> — Important and full of purpose.</li>
+        <li><strong>responsible</strong> <i class="fas fa-volume-up speaker-icon" data-word="responsible"></i> — Showing care for people and the environment.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>How does the article define minimalism?</li>
+        <li>What are two benefits of owning fewer possessions?</li>
+        <li>How can minimalism save money and help the environment?</li>
+        <li>What questions can you ask yourself when deciding what to keep?</li>
+        <li>What is digital minimalism, and why might it be helpful?</li>
+        <li>How can minimalism be applied to time and schedules?</li>
+        <li>What challenges might people face when starting a minimalist lifestyle?</li>
+        <li>According to the conclusion, what does “choosing less” help us discover?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

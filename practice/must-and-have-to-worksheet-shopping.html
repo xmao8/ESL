@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Must & Have to — Shopping · ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family:'Segoe UI',sans-serif; background:#f4f4f9; text-align:center; margin:0; color:#333; }
+    nav { background:#124076; }
+    .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
+    .logo { display:flex; align-items:center; color:#ff9800; font-family:'Poppins',sans-serif; font-weight:700; font-size:1.3rem; text-decoration:none; }
+    .logo-img { width:32px; height:32px; margin-right:0.5rem; }
+    .nav-links { display:flex; gap:1rem; }
+    .nav-links a { color:white; font-weight:700; text-decoration:none; }
+    .nav-links a:hover { color:#ffbb33; }
+    h1 { margin:2rem auto 1rem; color:#2c3e50; }
+    .content-container { background:white; width:90%; max-width:860px; margin:2rem auto; padding:2rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); text-align:left; }
+    h2 { color:#3498db; }
+    ol { padding-left:20px; }
+    li { margin-bottom:1rem; }
+    input.blank { border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.5rem; min-width:14ch; font-size:1rem; }
+    .correct { border-color:#27ae60; }
+    .incorrect { border-color:#c0392b; }
+    .buttons { display:flex; justify-content:center; gap:1rem; margin:2rem 0; }
+    button,.buttons a { padding:0.6rem 1.2rem; border:none; border-radius:8px; font-weight:bold; color:white; background:#3498db; cursor:pointer; text-decoration:none; }
+    button:hover,.buttons a:hover { background:#2980b9; }
+    .submit-button { background:#4caf50; }
+    .show-answers { background:#f44336; }
+    .reset-button { background:#7f8c8d; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Must & Have to — Shopping Practice</h1>
+<div class="content-container">
+  <p>Complete the sentences using <strong>must</strong>, <strong>mustn't</strong>, <strong>have to</strong>, <strong>don’t have to</strong>, or the correct tense form (<em>had to</em>, <em>will have to</em>).</p>
+
+  <ol>
+    <li>Customers <input class="blank" id="a1"> show their receipts before leaving the store.</li>
+    <li>You <input class="blank" id="a2"> bring your own bag — they provide free ones.</li>
+    <li>We <input class="blank" id="a3"> wear masks inside the supermarket last year.</li>
+    <li>Employees <input class="blank" id="a4"> arrive 10 minutes early to prepare.</li>
+    <li>You <input class="blank" id="a5"> eat or drink inside the electronics shop.</li>
+    <li>Tomorrow we <input class="blank" id="a6"> complete the customer survey to get a coupon.</li>
+    <li>I <input class="blank" id="a7"> pay in cash; they accept credit cards too.</li>
+    <li>We <input class="blank" id="a8"> return the item within 30 days for a refund.</li>
+    <li>He <input class="blank" id="a9"> forget his wallet again!</li>
+    <li>The cashier <input class="blank" id="a10"> check every barcode carefully.</li>
+    <li>Last week we <input class="blank" id="a11"> wait in a long line — it was so busy.</li>
+    <li>Shoppers <input class="blank" id="a12"> respect social distancing rules.</li>
+    <li>You <input class="blank" id="a13"> return sale items — they’re final.</li>
+    <li>If you want the discount, you <input class="blank" id="a14"> show your student ID.</li>
+    <li>He <input class="blank" id="a15"> buy a new phone because his broke yesterday.</li>
+    <li>We <input class="blank" id="a16"> go to the outlet mall next weekend — there’s a big sale!</li>
+    <li>You <input class="blank" id="a17"> forget to scan your membership card for points.</li>
+    <li>They <input class="blank" id="a18"> close the shop early due to the power cut.</li>
+    <li>You <input class="blank" id="a19"> pay for parking; it’s free for customers.</li>
+    <li>All staff <input class="blank" id="a20"> wear name badges while working.</li>
+  </ol>
+
+  <div class="buttons">
+    <button id="checkBtn" class="submit-button">Check Answers</button>
+    <button id="showBtn" class="show-answers">Show Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+const answers = {
+  a1:'must', a2:"don’t have to", a3:'had to', a4:'have to', a5:'mustn’t',
+  a6:'will have to', a7:"don’t have to", a8:'have to', a9:'mustn’t', a10:'has to',
+  a11:'had to', a12:'must', a13:'can’t', a14:'have to', a15:'had to', a16:'will have to',
+  a17:'mustn’t', a18:'had to', a19:"don’t have to", a20:'must'
+};
+
+function norm(v){return v.toLowerCase().trim().replace(/[.!?]/g,'');}
+
+function check(){
+  let correct=0;
+  Object.keys(answers).forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const ok=norm(el.value)===norm(answers[id]);
+    el.classList.remove('correct','incorrect');
+    el.classList.add(ok?'correct':'incorrect');
+    correct+=ok?1:0;
+  });
+  alert(`You got ${correct}/20 correct.`);
+}
+
+function show(){Object.keys(answers).forEach(id=>{const el=document.getElementById(id);if(el){el.value=answers[id];el.classList.add('correct');}});}
+function reset(){Object.keys(answers).forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.classList.remove('correct','incorrect');}});}
+
+document.getElementById('checkBtn').onclick=check;
+document.getElementById('showBtn').onclick=show;
+document.getElementById('resetBtn').onclick=reset;
+</script>
+</body>
+</html>

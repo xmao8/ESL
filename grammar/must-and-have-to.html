@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Must & Have to – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.55rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    pre.timeline { background: #f7fafc; border-left: 4px solid #3498db; padding: 1rem; overflow-x: auto; border-radius: 6px; font-family: Consolas, Monaco, monospace; }
+
+    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+    .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Must & Have to</h1>
+
+<div class="content-container">
+  <p>We use <strong>must</strong> and <strong>have to</strong> to talk about <strong>obligation</strong>, <strong>necessity</strong>, or <strong>strong advice</strong>. They are similar, but the source and tone of the obligation are a little different.</p>
+
+  <h2>Quick Overview</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Must vs Have to overview">
+      <thead>
+        <tr><th>Form</th><th>Core Meaning</th><th>Typical Source</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>must</strong> + base verb</td>
+          <td>Strong personal obligation / rule; strong advice</td>
+          <td>Speaker / immediate situation</td>
+          <td>You <strong>must</strong> wear a helmet.</td>
+        </tr>
+        <tr>
+          <td><strong>have to</strong> + base verb</td>
+          <td>External / general obligation; requirement</td>
+          <td>Law, policy, schedule, others</td>
+          <td>I <strong>have to</strong> pay my taxes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>1) Forms</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Forms of must and have to">
+      <thead>
+        <tr><th>Type</th><th>Structure</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Affirmative</td>
+          <td>subject + <strong>must / have to</strong> + base verb</td>
+          <td>You <strong>must</strong> finish this form. / We <strong>have to</strong> leave now.</td>
+        </tr>
+        <tr>
+          <td>Negative</td>
+          <td>subject + <strong>must not (mustn’t)</strong> + base verb<br>subject + <strong>don’t/doesn’t have to</strong> + base verb</td>
+          <td>You <strong>mustn’t</strong> smoke here. (prohibited)<br>You <strong>don’t have to</strong> come. (not necessary)</td>
+        </tr>
+        <tr>
+          <td>Questions</td>
+          <td><strong>Must</strong> + subject + base verb…?<br><strong>Do/Does</strong> + subject + <strong>have to</strong> + base verb…?</td>
+          <td><strong>Must</strong> we submit today?<br><strong>Do</strong> you <strong>have to</strong> work weekends?</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) Negative Meanings: Very Different!</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Negative forms comparison">
+      <thead><tr><th>Form</th><th>Meaning</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>mustn’t</strong></td>
+          <td><strong>Prohibition</strong> (it is not allowed)</td>
+          <td>You <strong>mustn’t</strong> use your phone during the exam.</td>
+        </tr>
+        <tr>
+          <td><strong>don’t/doesn’t have to</strong></td>
+          <td><strong>No obligation</strong> (it is not necessary)</td>
+          <td>You <strong>don’t have to</strong> attend the meeting.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) Tense & Alternatives</h2>
+  <ul>
+    <li><strong>must</strong> has <strong>no past form</strong>. For past necessity, use <strong>had to</strong>: <em>I had to leave early yesterday.</em></li>
+    <li>For future necessity, both are fine: <em>I <strong>must</strong> call her tomorrow.</em> / <em>I <strong>will have to</strong> call her tomorrow.</em></li>
+    <li><strong>must</strong> and <strong>have to</strong> both use the <strong>base verb</strong> (no “to”). ❌ <em>must to go</em> → ✅ <em>must go</em></li>
+  </ul>
+
+  <h2>4) Meanings in Use</h2>
+  <h3>A) Rules and obligations</h3>
+  <div class="example">
+    Employees <strong>must</strong> display their ID badges. <br>
+    Visitors <strong>have to</strong> sign in at the front desk.
+  </div>
+
+  <h3>B) Strong advice / personal requirement</h3>
+  <div class="example">
+    You <strong>must</strong> see the dentist about that tooth. <br>
+    I <strong>have to</strong> talk to my supervisor this afternoon.
+  </div>
+
+  <h3>C) Logical deduction (certainty)</h3>
+  <p>We also use <strong>must</strong> to express a strong logical conclusion in the present.</p>
+  <div class="example">
+    The lights are off and the store is empty — it <strong>must</strong> be closed. <em>(I’m sure.)</em>
+  </div>
+
+  <h2>5) Forms at a Glance</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Forms at a glance">
+      <thead><tr><th>Function</th><th>Natural Choice</th><th>Formality</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Everyday necessity</td>
+          <td><strong>have to</strong></td>
+          <td>neutral</td>
+          <td>I <strong>have to</strong> get up early.</td>
+        </tr>
+        <tr>
+          <td>Speaker-imposed rule / strong advice</td>
+          <td><strong>must</strong></td>
+          <td>slightly formal / emphatic</td>
+          <td>You <strong>must</strong> try this!</td>
+        </tr>
+        <tr>
+          <td>Past obligation</td>
+          <td><strong>had to</strong></td>
+          <td>—</td>
+          <td>She <strong>had to</strong> cancel.</td>
+        </tr>
+        <tr>
+          <td>No obligation (negative)</td>
+          <td><strong>don’t/doesn’t have to</strong></td>
+          <td>—</td>
+          <td>We <strong>don’t have to</strong> wear uniforms.</td>
+        </tr>
+        <tr>
+          <td>Prohibition (negative)</td>
+          <td><strong>mustn’t</strong></td>
+          <td>—</td>
+          <td>You <strong>mustn’t</strong> touch that.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>6) Mini-Timelines</h2>
+  <pre class="timeline" aria-label="Present obligation timeline">
+Present obligation:  You must / have to do it now → immediate necessity
+Example: I have to submit the form today.
+  </pre>
+  <pre class="timeline" aria-label="Past obligation timeline">
+Past obligation:  had to → necessity in the past (action usually happened)
+Example: We had to wait two hours yesterday.
+  </pre>
+
+  <h2>7) Common Mistakes</h2>
+  <ul>
+    <li>❌ <em>You must to wear a mask.</em> → ✅ You <strong>must wear</strong> a mask.</li>
+    <li>❌ <em>We don’t must pay.</em> → ✅ We <strong>don’t have to</strong> pay. <span class="note">(no obligation)</span></li>
+    <li>❌ <em>You mustn’t to park here.</em> → ✅ You <strong>mustn’t park</strong> here.</li>
+    <li>❌ <em>I musted leave early.</em> → ✅ I <strong>had to</strong> leave early.</li>
+  </ul>
+
+  <h2>8) Quick Practice Prompts</h2>
+  <ol>
+    <li>Write two sentences about school rules (one with <strong>must</strong>, one with <strong>have to</strong>).</li>
+    <li>Rewrite: “It isn’t necessary to bring cash.” → Use <strong>don’t have to</strong>.</li>
+    <li>Give a logical deduction with <strong>must</strong> (present): The streets are wet → ?</li>
+  </ol>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

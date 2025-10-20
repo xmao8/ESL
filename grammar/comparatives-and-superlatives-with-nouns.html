@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparatives & Superlatives with Nouns – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin: 1.4rem 0 0.8rem; font-size: 1.45rem; }
+    .content-container h3 { color: #124076; margin: 1.2rem 0 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 6px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Comparatives & Superlatives with Nouns</h1>
+
+<div class="content-container">
+  <p>We compare <strong>quantities</strong> using <strong>nouns</strong>. Use <strong>more / fewer</strong> for countable nouns and <strong>more / less</strong> for uncountable nouns. For superlatives, use <strong>the most</strong>, <strong>the fewest</strong>, and <strong>the least</strong> before nouns.</p>
+
+  <h2>Quick Overview</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Overview: comparing with nouns">
+      <thead>
+        <tr><th>Noun Type</th><th>Comparative</th><th>Superlative</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Countable</strong> (chairs, students)</td>
+          <td><strong>more / fewer + plural noun + than</strong></td>
+          <td><strong>the most / the fewest + plural noun</strong></td>
+          <td>We sold <strong>more tickets than</strong> last year. / This class has <strong>the fewest students</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Uncountable</strong> (time, water)</td>
+          <td><strong>more / less + noun + than</strong></td>
+          <td><strong>the most / the least + noun</strong></td>
+          <td>He drinks <strong>less coffee than</strong> before. / That plan uses <strong>the least data</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>1) Comparative Forms</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Comparatives with nouns">
+      <thead>
+        <tr><th>Pattern</th><th>Use</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>more + countable/uncountable noun + than</strong></td>
+          <td>Greater quantity or amount</td>
+          <td>They ordered <strong>more chairs than</strong> we did. / We need <strong>more information than</strong> that.</td>
+        </tr>
+        <tr>
+          <td><strong>fewer + plural countable noun + than</strong></td>
+          <td>Smaller number (countable)</td>
+          <td>There are <strong>fewer cars than</strong> yesterday.</td>
+        </tr>
+        <tr>
+          <td><strong>less + uncountable noun + than</strong></td>
+          <td>Smaller amount (uncountable)</td>
+          <td>She spends <strong>less time than</strong> before on social media.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) Superlative Forms</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Superlatives with nouns">
+      <thead>
+        <tr><th>Pattern</th><th>Use</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>the most + noun</strong></td>
+          <td>Greatest amount or number (both types)</td>
+          <td>She has <strong>the most followers</strong> in the group.</td>
+        </tr>
+        <tr>
+          <td><strong>the fewest + plural countable noun</strong></td>
+          <td>Smallest number (countable)</td>
+          <td>This store has <strong>the fewest customers</strong> on Mondays.</td>
+        </tr>
+        <tr>
+          <td><strong>the least + uncountable noun</strong></td>
+          <td>Smallest amount (uncountable)</td>
+          <td>This recipe uses <strong>the least sugar</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) Common Patterns</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Patterns with examples">
+      <thead>
+        <tr><th>Pattern</th><th>Example</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>more … than</strong></td>
+          <td>We produced <strong>more units than</strong> expected.</td>
+          <td>Greater quantity</td>
+        </tr>
+        <tr>
+          <td><strong>fewer … than</strong></td>
+          <td>There were <strong>fewer visitors than</strong> last month.</td>
+          <td>Smaller number</td>
+        </tr>
+        <tr>
+          <td><strong>less … than</strong></td>
+          <td>This route uses <strong>less fuel than</strong> the other one.</td>
+          <td>Smaller amount</td>
+        </tr>
+        <tr>
+          <td><strong>the most …</strong></td>
+          <td>Our team raised <strong>the most money</strong> this year.</td>
+          <td>Largest quantity</td>
+        </tr>
+        <tr>
+          <td><strong>the fewest …</strong></td>
+          <td>Monday has <strong>the fewest orders</strong>.</td>
+          <td>Smallest number</td>
+        </tr>
+        <tr>
+          <td><strong>the least …</strong></td>
+          <td>This plan offers <strong>the least data</strong>.</td>
+          <td>Smallest amount</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4) Real‑life Usage</h2>
+  <div class="example">
+    Our company sells <strong>more products</strong> than last year.<br>
+    They have <strong>fewer employees</strong> than we do.<br>
+    I spend <strong>less time</strong> online now.<br>
+    She earns <strong>the most money</strong> in her family.<br>
+    Winter has <strong>the least daylight</strong> of the year.
+  </div>
+
+  <h2>5) Tips & Notes</h2>
+  <ul>
+    <li><strong>fewer</strong> is for <strong>countable nouns</strong>: <em>fewer people, fewer mistakes</em>.</li>
+    <li><strong>less</strong> is for <strong>uncountable nouns</strong>: <em>less time, less information</em>. (Informally, people sometimes use <em>less</em> with countables, but in careful writing use <em>fewer</em>.)</li>
+    <li><strong>more</strong> works with both: <em>more cars</em> / <em>more water</em>.</li>
+    <li>Don’t add <strong>-er</strong> or <strong>-est</strong> to nouns. Use the structures above.</li>
+    <li>Use <strong>of</strong> or <strong>in</strong> to show a group with superlatives: <em>She has the most experience <strong>on the team</strong></em>; <em>That café sells the fewest pastries <strong>in the mall</strong></em>.</li>
+  </ul>
+
+  <h2>6) Common Mistakes</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common mistakes">
+      <thead>
+        <tr><th>❌ Wrong</th><th>✅ Correct</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>There are <em>less people</em> here today.</td>
+          <td>There are <strong>fewer people</strong> here today.</td>
+          <td><em>people</em> is countable → use <strong>fewer</strong>.</td>
+        </tr>
+        <tr>
+          <td>She has <em>the most money than</em> everyone.</td>
+          <td>She has <strong>the most money</strong> of everyone / in the group.</td>
+          <td>Superlatives don’t use <em>than</em>; use a group phrase.</td>
+        </tr>
+        <tr>
+          <td>We need <em>much water</em> for this.</td>
+          <td>We need <strong>more water</strong> for this.</td>
+          <td>Use <strong>more</strong> for comparative amount.</td>
+        </tr>
+        <tr>
+          <td>This shop has <em>the least customers</em>.</td>
+          <td>This shop has <strong>the fewest customers</strong>.</td>
+          <td><em>customers</em> is countable → use <strong>fewest</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="buttons" style="margin-top: -0.5rem; margin-bottom: 2.5rem; display:flex; justify-content:center; gap:1rem;">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

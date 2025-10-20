@@ -1,170 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flashcards – Computer Vocabulary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Computer & Tech Basics – Flashcards (Intermediate)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; color: #333; }
-    nav { background: #2c3e50; padding: 1rem; }
-    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    h1 { margin: 2rem 0; color: #2c3e50; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto 0.5rem; color: #2c3e50; max-width: 860px; }
+    .muted { color: #666; font-size: 0.9rem; margin: 0 0 1rem; }
+
     .flashcard {
-      background: white;
-      width: 90%;
-      max-width: 600px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      background: white; width: 90%; max-width: 680px; margin: 1.2rem auto 2rem; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
-    .flashcard.flipped {
-      background-color: #3498db;
-      color: white;
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
     }
-    .word { font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem; }
-    .definition { margin-bottom: 1rem; }
-    .example { font-style: italic; }
-    .buttons { margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; }
-    button {
-      padding: 0.6rem 1.2rem;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
+    .ipa { font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.1rem; color: #666; }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker { cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s; }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 0.8rem auto 2.2rem; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.6rem; max-width: 760px;
     }
-    button:hover { background: #2980b9; }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+
+    /* Small helper label under card */
+    .helper { font-size: 1rem; margin-top: 1rem; color: #888; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html">Home</a>
-  <a href="../flashcards.html">Flashcards</a>
-  <a href="../conversation.html">Conversations</a>
-  <a href="../grammar.html">Grammar</a>
-  <a href="../reading.html">Reading</a>
-  <a href="../practice.html">Practice</a>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
 </nav>
 
-<h1>Computer Vocabulary Flashcards</h1>
+<h1>Computer & Tech Basics – Flashcards (Intermediate)</h1>
+<p class="muted" id="progress">Card 1 of 54</p>
 
-<div id="flashcard" class="flashcard" onclick="flipCard()">
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
   <div class="word">Click to Flip</div>
+  <div class="helper">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
-  <button onclick="prevCard()">⬅ Previous</button>
-  <button onclick="nextCard()">Next ➡</button>
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
+// === Flashcards Data ===
+// Categories included: devices & basic nouns; common actions; problems; solutions; feelings/importance adjectives
 const flashcards = [
+  // Devices & Basic Nouns
   { word: "Computer", definition: "An electronic device for processing data.", example: "I use my computer to write reports every day." },
-  { word: "Hardware", definition: "The physical components of a computer.", example: "I installed new hardware in my desktop to improve performance." },
-  { word: "Software", definition: "Programs and applications that run on a computer.", example: "She downloaded new software to edit photos." },
-  { word: "Monitor", definition: "A screen that displays computer output.", example: "The monitor shows the results of your work." },
-  { word: "Keyboard", definition: "A set of keys used to type input into a computer.", example: "Please type your password using the keyboard." },
-  { word: "Mouse", definition: "A pointing device used to interact with the computer screen.", example: "Move the cursor by sliding the mouse." },
-  { word: "CPU", definition: "Central Processing Unit, the brain of the computer.", example: "The CPU handles all calculations and tasks." },
-  { word: "Memory", definition: "The component (RAM) that stores data temporarily.", example: "More memory helps your computer run multiple programs smoothly." },
-  { word: "Storage", definition: "Where data is kept long-term, like a hard drive or SSD.", example: "I saved the document on my computer's storage drive." },
-  { word: "Hard Drive", definition: "A device that stores large amounts of data on magnetic disks.", example: "The hard drive holds all of my files and photos." },
-  { word: "SSD", definition: "Solid State Drive, a faster storage device without moving parts.", example: "Upgrading to an SSD made my computer start much quicker." },
-  { word: "Internet", definition: "A global network connecting millions of computers.", example: "I search for information on the internet every day." },
-  { word: "Browser", definition: "Software used to access websites on the Internet.", example: "I opened my browser to check the news." },
-  { word: "Network", definition: "A group of connected computers sharing resources.", example: "The office network allows files to be shared easily." },
-  { word: "Router", definition: "A device that directs data traffic between networks.", example: "I reset the router when the Wi-Fi was slow." },
-  { word: "Server", definition: "A computer that provides services or data to other computers.", example: "Our email server went down last night." },
-  { word: "Client", definition: "A computer or program that accesses services from a server.", example: "Each client connects to the server to retrieve data." },
-  { word: "Operating System", definition: "The software that manages computer hardware and provides a user interface.", example: "Windows, macOS, and Linux are popular operating systems." },
-  { word: "Application", definition: "A program designed for end users to perform specific tasks.", example: "I use a word processing application to write documents." },
-  { word: "Program", definition: "A set of instructions that tells a computer what to do.", example: "She wrote a program to calculate expenses." },
-  { word: "Code", definition: "Text written by programmers in a programming language.", example: "He wrote code to develop a mobile app." },
-  { word: "Algorithm", definition: "A step-by-step procedure for solving a problem.", example: "The search engine uses an algorithm to rank websites." },
-  { word: "File", definition: "A container in a computer system used to store data.", example: "Save the file before you close the program." },
-  { word: "Folder", definition: "A virtual container that holds files and other folders.", example: "I organized my pictures into a folder." },
-  { word: "Download", definition: "To transfer data from the Internet to your computer.", example: "I need to download the new update." },
-  { word: "Upload", definition: "To send data from your computer to the Internet.", example: "She will upload the photo to her online album." },
-  { word: "Email", definition: "Electronic mail used to send messages over the Internet.", example: "I received an email from my professor." },
-  { word: "Website", definition: "A collection of web pages hosted on the Internet.", example: "I visited a website for online shopping." },
-  { word: "URL", definition: "Uniform Resource Locator, the address of a web page.", example: "Type the URL into the browser to visit the site." },
-  { word: "Link", definition: "A clickable element that directs you to another web page.", example: "Click the link to read the full article." },
-  { word: "Graphics", definition: "Images or visual elements displayed by a computer.", example: "The game has excellent graphics." },
-  { word: "Printer", definition: "A device that produces a paper copy of digital documents.", example: "I need to print my report before the meeting." },
-  { word: "Scanner", definition: "A device that converts physical documents into digital form.", example: "He scanned the contract and emailed it to me." },
-  { word: "Antivirus", definition: "Software that protects a computer from viruses.", example: "Install antivirus software to keep your computer safe." },
-  { word: "Firewall", definition: "A security system that controls incoming and outgoing network traffic.", example: "The firewall blocked the suspicious connection." },
-  { word: "Cloud", definition: "Remote servers accessed over the Internet for storage and services.", example: "I store my backups in the cloud." },
-  { word: "Data", definition: "Facts, figures, and information stored or processed by a computer.", example: "The survey collects user data for analysis." },
-  { word: "Backup", definition: "A copy of data stored separately to prevent loss.", example: "Remember to backup your files regularly." },
-  { word: "Bug", definition: "An error or flaw in software that causes it to malfunction.", example: "The app crashed because of a bug." },
-  { word: "Debugging", definition: "The process of finding and fixing errors in code.", example: "He spent the afternoon debugging the program." },
-  { word: "User Interface", definition: "The visual elements and controls that let users interact with a program.", example: "The app’s user interface is very intuitive." },
-  { word: "GUI", definition: "Graphical User Interface, a type of interface using visuals like icons and windows.", example: "Most operating systems use a GUI instead of a command line." },
-  { word: "Command Line", definition: "A text-based interface where commands are typed to control the computer.", example: "Advanced users often use the command line for tasks." },
-  { word: "Laptop", definition: "A portable computer with a built-in screen and keyboard.", example: "I take my laptop to work every day." },
-  { word: "Desktop", definition: "A non-portable computer designed to sit on a desk.", example: "The desktop PC is faster than my laptop." },
-  { word: "Tablet", definition: "A portable touchscreen computer, smaller than a laptop.", example: "I read books on my tablet during my commute." },
-  { word: "Smartphone", definition: "A handheld device combining a phone with computer features.", example: "I check my email on my smartphone." },
-  { word: "Chipset", definition: "A group of integrated circuits that manage data flow between components.", example: "The motherboard’s chipset affects performance." },
-  { word: "USB", definition: "Universal Serial Bus, a standard for connecting peripherals.", example: "Use a USB drive to transfer files between computers." },
-  { word: "Bluetooth", definition: "Wireless technology for exchanging data over short distances.", example: "I connect my headphones to my phone via Bluetooth." },
-  { word: "Wi-Fi", definition: "Wireless networking technology for Internet access.", example: "The café offers free Wi-Fi to all customers." },
-  { word: "Network Card", definition: "Hardware that allows a computer to connect to a network.", example: "He replaced the old network card to get better speeds." },
-  { word: "Graphics Card", definition: "Hardware that renders images and video on a screen.", example: "Gaming requires a powerful graphics card for high performance." },
-  { word: "Motherboard", definition: "The main circuit board that holds the CPU, memory, and other components.", example: "Upgrading the motherboard allowed for more RAM." },
-  { word: "Power Supply", definition: "Component that provides power to the computer’s components.", example: "The new power supply can handle more powerful hardware." },
-  { word: "Peripheral", definition: "An external device that connects to and works with the computer.", example: "The printer is a common peripheral for home offices." },
-  { word: "Keyboard Shortcut", definition: "A combination of keys that performs a specific function.", example: "Press Ctrl+C as a keyboard shortcut to copy text." },
-  { word: "Malware", definition: "Software designed to harm or exploit a computer system.", example: "The antivirus detected and removed the malware." },
-  { word: "Encryption", definition: "The process of converting data into a coded form to prevent unauthorized access.", example: "They use encryption to secure all online transactions." },
-  { word: "Password", definition: "A secret word or phrase that must be used to gain access to something.", example: "Choose a strong password to protect your account." },
-  { word: "Login", definition: "To enter a username and password to access a computer or service.", example: "You must login to your account before checking your email." },
-  { word: "Logout", definition: "To exit from a computer or service by ending a session.", example: "Remember to logout of the website when you’re done." },
-  { word: "Recycle Bin", definition: "A folder where deleted files are temporarily stored.", example: "I restored the file from the Recycle Bin after deleting it by mistake." },
-  { word: "Desktop Shortcut", definition: "An icon on the desktop that links to a program or file.", example: "I created a desktop shortcut for my favorite game." },
-  { word: "Toolbar", definition: "A row of icons or buttons that give quick access to functions.", example: "The toolbar in the browser lets you quickly navigate to bookmarks." },
-  { word: "Task Manager", definition: "A system monitor tool that shows running programs and system performance.", example: "Open Task Manager to see which program is using too much memory." },
-  { word: "Spreadsheet", definition: "A document that stores data in tables where you can perform calculations.", example: "I use a spreadsheet to manage my budget." },
-  { word: "Database", definition: "A structured collection of data stored electronically.", example: "The customer database contains all sales records." }
+  { word: "Laptop", definition: "A portable computer with a built-in screen and keyboard.", example: "She brings her laptop to class." },
+  { word: "Tablet", definition: "A portable touchscreen computer, smaller than a laptop.", example: "He reads the news on his tablet." },
+  { word: "Smartphone", definition: "A handheld device that combines a phone with computer features.", example: "I check email on my smartphone." },
+  { word: "Screen", definition: "The flat surface where images and text appear.", example: "Adjust the screen brightness to save your eyes." },
+  { word: "Keyboard", definition: "A set of keys used to type.", example: "Please type your name on the keyboard." },
+  { word: "Mouse", definition: "A pointing device used to control the cursor.", example: "Click the button with the mouse." },
+  { word: "Internet", definition: "A global network that connects millions of devices.", example: "They use the internet to research homework." },
+  { word: "Email", definition: "Electronic mail used to send messages online.", example: "I received an important email today." },
+  { word: "Website", definition: "A collection of web pages on the internet.", example: "The school website has the schedule." },
+  { word: "App", definition: "A software program designed for a specific task.", example: "This app helps me learn vocabulary." },
+  { word: "File", definition: "A container for storing data, like a document or photo.", example: "Save the file before closing it." },
+  { word: "Folder", definition: "A virtual container that holds files.", example: "Put all your photos in one folder." },
+  { word: "Icon", definition: "A small picture that represents a program or file.", example: "Click the printer icon to print." },
+  { word: "Password", definition: "A secret word or phrase that gives access.", example: "Choose a strong password and don't share it." },
+  { word: "USB drive", definition: "A small device used to store and move files.", example: "Copy the photos to your USB drive." },
+
+  // Common Actions
+  { word: "Turn on", definition: "Start a device or program.", example: "Turn on the computer before class." },
+  { word: "Turn off", definition: "Shut down a device or program.", example: "Turn off the monitor when you leave." },
+  { word: "Open", definition: "Start or view a file, folder, or app.", example: "Open the document we edited yesterday." },
+  { word: "Close", definition: "Stop or exit a file, folder, or app.", example: "Close all apps before restarting." },
+  { word: "Click", definition: "Press the mouse button once.", example: "Click the link to continue." },
+  { word: "Double-click", definition: "Press the mouse button twice quickly.", example: "Double-click the icon to open it." },
+  { word: "Type", definition: "Enter text using the keyboard.", example: "Type your email address carefully." },
+  { word: "Search", definition: "Look for information using a tool or website.", example: "Search for images of volcanoes." },
+  { word: "Scroll", definition: "Move up and down on a page.", example: "Scroll to the bottom to see the map." },
+  { word: "Save", definition: "Store changes to a file.", example: "Save your work every five minutes." },
+  { word: "Download", definition: "Copy data from the internet to your device.", example: "Download the update tonight." },
+  { word: "Upload", definition: "Send data from your device to the internet.", example: "Upload your homework to the class website." },
+  { word: "Send", definition: "Make a message or file go to another person.", example: "Send me the file after class." },
+  { word: "Receive", definition: "Get a message or file from someone.", example: "Did you receive my email?" },
+
+  // Problems
+  { word: "Frozen", definition: "Not responding; the screen does not move.", example: "The app is frozen, and I can't click anything." },
+  { word: "Slow", definition: "Working with little speed.", example: "My computer is slow when too many apps are open." },
+  { word: "Crashed", definition: "A program or device stopped suddenly.", example: "The browser crashed and closed all my tabs." },
+  { word: "Not working", definition: "Broken or not functioning.", example: "The webcam is not working on Zoom." },
+  { word: "Won't turn on", definition: "Does not start when you try.", example: "My laptop won't turn on after the update." },
+  { word: "No internet", definition: "No connection to the network.", example: "There's no internet in the classroom now." },
+  { word: "Error message", definition: "A notice that something went wrong.", example: "I keep getting an error message when I log in." },
+  { word: "Pop-up", definition: "A small window that appears on the screen.", example: "A pop-up asked me to allow notifications." },
+  { word: "Virus", definition: "Malicious software that can harm a device.", example: "The antivirus found a virus on my PC." },
+  { word: "Lost files", definition: "Files you can no longer find or access.", example: "After the crash, I had lost files from last week." },
+  { word: "Can't print", definition: "Unable to send a document to the printer.", example: "I can't print the worksheet today." },
+
+  // Solutions / Fix-It Verbs
+  { word: "Restart", definition: "Turn a device off and on again.", example: "Restart the router to fix the connection." },
+  { word: "Turn off/on", definition: "Power cycle a device.", example: "Turn it off/on to clear temporary problems." },
+  { word: "Check the connection", definition: "Make sure cables or Wi‑Fi are connected.", example: "Check the connection before calling support." },
+  { word: "Unplug/plug in", definition: "Remove and reconnect a cable or device.", example: "Unplug/plug in the printer's USB cable." },
+  { word: "Update", definition: "Install the newest version of software.", example: "Update your browser for better security." },
+  { word: "Scan for viruses", definition: "Use antivirus software to look for threats.", example: "Scan for viruses if you see strange pop-ups." },
+  { word: "Save", definition: "Store your work to avoid losing it.", example: "Save the file before closing the app." },
+  { word: "Back up", definition: "Make a copy of files in a safe place.", example: "Back up photos to a USB drive or cloud." },
+  { word: "Call tech support", definition: "Ask a trained person for help.", example: "If it still fails, call tech support." },
+
+  // Feelings / Importance
+  { word: "Frustrating", definition: "Causing anger or disappointment.", example: "It is frustrating when the Wi‑Fi drops." },
+  { word: "Annoying", definition: "Irritating; making you a little angry.", example: "These pop‑ups are annoying." },
+  { word: "Important", definition: "Something that matters a lot.", example: "It's important to use a strong password." },
+  { word: "Essential", definition: "Absolutely necessary.", example: "A backup is essential for keeping your files safe." },
+  { word: "Urgent", definition: "Needs quick action.", example: "Printer problems are urgent before a test." }
 ];
+
 let index = 0;
 let flipped = false;
-const card = document.getElementById("flashcard");
+
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){
+  progress.textContent = `Card ${index + 1} of ${flashcards.length}`;
+}
 
 function showCard() {
-  card.classList.remove("flipped");
   flipped = false;
+  flashcard.classList.remove('flipped');
+  flashcard.setAttribute('aria-pressed', 'false');
   const { word } = flashcards[index];
-  card.innerHTML = `<div class="word">${word}</div>`;
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="helper">Click to flip for definition</div>
+  `;
+  updateProgress();
+}
+
+function speak(text) {
+  try { speechSynthesis.cancel(); } catch(e){}
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.95;
+  speechSynthesis.speak(utterance);
 }
 
 function flipCard() {
   if (!flipped) {
     const { word, definition, example } = flashcards[index];
-    card.innerHTML = `<div class="word">${word}</div><div class="definition">${definition}</div><div class="example">"${example}"</div>`;
-    card.classList.add("flipped");
-    speak(word);
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add('flipped');
+    flashcard.setAttribute('aria-pressed', 'true');
     flipped = true;
+
+    const speakerBtn = flashcard.querySelector('.speaker');
+    const handleSpeak = () => speak(word);
+    speakerBtn.addEventListener('click', handleSpeak);
+    speakerBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleSpeak(); }
+    });
+    speak(word);
   } else {
     showCard();
   }
-}
-
-function speak(text) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  speechSynthesis.speak(utterance);
 }
 
 function nextCard() {
@@ -177,12 +287,118 @@ function prevCard() {
   showCard();
 }
 
+function shuffleDeck(){
+  // Fisher–Yates shuffle
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+  index = 0;
+  showCard();
+}
+
 showCard();
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// === Autoplay ===
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  try { speechSynthesis.cancel(); } catch(e){}
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    try { speechSynthesis.cancel(); } catch(e){}
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+shuffleBtn.addEventListener('click', () => {
+  stopAutoplayOnUserAction();
+  shuffleDeck();
+});
+
+// Stop autoplay if user manually interacts
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
 </script>
 
 <div class="buttons">
-  <a href="../flashcards.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">← Back to Flashcards</a>
-  <a href="../index.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">🏠 Home</a>
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
 </div>
 
 </body>

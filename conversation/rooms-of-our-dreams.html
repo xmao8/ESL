@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rooms of Our Dreams: A Housing Conversation - ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #2c3e50;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+                align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 0.9rem; }
+        .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .conversation-script p { margin-bottom: 0.8rem; }
+        .conversation-script strong {
+            display: inline-block; width: 120px; text-align: right; margin-right: 10px; color: #124076;
+        }
+        .conversation-script span.dialogue { display: inline; }
+        .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+        .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+        .character-info ul { list-style: none; padding: 0; margin: 0; }
+        .character-info li { margin-bottom: 0.2rem; }
+
+        .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+        .vocabulary-list li { margin-bottom: 0.8rem; }
+        .vocabulary-list .vocab-word {
+            font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.1rem; color: #3498db; user-select: none; transition: color 0.2s; }
+        .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+        .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+        .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html" aria-current="page">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Rooms of Our Dreams</h1>
+
+<div class="content-container">
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>OMAR:</strong> Chef who loves to host friends.</li>
+            <li><strong>BELLA:</strong> Nurse who needs quiet mornings and a short commute.</li>
+            <li><strong>YURI:</strong> IT student who studies from home and plays guitar.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Scene 1: Saturday morning, outside a real estate office.</p>
+
+    <div class="conversation-script" role="dialog" aria-label="Ideal houses conversation script">
+        <h3>Scene 1</h3>
+        <p><strong>OMAR:</strong> <span class="dialogue">Look at this one! An open-plan kitchen with a big island for guests.</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">Nice, but the street looks noisy. I work nights and need quiet mornings.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">I want a study corner and strong internet. The ad says “good Wi-Fi options.”</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">What are your must-haves?</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">Natural light, a balcony with plants, and a twenty-minute bus commute.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">A quiet room with good insulation and space for my guitar.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Gas stove, big fridge, and a dining area for six.</span></p>
+
+        <h3>Scene 2</h3>
+        <p class="scene-direction">Later, at an open house.</p>
+        <p><strong>BELLA:</strong> <span class="dialogue">The living room faces east—morning sun!</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">The second bedroom could be my study. Solid walls—almost no echo.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Kitchen’s smaller than I imagined. Only two burners; hosting would be hard.</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">There’s an elevator and a small gym. That saves time.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">It lists energy-efficient windows. Winter bills might be lower.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">But the price is close to our limit.</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">Let’s rate it from 1 to 5. Commute: 5 for me. Noise: 4. Kitchen for Omar: 2?</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Two and a half. Okay for small dinners.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">Study space: 4. Storage: 3—no hall closet.</span></p>
+
+        <h3>Scene 3</h3>
+        <p class="scene-direction">Afternoon, in a café—designing a “dream house” list.</p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Two bedrooms; one becomes Yuri’s study with a sliding door.</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">A balcony for herbs and a laundry inside the unit.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">Fast fiber internet and outlets near the desk.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Kitchen with four burners, an oven, and a small pantry.</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">Close to a bus line and a park. Safe sidewalks.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">Expandable dining table for guests.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Plenty of natural light in the kitchen.</span></p>
+
+        <h3>Scene 4</h3>
+        <p class="scene-direction">Evening, walking home.</p>
+        <p><strong>BELLA:</strong> <span class="dialogue">Today helped me see my priorities.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">I still want a big kitchen, but I can accept medium if we have light and a balcony.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">I’ll use wall racks for guitars to save floor space.</span></p>
+        <p><strong>BELLA:</strong> <span class="dialogue">Ideal doesn’t mean expensive; it means it fits our lives.</span></p>
+        <p><strong>OMAR:</strong> <span class="dialogue">Exactly—rooms that support routines.</span></p>
+        <p><strong>YURI:</strong> <span class="dialogue">Let’s keep searching with this list.</span></p>
+        <p><strong>ALL:</strong> <span class="dialogue">Deal! Our ideal house is coming into focus.</span></p>
+        <p class="scene-direction"><strong>— THE END —</strong></p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li><span class="vocab-word">Open-plan <button class="speaker-icon" onclick="speakWord('Open-plan')">🔊</button></span> <span class="ipa">/ˌəʊpən ˈplæn/</span> <span class="definition">(adj.) with few walls between rooms.</span> <span class="example">Example: An open-plan kitchen is good for hosting.</span></li>
+            <li><span class="vocab-word">Insulation <button class="speaker-icon" onclick="speakWord('Insulation')">🔊</button></span> <span class="ipa">/ˌɪnsjʊˈleɪʃn/</span> <span class="definition">(n.) material that keeps heat and sound inside.</span> <span class="example">Example: Good insulation reduces noise.</span></li>
+            <li><span class="vocab-word">Balcony <button class="speaker-icon" onclick="speakWord('Balcony')">🔊</button></span> <span class="ipa">/ˈbælkəni/</span> <span class="definition">(n.) a small outdoor space attached to a home.</span> <span class="example">Example: She grows herbs on her balcony.</span></li>
+            <li><span class="vocab-word">Pantry <button class="speaker-icon" onclick="speakWord('Pantry')">🔊</button></span> <span class="ipa">/ˈpæntri/</span> <span class="definition">(n.) a small room or cupboard for storing food.</span> <span class="example">Example: The pantry keeps the kitchen organized.</span></li>
+            <li><span class="vocab-word">Commute <button class="speaker-icon" onclick="speakWord('Commute')">🔊</button></span> <span class="ipa">/kəˈmjuːt/</span> <span class="definition">(n./v.) travel between home and work.</span> <span class="example">Example: A short commute saves energy.</span></li>
+            <li><span class="vocab-word">Energy-efficient <button class="speaker-icon" onclick="speakWord('Energy efficient')">🔊</button></span> <span class="ipa">/ˌenədʒi ɪˈfɪʃnt/</span> <span class="definition">(adj.) using less power to do the same job.</span> <span class="example">Example: Energy-efficient windows lower bills.</span></li>
+            <li><span class="vocab-word">Storage <button class="speaker-icon" onclick="speakWord('Storage')">🔊</button></span> <span class="ipa">/ˈstɔːrɪdʒ/</span> <span class="definition">(n.) space to keep things.</span> <span class="example">Example: Wall racks create extra storage.</span></li>
+            <li><span class="vocab-word">Landlord <button class="speaker-icon" onclick="speakWord('Landlord')">🔊</button></span> <span class="ipa">/ˈlændlɔːd/</span> <span class="definition">(n.) person who owns a property you rent.</span> <span class="example">Example: A friendly landlord helps with repairs.</span></li>
+            <li><span class="vocab-word">Floor plan <button class="speaker-icon" onclick="speakWord('Floor plan')">🔊</button></span> <span class="ipa">/ˈflɔː plæn/</span> <span class="definition">(n.) a drawing that shows room sizes and positions.</span> <span class="example">Example: The floor plan shows two bedrooms.</span></li>
+            <li><span class="vocab-word">Natural light <button class="speaker-icon" onclick="speakWord('Natural light')">🔊</button></span> <span class="ipa">/ˈnætʃrəl laɪt/</span> <span class="definition">(n.) sunlight inside a home.</span> <span class="example">Example: East-facing rooms get natural light in the morning.</span></li>
+            <li><span class="vocab-word">Ventilation <button class="speaker-icon" onclick="speakWord('Ventilation')">🔊</button></span> <span class="ipa">/ˌventɪˈleɪʃn/</span> <span class="definition">(n.) fresh air moving through a space.</span> <span class="example">Example: Good ventilation keeps the kitchen comfortable.</span></li>
+            <li><span class="vocab-word">Budget <button class="speaker-icon" onclick="speakWord('Budget')">🔊</button></span> <span class="ipa">/ˈbʌdʒɪt/</span> <span class="definition">(n.) the amount of money you plan to spend.</span> <span class="example">Example: The price was close to their budget limit.</span></li>
+            <li><span class="vocab-word">Fiber internet <button class="speaker-icon" onclick="speakWord('Fiber internet')">🔊</button></span> <span class="ipa">/ˈfaɪbə ˈɪntənet/</span> <span class="definition">(n.) very fast internet connection.</span> <span class="example">Example: Fiber internet helps with online study.</span></li>
+            <li><span class="vocab-word">Noise level <button class="speaker-icon" onclick="speakWord('Noise level')">🔊</button></span> <span class="ipa">/nɔɪz ˈlevl/</span> <span class="definition">(n.) how loud or quiet a place is.</span> <span class="example">Example: She checked the noise level of the street.</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Web Speech API pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

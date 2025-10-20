@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparatives & Superlatives with Nouns — ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family:'Segoe UI',sans-serif; background:#f4f4f9; text-align:center; margin:0; color:#333; }
+    nav { background:#124076; }
+    .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
+    .logo { display:flex; align-items:center; color:#ff9800; font-family:'Poppins',sans-serif; font-weight:700; font-size:1.3rem; text-decoration:none; }
+    .logo-img { width:32px; height:32px; margin-right:0.5rem; }
+    .nav-links { display:flex; gap:1rem; }
+    .nav-links a { color:white; font-weight:700; text-decoration:none; }
+    .nav-links a:hover { color:#ffbb33; }
+    h1 { margin:2rem auto 1rem; color:#2c3e50; }
+    .content-container { background:white; width:90%; max-width:860px; margin:2rem auto; padding:2rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); text-align:left; }
+    h2 { color:#3498db; }
+    ol { padding-left:20px; }
+    li { margin-bottom:1rem; }
+    input.blank { border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.5rem; min-width:14ch; font-size:1rem; }
+    .correct { border-color:#27ae60; }
+    .incorrect { border-color:#c0392b; }
+    .buttons { display:flex; justify-content:center; gap:1rem; margin:2rem 0; }
+    button,.buttons a { padding:0.6rem 1.2rem; border:none; border-radius:8px; font-weight:bold; color:white; background:#3498db; cursor:pointer; text-decoration:none; }
+    button:hover,.buttons a:hover { background:#2980b9; }
+    .submit-button { background:#4caf50; }
+    .show-answers { background:#f44336; }
+    .reset-button { background:#7f8c8d; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Comparatives & Superlatives with Nouns — Practice</h1>
+<div class="content-container">
+  <p>Fill in the blanks with the correct comparative or superlative form of <strong>more / fewer / less / the most / the fewest / the least</strong>.</p>
+  <h2>Questions</h2>
+  <ol>
+    <li>There are <input class="blank" id="a1"> students in this class than in the morning one.</li>
+    <li>We made <input class="blank" id="a2"> progress than last week.</li>
+    <li>He spends <input class="blank" id="a3"> money than his brother.</li>
+    <li>Our team received <input class="blank" id="a4"> emails than yesterday.</li>
+    <li>She drinks <input class="blank" id="a5"> coffee now than before.</li>
+    <li>This store sells <input class="blank" id="a6"> clothes than the other one.</li>
+    <li>My neighborhood has <input class="blank" id="a7"> parks than downtown.</li>
+    <li>We had <input class="blank" id="a8"> time to finish the project than expected.</li>
+    <li>He gave <input class="blank" id="a9"> attention to details than before.</li>
+    <li>This website has <input class="blank" id="a10"> ads than it used to.</li>
+    <li>January had <input class="blank" id="a11"> visitors of the whole year.</li>
+    <li>That company has <input class="blank" id="a12"> employees in the region.</li>
+    <li>This restaurant offers <input class="blank" id="a13"> variety of dishes than that one.</li>
+    <li>Our city produces <input class="blank" id="a14"> pollution now than ten years ago.</li>
+    <li>This phone uses <input class="blank" id="a15"> storage space than my old one.</li>
+    <li>He reads <input class="blank" id="a16"> books than his classmates.</li>
+    <li>This app uses <input class="blank" id="a17"> data than the previous version.</li>
+    <li>They raised <input class="blank" id="a18"> money for charity this year.</li>
+    <li>Our team made <input class="blank" id="a19"> mistakes this month than last month.</li>
+    <li>This brand uses <input class="blank" id="a20"> sugar in its drinks than any other brand.</li>
+  </ol>
+
+  <div class="buttons">
+    <button id="checkBtn" class="submit-button">Check Answers</button>
+    <button id="showBtn" class="show-answers">Show Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+const answers = {
+  a1:'fewer', a2:'more', a3:'less', a4:'fewer', a5:'less',
+  a6:'more', a7:'fewer', a8:'less', a9:'more', a10:'fewer',
+  a11:'the fewest', a12:'the most', a13:'more', a14:'less', a15:'less',
+  a16:'more', a17:'less', a18:'more', a19:'fewer', a20:'the least'
+};
+
+function norm(v){return v.toLowerCase().trim().replace(/[.!?]/g,'');}
+
+function check(){
+  let correct=0;
+  Object.keys(answers).forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const ok=norm(el.value)===norm(answers[id]);
+    el.classList.remove('correct','incorrect');
+    el.classList.add(ok?'correct':'incorrect');
+    correct+=ok?1:0;
+  });
+  alert(`You got ${correct}/20 correct.`);
+}
+
+function show(){Object.keys(answers).forEach(id=>{const el=document.getElementById(id);if(el){el.value=answers[id];el.classList.add('correct');}});}
+function reset(){Object.keys(answers).forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.classList.remove('correct','incorrect');}});}
+
+document.getElementById('checkBtn').onclick=check;
+document.getElementById('showBtn').onclick=show;
+document.getElementById('resetBtn').onclick=reset;
+</script>
+</body>
+</html>

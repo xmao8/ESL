@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bank & Investment – Flashcards (Intermediate-High)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 820px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.6rem; max-width: 700px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .muted { color: #666; font-size: 0.9rem; margin-top: -0.6rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Bank & Investment Vocabulary – Intermediate-High</h1>
+<p class="muted" id="progress">Card 1 of 35</p>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Account", ipa: "", definition: "A record of money kept at a bank for a person or company.", example: "I opened a new savings account last week.", chinese: "账户", spanish: "cuenta" },
+  { word: "Balance", ipa: "", definition: "The amount of money currently in an account.", example: "My balance is lower after paying rent.", chinese: "余额", spanish: "saldo" },
+  { word: "Deposit", ipa: "", definition: "Money that you put into a bank account.", example: "She made a cash deposit at the branch.", chinese: "存款；存入", spanish: "depósito; depositar" },
+  { word: "Withdraw", ipa: "", definition: "To take money out of a bank account.", example: "You can withdraw cash from any ATM.", chinese: "取款；提取", spanish: "retirar" },
+  { word: "Transaction", ipa: "", definition: "Any movement of money into or out of an account.", example: "The app shows every transaction instantly.", chinese: "交易；事务", spanish: "transacción" },
+  { word: "Interest", ipa: "", definition: "Extra money paid by a bank or by a borrower for using money.", example: "This savings account pays 3% interest.", chinese: "利息", spanish: "interés" },
+  { word: "Loan", ipa: "", definition: "Money that is borrowed and must be paid back with interest.", example: "He took a loan to buy a car.", chinese: "贷款", spanish: "préstamo" },
+  { word: "Mortgage", ipa: "", definition: "A long-term loan used to buy property or a house.", example: "Their monthly mortgage payment is affordable.", chinese: "按揭贷款；抵押", spanish: "hipoteca" },
+  { word: "Credit", ipa: "", definition: "Money available to borrow; also trust that you can pay later.", example: "Her credit limit increased after a review.", chinese: "信用；赊账", spanish: "crédito" },
+  { word: "Debit", ipa: "", definition: "Money taken out of an account; also a card that uses your own funds.", example: "The purchase shows as a debit on the statement.", chinese: "借记；扣款", spanish: "débito" },
+  { word: "Statement", ipa: "", definition: "A document that lists all transactions in a period.", example: "Check your monthly statement for errors.", chinese: "对账单", spanish: "estado de cuenta" },
+  { word: "Savings", ipa: "", definition: "Money kept for future use, usually in a bank account.", example: "She puts 10% of her income into savings.", chinese: "储蓄", spanish: "ahorros" },
+  { word: "Checking account", ipa: "", definition: "A bank account for everyday payments and transfers.", example: "My salary goes into my checking account.", chinese: "支票账户（活期）", spanish: "cuenta corriente" },
+  { word: "Overdraft", ipa: "", definition: "Spending more than the balance in your account.", example: "An overdraft fee was charged yesterday.", chinese: "透支", spanish: "sobregiro" },
+  { word: "Investment", ipa: "", definition: "Money put into something to earn a profit later.", example: "Diversification is a key investment strategy.", chinese: "投资", spanish: "inversión" },
+  { word: "Currency", ipa: "", definition: "The money system used in a country.", example: "The store accepts several foreign currencies.", chinese: "货币", spanish: "moneda; divisa" },
+  { word: "Exchange rate", ipa: "", definition: "How much one currency is worth compared to another.", example: "The exchange rate rose against the dollar.", chinese: "汇率", spanish: "tipo de cambio" },
+  { word: "Budget", ipa: "", definition: "A plan for how to use your money.", example: "We made a weekly budget to control expenses.", chinese: "预算", spanish: "presupuesto" },
+  { word: "Income", ipa: "", definition: "Money received from work or other sources.", example: "Her main income comes from tutoring.", chinese: "收入", spanish: "ingresos" },
+  { word: "Expense", ipa: "", definition: "Money spent on goods or services.", example: "Food is our largest monthly expense.", chinese: "支出；费用", spanish: "gasto" },
+  { word: "Profit", ipa: "", definition: "Money gained after costs are subtracted.", example: "The company reported higher profit this quarter.", chinese: "利润", spanish: "beneficio" },
+  { word: "Loss", ipa: "", definition: "When costs are greater than income.", example: "They sold the asset at a small loss.", chinese: "亏损；损失", spanish: "pérdida" },
+  { word: "Debt", ipa: "", definition: "Money that is owed to someone else.", example: "He wants to pay off his credit card debt.", chinese: "债务", spanish: "deuda" },
+  { word: "Fee", ipa: "", definition: "A fixed charge for a service.", example: "There’s a monthly maintenance fee.", chinese: "费用；手续费", spanish: "tarifa; cuota" },
+  { word: "Banknote", ipa: "", definition: "Paper money issued by a central bank.", example: "This old banknote is no longer valid.", chinese: "纸币", spanish: "billete" },
+  { word: "Cashier", ipa: "", definition: "A person who handles payments in a store or bank.", example: "The cashier counted the deposit carefully.", chinese: "收银员；出纳员", spanish: "cajero/a" },
+  { word: "ATM (Automated Teller Machine)", ipa: "", definition: "A machine that lets you withdraw or deposit money.", example: "Use the ATM to check your balance.", chinese: "自动取款机", spanish: "cajero automático" },
+  { word: "Transfer", ipa: "", definition: "To move money from one account to another.", example: "I transfer rent to my landlord each month.", chinese: "转账；转移", spanish: "transferir; transferencia" },
+  { word: "Insurance", ipa: "", definition: "A contract to protect against financial loss.", example: "Health insurance can be expensive.", chinese: "保险", spanish: "seguro" },
+  { word: "Collateral", ipa: "", definition: "An asset a borrower offers to secure a loan.", example: "They used the car as collateral.", chinese: "抵押品", spanish: "garantía; colateral" },
+  { word: "Stock", ipa: "", definition: "A share of ownership in a company.", example: "She bought stock in a tech firm.", chinese: "股票", spanish: "acción" },
+  { word: "Shareholder", ipa: "", definition: "A person who owns shares in a company.", example: "Shareholders vote at the annual meeting.", chinese: "股东", spanish: "accionista" },
+  { word: "Dividend", ipa: "", definition: "Money paid to shareholders from company profits.", example: "The dividend will be paid next month.", chinese: "股息；红利", spanish: "dividendo" },
+  { word: "Portfolio", ipa: "", definition: "All the investments owned by a person or fund.", example: "Her portfolio includes stocks and bonds.", chinese: "投资组合", spanish: "cartera (de inversión)" },
+  { word: "Bond", ipa: "", definition: "A loan to a government or company that pays interest.", example: "Many retirees prefer government bonds.", chinese: "债券", spanish: "bono" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){
+  progress.textContent = `Card ${index + 1} of ${flashcards.length}`;
+}
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove('flipped');
+  flashcard.setAttribute('aria-pressed', 'false');
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa || ''}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+  updateProgress();
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa || ''}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese || '—'}</div>
+      <div class="translation">Spanish: ${spanish || '—'}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add('flipped');
+    flashcard.setAttribute('aria-pressed', 'true');
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector('.speaker');
+    function speak() {
+      try { speechSynthesis.cancel(); } catch(e){}
+      const utterance = new SpeechSynthesisUtterance(flashcards[index].word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener('click', speak);
+    speakerBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+function shuffleDeck(){
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+  index = 0;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  try { speechSynthesis.cancel(); } catch(e){}
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    try { speechSynthesis.cancel(); } catch(e){}
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+shuffleBtn.addEventListener('click', () => {
+  stopAutoplayOnUserAction();
+  shuffleDeck();
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

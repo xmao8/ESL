@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yes/No Questions – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box; }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    /* Hamburger menu button */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout --- */
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container { background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.06rem; }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.55rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Yes/No Questions</h1>
+
+<div class="content-container">
+  <p><strong>Yes/No questions</strong> can be answered with <em>yes</em> or <em>no</em>. To form them, move the <strong>auxiliary (helping) verb</strong> or <strong>modal</strong> in front of the subject. With the verb <strong>be</strong>, simply invert <em>be</em> and the subject.</p>
+
+  <h2>1) Basic Word Order</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Basic word order for yes/no questions">
+      <thead>
+        <tr><th>Type</th><th>Structure</th><th>Example</th><th>Short Answers</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Be</strong> as main verb</td>
+          <td><strong>Be</strong> + subject + complement?</td>
+          <td>Are you ready?</td>
+          <td>Yes, I am. / No, I’m not.</td>
+        </tr>
+        <tr>
+          <td><strong>Have</strong> (possession; AmE)</td>
+          <td><strong>Do/Does/Did</strong> + subject + <strong>have</strong> + object?</td>
+          <td>Do you have a ticket?</td>
+          <td>Yes, I do. / No, I don’t.</td>
+        </tr>
+        <tr>
+          <td>Other verbs</td>
+          <td><strong>Do/Does/Did</strong> + subject + base verb?</td>
+          <td>Does she work here?<br>Did they eat?</td>
+          <td>Yes, she does. / No, she doesn’t.<br>Yes, they did. / No, they didn’t.</td>
+        </tr>
+        <tr>
+          <td>Modal verbs</td>
+          <td><strong>Can/Will/Should/May</strong> + subject + base verb?</td>
+          <td>Can you drive?</td>
+          <td>Yes, I can. / No, I can’t.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) The Verb “Be”</h2>
+  <p>When <strong>be</strong> is the main verb, put it before the subject.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Be verb questions">
+      <thead><tr><th>Statement</th><th>Question</th><th>Short Answer</th></tr></thead>
+      <tbody>
+        <tr><td>She is a doctor.</td><td><strong>Is she</strong> a doctor?</td><td>Yes, she is. / No, she isn’t.</td></tr>
+        <tr><td>They are at school.</td><td><strong>Are they</strong> at school?</td><td>Yes, they are. / No, they aren’t.</td></tr>
+        <tr><td>I am late.</td><td><strong>Am I</strong> late?</td><td>Yes, you are. / No, you’re not.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) “Have” for Possession</h2>
+  <p>In American English, questions with <strong>have</strong> usually use <strong>do/does/did</strong>. British English may use inversion (<em>Have you a car?</em>) in formal style.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Have possession questions">
+      <thead><tr><th>Statement</th><th>Question (common)</th><th>Short Answer</th></tr></thead>
+      <tbody>
+        <tr><td>You have a car.</td><td><strong>Do you have</strong> a car?</td><td>Yes, I do. / No, I don’t.</td></tr>
+        <tr><td>She has a ticket.</td><td><strong>Does she have</strong> a ticket?</td><td>Yes, she does. / No, she doesn’t.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4) Other Verbs: Do/Does/Did</h2>
+  <p>For most verbs, use <strong>do/does</strong> (present) or <strong>did</strong> (past). The main verb stays in the <strong>base form</strong>.</p>
+  <div class="example">
+    <strong>Do</strong> you like coffee? — Yes, I do. / No, I don’t.<br>
+    <strong>Does</strong> he play tennis? — Yes, he does. / No, he doesn’t.<br>
+    <strong>Did</strong> they go home? — Yes, they did. / No, they didn’t.
+  </div>
+
+  <h2>5) Modal Verbs</h2>
+  <p>Put the <strong>modal</strong> before the subject.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Modal questions">
+      <thead><tr><th>Modal</th><th>Question</th><th>Short Answers</th></tr></thead>
+      <tbody>
+        <tr><td>can</td><td><strong>Can</strong> she swim?</td><td>Yes, she can. / No, she can’t.</td></tr>
+        <tr><td>will</td><td><strong>Will</strong> it rain?</td><td>Yes, it will. / No, it won’t.</td></tr>
+        <tr><td>should</td><td><strong>Should</strong> we leave?</td><td>Yes, we should. / No, we shouldn’t.</td></tr>
+        <tr><td>may</td><td><strong>May</strong> I come in?</td><td>Yes, you may. / No, you may not.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>6) Short Answers</h2>
+  <p>Repeat the <strong>helping verb</strong> or <strong>modal</strong> in your answer. Don’t repeat the main verb.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Short answers">
+      <thead><tr><th>Question</th><th>Positive</th><th>Negative</th></tr></thead>
+      <tbody>
+        <tr><td>Do you like coffee?</td><td>Yes, I <strong>do</strong>.</td><td>No, I <strong>don’t</strong>.</td></tr>
+        <tr><td>Is he ready?</td><td>Yes, he <strong>is</strong>.</td><td>No, he <strong>isn’t</strong>.</td></tr>
+        <tr><td>Did they finish?</td><td>Yes, they <strong>did</strong>.</td><td>No, they <strong>didn’t</strong>.</td></tr>
+        <tr><td>Can she drive?</td><td>Yes, she <strong>can</strong>.</td><td>No, she <strong>can’t</strong>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>7) Word Order Summary</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Word order summary">
+      <thead><tr><th>Type</th><th>Word Order</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Be-verb</td><td><strong>Be + subject + complement</strong></td><td>Are they at work?</td></tr>
+        <tr><td>Do/Does/Did</td><td><strong>Aux + subject + base verb</strong></td><td>Does he play tennis?</td></tr>
+        <tr><td>Modal</td><td><strong>Modal + subject + base verb</strong></td><td>Can you help me?</td></tr>
+        <tr><td>Have (possession)</td><td><strong>Do/Does/Did + subject + have</strong></td><td>Do you have time?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>8) Common Mistakes</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common mistakes">
+      <thead><tr><th>❌ Wrong</th><th>✅ Correct</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>You are happy?</td><td><strong>Are</strong> you happy?</td><td>Be-verb goes before the subject.</td></tr>
+        <tr><td>He do like pizza?</td><td><strong>Does</strong> he like pizza?</td><td>Use <em>does</em> for he/she/it; main verb in base form.</td></tr>
+        <tr><td>Did you went there?</td><td><strong>Did</strong> you go there?</td><td>After <em>did</em>, use base verb (<em>go</em>).</td></tr>
+        <tr><td>You can drive?</td><td><strong>Can</strong> you drive?</td><td>Modal comes first.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

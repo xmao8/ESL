@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yes/No Questions — Housing · ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family:'Segoe UI',sans-serif; background:#f4f4f9; text-align:center; margin:0; color:#333; }
+    nav { background:#124076; }
+    .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
+    .logo { display:flex; align-items:center; color:#ff9800; font-family:'Poppins',sans-serif; font-weight:700; font-size:1.3rem; text-decoration:none; }
+    .logo-img { width:32px; height:32px; margin-right:0.5rem; }
+    .nav-links { display:flex; gap:1rem; }
+    .nav-links a { color:white; font-weight:700; text-decoration:none; }
+    .nav-links a:hover { color:#ffbb33; }
+    h1 { margin:2rem auto 1rem; color:#2c3e50; }
+    .content-container { background:white; width:90%; max-width:860px; margin:2rem auto; padding:2rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); text-align:left; }
+    h2 { color:#3498db; }
+    ol { padding-left:20px; }
+    li { margin-bottom:1.4rem; }
+    input.blank { border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.5rem; min-width:22ch; font-size:1rem; }
+    .correct { border-color:#27ae60; }
+    .incorrect { border-color:#c0392b; }
+    .buttons { display:flex; justify-content:center; gap:1rem; margin:2rem 0; }
+    button,.buttons a { padding:0.6rem 1.2rem; border:none; border-radius:8px; font-weight:bold; color:white; background:#3498db; cursor:pointer; text-decoration:none; }
+    button:hover,.buttons a:hover { background:#2980b9; }
+    .submit-button { background:#4caf50; }
+    .show-answers { background:#f44336; }
+    .reset-button { background:#7f8c8d; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Yes/No Questions — Housing Practice (Advanced)</h1>
+<div class="content-container">
+  <p>Rewrite each statement as a <strong>Yes/No question</strong> and provide a short answer. Pay attention to <strong>auxiliaries</strong>, <strong>tenses</strong>, and <strong>modals</strong>. Some sentences use passive voice or perfect forms.</p>
+
+  <ol>
+    <li>The apartment has been renovated recently.<br>
+      <input class="blank" id="q1" placeholder="Question"/><br>
+      <input class="blank" id="a1" placeholder="Short answer"/></li>
+
+    <li>The tenants were informed about the new rent rules.<br>
+      <input class="blank" id="q2"/><br>
+      <input class="blank" id="a2"/></li>
+
+    <li>He is planning to move out next month.<br>
+      <input class="blank" id="q3"/><br>
+      <input class="blank" id="a3"/></li>
+
+    <li>The repairs have already started.<br>
+      <input class="blank" id="q4"/><br>
+      <input class="blank" id="a4"/></li>
+
+    <li>They will be building new apartments near the park.<br>
+      <input class="blank" id="q5"/><br>
+      <input class="blank" id="a5"/></li>
+
+    <li>She had paid the rent before she left.<br>
+      <input class="blank" id="q6"/><br>
+      <input class="blank" id="a6"/></li>
+
+    <li>The kitchen wasn’t cleaned properly.<br>
+      <input class="blank" id="q7"/><br>
+      <input class="blank" id="a7"/></li>
+
+    <li>They have to fix the leaking pipes soon.<br>
+      <input class="blank" id="q8"/><br>
+      <input class="blank" id="a8"/></li>
+
+    <li>The landlord didn’t replace the old carpet.<br>
+      <input class="blank" id="q9"/><br>
+      <input class="blank" id="a9"/></li>
+
+    <li>You were waiting for the electrician this morning.<br>
+      <input class="blank" id="q10"/><br>
+      <input class="blank" id="a10"/></li>
+
+    <li>The balcony door can be opened from outside.<br>
+      <input class="blank" id="q11"/><br>
+      <input class="blank" id="a11"/></li>
+
+    <li>There used to be a small garden here.<br>
+      <input class="blank" id="q12"/><br>
+      <input class="blank" id="a12"/></li>
+
+    <li>The building has been empty for months.<br>
+      <input class="blank" id="q13"/><br>
+      <input class="blank" id="a13"/></li>
+
+    <li>The owners were having the roof repaired last week.<br>
+      <input class="blank" id="q14"/><br>
+      <input class="blank" id="a14"/></li>
+
+    <li>He might sell his house this year.<br>
+      <input class="blank" id="q15"/><br>
+      <input class="blank" id="a15"/></li>
+
+    <li>The tenants must follow all safety rules.<br>
+      <input class="blank" id="q16"/><br>
+      <input class="blank" id="a16"/></li>
+
+    <li>They had been living in that apartment for five years.<br>
+      <input class="blank" id="q17"/><br>
+      <input class="blank" id="a17"/></li>
+
+    <li>The windows haven’t been replaced yet.<br>
+      <input class="blank" id="q18"/><br>
+      <input class="blank" id="a18"/></li>
+
+    <li>You were told about the maintenance schedule.<br>
+      <input class="blank" id="q19"/><br>
+      <input class="blank" id="a19"/></li>
+
+    <li>The new tenant will have moved in by Monday.<br>
+      <input class="blank" id="q20"/><br>
+      <input class="blank" id="a20"/></li>
+  </ol>
+
+  <div class="buttons">
+    <button id="showBtn" class="show-answers">Show Sample Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+const answers = {
+  q1:'Has the apartment been renovated recently?', a1:'Yes, it has.',
+  q2:'Were the tenants informed about the new rent rules?', a2:'Yes, they were.',
+  q3:'Is he planning to move out next month?', a3:'Yes, he is.',
+  q4:'Have the repairs already started?', a4:'Yes, they have.',
+  q5:'Will they be building new apartments near the park?', a5:'Yes, they will.',
+  q6:'Had she paid the rent before she left?', a6:'Yes, she had.',
+  q7:'Was the kitchen cleaned properly?', a7:'No, it wasn’t.',
+  q8:'Do they have to fix the leaking pipes soon?', a8:'Yes, they do.',
+  q9:'Did the landlord replace the old carpet?', a9:'No, he didn’t.',
+  q10:'Were you waiting for the electrician this morning?', a10:'Yes, I was.',
+  q11:'Can the balcony door be opened from outside?', a11:'Yes, it can.',
+  q12:'Did there use to be a small garden here?', a12:'Yes, there did.',
+  q13:'Has the building been empty for months?', a13:'Yes, it has.',
+  q14:'Were the owners having the roof repaired last week?', a14:'Yes, they were.',
+  q15:'Might he sell his house this year?', a15:'Yes, he might.',
+  q16:'Must the tenants follow all safety rules?', a16:'Yes, they must.',
+  q17:'Had they been living in that apartment for five years?', a17:'Yes, they had.',
+  q18:'Have the windows been replaced yet?', a18:'No, they haven’t.',
+  q19:'Were you told about the maintenance schedule?', a19:'Yes, I was.',
+  q20:'Will the new tenant have moved in by Monday?', a20:'Yes, they will.'
+};
+
+function show(){
+  Object.keys(answers).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){ el.value=answers[id]; el.classList.add('correct'); }
+  });
+}
+function reset(){
+  Object.keys(answers).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){ el.value=''; el.classList.remove('correct'); }
+  });
+}
+
+document.getElementById('showBtn').onclick=show;
+document.getElementById('resetBtn').onclick=reset;
+</script>
+</body>
+</html>

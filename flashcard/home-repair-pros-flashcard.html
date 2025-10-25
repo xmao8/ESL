@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home Repair Pros – Flashcards (Intermediate-High)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 820px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.6rem; max-width: 700px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .muted { color: #666; font-size: 0.9rem; margin-top: -0.6rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Home Repair & House Problems – Professional Titles (Intermediate-High)</h1>
+<p class="muted" id="progress">Card 1 of 45</p>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Plumber", ipa: "", definition: "A tradesperson who installs and repairs water pipes, fixtures, and drains.", example: "The plumber fixed the leaking kitchen sink.", chinese: "水管工；管道工", spanish: "fontanero/a; plomero/a" },
+  { word: "Drain/Sewer Specialist", ipa: "", definition: "A pro who clears and repairs main drains and sewer lines.", example: "Rooter service cleared the clogged main line after a storm.", chinese: "排水/下水道疏通技师", spanish: "especialista en desagües y alcantarillado" },
+  { word: "Septic Service Technician", ipa: "", definition: "A technician who pumps, inspects, and repairs septic tanks and systems.", example: "The technician pumped the septic tank before it overflowed.", chinese: "化粪池服务技师", spanish: "técnico de fosas sépticas" },
+  { word: "Well Pump Technician", ipa: "", definition: "A specialist who installs and repairs pumps for well water systems.", example: "He replaced the faulty well pump so the water came back.", chinese: "井泵技师", spanish: "técnico de bomba de pozo" },
+  { word: "Irrigation Specialist", ipa: "", definition: "A technician who installs and maintains lawn sprinkler and drip systems.", example: "She adjusted the sprinklers to stop wasting water.", chinese: "灌溉（喷灌）技师", spanish: "especialista en riego" },
+
+  { word: "Electrician", ipa: "", definition: "A licensed worker who installs and repairs electrical systems.", example: "The electrician replaced the burnt outlet safely.", chinese: "电工", spanish: "electricista" },
+  { word: "Low-Voltage Technician", ipa: "", definition: "A tech who installs data, internet, camera, and speaker wiring.", example: "He ran new ethernet cable for faster internet.", chinese: "弱电/低压技师", spanish: "técnico de baja tensión" },
+  { word: "Generator Installer", ipa: "", definition: "A contractor who sets up backup power systems and generators.", example: "They installed a backup generator for outages.", chinese: "发电机安装员", spanish: "instalador de generadores" },
+  { word: "Solar Installer (PV)", ipa: "", definition: "A worker who mounts solar panels and connects inverters and wiring.", example: "The crew mounted solar panels and connected the inverter.", chinese: "太阳能板安装工", spanish: "instalador solar fotovoltaico" },
+
+  { word: "HVAC Technician", ipa: "", definition: "A technician who services heating, ventilation, and air conditioning.", example: "The HVAC tech repaired the air conditioner in July.", chinese: "暖通空调技师", spanish: "técnico HVAC" },
+  { word: "Duct Cleaning Technician", ipa: "", definition: "A worker who cleans dust and debris from air ducts.", example: "The team cleaned dust from the air ducts.", chinese: "风管清洁技师", spanish: "técnico de limpieza de ductos" },
+  { word: "Chimney Sweep", ipa: "", definition: "A pro who cleans chimneys to prevent fires and improve draft.", example: "The sweep removed creosote from the chimney.", chinese: "烟囱清洁工", spanish: "deshollinador/a" },
+  { word: "Fireplace Technician", ipa: "", definition: "A specialist who installs and services gas or wood fireplaces.", example: "She serviced the gas fireplace that would not light.", chinese: "壁炉（燃气）技师", spanish: "técnico de chimeneas" },
+
+  { word: "General Contractor", ipa: "", definition: "A licensed manager who coordinates multi-trade projects and remodels.", example: "Our contractor managed the entire kitchen remodel.", chinese: "总承包商", spanish: "contratista general" },
+  { word: "Structural Engineer", ipa: "", definition: "A licensed engineer who evaluates load-bearing parts of a building.", example: "A structural engineer approved removing the wall.", chinese: "结构工程师", spanish: "ingeniero/a estructural" },
+  { word: "Foundation Repair Contractor", ipa: "", definition: "A contractor who fixes settling foundations and cracks.", example: "They lifted the foundation and sealed the cracks.", chinese: "地基修复承包商", spanish: "contratista de reparación de cimientos" },
+  { word: "Roofer", ipa: "", definition: "A worker who repairs and installs roofs, shingles, and flashing.", example: "The roofer replaced missing shingles after the wind.", chinese: "屋面工/屋顶工", spanish: "techador/a" },
+  { word: "Gutter Installer", ipa: "", definition: "A pro who installs and repairs gutters and downspouts.", example: "New gutters now carry rainwater away from the house.", chinese: "天沟安装工", spanish: "instalador de canalones/canaletas" },
+  { word: "Siding Contractor", ipa: "", definition: "A contractor who installs and repairs exterior siding.", example: "He repaired several damaged siding panels.", chinese: "外墙挂板承包商", spanish: "contratista de revestimiento exterior" },
+  { word: "Window Installer / Glazier", ipa: "", definition: "A pro who installs windows and replaces glass.", example: "The glazier replaced the broken window pane.", chinese: "窗户安装工 / 玻璃工", spanish: "instalador de ventanas / vidriero/a" },
+  { word: "Insulation Contractor", ipa: "", definition: "A contractor who installs attic, wall, and crawlspace insulation.", example: "They added attic insulation to reduce bills.", chinese: "绝热/保温承包商", spanish: "contratista de aislamiento" },
+  { word: "Drywall Contractor", ipa: "", definition: "A worker who hangs, tapes, and repairs drywall panels.", example: "The contractor patched holes in the drywall.", chinese: "石膏板承包商", spanish: "contratista de drywall (panel de yeso)" },
+
+  { word: "Carpenter (Finish Carpenter)", ipa: "", definition: "A woodworker who builds or installs trim, doors, and built-ins.", example: "The finish carpenter installed new baseboards.", chinese: "木工（精装修木工）", spanish: "carpintero/a (acabados)" },
+  { word: "Cabinet Maker/Installer", ipa: "", definition: "A craftsperson who builds and installs kitchen and bath cabinets.", example: "The installer leveled and secured the cabinets.", chinese: "橱柜制作/安装工", spanish: "fabricante/instalador de gabinetes" },
+  { word: "Painter", ipa: "", definition: "A worker who prepares surfaces and applies paint or stain.", example: "The painter covered stains with primer and paint.", chinese: "油漆工", spanish: "pintor/a" },
+  { word: "Flooring Installer", ipa: "", definition: "A pro who installs hardwood, laminate, vinyl, or tile floors.", example: "They laid waterproof vinyl in the basement.", chinese: "地板安装工", spanish: "instalador de pisos" },
+  { word: "Tile Setter", ipa: "", definition: "A tradesperson who sets tile and grout on floors and walls.", example: "The setter regrouted the shower walls.", chinese: "瓷砖铺贴工", spanish: "colocador/a de azulejos" },
+  { word: "Carpet Installer", ipa: "", definition: "A pro who installs and stretches wall-to-wall carpet.", example: "The installer stretched the loose carpet.", chinese: "地毯安装工", spanish: "instalador de alfombra" },
+  { word: "Plasterer", ipa: "", definition: "A worker who repairs and finishes plaster surfaces.", example: "The plasterer repaired the old plaster ceiling.", chinese: "抹灰工；灰泥工", spanish: "yesero/a" },
+
+  { word: "Waterproofing Contractor", ipa: "", definition: "A contractor who prevents water intrusion in basements and walls.", example: "They installed a sump pump to stop basement leaks.", chinese: "防水承包商", spanish: "contratista de impermeabilización" },
+  { word: "Crawlspace Encapsulation Specialist", ipa: "", definition: "A specialist who seals crawlspaces with vapor barriers and dehumidifiers.", example: "The crew sealed the crawlspace with a vapor barrier.", chinese: "爬行空间封闭处理技师", spanish: "especialista en encapsulación de crawl space" },
+
+  { word: "Pest Control Technician", ipa: "", definition: "A technician who treats homes for insects and rodents.", example: "The technician treated the ants in the kitchen.", chinese: "害虫防治技师", spanish: "técnico de control de plagas" },
+  { word: "Wildlife Removal Specialist", ipa: "", definition: "A pro who safely removes raccoons, bats, or squirrels from homes.", example: "They humanely removed squirrels from the attic.", chinese: "野生动物清除专家", spanish: "especialista en retirada de fauna" },
+  { word: "Mold Remediation Contractor", ipa: "", definition: "A contractor who removes mold and fixes moisture problems.", example: "The team removed mold and dried the bathroom walls.", chinese: "霉菌治理承包商", spanish: "contratista de remediación de moho" },
+  { word: "Radon Mitigation Contractor", ipa: "", definition: "A pro who installs systems to lower radon gas in houses.", example: "They added a fan system to reduce radon levels.", chinese: "氡气治理承包商", spanish: "contratista de mitigación de radón" },
+  { word: "Asbestos Abatement Contractor", ipa: "", definition: "A licensed team that safely removes asbestos materials.", example: "Workers safely removed the asbestos tiles.", chinese: "石棉清除承包商", spanish: "contratista de remoción de asbesto" },
+  { word: "Lead Abatement Contractor", ipa: "", definition: "A licensed pro who removes or contains lead-based paint hazards.", example: "The crew used safe methods to remove lead paint.", chinese: "铅清除/治理承包商", spanish: "contratista de remoción de plomo" },
+
+  { word: "Arborist (Tree Service)", ipa: "", definition: "A trained pro who cares for and removes trees safely.", example: "The arborist pruned the branches over the roof.", chinese: "树艺师/树木服务", spanish: "arborista; servicio de árboles" },
+  { word: "Landscaper", ipa: "", definition: "A worker who designs, builds, and maintains yards and drainage.", example: "The landscaper fixed drainage and added plants.", chinese: "园林绿化工", spanish: "paisajista; jardinero/a" },
+  { word: "Fence Contractor", ipa: "", definition: "A contractor who installs and repairs fences and gates.", example: "They replaced several broken fence posts.", chinese: "围栏承包商", spanish: "contratista de cercas" },
+  { word: "Deck Builder", ipa: "", definition: "A pro who builds and repairs wood or composite decks.", example: "The builder rebuilt the wobbly deck stairs.", chinese: "露台甲板建造者", spanish: "constructor de terrazas" },
+  { word: "Pool/Spa Technician", ipa: "", definition: "A technician who maintains and repairs pools, pumps, and heaters.", example: "The technician fixed the pool pump.", chinese: "游泳池/水疗设备技师", spanish: "técnico de piscina/spa" },
+  { word: "Concrete Contractor", ipa: "", definition: "A contractor who pours and finishes concrete slabs and sidewalks.", example: "They poured a new driveway.", chinese: "混凝土承包商", spanish: "contratista de concreto/hormigón" },
+  { word: "Mason", ipa: "", definition: "A craftsperson who builds or repairs with brick, block, or stone.", example: "The mason repaired loose bricks on the wall.", chinese: "泥瓦匠/砌砖工", spanish: "albañil" },
+  { word: "Chimney Mason", ipa: "", definition: "A mason who rebuilds and repairs chimney crowns and flues.", example: "The mason rebuilt the damaged chimney crown.", chinese: "烟囱泥瓦匠", spanish: "albañil de chimeneas" },
+
+  { word: "Appliance Repair Technician", ipa: "", definition: "A technician who fixes household appliances like washers and fridges.", example: "The tech repaired the leaking dishwasher.", chinese: "家电维修技师", spanish: "técnico de reparación de electrodomésticos" },
+  { word: "Gas Fitter", ipa: "", definition: "A licensed worker who installs and repairs gas lines and valves.", example: "The gas fitter ran a new gas line for the stove.", chinese: "燃气安装工", spanish: "instalador de gas" },
+
+  { word: "Locksmith", ipa: "", definition: "A pro who installs, rekeys, and repairs locks and door hardware.", example: "The locksmith rekeyed all the door locks.", chinese: "锁匠", spanish: "cerrajero/a" },
+  { word: "Security System Installer", ipa: "", definition: "A technician who installs alarms, sensors, and cameras.", example: "They installed cameras and an alarm system.", chinese: "安防系统安装员", spanish: "instalador de sistemas de seguridad" },
+  { word: "Garage Door Technician", ipa: "", definition: "A technician who installs and repairs garage doors and openers.", example: "The technician replaced a broken torsion spring.", chinese: "车库门技师", spanish: "técnico de puertas de garaje" },
+  { word: "Window & Gutter Cleaning Technician", ipa: "", definition: "A worker who cleans exterior windows and clears gutters.", example: "The crew cleaned windows and cleared the gutters.", chinese: "窗户清洁/天沟清理技师", spanish: "técnico de limpieza de ventanas y canaletas" },
+  { word: "Handyperson (Handyman/Handywoman)", ipa: "", definition: "A general repair person for small tasks across many trades.", example: "The handyperson fixed several small items in one visit.", chinese: "修理工/杂工", spanish: "técnico de mantenimiento; manitas" },
+  { word: "Home Inspector", ipa: "", definition: "A professional who evaluates a home's condition and safety.", example: "The inspector found issues before we bought the house.", chinese: "房屋验检师", spanish: "inspector/a de viviendas" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){
+  progress.textContent = `Card ${index + 1} of ${flashcards.length}`;
+}
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove('flipped');
+  flashcard.setAttribute('aria-pressed', 'false');
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa || ''}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+  updateProgress();
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa || ''}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese || '—'}</div>
+      <div class="translation">Spanish: ${spanish || '—'}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add('flipped');
+    flashcard.setAttribute('aria-pressed', 'true');
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector('.speaker');
+    function speak() {
+      try { speechSynthesis.cancel(); } catch(e){}
+      const utterance = new SpeechSynthesisUtterance(flashcards[index].word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener('click', speak);
+    speakerBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+function shuffleDeck(){
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+  index = 0;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  try { speechSynthesis.cancel(); } catch(e){}
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    try { speechSynthesis.cancel(); } catch(e){}
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+shuffleBtn.addEventListener('click', () => {
+  stopAutoplayOnUserAction();
+  shuffleDeck();
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

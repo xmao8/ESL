@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: The Lost City of Pompeii — A Historical Mystery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>The Lost City of Pompeii — A Historical Mystery</h1>
+
+  <main>
+    <div class="content-section">
+     
+      <h2>Story</h2>
+      <p>Almost two thousand years ago, the Roman city of <strong>Pompeii</strong> was a lively place near the coast of southern Italy. About 20,000 people lived there. The streets were filled with shops, bakeries, markets, and beautiful villas decorated with colorful paintings and mosaics. Life seemed peaceful under the shadow of <strong>Mount Vesuvius</strong>, a mountain that locals thought was safe.</p>
+
+      <p>But on the morning of <strong>August 24, 79 CE</strong>, everything changed. Without warning, Mount Vesuvius erupted. Smoke and ash rose high into the sky like a black cloud. Soon, stones and hot ash began to fall onto Pompeii. The people were terrified. Some tried to escape by running to the sea, while others hid inside their houses, hoping the eruption would stop.</p>
+
+      <p>The eruption grew stronger. For hours, the sky turned darker than night, and the air filled with poisonous gases. Buildings collapsed under the weight of ash and rock. In the nearby town of <strong>Herculaneum</strong>, rivers of hot mud and lava buried homes completely. By the next day, Pompeii had disappeared under several meters of volcanic material. Almost everyone in the city was gone.</p>
+
+      <p>For centuries, Pompeii was forgotten. The city was buried so deeply that people didn’t even know exactly where it had been. Some farmers in the area found strange pieces of marble or pottery while working in their fields, but they didn’t understand where they came from.</p>
+
+      <p>Then, in the 1700s, explorers digging in the area made an incredible discovery. They uncovered walls, streets, and statues—all perfectly preserved under the volcanic ash. It was as if time had stopped in 79 CE. Archaeologists began excavating, carefully removing layers of ash to reveal the ancient city beneath.</p>
+
+      <p>They found bodies of people and animals turned into stone-like shapes. Later, scientists created plaster casts by pouring liquid plaster into the spaces left by decomposed bodies in the ash. These casts showed people’s final moments—some protecting loved ones, others trying to flee. It was a haunting picture of an ordinary city caught in a sudden disaster.</p>
+
+      <p>Pompeii gave historians an extraordinary look into Roman life. Houses, tools, paintings, and even graffiti on walls survived almost exactly as they were. From these discoveries, we learned how Romans cooked, dressed, decorated their homes, and entertained themselves.</p>
+
+      <p>Today, Pompeii is one of the most visited archaeological sites in the world. Millions of tourists walk through its ancient streets, imagining the people who once lived there. The preserved city is both beautiful and tragic—a reminder of nature’s power and the fragility of human life.</p>
+
+      <p>Even now, archaeologists continue to find new treasures under the ash. Each discovery brings us closer to the people of Pompeii, whose lives ended so suddenly nearly two thousand years ago, yet whose stories continue to speak through the silence of stone.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>eruption</strong> <i class="fas fa-volume-up speaker-icon" data-word="eruption"></i> — A sudden explosion of ash, gas, and rock from a volcano.</li>
+        <li><strong>ash</strong> <i class="fas fa-volume-up speaker-icon" data-word="ash"></i> — Fine gray powder from burning or volcanic activity.</li>
+        <li><strong>lava</strong> <i class="fas fa-volume-up speaker-icon" data-word="lava"></i> — Melted rock that flows from a volcano.</li>
+        <li><strong>preserve</strong> <i class="fas fa-volume-up speaker-icon" data-word="preserve"></i> — To keep something in its original condition.</li>
+        <li><strong>excavate</strong> <i class="fas fa-volume-up speaker-icon" data-word="excavate"></i> — To dig in the ground to find ancient objects.</li>
+        <li><strong>archaeologist</strong> <i class="fas fa-volume-up speaker-icon" data-word="archaeologist"></i> — A scientist who studies the past by examining remains.</li>
+        <li><strong>plaster cast</strong> <i class="fas fa-volume-up speaker-icon" data-word="plaster cast"></i> — A model made by filling a space with plaster to show shapes.</li>
+        <li><strong>mosaic</strong> <i class="fas fa-volume-up speaker-icon" data-word="mosaic"></i> — A picture made from small pieces of colored stone or glass.</li>
+        <li><strong>fragility</strong> <i class="fas fa-volume-up speaker-icon" data-word="fragility"></i> — The quality of being easily broken or damaged.</li>
+        <li><strong>graffiti</strong> <i class="fas fa-volume-up speaker-icon" data-word="graffiti"></i> — Words or pictures drawn on walls.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What was life like in Pompeii before the eruption?</li>
+        <li>Describe what happened on August 24, 79 CE.</li>
+        <li>Why did many buildings in Pompeii collapse?</li>
+        <li>How was the lost city rediscovered, and when?</li>
+        <li>What do the plaster casts show about the people of Pompeii?</li>
+        <li>What have historians learned from the preserved city?</li>
+        <li>Why is Pompeii considered both beautiful and tragic today?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

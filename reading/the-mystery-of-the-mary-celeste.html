@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: The Mystery of the Mary Celeste</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>The Mystery of the Mary Celeste</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> This ~500-word story is written for intermediate ESL readers. Use the vocabulary list and questions to support understanding.
+      </div>
+
+      <h2>Story</h2>
+      <p>In November 1872, a ship called the <strong>Mary Celeste</strong> left New York City, sailing across the Atlantic Ocean toward Italy. On board were Captain <strong>Benjamin Briggs</strong>, his wife <strong>Sarah</strong>, their two-year-old daughter <strong>Sophia</strong>, and seven crew members. The ship was carrying barrels of alcohol as cargo. It was a strong, well-built ship, and the weather was calm when it left port. Everything seemed normal.</p>
+
+      <p>But just one month later, on December 5, another ship called the <strong>Dei Gratia</strong> saw something strange floating in the ocean near Portugal. It was the Mary Celeste, moving slowly under full sail. The sailors called out to it but received no answer. Finally, they climbed aboard—and what they found became one of the greatest sea mysteries in history.</p>
+
+      <p>The ship was completely empty. The lifeboat was missing, but the sails and ropes were in good condition. There were no signs of a fight, no damage from storms, and no blood. The cargo of alcohol was almost untouched, and all the crew’s belongings, including clothes and food, were still there. The captain’s logbook had stopped a week earlier, with no sign of trouble.</p>
+
+      <p>Even more mysteriously, the ship’s last recorded location was only about 500 miles from where it was found. If the captain and crew had abandoned ship, why hadn’t they been found? And why had they left such a safe and seaworthy vessel?</p>
+
+      <p>When the Mary Celeste was towed back to port, people began to invent theories. Some believed the crew had been drunk and mutinied against the captain, but there was no evidence of violence. Others thought pirates had attacked, yet nothing was stolen. A few suggested that an explosion from the alcohol cargo had frightened the captain and crew, causing them to escape in the lifeboat—but if so, where did they go? No lifeboat or bodies were ever found.</p>
+
+      <p>In later years, the story of the Mary Celeste inspired many legends. Some said the crew had disappeared into a strange sea fog or triangle of magnetic forces. Others claimed they had been taken by sea monsters or aliens. These ideas were, of course, impossible—but they showed how mysterious the event seemed to people.</p>
+
+      <p>Modern scientists believe that the barrels of alcohol may have leaked and created dangerous fumes. Perhaps the captain feared an explosion and ordered everyone into the lifeboat temporarily, tying it to the ship with a rope. But strong winds or waves may have broken the rope, separating them from the Mary Celeste forever.</p>
+
+      <p>The ship was later repaired and continued to sail for many years, but it never lost its dark reputation. The mystery of what happened to Captain Briggs, his family, and his crew has never been solved.</p>
+
+      <p>Even today, the Mary Celeste reminds us how vast and unpredictable the sea can be—and how some secrets may remain hidden beneath its waves forever.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>cargo</strong> <i class="fas fa-volume-up speaker-icon" data-word="cargo"></i> — Goods carried by a ship or another vehicle.</li>
+        <li><strong>lifeboat</strong> <i class="fas fa-volume-up speaker-icon" data-word="lifeboat"></i> — A small boat used for emergencies at sea.</li>
+        <li><strong>logbook</strong> <i class="fas fa-volume-up speaker-icon" data-word="logbook"></i> — An official record of a ship’s daily activities.</li>
+        <li><strong>abandon</strong> <i class="fas fa-volume-up speaker-icon" data-word="abandon"></i> — To leave something or someone behind.</li>
+        <li><strong>mutiny</strong> <i class="fas fa-volume-up speaker-icon" data-word="mutiny"></i> — When sailors or soldiers refuse to obey their leaders.</li>
+        <li><strong>pirate</strong> <i class="fas fa-volume-up speaker-icon" data-word="pirate"></i> — A criminal who attacks ships at sea.</li>
+        <li><strong>fumes</strong> <i class="fas fa-volume-up speaker-icon" data-word="fumes"></i> — Strong, often dangerous gases or smoke.</li>
+        <li><strong>seaworthy</strong> <i class="fas fa-volume-up speaker-icon" data-word="seaworthy"></i> — Safe and strong enough to travel on the sea.</li>
+        <li><strong>triangle</strong> <i class="fas fa-volume-up speaker-icon" data-word="triangle"></i> — A shape with three sides and three angles.</li>
+        <li><strong>reputation</strong> <i class="fas fa-volume-up speaker-icon" data-word="reputation"></i> — The opinion that people have about someone or something.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>Who was on board the Mary Celeste when it left New York?</li>
+        <li>What did the sailors from the Dei Gratia find when they boarded the ship?</li>
+        <li>Why did some people think pirates attacked the ship, and why is this unlikely?</li>
+        <li>What modern theory explains why the crew might have left the ship?</li>
+        <li>Why does the Mary Celeste remain a mystery today?</li>
+        <li>What feelings does the sea create in the final paragraph?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: The Great Pyramids of Egypt — Secrets of the Ancient World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; text-align: center; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>The Great Pyramids of Egypt — Secrets of the Ancient World</h1>
+
+  <main>
+    <div class="content-section">
+      
+      <h2>Article</h2>
+      <p>More than four thousand years ago, along the banks of the <strong>River Nile</strong>, the ancient Egyptians built some of the most incredible structures in history—the <strong>Great Pyramids</strong>. These enormous stone monuments have stood for thousands of years, surviving wind, sand, and time. Even today, people wonder how they were built and what secrets they hold.</p>
+
+      <p>The most famous of the pyramids is the <strong>Great Pyramid of Giza</strong>, near modern-day <strong>Cairo</strong>. It was built around 2560 BCE during the reign of <strong>Pharaoh Khufu</strong>, a powerful Egyptian king. The pyramid originally stood 146 meters high and was the tallest structure in the world for nearly 4,000 years. It was made from more than 2 million stone blocks, each weighing several tons. How did workers move such heavy stones without modern machines? That question remains one of history’s greatest puzzles.</p>
+
+      <p>Historians believe that tens of thousands of workers—farmers, craftsmen, and laborers—helped to build the pyramids. During the yearly floods of the Nile, when farming was impossible, these workers were fed and housed near the construction site. They worked for years, cutting and dragging stones from quarries miles away. Ramps may have been built to move the stones upward as the pyramid grew taller, but no one knows for sure how this massive project was completed.</p>
+
+      <p>The pyramids were more than just buildings—they were tombs for the pharaohs. The Egyptians believed that when a king died, he became a god in the afterlife. To prepare for this journey, the pharaoh’s body was carefully preserved through <strong>mummification</strong>, and treasures were buried with him—gold, jewelry, food, and even furniture—to be used in the next world. The pyramid protected the king’s body and possessions for eternity.</p>
+
+      <p>Over the centuries, many pyramids were robbed by thieves searching for gold. Others were damaged by weather and time. But the Great Pyramid of Giza remains mostly intact. Inside, narrow tunnels and hidden chambers wind through the stone. Scientists using modern technology, such as robots and scanning equipment, have recently discovered new empty spaces inside the pyramid that no one has entered for thousands of years. What lies within them is still unknown.</p>
+
+      <p>The mystery of the pyramids continues to fascinate people. Some theories suggest they were built with the help of advanced mathematics and engineering. Others, more imaginative, claim that aliens or lost civilizations were involved. While most experts reject these ideas, they agree that the pyramids show how skilled and intelligent ancient Egyptians were.</p>
+
+      <p>Today, the pyramids attract millions of visitors from all over the world. Tourists stand in awe beneath the golden desert sun, staring up at the giant stones that have watched over Egypt for ages. The pyramids remind us of humanity’s creativity, determination, and desire to leave something eternal behind.</p>
+
+      <p>Even after 4,000 years, the Great Pyramids of Egypt still hold their secrets—silent witnesses to one of the world’s oldest and most powerful civilizations.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>pharaoh</strong> <i class="fas fa-volume-up speaker-icon" data-word="pharaoh"></i> — A king of ancient Egypt.</li>
+        <li><strong>monument</strong> <i class="fas fa-volume-up speaker-icon" data-word="monument"></i> — A large structure built to honor a person or event.</li>
+        <li><strong>quarry</strong> <i class="fas fa-volume-up speaker-icon" data-word="quarry"></i> — A place where stone is cut out of the ground.</li>
+        <li><strong>ramp</strong> <i class="fas fa-volume-up speaker-icon" data-word="ramp"></i> — A sloped surface used to move heavy objects upward.</li>
+        <li><strong>afterlife</strong> <i class="fas fa-volume-up speaker-icon" data-word="afterlife"></i> — Life that people believe happens after death.</li>
+        <li><strong>mummification</strong> <i class="fas fa-volume-up speaker-icon" data-word="mummification"></i> — The process of preserving a dead body in ancient Egypt.</li>
+        <li><strong>treasure</strong> <i class="fas fa-volume-up speaker-icon" data-word="treasure"></i> — Valuable items like gold and jewelry.</li>
+        <li><strong>chamber</strong> <i class="fas fa-volume-up speaker-icon" data-word="chamber"></i> — A room inside a larger structure.</li>
+        <li><strong>scan</strong> <i class="fas fa-volume-up speaker-icon" data-word="scan"></i> — To examine something with special equipment.</li>
+        <li><strong>civilization</strong> <i class="fas fa-volume-up speaker-icon" data-word="civilization"></i> — A developed society with culture, government, and technology.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>Where are the Great Pyramids located, and which one is the most famous?</li>
+        <li>Who ordered the Great Pyramid of Giza to be built, and about when?</li>
+        <li>What are two theories about how workers moved the heavy stones?</li>
+        <li>Why did ancient Egyptians build pyramids as tombs?</li>
+        <li>What modern technologies have revealed new spaces inside the pyramid?</li>
+        <li>Which unusual or imaginative theories exist about the pyramids’ construction?</li>
+        <li>Why do the pyramids continue to fascinate people today?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

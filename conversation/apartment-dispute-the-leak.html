@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apartment Dispute: The Leak - ESLnote Conversations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #2c3e50;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+        }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+                align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; }
+        }
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links {
+                position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0;
+                gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+            }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+        h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+        .content-container {
+            background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+        .content-container p { margin-bottom: 0.9rem; }
+        .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        
+        /* Conversation Specific Styles */
+        .conversation-script { padding: 0.5rem 0; }
+        .conversation-script p { margin-bottom: 0.8rem; display: flex; }
+        .conversation-script strong {
+            display: inline-block; width: 120px; text-align: right; margin-right: 10px; color: #124076; flex-shrink: 0;
+        }
+        .conversation-script span.dialogue { display: block; flex-grow: 1; }
+        .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; display: block; }
+        .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+        .character-info ul { list-style: none; padding: 0; margin: 0; }
+        .character-info li { margin-bottom: 0.2rem; }
+
+        .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+        .vocabulary-list li { margin-bottom: 0.8rem; }
+        .vocabulary-list .vocab-word {
+            font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.1rem; color: #3498db; user-select: none; transition: color 0.2s; }
+        .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+        .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+        .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
+        .buttons {
+            margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+        }
+        .buttons a {
+            padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+            text-decoration: none; display: inline-block; user-select: none;
+        }
+        .buttons a:hover { background: #2980b9; }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html" aria-current="page">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>The Leak: Escalation (Landlord-Tenant Dispute)</h1>
+
+<div class="content-container">
+    <p>This dialogue is a dispute between tenants (Chloe and Leo) and their landlord (Mr. Henderson) regarding an urgent maintenance issue. It is excellent for practicing making clear complaints and negotiating firm agreements.</p>
+
+    <h2>Characters:</h2>
+    <div class="character-info">
+        <ul>
+            <li><strong>MR. HENDERSON:</strong> The Landlord, stressed and defensive.</li>
+            <li><strong>CHLOE:</strong> Tenant, frustrated and direct.</li>
+            <li><strong>LEO:</strong> Tenant, calm and logical, focusing on the legal agreement.</li>
+        </ul>
+    </div>
+
+    <p class="scene-direction">Setting: The living room of an old apartment. There is a dark water stain on the ceiling and a bucket collecting water below.</p>
+
+    <div class="conversation-script" role="dialog" aria-label="Landlord-Tenant dispute script">
+        <p class="scene-direction">**(MR. HENDERSON knocks lightly and enters, glancing nervously at the ceiling stain and carrying a clipboard. CHLOE and LEO stand by the kitchen counter.)**</p>
+
+        <p><strong>HENDERSON:</strong> <span class="dialogue">Good evening, Chloe, Leo. I’m here, as requested, to review the **ongoing situation**. I’ve just been on the phone with the contractor; I’m waiting for the final quote from the specialized roofers.</span></p>
+
+        <p><strong>CHLOE:</strong> <span class="dialogue">Mr. Henderson, thank you for coming, but this is beyond "ongoing." It’s been three full weeks since we first reported the drip, and now look!</span></p>
+
+        <p class="scene-direction">**(Chloe points to the ceiling. A new crack has formed near the stain, and the bucket underneath has collected fresh water.)**</p>
+
+        <p><strong>LEO:</strong> <span class="dialogue">This isn't a small **leak** anymore. When it rains heavily, the bucket needs emptying every few hours. More critically, the water has spread, and now the **drywall** is soft to the touch. We had to move our bookshelf to prevent damage to the wood.</span></p>
+
+        <p><strong>HENDERSON:</strong> <span class="dialogue">I understand the **inconvenience**, truly. But you must appreciate the complexities. We need special permits for roof work on this heritage building, and the main roofing company is extremely busy.</span></p>
+
+        <p><strong>CHLOE:</strong> <span class="dialogue">We are worried about the quality of our living environment. The dampness is constant. My allergies have been terrible, and honestly, the apartment has a distinct smell now—a damp, musty odor. I’m concerned about **mold** developing in the walls. That is a serious **health hazard**.</span></p>
+
+        <p><strong>LEO:</strong> <span class="dialogue">We pay $1,800 a month in rent, Mr. Henderson. We fulfill our end of the **lease agreement** completely. We need to know when you will fulfill yours regarding essential maintenance. When exactly is this "soon" you keep mentioning? We need a definite, guaranteed start date, not an estimate.</span></p>
+
+        <p><strong>HENDERSON:</strong> <span class="dialogue">(Sweating slightly, checking his clipboard) Okay. The contractor is ready. They said they could potentially start the exterior roof sealing by the end of next week, Thursday or Friday.</span></p>
+
+        <p><strong>CHLOE:</strong> <span class="dialogue">No. We can't accept "potentially." We need a date that is written and agreed upon. If the roof isn't secured, the interior ceiling repair is pointless.</span></p>
+
+        <p><strong>LEO:</strong> <span class="dialogue">We are prepared to start **withholding a portion of the rent** if we do not see immediate progress or a **binding timeline**. This falls under our right to a **habitable dwelling**. We require two things today: a confirmed date for the roof work, and a schedule for the interior ceiling replacement.</span></p>
+
+        <p><strong>HENDERSON:</strong> <span class="dialogue">(Quickly pulling out his phone) Wait. Let me call them right now. I will push them. (He speaks briefly into the phone, low and urgent.) Alright. I have secured a start date for the roof repairs: **Monday, no later than 9 AM.**</span></p>
+
+        <p><strong>CHLOE:</strong> <span class="dialogue">And the interior damage? The wet carpet and ceiling?</span></p>
+
+        <p><strong>HENDERSON:</strong> <span class="dialogue">Once the roof is sealed and checked (they estimate three days of roof work), the interior team will come in immediately. I promise to send you an official email by tomorrow morning, before noon, confirming the contractor's start date and the complete project schedule.</span></p>
+
+        <p><strong>LEO:</strong> <span class="dialogue">An email by noon tomorrow, confirming a Monday morning start. That is an **acceptable agreement**. Thank you for finally **prioritizing** this.</span></p>
+
+        <p><strong>HENDERSON:</strong> <span class="dialogue">Yes. Agreed. I will get this sorted. I apologize again for the delay.</span></p>
+
+        <p class="scene-direction">**(Henderson nods, looking relieved but still hurried, and exits, pulling out his phone.)**</p>
+        <p class="scene-direction"><strong>— THE END —</strong></p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+        <ul>
+            <li><span class="vocab-word">Leak <button class="speaker-icon" onclick="speakWord('Leak')">🔊</button></span> <span class="ipa">/liːk/</span> <span class="definition">(n.) A hole or crack that allows water or gas to escape or enter.</span> <span class="example">Example: The roof has a bad leak when it rains.</span></li>
+            <li><span class="vocab-word">Drywall <button class="speaker-icon" onclick="speakWord('Drywall')">🔊</button></span> <span class="ipa">/ˈdraɪ.wɔːl/</span> <span class="definition">(n.) A material used to make the walls and ceilings of a house.</span> <span class="example">Example: The wet drywall started to crumble.</span></li>
+            <li><span class="vocab-word">Mold <button class="speaker-icon" onclick="speakWord('Mold')">🔊</button></span> <span class="ipa">/moʊld/</span> <span class="definition">(n.) A fungus that grows in damp, dark places and can be harmful.</span> <span class="example">Example: We are worried about mold because of the constant dampness.</span></li>
+            <li><span class="vocab-word">Health Hazard <button class="speaker-icon" onclick="speakWord('Health Hazard')">🔊</button></span> <span class="ipa">/helθ ˈhæz.ərd/</span> <span class="definition">(n.) Something that is dangerous to a person's health.</span> <span class="example">Example: The collapsing ceiling is a serious health hazard.</span></li>
+            <li><span class="vocab-word">Inconvenience <button class="speaker-icon" onclick="speakWord('Inconvenience')">🔊</button></span> <span class="ipa">/ˌɪnkənˈviː.ni.əns/</span> <span class="definition">(n.) Trouble or difficulty, especially regarding time.</span> <span class="example">Example: He apologized for the inconvenience the delay caused.</span></li>
+            <li><span class="vocab-word">Lease Agreement <button class="speaker-icon" onclick="speakWord('Lease Agreement')">🔊</button></span> <span class="ipa">/liːs əˈɡriː.mənt/</span> <span class="definition">(n.) The legal contract between a landlord and a tenant.</span> <span class="example">Example: Both parties must fulfill the terms of the lease agreement.</span></li>
+            <li><span class="vocab-word">Habitable Dwelling <button class="speaker-icon" onclick="speakWord('Habitable Dwelling')">🔊</button></span> <span class="ipa">/ˈhæb.ɪ.tə.bəl ˈdwel.ɪŋ/</span> <span class="definition">(n.) A place safe and suitable for a person to live in.</span> <span class="example">Example: Tenants have the right to a habitable dwelling.</span></li>
+            <li><span class="vocab-word">Withholding Rent <button class="speaker-icon" onclick="speakWord('Withholding Rent')">🔊</button></span> <span class="ipa">/wɪðˈhoʊl.dɪŋ rent/</span> <span class="definition">(v.) Refusing to pay rent until necessary repairs are completed.</span> <span class="example">Example: They decided to consider withholding rent as leverage.</span></li>
+            <li><span class="vocab-word">Prioritizing <button class="speaker-icon" onclick="speakWord('Prioritizing')">🔊</button></span> <span class="ipa">/praɪˈɔːr.ə.taɪz.ɪŋ/</span> <span class="definition">(v.) Treating something as more important than other things.</span> <span class="example">Example: Thank you for prioritizing this repair.</span></li>
+            <li><span class="vocab-word">Binding Timeline <button class="speaker-icon" onclick="speakWord('Binding Timeline')">🔊</button></span> <span class="ipa">/ˈbaɪn.dɪŋ ˈtaɪm.laɪn/</span> <span class="definition">(n.) A fixed schedule or deadline that must legally be followed.</span> <span class="example">Example: We need a binding timeline for the construction.</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+    <a href="../conversation.html">← Back to Conversations</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // Web Speech API pronunciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+            speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech Synthesis API not supported or word is empty.");
+        }
+    }
+</script>
+
+</body>
+</html>

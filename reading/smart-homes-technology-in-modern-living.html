@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Smart Homes: Technology in Modern Living</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; text-decoration: underline; outline: none; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hide for smaller screens, usually handled by a menu button */
+            .logo { flex-grow: 1; justify-content: center; }
+            h1 { font-size: 2rem; }
+        }
+
+        h1 { text-align: center; font-size: 2.5rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: left; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+        p { line-height: 1.7; margin: 0.8rem 0; text-align: justify; }
+        .content-section { background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        
+        /* Vocabulary List Styling */
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li { 
+            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 10px; 
+            padding: 12px 15px; display: flex; flex-direction: column; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .vocab-header { display: flex; align-items: center; margin-bottom: 5px; }
+        .vocabulary-list strong { color: #124076; font-size: 1.1rem; margin-right: 8px; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; transition: color 0.2s; font-size: 1.1em; }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocab-definition { font-size: 0.95rem; color: #555; }
+        .vocab-example { font-style: italic; font-size: 0.85rem; color: #777; margin-top: 5px; }
+
+        /* Comprehension Questions Styling */
+        .comprehension-questions ol { padding-left: 20px; }
+        .comprehension-questions li { margin-bottom: 1rem; }
+
+        .buttons { text-align: center; margin: 2rem auto 3rem; }
+        .buttons a { 
+            text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem; 
+            border-radius: 8px; font-weight: bold; margin: 0 0.5rem; transition: background 0.2s;
+        }
+        .buttons a:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <!-- Simple navigation for wide screens -->
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html" aria-current="page">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Smart Homes: Technology in Modern Living</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>The Connected Home</h2>
+            <p>Imagine walking into your apartment, saying two words—"Hello, home"—and watching the lights turn on, the music start playing, and the air conditioning adjust itself. This is the reality of a **smart home**. A smart home is not just a house; it’s a living space where many devices and **appliances** are connected to the internet and can communicate with each other. This is called the **Internet of Things (IoT)**. </p>
+
+            <h3>How Smart Homes Work</h3>
+            <p>At the center of most smart homes is a **hub**, usually a small speaker or device like a smartphone. This hub controls everything else. You can give commands using your voice or a simple app.</p>
+            <p>For example, a **smart thermostat** learns your schedule. It knows when you are usually at work and automatically lowers the heating to save energy. Before you return home, it raises the temperature again, so the house is always perfectly comfortable. The goal of this **automation** is to make your life easier and more **efficient**.</p>
+
+            <h3>Benefits of Smart Technology</h3>
+            <p>Smart technology brings three main benefits to modern living: convenience, security, and saving money.</p>
+
+            <p><strong>1. Convenience:</strong> Do you forget to turn off the coffee maker? A smart plug can do it for you automatically. If you’re upstairs, you don’t need to walk down to turn off a light; you can just use your voice. This level of **integration** means tasks are done quickly and without effort.</p>
+
+            <p><strong>2. Security:</strong> Many people use smart devices for safety. A **video doorbell** lets you see and speak to visitors from your phone, even if you are not home. Smart door locks can be locked or unlocked remotely using an app, meaning you never have to worry about losing your keys again.</p>
+
+            <p><strong>3. Saving Money (Efficiency):</strong> Smart technology is designed to be **energy-efficient**. When devices know exactly when you need power and when you don't, they stop wasting electricity. For example, motion sensors can turn off the lights in a room that is empty, which can lower your monthly **utility bills**.</p>
+            
+            <p>The smart home trend isn't slowing down. Soon, all homes, even small apartments, will be fully connected. Technology will help us manage our lives and our budgets better, turning simple houses into helpful, intelligent living spaces.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Key Vocabulary</h2>
+            <ul>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Smart Home</strong> <i class="fas fa-volume-up speaker-icon" data-word="Smart Home"></i>
+                    </div>
+                    <span class="vocab-definition">A house where devices are connected to the internet and controlled remotely.</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Appliances</strong> <i class="fas fa-volume-up speaker-icon" data-word="Appliances"></i>
+                    </div>
+                    <span class="vocab-definition">Devices or pieces of equipment used in your home (e.g., refrigerator, washing machine).</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Internet of Things (IoT)</strong> <i class="fas fa-volume-up speaker-icon" data-word="Internet of Things"></i>
+                    </div>
+                    <span class="vocab-definition">The network of physical objects embedded with technology to communicate.</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Hub</strong> <i class="fas fa-volume-up speaker-icon" data-word="Hub"></i>
+                    </div>
+                    <span class="vocab-definition">A central device that controls all other smart devices in the house.</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Automation</strong> <i class="fas fa-volume-up speaker-icon" data-word="Automation"></i>
+                    </div>
+                    <span class="vocab-definition">The use of technology to make a process happen without human help (e.g., lights turning on automatically).</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Efficient</strong> <i class="fas fa-volume-up speaker-icon" data-word="Efficient"></i>
+                    </div>
+                    <span class="vocab-definition">Achieving maximum productivity with minimum wasted effort or expense.</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Integration</strong> <i class="fas fa-volume-up speaker-icon" data-word="Integration"></i>
+                    </div>
+                    <span class="vocab-definition">The action of combining different parts into one complete system.</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Video Doorbell</strong> <i class="fas fa-volume-up speaker-icon" data-word="Video Doorbell"></i>
+                    </div>
+                    <span class="vocab-definition">A camera and speaker that lets you see and speak to visitors from your phone.</span>
+                </li>
+                <li>
+                    <div class="vocab-header">
+                        <strong>Utility Bills</strong> <i class="fas fa-volume-up speaker-icon" data-word="Utility Bills"></i>
+                    </div>
+                    <span class="vocab-definition">Payments for essential services like electricity, water, and gas.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section comprehension-questions">
+            <h2>Comprehension Questions</h2>
+            <ol>
+                <li>What does the article call the network of devices that are connected to the internet in a smart home?</li>
+                <li>What is the function of the "hub" in a smart home system?</li>
+                <li>Explain how a smart thermostat demonstrates the benefit of energy efficiency.</li>
+                <li>What are the three main benefits of smart technology mentioned in the article?</li>
+                <li>How does a video doorbell help improve security?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

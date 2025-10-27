@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Polite expression</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box; }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    /* Hamburger menu button */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout --- */
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container { background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.06rem; }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.55rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="CommNotes Logo" class="logo-img" />
+      <span class="site-name">CommNotes</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Five Formal Email Communication Examples</h1>
+
+<div class="content-container">
+  <p>Formal email communication requires courteous and professional language, using modal verbs and softening phrases to convey respect. Below are five scenarios with appropriate formal phrasing.</p>
+
+  <h2>1) Making a Polite Request (The Request)</h2>
+  <p>When asking for someone's time or effort, politeness is paramount. Avoid using "I need" or "Send me."</p>
+  <div class="example">
+    <strong>Formal Phrases:</strong>
+    <ul>
+      <li>I **would be grateful if you could** forward the quarterly sales figures at your earliest convenience.</li>
+      <li>**Would it be possible for you to** review the attached proposal before the end of the week?</li>
+    </ul>
+  </div>
+    <p class="note">Using "at your earliest convenience" shows respect for their schedule, and "would be grateful" softens the demand.</p>
+
+  <h2>2) Declining an Invitation (The Refusal)</h2>
+  <p>Refusing an offer or invitation must be done gently, often including a brief, non-specific reason.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Phrases for Declining">
+      <thead>
+        <tr><th>Context</th><th>Formal Refusal</th><th>Key Phrasing</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Meeting</strong></td>
+          <td>I **regret that I am unable to** attend the session due to a prior commitment.</td>
+          <td>*I regret that I am unable to...*</td>
+        </tr>
+        <tr>
+          <td><strong>New Project</strong></td>
+          <td>I am currently at capacity and must respectfully **pass on** this opportunity at this time.</td>
+          <td>*respectfully pass on...*</td>
+        </tr>
+        <tr>
+          <td><strong>Interview</strong></td>
+          <td>While I appreciate the offer, I have decided to **pursue another opportunity** that is more aligned with my current goals.</td>
+          <td>*pursue another opportunity*</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) Following Up or Reminding (The Nudge)</h2>
+  <p>A professional reminder should never sound accusatory. Use phrases that imply you are simply checking in or following up on a previous conversation.</p>
+  <ol>
+    <li>**I am writing to follow up on** the budget document sent last Friday.</li>
+    <li>**Could you please confirm** if you have had a chance to look at the notes from the meeting?</li>
+    <li>**Just a gentle reminder** that the deadline for the submission is Monday morning.</li>
+  </ol>
+  <p class="note">The best way to prompt action is to ask for a status update, not to directly demand the item itself.</p>
+
+  <h2>4) Offering an Apology (The Correction)</h2>
+  <p>When apologizing for a mistake or inconvenience, be direct, sincere, and state an action to resolve the issue.</p>
+  <div class="example">
+    <strong>Formal Phrases:</strong>
+    <ul>
+      <li>**Please accept my sincere apologies for** the error in the invoice; we have corrected and resent it immediately.</li>
+      <li>**I regret any inconvenience this may have caused.** We are taking steps to ensure this does not happen again.</li>
+    </ul>
+  </div>
+
+  <h2>5) Providing an Attachment (The Enclosure)</h2>
+  <p>Clearly state what is attached or enclosed, and tell the recipient what action is expected of them.</p>
+  <ul>
+    <li>**Attached, please find** the final report for your review.</li>
+    <li>**I have enclosed** the documents for your signature. **Kindly return them** by the end of the day.</li>
+  </ul>
+  <p class="note">Avoid phrases like "Please see attached" and opt for the more direct and formal "Attached, please find..."</p>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

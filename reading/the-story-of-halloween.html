@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: The Story of Halloween</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>The Story of Halloween</h1>
+
+  <main>
+    <div class="content-section">
+   
+      <h2>What Is Halloween?</h2>
+      <p>Every year on <strong>October 31</strong>, people in many countries celebrate <strong>Halloween</strong>. It is a time for costumes, parties, pumpkins, and fun. Children go from house to house saying “<strong>Trick or treat!</strong>” and receive candy, while adults enjoy decorating their homes and watching scary movies. But where did this holiday come from, and what do all these traditions mean?</p>
+
+      <h2>Ancient Beginnings</h2>
+      <p>Halloween’s history goes back more than 2,000 years. It began with the ancient <strong>Celtic festival of Samhain</strong> (pronounced “sow-in”) celebrated in what is now Ireland, the United Kingdom, and parts of France. The Celts believed that on the night of October 31, the line between the living and the dead became thin, and spirits could return to visit the Earth. People lit <strong>bonfires</strong> and wore <strong>costumes made of animal skins</strong> to scare away ghosts.</p>
+      <p>When the <strong>Romans</strong> conquered Celtic lands, they combined Samhain with their own festivals that honored the dead. Later, as Christianity spread across Europe, the church created <strong>All Saints’ Day</strong> on November 1 to remember saints and martyrs. The evening before became known as <strong>All Hallows’ Eve</strong>, which eventually turned into <strong>Halloween</strong>.</p>
+
+      <h2>Traditions and Symbols</h2>
+      <p>Many modern Halloween customs come from these old beliefs. For example, people used to place candles inside <strong>hollowed turnips</strong> to keep away evil spirits. When Irish immigrants came to America in the 1800s, they discovered that <strong>pumpkins</strong> were easier to carve, and thus the <strong>jack-o’-lantern</strong> was born.</p>
+      <p>The phrase “<strong>trick or treat</strong>” appeared in the United States in the early 1900s. Children would dress up in funny or scary costumes and visit neighbors’ houses, promising not to play tricks if they received a treat—usually candy or small toys.</p>
+      <p>Costumes have always been an important part of Halloween. In ancient times, people wore disguises to hide from spirits. Today, both children and adults enjoy dressing up as witches, superheroes, movie characters, or anything their imagination creates.</p>
+
+      <h2>Celebrations Around the World</h2>
+      <p>Although Halloween is most popular in the United States and Canada, other countries also have celebrations honoring the dead. In Mexico, people celebrate <strong>Día de los Muertos</strong>, or <strong>Day of the Dead</strong>, from October 31 to November 2. Families build colorful altars, decorate graves, and share food and music to remember loved ones who have passed away.</p>
+      <p>In Japan, there is a similar event called <strong>Obon</strong>, where people light lanterns to guide their ancestors’ spirits. In China, the <strong>Hungry Ghost Festival</strong> is another occasion to honor the dead. Each tradition is different, but all show a desire to connect with the past and those we have lost.</p>
+
+      <h2>Modern Halloween</h2>
+      <p>Today, Halloween is more about fun than fear. People host parties, carve pumpkins, tell ghost stories, and visit haunted houses. Stores fill with candy and costumes weeks before the holiday. For many, Halloween is a way to express creativity, share laughter, and enjoy the excitement of autumn.</p>
+      <p>Though its roots lie in ancient rituals and beliefs, Halloween has grown into a worldwide celebration of imagination, community, and a little bit of spooky fun.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>tradition</strong> <i class="fas fa-volume-up speaker-icon" data-word="tradition"></i> — A custom or way of doing things passed down over time.</li>
+        <li><strong>bonfire</strong> <i class="fas fa-volume-up speaker-icon" data-word="bonfire"></i> — A large outdoor fire used for celebration or warmth.</li>
+        <li><strong>spirit</strong> <i class="fas fa-volume-up speaker-icon" data-word="spirit"></i> — The soul of a person; a ghost.</li>
+        <li><strong>altar</strong> <i class="fas fa-volume-up speaker-icon" data-word="altar"></i> — A special table used for religious ceremonies or remembrance.</li>
+        <li><strong>lantern</strong> <i class="fas fa-volume-up speaker-icon" data-word="lantern"></i> — A light with a cover that can be carried.</li>
+        <li><strong>disguise</strong> <i class="fas fa-volume-up speaker-icon" data-word="disguise"></i> — Clothes or makeup that hide who you are.</li>
+        <li><strong>immigrant</strong> <i class="fas fa-volume-up speaker-icon" data-word="immigrant"></i> — A person who moves to live in a new country.</li>
+        <li><strong>martyr</strong> <i class="fas fa-volume-up speaker-icon" data-word="martyr"></i> — A person who dies for their beliefs.</li>
+        <li><strong>haunted</strong> <i class="fas fa-volume-up speaker-icon" data-word="haunted"></i> — Believed to be visited by ghosts.</li>
+        <li><strong>jack-o'-lantern</strong> <i class="fas fa-volume-up speaker-icon" data-word="jack o lantern"></i> — A carved pumpkin with a candle inside.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>Where did the holiday of Halloween originally come from?</li>
+        <li>How did All Hallows’ Eve become the word “Halloween”?</li>
+        <li>Why did people first put candles into hollowed vegetables?</li>
+        <li>When did “trick or treat” begin, and what does it mean?</li>
+        <li>Name two celebrations in other countries that honor the dead and describe one tradition from each.</li>
+        <li>How is modern Halloween different from its ancient beginnings?</li>
+        <li>What are some ways people celebrate Halloween today?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

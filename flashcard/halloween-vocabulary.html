@@ -113,17 +113,36 @@
 
 <script>
 const flashcards = [
-  { word: "Halloween", definition: "A holiday on October 31st when people wear costumes and celebrate with treats.", example: "We carved pumpkins for Halloween.", chinese: "万圣节", spanish: "Noche de Brujas / Halloween" },
-  { word: "pumpkin", definition: "A large orange fruit used for pies and decorations.", example: "He made a pumpkin pie.", chinese: "南瓜", spanish: "calabaza" },
-  { word: "jack-o'-lantern", definition: "A carved pumpkin with a light inside.", example: "They put a candle inside the jack-o'-lantern.", chinese: "南瓜灯", spanish: "calabaza tallada" },
-  { word: "costume", definition: "Clothing worn to look like someone or something else.", example: "Her witch costume was scary!", chinese: "化装服", spanish: "disfraz" },
-  { word: "mask", definition: "A covering for the face.", example: "He wore a monster mask.", chinese: "面具", spanish: "máscara" },
+  { word: "Halloween", definition: "A holiday on October 31st when people wear costumes, decorate, and give out candy.", example: "We carved pumpkins for Halloween this year.", chinese: "万圣节", spanish: "Noche de Brujas / Halloween" },
+  { word: "pumpkin", definition: "A large round orange fruit used for food and decoration.", example: "He baked a pumpkin pie for the party.", chinese: "南瓜", spanish: "calabaza" },
+  { word: "jack-o'-lantern", definition: "A carved pumpkin with a face and a light inside.", example: "The glowing jack-o'-lantern sat on the porch.", chinese: "南瓜灯", spanish: "calabaza tallada (linterna de calabaza)" },
+  { word: "costume", definition: "Clothes worn to look like someone or something else.", example: "Her witch costume was very creative.", chinese: "化装服 / 服装", spanish: "disfraz" },
+  { word: "mask", definition: "A covering for the face.", example: "He wore a skeleton mask to the parade.", chinese: "面具", spanish: "máscara" },
   { word: "cape", definition: "A long piece of cloth worn over the shoulders.", example: "The vampire wore a black cape.", chinese: "披风", spanish: "capa" },
-  { word: "witch", definition: "A woman who practices magic.", example: "The witch flew on her broomstick.", chinese: "女巫", spanish: "bruja" },
-  { word: "wizard", definition: "A man who uses magic.", example: "The wizard cast a spell.", chinese: "巫师", spanish: "mago" },
-  { word: "ghost", definition: "The spirit of a dead person.", example: "A ghost appeared in the old house.", chinese: "幽灵", spanish: "fantasma" },
-  { word: "vampire", definition: "A creature that drinks blood.", example: "The vampire sleeps in a coffin.", chinese: "吸血鬼", spanish: "vampiro" }
-  // (rest shortened for brevity)
+  { word: "witch", definition: "A woman who uses magic in stories and legends.", example: "The witch flew across the moon.", chinese: "女巫", spanish: "bruja" },
+  { word: "wizard", definition: "A man who uses magic in stories and legends.", example: "The old wizard brewed a potion.", chinese: "巫师 / 男巫", spanish: "mago" },
+  { word: "ghost", definition: "The spirit of a dead person in stories.", example: "We told a ghost story in the dark.", chinese: "鬼 / 幽灵", spanish: "fantasma" },
+  { word: "ghoul", definition: "An evil creature from stories that feeds on the dead.", example: "A ghoul was lurking in the graveyard.", chinese: "食尸鬼", spanish: "ghoul (espíritu necrófago)" },
+  { word: "vampire", definition: "A creature that drinks blood in horror stories.", example: "The vampire avoids sunlight.", chinese: "吸血鬼", spanish: "vampiro" },
+  { word: "werewolf", definition: "A person who turns into a wolf during a full moon in stories.", example: "The werewolf howled at midnight.", chinese: "狼人", spanish: "hombre lobo" },
+  { word: "mummy", definition: "A preserved dead body wrapped in cloth, often from ancient Egypt.", example: "The mummy came to life in the movie.", chinese: "木乃伊", spanish: "momia" },
+  { word: "skeleton", definition: "All the bones of a body; often used as a decoration.", example: "A plastic skeleton hung on the door.", chinese: "骷髅", spanish: "esqueleto" },
+  { word: "zombie", definition: "A dead body brought back to life in horror stories.", example: "Zombies walked slowly through the streets.", chinese: "僵尸", spanish: "zombi" },
+  { word: "coffin", definition: "A box where a dead person is placed for burial.", example: "In the story, the vampire slept in a coffin.", chinese: "棺材", spanish: "ataúd" },
+  { word: "tombstone", definition: "A stone that marks a grave.", example: "The tombstone had the date carved on it.", chinese: "墓碑", spanish: "lápida" },
+  { word: "haunted house", definition: "A building believed to have ghosts or scary things inside.", example: "We screamed in the haunted house.", chinese: "鬼屋", spanish: "casa embrujada" },
+  { word: "cobweb", definition: "A dusty spider web found in old places.", example: "Cobwebs covered the corners of the attic.", chinese: "蛛网 / 旧网", spanish: "telaraña" },
+  { word: "spider", definition: "An eight-legged creature that spins webs.", example: "A fake spider was on the wall.", chinese: "蜘蛛", spanish: "araña" },
+  { word: "bat", definition: "A small flying animal that is active at night.", example: "We saw a bat fly over the yard.", chinese: "蝙蝠", spanish: "murciélago" },
+  { word: "cauldron", definition: "A large pot used for boiling, often in witch stories.", example: "The witch stirred the cauldron slowly.", chinese: "大锅 / 坩埚", spanish: "caldero" },
+  { word: "broomstick", definition: "A broom; in stories, witches ride on it.", example: "She pretended to fly on a broomstick.", chinese: "扫帚（柄）", spanish: "escoba" },
+  { word: "potion", definition: "A magic liquid used in stories.", example: "The potion turned him invisible.", chinese: "魔药 / 药剂", spanish: "poción" },
+  { word: "curse", definition: "A magical spell that brings bad luck.", example: "They tried to break the curse.", chinese: "诅咒", spanish: "maldición" },
+  { word: "trick-or-treat", definition: "A Halloween activity where children ask for candy door to door.", example: "The kids went trick-or-treating after sunset.", chinese: "不给糖就捣蛋", spanish: "truco o trato" },
+  { word: "candy", definition: "Sweet food made of sugar.", example: "We sorted our Halloween candy by type.", chinese: "糖果", spanish: "dulces" },
+  { word: "lantern", definition: "A light inside a case that can be carried.", example: "He carried a lantern to light the path.", chinese: "灯笼", spanish: "farol" },
+  { word: "spooky", definition: "Strange and a little scary.", example: "The music made a spooky atmosphere.", chinese: "诡异的 / 吓人的", spanish: "espeluznante" },
+  { word: "eerie", definition: "Weird in a way that makes you feel uneasy.", example: "An eerie silence filled the hallway.", chinese: "阴森的 / 怪异的", spanish: "tenebroso / inquietante" }
 ];
 
 let index = 0;

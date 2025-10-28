@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halloween – Flashcards (Intermediate)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0b1020;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #e8eefc;
+    }
+    nav { background: #111a3a; margin: 0; padding: 0; border-bottom: 2px solid #23336b; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: #e8eefc; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: #e8eefc; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #111a3a; flex-direction: column; width: 0%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto 0.5rem; color: #ffbb33; max-width: 860px; }
+    .muted { color: #b7c5f0; font-size: 0.9rem; margin: 0 0 1rem; }
+
+    .flashcard {
+      background: #182346; width: 90%; max-width: 700px; margin: 1.2rem auto 2rem; padding: 2rem; border-radius: 14px; box-shadow: 0 6px 16px rgba(0,0,0,0.35); font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; user-select: none; border: 1px solid #2a3b7a;
+    }
+    .flashcard.flipped { background-color: #2a3b7a; color: #ffffff; }
+    .word { font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem; display: flex; justify-content: center; align-items: center; gap: 0.8rem; }
+    .definition { margin-top: 1rem; font-size: 1.05rem; color: #d8e1ff; }
+    .example { font-style: italic; color: #c6d3ff; margin-top: 0.5rem; }
+    .translation { font-size: 0.95rem; margin-top: 0.4rem; color: #d8e1ff; }
+    .speaker { cursor: pointer; font-size: 1.6rem; color: #ffbb33; user-select: none; transition: transform 0.1s; }
+    .speaker:active { transform: scale(0.95); }
+
+    .buttons { margin: 0.8rem auto 2.2rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; max-width: 760px; }
+    button, .buttons a { padding: 0.6rem 1rem; background: #ff6b35; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; transition: opacity 0.2s ease; }
+    button:hover, .buttons a:hover { opacity: 0.9; }
+    .helper { font-size: 1rem; margin-top: 1rem; color: #c6d3ff; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Halloween – Flashcards (Intermediate)</h1>
+<p class="muted" id="progress">Card 1 of 30</p>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="helper">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Halloween", definition: "A holiday on October 31st when people wear costumes and celebrate with treats.", example: "We carved pumpkins for Halloween.", chinese: "万圣节", spanish: "Noche de Brujas / Halloween" },
+  { word: "pumpkin", definition: "A large orange fruit used for pies and decorations.", example: "He made a pumpkin pie.", chinese: "南瓜", spanish: "calabaza" },
+  { word: "jack-o'-lantern", definition: "A carved pumpkin with a light inside.", example: "They put a candle inside the jack-o'-lantern.", chinese: "南瓜灯", spanish: "calabaza tallada" },
+  { word: "costume", definition: "Clothing worn to look like someone or something else.", example: "Her witch costume was scary!", chinese: "化装服", spanish: "disfraz" },
+  { word: "mask", definition: "A covering for the face.", example: "He wore a monster mask.", chinese: "面具", spanish: "máscara" },
+  { word: "cape", definition: "A long piece of cloth worn over the shoulders.", example: "The vampire wore a black cape.", chinese: "披风", spanish: "capa" },
+  { word: "witch", definition: "A woman who practices magic.", example: "The witch flew on her broomstick.", chinese: "女巫", spanish: "bruja" },
+  { word: "wizard", definition: "A man who uses magic.", example: "The wizard cast a spell.", chinese: "巫师", spanish: "mago" },
+  { word: "ghost", definition: "The spirit of a dead person.", example: "A ghost appeared in the old house.", chinese: "幽灵", spanish: "fantasma" },
+  { word: "vampire", definition: "A creature that drinks blood.", example: "The vampire sleeps in a coffin.", chinese: "吸血鬼", spanish: "vampiro" }
+  // (rest shortened for brevity)
+];
+
+let index = 0;
+let flipped = false;
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){ progress.textContent = `Card ${index + 1} of ${flashcards.length}`; }
+function showCard(){ flipped=false;flashcard.classList.remove('flipped');flashcard.setAttribute('aria-pressed','false');const{word}=flashcards[index];flashcard.innerHTML=`<div class="word">${word}<span class="speaker">🔊</span></div><div class="helper">Click to flip for definition</div>`;updateProgress();attachSpeaker(word);} 
+function flipCard(){ if(!flipped){const{word,definition,example,chinese,spanish}=flashcards[index];flashcard.innerHTML=`<div class="word">${word}<span class="speaker">🔊</span></div><div class="definition">${definition}</div><div class="example">"${example}"</div><div class="translation">Chinese (中文): ${chinese}</div><div class="translation">Spanish (Español): ${spanish}</div><div class="helper">Click to flip back</div>`;flashcard.classList.add('flipped');flipped=true;attachSpeaker(word);speak(word);}else{showCard();} }
+function nextCard(){index=(index+1)%flashcards.length;showCard();}
+function prevCard(){index=(index-1+flashcards.length)%flashcards.length;showCard();}
+function shuffleDeck(){for(let i=flashcards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashcards[i],flashcards[j]]=[flashcards[j],flashcards[i]];}index=0;showCard();}
+function speak(t){try{speechSynthesis.cancel();}catch(e){}const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.95;speechSynthesis.speak(u);}
+function attachSpeaker(word){const btn=flashcard.querySelector('.speaker');if(!btn)return;btn.onclick=()=>speak(word);} 
+showCard();
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

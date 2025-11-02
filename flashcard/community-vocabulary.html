@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community Vocabulary Flashcards </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0b1020; text-align: center; margin: 0; padding: 0; overflow-x: hidden; color: #e8eefc; }
+    nav { background: #111a3a; margin: 0; padding: 0; border-bottom: 2px solid #23336b; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: #e8eefc; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: #e8eefc; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #111a3a; flex-direction: column; width: 0%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto 0.5rem; color: #ffbb33; max-width: 860px; }
+    .muted { color: #b7c5f0; font-size: 0.9rem; margin: 0 0 1rem; }
+
+    .flashcard { background: #182346; width: 90%; max-width: 700px; margin: 1.2rem auto 2rem; padding: 2rem; border-radius: 14px; box-shadow: 0 6px 16px rgba(0,0,0,0.35); font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; user-select: none; border: 1px solid #2a3b7a; }
+    .flashcard.flipped { background-color: #2a3b7a; color: #ffffff; }
+    .word { font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem; display: flex; justify-content: center; align-items: center; gap: 0.8rem; }
+    .definition { margin-top: 1rem; font-size: 1.05rem; color: #d8e1ff; }
+    .example { font-style: italic; color: #c6d3ff; margin-top: 0.5rem; }
+    .translation { font-size: 0.95rem; margin-top: 0.5rem; color: #d8e1ff; }
+    .speaker { cursor: pointer; font-size: 1.6rem; color: #ffbb33; user-select: none; transition: transform 0.1s; }
+    .speaker:active { transform: scale(0.95); }
+
+    .buttons { margin: 0.8rem auto 2.2rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; max-width: 760px; }
+    button, .buttons a { padding: 0.6rem 1rem; background: #ff6b35; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; transition: opacity 0.2s ease; }
+    button:hover, .buttons a:hover { opacity: 0.9; }
+    .helper { font-size: 1rem; margin-top: 1rem; color: #c6d3ff; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Community – Flashcards (Intermediate‑High)</h1>
+<p class="muted" id="progress">Card 1 of 30</p>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="helper">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="shuffleBtn" aria-label="Shuffle deck">🔀 Shuffle</button>
+  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "resident", definition: "A person who lives in a particular place.", example: "Long‑time residents attended the neighborhood meeting.", chinese: "居民", spanish: "residente" },
+  { word: "citizen", definition: "A legal member of a country with rights and duties.", example: "Citizens voted in the local election.", chinese: "公民", spanish: "ciudadano/a" },
+  { word: "neighbor", definition: "A person who lives near you.", example: "My neighbor helped shovel the sidewalk.", chinese: "邻居", spanish: "vecino/a" },
+  { word: "volunteer", definition: "A person who offers to help without being paid.", example: "Volunteers sorted donations at the shelter.", chinese: "志愿者", spanish: "voluntario/a" },
+  { word: "advocate", definition: "Someone who publicly supports a cause or group.", example: "She is an advocate for disability rights.", chinese: "倡导者", spanish: "defensor/a" },
+  { word: "organizer", definition: "A person who plans and manages events or projects.", example: "Community organizers coordinated the cleanup.", chinese: "组织者", spanish: "organizador/a" },
+  { word: "participant", definition: "A person who takes part in an activity.", example: "Each participant introduced themselves.", chinese: "参与者", spanish: "participante" },
+  { word: "fundraiser", definition: "A person or event that collects money for a cause.", example: "The fundraiser exceeded its goal.", chinese: "筹款人", spanish: "recaudador/a" },
+  { word: "activist", definition: "Someone who works to create social or political change.", example: "Activists marched for cleaner air.", chinese: "活动人士", spanish: "activista" },
+  { word: "mentor", definition: "An experienced person who guides and advises others.", example: "Her mentor encouraged her to apply for the program.", chinese: "导师", spanish: "mentor/a" },
+  { word: "leader", definition: "A person who guides a group or organization.", example: "The youth leader organized weekend workshops.", chinese: "领导者", spanish: "líder" },
+  { word: "member", definition: "A person who belongs to a group.", example: "Members voted to adopt the new rules.", chinese: "成员", spanish: "miembro" },
+  { word: "supporter", definition: "Someone who approves of and helps a cause or person.", example: "Supporters signed the petition.", chinese: "支持者", spanish: "partidario/a" },
+  { word: "coordinator", definition: "A person who organizes people and activities so they work well together.", example: "The coordinator scheduled all the volunteers.", chinese: "协调员", spanish: "coordinador/a" },
+  { word: "planner", definition: "Someone who designs projects or prepares for future needs.", example: "A city planner reviewed the traffic plan.", chinese: "策划者", spanish: "planificador/a" },
+  { word: "committee", definition: "A group of people chosen to do a specific task.", example: "The safety committee meets monthly.", chinese: "委员会", spanish: "comité" },
+  { word: "council", definition: "A group that makes decisions or gives advice for a community.", example: "The youth council proposed a mural project.", chinese: "理事会 / 委员会", spanish: "consejo" },
+  { word: "democracy", definition: "A system of government where people choose leaders by voting.", example: "Town meetings reflect local democracy.", chinese: "民主", spanish: "democracia" },
+  { word: "unity", definition: "Being joined together for a common purpose.", example: "Volunteers showed unity during the crisis.", chinese: "团结", spanish: "unidad" },
+  { word: "diversity", definition: "Having many different kinds of people or ideas.", example: "The festival celebrated cultural diversity.", chinese: "多样性", spanish: "diversidad" },
+  { word: "inclusion", definition: "The practice of welcoming and valuing all people.", example: "Inclusion helps newcomers feel at home.", chinese: "包容性", spanish: "inclusión" },
+  { word: "cooperation", definition: "People working together for a shared goal.", example: "Cooperation between schools improved attendance.", chinese: "合作", spanish: "cooperación" },
+  { word: "engagement", definition: "Active interest and participation in something.", example: "Parent engagement increased after the survey.", chinese: "参与", spanish: "participación" },
+  { word: "outreach", definition: "Efforts to connect services with people who need them.", example: "Health outreach brought vaccines to seniors.", chinese: "外展", spanish: "alcance comunitario" },
+  { word: "solidarity", definition: "Support and agreement among people with a common interest.", example: "Neighbors showed solidarity after the storm.", chinese: "团结一致", spanish: "solidaridad" },
+  { word: "sustainability", definition: "Using resources in a way that protects the future.", example: "Sustainability guides the city's recycling plans.", chinese: "可持续性", spanish: "sostenibilidad" },
+  { word: "empowerment", definition: "Giving people power and confidence to act.", example: "Workshops focused on community empowerment.", chinese: "赋权", spanish: "empoderamiento" },
+  { word: "welfare", definition: "Health, happiness, and basic needs of people.", example: "Programs support the welfare of families.", chinese: "福利", spanish: "bienestar" },
+  { word: "equality", definition: "The state of being treated the same as others.", example: "They campaigned for equality in hiring.", chinese: "平等", spanish: "igualdad" },
+  { word: "belonging", definition: "The feeling of being accepted and included.", example: "Clubs help students build a sense of belonging.", chinese: "归属感", spanish: "pertenencia" }
+];
+
+let index = 0; let flipped = false;
+const flashcard = document.getElementById('flashcard');
+const progress = document.getElementById('progress');
+
+function updateProgress(){ progress.textContent = `Card ${index + 1} of ${flashcards.length}`; }
+function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function showCard() {
+  flipped = false; flashcard.classList.remove('flipped'); flashcard.setAttribute('aria-pressed','false');
+  const { word } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${capitalize(word)} <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span></div>
+    <div class="helper">Click to flip for definition</div>
+  `;
+  updateProgress(); attachSpeaker(word);
+}
+
+function flipCard(){
+  if(!flipped){
+    const { word, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">${capitalize(word)} <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span></div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese (中文): ${chinese}</div>
+      <div class="translation">Spanish (Español): ${spanish}</div>
+      <div class="helper" style="color:#e8eefc">Click to flip back</div>
+    `;
+    flashcard.classList.add('flipped'); flashcard.setAttribute('aria-pressed','true'); flipped = true; attachSpeaker(word); speak(word);
+  } else { showCard(); }
+}
+
+function nextCard(){ index = (index + 1) % flashcards.length; showCard(); }
+function prevCard(){ index = (index - 1 + flashcards.length) % flashcards.length; showCard(); }
+function shuffleDeck(){ for (let i = flashcards.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]]; } index = 0; showCard(); }
+
+function speak(text){ try{ speechSynthesis.cancel(); }catch(e){} const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.98; speechSynthesis.speak(u); }
+function attachSpeaker(word){ const btn = flashcard.querySelector('.speaker'); if(!btn) return; const handler = (e)=>{ e.preventDefault(); speak(word); }; btn.addEventListener('click', handler); btn.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ handler(e); } }); }
+
+showCard();
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) { navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', false); }
+    });
+  });
+}
+
+// Autoplay controls
+let autoplay = false; let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+
+function clearAutoplayTimeouts(){ autoplayTimeouts.forEach(t=>clearTimeout(t)); autoplayTimeouts = []; try{ speechSynthesis.cancel(); }catch(e){} }
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+function pronounce(text){ return new Promise(resolve=>{ try{ speechSynthesis.cancel(); }catch(e){} const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.98; u.onend=resolve; speechSynthesis.speak(u); }); }
+
+async function autoplaySequence(){
+  while(autoplay){
+    showCard(); await sleep(450); flipCard(); await sleep(280);
+    await pronounce(flashcards[index].word); await sleep(250);
+    await pronounce(flashcards[index].word); await sleep(400);
+    await pronounce(flashcards[index].example); await sleep(350);
+    nextCard();
+  }
+}
+
+function stopAutoplayOnUserAction(){ if(autoplay){ autoplay = false; autoplayBtn.textContent='▶ Autoplay Off'; autoplayBtn.setAttribute('aria-pressed','false'); clearAutoplayTimeouts(); } }
+
+autoplayBtn.addEventListener('click', ()=>{ autoplay = !autoplay; if(autoplay){ autoplayBtn.textContent='⏸ Autoplay On'; autoplayBtn.setAttribute('aria-pressed','true'); autoplaySequence(); } else { autoplayBtn.textContent='▶ Autoplay Off'; autoplayBtn.setAttribute('aria-pressed','false'); clearAutoplayTimeouts(); } });
+shuffleBtn.addEventListener('click', ()=>{ stopAutoplayOnUserAction(); shuffleDeck(); });
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
+const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
+if(prevBtn && nextBtn){ prevBtn.addEventListener('click', stopAutoplayOnUserAction); nextBtn.addEventListener('click', stopAutoplayOnUserAction); }
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: Understanding Feminism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Understanding Feminism</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> This ~500-word reading is written for intermediate ESL students. Use the vocabulary list and questions to deepen understanding.
+      </div>
+
+      <h2>What Is Feminism?</h2>
+      <p>The word <strong>feminism</strong> often appears in news, books, and conversations. At its heart, feminism is the belief that <strong>men and women should have equal rights and opportunities</strong> in education, work, family, and society. It is not about one gender being better than another. It is about <strong>fairness, respect, and equality</strong>.</p>
+
+      <h2>A Brief History</h2>
+      <p>In the <strong>1800s and early 1900s</strong>, many women around the world began to demand the right to <strong>vote</strong> and to take part in government. Known as <strong>suffragists</strong> or <strong>suffragettes</strong>, they organized marches and gave speeches. This period is called the <strong>first wave of feminism</strong> and focused on voting and legal rights.</p>
+      <p>The <strong>second wave</strong> in the <strong>1960s and 1970s</strong> pushed for social and economic equality: <strong>equal pay</strong>, access to education and jobs, and control over their own bodies. Activists like <strong>Gloria Steinem</strong> helped raise awareness about gender roles and discrimination.</p>
+      <p>The <strong>third wave</strong>, starting in the <strong>1990s</strong> and continuing today, includes people of many backgrounds and focuses on <strong>diversity</strong>. It recognizes that not all women experience inequality in the same way, and it connects gender with issues of race, class, and identity.</p>
+
+      <h2>What Feminism Stands For</h2>
+      <p>Feminism supports <strong>equal opportunities</strong> for everyone. It challenges stereotypes—for example, that women must care for children or that men should never show emotion. It supports safe homes and workplaces, education for girls, and respect in public life.</p>
+
+      <h2>Feminism Today</h2>
+      <p>Feminism is a global movement. In some places, girls still have less access to school or are expected to marry very young. Feminists work to change these situations through <strong>education</strong>, <strong>law</strong>, and <strong>activism</strong>. Feminism also benefits men by encouraging a society where everyone can express feelings, share childcare, and choose any career.</p>
+
+      <h2>Why It Matters</h2>
+      <p>Gender equality helps communities grow stronger and fairer. When women and men have the same chances to learn, lead, and create, everyone benefits. In the end, feminism is a movement for <strong>justice, freedom, and equality</strong> for all people.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>feminism</strong> <i class="fas fa-volume-up speaker-icon" data-word="feminism"></i> — The belief in equal rights and opportunities for all genders.</li>
+        <li><strong>equality</strong> <i class="fas fa-volume-up speaker-icon" data-word="equality"></i> — Being treated the same in rights and chances.</li>
+        <li><strong>suffragist</strong> <i class="fas fa-volume-up speaker-icon" data-word="suffragist"></i> — A person who worked for the right to vote.</li>
+        <li><strong>discrimination</strong> <i class="fas fa-volume-up speaker-icon" data-word="discrimination"></i> — Unfair treatment because of who someone is.</li>
+        <li><strong>stereotype</strong> <i class="fas fa-volume-up speaker-icon" data-word="stereotype"></i> — A simple, fixed idea about a group of people.</li>
+        <li><strong>equal pay</strong> <i class="fas fa-volume-up speaker-icon" data-word="equal pay"></i> — The same salary for the same work.</li>
+        <li><strong>activism</strong> <i class="fas fa-volume-up speaker-icon" data-word="activism"></i> — Actions like protests or campaigns to create change.</li>
+        <li><strong>diversity</strong> <i class="fas fa-volume-up speaker-icon" data-word="diversity"></i> — Having many different kinds of people and ideas.</li>
+        <li><strong>gender roles</strong> <i class="fas fa-volume-up speaker-icon" data-word="gender roles"></i> — Social expectations about how men and women should act.</li>
+        <li><strong>movement</strong> <i class="fas fa-volume-up speaker-icon" data-word="movement"></i> — A group of people working together for change.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What is the main idea of feminism?</li>
+        <li>What goals did the first wave of feminism focus on?</li>
+        <li>Which new issues became important during the second wave?</li>
+        <li>How does the third wave view diversity and identity?</li>
+        <li>Give two examples of stereotypes that feminism challenges.</li>
+        <li>How can feminism benefit men as well as women?</li>
+        <li>Why does gender equality help communities?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

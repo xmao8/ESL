@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adverbial Clauses – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; color: #333; }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box; }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .content-container { background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.06rem; }
+    .content-container h2 { color: #3498db; margin: 1.4rem 0 0.8rem; font-size: 1.45rem; }
+    .content-container h3 { color: #124076; margin: 1.2rem 0 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 6px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    pre.timeline { background: #f7fafc; border-left: 4px solid #3498db; padding: 1rem; overflow-x: auto; border-radius: 6px; font-family: Consolas, Monaco, monospace; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Adverbial Clauses</h1>
+
+<div class="content-container">
+  <p>An <strong>adverbial clause</strong> is a <strong>dependent clause</strong> (subject + verb) that functions like an <strong>adverb</strong>. It tells us <strong>when, where, why, how, with what result, or under what condition</strong> an action happens. It begins with a <strong>subordinating conjunction</strong> (e.g., <em>because, although, if, when, while, since, before, after, so that</em>).</p>
+
+  <h2>1) Structure</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Adverbial clause structure">
+      <thead><tr><th>Pattern</th><th>Example</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Subordinating conjunction + subject + verb</strong></td>
+          <td>I went home <strong>because I was tired</strong>.</td>
+          <td>Reason (why)</td>
+        </tr>
+        <tr>
+          <td><strong>Adverbial clause</strong> + comma + <strong>main clause</strong></td>
+          <td><strong>When the movie ended</strong>, we left.</td>
+          <td>Time (when)</td>
+        </tr>
+        <tr>
+          <td><strong>Main clause + adverbial clause</strong></td>
+          <td>We left <strong>when the movie ended</strong>.</td>
+          <td>Time (when)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) Types of Adverbial Clauses</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Types of adverbial clauses">
+      <thead><tr><th>Function</th><th>Common Conjunctions</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Time</strong></td><td>when, while, before, after, until, since, as soon as</td><td>We’ll start <strong>when everyone arrives</strong>.</td></tr>
+        <tr><td><strong>Reason / Cause</strong></td><td>because, since, as</td><td>He stayed home <strong>because he was sick</strong>.</td></tr>
+        <tr><td><strong>Condition</strong></td><td>if, unless, provided (that), as long as</td><td>You can borrow my car <strong>if you drive carefully</strong>.</td></tr>
+        <tr><td><strong>Contrast / Concession</strong></td><td>although, even though, though, whereas, while</td><td><strong>Although it was raining</strong>, we went hiking.</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>so that, in order that</td><td>She whispered <strong>so that</strong> she wouldn’t wake the baby.</td></tr>
+        <tr><td><strong>Result</strong></td><td>so ... that; such ... that</td><td>It was <strong>so cold that</strong> the lake froze.</td></tr>
+        <tr><td><strong>Place</strong></td><td>where, wherever</td><td>Sit <strong>wherever you like</strong>.</td></tr>
+        <tr><td><strong>Manner</strong></td><td>as, as if, as though</td><td>He spoke <strong>as if</strong> he knew everything.</td></tr>
+        <tr><td><strong>Comparison</strong></td><td>than; as ... as</td><td>She runs faster <strong>than I do</strong>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) Word Order & Punctuation</h2>
+  <ul>
+    <li>If the <strong>adverbial clause comes first</strong>, use a comma: <em><strong>When the sun set</strong>, we lit the candles.</em></li>
+    <li>If the <strong>main clause comes first</strong>, usually <strong>no comma</strong>: <em>We lit the candles <strong>when the sun set</strong>.</em></li>
+    <li>The subordinating conjunction already connects the ideas—don’t add another connector like <em>and</em> or <em>but</em>.</li>
+    <li>A clause must have a <strong>subject</strong> and a <strong>verb</strong>.</li>
+  </ul>
+
+  <h2>4) Reduced Adverbial Clauses (Advanced)</h2>
+  <p>When both clauses share the same subject, you can often reduce the adverbial clause by dropping the subject and a form of <em>be</em>, or by using an <em>-ing</em> phrase.</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Reduced adverbial clauses">
+      <thead><tr><th>Full Clause</th><th>Reduced Clause</th></tr></thead>
+      <tbody>
+        <tr><td><strong>While she was walking</strong> to school, she met her friend.</td><td><strong>While walking</strong> to school, she met her friend.</td></tr>
+        <tr><td><strong>After he finished</strong> dinner, he watched TV.</td><td><strong>After finishing</strong> dinner, he watched TV.</td></tr>
+        <tr><td><strong>When you are driving</strong>, be careful.</td><td><strong>When driving</strong>, be careful.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Only reduce the clause when the <strong>subject is the same</strong> in both parts of the sentence.</p>
+
+  <h2>5) Common Errors</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common errors with adverbial clauses">
+      <thead><tr><th>❌ Wrong</th><th>✅ Correct</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>He didn’t go <em>because was tired</em>.</td><td>He didn’t go <strong>because he was tired</strong>.</td><td>Clauses need a subject and a verb.</td></tr>
+        <tr><td><strong>Although</strong> it was late, <strong>but</strong> we stayed.</td><td><strong>Although</strong> it was late, we stayed.</td><td>Don’t use another connector with a subordinating conjunction.</td></tr>
+        <tr><td>When <em>finish</em> work, I’ll call you.</td><td><strong>When I finish</strong> work, I’ll call you.</td><td>Add the subject; use the correct verb form.</td></tr>
+        <tr><td><em>Because of he was tired</em>, he slept early.</td><td><strong>Because</strong> he was tired, he slept early.</td><td><em>Because of</em> + noun; <em>because</em> + clause.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>6) Summary Chart</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Summary chart">
+      <thead><tr><th>Function</th><th>Example</th><th>Position</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Time</strong></td><td><strong>After she arrived</strong>, we had dinner.</td><td>Beginning or end</td></tr>
+        <tr><td><strong>Reason</strong></td><td>We stayed home <strong>because it rained</strong>.</td><td>Beginning or end</td></tr>
+        <tr><td><strong>Condition</strong></td><td><strong>If it snows</strong>, school will close.</td><td>Beginning or end</td></tr>
+        <tr><td><strong>Contrast</strong></td><td><strong>Although he’s young</strong>, he’s very wise.</td><td>Beginning or end</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>She spoke quietly <strong>so that</strong> no one would hear.</td><td>Beginning or end</td></tr>
+        <tr><td><strong>Place</strong></td><td>Sit <strong>where you can see</strong>.</td><td>End</td></tr>
+        <tr><td><strong>Manner</strong></td><td>He talks <strong>as if</strong> he knows everything.</td><td>End</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="buttons" style="margin-top: -0.5rem; margin-bottom: 2.5rem; display:flex; justify-content:center; gap:1rem;">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

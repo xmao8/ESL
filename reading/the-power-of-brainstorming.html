@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: The Power of Brainstorming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>The Power of Brainstorming</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        <strong>For learners:</strong> This ~500-word reading is written for intermediate ESL students. Use the vocabulary list and questions to deepen understanding.
+      </div>
+
+      <h2>What Is Brainstorming?</h2>
+      <p>Have you ever sat in class or at work trying to come up with new ideas and found your mind completely blank? This is where <strong>brainstorming</strong> can help. Brainstorming is a method of thinking creatively to generate many ideas in a short time. It can be used for writing, solving problems, planning projects, or making decisions.</p>
+      <p>Brainstorming means collecting as many ideas as possible without worrying about whether they are good or bad. The goal is to let your imagination flow freely. The word “brainstorm” comes from “brain,” meaning the mind, and “storm,” meaning a sudden and powerful burst of activity. So, a brainstorming session is like a storm of ideas inside your head!</p>
+      <p>This technique was first made popular by an American advertising executive named <strong>Alex Osborn</strong> in the 1940s. He believed that creativity increased when people shared ideas in a relaxed, open environment. His rule was simple: <strong>“Quantity over quality.”</strong> In other words, the more ideas you have, the better the chance of finding a great one later.</p>
+
+      <h2>How to Brainstorm</h2>
+      <p>Brainstorming can be done <strong>alone or in groups</strong>. Here are a few easy steps to follow:</p>
+      <ul>
+        <li><strong>Choose a topic or problem.</strong> Write it clearly at the top of your paper or board.</li>
+        <li><strong>Set a time limit.</strong> For example, give yourself 10 or 15 minutes to come up with as many ideas as possible.</li>
+        <li><strong>Write down everything that comes to mind.</strong> Don’t stop to judge or edit. Even “crazy” ideas can lead to useful ones.</li>
+        <li><strong>Combine and expand.</strong> After the time is up, review the list. You may find that two ideas can be connected or improved.</li>
+        <li><strong>Select the best ideas.</strong> Finally, choose a few that seem most practical or interesting and develop them further.</li>
+      </ul>
+
+      <h2>Tools and Techniques</h2>
+      <p>Many people use visual tools like <strong>mind maps</strong> or <strong>lists</strong>. In a mind map, you start with one central word or idea and draw lines to related thoughts, creating a web of connections. Others prefer sticky notes or digital apps, which make it easy to move ideas around.</p>
+      <p>There are also fun variations of brainstorming, such as <strong>word association</strong>, where you say or write the first word that comes to mind, or <strong>brainwriting</strong>, where everyone writes down ideas quietly and then shares them.</p>
+
+      <h2>Why Brainstorming Works</h2>
+      <p>Brainstorming is powerful because it helps people think creatively and overcome fear of mistakes. In group brainstorming, everyone’s ideas are welcome, which encourages cooperation and confidence. It also helps people look at a problem from different angles. Sometimes, the best solutions appear when you least expect them!</p>
+
+      <h2>In Daily Life</h2>
+      <p>Brainstorming isn’t only for work or school—it can help in everyday life. You can use it to plan a party, choose a gift, or even decide what to cook for dinner. Whenever you face a question or challenge, brainstorming can open your mind to new possibilities.</p>
+      <p>In the end, brainstorming is not just about thinking—it’s about <strong>creating, sharing, and exploring</strong>. The next time you need a good idea, gather your thoughts, grab a pen, and let the storm begin!</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>brainstorming</strong> <i class="fas fa-volume-up speaker-icon" data-word="brainstorming"></i> — A method to create many ideas quickly.</li>
+        <li><strong>creativity</strong> <i class="fas fa-volume-up speaker-icon" data-word="creativity"></i> — The ability to think of new and original ideas.</li>
+        <li><strong>quantity</strong> <i class="fas fa-volume-up speaker-icon" data-word="quantity"></i> — How many of something there are.</li>
+        <li><strong>imagination</strong> <i class="fas fa-volume-up speaker-icon" data-word="imagination"></i> — The power of the mind to form new ideas.</li>
+        <li><strong>mind map</strong> <i class="fas fa-volume-up speaker-icon" data-word="mind map"></i> — A diagram that connects ideas around one main topic.</li>
+        <li><strong>word association</strong> <i class="fas fa-volume-up speaker-icon" data-word="word association"></i> — Saying the first word that comes to mind.</li>
+        <li><strong>brainwriting</strong> <i class="fas fa-volume-up speaker-icon" data-word="brainwriting"></i> — Quietly writing ideas before sharing them.</li>
+        <li><strong>edit</strong> <i class="fas fa-volume-up speaker-icon" data-word="edit"></i> — To change or correct writing or ideas.</li>
+        <li><strong>variation</strong> <i class="fas fa-volume-up speaker-icon" data-word="variation"></i> — A different form or version of something.</li>
+        <li><strong>practical</strong> <i class="fas fa-volume-up speaker-icon" data-word="practical"></i> — Useful and possible to do.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What is the main goal of brainstorming?</li>
+        <li>Who helped make brainstorming popular, and when?</li>
+        <li>Why does the rule “quantity over quality” matter during brainstorming?</li>
+        <li>Name two simple steps you should follow in a brainstorming session.</li>
+        <li>What are mind maps and brainwriting?</li>
+        <li>Why can group brainstorming be helpful?</li>
+        <li>Give one example of how you could use brainstorming in daily life.</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          if (!word) return;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

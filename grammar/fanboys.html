@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FANBOYS – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    /* Hamburger menu button */
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.55rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    pre.timeline { background: #f7fafc; border-left: 4px solid #3498db; padding: 1rem; overflow-x: auto; border-radius: 6px; font-family: Consolas, Monaco, monospace; }
+
+    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+    .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>FANBOYS: Coordinating Conjunctions</h1>
+
+<div class="content-container">
+  <p><strong>FANBOYS</strong> is a mnemonic for the seven <strong>coordinating conjunctions</strong> in English:
+    <strong>F</strong>or, <strong>A</strong>nd, <strong>N</strong>or, <strong>B</strong>ut, <strong>O</strong>r, <strong>Y</strong>et, <strong>S</strong>o.
+    We use them to <strong>join words, phrases, or independent clauses</strong> that are equal in grammar and importance.</p>
+
+  <h2>Quick Overview</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="FANBOYS overview">
+      <thead>
+        <tr><th>Conjunction</th><th>Core Meaning</th><th>Common Use</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>for</strong></td><td>reason (similar to “because”)</td><td>formal/written</td><td>I took an umbrella, <strong>for</strong> it looked like rain.</td></tr>
+        <tr><td><strong>and</strong></td><td>addition</td><td>join similar ideas</td><td>She cooked <strong>and</strong> I cleaned.</td></tr>
+        <tr><td><strong>nor</strong></td><td>additional negative option</td><td>used after a negative; subject–aux inversion</td><td>I don’t like tea, <strong>nor</strong> do I enjoy coffee.</td></tr>
+        <tr><td><strong>but</strong></td><td>contrast / exception</td><td>show difference</td><td>He is young, <strong>but</strong> very experienced.</td></tr>
+        <tr><td><strong>or</strong></td><td>choice / alternative</td><td>offer options</td><td>Would you like rice <strong>or</strong> noodles?</td></tr>
+        <tr><td><strong>yet</strong></td><td>unexpected contrast</td><td>like “but,” more surprising</td><td>The task was hard, <strong>yet</strong> they finished early.</td></tr>
+        <tr><td><strong>so</strong></td><td>result / consequence</td><td>cause → effect</td><td>It was late, <strong>so</strong> we left.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>1) How FANBOYS Connect</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Ways FANBOYS connect">
+      <thead><tr><th>Level</th><th>Structure</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Words</td>
+          <td>item <strong>FANBOYS</strong> item</td>
+          <td>We need <strong>pens and paper</strong>.</td>
+        </tr>
+        <tr>
+          <td>Phrases</td>
+          <td>phrase <strong>FANBOYS</strong> phrase</td>
+          <td>She works <strong>in the city</strong> <strong>but</strong> <strong>from home on Fridays</strong>.</td>
+        </tr>
+        <tr>
+          <td>Independent Clauses</td>
+          <td>clause, <strong>FANBOYS</strong> clause</td>
+          <td><strong>It started to rain</strong>, <strong>so</strong> <strong>we went inside</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) Comma Rule with FANBOYS</h2>
+  <p>When a FANBOYS word joins <strong>two independent clauses</strong> (two complete sentences), use a <strong>comma</strong> before it.</p>
+  <div class="example">
+    I finished my report, <strong>and</strong> I sent it to my manager.
+  </div>
+  <p><strong>No comma</strong> is needed when joining single words or short phrases.</p>
+  <div class="example">
+    We bought <strong>apples and oranges</strong>.  ✅ &nbsp;&nbsp;|&nbsp;&nbsp; We bought apples, and oranges. ❌
+  </div>
+
+  <h2>3) Notes on Each Conjunction</h2>
+  <h3>A) <strong>for</strong> = reason (formal)</h3>
+  <p>Often replaces “because” in writing; avoid at the start of a sentence in formal style.</p>
+  <div class="example">The streets were icy, <strong>for</strong> the temperature had dropped overnight.</div>
+
+  <h3>B) <strong>and</strong> = addition</h3>
+  <p>Use for sequencing and emphasis. Repetition (“polysyndeton”) is stylistic: <em>We laughed <strong>and</strong> danced <strong>and</strong> sang.</em></p>
+
+  <h3>C) <strong>nor</strong> = additional negative</h3>
+  <p>After a negative clause, <strong>nor</strong> uses inversion: <em>nor + auxiliary + subject</em>.</p>
+  <div class="example">She didn’t text, <strong>nor</strong> did she call.</div>
+
+  <h3>D) <strong>but</strong> vs <strong>yet</strong></h3>
+  <p><strong>but</strong> marks simple contrast; <strong>yet</strong> adds surprise or contradiction.</p>
+  <div class="example">He was tired, <strong>yet</strong> he kept running. (more surprising than “but”)</div>
+
+  <h3>E) <strong>or</strong> = choice</h3>
+  <p>Use for alternatives and conditions: <em>Hurry up, <strong>or</strong> we’ll miss the bus.</em> (implied result if not)</p>
+
+  <h3>F) <strong>so</strong> = result</h3>
+  <p>Shows consequence. In very formal writing, a semicolon + conjunctive adverb also works: <em>It was late; therefore, we left.</em></p>
+
+  <h2>4) Avoiding Run-ons & Comma Splices</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Run-on and comma splice fixes">
+      <thead><tr><th>Problem</th><th>Fix with FANBOYS</th><th>Other Fixes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Run-on: <em>I was hungry I made pasta.</em></td>
+          <td><strong>I was hungry, so</strong> I made pasta.</td>
+          <td>Use a period: <em>I was hungry. I made pasta.</em></td>
+        </tr>
+        <tr>
+          <td>Comma splice: <em>I was hungry, I made pasta.</em></td>
+          <td><strong>I was hungry, so</strong> I made pasta.</td>
+          <td>Use semicolon: <em>I was hungry; I made pasta.</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>5) Parallel Structure with FANBOYS</h2>
+  <p>Items joined by FANBOYS should be grammatically <strong>parallel</strong> (same form).</p>
+  <div class="example">
+    ✅ She likes <strong>hiking</strong> and <strong>swimming</strong>. <br>
+    ❌ She likes <em>to hike</em> and <strong>swimming</strong>.
+  </div>
+
+  <h2>6) Starting a Sentence with FANBOYS?</h2>
+  <p>In modern style, you <em>may</em> begin a sentence with <strong>And/But/So</strong> for emphasis or flow—just don’t overuse it.</p>
+  <div class="example">
+    <strong>But</strong> we didn’t give up. <br>
+    <strong>So</strong> we tried a different approach.
+  </div>
+
+  <h2>7) Common Mistakes</h2>
+  <ul>
+    <li>Comma splice: ❌ <em>It rained, we stayed inside.</em> → ✅ <strong>It rained, so</strong> we stayed inside.</li>
+    <li>Missing inversion with <strong>nor</strong>: ❌ <em>I don’t like tea, nor I like coffee.</em> → ✅ I don’t like tea, <strong>nor do</strong> I like coffee.</li>
+    <li>Unparallel items: ❌ <em>He is smart and a good athlete.</em> (mixing adjective + noun phrase) → ✅ <strong>He is smart and athletic.</strong></li>
+    <li>Comma before a single verb phrase: ❌ <em>We packed, and left.</em> → ✅ We packed <strong>and</strong> left.</li>
+  </ul>
+
+  <h2>8) Forms at a Glance</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Forms at a glance">
+      <thead><tr><th>Function</th><th>Natural Choice</th><th>Comma?</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Add ideas</td><td><strong>and</strong></td><td>Only with two clauses</td><td>She studied, <strong>and</strong> she passed.</td></tr>
+        <tr><td>Contrast</td><td><strong>but / yet</strong></td><td>With two clauses</td><td>It was late, <strong>yet</strong> they stayed.</td></tr>
+        <tr><td>Choice / alternative</td><td><strong>or</strong></td><td>With two clauses</td><td>Leave now, <strong>or</strong> miss the train.</td></tr>
+        <tr><td>Result</td><td><strong>so</strong></td><td>With two clauses</td><td>It rained, <strong>so</strong> we canceled.</td></tr>
+        <tr><td>Reason (formal)</td><td><strong>for</strong></td><td>With two clauses</td><td>We hurried, <strong>for</strong> the show had begun.</td></tr>
+        <tr><td>Extra negative</td><td><strong>nor</strong></td><td>With two clauses + inversion</td><td>She didn’t speak, <strong>nor did</strong> she smile.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>9) Mini-Timelines (Flow of Ideas)</h2>
+  <pre class="timeline" aria-label="Addition flow">
+Addition: idea A — <strong>and</strong> — idea B → smoother, longer point
+Example: He explained the problem, and he offered a solution.
+  </pre>
+  <pre class="timeline" aria-label="Cause and result flow">
+Cause → Result: reason — <strong>so</strong> — effect
+Example: The roads were flooded, so school was canceled.
+  </pre>
+
+  <h2>10) Quick Practice Prompts</h2>
+  <ol>
+    <li>Combine the sentences with a suitable FANBOYS word: <em>It’s cold outside. We should wear coats.</em></li>
+    <li>Fix the comma splice: <em>I woke up late, I missed the bus.</em></li>
+    <li>Write one sentence with <strong>nor</strong> (remember inversion).</li>
+    <li>Write two parallel items joined by <strong>and</strong> (same grammatical form).</li>
+    <li>Start a sentence with <strong>But</strong> for emphasis.</li>
+  </ol>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

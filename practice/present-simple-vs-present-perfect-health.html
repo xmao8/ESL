@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Present Simple vs. Present Perfect · Health Practice · ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Base */
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;text-align:center;margin:0;color:#333}
+    nav{background:#124076}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none}
+    .nav-links a:hover{color:#ffbb33}
+    h1{margin:2rem auto 1rem;color:#2c3e50}
+    .content-container{background:#fff;width:90%;max-width:860px;margin:2rem auto;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.65}
+    p.hint{background:#f8fbff;border-left:4px solid #3498db;padding:.8rem 1rem;border-radius:8px}
+    .bank{background:#e8f5e9;border-left:4px solid #27ae60;padding:.6rem 1rem;border-radius:8px;margin:.8rem 0;font-weight:700}
+    ol{padding-left:20px}
+    li{margin-bottom:1rem}
+    .blank{display:inline-block;min-width:16ch;max-width:28ch;padding:.28rem .4rem;border:1px solid #cfd8dc;border-radius:6px;font-size:1rem;margin:0 .25rem;vertical-align:baseline}
+    .blank.correct{border-color:#27ae60}
+    .blank.incorrect{border-color:#c0392b}
+    .inline-feedback{margin-left:.5rem;font-style:italic;display:none}
+    .inline-feedback.correct{color:#27ae60;display:inline}
+    .inline-feedback.incorrect{color:#c0392b;display:inline}
+    .buttons{display:flex;justify-content:center;gap:1rem;margin:2rem 0}
+    button,.buttons a{padding:.6rem 1.2rem;background:#3498db;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none}
+    button:hover,.buttons a:hover{background:#2980b9}
+    .submit-button{background:#4caf50}
+    .submit-button:hover{background:#45a049}
+    .show-answers{background:#f44336}
+    .show-answers:hover{background:#d32f2f}
+    .reset-button{background:#7f8c8d}
+    .reset-button:hover{background:#707b7c}
+    .answers-section{display:none;margin-top:2rem;border-top:2px solid #ccc;padding-top:1rem}
+    .note{font-size:.95rem;color:#555}
+    @media print{
+      nav,.buttons{display:none!important}
+      body{background:#fff}
+      .content-container{box-shadow:none;border:1px solid #ddd}
+      .blank{min-width:18ch}
+    }
+  </style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Present Simple vs. Present Perfect — Health (Fill-in)</h1>
+<div class="content-container">
+  <p class="hint"><strong>Instructions:</strong> Complete each sentence with the correct verb phrase in either the <strong>Present Simple</strong> or the <strong>Present Perfect</strong>. Watch for time clues like <em>usually, always, every…</em> (Present Simple) and <em>since, for, already, yet, ever, never</em> (Present Perfect). Write the whole verb phrase in the blank.</p>
+
+  <ol id="items"></ol>
+
+  <p class="note"><strong>Tip:</strong> Use <em>have/has + past participle</em> for experiences or time periods that continue to now (e.g., “I <em>have taken</em> vitamins since March”). Use the base/-s form for routines and facts (e.g., “She <em>drinks</em> water every morning”).</p>
+
+  <div class="buttons">
+    <button id="checkBtn" class="submit-button">Submit Answers</button>
+    <button id="toggleBtn" class="show-answers" style="display:none;">Show Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+
+  <div id="results" class="answers-section" aria-live="polite">
+    <h3>Your Results</h3>
+    <p>You got <span id="score">0</span> out of <span id="total">0</span> correct.</p>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+// ===== Utilities =====
+const norm = s => (s||'')
+  .toLowerCase()
+  .replace(/[.,!?;:]/g,'')
+  .replace(/’/g,"'")
+  .replace(/['"]/g,'')    // remove straight & curly quotes for contraction tolerance
+  .replace(/\s+/g,' ')
+  .trim();
+
+// ===== Items (20) =====
+// Each item: text with {v} placeholder for the user input.
+// opts: array of accepted answers (strings). First entry is the "key" shown in feedback.
+const DATA = [
+  { text: "I usually {v} (eat) breakfast at 7 a.m.", opts: ["eat"] },
+  { text: "She {v} (not/exercise) for two weeks because she was sick.", opts: ["has not exercised","hasn't exercised"] },
+  { text: "My doctor {v} (recommend) a healthy diet with more vegetables.", opts: ["recommends"] },
+  { text: "We {v} (go) to the gym every Monday and Wednesday.", opts: ["go"] },
+  { text: "He {v} (lose) five kilograms since January.", opts: ["has lost"] },
+  { text: "Many people {v} (not/sleep) enough these days.", opts: ["do not sleep","dont sleep","don't sleep"] },
+  { text: "The nurse {v} (check) my blood pressure every morning.", opts: ["checks"] },
+  { text: "I {v} (visit) the dentist twice this year.", opts: ["have visited","ive visited","i have visited"] },
+  { text: "She always {v} (drink) a glass of water before bed.", opts: ["drinks"] },
+  { text: "They {v} (not/catch) a cold all winter.", opts: ["have not caught","havent caught","haven't caught"] },
+  { text: "My mother {v} (take) yoga classes for the last three months.", opts: ["has taken","has been taking"] },
+  { text: "He usually {v} (walk) to work instead of driving.", opts: ["walks"] },
+  { text: "I {v} (never/try) acupuncture before.", opts: ["have never tried"] },
+  { text: "The doctor {v} (see) ten patients today.", opts: ["has seen"] },
+  { text: "We {v} (eat) a lot of fruit and vegetables in our family.", opts: ["eat"] },
+  { text: "She {v} (not/feel) well since last night.", opts: ["has not felt","hasnt felt","hasn't felt"] },
+  { text: "I {v} (stretch) every morning before I start my day.", opts: ["stretch"] },
+  { text: "They {v} (already/finish) their health check-up.", opts: ["have already finished","have finished","already have finished","have finished already"] },
+  { text: "My friend {v} (work) as a nurse at the local hospital.", opts: ["works"] },
+  { text: "I {v} (take) vitamins every day for better immunity.", opts: ["take"] }
+];
+
+// Render items
+const list = document.getElementById('items');
+DATA.forEach((row, idx) => {
+  const li = document.createElement('li');
+  const input = `<input type="text" class="blank" id="v${idx+1}" aria-label="Verb phrase for item ${idx+1}" autocomplete="off" placeholder="type the full verb phrase">`;
+  li.innerHTML = row.text.replace('{v}', input) + ` <span id="fb${idx+1}" class="inline-feedback"></span>`;
+  list.appendChild(li);
+});
+
+document.getElementById('total').textContent = DATA.length;
+
+// Check answers
+function check(){
+  let correct = 0;
+  DATA.forEach((row, idx) => {
+    const el = document.getElementById('v'+(idx+1));
+    const fb = document.getElementById('fb'+(idx+1));
+    const val = norm(el.value);
+    const ok = row.opts.map(norm).includes(val);
+    el.classList.remove('correct','incorrect');
+    el.classList.add(ok ? 'correct' : 'incorrect');
+    fb.className = 'inline-feedback ' + (ok ? 'correct' : 'incorrect');
+    fb.textContent = ok ? '✓' : `✗ (e.g., ${row.opts[0]})`;
+    fb.style.display = 'inline';
+    if (ok) correct++;
+  });
+  document.getElementById('score').textContent = correct;
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('toggleBtn').style.display = 'inline-block';
+}
+
+// Show/Hide inline feedback
+function toggle(){
+  const btn = document.getElementById('toggleBtn');
+  const showing = btn.textContent === 'Hide Answers';
+  document.querySelectorAll('.inline-feedback').forEach(el => el.style.display = showing ? 'none' : 'inline');
+  btn.textContent = showing ? 'Show Answers' : 'Hide Answers';
+}
+
+// Reset
+function resetAll(){
+  DATA.forEach((_, idx) => {
+    const el = document.getElementById('v'+(idx+1));
+    const fb = document.getElementById('fb'+(idx+1));
+    el.value = '';
+    el.classList.remove('correct','incorrect');
+    fb.textContent = '';
+    fb.className = 'inline-feedback';
+    fb.style.display = 'none';
+  });
+  document.getElementById('results').style.display = 'none';
+  const btn = document.getElementById('toggleBtn');
+  btn.style.display = 'none';
+  btn.textContent = 'Show Answers';
+}
+
+document.getElementById('checkBtn').addEventListener('click', check);
+document.getElementById('toggleBtn').addEventListener('click', toggle);
+document.getElementById('resetBtn').addEventListener('click', resetAll);
+</script>
+</body>
+</html>

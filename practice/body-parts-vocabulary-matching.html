@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Body Parts Vocabulary Practice — Matching</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%);
+        transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 900px; margin: 2rem auto; padding: 2rem; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.6; font-size: 1.05rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.2rem; margin-bottom: 0.8rem; font-size: 1.4rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container strong { color: #124076; }
+
+    /* Table styles */
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    th, td { padding: .6rem .8rem; text-align: left; vertical-align: top; }
+    th { background: #124076; color: #fff; font-size: 1rem; }
+    tr:nth-child(even) { background: #f9fbff; }
+
+    /* Inputs and feedback */
+    input.answer { width: 60px; text-align: center; border-radius: 6px; border: 1px solid #c7d4e6; padding: .4rem .3rem; font-weight: 700; text-transform: uppercase; margin-right: .5rem; }
+    .letter { font-weight: 800; color: #124076; margin-right: .4rem; }
+    .correct { background: #e6f8ee !important; }
+    .incorrect { background: #fff1f0 !important; }
+
+    /* Buttons */
+    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+    button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+    button:hover, .buttons a:hover { background: #2980b9; }
+    .submit-button { background-color: #4CAF50; }
+    .submit-button:hover { background-color: #45a049; }
+    .show-answers { background-color: #f44336; }
+    .show-answers:hover { background-color: #d32f2f; }
+    .reset-button { background-color: #7f8c8d; }
+    .reset-button:hover { background-color: #707b7c; }
+
+    .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
+    .answers-section h3 { color: #4CAF50; margin-top: 0; }
+    .answers-section p { margin: .4rem 0 0; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Body Parts Vocabulary — Matching (Two‑Column)</h1>
+<div class="content-container">
+  <p><strong>Directions:</strong> Write the correct <strong>letter (A–DD)</strong> in the blank before each word to match it with the definition on the right. Then click <strong>Submit Answers</strong>.</p>
+
+  <h2>Match the Words and Definitions (30 items)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:42%;">A. Words</th>
+        <th style="width:58%;">B. Definitions (with Letters)</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div class="buttons">
+    <button id="submitBtn" class="submit-button">Submit Answers</button>
+    <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+
+  <div id="results" class="answers-section">
+    <h3>Your Results</h3>
+    <p>You got <span id="correctCount">0</span> out of <span id="totalCount">0</span> correct.</p>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Build two-column table based on arrays
+const words = [
+  'Head','Neck','Shoulder','Arm','Elbow','Hand','Fingers','Chest','Back','Waist','Leg','Knee','Ankle','Foot','Toes',
+  'Brain','Heart','Lungs','Stomach','Liver','Kidneys','Intestines','Bladder','Pancreas','Bones','Muscles','Veins','Nerves','Skin','Spine'
+];
+
+// Definitions are intentionally shuffled; letters A–DD
+const defs = [
+  ['A','The organ that pumps blood around the body.'],
+  ['B','The joint connecting the leg and the foot.'],
+  ['C','The five small parts on each foot.'],
+  ['D','The organ that controls thoughts, memory, and movement.'],
+  ['E','The outer covering that protects the body.'],
+  ['F','The upper limb from shoulder to hand.'],
+  ['G','Long tubes that absorb nutrients from food.'],
+  ['H','The joint in the middle of the arm.'],
+  ['I','The backbone that supports the body and protects the spinal cord.'],
+  ['J','The hard parts that make up the skeleton.'],
+  ['K','The front upper part of the body.'],
+  ['L','The part that connects the head to the body.'],
+  ['M','The organs that help you breathe.'],
+  ['N','The organ where food begins to be digested.'],
+  ['O','Two organs that remove waste from the blood.'],
+  ['P','The limb used for standing or walking.'],
+  ['Q','The part of the body between the ribs and hips.'],
+  ['R','Blood vessels that carry blood back to the heart.'],
+  ['S','Tissues that contract to move the body.'],
+  ['T','The part at the end of the arm used for holding things.'],
+  ['U','The rear part of the body between the neck and the waist.'],
+  ['V','The top part of the body containing the brain, eyes, ears, nose, and mouth.'],
+  ['W','The joint in the middle of the leg.'],
+  ['X','The part at the end of the leg used for standing and walking.'],
+  ['Y','A sac that stores urine before it leaves the body.'],
+  ['Z','An organ that helps digestion and controls blood sugar.'],
+  ['AA','The joint where the arm attaches to the body.'],
+  ['BB','The small parts on each hand.'],
+  ['CC','The organ that cleans the blood and helps with digestion.'],
+  ['DD','Fibers that carry messages between the brain and body.']
+];
+
+// Correct keys for each word (in the same order as 'words')
+const keys = [
+  'V','L','AA','F','H','T','BB','K','U','Q','P','W','B','X','C',
+  'D','A','M','N','CC','O','G','Y','Z','J','S','R','DD','E','I'
+];
+
+const tbody = document.getElementById('rows');
+words.forEach((w,i)=>{
+  const [letter, def] = defs[i];
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><input class='answer' id='q${i}' maxlength='3' aria-label='Answer for ${w}'/> ${i+1}. ${w}</td><td><span class='letter'>${letter}</span>${def}</td>`;
+  tbody.appendChild(tr);
+});
+
+function normalize(v){ return (v||'').trim().toUpperCase(); }
+
+function checkAll(){
+  let score = 0; const total = words.length;
+  words.forEach((_,i)=>{
+    const inp = document.getElementById('q'+i);
+    const val = normalize(inp.value);
+    inp.classList.remove('correct','incorrect');
+    if(!val) return; // empty = neutral
+    if(val === keys[i]){ inp.classList.add('correct'); score++; }
+    else inp.classList.add('incorrect');
+  });
+  document.getElementById('correctCount').textContent = score;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('showAnswersBtn').style.display = 'inline-block';
+  document.getElementById('submitBtn').style.display = 'none';
+}
+
+function resetAll(){
+  words.forEach((_,i)=>{
+    const inp = document.getElementById('q'+i);
+    inp.value=''; inp.classList.remove('correct','incorrect');
+  });
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('submitBtn').style.display = 'inline-block';
+  const btn = document.getElementById('showAnswersBtn');
+  btn.style.display = 'none'; btn.textContent = 'Show Answers';
+}
+
+document.getElementById('submitBtn').addEventListener('click', checkAll);
+const showBtn = document.getElementById('showAnswersBtn');
+showBtn.addEventListener('click', ()=>{
+  if(showBtn.textContent === 'Show Answers'){
+    // fill all answers
+    words.forEach((_,i)=>{ document.getElementById('q'+i).value = keys[i]; });
+    showBtn.textContent = 'Hide Answers';
+  } else {
+    // keep colors; clear filled answers for more practice
+    words.forEach((_,i)=>{ document.getElementById('q'+i).value = ''; });
+    showBtn.textContent = 'Show Answers';
+  }
+});
+
+document.getElementById('resetBtn').addEventListener('click', resetAll);
+</script>
+</body>
+</html>

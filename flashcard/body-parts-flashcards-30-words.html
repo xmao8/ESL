@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Body Parts – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Body Parts Vocabulary Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  // External (15)
+  { word: "Head", ipa: "/hɛd/", definition: "The top part of the body that contains the brain, eyes, ears, nose, and mouth.", example: "He wore a hat to protect his head from the sun.", chinese: "头", spanish: "cabeza" },
+  { word: "Neck", ipa: "/nɛk/", definition: "The part that connects the head to the body.", example: "She stretched her neck after working at the computer.", chinese: "脖子", spanish: "cuello" },
+  { word: "Shoulder", ipa: "/ˈʃoʊldər/", definition: "The joint where the arm attaches to the body.", example: "He carried the bag on his right shoulder.", chinese: "肩膀", spanish: "hombro" },
+  { word: "Arm", ipa: "/ɑːrm/", definition: "The upper limb from shoulder to hand.", example: "She raised her arm to ask a question.", chinese: "手臂", spanish: "brazo" },
+  { word: "Elbow", ipa: "/ˈɛlboʊ/", definition: "The joint in the middle of the arm.", example: "He rested his elbow on the table.", chinese: "胳膊肘", spanish: "codo" },
+  { word: "Hand", ipa: "/hænd/", definition: "The part at the end of the arm used for holding things.", example: "Please wash your hands before dinner.", chinese: "手", spanish: "mano" },
+  { word: "Fingers", ipa: "/ˈfɪŋɡərz/", definition: "The five small parts on each hand.", example: "She wears rings on two fingers.", chinese: "手指", spanish: "dedos" },
+  { word: "Chest", ipa: "/tʃɛst/", definition: "The front upper part of the body.", example: "He felt tightness in his chest after running.", chinese: "胸部", spanish: "pecho" },
+  { word: "Back", ipa: "/bæk/", definition: "The rear part of the body between the neck and the waist.", example: "Her back hurts after lifting boxes.", chinese: "背部", spanish: "espalda" },
+  { word: "Waist", ipa: "/weɪst/", definition: "The part of the body between the ribs and hips.", example: "He tied a belt around his waist.", chinese: "腰", spanish: "cintura" },
+  { word: "Leg", ipa: "/lɛɡ/", definition: "The limb used for standing or walking.", example: "She injured her leg while hiking.", chinese: "腿", spanish: "pierna" },
+  { word: "Knee", ipa: "/niː/", definition: "The joint in the middle of the leg.", example: "He bent his knee to pick up the keys.", chinese: "膝盖", spanish: "rodilla" },
+  { word: "Ankle", ipa: "/ˈæŋkəl/", definition: "The joint connecting the leg and the foot.", example: "She twisted her ankle playing basketball.", chinese: "脚踝", spanish: "tobillo" },
+  { word: "Foot", ipa: "/fʊt/", definition: "The part at the end of the leg used for standing and walking.", example: "His foot size is ten.", chinese: "脚", spanish: "pie" },
+  { word: "Toes", ipa: "/toʊz/", definition: "The five small parts on each foot.", example: "Wiggle your toes to keep them warm.", chinese: "脚趾", spanish: "dedos del pie" },
+
+  // Internal (15)
+  { word: "Brain", ipa: "/breɪn/", definition: "The organ that controls thoughts, memory, and movement.", example: "The brain processes information quickly.", chinese: "大脑", spanish: "cerebro" },
+  { word: "Heart", ipa: "/hɑːrt/", definition: "The organ that pumps blood around the body.", example: "Exercise strengthens the heart.", chinese: "心脏", spanish: "corazón" },
+  { word: "Lungs", ipa: "/lʌŋz/", definition: "The organs that help you breathe.", example: "Smoking damages the lungs.", chinese: "肺", spanish: "pulmones" },
+  { word: "Stomach", ipa: "/ˈstʌmək/", definition: "The organ where food begins to be digested.", example: "My stomach growled before lunch.", chinese: "胃", spanish: "estómago" },
+  { word: "Liver", ipa: "/ˈlɪvər/", definition: "The organ that cleans the blood and helps with digestion.", example: "The liver breaks down toxins.", chinese: "肝脏", spanish: "hígado" },
+  { word: "Kidneys", ipa: "/ˈkɪdniːz/", definition: "Two organs that remove waste from the blood.", example: "The kidneys filter fluids all day.", chinese: "肾脏", spanish: "riñones" },
+  { word: "Intestines", ipa: "/ɪnˈtɛstɪnz/", definition: "Long tubes that absorb nutrients from food.", example: "The intestines are part of the digestive system.", chinese: "肠道", spanish: "intestinos" },
+  { word: "Bladder", ipa: "/ˈblædər/", definition: "A sac that stores urine before it leaves the body.", example: "She went to the doctor for a bladder infection.", chinese: "膀胱", spanish: "vejiga" },
+  { word: "Pancreas", ipa: "/ˈpæŋkriəs/", definition: "An organ that helps digestion and controls blood sugar.", example: "The pancreas produces insulin.", chinese: "胰腺", spanish: "páncreas" },
+  { word: "Bones", ipa: "/boʊnz/", definition: "Hard parts that make up the skeleton and support the body.", example: "Calcium helps keep bones strong.", chinese: "骨骼", spanish: "huesos" },
+  { word: "Muscles", ipa: "/ˈmʌsəlz/", definition: "Tissues that contract to move the body.", example: "He stretched his muscles before running.", chinese: "肌肉", spanish: "músculos" },
+  { word: "Veins", ipa: "/veɪnz/", definition: "Blood vessels that carry blood back to the heart.", example: "Veins are visible on the back of his hand.", chinese: "静脉", spanish: "venas" },
+  { word: "Nerves", ipa: "/nɜːrvz/", definition: "Fibers that carry messages between the brain and body.", example: "The dentist numbed the nerves in my tooth.", chinese: "神经", spanish: "nervios" },
+  { word: "Skin", ipa: "/skɪn/", definition: "The outer covering that protects the body.", example: "Use sunscreen to protect your skin.", chinese: "皮肤", spanish: "piel" },
+  { word: "Spine", ipa: "/spaɪn/", definition: "The backbone that supports the body and protects the spinal cord.", example: "Good posture helps your spine.", chinese: "脊柱", spanish: "columna vertebral" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

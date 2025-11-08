@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: The Discovery of DNA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>The Discovery of DNA</h1>
+
+  <main>
+    <div class="content-section">
+      
+      <h2>What Is DNA?</h2>
+      <p><strong>DNA</strong> stands for <em>deoxyribonucleic acid</em>. It is the instruction book inside every living cell. DNA tells our bodies how to grow, what color our eyes are, and how our cells work. Although DNA is very small, its discovery has had a huge effect on science and medicine.</p>
+
+      <h2>Early Clues</h2>
+      <p>The story begins in 1869, when a Swiss scientist named <strong>Friedrich Miescher</strong> found a new substance inside cells. He called it “nuclein,” because it came from the nucleus, or center, of the cell. At that time, no one knew its purpose. Later, in the 1940s, researcher <strong>Oswald Avery</strong> and his colleagues showed that this substance—DNA—carries <strong>genes</strong>, the units of heredity passed from parents to children.</p>
+
+      <h2>Seeing the Shape</h2>
+      <p>Scientists then wanted to know the <strong>structure</strong> of DNA. In the early 1950s, <strong>Rosalind Franklin</strong> used a method called <strong>X‑ray diffraction</strong> to take very clear images of DNA. One of her images, known as <em>Photo 51</em>, revealed a repeating pattern that suggested a spiral shape. Her careful work provided essential evidence, even though she was not widely recognized at the time.</p>
+
+      <h2>The Double Helix</h2>
+      <p>In 1953, <strong>James Watson</strong> and <strong>Francis Crick</strong>, building on data from Franklin and <strong>Maurice Wilkins</strong>, proposed the famous <strong>double helix</strong> model. Imagine a twisted ladder: the two sides are chains of sugar and phosphate, and the steps are pairs of chemical bases—A with T, and C with G. This simple, beautiful model explained how DNA can copy itself and pass information from one generation to the next.</p>
+
+      <h2>Why It Matters</h2>
+      <p>The discovery of DNA’s structure opened the door to modern biology. Scientists learned how genes work and how changes in DNA can cause disease. New fields grew quickly, including <strong>genetics</strong> and <strong>biotechnology</strong>. Today, doctors can test for genetic conditions, and researchers can design new treatments by studying our DNA.</p>
+
+      <h2>From Discovery to Today</h2>
+      <p>In the late 20th century, international teams began the <strong>Human Genome Project</strong>. Their goal was to map all the genes in human DNA. By the early 2000s, they produced a first complete map. This work helps doctors find the causes of illnesses and supports the development of personalized medicine—treatments designed for a person’s unique genetic makeup.</p>
+
+      <h2>Looking Ahead</h2>
+      <p>Understanding DNA also raises important <strong>ethical</strong> questions. How should we use genetic information? Who should have access to it? These discussions continue today. Still, the discovery of DNA remains one of the most exciting stories in science: it shows how many people, over many years, can work together to solve a great mystery of life.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>DNA</strong> <i class="fas fa-volume-up speaker-icon" data-word="DNA"></i> — The molecule that carries genetic information.</li>
+        <li><strong>gene</strong> <i class="fas fa-volume-up speaker-icon" data-word="gene"></i> — A unit of heredity that influences traits.</li>
+        <li><strong>structure</strong> <i class="fas fa-volume-up speaker-icon" data-word="structure"></i> — The way parts are arranged or built.</li>
+        <li><strong>double helix</strong> <i class="fas fa-volume-up speaker-icon" data-word="double helix"></i> — A twisted‑ladder shape of DNA.</li>
+        <li><strong>mutation</strong> <i class="fas fa-volume-up speaker-icon" data-word="mutation"></i> — A change in DNA.</li>
+        <li><strong>X-ray diffraction</strong> <i class="fas fa-volume-up speaker-icon" data-word="X-ray diffraction"></i> — A method to image tiny structures like DNA.</li>
+        <li><strong>heredity</strong> <i class="fas fa-volume-up speaker-icon" data-word="heredity"></i> — The passing of traits from parents to children.</li>
+        <li><strong>biotechnology</strong> <i class="fas fa-volume-up speaker-icon" data-word="biotechnology"></i> — Using living systems to make products or solve problems.</li>
+        <li><strong>ethics</strong> <i class="fas fa-volume-up speaker-icon" data-word="ethics"></i> — Ideas about what is right and wrong.</li>
+        <li><strong>genome</strong> <i class="fas fa-volume-up speaker-icon" data-word="genome"></i> — All the genetic material in an organism.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What does DNA do in our cells?</li>
+        <li>Who first found DNA and what did he call it?</li>
+        <li>How did Rosalind Franklin help scientists understand DNA?</li>
+        <li>Describe the double helix using the ladder comparison.</li>
+        <li>Why was the discovery of DNA’s structure important for medicine?</li>
+        <li>What was the goal of the Human Genome Project?</li>
+        <li>Name one ethical question that comes from studying DNA.</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          if (!word) return;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

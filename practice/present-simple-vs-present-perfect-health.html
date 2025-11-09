@@ -69,11 +69,11 @@
 
 <h1>Present Simple vs. Present Perfect — Health (Fill-in)</h1>
 <div class="content-container">
-  <p class="hint"><strong>Instructions:</strong> Complete each sentence with the correct verb phrase in either the <strong>Present Simple</strong> or the <strong>Present Perfect</strong>. Watch for time clues like <em>usually, always, every…</em> (Present Simple) and <em>since, for, already, yet, ever, never</em> (Present Perfect). Write the whole verb phrase in the blank.</p>
+  <p class="hint"><strong>Instructions:</strong> Type the correct verb phrase in either the <strong>Present Simple</strong> or the <strong>Present Perfect</strong>. Look for time clues like <em>usually, always, every…</em> (Present Simple) and <em>since, for, already, yet, ever, never</em> (Present Perfect). Type the <em>full verb phrase</em> in the blank.</p>
 
   <ol id="items"></ol>
 
-  <p class="note"><strong>Tip:</strong> Use <em>have/has + past participle</em> for experiences or time periods that continue to now (e.g., “I <em>have taken</em> vitamins since March”). Use the base/-s form for routines and facts (e.g., “She <em>drinks</em> water every morning”).</p>
+  <p class="note"><strong>Tip:</strong> Use <em>have/has + past participle</em> for experiences or time periods that continue to now (e.g., “I <em>have taken</em> vitamins since March”). Use base / -s forms for routines and facts (e.g., “She <em>drinks</em> water every morning”).</p>
 
   <div class="buttons">
     <button id="checkBtn" class="submit-button">Submit Answers</button>
@@ -98,13 +98,12 @@ const norm = s => (s||'')
   .toLowerCase()
   .replace(/[.,!?;:]/g,'')
   .replace(/’/g,"'")
-  .replace(/['"]/g,'')    // remove straight & curly quotes for contraction tolerance
+  .replace(/['"]/g,'')           // tolerate contractions and quotes
   .replace(/\s+/g,' ')
   .trim();
 
 // ===== Items (20) =====
-// Each item: text with {v} placeholder for the user input.
-// opts: array of accepted answers (strings). First entry is the "key" shown in feedback.
+// {v} placeholder becomes an input. opts: accepted answers (first is key shown).
 const DATA = [
   { text: "I usually {v} (eat) breakfast at 7 a.m.", opts: ["eat"] },
   { text: "She {v} (not/exercise) for two weeks because she was sick.", opts: ["has not exercised","hasn't exercised"] },

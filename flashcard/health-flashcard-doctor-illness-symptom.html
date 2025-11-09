@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Health – Flashcards (Doctor, Illness, Symptom – 30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa { font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666; }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Health Vocabulary Flashcards: Doctor • Illness • Symptom (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  // Doctor (10)
+  { word: "Physician", ipa: "/fɪˈzɪʃən/", definition: "A medical doctor who diagnoses and treats illnesses.", example: "The physician examined my chest and listened to my breathing.", chinese: "医师；内科医生", spanish: "médico/médica" },
+  { word: "Surgeon", ipa: "/ˈsɜrdʒən/", definition: "A doctor who performs operations.", example: "The surgeon explained the procedure before the operation.", chinese: "外科医生", spanish: "cirujano/cirujana" },
+  { word: "Pediatrician", ipa: "/ˌpiːdiəˈtrɪʃən/", definition: "A doctor who treats children.", example: "The pediatrician checked the baby’s growth.", chinese: "儿科医生", spanish: "pediatra" },
+  { word: "Dentist", ipa: "/ˈdɛntɪst/", definition: "A doctor who treats teeth and gums.", example: "The dentist filled a small cavity.", chinese: "牙医", spanish: "dentista" },
+  { word: "Dermatologist", ipa: "/ˌdɜrməˈtɑːlədʒɪst/", definition: "A skin specialist.", example: "A dermatologist prescribed cream for my rash.", chinese: "皮肤科医生", spanish: "dermatólogo/dermatóloga" },
+  { word: "Cardiologist", ipa: "/ˌkɑːrdiˈɑːlədʒɪst/", definition: "A heart specialist.", example: "The cardiologist ordered a stress test.", chinese: "心脏科医生", spanish: "cardiólogo/cardióloga" },
+  { word: "Nurse", ipa: "/nɜːrs/", definition: "A healthcare professional who cares for patients.", example: "The nurse took my temperature and blood pressure.", chinese: "护士", spanish: "enfermero/enfermera" },
+  { word: "Pharmacist", ipa: "/ˈfɑːrməsɪst/", definition: "A professional who prepares and gives out medicines.", example: "Ask the pharmacist about side effects.", chinese: "药剂师；药师", spanish: "farmacéutico/farmacéutica" },
+  { word: "Therapist", ipa: "/ˈθɛrəpɪst/", definition: "A professional who helps patients recover through treatments like counseling or physical therapy.", example: "Her therapist taught her breathing exercises.", chinese: "治疗师；治疗专家", spanish: "terapeuta" },
+  { word: "Paramedic", ipa: "/ˌpærəˈmɛdɪk/", definition: "A trained emergency medical worker who treats patients before they reach the hospital.", example: "Paramedics arrived quickly and stabilized the patient.", chinese: "急救医护人员", spanish: "paramédico/paramédica" },
+
+  // Illness (10)
+  { word: "Flu", ipa: "/fluː/", definition: "Influenza; a contagious viral illness with fever and aches.", example: "He stayed home with the flu.", chinese: "流感", spanish: "gripe" },
+  { word: "Cold", ipa: "/koʊld/", definition: "A mild viral infection causing a runny nose and cough.", example: "I caught a cold after walking in the rain.", chinese: "感冒", spanish: "resfriado" },
+  { word: "Pneumonia", ipa: "/nuːˈmoʊniə/", definition: "A serious lung infection.", example: "She was hospitalized with pneumonia.", chinese: "肺炎", spanish: "neumonía" },
+  { word: "Diabetes", ipa: "/ˌdaɪəˈbiːtiːz/", definition: "A long-term disease that affects blood sugar.", example: "He checks his blood sugar to manage diabetes.", chinese: "糖尿病", spanish: "diabetes" },
+  { word: "Cancer", ipa: "/ˈkænsər/", definition: "A disease in which abnormal cells grow uncontrollably.", example: "Early screening can help detect cancer.", chinese: "癌症", spanish: "cáncer" },
+  { word: "Asthma", ipa: "/ˈæzmə/", definition: "A condition that makes it hard to breathe.", example: "Her asthma worsens during allergy season.", chinese: "哮喘", spanish: "asma" },
+  { word: "Infection", ipa: "/ɪnˈfɛkʃən/", definition: "Illness caused by germs such as bacteria or viruses.", example: "The cut became red because of an infection.", chinese: "感染", spanish: "infección" },
+  { word: "Migraine", ipa: "/ˈmaɪɡreɪn/", definition: "A severe headache often with nausea and light sensitivity.", example: "Bright lights can trigger a migraine.", chinese: "偏头痛", spanish: "migraña" },
+  { word: "Depression", ipa: "/dɪˈprɛʃən/", definition: "A mental health condition with persistent sadness and low energy.", example: "Depression can be treated with therapy or medication.", chinese: "抑郁症", spanish: "depresión" },
+  { word: "Allergy", ipa: "/ˈælərdʒi/", definition: "A reaction to something like pollen, food, or dust.", example: "Peanuts cause a severe allergy for him.", chinese: "过敏", spanish: "alergia" },
+
+  // Symptom (10)
+  { word: "Fever", ipa: "/ˈfiːvər/", definition: "A higher-than-normal body temperature.", example: "Her fever went down after medicine.", chinese: "发烧；发热", spanish: "fiebre" },
+  { word: "Cough", ipa: "/kɔf/", definition: "A sudden release of air from the lungs.", example: "His cough kept him awake at night.", chinese: "咳嗽", spanish: "tos" },
+  { word: "Sore throat", ipa: "/sɔːr ˈθroʊt/", definition: "Pain or irritation in the throat.", example: "Tea with honey eased my sore throat.", chinese: "喉咙痛", spanish: "dolor de garganta" },
+  { word: "Headache", ipa: "/ˈhɛdˌeɪk/", definition: "Pain in the head.", example: "Drinking water helped my headache.", chinese: "头痛", spanish: "dolor de cabeza" },
+  { word: "Nausea", ipa: "/ˈnɔːziə/", definition: "A sick feeling that may lead to vomiting.", example: "The ride caused nausea.", chinese: "恶心", spanish: "náuseas" },
+  { word: "Dizziness", ipa: "/ˈdɪzɪnəs/", definition: "A feeling of spinning or losing balance.", example: "Stand up slowly to avoid dizziness.", chinese: "头晕", spanish: "mareo" },
+  { word: "Fatigue", ipa: "/fəˈtiːɡ/", definition: "Extreme tiredness or lack of energy.", example: "Stress can cause fatigue.", chinese: "疲劳", spanish: "fatiga" },
+  { word: "Rash", ipa: "/ræʃ/", definition: "Red, itchy spots on the skin.", example: "She got a rash after trying a new soap.", chinese: "皮疹", spanish: "sarpullido" },
+  { word: "Swelling", ipa: "/ˈswɛlɪŋ/", definition: "Enlargement of a body part due to fluid.", example: "Ice reduced the swelling in his ankle.", chinese: "肿胀", spanish: "hinchazón" },
+  { word: "Shortness of breath", ipa: "/ˈʃɔːrtnəs əv brɛθ/", definition: "Trouble breathing or feeling you can’t get enough air.", example: "She felt shortness of breath after climbing stairs.", chinese: "呼吸急促；气短", spanish: "falta de aire" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

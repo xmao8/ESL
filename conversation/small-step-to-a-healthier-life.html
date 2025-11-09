@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Small Steps to a Healthier Life - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999;
+        align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container strong { color: #124076; }
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right; margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+    .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+    .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word { font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px; }
+    .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.1rem; color: #3498db; user-select: none; transition: color 0.2s; }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+    .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+    .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+      cursor: pointer; text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Small Steps to a Healthier Life</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>LINA:</strong> A busy office worker who often skips breakfast.</li>
+      <li><strong>MARK:</strong> Her coworker, trying to lose weight.</li>
+      <li><strong>COACH EVA:</strong> A health coach visiting their company.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Scene 1: Office break room, 9:00 a.m. Lina sips coffee; Mark holds a donut.</p>
+
+  <div class="conversation-script" role="dialog" aria-label="Healthy habit conversation script">
+    <h3>Scene 1</h3>
+    <p><strong>LINA:</strong> <span class="dialogue">Morning, Mark. You’re eating already?</span></p>
+    <p><strong>MARK:</strong> <span class="dialogue">Yeah, but I’m not proud of it. I told myself I’d eat healthier this week.</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">(laughs) I say that every Monday. I usually skip breakfast because I’m late, then I eat fast food for lunch.</span></p>
+    <p><strong>MARK:</strong> <span class="dialogue">I do the same. I think stress makes me hungry.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">(entering) Good morning! You must be Lina and Mark. I’m Eva, the health coach for today’s workshop.</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">Oh, right! The one about healthy habits?</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">Exactly. You both just gave me the perfect example—skipping meals and eating on the run. Let’s talk about that.</span></p>
+
+    <h3>Scene 2</h3>
+    <p class="scene-direction">Meeting room. On the board: “SMALL CHANGES = BIG RESULTS”.</p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">You don’t have to change everything overnight. Start small. For example, eat something light in the morning—yogurt, fruit, or oatmeal.</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">I’m always in a rush. I can’t cook in the morning.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">Then prepare breakfast the night before. Even a banana and a boiled egg work. The key is consistency.</span></p>
+    <p><strong>MARK:</strong> <span class="dialogue">I eat too much sugar. I can’t stop drinking soda.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">Replace one soda a day with water or herbal tea. After a week, your body will start to adjust.</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">What about exercise? I’m too tired after work.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">Try walking during lunch breaks. Ten minutes twice a day adds up. You can also stretch at your desk.</span></p>
+    <p><strong>MARK:</strong> <span class="dialogue">I sit all day. Maybe I’ll start using the stairs.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">Great idea! Movement doesn’t have to be at the gym. Just keep your body active.</span></p>
+
+    <h3>Scene 3</h3>
+    <p class="scene-direction">One week later, same break room. Lina has a reusable water bottle; Mark eats yogurt and fruit.</p>
+    <p><strong>MARK:</strong> <span class="dialogue">Look, I brought breakfast today. No donuts!</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">Nice! I packed mine last night too. It actually feels good to eat early.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">(smiling) That’s wonderful progress! How about your afternoon habits?</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">I take short walks after lunch now.</span></p>
+    <p><strong>MARK:</strong> <span class="dialogue">And I switched to green tea instead of soda.</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">Excellent! Remember, healthy habits are about balance, not perfection. If you fall off track one day, just start again the next.</span></p>
+    <p><strong>LINA:</strong> <span class="dialogue">Thanks, Coach. I think I’m finally learning that small steps really do matter.</span></p>
+    <p><strong>MARK:</strong> <span class="dialogue">Yeah—one banana at a time!</span></p>
+    <p><strong>COACH EVA:</strong> <span class="dialogue">(laughs) That’s the spirit. Healthy living is a journey, not a race.</span></p>
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li><span class="vocab-word">Habit <button class="speaker-icon" onclick="speakWord('Habit')">🔊</button></span> <span class="ipa">/ˈhæbɪt/</span> <span class="definition">(n.) something you do regularly.</span> <span class="example">Example: Drinking water often is a healthy habit.</span></li>
+      <li><span class="vocab-word">Consistency <button class="speaker-icon" onclick="speakWord('Consistency')">🔊</button></span> <span class="ipa">/kənˈsɪstənsi/</span> <span class="definition">(n.) doing the same good action again and again.</span> <span class="example">Example: Consistency helps changes become routine.</span></li>
+      <li><span class="vocab-word">Oatmeal <button class="speaker-icon" onclick="speakWord('Oatmeal')">🔊</button></span> <span class="ipa">/ˈoʊtˌmiːl/</span> <span class="definition">(n.) a warm breakfast made from oats.</span> <span class="example">Example: Oatmeal is quick and filling.</span></li>
+      <li><span class="vocab-word">Herbal tea <button class="speaker-icon" onclick="speakWord('Herbal tea')">🔊</button></span> <span class="ipa">/ˈhɜːbəl tiː/</span> <span class="definition">(n.) tea made from herbs, without caffeine (often).</span> <span class="example">Example: He replaced soda with herbal tea.</span></li>
+      <li><span class="vocab-word">Stretch <button class="speaker-icon" onclick="speakWord('Stretch')">🔊</button></span> <span class="ipa">/stretʃ/</span> <span class="definition">(v.) extend your body to relax muscles.</span> <span class="example">Example: Stretch for two minutes every hour.</span></li>
+      <li><span class="vocab-word">Reusable <button class="speaker-icon" onclick="speakWord('Reusable')">🔊</button></span> <span class="ipa">/riːˈjuːzəbl/</span> <span class="definition">(adj.) able to be used many times.</span> <span class="example">Example: She carries a reusable water bottle.</span></li>
+      <li><span class="vocab-word">Rush <button class="speaker-icon" onclick="speakWord('Rush')">🔊</button></span> <span class="ipa">/rʌʃ/</span> <span class="definition">(v.) to move or act quickly.</span> <span class="example">Example: In the morning rush, she skips breakfast.</span></li>
+      <li><span class="vocab-word">Boiled egg <button class="speaker-icon" onclick="speakWord('Boiled egg')">🔊</button></span> <span class="ipa">/ˌbɔɪld ˈeɡ/</span> <span class="definition">(n.) an egg cooked in hot water in its shell.</span> <span class="example">Example: A boiled egg is an easy snack.</span></li>
+      <li><span class="vocab-word">Stairs <button class="speaker-icon" onclick="speakWord('Stairs')">🔊</button></span> <span class="ipa">/sterz/</span> <span class="definition">(n.) steps between floors of a building.</span> <span class="example">Example: He takes the stairs instead of the elevator.</span></li>
+      <li><span class="vocab-word">Balance <button class="speaker-icon" onclick="speakWord('Balance')">🔊</button></span> <span class="ipa">/ˈbæl.əns/</span> <span class="definition">(n.) a healthy mix of different things.</span> <span class="example">Example: Balance treats with vegetables and fruit.</span></li>
+      <li><span class="vocab-word">Progress <button class="speaker-icon" onclick="speakWord('Progress')">🔊</button></span> <span class="ipa">/ˈprɑːɡres/</span> <span class="definition">(n.) improvement over time.</span> <span class="example">Example: Small changes show progress in a week.</span></li>
+      <li><span class="vocab-word">Journey <button class="speaker-icon" onclick="speakWord('Journey')">🔊</button></span> <span class="ipa">/ˈdʒɜːrni/</span> <span class="definition">(n.) a long process of change and learning.</span> <span class="example">Example: Healthy living is a journey, not a race.</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

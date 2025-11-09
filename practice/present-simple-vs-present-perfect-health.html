@@ -131,7 +131,7 @@ const DATA = [
 const list = document.getElementById('items');
 DATA.forEach((row, idx) => {
   const li = document.createElement('li');
-  const input = `<input type="text" class="blank" id="v${idx+1}" aria-label="Verb phrase for item ${idx+1}" autocomplete="off" placeholder="type the full verb phrase">`;
+  const input = `<input type="text" class="blank" id="v${idx+1}" aria-label="Verb phrase for item ${idx+1}" autocomplete="off">`;
   li.innerHTML = row.text.replace('{v}', input) + ` <span id="fb${idx+1}" class="inline-feedback"></span>`;
   list.appendChild(li);
 });

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A Fresh Start - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 800px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right; margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+    .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+    .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word { font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px; }
+    .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.1rem; color: #3498db; user-select: none; transition: color 0.2s; }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+    .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+    .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>A Fresh Start</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>NAOMI:</strong> 29, an office worker who feels tired and wants to change her lifestyle.</li>
+      <li><strong>ALEX:</strong> Naomi’s friend, an energetic yoga instructor.</li>
+      <li><strong>MRS. LOPEZ:</strong> Naomi’s elderly neighbor who loves gardening and home cooking.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Scene 1: Apartment hallway, Saturday morning. Mrs. Lopez waters plants; Naomi walks past with instant noodles.</p>
+
+  <div class="conversation-script" role="dialog" aria-label="Healthy living conversation script">
+    <h3>Scene 1</h3>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Good morning, Naomi! You look tired again. Long week?</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">(yawns) Yeah. Work was crazy. I didn’t even have time to cook. Instant noodles again!</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Oh dear, that’s not healthy food. Come, I have fresh vegetables from my garden.</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">(smiles weakly) Thanks, Mrs. Lopez, but I don’t know what to do with them. I don’t even have energy to cook properly.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">You’re too young to feel this tired. Maybe some exercise would help!</span></p>
+    <p class="scene-direction">Alex jogs up the stairs, cheerful.</p>
+    <p><strong>ALEX:</strong> <span class="dialogue">Morning, ladies! Naomi, I was just going to invite you to my weekend yoga class. It’s free!</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">Yoga? Me? I can barely touch my toes.</span></p>
+    <p><strong>ALEX:</strong> <span class="dialogue">That’s why you should come! Healthy living starts with small steps.</span></p>
+
+    <h3>Scene 2</h3>
+    <p class="scene-direction">Community park, Sunday morning. Birds sing; a small group stretches on yoga mats.</p>
+    <p><strong>ALEX:</strong> <span class="dialogue">Welcome! Today we’ll focus on breathing and gentle movement. Don’t worry, everyone starts somewhere.</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">(tries to follow) Wow, this is harder than it looks!</span></p>
+    <p><strong>ALEX:</strong> <span class="dialogue">You’re doing fine. Just breathe deeply. Feel your body relax.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">(in the back row) This is wonderful! My back already feels better.</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">(laughing) Mrs. Lopez, you’re more flexible than me!</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Gardening keeps me young, dear. I move every day, and I eat what I grow.</span></p>
+    <p><strong>ALEX:</strong> <span class="dialogue">See? Movement and good food are the perfect pair.</span></p>
+
+    <h3>Scene 3</h3>
+    <p class="scene-direction">Naomi’s apartment, one week later. Soup simmers; Naomi chops vegetables.</p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">I can’t believe I’m cooking real food!</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">It smells delicious. You see what fresh ingredients can do?</span></p>
+    <p><strong>ALEX:</strong> <span class="dialogue">(entering) And look at you—bright eyes, big smile! How’s the yoga going?</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">I actually look forward to it now. I even walk to work sometimes.</span></p>
+    <p><strong>ALEX:</strong> <span class="dialogue">That’s fantastic. The secret is balance—eat well, move your body, rest, and enjoy life.</span></p>
+    <p><strong>NAOMI:</strong> <span class="dialogue">(serving soup) I feel lighter, happier, and more awake. I guess “healthy living” isn’t about being perfect.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Exactly. It’s about loving yourself enough to take care of yourself.</span></p>
+    <p><strong>ALEX:</strong> <span class="dialogue">Cheers to that—and to a fresh start!</span></p>
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li><span class="vocab-word">Lifestyle <button class="speaker-icon" onclick="speakWord('Lifestyle')">🔊</button></span> <span class="ipa">/ˈlaɪfstaɪl/</span> <span class="definition">(n.) the way a person lives.</span> <span class="example">Example: She wants to change her lifestyle.</span></li>
+      <li><span class="vocab-word">Energy <button class="speaker-icon" onclick="speakWord('Energy')">🔊</button></span> <span class="ipa">/ˈenərdʒi/</span> <span class="definition">(n.) strength to do activities.</span> <span class="example">Example: Healthy food gives you energy.</span></li>
+      <li><span class="vocab-word">Flexible <button class="speaker-icon" onclick="speakWord('Flexible')">🔊</button></span> <span class="ipa">/ˈfleksɪbl/</span> <span class="definition">(adj.) able to bend or move easily.</span> <span class="example">Example: Yoga can make you more flexible.</span></li>
+      <li><span class="vocab-word">Breathe <button class="speaker-icon" onclick="speakWord('Breathe')">🔊</button></span> <span class="ipa">/briːð/</span> <span class="definition">(v.) to take air into and out of the lungs.</span> <span class="example">Example: Breathe deeply to relax.</span></li>
+      <li><span class="vocab-word">Ingredient <button class="speaker-icon" onclick="speakWord('Ingredient')">🔊</button></span> <span class="ipa">/ɪnˈɡriːdiənt/</span> <span class="definition">(n.) a food used to make a dish.</span> <span class="example">Example: Fresh ingredients improve flavor.</span></li>
+      <li><span class="vocab-word">Balance <button class="speaker-icon" onclick="speakWord('Balance')">🔊</button></span> <span class="ipa">/ˈbæl.əns/</span> <span class="definition">(n.) a healthy mix of different things.</span> <span class="example">Example: Find a balance between work and rest.</span></li>
+      <li><span class="vocab-word">Gardening <button class="speaker-icon" onclick="speakWord('Gardening')">🔊</button></span> <span class="ipa">/ˈɡɑːrdnɪŋ/</span> <span class="definition">(n.) growing plants for food or beauty.</span> <span class="example">Example: Gardening keeps Mrs. Lopez active.</span></li>
+      <li><span class="vocab-word">Simmer <button class="speaker-icon" onclick="speakWord('Simmer')">🔊</button></span> <span class="ipa">/ˈsɪmər/</span> <span class="definition">(v.) to cook just below boiling.</span> <span class="example">Example: The soup simmers on the stove.</span></li>
+      <li><span class="vocab-word">Movement <button class="speaker-icon" onclick="speakWord('Movement')">🔊</button></span> <span class="ipa">/ˈmuːvmənt/</span> <span class="definition">(n.) physical activity of the body.</span> <span class="example">Example: Daily movement improves health.</span></li>
+      <li><span class="vocab-word">Relax <button class="speaker-icon" onclick="speakWord('Relax')">🔊</button></span> <span class="ipa">/rɪˈlæks/</span> <span class="definition">(v.) to rest and feel calm.</span> <span class="example">Example: Deep breathing helps you relax.</span></li>
+      <li><span class="vocab-word">Consistency <button class="speaker-icon" onclick="speakWord('Consistency')">🔊</button></span> <span class="ipa">/kənˈsɪstənsi/</span> <span class="definition">(n.) doing the same good action again and again.</span> <span class="example">Example: Consistency builds strong habits.</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

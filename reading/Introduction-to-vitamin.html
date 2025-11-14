@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: Introduction to Vitamins</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Introduction to Vitamins</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        Level: Intermediate (B1–B2). Topic: Health & Nutrition. Length ~450–550 words.
+      </div>
+
+      <h2>What Are Vitamins?</h2>
+      <p><strong>Vitamins</strong> are tiny nutrients that your body needs in small amounts to work well. They help you turn food into energy, repair tissues, fight infections, and keep your eyes, skin, nerves, and blood healthy. Your body cannot make most vitamins, so you must get them from food or, if needed, from supplements.</p>
+
+      <h2>Two Main Groups</h2>
+      <p>Vitamins are grouped by how they act in the body:</p>
+      <ul>
+        <li><strong>Fat-soluble</strong> vitamins: A, D, E, and K. Your body can store these in fat tissue and the liver.</li>
+        <li><strong>Water-soluble</strong> vitamins: vitamin C and the B-vitamin group (B1, B2, B3, B5, B6, B7, B9/folate, and B12). Your body does not store most of these, so you need them more regularly.</li>
+      </ul>
+
+      <h2>What Do They Do?</h2>
+      <ul>
+        <li><strong>Vitamin A</strong>: supports vision, skin, and immunity.</li>
+        <li><strong>Vitamin C</strong>: helps heal wounds and protects cells.</li>
+        <li><strong>Vitamin D</strong>: helps your body use calcium for strong bones and teeth.</li>
+        <li><strong>Vitamin E</strong>: protects cells from damage.</li>
+        <li><strong>Vitamin K</strong>: helps your blood clot and supports bone health.</li>
+        <li><strong>B vitamins</strong>: support energy production, brain and nerve function, and healthy blood.</li>
+      </ul>
+
+      <h2>Food Sources</h2>
+      <p>The best way to get vitamins is to eat a <strong>balanced diet</strong> with many colors and food groups.</p>
+      <ul>
+        <li><strong>Fruits &amp; Vegetables</strong>: citrus fruits (vitamin C), carrots and sweet potatoes (vitamin A), leafy greens (folate and vitamin K).</li>
+        <li><strong>Proteins</strong>: fish, eggs, beans, lentils, and lean meats (B vitamins, vitamin D in some fish).</li>
+        <li><strong>Dairy or Fortified Alternatives</strong>: milk, yogurt, fortified plant milks (vitamin D and B12 in fortified products).</li>
+        <li><strong>Nuts, Seeds &amp; Oils</strong>: almonds, sunflower seeds, and vegetable oils (vitamin E).</li>
+        <li><strong>Whole Grains</strong>: brown rice, oats, and whole-grain breads (B vitamins).</li>
+      </ul>
+
+      <h2>How Much Do You Need?</h2>
+      <p>Needs vary by age, sex, health, and life stage (for example, pregnancy). If you eat a variety of foods, you usually get enough. Some people—such as older adults, people with limited sun exposure, vegans (for B12), or those with certain medical conditions—may need supplements. If you think you need one, talk with a healthcare professional.</p>
+
+      <h2>Deficiency and Excess</h2>
+      <p>Not getting enough of a vitamin is called a <strong>deficiency</strong>. For example, low vitamin D can weaken bones, and low vitamin C can cause gum problems and slow healing. Taking too much, especially of fat-soluble vitamins A, D, E, and K, can also be harmful. More is not always better—follow recommended amounts.</p>
+
+      <h2>Smart Tips</h2>
+      <ul>
+        <li>Fill half your plate with fruits and vegetables at meals.</li>
+        <li>Choose whole grains and include beans or lentils often.</li>
+        <li>Enjoy a variety of protein foods, including fish, eggs, and dairy or fortified alternatives.</li>
+        <li>Store and cook foods gently—overcooking can reduce some vitamins, like vitamin C.</li>
+        <li>If you use a supplement, pick one that fits your needs and avoid megadoses.</li>
+      </ul>
+
+      <p><em>Key idea:</em> Most people can meet their vitamin needs with balanced meals. Supplements can help in special cases, but food comes first.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>nutrient</strong> <i class="fas fa-volume-up speaker-icon" data-word="nutrient"></i> — A substance in food that helps the body work.</li>
+        <li><strong>fat-soluble</strong> <i class="fas fa-volume-up speaker-icon" data-word="fat-soluble"></i> — Able to dissolve and be stored in fat.</li>
+        <li><strong>water-soluble</strong> <i class="fas fa-volume-up speaker-icon" data-word="water-soluble"></i> — Able to dissolve in water and not stored much.</li>
+        <li><strong>deficiency</strong> <i class="fas fa-volume-up speaker-icon" data-word="deficiency"></i> — Not having enough of something needed.</li>
+        <li><strong>fortified</strong> <i class="fas fa-volume-up speaker-icon" data-word="fortified"></i> — Food with extra nutrients added.</li>
+        <li><strong>immunity</strong> <i class="fas fa-volume-up speaker-icon" data-word="immunity"></i> — The body’s ability to fight illness.</li>
+        <li><strong>clot</strong> <i class="fas fa-volume-up speaker-icon" data-word="clot"></i> — To thicken and stop bleeding.</li>
+        <li><strong>megadose</strong> <i class="fas fa-volume-up speaker-icon" data-word="megadose"></i> — A very large amount, usually of a vitamin or drug.</li>
+        <li><strong>balanced diet</strong> <i class="fas fa-volume-up speaker-icon" data-word="balanced diet"></i> — Eating different foods to get all nutrients.</li>
+        <li><strong>recommendation</strong> <i class="fas fa-volume-up speaker-icon" data-word="recommendation"></i> — Advice about what amount is best.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>What are vitamins and why does the body need them?</li>
+        <li>What is the difference between fat-soluble and water-soluble vitamins?</li>
+        <li>Name two vitamins and describe one function of each.</li>
+        <li>List three food groups that provide important vitamins.</li>
+        <li>Who might need a vitamin supplement and why?</li>
+        <li>Why can taking too much of some vitamins be harmful?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          if (!word) return;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

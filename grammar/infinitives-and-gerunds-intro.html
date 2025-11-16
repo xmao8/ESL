@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Infinitives & Gerunds — Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout (max-width: 600px) --- */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%);
+        transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout (min-width: 901px) --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.2rem auto; color: #2c3e50; max-width: 900px; }
+    .content-container {
+      background: white; width: 92%; max-width: 950px; margin: 1.2rem auto 2rem auto; padding: 2rem; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.7; font-size: 1.05rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.2rem; margin-bottom: 0.8rem; font-size: 1.35rem; }
+    .content-container h3 { color: #124076; margin-top: 1rem; }
+    .content-container p { margin-bottom: .9rem; }
+    .content-container strong { color: #124076; }
+
+    /* Lists */
+    ul { padding-left: 1.2rem; }
+    li { margin: .4rem 0; }
+
+    /* Callouts */
+    .tip { background: #eaf6ff; border-left: 4px solid #3498db; padding: .8rem 1rem; border-radius: 8px; }
+    .warn { background: #fff7e6; border-left: 4px solid #ff9800; padding: .8rem 1rem; border-radius: 8px; }
+
+    /* Table styles */
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); margin: 1rem 0; }
+    th, td { padding: .6rem .8rem; text-align: left; vertical-align: top; }
+    th { background: #124076; color: #fff; font-size: 1rem; }
+    tr:nth-child(even) { background: #f9fbff; }
+
+    /* Buttons */
+    .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 620px; }
+    .buttons a, .btn { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+    .buttons a:hover, .btn:hover { background: #2980b9; }
+    .btn-outline { background: white; color: #124076; border: 2px solid #124076; }
+    .btn-outline:hover { background: #124076; color: white; }
+
+    /* Mini check styles */
+    .check { background:#f8fbff; border:1px solid #cfe3fb; border-radius:10px; padding:1rem; margin-top:1rem; }
+    .check .row { display:flex; gap:.5rem; align-items:center; margin:.4rem 0; }
+    .check input[type="radio"]{ accent-color:#124076; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Infinitives &amp; Gerunds — Grammar Guide</h1>
+
+<div class="content-container">
+  <h2>1) What are Infinitives and Gerunds?</h2>
+  <p><strong>Infinitive</strong> = <em>to + base verb</em> → <strong>to eat</strong>, <strong>to study</strong>, <strong>to be</strong>.</p>
+  <p><strong>Gerund</strong> = <em>verb + -ing</em> used as a noun → <strong>eating</strong>, <strong>studying</strong>, <strong>being</strong>.</p>
+
+  <div class="tip"><strong>Tip:</strong> Both act like nouns in a sentence. Example: <em>To read</em> is fun. / <em>Reading</em> is fun.</div>
+
+  <h2>2) When do we use Infinitives?</h2>
+  <ul>
+    <li><strong>After certain verbs</strong>: want, need, decide, plan, hope, learn, agree<br>
+      <em>I want <strong>to learn</strong> English.</em></li>
+    <li><strong>To express purpose</strong>: why something happens<br>
+      <em>She went to the store <strong>to buy</strong> milk.</em></li>
+    <li><strong>After adjectives</strong>: easy, hard, happy, ready, important<br>
+      <em>It’s easy <strong>to understand</strong> this rule.</em></li>
+  </ul>
+
+  <h3>Common Verbs + Infinitive</h3>
+  <table>
+    <thead><tr><th>Verb</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>want / need</td><td>They <strong>want to visit</strong> family.</td></tr>
+      <tr><td>decide / plan</td><td>We <strong>decided to move</strong> last year.</td></tr>
+      <tr><td>hope / agree</td><td>He <strong>agreed to help</strong> me.</td></tr>
+      <tr><td>learn / try</td><td>She is <strong>learning to drive</strong>.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3) When do we use Gerunds?</h2>
+  <ul>
+    <li><strong>As the subject</strong>: <em><strong>Reading</strong> helps you learn vocabulary.</em></li>
+    <li><strong>After certain verbs</strong>: enjoy, finish, avoid, stop, suggest, consider, mind<br>
+      <em>I enjoy <strong>swimming</strong>.</em></li>
+    <li><strong>After prepositions</strong>: at, for, about, without, before, after<br>
+      <em>She is good at <strong>drawing</strong>.</em></li>
+  </ul>
+
+  <h3>Common Verbs + Gerund</h3>
+  <table>
+    <thead><tr><th>Verb</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>enjoy</td><td>We <strong>enjoy playing</strong> board games.</td></tr>
+      <tr><td>finish</td><td>He <strong>finished writing</strong> the email.</td></tr>
+      <tr><td>avoid</td><td>They <strong>avoid eating</strong> late at night.</td></tr>
+      <tr><td>suggest / consider</td><td>She <strong>suggested meeting</strong> on Friday.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4) Verbs that take Both (meaning changes)</h2>
+  <table>
+    <thead><tr><th>Verb</th><th>+ Gerund</th><th>+ Infinitive</th></tr></thead>
+    <tbody>
+      <tr><td><strong>remember</strong></td><td>Past action: I remember <strong>meeting</strong> her.</td><td>Future duty: Remember <strong>to call</strong> her.</td></tr>
+      <tr><td><strong>stop</strong></td><td>End an activity: He stopped <strong>smoking</strong>.</td><td>Pause in order to: He stopped <strong>to smoke</strong>.</td></tr>
+      <tr><td><strong>try</strong></td><td>Experiment: Try <strong>using</strong> salt instead.</td><td>Attempt: Try <strong>to finish</strong> your work.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn"><strong>Note:</strong> After a <em>preposition</em>, use a gerund: <em>before leaving</em>, <em>without saying</em>.</div>
+
+  <h2>5) Mini Check</h2>
+  <div class="check" id="miniCheck">
+    <div class="row"><strong>1.</strong> She decided ____ earlier. 
+      <label><input type="radio" name="q1"> to leave</label>
+      <label><input type="radio" name="q1"> leaving</label>
+    </div>
+    <div class="row"><strong>2.</strong> He enjoys ____ podcasts.
+      <label><input type="radio" name="q2"> to listen</label>
+      <label><input type="radio" name="q2"> listening</label>
+    </div>
+    <div class="row"><strong>3.</strong> Remember ____ the door.
+      <label><input type="radio" name="q3"> to lock</label>
+      <label><input type="radio" name="q3"> locking</label>
+    </div>
+    <div class="row"><strong>4.</strong> She stopped ____ because she was tired.
+      <label><input type="radio" name="q4"> to run</label>
+      <label><input type="radio" name="q4"> running</label>
+    </div>
+    <div class="row"><strong>5.</strong> They are good at ____ problems.
+      <label><input type="radio" name="q5"> to solve</label>
+      <label><input type="radio" name="q5"> solving</label>
+    </div>
+    <div class="row" style="margin-top:.6rem;">
+      <button class="btn" id="checkBtn">Check Answers</button>
+      <span id="score" style="margin-left:.6rem;font-weight:700;"></span>
+    </div>
+  </div>
+
+  <h2>6) Practice</h2>
+  <p>Ready to practice? Try the fill‑in‑the‑blank activity: <a class="btn-outline" href="../practice/practice-infinitives-gerunds.html">Practice: Infinitives &amp; Gerunds</a></p>
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+// Mobile nav toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Mini check key: 1 to leave, 2 listening, 3 to lock, 4 running (meaning: ended the activity), 5 solving
+const key = { q1: 0, q2: 1, q3: 0, q4: 1, q5: 1 }; // index of correct radio for each question
+
+function checkMini(){
+  let score = 0; let total = 5;
+  for(const q of ['q1','q2','q3','q4','q5']){
+    const options = document.querySelectorAll(`input[name="${q}"]`);
+    options.forEach((opt, idx)=>{
+      // clear previous style
+      opt.parentElement.style.fontWeight = 'normal';
+      opt.parentElement.style.textDecoration = 'none';
+      if(opt.checked){
+        if(idx === key[q]){ score++; opt.parentElement.style.fontWeight = '700'; }
+        else { opt.parentElement.style.textDecoration = 'line-through'; }
+      }
+    });
+    // bold the correct one
+    if(options[key[q]]) options[key[q]].parentElement.style.fontWeight = '700';
+  }
+  document.getElementById('score').textContent = `Score: ${score} / ${total}`;
+}
+
+const checkBtn = document.getElementById('checkBtn');
+if(checkBtn){ checkBtn.addEventListener('click', checkMini); }
+</script>
+</body>
+</html>

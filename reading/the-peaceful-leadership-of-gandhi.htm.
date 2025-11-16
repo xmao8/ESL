@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading: Personality — The Peaceful Leadership of Mahatma Gandhi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+      font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+      overflow-x: hidden;
+    }
+    main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+
+    /* Nav */
+    nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* Headings */
+    h1 { text-align: center; font-size: 2.4rem; margin: 2rem auto 1rem; color: #2c3e50; }
+    h2 { color: #124076; margin-top: 1.2rem; }
+    p { line-height: 1.7; margin: 0.6rem 0; }
+
+    /* Sections */
+    .content-section {
+      background: #fff; border-radius: 8px; padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .meta-note {
+      font-size: 0.95rem; color: #555; background: #eef6ff; border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;
+    }
+
+    /* Vocabulary */
+    .vocabulary-list ul { list-style: none; padding-left: 0; }
+    .vocabulary-list li {
+      background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+      margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap; gap: 6px;
+      line-height: 1.4;
+    }
+    .vocabulary-list strong { color: #124076; margin-right: 6px; }
+    .speaker-icon { color: #3498db; cursor: pointer; margin-left: 4px; }
+    .speaker-icon:hover { color: #2980b9; }
+
+    /* Lists */
+    ol { margin: 0.5rem 0 1rem 1.25rem; }
+    ol li { margin-bottom: 0.6rem; }
+    ul { margin: 0.5rem 0 1rem 1.25rem; }
+
+    /* Buttons */
+    .buttons { text-align: center; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
+    .buttons a {
+      text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
+      border-radius: 8px; font-weight: bold; transition: background-color 0.2s; display: inline-block; margin: 0 0.3rem;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem; gap: 1rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 998;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1 { font-size: 1.9rem; margin: 1.5rem auto 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+        <span class="site-name">ESLnote</span>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Personality: The Peaceful Leadership of Mahatma Gandhi</h1>
+
+  <main>
+    <div class="content-section">
+      <div class="meta-note" role="note">
+        Level: Intermediate (B1–B2). Topic: Personality & Leadership. Length ~500 words.
+      </div>
+
+      <h2>Reading</h2>
+      <p><strong>Mahatma Gandhi</strong> is remembered as a symbol of peace, honesty, and moral strength. His calm, patient personality helped him guide millions of people toward justice. Gandhi believed that true power comes from self-control and kindness, not anger or violence. Because of this belief, he inspired people in India and around the world to work for freedom through nonviolent action.</p>
+
+      <p>Gandhi was born in India in 1869. As a young man, he was shy and often quiet in public. He studied law in London, where he learned about equality and human rights. Later, he worked in South Africa and experienced discrimination when he was forced off a train for refusing to leave a seat reserved for white passengers. This moment changed his life. He decided to fight unfair treatment—but to do it peacefully.</p>
+
+      <p>Gandhi developed a philosophy called <em>satyagraha</em>, which means “truth force.” The idea is simple but powerful: people can stand up for what is right without hurting anyone. They can protest peacefully, refuse to cooperate with unfair systems, and show respect even to their opponents. For Gandhi, nonviolence was not weakness; it was a brave and active choice that required courage and discipline.</p>
+
+      <p>When Gandhi returned to India, he encouraged people to take peaceful actions against British rule. He asked citizens to stop buying British goods and to make their own clothes. He also promoted simple living, honesty, and humility. Gandhi wore plain, white cotton clothes and lived in a small house. This lifestyle matched his values and made people trust him. His personality—calm, humble, and consistent—attracted followers from many backgrounds.</p>
+
+      <p>The British government arrested Gandhi many times, but he did not abandon his beliefs. Even in prison, he wrote letters, advised others, and continued to encourage nonviolent action. His example gave hope to people who felt powerless. He showed that patience, inner strength, and peaceful choices can be more effective than fear and force.</p>
+
+      <p>India became independent in 1947. Gandhi stayed humble and continued to call for unity and forgiveness among different communities. Sadly, he was killed in 1948 by someone who disagreed with his ideas. Yet his message lives on. Today, many leaders and movements still use nonviolent strategies to create change. Gandhi’s life reminds us that personality matters: our attitudes and choices can influence families, workplaces, and even nations.</p>
+
+      <p><em>Key idea:</em> A peaceful, disciplined personality can create powerful, positive change without violence.</p>
+    </div>
+
+    <div class="content-section vocabulary-list">
+      <h2>Vocabulary List</h2>
+      <p>Tap the speaker to hear each word.</p>
+      <ul>
+        <li><strong>nonviolent</strong> <i class="fas fa-volume-up speaker-icon" data-word="nonviolent"></i> — Without using physical force or harm.</li>
+        <li><strong>discrimination</strong> <i class="fas fa-volume-up speaker-icon" data-word="discrimination"></i> — Unfair treatment based on race, gender, or other differences.</li>
+        <li><strong>humility</strong> <i class="fas fa-volume-up speaker-icon" data-word="humility"></i> — Being modest and not proud; recognizing one’s limits.</li>
+        <li><strong>discipline</strong> <i class="fas fa-volume-up speaker-icon" data-word="discipline"></i> — Self-control and effort to follow rules or goals.</li>
+        <li><strong>oppose</strong> <i class="fas fa-volume-up speaker-icon" data-word="oppose"></i> — To disagree with or act against something.</li>
+        <li><strong>cooperate</strong> <i class="fas fa-volume-up speaker-icon" data-word="cooperate"></i> — To work together or follow a system.</li>
+        <li><strong>philosophy</strong> <i class="fas fa-volume-up speaker-icon" data-word="philosophy"></i> — A set of ideas and beliefs that guide actions.</li>
+        <li><strong>inspire</strong> <i class="fas fa-volume-up speaker-icon" data-word="inspire"></i> — To encourage someone to act or feel hopeful.</li>
+        <li><strong>consistent</strong> <i class="fas fa-volume-up speaker-icon" data-word="consistent"></i> — Acting the same way over time; reliable.</li>
+        <li><strong>unity</strong> <i class="fas fa-volume-up speaker-icon" data-word="unity"></i> — Being joined together for a common purpose.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Comprehension Questions</h2>
+      <ol>
+        <li>Why is Gandhi remembered as a strong leader even though he rejected violence?</li>
+        <li>What event in South Africa changed Gandhi’s life, and how did it influence his actions?</li>
+        <li>Explain the meaning of <em>satyagraha</em> in your own words.</li>
+        <li>List two peaceful actions Gandhi encouraged people in India to take.</li>
+        <li>How did Gandhi’s lifestyle (clothes, home) support his message?</li>
+        <li>What is one way that Gandhi’s ideas are still used today?</li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="buttons">
+    <a href="../reading.html">⬅️ Back to Reading</a>
+    <a href="../index.html">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    // Text-to-speech for vocabulary words
+    const speakerIcons = document.querySelectorAll('.speaker-icon');
+    if ('speechSynthesis' in window) {
+      speakerIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const word = this.dataset.word;
+          if (!word) return;
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+    } else {
+      speakerIcons.forEach(icon => icon.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

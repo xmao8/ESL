@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+words2.forEach((w,i)=>{
+const tr = document.createElement('tr');
+tr.innerHTML = `<td><input class='answer' id='s2-q${i}' maxlength='3' aria-label='Answer for ${w}'/> ${i+24}. ${w}</td><td><span class='letter'>${letters2[i]}</span>${shuffledDefs2[i]}</td>`;
+tbody2.appendChild(tr);
+});
+
+
+function checkAll2(){
+let score = 0; const total = words2.length;
+words2.forEach((_,i)=>{
+const inp = document.getElementById('s2-q'+i);
+const val = normalize2(inp.value);
+inp.classList.remove('correct','incorrect');
+if(!val) return;
+if(val === keys2[i]){ inp.classList.add('correct'); score++; }
+else inp.classList.add('incorrect');
+});
+document.getElementById('correctCount-set2').textContent = score;
+document.getElementById('totalCount-set2').textContent = total;
+document.getElementById('results-set2').style.display = 'block';
+document.getElementById('showAnswersBtn-set2').style.display = 'inline-block';
+document.getElementById('submitBtn-set2').style.display = 'none';
+}
+function resetAll2(){
+words2.forEach((_,i)=>{
+const inp = document.getElementById('s2-q'+i);
+inp.value=''; inp.classList.remove('correct','incorrect');
+});
+document.getElementById('results-set2').style.display = 'none';
+document.getElementById('submitBtn-set2').style.display = 'inline-block';
+const btn = document.getElementById('showAnswersBtn-set2');
+btn.style.display = 'none'; btn.textContent = 'Show Answers';
+}
+
+
+document.getElementById('submitBtn-set2').addEventListener('click', checkAll2);
+const showBtn2 = document.getElementById('showAnswersBtn-set2');
+showBtn2.addEventListener('click', ()=>{
+if(showBtn2.textContent === 'Show Answers'){
+words2.forEach((_,i)=>{ document.getElementById('s2-q'+i).value = keys2[i]; });
+showBtn2.textContent = 'Hide Answers';
+} else {
+words2.forEach((_,i)=>{ document.getElementById('s2-q'+i).value = ''; });
+showBtn2.textContent = 'Show Answers';
+}
+});
+document.getElementById('resetBtn-set2').addEventListener('click', resetAll2);
+
+
+document.getElementById('totalCount-set2').textContent = words2.length;
+</script>
+</body>
+</html>

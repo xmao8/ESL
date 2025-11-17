@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Used to vs. Be Used To – ESLnote Grammar</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* General body and container styles */
-    * { box-sizing: border-box; }
+    /* (The full CSS section from the previous response remains here) */
+    /* ... including all media queries and content styles ... */
+    * { box-sizing: border-box; }
     body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; }
     nav { background: #124076; margin: 0; padding: 0; }
     .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box; }
     .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
-    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; display: none; /* HIDE IF FAVICON IS MISSING */ } 
     .nav-links { display: flex; gap: 1rem; }
     .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
     .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
-    /* Hamburger menu button */
     .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
     .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
@@ -74,8 +73,7 @@
 
 <nav aria-label="Main navigation">
   <div class="nav-container">
-    <a href="../index.html" class="logo" aria-label="ESLnote Home">
-      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+    <a href="#" class="logo" aria-label="ESLnote Home">
       <span class="site-name">ESLnote</span>
     </a>
 
@@ -84,13 +82,13 @@
     </button>
 
     <div class="nav-links" id="primary-navigation">
-      <a href="../index.html">Home</a>
-      <a href="../flashcards.html">Flashcards</a>
-      <a href="../conversation.html">Conversations</a>
-      <a href="../grammar.html">Grammar</a>
-      <a href="../reading.html">Reading</a>
-      <a href="../listening.html">Listening</a>
-      <a href="../practice.html">Practices</a>
+      <a href="#">Home</a>
+      <a href="#">Flashcards</a>
+      <a href="#">Conversations</a>
+      <a href="#">Grammar</a>
+      <a href="#">Reading</a>
+      <a href="#">Listening</a>
+      <a href="#">Practices</a>
     </div>
   </div>
 </nav>
@@ -192,8 +190,8 @@
 </div>
 
 <div class="buttons">
-  <a href="../grammar.html">← Back to Grammar</a>
-  <a href="../index.html">🏠 Home</a>
+  <a href="#">← Back to Grammar</a>
+  <a href="#">🏠 Home</a>
 </div>
 
 <script>

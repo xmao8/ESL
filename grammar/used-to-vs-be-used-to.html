@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Used to vs. Be Used To – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; overflow-x: hidden; }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box; }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    /* Hamburger menu button */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- Phone Layout --- */
+    @media (max-width: 600px) {
+      .nav-links { position: fixed; top: 56px; right: 0; background: #124076; flex-direction: column; width: 100%; height: calc(100vh - 56px); padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start; }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    /* --- Tablet Layout --- */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    /* --- Desktop Layout --- */
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content specific styles */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container { background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.06rem; }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.55rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Difference Between Used To and Be Used To</h1>
+
+<div class="content-container">
+  <p>The phrases **"used to"** and **"be used to"** look very similar but have completely different meanings and follow different grammar rules. Understanding the difference is key to discussing past habits and present familiarity.</p>
+
+  <h2>1) Used To (Past Habit or State) <span class="tag">Past Tense</span></h2>
+  <p>We use **"used to"** to describe an action or state that was **regular or true in the past but is no longer true** or no longer happens now.</p>
+  <div class="example">
+    <strong>Rule:</strong> Subject + **used to** + **Base Verb** (Infinitive)
+    <ul>
+      <li>I used to **live** in New York. (I don't live there now.)</li>
+      <li>We used to **watch** that show every Friday. (We don't watch it anymore.)</li>
+      <li>Did he use to **work** here? (Question form uses 'Did' and 'use to'.)</li>
+    </ul>
+  </div>
+
+  <h3>Negative and Question Forms</h3>
+  <p>In negative statements and questions, we use the auxiliary verb **did** and change **used to** back to **use to** (the base form).</p>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Used To forms">
+      <thead>
+        <tr><th>Form</th><th>Structure</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Affirmative</strong></td>
+          <td>used to + Base Verb</td>
+          <td>She **used to run** marathons.</td>
+        </tr>
+        <tr>
+          <td><strong>Negative</strong></td>
+          <td>didn't use to + Base Verb</td>
+          <td>They **didn't use to eat** meat.</td>
+        </tr>
+        <tr>
+          <td><strong>Question</strong></td>
+          <td>Did + subject + use to + Base Verb?</td>
+          <td>**Did** you **use to play** an instrument?</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note"><strong>Do not confuse</strong> "used to" with the verb "to use." For example: "I **used** a pen to write the note."</p>
+
+  <h2>2) Be Used To (Familiarity/Customary) <span class="tag">Present Tense</span></h2>
+  <p>We use **"be used to"** to say that something is **normal, familiar, or not difficult** for a person. The verb *be* can be conjugated to any tense (am, is, are, was, were, etc.).</p>
+  <div class="example">
+    <strong>Rule:</strong> Subject + **be used to** + **Gerund (-ing)** or **Noun**
+    <ul>
+      <li>I am used to **waking** up early now. (It's normal for me.)</li>
+      <li>She wasn't used to **the noise**. (The noise wasn't normal for her.)</li>
+      <li>Are they used to **driving** on the left side of the road? (Is it familiar?)</li>
+    </ul>
+  </div>
+
+  <h3>The Process: Get Used To</h3>
+  <p>The phrase **"get used to"** describes the **process of becoming familiar** or accustomed to something new.</p>
+  <ol>
+    <li>It takes time to **get used to eating** spicy food.</li>
+    <li>After a month, she finally **got used to the cold**. (Past Tense)</li>
+    <li>I am still **getting used to the new schedule**. (Present Continuous)</li>
+  </ol>
+
+  <h2>3) Key Grammar Summary</h2>
+  <p>The main point of confusion is what follows the word 'to' in each phrase. The rule is simple:</p>
+  <ul>
+    <li>**Used to** $\rightarrow$ Followed by the **Base Verb**.</li>
+    <li>**Be Used To / Get Used To** $\rightarrow$ Followed by the **Gerund (-ing)** or a **Noun**. (The word 'to' acts as a preposition here).</li>
+  </ul>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Used To vs Be Used To Comparison">
+      <thead>
+        <tr><th>Phrase</th><th>Meaning</th><th>Grammar Followed By</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Used To</strong></td>
+          <td>Past habit, no longer true.</td>
+          <td>**Base Verb** (e.g., *walk*)</td>
+        </tr>
+        <tr>
+          <td><strong>Be Used To</strong></td>
+          <td>Accustomed, familiar, not strange.</td>
+          <td>**Gerund (-ing)** or **Noun** (e.g., *walking* or *the cold*)</td>
+        </tr>
+        <tr>
+          <td><strong>Get Used To</strong></td>
+          <td>The process of becoming accustomed.</td>
+          <td>**Gerund (-ing)** or **Noun** (e.g., *walking* or *the cold*)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

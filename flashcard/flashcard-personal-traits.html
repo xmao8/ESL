@@ -1,127 +1,363 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards – Personal Traits</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Traits – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; margin: 0; padding: 0; }
-    nav { background: #2c3e50; padding: 1rem; }
-    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    h1 { margin: 2rem 0; color: #2c3e50; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
     .flashcard {
-      background: white;
-      width: 90%;
-      max-width: 500px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
-    .flashcard.flipped {
-      background-color: #3498db;
-      color: white;
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
     }
-    .buttons { margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; }
-    button {
-      padding: 0.6rem 1.2rem;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
     }
-    button:hover { background: #2980b9; }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker { cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s; }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
   </style>
 </head>
 <body>
 
-<nav>
-    <a href="../index.html">Home</a>
-    <a href="../flashcards.html">Flashcards</a>
-    <a href="../conversation.html">Conversations</a>
-    <a href="../grammar.html">Grammar</a>
-    <a href="../reading.html">Reading</a>
-    <a href="../practice.html">Practices</a> 
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
 </nav>
 
-<h1>Personal Traits Flashcards</h1>
+<h1>Personal Traits Vocabulary – Flashcards (30 Words)</h1>
 
-<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
 
 <div class="buttons">
-  <button onclick="prevCard()">⬅ Previous</button>
-  <button onclick="nextCard()">Next ➡</button>
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
 const flashcards = [
-  { word: "Arrogant", definition: "Having an exaggerated sense of one’s own importance or abilities; overbearingly proud.", examples: "The arrogant applicant brushed off every question as if she already knew all the answers.\nTom’s arrogant tone made it difficult for his teammates to offer suggestions during the meeting." },
-  { word: "Confident", definition: "Sure of oneself and one’s abilities; having self-assurance.", examples: "Maria spoke to the new patients with a confident tone that immediately put them at ease.\nHe felt confident about handling the scheduling system after just two days of training." },
-  { word: "Friendly", definition: "Pleasant, kind, and approachable; showing warmth toward others.", examples: "The friendly receptionist greeted every patient with a smile and a “How are you today?”\nEven under stress, Ana always maintains a friendly demeanor over the phone." },
-  { word: "Helpful", definition: "Willing to assist or support others; providing aid or useful information.", examples: "When the IT system went down, she was the first to offer helpful tips to get colleagues back online.\nJohn was so helpful that he stayed late to fax the doctor’s referral forms." },
-  { word: "Intelligent", definition: "Having a quick, keen mind and the ability to learn and understand readily.", examples: "The intelligent candidate solved the complex billing issue in minutes.\nHer intelligent questions about the new software showed she’d researched it in advance." },
-  { word: "Sensitive", definition: "Aware of and responsive to the feelings of others; emotionally perceptive.", examples: "She was sensitive to Mrs. Chen’s anxiety and spoke in a calm, reassuring voice.\nBeing sensitive to cultural differences helps him communicate effectively with a diverse patient base." },
-  { word: "Thoughtful", definition: "Showing consideration for the needs of others; careful and deliberate.", examples: "It was thoughtful of Jamie to bring an extra cup of coffee for the late-night staff.\nShe left a thoughtful note on the doctor’s desk summarizing patient follow-ups." },
-  { word: "Careful", definition: "Taking pains to avoid mistakes or harm; attentive to detail.", examples: "The careful assistant triple-checked each patient’s file before the doctor’s rounds.\nWhen handling confidential records, she is always extremely careful." },
-  { word: "Enthusiastic", definition: "Showing intense and eager enjoyment or interest; very positive and energetic.", examples: "His enthusiastic greeting brightened every patient’s morning.\nShe tackled the new scheduling software with an enthusiastic 'Let’s try it!' attitude." },
-  { word: "Funny", definition: "Amusing or comical; able to make others laugh.", examples: "Her funny anecdotes during breaks helped reduce everyone’s stress.\nEven in a busy office, John’s funny jokes kept morale high." },
-  { word: "Honest", definition: "Truthful and trustworthy; free from deceit.", examples: "She was honest about a billing error and corrected it immediately.\nThe clinic values staff who are honest with patients about wait times." },
-  { word: "Motivated", definition: "Driven by a strong desire to achieve or succeed; highly proactive.", examples: "As a motivated team member, she volunteered to organize the new filing system.\nHis motivated approach meant fewer errors and smoother daily operations." },
-  { word: "Sneaky", definition: "Acting in a secretive or furtive way, often to deceive.", examples: "A sneaky coworker tried to take credit for her thorough patient intake reports.\nThe manager warned against any sneaky attempts to bypass the proper approval chain." },
-  { word: "Warm", definition: "Kind, affectionate, and welcoming in manner.", examples: "Her warm smile immediately comforted every nervous patient.\nHe spoke in a warm tone that made even complicated instructions feel reassuring." },
+  // Original 14
+  { word: "Arrogant", ipa: "/ˈærəɡənt/", definition: "Having an exaggerated sense of one’s own importance; overbearingly proud.", example: "The arrogant applicant brushed off every question as if she already knew all the answers.", chinese: "傲慢的", spanish: "arrogante" },
+  { word: "Confident", ipa: "/ˈkɑːnfɪdənt/", definition: "Sure of oneself and one’s abilities; having self‑assurance.", example: "Maria spoke to the new patients with a confident tone that immediately put them at ease.", chinese: "自信的", spanish: "seguro/a de sí" },
+  { word: "Friendly", ipa: "/ˈfrɛn(d)li/", definition: "Pleasant, kind, and approachable; showing warmth toward others.", example: "The friendly receptionist greeted every patient with a smile.", chinese: "友好的", spanish: "amigable" },
+  { word: "Helpful", ipa: "/ˈhɛlpfəl/", definition: "Willing to assist or support others; providing useful help.", example: "When the IT system went down, she was the first to offer helpful tips.", chinese: "乐于助人的", spanish: "servicial" },
+  { word: "Intelligent", ipa: "/ɪnˈtɛlɪdʒənt/", definition: "Quick to learn and understand; showing mental sharpness.", example: "The intelligent candidate solved the complex billing issue in minutes.", chinese: "聪明的", spanish: "inteligente" },
+  { word: "Sensitive", ipa: "/ˈsɛnsɪtɪv/", definition: "Aware of and responsive to others’ feelings; emotionally perceptive.", example: "She was sensitive to Mrs. Chen’s anxiety and spoke in a calm, reassuring voice.", chinese: "敏感的/体贴的", spanish: "sensible" },
+  { word: "Thoughtful", ipa: "/ˈθɔːtfəl/", definition: "Considerate of others’ needs; careful and deliberate.", example: "It was thoughtful of Jamie to bring extra coffee for the night staff.", chinese: "体贴的/周到的", spanish: "considerado/a" },
+  { word: "Careful", ipa: "/ˈkɛərfəl/", definition: "Taking pains to avoid mistakes or harm; attentive to detail.", example: "The careful assistant triple‑checked each patient’s file.", chinese: "小心的/细致的", spanish: "cuidadoso/a" },
+  { word: "Enthusiastic", ipa: "/ɪnˌθuːziˈæstɪk/", definition: "Showing eager interest; energetic and positive.", example: "His enthusiastic greeting brightened every patient’s morning.", chinese: "热情的", spanish: "entusiasta" },
+  { word: "Funny", ipa: "/ˈfʌni/", definition: "Amusing; able to make others laugh.", example: "Her funny anecdotes during breaks helped reduce everyone’s stress.", chinese: "有趣的", spanish: "gracioso/a" },
+  { word: "Honest", ipa: "/ˈɒnɪst/", definition: "Truthful and trustworthy; free from deceit.", example: "She was honest about a billing error and corrected it immediately.", chinese: "诚实的", spanish: "honesto/a" },
+  { word: "Motivated", ipa: "/ˈmoʊtɪˌveɪtɪd/", definition: "Driven to achieve goals; proactive.", example: "As a motivated team member, she volunteered to organize the new filing system.", chinese: "有动力的", spanish: "motivado/a" },
+  { word: "Sneaky", ipa: "/ˈsniːki/", definition: "Secretive in a way that suggests deception.", example: "A sneaky coworker tried to take credit for her reports.", chinese: "鬼鬼祟祟的/偷偷摸摸的", spanish: "furtivo/a" },
+  { word: "Warm", ipa: "/wɔːrm/", definition: "Kind, affectionate, and welcoming in manner.", example: "Her warm smile immediately comforted nervous patients.", chinese: "温暖的/亲切的", spanish: "cálido/a" },
+
+  // Added to reach 30
+  { word: "Adaptable", ipa: "/əˈdæptəbəl/", definition: "Able to adjust quickly to new conditions or challenges.", example: "He stayed adaptable when the schedule changed at the last minute.", chinese: "适应力强的", spanish: "adaptable" },
+  { word: "Assertive", ipa: "/əˈsɜːrtɪv/", definition: "Confidently expressing needs or opinions while respecting others.", example: "The nurse was assertive when advocating for her patient.", chinese: "果断的/坚定自信的", spanish: "asertivo/a" },
+  { word: "Dependable", ipa: "/dɪˈpɛndəbəl/", definition: "Reliable and trustworthy; can be counted on.", example: "The manager chose a dependable assistant for weekend shifts.", chinese: "可靠的", spanish: "fiable" },
+  { word: "Diligent", ipa: "/ˈdɪlɪdʒənt/", definition: "Hard‑working and careful in one’s duties.", example: "A diligent intern checked every invoice line by line.", chinese: "勤勉的", spanish: "diligente" },
+  { word: "Empathetic", ipa: "/ˌɛmpəˈθɛtɪk/", definition: "Able to understand and share another person’s feelings.", example: "An empathetic response helped calm the frustrated caller.", chinese: "有同理心的", spanish: "empático/a" },
+  { word: "Humble", ipa: "/ˈhʌmbəl/", definition: "Modest; not overly proud of one’s achievements.", example: "Even after the award, he remained humble.", chinese: "谦虚的", spanish: "humilde" },
+  { word: "Innovative", ipa: "/ˈɪnəˌveɪtɪv/", definition: "Introducing new ideas; creative in solving problems.", example: "Her innovative checklist shortened the intake process.", chinese: "创新的", spanish: "innovador/a" },
+  { word: "Logical", ipa: "/ˈlɒdʒɪkəl/", definition: "Reasonable and based on clear thinking.", example: "He offered a logical plan to reduce wait times.", chinese: "合乎逻辑的", spanish: "lógico/a" },
+  { word: "Organized", ipa: "/ˈɔːrɡənaɪzd/", definition: "Keeping tasks and materials in good order.", example: "She kept an organized calendar for all providers.", chinese: "有条理的", spanish: "organizado/a" },
+  { word: "Patient", ipa: "/ˈpeɪʃənt/", definition: "Able to remain calm when faced with delays or problems.", example: "A patient tone helped the new trainee learn quickly.", chinese: "有耐心的", spanish: "paciente" },
+  { word: "Proactive", ipa: "/proʊˈæktɪv/", definition: "Acting in advance to prevent problems or seize opportunities.", example: "He was proactive about restocking supplies before they ran out.", chinese: "积极主动的", spanish: "proactivo/a" },
+  { word: "Resilient", ipa: "/rɪˈzɪliənt/", definition: "Able to recover quickly from difficulties.", example: "After a tough morning, she stayed resilient and focused.", chinese: "有韧性的/有弹性的", spanish: "resiliente" },
+  { word: "Resourceful", ipa: "/rɪˈsɔːrsfəl/", definition: "Good at finding quick and clever ways to overcome difficulties.", example: "She was resourceful in locating a backup clinic for the patient.", chinese: "足智多谋的", spanish: "ingenioso/a" },
+  { word: "Respectful", ipa: "/rɪˈspɛktfəl/", definition: "Showing regard and consideration for others.", example: "He was respectful when discussing a scheduling mistake.", chinese: "尊重人的/有礼貌的", spanish: "respetuoso/a" },
+  { word: "Responsible", ipa: "/rɪˈspɒnsəbəl/", definition: "Having a duty to do something; accountable.", example: "Being responsible means owning both successes and errors.", chinese: "负责任的", spanish: "responsable" },
+  { word: "Sociable", ipa: "/ˈsoʊʃəbəl/", definition: "Enjoying being with and talking to other people.", example: "Her sociable nature made new patients feel welcome.", chinese: "合群的/爱交际的", spanish: "sociable" },
+  { word: "Calm", ipa: "/kɑːm/", definition: "Not showing or feeling nervousness, anger, or other emotions.", example: "He stayed calm during the emergency call.", chinese: "冷静的", spanish: "calmo/a, tranquilo/a" },
+  { word: "Curious", ipa: "/ˈkjʊəriəs/", definition: "Eager to know or learn something.", example: "Her curious questions improved the training session.", chinese: "好奇的", spanish: "curioso/a" },
+  { word: "Dependable", ipa: "/dɪˈpɛndəbəl/", definition: "Reliable and steady; can be counted on.", example: "Our most dependable volunteer always arrives early.", chinese: "可靠的", spanish: "confiable" },
+  { word: "Determined", ipa: "/dɪˈtɜːrmɪnd/", definition: "Having made a firm decision; not giving up.", example: "She was determined to finish the certification this month.", chinese: "坚定的", spanish: "decidido/a" },
+  { word: "Fair", ipa: "/fɛər/", definition: "Impartial and just; treating people equally.", example: "The supervisor was fair when assigning shifts.", chinese: "公平的", spanish: "justo/a" },
+  { word: "Flexible", ipa: "/ˈflɛksəbəl/", definition: "Willing to change or try different things when needed.", example: "Flexible staff swapped shifts to cover the rush.", chinese: "灵活的", spanish: "flexible" },
+  { word: "Polite", ipa: "/pəˈlaɪt/", definition: "Having good manners and showing respect toward others.", example: "She remained polite even with a difficult caller.", chinese: "有礼貌的", spanish: "educado/a" },
+  { word: "Practical", ipa: "/ˈpræktɪkəl/", definition: "Focused on what works in real situations.", example: "He suggested a practical way to shorten check‑in time.", chinese: "务实的", spanish: "práctico/a" },
+  { word: "Reliable", ipa: "/rɪˈlaɪəbəl/", definition: "Consistently good in quality or performance; trustworthy.", example: "The most reliable way is to confirm appointments by text.", chinese: "可靠的", spanish: "fiable" },
+  { word: "Tactful", ipa: "/ˈtæktfəl/", definition: "Skilled at saying or doing the right thing without upsetting people.", example: "Her tactful reply ended the argument.", chinese: "圆滑得体的", spanish: "diplomático/a" },
+  { word: "Timid", ipa: "/ˈtɪmɪd/", definition: "Showing a lack of courage or confidence; shy.", example: "At first he was timid about speaking in meetings.", chinese: "胆小的/腼腆的", spanish: "tímido/a" }
 ];
-  let index = 0;
-  let flipped = false;
-  const card = document.getElementById("flashcard");
 
-  function showCard() {
-    card.classList.remove("flipped");
-    flipped = false;
-    card.innerHTML = flashcards[index].word;
-  }
+let index = 0;
+let flipped = false;
 
-  function flipCard() {
-    if (!flipped) {
-      const { word, definition, examples } = flashcards[index];
-      card.innerHTML = `<strong>${word}</strong><br>${definition}<br><br><em>${examples.replace(/\n/g, "<br>")}</em>`;
-      card.classList.add("flipped");
-      speak(word);
-      flipped = true;
-    } else {
-      showCard();
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
     }
-  }
-
-  function speak(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    speechSynthesis.speak(utterance);
-  }
-
-  function nextCard() {
-    index = (index + 1) % flashcards.length;
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
     showCard();
   }
+}
 
-  function prevCard() {
-    index = (index - 1 + flashcards.length) % flashcards.length;
-    showCard();
-  }
-
+function nextCard() {
+  index = (index + 1) % flashcards.length;
   showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
 </script>
 
-
 <div class="buttons">
-  <a href="../flashcards.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">← Back to Flashcards</a>
-  <a href="../index.html" style="text-decoration:none; background:#3498db; color:white; padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;">🏠 Home</a>
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
 </div>
+
 </body>
 </html>
-

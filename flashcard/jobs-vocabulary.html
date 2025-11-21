@@ -132,18 +132,19 @@
 
 <h1>Jobs Vocabulary Flashcards</h1>
 
-<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+<div id="flashcard" class="flashcard" role="button" aria-pressed="false" tabindex="0">
   <div class="word">Click to Flip</div>
   <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
   <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
-  <button onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
-  <button onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+  <button id="prevBtn" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
+// --------- DATA ---------
 const flashcards = [
   { word: "employee", ipa: "/ɛmˈplɔɪ.iː/", definition: "A person who works for a company or person.", example: "Each employee must complete the safety training.", chinese: "雇员", spanish: "empleado/a" },
   { word: "employer", ipa: "/ɛmˈplɔɪ.ər/", definition: "A person or company that hires workers.", example: "The employer offers health insurance.", chinese: "雇主", spanish: "empleador/a" },
@@ -152,7 +153,7 @@ const flashcards = [
   { word: "profession", ipa: "/prəˈfɛʃ.ən/", definition: "A job that needs special training or education.", example: "Teaching is a respected profession.", chinese: "专业；职业", spanish: "profesión" },
   { word: "position", ipa: "/pəˈzɪʃ.ən/", definition: "A specific job role at a company.", example: "She applied for the position of project coordinator.", chinese: "职位", spanish: "puesto" },
   { word: "interview", ipa: "/ˈɪn.tə.vjuː/", definition: "A meeting to decide if you are right for a job.", example: "He prepared carefully for the interview.", chinese: "面试", spanish: "entrevista" },
-  { word: "resume", ipa: "/ˈrɛz.jʊ.meɪ/ (US) /CV/", definition: "A document listing your education and experience.", example: "Update your resume before applying.", chinese: "简历", spanish: "currículum (CV)" },
+  { word: "resume", ipa: "/ˈrɛz.jʊ.meɪ/", definition: "A document listing your education and experience.", example: "Update your resume before applying.", chinese: "简历", spanish: "currículum (CV)" },
   { word: "salary", ipa: "/ˈsæl.ər.i/", definition: "Money paid to an employee each month or year.", example: "The job offers a competitive salary.", chinese: "薪水", spanish: "salario" },
   { word: "wage", ipa: "/weɪdʒ/", definition: "Money paid by the hour or day.", example: "The wage for this role starts at $18 per hour.", chinese: "工资（时薪/日薪）", spanish: "salario/hora" },
   { word: "full-time", ipa: "/ˈfʊl taɪm/", definition: "Working about 35–40 hours each week.", example: "She works full-time at the hospital.", chinese: "全职", spanish: "tiempo completo" },
@@ -174,10 +175,9 @@ const flashcards = [
   { word: "responsibility", ipa: "/rɪˌspɒn.səˈbɪl.ə.ti/", definition: "Something you must do or take care of.", example: "Customer safety is our responsibility.", chinese: "责任", spanish: "responsabilidad" },
   { word: "opportunity", ipa: "/ˌɒp.əˈtjuː.nɪ.ti/", definition: "A good chance to do something.", example: "This job is an opportunity to learn new skills.", chinese: "机会", spanish: "oportunidad" },
   { word: "job market", ipa: "/dʒɒb ˈmɑːr.kɪt/", definition: "The number of available jobs and workers.", example: "The job market is strong for nurses.", chinese: "就业市场", spanish: "mercado laboral" },
-  { word: "retirement", ipa: "/rɪˈtaɪə(r)mənt/", definition: "The time when you stop working permanently.", example: "He saved money for retirement.", chinese: "退休", spanish: "jubilación" }
-   { word: "advertisement", ipa: "/ədˈvɜː.tɪs.mənt/", definition: "A notice or announcement that promotes a job or product.", example: "I saw a job advertisement online.", chinese: "广告", spanish: "anuncio" },
+  { word: "retirement", ipa: "/rɪˈtaɪə(r)mənt/", definition: "The time when you stop working permanently.", example: "He saved money for retirement.", chinese: "退休", spanish: "jubilación" },
+  { word: "advertisement", ipa: "/ədˈvɜː.tɪs.mənt/", definition: "A notice or announcement that promotes a job or product.", example: "I saw a job advertisement online.", chinese: "广告", spanish: "anuncio" },
   { word: "application", ipa: "/ˌæp.lɪˈkeɪ.ʃən/", definition: "A formal request for a job or position.", example: "She submitted her job application yesterday.", chinese: "申请", spanish: "solicitud" },
-  { word: "experience", ipa: "/ɪkˈspɪə.ri.əns/", definition: "Practical knowledge gained from doing a job.", example: "You need experience to qualify for this role.", chinese: "经验", spanish: "experiencia" },
   { word: "personality", ipa: "/ˌpɜː.sənˈæl.ɪ.ti/", definition: "The qualities that make someone’s character unique.", example: "His friendly personality is perfect for customer service.", chinese: "个性", spanish: "personalidad" },
   { word: "description", ipa: "/dɪˈskrɪp.ʃən/", definition: "A written or spoken explanation of something.", example: "The job description lists all the responsibilities.", chinese: "描述", spanish: "descripción" },
   { word: "preference", ipa: "/ˈpre.fər.əns/", definition: "A greater liking for one thing over another.", example: "She has a preference for morning shifts.", chinese: "偏好", spanish: "preferencia" },
@@ -186,27 +186,42 @@ const flashcards = [
   { word: "education", ipa: "/ˌed.jʊˈkeɪ.ʃən/", definition: "Formal learning at school or university.", example: "He has a good education in business.", chinese: "教育", spanish: "educación" }
 ];
 
+// --------- STATE ---------
 let index = 0;
 let flipped = false;
+const flashcardEl = document.getElementById("flashcard");
+const autoplayBtn = document.getElementById('autoplayBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 
-const flashcard = document.getElementById("flashcard");
-
+// --------- RENDERING ---------
 function showCard() {
   flipped = false;
-  flashcard.classList.remove("flipped");
-  flashcard.setAttribute("aria-pressed", "false");
+  flashcardEl.classList.remove("flipped");
+  flashcardEl.setAttribute("aria-pressed", "false");
   const { word, ipa } = flashcards[index];
-  flashcard.innerHTML = `
+  flashcardEl.innerHTML = `
     <div class="word">${word}</div>
     <div class="ipa">${ipa}</div>
     <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
   `;
 }
 
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel(); // prevent overlapping audio
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    window.speechSynthesis.speak(utterance);
+  } catch (_) {}
+}
+
 function flipCard() {
   if (!flipped) {
     const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
-    flashcard.innerHTML = `
+    flashcardEl.innerHTML = `
       <div class="word">
         ${word}
         <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
@@ -218,26 +233,20 @@ function flipCard() {
       <div class="translation">Spanish: ${spanish}</div>
       <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
-    flashcard.classList.add("flipped");
-    flashcard.setAttribute("aria-pressed", "true");
+    flashcardEl.classList.add("flipped");
+    flashcardEl.setAttribute("aria-pressed", "true");
     flipped = true;
 
-    const speakerBtn = flashcard.querySelector(".speaker");
-    function speak() {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.95;
-      speechSynthesis.speak(utterance);
+    const speakerBtn = flashcardEl.querySelector(".speaker");
+    const onSpeak = () => speak(word);
+    if (speakerBtn) {
+      speakerBtn.addEventListener("click", onSpeak);
+      speakerBtn.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSpeak(); }
+      });
     }
-    speakerBtn.addEventListener("click", speak);
-    speakerBtn.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        speak();
-      }
-    });
     // Auto pronounce once on flip
-    speak();
+    onSpeak();
   } else {
     showCard();
   }
@@ -253,47 +262,57 @@ function prevCard() {
   showCard();
 }
 
+// Init first card
 showCard();
+
+// --------- INPUTS & A11Y ---------
+flashcardEl.addEventListener('click', flipCard);
+flashcardEl.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') flipCard();
+});
 
 // Mobile nav toggle script
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('primary-navigation');
 if (menuToggle && navLinks) {
   menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-    menuToggle.setAttribute('aria-expanded', !expanded);
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
     navLinks.classList.toggle('active');
   });
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      if(navLinks.classList.contains('active')) {
+      if (navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', false);
+        menuToggle.setAttribute('aria-expanded', 'false');
       }
     });
   });
 }
 
-// Autoplay functionality
+// --------- AUTOPLAY ---------
 let autoplay = false;
 let autoplayTimeouts = [];
-const autoplayBtn = document.getElementById('autoplayBtn');
 
 function clearAutoplayTimeouts() {
   autoplayTimeouts.forEach(t => clearTimeout(t));
   autoplayTimeouts = [];
-  speechSynthesis.cancel();
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
 }
 
-function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+function sleep(ms){
+  return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms)));
+}
 
 function pronounce(text) {
   return new Promise((resolve) => {
+    if (!('speechSynthesis' in window)) return resolve();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
     utterance.rate = 0.95;
     utterance.onend = resolve;
-    speechSynthesis.speak(utterance);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
   });
 }
 
@@ -340,13 +359,16 @@ function stopAutoplayOnUserAction() {
     clearAutoplayTimeouts();
   }
 }
-flashcard.addEventListener('click', stopAutoplayOnUserAction);
-const prevBtn = document.querySelector('.buttons button[aria-label="Previous flashcard"]');
-const nextBtn = document.querySelector('.buttons button[aria-label="Next flashcard"]');
-if (prevBtn && nextBtn) {
-  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
-  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
-}
+prevBtn.addEventListener('click', () => { stopAutoplayOnUserAction(); prevCard(); });
+nextBtn.addEventListener('click', () => { stopAutoplayOnUserAction(); nextCard(); });
+flashcardEl.addEventListener('click', stopAutoplayOnUserAction);
+
+// Stop speech when user leaves tab
+window.addEventListener('visibilitychange', () => {
+  if (document.hidden && 'speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+});
 </script>
 
 <div class="buttons">

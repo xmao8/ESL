@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Bridge Between Us - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Bridge Between Us</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>SOFIA:</strong> Thoughtful and quiet, new to the city.</li>
+      <li><strong>BELLA:</strong> Friendly, outgoing, loves helping people.</li>
+      <li><strong>LEO:</strong> Relaxed, humorous, Sofia’s coworker.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene 1: Office break room, early afternoon. Sofia sits alone with her lunch, scrolling on her phone.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Friendship conversation script">
+    <h3>Scene 1</h3>
+    <p><strong>BELLA:</strong> <span class="dialogue">Hey, Sofia! Eating alone again?</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">(shrugs) Yeah… I usually do. Still getting used to everyone.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">Well, you’re stuck with me now. Mind if I join you?</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Not at all. Thanks.</span></p>
+    <p class="scene-direction">Leo walks in, carrying a sandwich.</p>
+    <p><strong>LEO:</strong> <span class="dialogue">Look at this—my two favorite coworkers!</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">(laughs quietly) You barely know me.</span></p>
+    <p><strong>LEO:</strong> <span class="dialogue">True, but I can tell you’re cool. You just have the “quiet mysterious artist” vibe.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">Exactly! We want to know you better.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">I guess I’m just shy. I moved here last month, and I miss my old friends. Starting over is harder than I expected.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">Totally understandable. But you don’t have to do it alone.</span></p>
+
+    <h3>Scene 2</h3>
+    <p class="scene-direction">After work, walking to the bus stop. The sky fades to soft orange.</p>
+    <p><strong>LEO:</strong> <span class="dialogue">You know, when I first moved here, I got lost for a whole week.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">(laughs) Seriously?</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">Oh yes. He walked into the wrong building on his first day.</span></p>
+    <p><strong>LEO:</strong> <span class="dialogue">I thought the janitor was the manager. Long story.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">(smiling) You two sound like fun.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">Hanging out with friends makes the city feel smaller. We’re going for ramen tonight. Want to come?</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Oh… I’d like to, but I don’t want to bother you.</span></p>
+    <p><strong>LEO:</strong> <span class="dialogue">Bother us? You’re officially invited.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">And we never take no for an answer when it comes to noodles.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">(hesitates) Okay… why not?</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">That’s the spirit!</span></p>
+
+    <h3>Scene 3</h3>
+    <p class="scene-direction">Small ramen shop, warm lights, evening. Steam rises from bowls of ramen.</p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">This place is cozy. I haven’t eaten out with people in a long time.</span></p>
+    <p><strong>LEO:</strong> <span class="dialogue">Well, get used to it. We eat like this at least twice a week.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">And we talk about everything—work, movies, life…</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Honestly, this means a lot to me. I didn’t realize how lonely I felt until today.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">Friendship isn’t about how long you’ve known someone. It’s about who makes you feel supported.</span></p>
+    <p><strong>LEO:</strong> <span class="dialogue">And who shares food with you! That matters more.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">(laughs) Good point.</span></p>
+    <p><strong>BELLA:</strong> <span class="dialogue">We’re really glad you joined us, Sofia.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Me too. I think… I think I’ve found my people here.</span></p>
+    <p><strong>LEO:</strong> <span class="dialogue">Then it’s official—we’re friends now. No take-backs.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Deal.</span></p>
+    <p class="scene-direction">They lift their chopsticks like a toast.</p>
+    <p><strong>ALL:</strong> <span class="dialogue">To new friendships!</span></p>
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Shy
+          <button class="speaker-icon" onclick="speakWord('Shy')" aria-label="Pronounce Shy">🔊</button>
+        </span>
+        <span class="ipa">/ʃaɪ/</span>
+        <span class="definition">(adj.) nervous or uncomfortable with new people.</span>
+        <span class="example">Example: Sofia feels shy around new coworkers.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Outgoing
+          <button class="speaker-icon" onclick="speakWord('Outgoing')" aria-label="Pronounce Outgoing">🔊</button>
+        </span>
+        <span class="ipa">/ˌaʊtˈɡoʊɪŋ/</span>
+        <span class="definition">(adj.) friendly and confident; enjoys meeting people.</span>
+        <span class="example">Example: Bella is outgoing and talks to everyone.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Coworker
+          <button class="speaker-icon" onclick="speakWord('Coworker')" aria-label="Pronounce Coworker">🔊</button>
+        </span>
+        <span class="ipa">/ˈkoʊˌwɜːrkər/</span>
+        <span class="definition">(n.) a person who works with you.</span>
+        <span class="example">Example: Leo is Sofia’s coworker at the office.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Invite
+          <button class="speaker-icon" onclick="speakWord('Invite')" aria-label="Pronounce Invite">🔊</button>
+        </span>
+        <span class="ipa">/ɪnˈvaɪt/</span>
+        <span class="definition">(v.) to ask someone to join an activity or event.</span>
+        <span class="example">Example: They invite Sofia to eat ramen with them.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Hang out
+          <button class="speaker-icon" onclick="speakWord('Hang out')" aria-label="Pronounce Hang out">🔊</button>
+        </span>
+        <span class="ipa">/hæŋ aʊt/</span>
+        <span class="definition">(phr. v.) to spend time relaxing with someone.</span>
+        <span class="example">Example: Friends often hang out after work.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Support
+          <button class="speaker-icon" onclick="speakWord('Support')" aria-label="Pronounce Support">🔊</button>
+        </span>
+        <span class="ipa">/səˈpɔːrt/</span>
+        <span class="definition">(v./n.) to help and care about someone.</span>
+        <span class="example">Example: Good friends support each other during hard times.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Lonely
+          <button class="speaker-icon" onclick="speakWord('Lonely')" aria-label="Pronounce Lonely">🔊</button>
+        </span>
+        <span class="ipa">/ˈloʊnli/</span>
+        <span class="definition">(adj.) feeling sad because you have no friends or company.</span>
+        <span class="example">Example: Sofia felt lonely in the new city.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Belong
+          <button class="speaker-icon" onclick="speakWord('Belong')" aria-label="Pronounce Belong">🔊</button>
+        </span>
+        <span class="ipa">/bɪˈlɔːŋ/</span>
+        <span class="definition">(v.) to feel that you are accepted and part of a group.</span>
+        <span class="example">Example: She starts to feel she belongs with her new friends.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Settle in
+          <button class="speaker-icon" onclick="speakWord('Settle in')" aria-label="Pronounce Settle in">🔊</button>
+        </span>
+        <span class="ipa">/ˈsetl ɪn/</span>
+        <span class="definition">(phr. v.) to become comfortable in a new place.</span>
+        <span class="example">Example: Making friends helps her settle in faster.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Cozy
+          <button class="speaker-icon" onclick="speakWord('Cozy')" aria-label="Pronounce Cozy">🔊</button>
+        </span>
+        <span class="ipa">/ˈkoʊzi/</span>
+        <span class="definition">(adj.) warm, comfortable, and relaxing.</span>
+        <span class="example">Example: The ramen shop feels small and cozy.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Friendship
+          <button class="speaker-icon" onclick="speakWord('Friendship')" aria-label="Pronounce Friendship">🔊</button>
+        </span>
+        <span class="ipa">/ˈfrendʃɪp/</span>
+        <span class="definition">(n.) the relationship between friends.</span>
+        <span class="example">Example: Their friendship begins with a simple lunch.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

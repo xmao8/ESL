@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Describing a Person – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Describing a Person – Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  // Personality (18)
+  { word: "Ambitious", ipa: "/æmˈbɪʃəs/", definition: "Having a strong desire to be successful or achieve something important.", example: "She is very ambitious and wants to open her own business.", chinese: "雄心勃勃的", spanish: "ambicioso / ambiciosa" },
+  { word: "Reliable", ipa: "/rɪˈlaɪəbl/", definition: "Someone you can trust to do what they say and be there on time.", example: "He is reliable, so I know he will finish the project.", chinese: "可靠的", spanish: "confiable" },
+  { word: "Friendly", ipa: "/ˈfrɛndli/", definition: "Kind and pleasant to other people.", example: "The new teacher is very friendly and smiles a lot.", chinese: "友好的", spanish: "amigable" },
+  { word: "Creative", ipa: "/kriˈeɪtɪv/", definition: "Able to think of new and interesting ideas.", example: "My sister is creative and loves designing posters.", chinese: "有创造力的", spanish: "creativo / creativa" },
+  { word: "Patient", ipa: "/ˈpeɪʃənt/", definition: "Able to stay calm when waiting or when things are difficult.", example: "He is patient with children and explains things slowly.", chinese: "有耐心的", spanish: "paciente" },
+  { word: "Confident", ipa: "/ˈkɒnfɪdənt/", definition: "Sure about yourself and your abilities.", example: "She felt confident before her job interview.", chinese: "自信的", spanish: "seguro de sí mismo / confiado" },
+  { word: "Honest", ipa: "/ˈɒnɪst/", definition: "Telling the truth and not cheating or stealing.", example: "You can trust him because he is very honest.", chinese: "诚实的", spanish: "honesto / honesta" },
+  { word: "Thoughtful", ipa: "/ˈθɔːtfəl/", definition: "Showing care for other people’s feelings and needs.", example: "It was thoughtful of you to bring her some soup.", chinese: "体贴的", spanish: "considerado / considerada" },
+  { word: "Organized", ipa: "/ˈɔːrɡənaɪzd/", definition: "Good at planning and keeping things neat and in order.", example: "He is organized and always keeps his desk clean.", chinese: "有条理的", spanish: "organizado / organizada" },
+  { word: "Responsible", ipa: "/rɪˈspɒnsəbl/", definition: "Doing the things you should do and taking care of others or tasks.", example: "She is responsible and takes care of her younger brother.", chinese: "负责的", spanish: "responsable" },
+  { word: "Hardworking", ipa: "/ˌhɑːrdˈwɜːrkɪŋ/", definition: "Putting a lot of effort and time into work or study.", example: "He is hardworking and often stays late at the office.", chinese: "勤奋的", spanish: "trabajador / trabajadora" },
+  { word: "Generous", ipa: "/ˈdʒɛnərəs/", definition: "Happy to give time, help, or money to other people.", example: "Our neighbor is generous and often shares her food.", chinese: "慷慨的", spanish: "generoso / generosa" },
+  { word: "Outgoing", ipa: "/ˈaʊtˌɡoʊɪŋ/", definition: "Enjoying talking to people and being in social situations.", example: "He is outgoing and makes friends easily.", chinese: "外向的", spanish: "extrovertido / extrovertida" },
+  { word: "Calm", ipa: "/kɑːm/", definition: "Relaxed and not easily upset or excited.", example: "She stayed calm during the emergency.", chinese: "冷静的", spanish: "tranquilo / tranquila" },
+  { word: "Caring", ipa: "/ˈkɛərɪŋ/", definition: "Showing kindness and concern for others.", example: "She is caring and always listens to her friends.", chinese: "关心人的", spanish: "cariñoso / cariñosa" },
+  { word: "Independent", ipa: "/ˌɪndɪˈpɛndənt/", definition: "Able to do things alone without needing much help.", example: "He is independent and likes living by himself.", chinese: "独立的", spanish: "independiente" },
+  { word: "Polite", ipa: "/pəˈlaɪt/", definition: "Having good manners and showing respect to others.", example: "The children were polite and said thank you.", chinese: "有礼貌的", spanish: "educado / educada" },
+  { word: "Supportive", ipa: "/səˈpɔːrtɪv/", definition: "Giving help and encouragement to someone.", example: "Her family is very supportive of her studies.", chinese: "支持人的", spanish: "solidario / solidaria" },
+
+  // Appearance (12)
+  { word: "Tall", ipa: "/tɔːl/", definition: "Having greater than average height.", example: "He is tall and can reach the top shelf easily.", chinese: "高的", spanish: "alto / alta" },
+  { word: "Short", ipa: "/ʃɔːrt/", definition: "Having less than average height.", example: "She is short but very strong.", chinese: "矮的", spanish: "bajo / baja" },
+  { word: "Slim", ipa: "/slɪm/", definition: "Thin in an attractive way.", example: "He has a slim body because he walks every day.", chinese: "苗条的", spanish: "delgado / delgada" },
+  { word: "Athletic", ipa: "/æθˈlɛtɪk/", definition: "Strong and good at sports or physical exercise.", example: "She looks athletic and plays basketball every weekend.", chinese: "体格健美的", spanish: "atlético / atlética" },
+  { word: "Fit", ipa: "/fɪt/", definition: "Healthy and strong because you exercise often.", example: "He goes to the gym and is very fit.", chinese: "健壮的", spanish: "en forma" },
+  { word: "Well-dressed", ipa: "/ˌwɛl ˈdrɛst/", definition: "Wearing nice, clean, and stylish clothes.", example: "The manager is always well-dressed for meetings.", chinese: "穿着得体的", spanish: "bien vestido / bien vestida" },
+  { word: "Attractive", ipa: "/əˈtræktɪv/", definition: "Pleasing to look at; good-looking.", example: "He has an attractive smile.", chinese: "有吸引力的", spanish: "atractivo / atractiva" },
+  { word: "Youthful", ipa: "/ˈjuːθfəl/", definition: "Looking or seeming young.", example: "My grandmother is eighty but still looks youthful.", chinese: "年轻的", spanish: "juvenil / de aspecto joven" },
+  { word: "Elegant", ipa: "/ˈɛlɪɡənt/", definition: "Graceful, stylish, and attractive in appearance.", example: "She wore an elegant dress to the party.", chinese: "优雅的", spanish: "elegante" },
+  { word: "Casual-looking", ipa: "/ˈkæʒuəl ˌlʊkɪŋ/", definition: "Dressed in simple, relaxed, everyday clothes.", example: "He was casual-looking in jeans and a T-shirt.", chinese: "看起来很随意的", spanish: "de aspecto informal" },
+  { word: "Curly-haired", ipa: "/ˈkɜːrli hɛrd/", definition: "Having hair with lots of curls.", example: "Our teacher is curly-haired and wears glasses.", chinese: "卷发的", spanish: "de pelo rizado" },
+  { word: "Medium-height", ipa: "/ˈmiːdiəm haɪt/", definition: "Not very tall and not very short.", example: "She is medium-height with brown eyes.", chinese: "中等身高的", spanish: "de estatura media" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

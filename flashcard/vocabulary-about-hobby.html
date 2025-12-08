@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flashcards – Hobbies Vocabulary</title>
+  <title>Flashcards – Hobbies Vocabulary (30 Words)</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -17,10 +17,11 @@
       padding: 1rem;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
     }
     nav a {
       color: white;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
     }
@@ -36,9 +37,10 @@
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.5;
     }
     .flashcard.flipped {
       background-color: #3498db;
@@ -49,6 +51,7 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
+      flex-wrap: wrap;
     }
     button, .buttons a {
       padding: 0.6rem 1.2rem;
@@ -77,9 +80,11 @@
   <a href="../practice.html">Practices</a>
 </nav>
 
-<h1>Hobbies Vocabulary Flashcards</h1>
+<h1>Hobbies Vocabulary Flashcards (30 Words)</h1>
 
-<div id="flashcard" class="flashcard" onclick="flipCard()">Click to Flip</div>
+<div id="flashcard" class="flashcard" onclick="flipCard()">
+  Click to Flip
+</div>
 
 <div class="buttons">
   <button onclick="prevCard()">⬅ Previous</button>
@@ -170,7 +175,7 @@ const flashcards = [
   },
   { 
     word: "Community", 
-    definition: "A group of people living in the same place or having a particular characteristic in common.", 
+    definition: "A group of people living in the same place or sharing a common interest.", 
     example: "She joined a gardening community to meet new friends." 
   },
   { 
@@ -180,7 +185,7 @@ const flashcards = [
   },
   { 
     word: "Pursuit", 
-    definition: "An activity or hobby.", 
+    definition: "An activity or hobby that you follow with interest.", 
     example: "Painting is her favorite creative pursuit." 
   },
   { 
@@ -190,7 +195,7 @@ const flashcards = [
   },
   { 
     word: "Fulfilling", 
-    definition: "Providing personal satisfaction.", 
+    definition: "Providing personal satisfaction and happiness.", 
     example: "Volunteering at the animal shelter is very fulfilling for her." 
   },
   { 
@@ -200,18 +205,43 @@ const flashcards = [
   },
   { 
     word: "Mastery", 
-    definition: "Comprehensive knowledge or skill in a subject or accomplishment.", 
+    definition: "Comprehensive knowledge or skill in a subject or activity.", 
     example: "After years of practice, she achieved mastery in ballet." 
   },
   { 
     word: "Engagement", 
-    definition: "The state of being involved in something.", 
+    definition: "The state of being actively involved in something.", 
     example: "The workshop increased students’ engagement with science." 
   },
   { 
     word: "Variety", 
-    definition: "The quality or state of being different or diverse.", 
+    definition: "The quality of having many different forms or kinds.", 
     example: "He enjoys a variety of hobbies, from painting to hiking." 
+  },
+  { 
+    word: "Routine", 
+    definition: "A regular way of doing things in a fixed order.", 
+    example: "Reading before bed is part of her evening routine." 
+  },
+  { 
+    word: "Challenge", 
+    definition: "Something difficult that tests your ability.", 
+    example: "Learning the violin is a challenge, but he enjoys it." 
+  },
+  { 
+    word: "Motivation", 
+    definition: "The reason or desire for doing something.", 
+    example: "Her motivation for jogging is staying healthy and strong." 
+  },
+  { 
+    word: "Socialize", 
+    definition: "To spend time with other people in a friendly way.", 
+    example: "He joined a board game club to socialize on weekends." 
+  },
+  { 
+    word: "Entertainment", 
+    definition: "Activities that provide fun and enjoyment.", 
+    example: "Watching movies is a simple form of entertainment after work." 
   }
 ];
 
@@ -222,14 +252,14 @@ const card = document.getElementById("flashcard");
 function showCard() {
   card.classList.remove("flipped");
   flipped = false;
-  card.innerHTML = flashcards[index].word;
+  card.innerHTML = `<strong>${flashcards[index].word}</strong><br><br><span style="font-size:0.95rem; color:#666;">Click to see definition and example</span>`;
 }
 
 function flipCard() {
   if (!flipped) {
     const { word, definition, example } = flashcards[index];
     card.innerHTML = `
-      <strong>${word}</strong><br>
+      <strong>${word}</strong><br><br>
       ${definition}<br><br>
       <em>Example: ${example}</em>
     `;
@@ -244,6 +274,7 @@ function flipCard() {
 function speak(text) {
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "en-US";
+  utterance.rate = 0.95;
   speechSynthesis.speak(utterance);
 }
 
@@ -257,6 +288,7 @@ function prevCard() {
   showCard();
 }
 
+// initialize
 showCard();
 </script>
 

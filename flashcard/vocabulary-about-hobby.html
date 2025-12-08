@@ -1,281 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flashcards – Hobbies Vocabulary (30 Words)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hobbies Vocabulary – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
       text-align: center;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
-    nav {
-      background: #2c3e50;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
     }
-    h1 {
-      margin: 2rem 0;
-      color: #2c3e50;
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
     }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
     .flashcard {
-      background: white;
-      width: 90%;
-      max-width: 500px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      line-height: 1.5;
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
-    .flashcard.flipped {
-      background-color: #3498db;
-      color: white;
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
     }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
     .buttons {
-      margin: 2rem auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
     }
     button, .buttons a {
-      padding: 0.6rem 1.2rem;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
     }
-    button:hover, .buttons a:hover {
-      background: #2980b9;
-    }
+    button:hover, .buttons a:hover { background: #2980b9; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html">Home</a>
-  <a href="../flashcards.html">Flashcards</a>
-  <a href="../conversation.html">Conversations</a>
-  <a href="../grammar.html">Grammar</a>
-  <a href="../reading.html">Reading</a>
-  <a href="../practice.html">Practices</a>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
 </nav>
 
-<h1>Hobbies Vocabulary Flashcards (30 Words)</h1>
+<h1>Hobbies Vocabulary – Flashcards (30 Words)</h1>
 
-<div id="flashcard" class="flashcard" onclick="flipCard()">
-  Click to Flip
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
-  <button onclick="prevCard()">⬅ Previous</button>
-  <button onclick="nextCard()">Next ➡</button>
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
 const flashcards = [
   { 
     word: "Hobby", 
-    definition: "An activity done regularly in one's leisure time for pleasure.", 
-    example: "Her favorite hobby is painting landscapes on weekends."
+    ipa: "/ˈhɒbi/", 
+    definition: "An activity done regularly in one's free time for pleasure.", 
+    example: "Her favorite hobby is painting landscapes on weekends.",
+    chinese: "爱好；嗜好",
+    spanish: "pasatiempo / afición"
   },
   { 
     word: "Leisure", 
-    definition: "Free time; time when you are not working.", 
-    example: "He spends his leisure reading adventure novels." 
+    ipa: "/ˈliːʒər/", 
+    definition: "Free time when you are not working.", 
+    example: "He spends his leisure reading adventure novels.",
+    chinese: "空闲时间；闲暇",
+    spanish: "tiempo libre / ocio"
   },
   { 
     word: "Pastime", 
-    definition: "An activity that you enjoy doing when you are not working.", 
-    example: "Gardening is a relaxing pastime for many people." 
+    ipa: "/ˈpæsˌtaɪm/", 
+    definition: "An activity that you enjoy doing in your free time.", 
+    example: "Gardening is a relaxing pastime for many people.",
+    chinese: "消遣；娱乐",
+    spanish: "pasatiempo"
   },
   { 
     word: "Passion", 
+    ipa: "/ˈpæʃən/", 
     definition: "A very strong feeling of enthusiasm for something.", 
-    example: "She has a passion for cooking new recipes every evening." 
+    example: "She has a passion for cooking new recipes every evening.",
+    chinese: "热情；酷爱",
+    spanish: "pasión"
   },
   { 
     word: "Interest", 
+    ipa: "/ˈɪntrəst/", 
     definition: "Something that you enjoy doing or learning about.", 
-    example: "His interest in astronomy led him to join a star-gazing club." 
+    example: "His interest in astronomy led him to join a star-gazing club.",
+    chinese: "兴趣",
+    spanish: "interés"
   },
   { 
     word: "Creative", 
-    definition: "Involving the use of imagination or original ideas to create something.", 
-    example: "She used her creative skills to design a handmade card." 
+    ipa: "/kriˈeɪtɪv/", 
+    definition: "Using imagination or original ideas to make something.", 
+    example: "She used her creative skills to design a handmade card.",
+    chinese: "有创造力的",
+    spanish: "creativo / creativa"
   },
   { 
     word: "Active", 
+    ipa: "/ˈæktɪv/", 
     definition: "Involving physical movement or activity.", 
-    example: "He stays active by going cycling every morning." 
+    example: "He stays active by going cycling every morning.",
+    chinese: "积极的；活跃的",
+    spanish: "activo / activa"
   },
   { 
     word: "Intellectual", 
+    ipa: "/ˌɪntəˈlɛktʃuəl/", 
     definition: "Involving thought and reason; appealing to the mind.", 
-    example: "Chess is an intellectual game that challenges the mind." 
+    example: "Chess is an intellectual game that challenges the mind.",
+    chinese: "智力的；需动脑的",
+    spanish: "intelectual"
   },
   { 
     word: "Collecting", 
+    ipa: "/kəˈlɛktɪŋ/", 
     definition: "The activity of gathering items of a particular type.", 
-    example: "Collecting vintage stamps has been her hobby for years." 
+    example: "Collecting vintage stamps has been her hobby for years.",
+    chinese: "收藏",
+    spanish: "coleccionar"
   },
   { 
     word: "Crafts", 
-    definition: "Activities involving making things with your hands (e.g., knitting, pottery).", 
-    example: "They enjoy doing crafts like knitting scarves for charity." 
+    ipa: "/kræfts/", 
+    definition: "Activities making things with your hands, like knitting or pottery.", 
+    example: "They enjoy crafts like knitting scarves for charity.",
+    chinese: "手工艺；手工制作",
+    spanish: "manualidades / artesanías"
   },
   { 
     word: "Skill", 
+    ipa: "/skɪl/", 
     definition: "The ability to do something well.", 
-    example: "With practice, he improved his skill at playing the guitar." 
+    example: "With practice, he improved his skill at playing the guitar.",
+    chinese: "技能；技巧",
+    spanish: "habilidad"
   },
   { 
     word: "Practice", 
+    ipa: "/ˈpræktɪs/", 
     definition: "To do an activity regularly so that you can improve.", 
-    example: "She practices yoga every evening to increase her flexibility." 
+    example: "She practices yoga every evening to increase her flexibility.",
+    chinese: "练习",
+    spanish: "practicar"
   },
   { 
     word: "Explore", 
-    definition: "To travel through an unfamiliar area to learn about it.", 
-    example: "They plan to explore the nearby forest this weekend." 
+    ipa: "/ɪkˈsplɔːr/", 
+    definition: "To go around an area to learn more about it.", 
+    example: "They plan to explore the nearby forest this weekend.",
+    chinese: "探索；探访",
+    spanish: "explorar"
   },
   { 
     word: "Develop", 
-    definition: "To grow or cause to grow and become more advanced.", 
-    example: "He wants to develop his photography skills with a new camera." 
+    ipa: "/dɪˈvɛləp/", 
+    definition: "To grow or improve something over time.", 
+    example: "He wants to develop his photography skills with a new camera.",
+    chinese: "发展；提高",
+    spanish: "desarrollar"
   },
   { 
     word: "Relaxation", 
-    definition: "The state of being free from tension and anxiety.", 
-    example: "Listening to music provides her with pure relaxation." 
+    ipa: "/ˌriːlækˈseɪʃən/", 
+    definition: "The state of being calm and free from stress.", 
+    example: "Listening to music gives her deep relaxation.",
+    chinese: "放松；休息",
+    spanish: "relajación"
   },
   { 
     word: "De-stress", 
-    definition: "To help someone relax and become less anxious.", 
-    example: "A hot bath after work helps him de-stress." 
+    ipa: "/ˌdiːˈstrɛs/", 
+    definition: "To relax and become less worried or tense.", 
+    example: "A hot bath after work helps him de-stress.",
+    chinese: "减压；缓解压力",
+    spanish: "aliviar el estrés"
   },
   { 
     word: "Community", 
-    definition: "A group of people living in the same place or sharing a common interest.", 
-    example: "She joined a gardening community to meet new friends." 
+    ipa: "/kəˈmjuːnəti/", 
+    definition: "A group of people who share a place or interest.", 
+    example: "She joined a gardening community to meet new friends.",
+    chinese: "社区；社团",
+    spanish: "comunidad"
   },
   { 
     word: "Enthusiasm", 
-    definition: "Intense and eager enjoyment, interest, or approval.", 
-    example: "His enthusiasm for cooking is contagious at family dinners." 
+    ipa: "/ɪnˈθuːziˌæzəm/", 
+    definition: "Strong and eager enjoyment or interest.", 
+    example: "His enthusiasm for cooking is contagious at family dinners.",
+    chinese: "热情；热忱",
+    spanish: "entusiasmo"
   },
   { 
     word: "Pursuit", 
+    ipa: "/pərˈsuːt/", 
     definition: "An activity or hobby that you follow with interest.", 
-    example: "Painting is her favorite creative pursuit." 
+    example: "Painting is her favorite creative pursuit.",
+    chinese: "追求；爱好",
+    spanish: "actividad / búsqueda"
   },
   { 
     word: "Self-expression", 
-    definition: "The expression of one's own personality, feelings, or ideas.", 
-    example: "Blogging gives him a platform for self-expression." 
+    ipa: "/ˌsɛlf ɪkˈsprɛʃən/", 
+    definition: "Showing your personality, feelings, or ideas in your own way.", 
+    example: "Blogging gives him a platform for self-expression.",
+    chinese: "自我表达",
+    spanish: "autoexpresión / expresión personal"
   },
   { 
     word: "Fulfilling", 
-    definition: "Providing personal satisfaction and happiness.", 
-    example: "Volunteering at the animal shelter is very fulfilling for her." 
+    ipa: "/fʊlˈfɪlɪŋ/", 
+    definition: "Giving you satisfaction and happiness.", 
+    example: "Volunteering at the animal shelter is very fulfilling for her.",
+    chinese: "令人满足的",
+    spanish: "gratificante"
   },
   { 
     word: "Dedication", 
-    definition: "The quality of being devoted to a task or purpose.", 
-    example: "His dedication to learning Spanish paid off quickly." 
+    ipa: "/ˌdɛdɪˈkeɪʃən/", 
+    definition: "Strong commitment to a task or purpose.", 
+    example: "His dedication to learning Spanish paid off quickly.",
+    chinese: "奉献；专心",
+    spanish: "dedicación"
   },
   { 
     word: "Mastery", 
-    definition: "Comprehensive knowledge or skill in a subject or activity.", 
-    example: "After years of practice, she achieved mastery in ballet." 
+    ipa: "/ˈmæstəri/", 
+    definition: "Great skill or control in an activity.", 
+    example: "After years of practice, she achieved mastery in ballet.",
+    chinese: "精通；掌握",
+    spanish: "dominio / maestría"
   },
   { 
     word: "Engagement", 
-    definition: "The state of being actively involved in something.", 
-    example: "The workshop increased students’ engagement with science." 
+    ipa: "/ɪnˈɡeɪdʒmənt/", 
+    definition: "Being actively involved and interested in something.", 
+    example: "The workshop increased students’ engagement with science.",
+    chinese: "投入；参与度",
+    spanish: "participación / compromiso"
   },
   { 
     word: "Variety", 
-    definition: "The quality of having many different forms or kinds.", 
-    example: "He enjoys a variety of hobbies, from painting to hiking." 
+    ipa: "/vəˈraɪəti/", 
+    definition: "Having many different forms or kinds.", 
+    example: "He enjoys a variety of hobbies, from painting to hiking.",
+    chinese: "多样性",
+    spanish: "variedad"
   },
   { 
     word: "Routine", 
+    ipa: "/ruːˈtiːn/", 
     definition: "A regular way of doing things in a fixed order.", 
-    example: "Reading before bed is part of her evening routine." 
+    example: "Reading before bed is part of her evening routine.",
+    chinese: "惯例；日常程序",
+    spanish: "rutina"
   },
   { 
     word: "Challenge", 
+    ipa: "/ˈtʃælɪndʒ/", 
     definition: "Something difficult that tests your ability.", 
-    example: "Learning the violin is a challenge, but he enjoys it." 
+    example: "Learning the violin is a challenge, but he enjoys it.",
+    chinese: "挑战",
+    spanish: "desafío / reto"
   },
   { 
     word: "Motivation", 
+    ipa: "/ˌmoʊtɪˈveɪʃən/", 
     definition: "The reason or desire for doing something.", 
-    example: "Her motivation for jogging is staying healthy and strong." 
+    example: "Her motivation for jogging is staying healthy and strong.",
+    chinese: "动力；积极性",
+    spanish: "motivación"
   },
   { 
     word: "Socialize", 
+    ipa: "/ˈsoʊʃəˌlaɪz/", 
     definition: "To spend time with other people in a friendly way.", 
-    example: "He joined a board game club to socialize on weekends." 
+    example: "He joined a board game club to socialize on weekends.",
+    chinese: "社交；交际",
+    spanish: "socializar"
   },
   { 
     word: "Entertainment", 
+    ipa: "/ˌɛntərˈteɪnmənt/", 
     definition: "Activities that provide fun and enjoyment.", 
-    example: "Watching movies is a simple form of entertainment after work." 
+    example: "Watching movies is a simple form of entertainment after work.",
+    chinese: "娱乐；消遣",
+    spanish: "entretenimiento"
   }
 ];
 
 let index = 0;
 let flipped = false;
-const card = document.getElementById("flashcard");
+
+const flashcard = document.getElementById("flashcard");
 
 function showCard() {
-  card.classList.remove("flipped");
   flipped = false;
-  card.innerHTML = `<strong>${flashcards[index].word}</strong><br><br><span style="font-size:0.95rem; color:#666;">Click to see definition and example</span>`;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
 }
 
 function flipCard() {
   if (!flipped) {
-    const { word, definition, example } = flashcards[index];
-    card.innerHTML = `
-      <strong>${word}</strong><br><br>
-      ${definition}<br><br>
-      <em>Example: ${example}</em>
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
-    card.classList.add("flipped");
-    speak(word);
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
     flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
   } else {
     showCard();
   }
-}
-
-function speak(text) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  utterance.rate = 0.95;
-  speechSynthesis.speak(utterance);
 }
 
 function nextCard() {
@@ -288,8 +456,95 @@ function prevCard() {
   showCard();
 }
 
-// initialize
 showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();          // auto-speaks once
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
 </script>
 
 <div class="buttons">

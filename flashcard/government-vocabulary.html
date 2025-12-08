@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Government Vocabulary – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Government Vocabulary – Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { 
+    word: "Government", 
+    ipa: "/ˈɡʌvərnmənt/", 
+    definition: "The group of people and institutions that make decisions for a country, state, or city.", 
+    example: "The government announced a new health plan.", 
+    chinese: "政府", 
+    spanish: "gobierno" 
+  },
+  { 
+    word: "Democracy", 
+    ipa: "/dɪˈmɑːkrəsi/", 
+    definition: "A system of government where citizens choose leaders by voting.", 
+    example: "In a democracy, people can change the government through elections.", 
+    chinese: "民主", 
+    spanish: "democracia" 
+  },
+  { 
+    word: "Election", 
+    ipa: "/ɪˈlɛkʃən/", 
+    definition: "The process of choosing leaders by voting.", 
+    example: "The next election will be held in November.", 
+    chinese: "选举", 
+    spanish: "elección" 
+  },
+  { 
+    word: "Vote", 
+    ipa: "/voʊt/", 
+    definition: "To choose a candidate or option in an election.", 
+    example: "Every citizen over 18 has the right to vote.", 
+    chinese: "投票", 
+    spanish: "voto" 
+  },
+  { 
+    word: "Candidate", 
+    ipa: "/ˈkændəˌdeɪt/", 
+    definition: "A person who is trying to be elected to a political position.", 
+    example: "There are three candidates for mayor this year.", 
+    chinese: "候选人", 
+    spanish: "candidato / candidata" 
+  },
+  { 
+    word: "Citizen", 
+    ipa: "/ˈsɪtɪzən/", 
+    definition: "A person who legally belongs to a country and has rights and responsibilities there.", 
+    example: "Citizens can ask the government for better services.", 
+    chinese: "公民", 
+    spanish: "ciudadano / ciudadana" 
+  },
+  { 
+    word: "Constitution", 
+    ipa: "/ˌkɑːnstəˈtuːʃən/", 
+    definition: "The main set of laws and principles that describe how a country is governed.", 
+    example: "The constitution protects freedom of speech.", 
+    chinese: "宪法", 
+    spanish: "constitución" 
+  },
+  { 
+    word: "Policy", 
+    ipa: "/ˈpɑːləsi/", 
+    definition: "A plan of action decided by a government or organization.", 
+    example: "The new education policy will help more students.", 
+    chinese: "政策", 
+    spanish: "política (de gobierno)" 
+  },
+  { 
+    word: "Law", 
+    ipa: "/lɔː/", 
+    definition: "A rule made by the government that people must follow.", 
+    example: "It is against the law to text while driving.", 
+    chinese: "法律", 
+    spanish: "ley" 
+  },
+  { 
+    word: "Bill", 
+    ipa: "/bɪl/", 
+    definition: "A proposal for a new law that is discussed before it becomes a law.", 
+    example: "The bill was discussed in parliament for many hours.", 
+    chinese: "法案（草案）", 
+    spanish: "proyecto de ley" 
+  },
+  { 
+    word: "Parliament", 
+    ipa: "/ˈpɑːrləmənt/", 
+    definition: "A group of elected representatives who make or change laws (similar to a congress).", 
+    example: "Parliament voted to pass the new law.", 
+    chinese: "议会", 
+    spanish: "parlamento" 
+  },
+  { 
+    word: "Representative", 
+    ipa: "/ˌrɛprɪˈzɛntətɪv/", 
+    definition: "A person chosen to speak or act for other people.", 
+    example: "She is a representative for her district.", 
+    chinese: "代表", 
+    spanish: "representante" 
+  },
+  { 
+    word: "Senate", 
+    ipa: "/ˈsɛnət/", 
+    definition: "A part of the government that discusses and votes on laws.", 
+    example: "The Senate rejected the bill.", 
+    chinese: "参议院", 
+    spanish: "senado" 
+  },
+  { 
+    word: "Minister", 
+    ipa: "/ˈmɪnɪstər/", 
+    definition: "A high-level government official in charge of a department.", 
+    example: "The Minister of Education visited the school.", 
+    chinese: "部长", 
+    spanish: "ministro / ministra" 
+  },
+  { 
+    word: "Prime Minister", 
+    ipa: "/praɪm ˈmɪnɪstər/", 
+    definition: "The leader of the government in some countries.", 
+    example: "The prime minister spoke about climate change.", 
+    chinese: "总理", 
+    spanish: "primer ministro / primera ministra" 
+  },
+  { 
+    word: "President", 
+    ipa: "/ˈprɛzɪdənt/", 
+    definition: "The elected leader of a country in some political systems.", 
+    example: "The president gave a speech on television.", 
+    chinese: "总统", 
+    spanish: "presidente" 
+  },
+  { 
+    word: "Mayor", 
+    ipa: "/ˈmeɪər/", 
+    definition: "The elected leader of a city or town.", 
+    example: "The mayor opened the new city park.", 
+    chinese: "市长", 
+    spanish: "alcalde / alcaldesa" 
+  },
+  { 
+    word: "Public service", 
+    ipa: "/ˈpʌblɪk ˈsɜːrvɪs/", 
+    definition: "A service provided by the government for everyone, such as schools or hospitals.", 
+    example: "Good public services improve people's quality of life.", 
+    chinese: "公共服务", 
+    spanish: "servicio público" 
+  },
+  { 
+    word: "Tax", 
+    ipa: "/tæks/", 
+    definition: "Money that people and businesses must pay to the government.", 
+    example: "Taxes pay for roads, schools, and hospitals.", 
+    chinese: "税；税款", 
+    spanish: "impuesto" 
+  },
+  { 
+    word: "Budget", 
+    ipa: "/ˈbʌdʒɪt/", 
+    definition: "A plan for how money will be collected and spent.", 
+    example: "The city budget includes money for new buses.", 
+    chinese: "预算", 
+    spanish: "presupuesto" 
+  },
+  { 
+    word: "Economy", 
+    ipa: "/ɪˈkɑːnəmi/", 
+    definition: "The system of money, jobs, and trade in a country or region.", 
+    example: "The government is trying to improve the economy.", 
+    chinese: "经济", 
+    spanish: "economía" 
+  },
+  { 
+    word: "Immigration", 
+    ipa: "/ˌɪmɪˈɡreɪʃən/", 
+    definition: "The process of coming to live in a new country.", 
+    example: "Immigration laws control who can enter the country.", 
+    chinese: "移民", 
+    spanish: "inmigración" 
+  },
+  { 
+    word: "Diplomacy", 
+    ipa: "/dɪˈploʊməsi/", 
+    definition: "The work of managing relationships between countries.", 
+    example: "Good diplomacy can prevent conflicts.", 
+    chinese: "外交", 
+    spanish: "diplomacia" 
+  },
+  { 
+    word: "Embassy", 
+    ipa: "/ˈɛmbəsi/", 
+    definition: "The official office of one country inside another country.", 
+    example: "She went to her country's embassy for help.", 
+    chinese: "大使馆", 
+    spanish: "embajada" 
+  },
+  { 
+    word: "Right", 
+    ipa: "/raɪt/", 
+    definition: "A freedom or benefit that the law says a person has.", 
+    example: "Freedom of religion is a basic right.", 
+    chinese: "权利", 
+    spanish: "derecho" 
+  },
+  { 
+    word: "Responsibility", 
+    ipa: "/rɪˌspɑːnsəˈbɪləti/", 
+    definition: "Something that a person should do as part of their duty.", 
+    example: "Voting is an important responsibility for citizens.", 
+    chinese: "责任", 
+    spanish: "responsabilidad" 
+  },
+  { 
+    word: "Corruption", 
+    ipa: "/kəˈrʌpʃən/", 
+    definition: "Illegal or dishonest behavior by people in power.", 
+    example: "Corruption makes people lose trust in the government.", 
+    chinese: "腐败", 
+    spanish: "corrupción" 
+  },
+  { 
+    word: "Protest", 
+    ipa: "/ˈproʊtɛst/", 
+    definition: "An action, such as a march, where people show they disagree with something.", 
+    example: "Many people joined the protest against the new law.", 
+    chinese: "抗议", 
+    spanish: "protesta" 
+  },
+  { 
+    word: "Campaign", 
+    ipa: "/kæmˈpeɪn/", 
+    definition: "A series of actions to win an election or support an idea.", 
+    example: "The candidate's campaign focused on healthcare and jobs.", 
+    chinese: "竞选活动", 
+    spanish: "campaña (electoral)" 
+  },
+  { 
+    word: "Referendum", 
+    ipa: "/ˌrɛfəˈrɛndəm/", 
+    definition: "A vote where citizens decide directly on a specific issue.", 
+    example: "The country held a referendum on the new constitution.", 
+    chinese: "公投；公民投票", 
+    spanish: "referéndum" 
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

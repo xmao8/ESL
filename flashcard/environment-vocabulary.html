@@ -1,175 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flashcards – Environment Vocabulary</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Environment Vocabulary – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
       text-align: center;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
-    nav {
-      background: #124076;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
     }
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
     }
-    h1 {
-      margin: 2rem 0;
-      color: #124076;
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
     }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
     .flashcard {
-      background: white;
-      width: 90%;
-      max-width: 500px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-align: left;
-      line-height: 1.4;
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
-    .flashcard.flipped {
-      background-color: #124076;
-      color: white;
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
     }
-    .flashcard .word {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
     }
-    .flashcard .pronunciation {
-      font-style: italic;
-      margin-bottom: 0.5rem;
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
     }
-    .flashcard .definition {
-      margin-bottom: 1rem;
-    }
-    .flashcard .example {
-      font-style: italic;
-    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
     .buttons {
-      margin: 2rem auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
     }
     button, .buttons a {
-      padding: 0.6rem 1.2rem;
-      background: #124076;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
     }
-    button:hover, .buttons a:hover {
-      background: #0e315d;
-    }
+    button:hover, .buttons a:hover { background: #2980b9; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html">Home</a>
-  <a href="../flashcards.html">Flashcards</a>
-  <a href="../conversation.html">Conversations</a>
-  <a href="../grammar.html">Grammar</a>
-  <a href="../reading.html">Reading</a>
-  <a href="../practice.html">Practices</a>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
 </nav>
 
-<h1>Environment Vocabulary Flashcards</h1>
+<h1>Environment Vocabulary – Flashcards (30 Words)</h1>
 
-<div id="flashcard" class="flashcard" onclick="flipCard()">
-  Click to flip
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
 </div>
 
 <div class="buttons">
-  <button onclick="prevCard()">⬅ Previous</button>
-  <button onclick="nextCard()">Next ➡</button>
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
 </div>
 
 <script>
 const flashcards = [
-  { word: "Environment", pronunciation:"/ɪnˈvaɪrənmənt/", definition:"Everything around us, including air, water, and land.", example:"We must protect the environment for future generations." },
-  { word: "Pollution", pronunciation:"/pəˈluːʃən/", definition:"Harmful substances in air, water, or land.", example:"Air pollution makes the city air hard to breathe." },
-  { word: "Recycle", pronunciation:"/riːˈsaɪkəl/", definition:"To process materials to use them again.", example:"Please recycle your plastic bottles and cans." },
-  { word: "Waste", pronunciation:"/weɪst/", definition:"Unwanted materials or garbage.", example:"Don’t let food go to waste; use leftovers wisely." },
-  { word: "Climate change", pronunciation:"/ˈklaɪmət tʃeɪndʒ/", definition:"Long-term changes in Earth's weather patterns.", example:"Climate change causes more severe weather events." },
-  { word: "Greenhouse gas", pronunciation:"/ˈɡriːnˌhaʊs ɡæs/", definition:"A gas that traps heat in the atmosphere.", example:"Cars emit greenhouse gases that heat the planet." },
-  { word: "Reduce", pronunciation:"/rɪˈduːs/", definition:"To make something smaller or less.", example:"We need to reduce our use of single-use plastics." },
-  { word: "Energy-saving", pronunciation:"/ˈɛnərdʒi ˈseɪvɪŋ/", definition:"Using less energy to perform the same task.", example:"Energy-saving light bulbs use less electricity." },
-  { word: "Clean energy", pronunciation:"/kliːn ˈɛnərdʒi/", definition:"Energy from renewable, non-polluting sources.", example:"Wind turbines generate clean energy." },
-  { word: "Planting", pronunciation:"/ˈplæntɪŋ/", definition:"Putting seeds or plants in the ground to grow.", example:"She is planting flowers in her garden this spring." },
-  { word: "Littering", pronunciation:"/ˈlɪtərɪŋ/", definition:"Dropping trash in public places instead of bins.", example:"Littering in parks can harm wildlife." },
-  { word: "Invest", pronunciation:"/ɪnˈvɛst/", definition:"To put money into something for future benefit.", example:"The government will invest in renewable energy projects." },
-  { word: "Law", pronunciation:"/lɔː/", definition:"A rule made by a government.", example:"The new law bans single-use plastic bags." },
-  { word: "Impact", pronunciation:"/ˈɪmpækt/", definition:"A strong effect or influence.", example:"Your choices have an impact on the planet." },
-  { word: "Sustainable", pronunciation:"/səˈsteɪnəbəl/", definition:"Able to continue without harming the environment.", example:"They grow food in a sustainable way." },
-  { word: "Biodiversity", pronunciation:"/ˌbaɪoʊdaɪˈvɜːrsəti/", definition:"The variety of life in a specific area.", example:"Protecting forests maintains biodiversity." },
-  { word: "Conservation", pronunciation:"/ˌkɒnsərˈveɪʃən/", definition:"Protection and careful use of natural resources.", example:"Wildlife conservation is essential for endangered species." },
-  { word: "Ecosystem", pronunciation:"/ˈiːkoʊˌsɪstəm/", definition:"A community of living organisms and their environment.", example:"Coral reefs are a delicate marine ecosystem." },
-  { word: "Renewable energy", pronunciation:"/rɪˈnuːəbl̩ ˈɛnərdʒi/", definition:"Energy from sources that are naturally replaced.", example:"Solar panels produce renewable energy." },
-  { word: "Solar power", pronunciation:"/ˈsoʊlər ˈpaʊər/", definition:"Energy from the sun.", example:"Our house runs on solar power." },
-  { word: "Wind power", pronunciation:"/wɪnd ˈpaʊər/", definition:"Energy from the wind.", example:"Offshore wind power is becoming more common." },
-  { word: "Carbon footprint", pronunciation:"/ˈkɑːrbən ˈfʊtprɪnt/", definition:"Total greenhouse gas emissions caused by an activity.", example:"Flying less can lower your carbon footprint." },
-  { word: "Compost", pronunciation:"/ˈkɒmpɒst/", definition:"Decayed organic matter used to fertilize soil.", example:"We compost kitchen scraps to enrich the soil." },
-  { word: "Biodegradable", pronunciation:"/ˌbaɪoʊdɪˈɡreɪdəbəl/", definition:"Capable of being broken down by natural processes.", example:"Biodegradable packaging breaks down naturally." },
-  { word: "Deforestation", pronunciation:"/ˌdiːˌfɔːrɪˈsteɪʃən/", definition:"Removal of trees from a forested area.", example:"Deforestation destroys animal habitats." },
-  { word: "Habitat", pronunciation:"/ˈhæbɪtæt/", definition:"The natural home of a plant or animal.", example:"Bees are losing their natural habitat." },
-  { word: "Emissions", pronunciation:"/ɪˈmɪʃənz/", definition:"Substances released into the air.", example:"Factories must cut harmful emissions." },
-  { word: "Ozone layer", pronunciation:"/ˈoʊzoʊn ˈleɪər/", definition:"The part of the atmosphere that protects from UV rays.", example:"The ozone layer protects us from UV rays." },
-  { word: "Endangered", pronunciation:"/ɪnˈdeɪndʒərd/", definition:"At risk of becoming extinct.", example:"Tigers are an endangered species." },
-  { word: "Preservation", pronunciation:"/ˌprɛzərˈveɪʃən/", definition:"Protecting something from harm or destruction.", example:"Historic site preservation preserves cultural heritage." }
+  { word: "Environment", ipa:"/ɪnˈvaɪrənmənt/", definition:"Everything around us, including air, water, and land.", example:"We must protect the environment for future generations.", chinese:"环境", spanish:"medio ambiente" },
+  { word: "Pollution", ipa:"/pəˈluːʃən/", definition:"Harmful substances in air, water, or land.", example:"Air pollution makes the city air hard to breathe.", chinese:"污染", spanish:"contaminación" },
+  { word: "Recycle", ipa:"/riːˈsaɪkəl/", definition:"To process materials to use them again.", example:"Please recycle your plastic bottles and cans.", chinese:"回收利用", spanish:"reciclar" },
+  { word: "Waste", ipa:"/weɪst/", definition:"Unwanted materials or garbage.", example:"Don’t let food go to waste; use leftovers wisely.", chinese:"浪费；废物", spanish:"desperdicio / basura" },
+  { word: "Climate change", ipa:"/ˈklaɪmət tʃeɪndʒ/", definition:"Long-term changes in Earth's weather patterns.", example:"Climate change causes more severe weather events.", chinese:"气候变化", spanish:"cambio climático" },
+  { word: "Greenhouse gas", ipa:"/ˈɡriːnˌhaʊs ɡæs/", definition:"A gas that traps heat in the atmosphere.", example:"Cars emit greenhouse gases that heat the planet.", chinese:"温室气体", spanish:"gas de efecto invernadero" },
+  { word: "Reduce", ipa:"/rɪˈduːs/", definition:"To make something smaller or less.", example:"We need to reduce our use of single-use plastics.", chinese:"减少", spanish:"reducir" },
+  { word: "Energy-saving", ipa:"/ˈɛnərdʒi ˈseɪvɪŋ/", definition:"Using less energy to perform the same task.", example:"Energy-saving light bulbs use less electricity.", chinese:"节能的", spanish:"de ahorro de energía" },
+  { word: "Clean energy", ipa:"/kliːn ˈɛnərdʒi/", definition:"Energy from renewable, non-polluting sources.", example:"Wind turbines generate clean energy.", chinese:"清洁能源", spanish:"energía limpia" },
+  { word: "Planting", ipa:"/ˈplæntɪŋ/", definition:"Putting seeds or plants in the ground to grow.", example:"She is planting flowers in her garden this spring.", chinese:"种植", spanish:"plantación / sembrar" },
+  { word: "Littering", ipa:"/ˈlɪtərɪŋ/", definition:"Dropping trash in public places instead of bins.", example:"Littering in parks can harm wildlife.", chinese:"乱扔垃圾", spanish:"tirar basura" },
+  { word: "Invest", ipa:"/ɪnˈvɛst/", definition:"To put money into something for future benefit.", example:"The government will invest in renewable energy projects.", chinese:"投资", spanish:"invertir" },
+  { word: "Law", ipa:"/lɔː/", definition:"A rule made by a government.", example:"The new law bans single-use plastic bags.", chinese:"法律", spanish:"ley" },
+  { word: "Impact", ipa:"/ˈɪmpækt/", definition:"A strong effect or influence.", example:"Your choices have an impact on the planet.", chinese:"影响", spanish:"impacto" },
+  { word: "Sustainable", ipa:"/səˈsteɪnəbəl/", definition:"Able to continue without harming the environment.", example:"They grow food in a sustainable way.", chinese:"可持续的", spanish:"sostenible" },
+  { word: "Biodiversity", ipa:"/ˌbaɪoʊdaɪˈvɜːrsəti/", definition:"The variety of life in a specific area.", example:"Protecting forests maintains biodiversity.", chinese:"生物多样性", spanish:"biodiversidad" },
+  { word: "Conservation", ipa:"/ˌkɒnsərˈveɪʃən/", definition:"Protection and careful use of natural resources.", example:"Wildlife conservation is essential for endangered species.", chinese:"保护；保育", spanish:"conservación" },
+  { word: "Ecosystem", ipa:"/ˈiːkoʊˌsɪstəm/", definition:"A community of living organisms and their environment.", example:"Coral reefs are a delicate marine ecosystem.", chinese:"生态系统", spanish:"ecosistema" },
+  { word: "Renewable energy", ipa:"/rɪˈnuːəbl̩ ˈɛnərdʒi/", definition:"Energy from sources that are naturally replaced.", example:"Solar panels produce renewable energy.", chinese:"可再生能源", spanish:"energía renovable" },
+  { word: "Solar power", ipa:"/ˈsoʊlər ˈpaʊər/", definition:"Energy from the sun.", example:"Our house runs on solar power.", chinese:"太阳能", spanish:"energía solar" },
+  { word: "Wind power", ipa:"/wɪnd ˈpaʊər/", definition:"Energy from the wind.", example:"Offshore wind power is becoming more common.", chinese:"风能", spanish:"energía eólica" },
+  { word: "Carbon footprint", ipa:"/ˈkɑːrbən ˈfʊtprɪnt/", definition:"Total greenhouse gas emissions caused by an activity.", example:"Flying less can lower your carbon footprint.", chinese:"碳足迹", spanish:"huella de carbono" },
+  { word: "Compost", ipa:"/ˈkɒmpɒst/", definition:"Decayed organic matter used to fertilize soil.", example:"We compost kitchen scraps to enrich the soil.", chinese:"堆肥", spanish:"compost / abono orgánico" },
+  { word: "Biodegradable", ipa:"/ˌbaɪoʊdɪˈɡreɪdəbəl/", definition:"Capable of being broken down by natural processes.", example:"Biodegradable packaging breaks down naturally.", chinese:"可生物降解的", spanish:"biodegradable" },
+  { word: "Deforestation", ipa:"/ˌdiːˌfɔːrɪˈsteɪʃən/", definition:"Removal of trees from a forested area.", example:"Deforestation destroys animal habitats.", chinese:"滥伐森林；森林砍伐", spanish:"deforestación" },
+  { word: "Habitat", ipa:"/ˈhæbɪtæt/", definition:"The natural home of a plant or animal.", example:"Bees are losing their natural habitat.", chinese:"栖息地", spanish:"hábitat" },
+  { word: "Emissions", ipa:"/ɪˈmɪʃənz/", definition:"Substances released into the air.", example:"Factories must cut harmful emissions.", chinese:"排放物", spanish:"emisiones" },
+  { word: "Ozone layer", ipa:"/ˈoʊzoʊn ˈleɪər/", definition:"The part of the atmosphere that protects from UV rays.", example:"The ozone layer protects us from UV rays.", chinese:"臭氧层", spanish:"capa de ozono" },
+  { word: "Endangered", ipa:"/ɪnˈdeɪndʒərd/", definition:"At risk of becoming extinct.", example:"Tigers are an endangered species.", chinese:"濒危的", spanish:"en peligro de extinción" },
+  { word: "Preservation", ipa:"/ˌprɛzərˈveɪʃən/", definition:"Protecting something from harm or destruction.", example:"Historic site preservation preserves cultural heritage.", chinese:"保护；保存", spanish:"preservación" }
 ];
 
 let index = 0;
 let flipped = false;
-const card = document.getElementById("flashcard");
+
+const flashcard = document.getElementById("flashcard");
 
 function showCard() {
-  card.classList.remove("flipped");
   flipped = false;
-  card.innerHTML = `<div class="word">${flashcards[index].word}</div>`;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
 }
 
 function flipCard() {
   if (!flipped) {
-    const { word, pronunciation, definition, example } = flashcards[index];
-    card.innerHTML = `
-      <div class="word">${word}</div>
-      <div class="pronunciation">${pronunciation}</div>
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
       <div class="definition">${definition}</div>
-      <div class="example">Example: ${example}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
     `;
-    card.classList.add("flipped");
-    speakWord(word);
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
     flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
   } else {
     showCard();
   }
-}
-
-function speakWord(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'en-US';
-  utter.rate = 0.9;
-  speechSynthesis.speak(utter);
 }
 
 function nextCard() {
@@ -182,8 +246,100 @@ function prevCard() {
   showCard();
 }
 
-// initialize
 showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
 </script>
 
 <div class="buttons">

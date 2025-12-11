@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: A Brief History of California</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            padding: 0 1rem;
+        }
+        main {
+            flex: 1;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            padding: 0 1rem 1rem;
+        }
+        .content-section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        .content-section h2 {
+            color: #124076;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            text-align: left;
+        }
+        p {
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0.5rem 0 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 10px 12px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .content-section ol.questions {
+            padding-left: 1.4rem;
+        }
+        .content-section ol.questions li {
+            margin: 0.6rem 0;
+        }
+        .buttons {
+            text-align: center;
+            margin: 2rem auto 2.5rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            margin: 0 0.5rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .buttons a:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            .content-section {
+                padding: 1.2rem 1.2rem;
+            }
+            .nav-links {
+                gap: 0.75rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>A Brief History of California</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section">
+            <h2>From Native Lands to Spanish Missions</h2>
+            <p>
+                California is one of the most diverse and influential states in the United States, but its history began
+                long before it became part of the country. For thousands of years, many Native American tribes lived
+                across the region. These groups, such as the Chumash, Miwok, and Pomo peoples, built villages, traded
+                goods, fished along the coast, and developed rich cultures. They lived close to the land and used natural
+                resources to survive.
+            </p>
+            <p>
+                In the 1500s, European explorers first reached the California coast. Spanish explorers claimed the land
+                and later began to settle the area. In the late 1700s, Spain built a series of <strong>missions</strong>—
+                religious and farming communities—along the coast from San Diego to Sonoma. The missions were created to
+                convert Native Americans to Christianity and to teach them European ways of farming and building. Many
+                Native Americans were forced to live and work at the missions, and their traditional cultures were
+                deeply changed.
+            </p>
+
+            <h2>Mexican California and the Ranchos</h2>
+            <p>
+                In 1821, Mexico gained independence from Spain, and California became part of Mexico. During this time,
+                large cattle ranches called <strong>ranchos</strong> became important. Mexican landowners raised cattle
+                for meat and leather, and the ranchos shaped California’s economy and lifestyle. Trade with the United
+                States and other countries increased, and more outsiders began to travel to California.
+            </p>
+
+            <h2>The Gold Rush and Statehood</h2>
+            <p>
+                Everything changed in 1848 when gold was discovered at Sutter’s Mill near Sacramento. News spread quickly,
+                and thousands of people from all over the world rushed to California in what became known as the
+                <strong>Gold Rush</strong>. These newcomers, called “forty-niners,” came hoping to get rich. Towns grew
+                rapidly, businesses opened, and California’s population exploded almost overnight. The Gold Rush also
+                brought people from China, South America, and Europe, adding to the cultural diversity that remains today.
+            </p>
+            <p>
+                Because of its fast-growing population and economic importance, California became the 31st state of the
+                United States in 1850. After statehood, agriculture became a major industry. Farmers used California’s
+                rich soil and sunny climate to grow fruits, vegetables, and grapes. The completion of the transcontinental
+                railroad in 1869 connected California to the rest of the country, making travel and trade much easier.
+            </p>
+
+            <h2>Modern California</h2>
+            <p>
+                In the 20th century, California continued to grow and change. Hollywood became the center of the movie
+                industry, attracting actors, writers, and directors from around the world. Later, Silicon Valley in
+                Northern California became the heart of the technology boom, home to many major companies and start-ups.
+                California also became known for aerospace research, universities, and environmental movements.
+            </p>
+            <p>
+                Today, California is famous for its cultural diversity, innovation, and natural beauty. From beaches and
+                deserts to mountains and forests, the state offers many different landscapes. People from all over the
+                world have contributed to California’s history, making it a place where many languages, foods, and
+                traditions come together.
+            </p>
+            <p>
+                California’s history is a story of change—new people arriving, new ideas growing, and new industries
+                developing. Its past has shaped its identity as a state full of creativity, opportunity, and cultural
+                richness.
+            </p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li>
+                    <strong>tribe</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="tribe"></i>
+                    — A group of people, often with a shared culture, language, and history.
+                </li>
+                <li>
+                    <strong>mission</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="mission"></i>
+                    — In California history, a religious and farming community started by Spanish priests.
+                </li>
+                <li>
+                    <strong>convert</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="convert"></i>
+                    — To change someone’s beliefs, especially religious beliefs.
+                </li>
+                <li>
+                    <strong>rancho</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="rancho"></i>
+                    — A large farm or cattle ranch, especially in Mexican-era California.
+                </li>
+                <li>
+                    <strong>Gold Rush</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="Gold Rush"></i>
+                    — A time when many people rushed to an area to look for gold.
+                </li>
+                <li>
+                    <strong>transcontinental railroad</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="transcontinental railroad"></i>
+                    — The first railroad that crossed an entire continent, connecting the U.S. East and West.
+                </li>
+                <li>
+                    <strong>diversity</strong>
+                    <i class="fas fa-volume-up speaker-icon" data-word="diversity"></i>
+                    — A variety of different people, cultures, or things in one place.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Comprehension Questions -->
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <ol class="questions">
+                <li>Who lived in California long before it became part of the United States?</li>
+                <li>What were the Spanish missions, and how did they affect Native Americans?</li>
+                <li>How did the Gold Rush change California’s population and economy?</li>
+                <li>Why did agriculture become important in California after it became a state?</li>
+                <li>How has California’s history helped make it a diverse and influential state today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

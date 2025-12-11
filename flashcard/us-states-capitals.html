@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>U.S. States & Capitals – Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 700px; }
+
+    .flashcard {
+      background: white; width: 90%; max-width: 650px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+
+    .word {
+      font-weight: bold; font-size: 2.1rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+
+    .definition { margin: 0.6rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.5rem; }
+
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #fff; user-select: none; transition: color 0.2s;
+    }
+    .flashcard:not(.flipped) .speaker { color: #3498db; }
+    .speaker:hover { color: #f0c040; }
+
+    .hint {
+      font-size: 0.95rem; margin-top: 1rem; color: #888;
+    }
+    .flashcard.flipped .hint { color: #e0e0e0; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>U.S. States, Capitals & Biggest Cities — Flashcards</h1>
+
+<div id="flashcard" class="flashcard"
+     onclick="flipCard()"
+     role="button"
+     aria-pressed="false"
+     tabindex="0"
+     onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div class="hint">Click to see the capital, biggest city, and a short introduction.</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+// ---------- DATA ----------
+const flashcards = [
+  { state: "Alabama", capital: "Montgomery", largest: "Birmingham",
+    intro: "Alabama is in the southeastern United States and is known for its civil rights history and warm weather." },
+  { state: "Alaska", capital: "Juneau", largest: "Anchorage",
+    intro: "Alaska is the largest U.S. state, famous for its mountains, glaciers, and wildlife." },
+  { state: "Arizona", capital: "Phoenix", largest: "Phoenix",
+    intro: "Arizona is in the southwest and is known for the Grand Canyon and desert landscapes." },
+  { state: "Arkansas", capital: "Little Rock", largest: "Little Rock",
+    intro: "Arkansas is in the south-central U.S., with forests, rivers, and the Ozark Mountains." },
+  { state: "California", capital: "Sacramento", largest: "Los Angeles",
+    intro: "California is on the West Coast and is famous for beaches, Hollywood, and Silicon Valley." },
+  { state: "Colorado", capital: "Denver", largest: "Denver",
+    intro: "Colorado is in the Rocky Mountains and is known for skiing, hiking, and outdoor sports." },
+  { state: "Connecticut", capital: "Hartford", largest: "Bridgeport",
+    intro: "Connecticut is a small New England state with many historic towns and coastal cities." },
+  { state: "Delaware", capital: "Dover", largest: "Wilmington",
+    intro: "Delaware is one of the smallest states and was the first to ratify the U.S. Constitution." },
+  { state: "Florida", capital: "Tallahassee", largest: "Jacksonville",
+    intro: "Florida is in the southeast and is known for beaches, theme parks, and a warm climate." },
+  { state: "Georgia", capital: "Atlanta", largest: "Atlanta",
+    intro: "Georgia is in the southeast, with a busy capital city and a mix of mountains and coast." },
+  { state: "Hawaii", capital: "Honolulu", largest: "Honolulu",
+    intro: "Hawaii is an island state in the Pacific Ocean known for volcanoes, beaches, and tourism." },
+  { state: "Idaho", capital: "Boise", largest: "Boise",
+    intro: "Idaho is in the northwest and is known for potatoes, mountains, and outdoor recreation." },
+  { state: "Illinois", capital: "Springfield", largest: "Chicago",
+    intro: "Illinois is in the Midwest and home to Chicago, a major U.S. city on Lake Michigan." },
+  { state: "Indiana", capital: "Indianapolis", largest: "Indianapolis",
+    intro: "Indiana is in the Midwest and is known for farming and the Indianapolis 500 car race." },
+  { state: "Iowa", capital: "Des Moines", largest: "Des Moines",
+    intro: "Iowa is a Midwestern state with rich farmland and small cities." },
+  { state: "Kansas", capital: "Topeka", largest: "Wichita",
+    intro: "Kansas is located in the Great Plains and is known for agriculture and wide open spaces." },
+  { state: "Kentucky", capital: "Frankfort", largest: "Louisville",
+    intro: "Kentucky is famous for horse racing, bluegrass music, and bourbon." },
+  { state: "Louisiana", capital: "Baton Rouge", largest: "New Orleans",
+    intro: "Louisiana is in the south and is known for Cajun food, jazz music, and the city of New Orleans." },
+  { state: "Maine", capital: "Augusta", largest: "Portland",
+    intro: "Maine is the northeasternmost state, known for rocky coasts, lighthouses, and lobster." },
+  { state: "Maryland", capital: "Annapolis", largest: "Baltimore",
+    intro: "Maryland is on the East Coast, with a mix of cities, countryside, and Chesapeake Bay." },
+  { state: "Massachusetts", capital: "Boston", largest: "Boston",
+    intro: "Massachusetts is a New England state known for early U.S. history and top universities." },
+  { state: "Michigan", capital: "Lansing", largest: "Detroit",
+    intro: "Michigan is in the Great Lakes region and is known for cars, lakes, and forests." },
+  { state: "Minnesota", capital: "Saint Paul", largest: "Minneapolis",
+    intro: "Minnesota is in the north and is known as the 'Land of 10,000 Lakes'." },
+  { state: "Mississippi", capital: "Jackson", largest: "Jackson",
+    intro: "Mississippi is a southern state with a strong tradition of music and river culture." },
+  { state: "Missouri", capital: "Jefferson City", largest: "Kansas City",
+    intro: "Missouri is in the central U.S., known for barbecue, jazz, and the Gateway Arch." },
+  { state: "Montana", capital: "Helena", largest: "Billings",
+    intro: "Montana is a large, rural state with mountains, plains, and national parks." },
+  { state: "Nebraska", capital: "Lincoln", largest: "Omaha",
+    intro: "Nebraska is in the Great Plains and is known for agriculture and prairie landscapes." },
+  { state: "Nevada", capital: "Carson City", largest: "Las Vegas",
+    intro: "Nevada is in the west and is known for desert scenery and the city of Las Vegas." },
+  { state: "New Hampshire", capital: "Concord", largest: "Manchester",
+    intro: "New Hampshire is a small New England state with mountains, forests, and fall colors." },
+  { state: "New Jersey", capital: "Trenton", largest: "Newark",
+    intro: "New Jersey is on the East Coast, with busy cities and popular shore towns." },
+  { state: "New Mexico", capital: "Santa Fe", largest: "Albuquerque",
+    intro: "New Mexico is in the southwest and is known for desert landscapes and Native American culture." },
+  { state: "New York", capital: "Albany", largest: "New York City",
+    intro: "New York state includes New York City and upstate regions with mountains and lakes." },
+  { state: "North Carolina", capital: "Raleigh", largest: "Charlotte",
+    intro: "North Carolina has Atlantic beaches, rolling hills, and the Blue Ridge Mountains." },
+  { state: "North Dakota", capital: "Bismarck", largest: "Fargo",
+    intro: "North Dakota is a northern Great Plains state with wide prairies and cold winters." },
+  { state: "Ohio", capital: "Columbus", largest: "Columbus",
+    intro: "Ohio is in the Midwest and has several large cities and many factories and farms." },
+  { state: "Oklahoma", capital: "Oklahoma City", largest: "Oklahoma City",
+    intro: "Oklahoma is in the southern plains and is known for ranches, storms, and Native history." },
+  { state: "Oregon", capital: "Salem", largest: "Portland",
+    intro: "Oregon is in the Pacific Northwest, known for forests, mountains, and a rainy coast." },
+  { state: "Pennsylvania", capital: "Harrisburg", largest: "Philadelphia",
+    intro: "Pennsylvania is rich in U.S. history and home to cities like Philadelphia and Pittsburgh." },
+  { state: "Rhode Island", capital: "Providence", largest: "Providence",
+    intro: "Rhode Island is the smallest state, with historic seaside towns and beaches." },
+  { state: "South Carolina", capital: "Columbia", largest: "Charleston",
+    intro: "South Carolina is a coastal southern state with historic cities and warm beaches." },
+  { state: "South Dakota", capital: "Pierre", largest: "Sioux Falls",
+    intro: "South Dakota is known for Mount Rushmore and wide-open prairies." },
+  { state: "Tennessee", capital: "Nashville", largest: "Nashville",
+    intro: "Tennessee is famous for country music in Nashville and blues in Memphis." },
+  { state: "Texas", capital: "Austin", largest: "Houston",
+    intro: "Texas is a large southern state known for its oil, ranches, and big cities." },
+  { state: "Utah", capital: "Salt Lake City", largest: "Salt Lake City",
+    intro: "Utah is in the west, known for national parks, red rock canyons, and mountains." },
+  { state: "Vermont", capital: "Montpelier", largest: "Burlington",
+    intro: "Vermont is a small New England state with forests, farms, and maple syrup." },
+  { state: "Virginia", capital: "Richmond", largest: "Virginia Beach",
+    intro: "Virginia is on the East Coast and has many important sites from early U.S. history." },
+  { state: "Washington", capital: "Olympia", largest: "Seattle",
+    intro: "Washington state is in the Pacific Northwest and is known for mountains, forests, and Seattle." },
+  { state: "West Virginia", capital: "Charleston", largest: "Charleston",
+    intro: "West Virginia is a mountainous state known for coal mining and outdoor activities." },
+  { state: "Wisconsin", capital: "Madison", largest: "Milwaukee",
+    intro: "Wisconsin is in the Midwest and is known for dairy farms, lakes, and forests." },
+  { state: "Wyoming", capital: "Cheyenne", largest: "Cheyenne",
+    intro: "Wyoming is a western state famous for Yellowstone, open land, and cowboy culture." }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+// ---------- DISPLAY ----------
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { state } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">
+      ${state}
+      <span class="speaker" title="Hear state name" role="button" tabindex="0" aria-label="Play pronunciation of ${state}">🔊</span>
+    </div>
+    <div class="hint">Click to see the capital, biggest city, and a short introduction.</div>
+  `;
+  attachSpeakerOnlyState();
+}
+
+function attachSpeakerOnlyState() {
+  const { state } = flashcards[index];
+  const speakerBtn = flashcard.querySelector(".speaker");
+  if (!speakerBtn) return;
+  function speakState() {
+    speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(state);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    speechSynthesis.speak(utterance);
+  }
+  speakerBtn.addEventListener("click", speakState);
+  speakerBtn.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      speakState();
+    }
+  });
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { state, capital, largest, intro } = flashcards[index];
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flashcard.innerHTML = `
+      <div class="word">
+        ${state}
+        <span class="speaker" title="Hear information" role="button" tabindex="0" aria-label="Play information about ${state}">🔊</span>
+      </div>
+      <div class="definition"><strong>Capital:</strong> ${capital}</div>
+      <div class="definition"><strong>Biggest city:</strong> ${largest}</div>
+      <div class="example">${intro}</div>
+      <div class="hint">Click to flip back to the state name.</div>
+    `;
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speakInfo() {
+      speechSynthesis.cancel();
+      const text = `${state}. Capital: ${capital}. Biggest city: ${largest}. ${intro}`;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speakInfo);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speakInfo();
+      }
+    });
+    // auto speak once on flip
+    speakInfo();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// ---------- Mobile nav toggle ----------
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// ---------- AUTOPLAY ----------
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms) {
+  return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms)));
+}
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Front: state name
+    showCard();
+    await sleep(500);
+    await pronounce(flashcards[index].state);
+
+    // Back: flip and speak details
+    flipCard(); // this already speaks full info once
+    await sleep(3000); // let info finish or mostly finish
+
+    // Short pause, then next card
+    await sleep(700);
+    if (!autoplay) break;
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay on manual actions
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

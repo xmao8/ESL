@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Christmas Vocabulary – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Christmas Vocabulary – Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { 
+    word: "Christmas", 
+    ipa: "/ˈkrɪsməs/", 
+    definition: "A holiday on December 25th that celebrates the birth of Jesus and a time for family and giving.", 
+    example: "We always spend Christmas with our grandparents.", 
+    chinese: "圣诞节", 
+    spanish: "Navidad" 
+  },
+  { 
+    word: "Christmas Eve", 
+    ipa: "/ˌkrɪsməs ˈiːv/", 
+    definition: "The evening or day before Christmas Day, December 24th.", 
+    example: "The children open one small gift on Christmas Eve.", 
+    chinese: "平安夜（圣诞前夜）", 
+    spanish: "Nochebuena" 
+  },
+  { 
+    word: "Christmas Day", 
+    ipa: "/ˌkrɪsməs ˈdeɪ/", 
+    definition: "The main day of Christmas, celebrated on December 25th.", 
+    example: "On Christmas Day we eat a big meal together.", 
+    chinese: "圣诞节当天", 
+    spanish: "Día de Navidad" 
+  },
+  { 
+    word: "holiday season", 
+    ipa: "/ˈhɒlədeɪ ˈsiːzn̩/", 
+    definition: "The time around Christmas and New Year when many people celebrate and take time off.", 
+    example: "The holiday season is very busy for shops and restaurants.", 
+    chinese: "假日季节；节日季", 
+    spanish: "temporada navideña / temporada de fiestas" 
+  },
+  { 
+    word: "festive", 
+    ipa: "/ˈfɛstɪv/", 
+    definition: "Happy and colorful, related to a festival or celebration.", 
+    example: "The lights and music made the city feel very festive.", 
+    chinese: "喜庆的；节日气氛的", 
+    spanish: "festivo / festiva" 
+  },
+  { 
+    word: "Christmas tree", 
+    ipa: "/ˈkrɪsməs triː/", 
+    definition: "A decorated tree, usually pine, used as a symbol of Christmas.", 
+    example: "They put presents under the Christmas tree.", 
+    chinese: "圣诞树", 
+    spanish: "árbol de Navidad" 
+  },
+  { 
+    word: "ornament", 
+    ipa: "/ˈɔːrnəmənt/", 
+    definition: "A small decoration that you hang on a Christmas tree or in a room.", 
+    example: "Each year we buy one new ornament for the tree.", 
+    chinese: "装饰品；挂件", 
+    spanish: "adorno" 
+  },
+  { 
+    word: "decorations", 
+    ipa: "/ˌdɛkəˈreɪʃənz/", 
+    definition: "Things used to make a place look pretty for a celebration.", 
+    example: "They put up Christmas decorations in the office.", 
+    chinese: "装饰品；布置", 
+    spanish: "decoraciones" 
+  },
+  { 
+    word: "wreath", 
+    ipa: "/riːθ/", 
+    definition: "A ring of leaves, flowers, or branches, often hung on a door at Christmas.", 
+    example: "There is a green wreath on their front door.", 
+    chinese: "花环；花圈", 
+    spanish: "corona (navideña)" 
+  },
+  { 
+    word: "stocking", 
+    ipa: "/ˈstɒkɪŋ/", 
+    definition: "A large sock children hang at Christmas to get small gifts and candy.", 
+    example: "The kids were excited to see what was in their stockings.", 
+    chinese: "圣诞长袜", 
+    spanish: "calcetín navideño / media de Navidad" 
+  },
+  { 
+    word: "Santa Claus", 
+    ipa: "/ˈsæntə klɔːz/", 
+    definition: "A jolly old man in a red suit who brings gifts to children at Christmas in stories.", 
+    example: "The children wrote a letter to Santa Claus.", 
+    chinese: "圣诞老人", 
+    spanish: "Papá Noel / Santa Claus" 
+  },
+  { 
+    word: "reindeer", 
+    ipa: "/ˈreɪndɪr/", 
+    definition: "A type of deer that lives in cold areas; in stories they pull Santa’s sleigh.", 
+    example: "Rudolph is the most famous reindeer.", 
+    chinese: "驯鹿", 
+    spanish: "reno" 
+  },
+  { 
+    word: "sleigh", 
+    ipa: "/sleɪ/", 
+    definition: "A vehicle that moves over snow, usually pulled by animals like reindeer.", 
+    example: "In the story, Santa travels in a flying sleigh.", 
+    chinese: "雪橇", 
+    spanish: "trineo" 
+  },
+  { 
+    word: "gift-giving", 
+    ipa: "/ˈɡɪft ˌɡɪvɪŋ/", 
+    definition: "The tradition of giving presents to other people.", 
+    example: "Gift-giving is an important part of Christmas for many families.", 
+    chinese: "赠送礼物", 
+    spanish: "dar regalos / intercambio de regalos" 
+  },
+  { 
+    word: "wrapping paper", 
+    ipa: "/ˈræpɪŋ ˌpeɪpər/", 
+    definition: "Colored or decorated paper used to cover presents.", 
+    example: "They used red wrapping paper with gold stars.", 
+    chinese: "包装纸", 
+    spanish: "papel de regalo" 
+  },
+  { 
+    word: "Christmas lights", 
+    ipa: "/ˈkrɪsməs laɪts/", 
+    definition: "Small electric lights used to decorate houses and trees at Christmas.", 
+    example: "The Christmas lights on the street look beautiful at night.", 
+    chinese: "圣诞彩灯", 
+    spanish: "luces de Navidad" 
+  },
+  { 
+    word: "candy cane", 
+    ipa: "/ˈkændi keɪn/", 
+    definition: "A hard, striped candy shaped like a walking stick, often red and white.", 
+    example: "She hung a candy cane on each branch of the tree.", 
+    chinese: "拐杖糖", 
+    spanish: "bastón de caramelo" 
+  },
+  { 
+    word: "gingerbread cookies", 
+    ipa: "/ˈdʒɪndʒərbrɛd ˈkʊkiz/", 
+    definition: "Sweet cookies flavored with ginger, often shaped like little people or houses.", 
+    example: "The children decorated gingerbread cookies with icing.", 
+    chinese: "姜饼饼干", 
+    spanish: "galletas de jengibre" 
+  },
+  { 
+    word: "Christmas carols", 
+    ipa: "/ˈkrɪsməs ˈkærəlz/", 
+    definition: "Traditional Christmas songs that people sing during the holiday.", 
+    example: "A group came to our door to sing Christmas carols.", 
+    chinese: "圣诞颂歌", 
+    spanish: "villancicos" 
+  },
+  { 
+    word: "nativity scene", 
+    ipa: "/nəˈtɪvəti siːn/", 
+    definition: "A display showing the birth of Jesus with figures of Mary, Joseph, and others.", 
+    example: "The church put a nativity scene in front of the building.", 
+    chinese: "耶稣诞生场景；马槽景", 
+    spanish: "nacimiento / pesebre" 
+  },
+  { 
+    word: "midnight mass", 
+    ipa: "/ˈmɪdnaɪt mæs/", 
+    definition: "A special church service held at midnight on Christmas Eve.", 
+    example: "They go to midnight mass every Christmas Eve.", 
+    chinese: "子夜弥撒", 
+    spanish: "misa de medianoche / misa del gallo" 
+  },
+  { 
+    word: "Christmas feast", 
+    ipa: "/ˈkrɪsməs fiːst/", 
+    definition: "A large, special meal shared with family or friends at Christmas.", 
+    example: "Our Christmas feast includes turkey, potatoes, and many desserts.", 
+    chinese: "圣诞盛宴", 
+    spanish: "banquete de Navidad / cena navideña" 
+  },
+  { 
+    word: "mistletoe", 
+    ipa: "/ˈmɪsəltoʊ/", 
+    definition: "A plant hung in houses at Christmas; people sometimes kiss under it.", 
+    example: "They laughed when they found themselves under the mistletoe.", 
+    chinese: "槲寄生（圣诞装饰植物）", 
+    spanish: "muérdago" 
+  },
+  { 
+    word: "snowflake", 
+    ipa: "/ˈsnəʊfleɪk/", 
+    definition: "A small piece of falling snow with a special pattern.", 
+    example: "Each snowflake has a different shape.", 
+    chinese: "雪花", 
+    spanish: "copo de nieve" 
+  },
+  { 
+    word: "fireplace", 
+    ipa: "/ˈfaɪərpleɪs/", 
+    definition: "A space in the wall of a room where you can make a fire.", 
+    example: "They sat by the fireplace drinking hot chocolate.", 
+    chinese: "壁炉", 
+    spanish: "chimenea" 
+  },
+  { 
+    word: "winter wonderland", 
+    ipa: "/ˈwɪntər ˈwʌndərlænd/", 
+    definition: "A place that looks beautiful and magical in the winter, usually covered in snow.", 
+    example: "The park looked like a winter wonderland after the snow.", 
+    chinese: "冬日仙境", 
+    spanish: "paisaje invernal de ensueño" 
+  },
+  { 
+    word: "charity", 
+    ipa: "/ˈtʃærəti/", 
+    definition: "Helping people in need by giving money, food, or time.", 
+    example: "Many people give to charity during Christmas.", 
+    chinese: "慈善；善举", 
+    spanish: "caridad" 
+  },
+  { 
+    word: "holiday greeting", 
+    ipa: "/ˈhɒlədeɪ ˈɡriːtɪŋ/", 
+    definition: "A friendly message you say or write to someone during the holidays.", 
+    example: "She wrote a holiday greeting on each card.", 
+    chinese: "节日问候", 
+    spanish: "saludo navideño / saludo de fiestas" 
+  },
+  { 
+    word: "Merry Christmas", 
+    ipa: "/ˈmɛri ˈkrɪsməs/", 
+    definition: "A common phrase used to wish someone happiness at Christmas.", 
+    example: "They smiled and said, \"Merry Christmas!\" to everyone.", 
+    chinese: "圣诞快乐", 
+    spanish: "¡Feliz Navidad!" 
+  },
+  { 
+    word: "Season's greetings", 
+    ipa: "/ˈsiːzənz ˈɡriːtɪŋz/", 
+    definition: "A polite phrase used to send good wishes during the holiday season.", 
+    example: "The company sent an email saying, \"Season's greetings\" to all customers.", 
+    chinese: "节日问候（祝福语）", 
+    spanish: "Felices fiestas" 
+  }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(500);
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(300);
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    // Speak example
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    // Next
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

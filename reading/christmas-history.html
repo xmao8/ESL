@@ -13,59 +13,64 @@
             display: flex; flex-direction: column; min-height: 100vh; margin: 0;
             font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
         }
-        nav {
-            background-color: #124076; padding: 0.8rem 1rem; width: 100%;
-        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
         .nav-container {
-            max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
         }
         .logo { display: flex; align-items: center; text-decoration: none; }
         .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
         .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
-        .nav-links a {
-            color: white; text-decoration: none; font-weight: bold; margin-left: 1rem; transition: color 0.2s;
-        }
-        .nav-links a:hover { color: #ffbb33; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
 
-        h1 {
-            text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50;
-        }
-        h2 { color: #124076; margin-top: 1.5rem; }
-        p { line-height: 1.6; }
-
-        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 1rem; }
+        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        p { line-height: 1.6; margin: 0.5rem 0; }
 
         .content-section {
-            background: #fff; border-radius: 10px; padding: 1.5rem 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 2rem;
+            background: #fff; border-radius: 8px; padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
         }
 
         .vocabulary-list ul { list-style: none; padding-left: 0; }
         .vocabulary-list li {
             background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
-            margin-bottom: 10px; padding: 10px; display: flex; flex-wrap: wrap;
+            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
         }
         .vocabulary-list strong { color: #124076; margin-right: 8px; }
         .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
 
+        .questions ol { padding-left: 1.2rem; }
         .questions li { margin: 0.6rem 0; }
 
-        .buttons {
-            text-align: center; margin: 2rem auto;
+        input[type="text"] {
+            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            min-width: 120px;
         }
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons { text-align: center; margin: 2rem auto; }
         .buttons a {
-            text-decoration: none; background: #3498db; color: white; padding: 0.7rem 1.2rem;
-            border-radius: 8px; font-weight: bold; margin: 0 0.5rem;
+            text-decoration: none; background: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            margin: 0 0.5rem;
         }
         .buttons a:hover { background: #2980b9; }
     </style>
 </head>
-
 <body>
     <nav>
         <div class="nav-container">
             <a href="../index.html" class="logo">
-                <img src="/favicon.png" class="logo-img" alt="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
                 <span class="site-name">ESLnote</span>
             </a>
             <div class="nav-links">
@@ -74,7 +79,8 @@
                 <a href="../conversation.html">Conversations</a>
                 <a href="../grammar.html">Grammar</a>
                 <a href="../reading.html">Reading</a>
-                <a href="../practice.html">Practice</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
             </div>
         </div>
     </nav>
@@ -83,7 +89,7 @@
 
     <main>
         <div class="content-section">
-            <h2>A Holiday with Deep Roots</h2>
+            <h2>Christmas: A Holiday with Deep Roots</h2>
             <p>
                 Christmas is one of the most widely celebrated holidays in the world. For many people, it is both a
                 religious celebration and a cultural tradition. The holiday began as a Christian celebration of the birth
@@ -91,73 +97,128 @@
                 leaders chose December 25 as the official date. This choice also connected Christmas with older winter
                 festivals, such as the Roman holiday Saturnalia and Northern European solstice celebrations.
             </p>
-
-            <h2>Traditions and Symbols</h2>
             <p>
-                Many Christmas traditions developed over hundreds of years. One of the most famous is the Christmas tree,
-                which began in Germany in the 1500s. People decorated evergreen trees with candles and small ornaments to
-                symbolize life and hope in winter. This tradition later spread to England and the United States.
+                Over time, many Christmas traditions developed. One of the most famous is the Christmas tree, which began
+                in Germany in the 1500s. People decorated evergreen trees with candles and small ornaments to symbolize
+                life and hope in winter. This tradition later spread to England and the United States and became an
+                important part of Christmas decorations.
             </p>
             <p>
                 Another well-known tradition is Santa Claus, based on Saint Nicholas, a generous Christian bishop from the
-                4th century. Over time, different cultures shaped the modern idea of Santa—a cheerful man in a red suit
-                who brings gifts to children on Christmas Eve.
-            </p>
-
-            <h2>Food, Music, and Modern Customs</h2>
-            <p>
-                Christmas is also known for special foods, songs, and customs. Families often cook traditional meals,
-                exchange gifts, and decorate their homes with lights. Christmas carols are sung in many countries, and
-                each culture has its own holiday dishes, such as turkey, tamales, gingerbread, or fruitcake.
+                4th century. Dutch and other European customs helped create the modern image of Santa—a cheerful man in a
+                red suit who brings gifts to children on Christmas Eve. Today, many families also enjoy exchanging gifts,
+                singing Christmas carols, and sharing special meals.
             </p>
             <p>
-                Today, Christmas is celebrated around the world. Some people focus on its religious meaning, while others
-                enjoy the cultural traditions. No matter how it is celebrated, Christmas remains a time of generosity,
-                togetherness, and reflection.
+                Christmas is also known as a time of kindness and generosity. People often give to charity, help those in
+                need, and spend time with family and friends. In modern times, Christmas is celebrated in many countries
+                around the world, even in places where Christianity is not the main religion. Some people focus on its
+                religious meaning, while others enjoy the cultural and family traditions. In every case, Christmas remains
+                a symbol of warmth, hope, and togetherness.
             </p>
         </div>
 
-        <!-- Vocabulary List -->
         <div class="content-section vocabulary-list">
             <h2>Vocabulary List</h2>
             <ul>
-                <li><strong>tradition</strong> — A custom or belief passed down through generations.</li>
-                <li><strong>celebration</strong> — A special event honoring a person, holiday, or idea.</li>
-                <li><strong>solstice</strong> — The shortest or longest day of the year, marked in many cultures.</li>
-                <li><strong>ornament</strong> — A decoration used to make something look festive.</li>
-                <li><strong>generosity</strong> — The act of giving or being kind and helpful.</li>
+                <li><strong>tradition</strong> <i class="fas fa-volume-up speaker-icon" data-word="tradition"></i> — A custom or way of doing things that is passed down through generations.</li>
+                <li><strong>celebration</strong> <i class="fas fa-volume-up speaker-icon" data-word="celebration"></i> — A special event to honor a person, holiday, or idea.</li>
+                <li><strong>religious</strong> <i class="fas fa-volume-up speaker-icon" data-word="religious"></i> — Related to religion or belief in a god or gods.</li>
+                <li><strong>cultural</strong> <i class="fas fa-volume-up speaker-icon" data-word="cultural"></i> — Related to the ideas and ways of life of a group of people.</li>
+                <li><strong>festival</strong> <i class="fas fa-volume-up speaker-icon" data-word="festival"></i> — A special time of celebration, often with music, food, and traditions.</li>
+                <li><strong>solstice</strong> <i class="fas fa-volume-up speaker-icon" data-word="solstice"></i> — The shortest or longest day of the year, often marked by celebrations.</li>
+                <li><strong>decorate</strong> <i class="fas fa-volume-up speaker-icon" data-word="decorate"></i> — To make something look more beautiful by adding items to it.</li>
+                <li><strong>ornament</strong> <i class="fas fa-volume-up speaker-icon" data-word="ornament"></i> — A small decoration, often used on Christmas trees.</li>
+                <li><strong>evergreen</strong> <i class="fas fa-volume-up speaker-icon" data-word="evergreen"></i> — A tree that stays green all year, such as a pine or fir.</li>
+                <li><strong>symbol</strong> <i class="fas fa-volume-up speaker-icon" data-word="symbol"></i> — Something that represents an idea or feeling.</li>
+                <li><strong>generosity</strong> <i class="fas fa-volume-up speaker-icon" data-word="generosity"></i> — The quality of being kind and willing to give or help.</li>
+                <li><strong>custom</strong> <i class="fas fa-volume-up speaker-icon" data-word="custom"></i> — A usual or traditional way of behaving in a society.</li>
+                <li><strong>carol</strong> <i class="fas fa-volume-up speaker-icon" data-word="carol"></i> — A special song sung at Christmas.</li>
+                <li><strong>exchange</strong> <i class="fas fa-volume-up speaker-icon" data-word="exchange"></i> — To give something and receive something in return.</li>
+                <li><strong>reflection</strong> <i class="fas fa-volume-up speaker-icon" data-word="reflection"></i> — Careful thinking about something, such as the past year or one’s life.</li>
             </ul>
         </div>
 
-        <!-- True or False -->
-        <div class="content-section">
+        <div class="content-section questions">
             <h2>True or False</h2>
-            <ol class="questions">
-                <li>Christmas originally began as a Christian holiday. (True/False)</li>
-                <li>The exact birth date of Jesus is clearly written in the Bible. (True/False)</li>
-                <li>The Christmas tree tradition started in Germany. (True/False)</li>
-                <li>Santa Claus is based on a historical figure known for giving gifts. (True/False)</li>
-                <li>Christmas is celebrated only in countries where Christianity is the main religion. (True/False)</li>
+            <ol>
+                <li>
+                    Christmas began as a Christian celebration of the birth of Jesus Christ. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    The Bible clearly states that Jesus was born on December 25. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    The Christmas tree tradition started in Germany in the 1500s. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Santa Claus is based on a generous Christian bishop named Saint Nicholas. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Christmas is only celebrated in countries where Christianity is the main religion. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
             </ol>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="content-section">
+        <div class="content-section questions">
             <h2>Fill in the Blanks</h2>
-            <ol class="questions">
-                <li>Church leaders chose __________ 25 as the official date for Christmas.</li>
-                <li>The Christmas tree tradition began in the country of __________.</li>
-                <li>Santa Claus was inspired by Saint __________.</li>
-                <li>Many people decorate their homes with __________ during Christmas.</li>
-                <li>Christmas is often seen as a time of kindness and __________.</li>
+            <ol>
+                <li>
+                    Church leaders chose <input type="text" placeholder="month"> 25 as the official date for Christmas.
+                </li>
+                <li>
+                    The Christmas tree tradition began in <input type="text" placeholder="country"> in the 1500s.
+                </li>
+                <li>
+                    Santa Claus was inspired by Saint <input type="text" placeholder="name">, who was known for his generosity.
+                </li>
+                <li>
+                    Many people <input type="text" placeholder="verb"> their homes with lights and ornaments during Christmas.
+                </li>
+                <li>
+                    Christmas is often seen as a time of kindness, family, and <input type="text" placeholder="noun">.
+                </li>
             </ol>
         </div>
     </main>
 
     <div class="buttons">
         <a href="../reading.html">⬅️ Back to Reading</a>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">🏠 Back to Home</a>
     </div>
 
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

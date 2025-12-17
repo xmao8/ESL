@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>At the Dentist – A Checkup - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>At the Dentist: A Routine Checkup</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>DR. PARK:</strong> Dentist, calm and reassuring.</li>
+      <li><strong>LILY:</strong> Patient, nervous about going to the dentist.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: A bright dental clinic. Lily is sitting in the dental chair with a paper bib. Dr. Park enters the room with a clipboard.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Dentist and patient conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>DR. PARK:</strong> <span class="dialogue">Hi, Lily. Good afternoon. How are you today?</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Hi, Doctor. I’m okay… just a little nervous. I don’t really like dentists.</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">(smiling) That’s very common. Don’t worry, I’ll explain everything I’m doing. Is this just a regular checkup today?</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Yes, it’s my six-month checkup. But one of my teeth has been sensitive when I drink cold water.</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">Okay, thank you for telling me. Which tooth is sensitive? Top or bottom? Left or right?</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Bottom right, near the back.</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">Got it. First, I’ll take a quick look and then we’ll do a cleaning. After that, I may take an X-ray of that tooth.</span></p>
+    <p class="scene-direction">Dr. Park puts on gloves and looks inside Lily’s mouth with a small mirror.</p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">I see a small cavity starting in that tooth. It’s not very deep, but we should treat it soon.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">A cavity? Does that mean I need a filling?</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">Yes, a small filling. I’ll numb the area so you won’t feel pain, just a little pressure.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Will we do it today, or do I need another appointment?</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">If you have time today, we can do it right after the cleaning. It should only take about 20 minutes.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Okay, let’s do it today.</span></p>
+    <p class="scene-direction">The dental hygienist finishes cleaning Lily’s teeth. Later, Dr. Park comes back to do the filling.</p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">All right, Lily. I’m going to give you a little injection to numb your gums. You’ll feel a small pinch.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">(muffled) Okay…</span></p>
+    <p class="scene-direction">A few minutes pass.</p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">How do your lips feel? Numb?</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Yes, very numb.</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">Good. I’m going to start the filling now. Please raise your hand if you feel any pain.</span></p>
+    <p class="scene-direction">Dr. Park drills and fills the tooth. A few minutes later…</p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">All finished. The cavity is cleaned and filled. Try closing your mouth to see if your bite feels normal.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">(carefully) It feels a little strange, but not painful.</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">That’s normal. The numb feeling will go away in a couple of hours. Please don’t chew anything hard on that side until tomorrow.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Okay. Is this covered by my insurance?</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">Yes, your insurance covers part of the filling. The front desk will tell you the exact amount before you leave.</span></p>
+    <p><strong>LILY:</strong> <span class="dialogue">Great. Thank you for explaining everything. It wasn’t as scary as I expected.</span></p>
+    <p><strong>DR. PARK:</strong> <span class="dialogue">You’re welcome, Lily. You’re doing a good job taking care of your teeth. We’ll see you again in six months for your next checkup.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Checkup
+          <button class="speaker-icon" onclick="speakWord('checkup')" aria-label="Pronounce checkup">🔊</button>
+        </span>
+        <span class="ipa">/ˈtʃekʌp/</span>
+        <span class="definition">(n.) a regular medical or dental exam to see if everything is healthy.</span>
+        <span class="example">Example: This is my six-month dental checkup.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Sensitive
+          <button class="speaker-icon" onclick="speakWord('sensitive')" aria-label="Pronounce sensitive">🔊</button>
+        </span>
+        <span class="ipa">/ˈsensətɪv/</span>
+        <span class="definition">(adj.) easily hurt or painful when something touches it.</span>
+        <span class="example">Example: My tooth is sensitive when I drink cold water.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Cavity
+          <button class="speaker-icon" onclick="speakWord('cavity')" aria-label="Pronounce cavity">🔊</button>
+        </span>
+        <span class="ipa">/ˈkævəti/</span>
+        <span class="definition">(n.) a small hole in a tooth caused by decay.</span>
+        <span class="example">Example: The dentist found a small cavity.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Filling
+          <button class="speaker-icon" onclick="speakWord('filling')" aria-label="Pronounce filling">🔊</button>
+        </span>
+        <span class="ipa">/ˈfɪlɪŋ/</span>
+        <span class="definition">(n.) material the dentist uses to repair a cavity.</span>
+        <span class="example">Example: I need a filling for this tooth.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Numb
+          <button class="speaker-icon" onclick="speakWord('numb')" aria-label="Pronounce numb">🔊</button>
+        </span>
+        <span class="ipa">/nʌm/</span>
+        <span class="definition">(adj.) without feeling, often because of medicine.</span>
+        <span class="example">Example: My lips feel numb after the injection.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Gums
+          <button class="speaker-icon" onclick="speakWord('gums')" aria-label="Pronounce gums">🔊</button>
+        </span>
+        <span class="ipa">/ɡʌmz/</span>
+        <span class="definition">(n.) the soft pink part inside your mouth around your teeth.</span>
+        <span class="example">Example: The dentist gave an injection in my gums.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Dental cleaning
+          <button class="speaker-icon" onclick="speakWord('dental cleaning')" aria-label="Pronounce dental cleaning">🔊</button>
+        </span>
+        <span class="ipa">/ˈdentl ˈkliːnɪŋ/</span>
+        <span class="definition">(n.) a professional cleaning of your teeth at the dentist.</span>
+        <span class="example">Example: We’ll do a dental cleaning and then an X-ray.</span>
+      </li>
+      <li>
+        <span class="vocab-word">X-ray
+          <button class="speaker-icon" onclick="speakWord('dental x ray')" aria-label="Pronounce dental X-ray">🔊</button>
+        </span>
+        <span class="ipa">/ˈeks reɪ/</span>
+        <span class="definition">(n.) a type of picture that shows the inside of your body or teeth.</span>
+        <span class="example">Example: The dentist may take an X-ray of that tooth.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Insurance
+          <button class="speaker-icon" onclick="speakWord('insurance')" aria-label="Pronounce insurance">🔊</button>
+        </span>
+        <span class="ipa">/ɪnˈʃʊrəns/</span>
+        <span class="definition">(n.) a service you pay for that helps cover medical or dental costs.</span>
+        <span class="example">Example: Is this filling covered by my insurance?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Front desk
+          <button class="speaker-icon" onclick="speakWord('front desk')" aria-label="Pronounce front desk">🔊</button>
+        </span>
+        <span class="ipa">/frʌnt desk/</span>
+        <span class="definition">(n.) the reception area where you check in and pay.</span>
+        <span class="example">Example: The front desk will tell you the amount you need to pay.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

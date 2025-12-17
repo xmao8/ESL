@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Returning an Item – Asking for a Refund or Exchange - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 180px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Returning an Item: Asking for a Refund or Exchange</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>CUSTOMER (MAYA):</strong> Bought a shirt last week; it doesn’t fit.</li>
+      <li><strong>CASHIER (LUKE):</strong> Store employee, polite and professional.</li>
+      <li><strong>SUPERVISOR (NINA):</strong> Floor supervisor, helps with returns.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: A clothing store. Maya stands in line at the customer service counter with a shopping bag and a receipt in her hand.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Returning an item conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">Hi there. How can I help you today?</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Hi. I’d like to return this shirt. It doesn’t fit me very well.</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">Okay, no problem. Do you have the receipt with you?</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Yes, here it is. I bought it last Saturday.</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">Thank you. Let me check our return policy… All right, you’re within the 30-day return period.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Great. I only tried it on at home. I didn’t wear it outside.</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">The tag is still attached and the shirt looks new, so that’s fine. Would you like a refund or an exchange?</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">What’s the difference?</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">A refund means we put the money back on your original form of payment. An exchange means you choose a different size or a different item for the same value.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">I think I’d like to exchange it for a larger size. Do you still have this style in a medium?</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">Let me check the system… It looks like we only have one medium left in this color. I’ll ask someone to bring it from the floor.</span></p>
+    <p class="scene-direction">Luke calls on the store radio. A few minutes later, Nina comes over with a shirt.</p>
+    <p><strong>SUPERVISOR (NINA):</strong> <span class="dialogue">Is this the shirt you were looking for? Same style, size medium.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Yes, that’s it. Thank you. Can I try it on first?</span></p>
+    <p><strong>SUPERVISOR (NINA):</strong> <span class="dialogue">Of course. The fitting rooms are right over there. I’ll hold your original shirt and receipt here at the counter.</span></p>
+
+    <p class="scene-direction">Maya tries on the new shirt, then returns to the counter.</p>
+
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">This one fits much better. I’d like to keep the medium.</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">Great. Since the price is the same, it’s an even exchange. I’ll just process the return and the exchange in the system.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Okay.</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">All right, I’ve returned the small and exchanged it for the medium. Here’s your new receipt. It shows that the exchange is complete and the balance is zero.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Perfect. If I change my mind, can I still return this one?</span></p>
+    <p><strong>CASHIER (LUKE):</strong> <span class="dialogue">Yes, you still have the rest of the 30-day period from the original purchase date. Just keep this receipt and the tags on.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Got it. Thank you for your help and for explaining everything.</span></p>
+    <p><strong>SUPERVISOR (NINA):</strong> <span class="dialogue">You’re welcome. Have a good day and enjoy your new shirt.</span></p>
+    <p><strong>CUSTOMER (MAYA):</strong> <span class="dialogue">Thanks, you too. Bye.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Return
+          <button class="speaker-icon" onclick="speakWord('return')" aria-label="Pronounce return">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈtɜːrn/</span>
+        <span class="definition">(v.) to bring something back to a store because you don’t want it or it has a problem.</span>
+        <span class="example">Example: She wants to return the shirt because it doesn’t fit.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Exchange
+          <button class="speaker-icon" onclick="speakWord('exchange')" aria-label="Pronounce exchange">🔊</button>
+        </span>
+        <span class="ipa">/ɪksˈtʃeɪndʒ/</span>
+        <span class="definition">(v.) to give one item back to the store and take a different one instead.</span>
+        <span class="example">Example: She decides to exchange it for a larger size.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Refund
+          <button class="speaker-icon" onclick="speakWord('refund')" aria-label="Pronounce refund">🔊</button>
+        </span>
+        <span class="ipa">/ˈriːfʌnd/</span>
+        <span class="definition">(n.) money that a store gives back to you when you return something.</span>
+        <span class="example">Example: A refund puts the money back on your card.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Receipt
+          <button class="speaker-icon" onclick="speakWord('receipt')" aria-label="Pronounce receipt">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈsiːt/</span>
+        <span class="definition">(n.) a paper or digital record that shows what you bought and how much you paid.</span>
+        <span class="example">Example: Many stores require a receipt for returns.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Return policy
+          <button class="speaker-icon" onclick="speakWord('return policy')" aria-label="Pronounce return policy">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈtɜːrn ˈpɑːləsi/</span>
+        <span class="definition">(n.) the rules a store has about returning or exchanging items.</span>
+        <span class="example">Example: Their return policy allows returns within 30 days.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Within (30 days)
+          <button class="speaker-icon" onclick="speakWord('within thirty days')" aria-label="Pronounce within thirty days">🔊</button>
+        </span>
+        <span class="ipa">/wɪˈðɪn ˈθɜːrti deɪz/</span>
+        <span class="definition">(prep.) before the end of a particular period of time.</span>
+        <span class="example">Example: You can return the item within 30 days.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tag
+          <button class="speaker-icon" onclick="speakWord('tag')" aria-label="Pronounce tag">🔊</button>
+        </span>
+        <span class="ipa">/tæɡ/</span>
+        <span class="definition">(n.) a small label attached to clothing that shows size, price, or brand.</span>
+        <span class="example">Example: The tag must still be attached for a return.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Fitting room
+          <button class="speaker-icon" onclick="speakWord('fitting room')" aria-label="Pronounce fitting room">🔊</button>
+        </span>
+        <span class="ipa">/ˈfɪtɪŋ ruːm/</span>
+        <span class="definition">(n.) a small room in a store where you can try on clothes.</span>
+        <span class="example">Example: She tries on the new shirt in the fitting room.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Original form of payment
+          <button class="speaker-icon" onclick="speakWord('original form of payment')" aria-label="Pronounce original form of payment">🔊</button>
+        </span>
+        <span class="ipa">/əˈrɪdʒənl fɔːrm əv ˈpeɪmənt/</span>
+        <span class="definition">(phrase) the way you first paid, such as cash, debit card, or credit card.</span>
+        <span class="example">Example: Refunds usually go back to the original form of payment.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Even exchange
+          <button class="speaker-icon" onclick="speakWord('even exchange')" aria-label="Pronounce even exchange">🔊</button>
+        </span>
+        <span class="ipa">/ˈiːvn ɪksˈtʃeɪndʒ/</span>
+        <span class="definition">(n.) an exchange where the new item costs the same as the old one.</span>
+        <span class="example">Example: Because the price is the same, it’s an even exchange.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>At the Bakery – Ordering Bread and Pastries - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>At the Bakery: Choosing Bread and Pastries</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>CLERK:</strong> Bakery worker, friendly and patient.</li>
+      <li><strong>ANA:</strong> Customer, buying breakfast and something for a friend.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: A small neighborhood bakery in the morning. The smell of fresh bread is in the air. Ana walks up to the counter.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Bakery conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>CLERK:</strong> <span class="dialogue">Good morning! What can I get for you today?</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">Good morning. Everything smells amazing! I’d like a loaf of bread, please.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Thank you! What kind of bread would you like? We have white, whole wheat, and sourdough.</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">I’ll take a loaf of whole wheat bread, please. Is it fresh?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Yes, it came out of the oven about an hour ago.</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">Great. Could you slice it for me?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Of course. Anything else today?</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">Yes, I’m looking for something not too sweet. Maybe a pastry?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">We have croissants, blueberry muffins, and almond cookies. Do you have any allergies?</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">I’m allergic to nuts, so I should avoid the almond cookies.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Good to know. In that case, I recommend the butter croissant. It’s light and not very sweet.</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">That sounds perfect. I’ll take one croissant and one blueberry muffin, please.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Would you like them warmed up?</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">Yes, please. Just a little.</span></p>
+    <p class="scene-direction">The clerk warms the pastries and puts them in a small paper bag.</p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Anything to drink? We have coffee, tea, and hot chocolate.</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">A small coffee with milk, please. No sugar.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">You got it. So that’s one sliced whole wheat loaf, one croissant, one blueberry muffin, and a small coffee with milk. Is that correct?</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">Yes, that’s right.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Your total is 11 dollars and 25 cents. Would you like to pay by cash or card?</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">By card, please.</span></p>
+    <p class="scene-direction">Ana taps her card on the machine.</p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Perfect, it went through. Here’s your receipt and your order.</span></p>
+    <p><strong>ANA:</strong> <span class="dialogue">Thank you! Have a nice day.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">You’re welcome. Enjoy your breakfast!</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Loaf
+          <button class="speaker-icon" onclick="speakWord('loaf')" aria-label="Pronounce loaf">🔊</button>
+        </span>
+        <span class="ipa">/loʊf/</span>
+        <span class="definition">(n.) a whole piece of bread, usually in a long or round shape.</span>
+        <span class="example">Example: I’d like a loaf of whole wheat bread.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Pastry
+          <button class="speaker-icon" onclick="speakWord('pastry')" aria-label="Pronounce pastry">🔊</button>
+        </span>
+        <span class="ipa">/ˈpeɪstri/</span>
+        <span class="definition">(n.) a baked food made from dough, such as a croissant or pie.</span>
+        <span class="example">Example: I’m looking for a pastry that is not too sweet.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Whole wheat
+          <button class="speaker-icon" onclick="speakWord('whole wheat')" aria-label="Pronounce whole wheat">🔊</button>
+        </span>
+        <span class="ipa">/hoʊl wiːt/</span>
+        <span class="definition">(adj.) made from the entire wheat grain; usually darker and healthier.</span>
+        <span class="example">Example: Whole wheat bread has more fiber.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Slice
+          <button class="speaker-icon" onclick="speakWord('slice')" aria-label="Pronounce slice">🔊</button>
+        </span>
+        <span class="ipa">/slaɪs/</span>
+        <span class="definition">(n./v.) a thin, flat piece cut from something; to cut into pieces.</span>
+        <span class="example">Example: Could you slice the bread for me?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Allergic
+          <button class="speaker-icon" onclick="speakWord('allergic')" aria-label="Pronounce allergic">🔊</button>
+        </span>
+        <span class="ipa">/əˈlɜːrdʒɪk/</span>
+        <span class="definition">(adj.) having a medical problem when you eat or touch something.</span>
+        <span class="example">Example: I’m allergic to nuts.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Ingredient
+          <button class="speaker-icon" onclick="speakWord('ingredient')" aria-label="Pronounce ingredient">🔊</button>
+        </span>
+        <span class="ipa">/ɪnˈɡriːdiənt/</span>
+        <span class="definition">(n.) one of the foods used to make a dish or product.</span>
+        <span class="example">Example: Nuts are one of the ingredients in the cookies.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Fresh
+          <button class="speaker-icon" onclick="speakWord('fresh')" aria-label="Pronounce fresh">🔊</button>
+        </span>
+        <span class="ipa">/freʃ/</span>
+        <span class="definition">(adj.) recently made or picked; not old or frozen.</span>
+        <span class="example">Example: Is the bread fresh?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Counter
+          <button class="speaker-icon" onclick="speakWord('counter')" aria-label="Pronounce counter">🔊</button>
+        </span>
+        <span class="ipa">/ˈkaʊntər/</span>
+        <span class="definition">(n.) a long, flat surface where customers are served.</span>
+        <span class="example">Example: Please place the cash on the counter.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Receipt
+          <button class="speaker-icon" onclick="speakWord('receipt')" aria-label="Pronounce receipt">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈsiːt/</span>
+        <span class="definition">(n.) a piece of paper that shows you paid for something.</span>
+        <span class="example">Example: Here’s your receipt and your order.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tap (a card)
+          <button class="speaker-icon" onclick="speakWord('tap the card')" aria-label="Pronounce tap the card">🔊</button>
+        </span>
+        <span class="ipa">/tæp ðə kɑːrd/</span>
+        <span class="definition">(v.) to lightly touch your card on a machine to pay.</span>
+        <span class="example">Example: Ana taps her card on the machine to pay.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

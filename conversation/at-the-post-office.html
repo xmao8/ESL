@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>At the Post Office – Mailing a Package - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>At the Post Office: Mailing a Package</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>CLERK:</strong> Post office worker, efficient and polite.</li>
+      <li><strong>MAYA:</strong> Customer, sending a birthday present overseas.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Inside a busy post office. Maya is holding a small box and an envelope. She steps up to the counter when it’s her turn.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Post office conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>CLERK:</strong> <span class="dialogue">Good afternoon. How can I help you today?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Hi. I’d like to mail this package to Canada, and this letter within the U.S.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Sure. Let’s start with the package. Is there anything fragile, liquid, or perishable inside?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">There’s a scarf, some candy, and a small book. Nothing fragile or liquid.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Great. Please place the box on the scale… It weighs just under one kilo. Do you want standard shipping or express?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">What’s the difference?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Standard takes about 7–10 business days and is cheaper. Express takes 3–5 business days and includes tracking and insurance.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">I think I’d like express. It’s a birthday gift, so I want it to arrive on time.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">All right. I’ll print a shipping label. I also need you to fill out this customs form. Please write what’s inside and the value in dollars.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Okay. Is it okay to write “gift”?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Yes, you can mark it as a gift. Just be sure to list the items and the total value.</span></p>
+    <p class="scene-direction">Maya fills out the form at the counter and hands it back.</p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Here you go.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Thank you. The total for express shipping to Canada is 32 dollars. Would you like to add extra insurance?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Is insurance included already?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Express includes basic insurance up to 100 dollars. If your package is worth more, you can buy extra coverage.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">No, that’s enough. I’ll stay with the basic insurance.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">All right. I’ll also give you a tracking number so you can follow the package online.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Perfect. And what about this letter?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Let me see. It’s a regular envelope going within the U.S. A first-class stamp is enough. Do you want a forever stamp or a dated one?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">A forever stamp, please.</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Okay. Your total for the package and the letter is 34 dollars and 60 cents. Will you be paying with cash or card?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Card, please.</span></p>
+    <p class="scene-direction">Maya pays with her card and signs the receipt.</p>
+    <p><strong>CLERK:</strong> <span class="dialogue">Here is your receipt and your tracking number. The package should arrive in about a week.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Thank you. One more question: What are your opening hours on Saturday?</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">We’re open from 9 a.m. to 1 p.m. on Saturdays.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Great, that’s good to know. Have a nice day!</span></p>
+    <p><strong>CLERK:</strong> <span class="dialogue">You too. Thanks for coming in.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Package
+          <button class="speaker-icon" onclick="speakWord('package')" aria-label="Pronounce package">🔊</button>
+        </span>
+        <span class="ipa">/ˈpækɪdʒ/</span>
+        <span class="definition">(n.) a box or wrapped item that you send in the mail.</span>
+        <span class="example">Example: I’d like to mail this package to Canada.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Postage
+          <button class="speaker-icon" onclick="speakWord('postage')" aria-label="Pronounce postage">🔊</button>
+        </span>
+        <span class="ipa">/ˈpoʊstɪdʒ/</span>
+        <span class="definition">(n.) the cost of sending a letter or package by mail.</span>
+        <span class="example">Example: Express postage is more expensive than standard.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Standard shipping
+          <button class="speaker-icon" onclick="speakWord('standard shipping')" aria-label="Pronounce standard shipping">🔊</button>
+        </span>
+        <span class="ipa">/ˈstændərd ˈʃɪpɪŋ/</span>
+        <span class="definition">(n.) regular mail service that usually takes longer.</span>
+        <span class="example">Example: Standard shipping takes about 7–10 business days.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Express (mail)
+          <button class="speaker-icon" onclick="speakWord('express mail')" aria-label="Pronounce express mail">🔊</button>
+        </span>
+        <span class="ipa">/ɪkˈspres meɪl/</span>
+        <span class="definition">(n.) a faster, more expensive mail service.</span>
+        <span class="example">Example: She chose express mail so the gift arrives on time.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tracking number
+          <button class="speaker-icon" onclick="speakWord('tracking number')" aria-label="Pronounce tracking number">🔊</button>
+        </span>
+        <span class="ipa">/ˈtrækɪŋ ˈnʌmbər/</span>
+        <span class="definition">(n.) a code that lets you see where your package is online.</span>
+        <span class="example">Example: I’ll give you a tracking number for your package.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Customs form
+          <button class="speaker-icon" onclick="speakWord('customs form')" aria-label="Pronounce customs form">🔊</button>
+        </span>
+        <span class="ipa">/ˈkʌstəmz fɔːrm/</span>
+        <span class="definition">(n.) a document for international mail that lists what’s inside the package.</span>
+        <span class="example">Example: Please fill out this customs form for the package.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Insurance
+          <button class="speaker-icon" onclick="speakWord('insurance')" aria-label="Pronounce insurance">🔊</button>
+        </span>
+        <span class="ipa">/ɪnˈʃʊrəns/</span>
+        <span class="definition">(n.) protection that pays you if your package is lost or damaged.</span>
+        <span class="example">Example: Express shipping includes basic insurance.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Return address
+          <button class="speaker-icon" onclick="speakWord('return address')" aria-label="Pronounce return address">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈtɜːrn əˈdres/</span>
+        <span class="definition">(n.) the sender’s address written on a letter or package.</span>
+        <span class="example">Example: Don’t forget to write your return address on the box.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Business days
+          <button class="speaker-icon" onclick="speakWord('business days')" aria-label="Pronounce business days">🔊</button>
+        </span>
+        <span class="ipa">/ˈbɪznəs deɪz/</span>
+        <span class="definition">(n.) workdays from Monday to Friday, not including weekends or holidays.</span>
+        <span class="example">Example: Delivery takes 3–5 business days.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Opening hours
+          <button class="speaker-icon" onclick="speakWord('opening hours')" aria-label="Pronounce opening hours">🔊</button>
+        </span>
+        <span class="ipa">/ˈoʊpənɪŋ aʊərz/</span>
+        <span class="definition">(n.) the times when a business is open.</span>
+        <span class="example">Example: What are your opening hours on Saturday?</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

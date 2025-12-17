@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>At the Airport – Checking In and Boarding - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>At the Airport: Checking In and Boarding</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>AGENT:</strong> Airline check-in agent, professional and efficient.</li>
+      <li><strong>FARAH:</strong> Passenger, flying to Chicago for a conference.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: The check-in area at an international airport. Farah is standing in line with a suitcase and a small backpack. She walks up to the counter.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Airport conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>AGENT:</strong> <span class="dialogue">Good morning. Where are you flying today?</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Good morning. I’m flying to Chicago.</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">May I see your passport and your ticket, please?</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Sure, here you go. The ticket is on my phone.</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">Thank you. Are you checking any bags today, or do you just have carry-on luggage?</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">I’d like to check this suitcase, and I’ll take the backpack as my carry-on.</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">Please place your suitcase on the scale… Great, it’s under the weight limit.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Perfect.</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">Do you prefer an aisle seat or a window seat?</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">An aisle seat, please. It’s a little easier for me to stand up and stretch.</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">No problem. I have an aisle seat available in row 18. Here’s your boarding pass. Your gate is B12, and boarding begins at 9:15.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Thank you. How long does it usually take to get through security?</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">Right now, it’s about 15 to 20 minutes. I’d recommend going there soon.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Okay, I’ll head there now. One more question—do I need to take my laptop out of my backpack?</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">Yes, please remove your laptop and any liquids from your bag and place them in a separate tray at the security check.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Got it. Thanks for your help.</span></p>
+    <p><strong>AGENT:</strong> <span class="dialogue">You’re welcome. Have a good flight!</span></p>
+
+    <p class="scene-direction">Later, at the gate. Farah sits near Gate B12 and hears an announcement.</p>
+
+    <p><strong>ANNOUNCER:</strong> <span class="dialogue">Now boarding Flight 247 to Chicago. We are now boarding Group 1.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">(to another passenger) Excuse me, where can I see my boarding group?</span></p>
+    <p><strong>PASSENGER:</strong> <span class="dialogue">It’s printed on your boarding pass, near the seat number.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Oh, I see. I’m in Group 3. I’ll wait a little longer.</span></p>
+
+    <p class="scene-direction">A few minutes later…</p>
+
+    <p><strong>ANNOUNCER:</strong> <span class="dialogue">Now boarding Groups 3 and 4 for Flight 247 to Chicago.</span></p>
+    <p class="scene-direction">Farah walks to the gate agent and hands over her boarding pass.</p>
+    <p><strong>GATE AGENT:</strong> <span class="dialogue">Good morning. May I see your boarding pass and ID, please?</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Here you go.</span></p>
+    <p><strong>GATE AGENT:</strong> <span class="dialogue">Thank you. You’re in seat 18C. Boarding is through the jet bridge on the left.</span></p>
+    <p><strong>FARAH:</strong> <span class="dialogue">Thanks!</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Check-in counter
+          <button class="speaker-icon" onclick="speakWord('check-in counter')" aria-label="Pronounce check-in counter">🔊</button>
+        </span>
+        <span class="ipa">/ˈtʃek ɪn ˈkaʊntər/</span>
+        <span class="definition">(n.) the desk at the airport where you get your boarding pass and check your bags.</span>
+        <span class="example">Example: Farah walks up to the check-in counter.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Boarding pass
+          <button class="speaker-icon" onclick="speakWord('boarding pass')" aria-label="Pronounce boarding pass">🔊</button>
+        </span>
+        <span class="ipa">/ˈbɔːrdɪŋ pæs/</span>
+        <span class="definition">(n.) a ticket that shows your flight, seat number, and boarding group.</span>
+        <span class="example">Example: Here’s your boarding pass. Your gate is B12.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Carry-on (bag)
+          <button class="speaker-icon" onclick="speakWord('carry-on')" aria-label="Pronounce carry-on">🔊</button>
+        </span>
+        <span class="ipa">/ˈkæri ɑːn/</span>
+        <span class="definition">(n.) a small bag you can take onto the plane with you.</span>
+        <span class="example">Example: I’ll take the backpack as my carry-on.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Check a bag
+          <button class="speaker-icon" onclick="speakWord('check a bag')" aria-label="Pronounce check a bag">🔊</button>
+        </span>
+        <span class="ipa">/tʃek ə bæg/</span>
+        <span class="definition">(v.) to give your suitcase to the airline so it goes in the plane’s cargo area.</span>
+        <span class="example">Example: I’d like to check this suitcase.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Aisle seat
+          <button class="speaker-icon" onclick="speakWord('aisle seat')" aria-label="Pronounce aisle seat">🔊</button>
+        </span>
+        <span class="ipa">/aɪl siːt/</span>
+        <span class="definition">(n.) a seat next to the walkway on the plane.</span>
+        <span class="example">Example: Do you prefer an aisle seat or a window seat?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Gate
+          <button class="speaker-icon" onclick="speakWord('gate')" aria-label="Pronounce gate">🔊</button>
+        </span>
+        <span class="ipa">/ɡeɪt/</span>
+        <span class="definition">(n.) the area where passengers wait and board the plane.</span>
+        <span class="example">Example: Your gate is B12.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Security check
+          <button class="speaker-icon" onclick="speakWord('security check')" aria-label="Pronounce security check">🔊</button>
+        </span>
+        <span class="ipa">/sɪˈkjʊrəti tʃek/</span>
+        <span class="definition">(n.) the place where your bags and body are checked for safety.</span>
+        <span class="example">Example: Please remove your laptop for the security check.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Announcements
+          <button class="speaker-icon" onclick="speakWord('announcements')" aria-label="Pronounce announcements">🔊</button>
+        </span>
+        <span class="ipa">/əˈnaʊnsmənts/</span>
+        <span class="definition">(n.) official spoken messages in a public place, like an airport.</span>
+        <span class="example">Example: Farah listens to the boarding announcements.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Boarding group
+          <button class="speaker-icon" onclick="speakWord('boarding group')" aria-label="Pronounce boarding group">🔊</button>
+        </span>
+        <span class="ipa">/ˈbɔːrdɪŋ ɡruːp/</span>
+        <span class="definition">(n.) the group number that tells you when it’s your turn to get on the plane.</span>
+        <span class="example">Example: I’m in boarding group 3.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Jet bridge
+          <button class="speaker-icon" onclick="speakWord('jet bridge')" aria-label="Pronounce jet bridge">🔊</button>
+        </span>
+        <span class="ipa">/dʒet brɪdʒ/</span>
+        <span class="definition">(n.) the covered walkway that connects the gate to the airplane door.</span>
+        <span class="example">Example: Boarding is through the jet bridge on the left.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

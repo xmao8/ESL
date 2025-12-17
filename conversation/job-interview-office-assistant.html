@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Interview – Office Assistant Position - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 170px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Job Interview: Office Assistant Position</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>INTERVIEWER (MS. CLARK):</strong> Office manager, professional and direct.</li>
+      <li><strong>APPLICANT (RAVI):</strong> Job seeker, a bit nervous but prepared.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: A small meeting room in an office. Ravi has just arrived for a job interview for an office assistant position.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Job interview conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Good morning, Ravi. Thank you for coming in today.</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">Good morning, Ms. Clark. Thank you for inviting me.</span></p>
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Please have a seat. Would you like some water or coffee?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">Water would be great, thank you.</span></p>
+    <p class="scene-direction">They sit down at the table.</p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">So, you’re applying for the office assistant position. Can you tell me a little about yourself?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">Sure. My name is Ravi Patel. I have three years of experience working in an office environment. I handled phone calls, scheduled appointments, and helped with basic accounting tasks.</span></p>
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">That sounds good. What interests you about this role at our company?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">I like that your company works with international clients. I want to use my communication skills and continue improving my English while supporting the team.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Great. This position requires a lot of organization. How do you stay organized when you have many tasks at the same time?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">I usually make a to-do list every morning and update it during the day. I also use a digital calendar to track deadlines and meetings, so I don’t forget anything important.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Can you give me an example of a time when you had to deal with a difficult customer or coworker?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">Yes. At my last job, a client called because an invoice was incorrect. He was very upset. I listened carefully, apologized for the mistake, and then checked the details with our accounting department. We sent him a corrected invoice the same day, and he thanked us for fixing it quickly.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">That’s a good example. What computer programs are you comfortable with?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">I’m comfortable with Microsoft Word, Excel, and Outlook. I can also use Google Calendar and Zoom for online meetings.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Excellent. This job sometimes requires you to handle confidential information, like employee files. How would you handle that?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">I understand that confidential information must be protected. I would follow company policy, keep documents locked or password-protected, and only share information with authorized people.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Good. Do you prefer working independently or as part of a team?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">I can do both. I like working independently on tasks like data entry, but I also enjoy cooperating with others to plan events or projects.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Do you have any questions for me about the position?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">Yes, I do. What does a typical day look like for an office assistant here?</span></p>
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Good question. A typical day includes answering calls, greeting visitors, preparing documents, and supporting our project managers with scheduling and travel arrangements.</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">That sounds like a good match for my skills. I’m also wondering if there are opportunities for training or promotion in the future.</span></p>
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Yes, we offer training for new software and sometimes promote office assistants to coordinator positions after one or two years, depending on performance.</span></p>
+
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">That’s encouraging. I’m very interested in growing with the company.</span></p>
+
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Thank you, Ravi. We’re interviewing a few candidates this week. We should make a decision by next Friday. How can we contact you?</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">You can reach me by phone or email. My phone number is on my résumé, and my email is rpatel@example.com.</span></p>
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Perfect. That’s all my questions for today. Thank you again for your time.</span></p>
+    <p><strong>APPLICANT (RAVI):</strong> <span class="dialogue">Thank you, Ms. Clark. It was nice meeting you.</span></p>
+    <p><strong>INTERVIEWER (MS. CLARK):</strong> <span class="dialogue">Nice meeting you too. Have a great day.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Job interview
+          <button class="speaker-icon" onclick="speakWord('job interview')" aria-label="Pronounce job interview">🔊</button>
+        </span>
+        <span class="ipa">/dʒɑːb ˈɪntərvjuː/</span>
+        <span class="definition">(n.) a formal meeting where an employer asks questions to decide if they want to hire someone.</span>
+        <span class="example">Example: Ravi has a job interview for an office assistant position.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Office assistant
+          <button class="speaker-icon" onclick="speakWord('office assistant')" aria-label="Pronounce office assistant">🔊</button>
+        </span>
+        <span class="ipa">/ˈɔːfɪs əˈsɪstənt/</span>
+        <span class="definition">(n.) a person who helps with basic office tasks like answering phones and organizing files.</span>
+        <span class="example">Example: The company is looking for a new office assistant.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Résumé
+          <button class="speaker-icon" onclick="speakWord('resume')" aria-label="Pronounce résumé">🔊</button>
+        </span>
+        <span class="ipa">/ˈrezəmeɪ/</span>
+        <span class="definition">(n.) a document that lists your work experience, education, and skills.</span>
+        <span class="example">Example: His phone number is on his résumé.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Experience
+          <button class="speaker-icon" onclick="speakWord('experience')" aria-label="Pronounce experience">🔊</button>
+        </span>
+        <span class="ipa">/ɪkˈspɪriəns/</span>
+        <span class="definition">(n.) the knowledge or skill you get from doing a job or activity.</span>
+        <span class="example">Example: He has three years of office experience.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Organized
+          <button class="speaker-icon" onclick="speakWord('organized')" aria-label="Pronounce organized">🔊</button>
+        </span>
+        <span class="ipa">/ˈɔːrɡənaɪzd/</span>
+        <span class="definition">(adj.) able to plan and arrange work well so that things are clear and efficient.</span>
+        <span class="example">Example: The job requires someone who is very organized.</span>
+      </li>
+      <li>
+        <span class="vocab-word">To-do list
+          <button class="speaker-icon" onclick="speakWord('to do list')" aria-label="Pronounce to-do list">🔊</button>
+        </span>
+        <span class="ipa">/tə ˈduː lɪst/</span>
+        <span class="definition">(n.) a list of tasks that you need to complete.</span>
+        <span class="example">Example: He makes a to-do list every morning.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Deadline
+          <button class="speaker-icon" onclick="speakWord('deadline')" aria-label="Pronounce deadline">🔊</button>
+        </span>
+        <span class="ipa">/ˈdedlaɪn/</span>
+        <span class="definition">(n.) the final time or date when something must be completed.</span>
+        <span class="example">Example: She uses a calendar to remember all her deadlines.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Confidential
+          <button class="speaker-icon" onclick="speakWord('confidential')" aria-label="Pronounce confidential">🔊</button>
+        </span>
+        <span class="ipa">/ˌkɑːnfɪˈdenʃl/</span>
+        <span class="definition">(adj.) private; secret; not to be shared with everyone.</span>
+        <span class="example">Example: Employee files are confidential.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Performance
+          <button class="speaker-icon" onclick="speakWord('performance')" aria-label="Pronounce performance">🔊</button>
+        </span>
+        <span class="ipa">/pərˈfɔːrməns/</span>
+        <span class="definition">(n.) how well someone does at their job or task.</span>
+        <span class="example">Example: Promotions depend on your performance.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Promotion
+          <button class="speaker-icon" onclick="speakWord('promotion')" aria-label="Pronounce promotion">🔊</button>
+        </span>
+        <span class="ipa">/prəˈmoʊʃn/</span>
+        <span class="definition">(n.) a move to a higher position in a company, usually with more responsibility and pay.</span>
+        <span class="example">Example: Some office assistants are promoted to coordinators.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

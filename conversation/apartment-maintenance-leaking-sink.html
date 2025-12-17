@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apartment Maintenance – Reporting a Leaking Sink - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 200px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Apartment Maintenance: Reporting a Leaking Sink</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>TENANT (ANA):</strong> Lives on the 3rd floor, worried about water damage.</li>
+      <li><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> Works in the apartment office, schedules repairs.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Late morning. Ana walks into the apartment management office to report a problem with her kitchen sink.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Apartment maintenance conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Good morning. How can I help you today?</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">Good morning. My name is Ana Silva from apartment 3B. I need to report a problem with my kitchen sink.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Okay, Ms. Silva. What seems to be the problem?</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">The sink is leaking under the cabinet. I noticed water on the floor last night, and it’s still dripping this morning.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">I see. Thank you for letting us know. Did any of your things get damaged?</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">Yes, some paper bags and a box under the sink got wet, but nothing important. I put a towel there to catch the water.</span></p>
+
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">That’s good for a temporary fix, but we definitely need to repair it. Is the leak constant, or does it only happen when you use the sink?</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">It seems worse when I run the water, but even when it’s off, I can see small drops.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Okay. I’ll create a maintenance request right now. Is anyone home during the day if our maintenance technician needs to go inside?</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">I work until 4 p.m., but my sister is at home most of the day. I can also leave a key with the office if necessary.</span></p>
+
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Leaving a key with us is helpful. We’ll keep it in a locked box and sign it out only when the technician goes to your apartment.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">Okay, that’s fine. When do you think someone can come?</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">We usually handle leaks as a priority because of water damage. We can send someone this afternoon between 1 and 3 p.m. Does that work?</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">Yes, that works. I’ll leave my key with you before I go to work.</span></p>
+
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Great. I also want to confirm your phone number in case the technician has questions.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">Sure, it’s 555-297-6410. You can call or text me.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Got it. We’ll send you a text message once the work order is completed. If the problem is more serious, we’ll let you know what parts we need and how long it will take.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">Okay. Do I have to pay for this repair, or is it included in my rent?</span></p>
+
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">If it’s normal wear and tear, it’s included. If we find damage from misuse, there might be a charge, but most plumbing leaks are covered. We’ll let you know if there are any costs.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">All right, thank you. I just want to make sure it doesn’t damage the floor or the apartment below mine.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">You did the right thing by reporting it quickly. Before you leave, please keep a small bucket or pan under the pipe to catch the water, and try not to use the sink too much until we fix it.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">I’ll do that. Do I need to sign anything for the maintenance request?</span></p>
+
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Yes, just sign here so we have your permission to enter the apartment. This form also shows the time window for the visit.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">(signs) Okay, here you go.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">Thank you. We’ll do our best to take care of it today. If you come home and the leak is still there, please contact us right away.</span></p>
+    <p><strong>TENANT (ANA):</strong> <span class="dialogue">I will. Thank you for your help, Mr. Lopez.</span></p>
+    <p><strong>MAINTENANCE COORDINATOR (MR. LOPEZ):</strong> <span class="dialogue">You’re welcome, Ms. Silva. Have a good day.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Maintenance request
+          <button class="speaker-icon" onclick="speakWord('maintenance request')" aria-label="Pronounce maintenance request">🔊</button>
+        </span>
+        <span class="ipa">/ˈmeɪntənəns rɪˈkwest/</span>
+        <span class="definition">(n.) a formal report asking the building staff to fix something.</span>
+        <span class="example">Example: The office creates a maintenance request for the leaking sink.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Leak / leaking
+          <button class="speaker-icon" onclick="speakWord('leaking')" aria-label="Pronounce leak, leaking">🔊</button>
+        </span>
+        <span class="ipa">/liːk/ , /ˈliːkɪŋ/</span>
+        <span class="definition">(n./adj.) when water or another liquid comes out where it should not.</span>
+        <span class="example">Example: The pipe under the sink is leaking.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Temporary fix
+          <button class="speaker-icon" onclick="speakWord('temporary fix')" aria-label="Pronounce temporary fix">🔊</button>
+        </span>
+        <span class="ipa">/ˈtempəreri fɪks/</span>
+        <span class="definition">(n.) a short-term solution until a proper repair is done.</span>
+        <span class="example">Example: Putting a towel under the pipe is only a temporary fix.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Work order
+          <button class="speaker-icon" onclick="speakWord('work order')" aria-label="Pronounce work order">🔊</button>
+        </span>
+        <span class="ipa">/wɜːrk ˈɔːrdər/</span>
+        <span class="definition">(n.) a document that tells maintenance workers what job they need to do.</span>
+        <span class="example">Example: The technician receives a work order for apartment 3B.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Wear and tear
+          <button class="speaker-icon" onclick="speakWord('wear and tear')" aria-label="Pronounce wear and tear">🔊</button>
+        </span>
+        <span class="ipa">/ˌwer ən ˈter/</span>
+        <span class="definition">(n.) normal damage that happens over time when something is used.</span>
+        <span class="example">Example: Most leaks from old pipes are considered normal wear and tear.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Water damage
+          <button class="speaker-icon" onclick="speakWord('water damage')" aria-label="Pronounce water damage">🔊</button>
+        </span>
+        <span class="ipa">/ˈwɔːtər ˈdæmɪdʒ/</span>
+        <span class="definition">(n.) harm to walls, floors, or furniture caused by water.</span>
+        <span class="example">Example: The office wants to prevent water damage to the apartment.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Priority
+          <button class="speaker-icon" onclick="speakWord('priority')" aria-label="Pronounce priority">🔊</button>
+        </span>
+        <span class="ipa">/praɪˈɔːrəti/</span>
+        <span class="definition">(n.) something that is more important or more urgent than other things.</span>
+        <span class="example">Example: Leaks are a priority because they can damage the building.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tenant
+          <button class="speaker-icon" onclick="speakWord('tenant')" aria-label="Pronounce tenant">🔊</button>
+        </span>
+        <span class="ipa">/ˈtenənt/</span>
+        <span class="definition">(n.) a person who rents and lives in an apartment or house.</span>
+        <span class="example">Example: The tenant reports the problem to the office.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Landlord
+          <button class="speaker-icon" onclick="speakWord('landlord')" aria-label="Pronounce landlord">🔊</button>
+        </span>
+        <span class="ipa">/ˈlændlɔːrd/</span>
+        <span class="definition">(n.) the owner of a building who rents it to tenants.</span>
+        <span class="example">Example: The landlord is responsible for major repairs.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Permission to enter
+          <button class="speaker-icon" onclick="speakWord('permission to enter')" aria-label="Pronounce permission to enter">🔊</button>
+        </span>
+        <span class="ipa">/pərˈmɪʃn tə ˈentər/</span>
+        <span class="definition">(phrase) allowing someone to go into your apartment to do work.</span>
+        <span class="example">Example: She signs a form giving the staff permission to enter her apartment.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

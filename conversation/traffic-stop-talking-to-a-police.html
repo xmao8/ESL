@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Traffic Stop – Talking to a Police Officer - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 150px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Traffic Stop: Talking to a Police Officer</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>OFFICER REED:</strong> Police officer, calm and professional.</li>
+      <li><strong>CARLOS:</strong> Driver, a little nervous but cooperative.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Early evening on a city street. Carlos is driving home from work. He sees flashing lights behind him and carefully pulls his car over to the side of the road.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Traffic stop conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">(standing by the driver’s window) Good evening, sir. I’m Officer Reed with the city police department.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Good evening, Officer.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">Do you know why I stopped you today?</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">I’m not sure, to be honest.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">You were driving 40 in a 30 mile-per-hour zone. This is a school area, and the speed limit is lower here.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Oh, I see. I didn’t notice the sign. I’m sorry about that.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">All right. For your safety and mine, please keep your hands on the steering wheel. May I see your driver’s license, registration, and proof of insurance, please?</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Yes, of course. My wallet is in my pocket and the documents are in the glove box. Is it okay if I get them?</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">Yes, go ahead slowly.</span></p>
+    <p class="scene-direction">Carlos takes out his wallet, then opens the glove box and finds the registration and insurance card.</p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Here you are—my license, the registration, and my insurance card.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">Thank you. I’ll be right back while I run your information. Please stay in the car.</span></p>
+    <p class="scene-direction">The officer walks back to the patrol car to check the documents. A few minutes later, he returns.</p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">All right, Mr. Ramirez, everything is valid and up to date.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Okay, that’s good.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">Because this is your first time being stopped and you were not going much over the limit, I’m going to give you a written warning instead of a ticket today.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Thank you, Officer. I really appreciate that. I’ll be more careful.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">Please make sure to slow down in school zones, especially in the afternoon when children are leaving.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Yes, I understand. I’ll pay more attention to the speed limit signs.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">Here is your warning and your documents back. Do you have any questions for me?</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">Just one—does this warning go on my record?</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">It is recorded, but there’s no fine and no points on your license this time. If you are stopped again, the next officer will see this warning.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">I understand. Thank you for explaining.</span></p>
+    <p><strong>OFFICER REED:</strong> <span class="dialogue">All right. When it’s safe, you can re-enter traffic. Drive carefully and have a good evening.</span></p>
+    <p><strong>CARLOS:</strong> <span class="dialogue">You too, Officer. Thank you.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Traffic stop
+          <button class="speaker-icon" onclick="speakWord('traffic stop')" aria-label="Pronounce traffic stop">🔊</button>
+        </span>
+        <span class="ipa">/ˈtræfɪk stɑːp/</span>
+        <span class="definition">(n.) when a police officer signals a driver to pull over and stop the car.</span>
+        <span class="example">Example: Carlos has his first traffic stop on his way home.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Pull over
+          <button class="speaker-icon" onclick="speakWord('pull over')" aria-label="Pronounce pull over">🔊</button>
+        </span>
+        <span class="ipa">/pʊl ˈoʊvər/</span>
+        <span class="definition">(phrasal v.) to move a vehicle to the side of the road and stop.</span>
+        <span class="example">Example: He sees the flashing lights and pulls over.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Speed limit
+          <button class="speaker-icon" onclick="speakWord('speed limit')" aria-label="Pronounce speed limit">🔊</button>
+        </span>
+        <span class="ipa">/spiːd ˈlɪmɪt/</span>
+        <span class="definition">(n.) the maximum legal speed you can drive on a road.</span>
+        <span class="example">Example: The speed limit in a school zone is often lower.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Driver’s license
+          <button class="speaker-icon" onclick="speakWord('driver\'s license')" aria-label="Pronounce driver’s license">🔊</button>
+        </span>
+        <span class="ipa">/ˈdraɪvərz ˈlaɪsns/</span>
+        <span class="definition">(n.) an official card that allows you to drive a car legally.</span>
+        <span class="example">Example: The officer asks to see his driver’s license.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Registration
+          <button class="speaker-icon" onclick="speakWord('registration')" aria-label="Pronounce registration">🔊</button>
+        </span>
+        <span class="ipa">/ˌredʒɪˈstreɪʃn/</span>
+        <span class="definition">(n.) an official document that shows who owns the car.</span>
+        <span class="example">Example: Please give me your registration and proof of insurance.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Proof of insurance
+          <button class="speaker-icon" onclick="speakWord('proof of insurance')" aria-label="Pronounce proof of insurance">🔊</button>
+        </span>
+        <span class="ipa">/pruːf əv ɪnˈʃʊrəns/</span>
+        <span class="definition">(n.) a card or paper that shows your car is insured.</span>
+        <span class="example">Example: He keeps his proof of insurance in the glove box.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Run your information
+          <button class="speaker-icon" onclick="speakWord('run your information')" aria-label="Pronounce run your information">🔊</button>
+        </span>
+        <span class="ipa">/rʌn jɔːr ˌɪnfərˈmeɪʃn/</span>
+        <span class="definition">(phrase) for police, to check a person’s license and record in a computer system.</span>
+        <span class="example">Example: The officer goes to the patrol car to run his information.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Warning
+          <button class="speaker-icon" onclick="speakWord('warning')" aria-label="Pronounce warning">🔊</button>
+        </span>
+        <span class="ipa">/ˈwɔːrnɪŋ/</span>
+        <span class="definition">(n.) an official notice about a problem, but without a fine or punishment this time.</span>
+        <span class="example">Example: He gets a written warning instead of a ticket.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Ticket
+          <button class="speaker-icon" onclick="speakWord('traffic ticket')" aria-label="Pronounce ticket">🔊</button>
+        </span>
+        <span class="ipa">/ˈtɪkɪt/</span>
+        <span class="definition">(n.) an official paper that says you broke a traffic law and must pay a fine.</span>
+        <span class="example">Example: A ticket usually comes with a fine.</span>
+      </li>
+      <li>
+        <span class="vocab-word">School zone
+          <button class="speaker-icon" onclick="speakWord('school zone')" aria-label="Pronounce school zone">🔊</button>
+        </span>
+        <span class="ipa">/skuːl zoʊn/</span>
+        <span class="definition">(n.) an area near a school where drivers must go slowly.</span>
+        <span class="example">Example: The speed limit is lower in a school zone.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

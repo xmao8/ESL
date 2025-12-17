@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calling Edison About an Electric Bill - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 170px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Calling Edison About an Electric Bill</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>CUSTOMER (ANA):</strong> Lives in an apartment, worried about a higher bill than usual.</li>
+      <li><strong>REPRESENTATIVE (JORDAN):</strong> Customer service agent at Edison, calm and helpful.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Ana is at her kitchen table with her electric bill and her phone. She calls Edison’s customer service number to ask about the amount and the due date.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Calling Edison about a bill">
+    <h3>Conversation</h3>
+
+    <p><strong>AUTOMATED SYSTEM:</strong> <span class="dialogue">Thank you for calling Edison Electric. For English, press 1. Para español, oprima el dos.</span></p>
+    <p class="scene-direction">Ana presses 1 on her phone.</p>
+    <p><strong>AUTOMATED SYSTEM:</strong> <span class="dialogue">Please enter or say your 10-digit account number.</span></p>
+    <p class="scene-direction">Ana types in her account number from the top of the bill.</p>
+    <p><strong>AUTOMATED SYSTEM:</strong> <span class="dialogue">Thank you. Please hold while we connect you with a representative.</span></p>
+
+    <p class="scene-direction">After a short wait, a person answers the call.</p>
+
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">Thank you for calling Edison Electric. This is Jordan speaking. How can I help you today?</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Hi, Jordan. My name is Ana Silva. I’m calling about my electric bill. It seems higher than usual, and I want to make sure it’s correct.</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">I’d be happy to look into that for you. Can you please confirm your full name and the service address?</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Sure. My full name is Ana Maria Silva, and the address is 245 Oak Street, Apartment 3B.</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">Thank you. One moment while I pull up your account… Okay, I see your account here. You’re calling about the bill that’s due on the 25th, correct?</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Yes, that’s right. It says 186 dollars. Usually my bill is around 90 dollars.</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">I understand your concern. Let me review your usage for this billing period and compare it to last month.</span></p>
+    <p class="scene-direction">Jordan looks at the account on the computer.</p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">I see that your usage almost doubled this month, especially in the evenings. Did you add any new appliances or use more heating or air conditioning?</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Yes, actually. My sister stayed with me for three weeks, and we used a portable heater in the bedroom. That might be it.</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">That makes sense. Portable heaters can use a lot of electricity. The meter reading looks normal—there’s no sign of an error on our side.</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Okay, I understand now. The problem is, I can’t pay the full amount by the 25th. Is there any way to make a payment plan?</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">Yes, we can set up a payment arrangement. How much can you pay before the due date?</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">I can pay 100 dollars next week, and the rest after I get my paycheck next month.</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">All right. I can split your balance into two payments. You’ll pay 100 dollars by the 25th, and the remaining 86 dollars by the 10th of next month. Does that work for you?</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Yes, that would help a lot. Will my service be disconnected if I follow that plan?</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">As long as you make both payments on time, your service will not be disconnected.</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Great. How can I make the payments—online or by phone?</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">You can pay online, by phone, or at one of our authorized payment locations. Many customers find the website or our mobile app easiest.</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">I’ll pay online then. Can you give me a confirmation number for this payment arrangement?</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">Of course. Your arrangement confirmation number is A74-93K. I’ll also send a copy to your email on file.</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">Thank you. One last question—what can I do to lower my bill in the future?</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">Good question. Try to unplug appliances you’re not using, use energy-efficient light bulbs, and set your heater or air conditioner a few degrees lower or higher. We also have a free home energy guide on our website.</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">I’ll check that out. You’ve been very helpful, Jordan. I appreciate your time.</span></p>
+    <p><strong>REPRESENTATIVE (JORDAN):</strong> <span class="dialogue">You’re welcome, Ms. Silva. Thank you for calling Edison Electric. Have a great day.</span></p>
+    <p><strong>CUSTOMER (ANA):</strong> <span class="dialogue">You too. Goodbye.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Electric bill
+          <button class="speaker-icon" onclick="speakWord('electric bill')" aria-label="Pronounce electric bill">🔊</button>
+        </span>
+        <span class="ipa">/ɪˈlektrɪk bɪl/</span>
+        <span class="definition">(n.) the statement that shows how much you must pay for electricity.</span>
+        <span class="example">Example: Ana’s electric bill is higher than usual this month.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Account number
+          <button class="speaker-icon" onclick="speakWord('account number')" aria-label="Pronounce account number">🔊</button>
+        </span>
+        <span class="ipa">/əˈkaʊnt ˈnʌmbər/</span>
+        <span class="definition">(n.) a unique number that identifies your account with a company.</span>
+        <span class="example">Example: Please enter your 10-digit account number.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Due date
+          <button class="speaker-icon" onclick="speakWord('due date')" aria-label="Pronounce due date">🔊</button>
+        </span>
+        <span class="ipa">/ˈduː deɪt/</span>
+        <span class="definition">(n.) the last day you can pay a bill before it is late.</span>
+        <span class="example">Example: The bill is due on the 25th.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Usage
+          <button class="speaker-icon" onclick="speakWord('usage')" aria-label="Pronounce usage">🔊</button>
+        </span>
+        <span class="ipa">/ˈjuːsɪdʒ/</span>
+        <span class="definition">(n.) the amount of electricity, water, etc., that you use.</span>
+        <span class="example">Example: The representative checks Ana’s electricity usage.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Meter
+          <button class="speaker-icon" onclick="speakWord('meter')" aria-label="Pronounce meter">🔊</button>
+        </span>
+        <span class="ipa">/ˈmiːtər/</span>
+        <span class="definition">(n.) a device that measures how much electricity, gas, or water is used.</span>
+        <span class="example">Example: The meter reading looks normal.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Payment arrangement
+          <button class="speaker-icon" onclick="speakWord('payment arrangement')" aria-label="Pronounce payment arrangement">🔊</button>
+        </span>
+        <span class="ipa">/ˈpeɪmənt əˈreɪndʒmənt/</span>
+        <span class="definition">(n.) an agreement to pay a bill in smaller parts over time.</span>
+        <span class="example">Example: She asks to set up a payment arrangement.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Past due
+          <button class="speaker-icon" onclick="speakWord('past due')" aria-label="Pronounce past due">🔊</button>
+        </span>
+        <span class="ipa">/pæst duː/</span>
+        <span class="definition">(adj.) not paid by the due date; late.</span>
+        <span class="example">Example: If the bill is past due, there may be a late fee.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Disconnection
+          <button class="speaker-icon" onclick="speakWord('disconnection')" aria-label="Pronounce disconnection">🔊</button>
+        </span>
+        <span class="ipa">/ˌdɪskəˈnekʃn/</span>
+        <span class="definition">(n.) when a service (like electricity) is stopped because of non-payment.</span>
+        <span class="example">Example: She asks if her service will face disconnection.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Automated system
+          <button class="speaker-icon" onclick="speakWord('automated system')" aria-label="Pronounce automated system">🔊</button>
+        </span>
+        <span class="ipa">/ˈɔːtəmeɪtɪd ˈsɪstəm/</span>
+        <span class="definition">(n.) a phone menu or machine that answers calls before a person does.</span>
+        <span class="example">Example: The automated system asks for her account number.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Confirmation number
+          <button class="speaker-icon" onclick="speakWord('confirmation number')" aria-label="Pronounce confirmation number">🔊</button>
+        </span>
+        <span class="ipa">/ˌkɒnfərˈmeɪʃn ˈnʌmbər/</span>
+        <span class="definition">(n.) a code that proves an arrangement or payment was made.</span>
+        <span class="example">Example: She writes down the confirmation number for the payment plan.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

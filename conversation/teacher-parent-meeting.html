@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher–Parent Meeting – Talking About a Student - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 150px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Teacher–Parent Meeting: Talking About a Student</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>MR. CARTER (TEACHER):</strong> Middle school English teacher, calm and organized.</li>
+      <li><strong>MRS. LOPEZ (PARENT):</strong> Mother of Diego, wants to support his learning.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: A classroom in the evening during parent–teacher conferences. Desks are arranged in rows, and student work is on the walls. Mrs. Lopez sits across from Mr. Carter at a small table.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Teacher-parent meeting conversation">
+    <h3>Conversation</h3>
+
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Good evening, Mrs. Lopez. Thank you for coming in. How are you?</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Good evening, Mr. Carter. I’m fine, thank you. I’m happy to hear how Diego is doing.</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Great. Overall, Diego is doing well. He’s a polite student, and he participates more in class this semester.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">That’s good to hear. At home he’s a little shy, so I’m glad he’s speaking more in class.</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Yes, I’ve noticed improvement, especially in his reading. His reading level has gone up, and he asks good questions about the stories.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">I’ve seen him reading more at home too. Are there any problems I should know about?</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Nothing serious, but there are two areas we can work on: homework and organization. Sometimes he turns in assignments late, or he forgets to bring them.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Yes, I’ve noticed that. He starts his homework, but he doesn’t always finish. How many missing assignments does he have?</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Right now he has three missing homework assignments from the last month. If he completes them this week, I can still give him partial credit.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Okay, I’ll make sure he finishes them. Could you write the details on a note or in the online system?</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Of course. I’ll post a list of the missing assignments on our parent portal tonight.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Thank you. How is his behavior in class?</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">His behavior is generally good. Sometimes he talks to his friends while I’m giving instructions, but if I remind him, he stops right away.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">If it continues, please let me know. I’ll talk to him at home.</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Thank you, I appreciate that. One more positive thing—he worked very hard on his last writing project. This is his essay about “My Future Job.”</span></p>
+    <p class="scene-direction">Mr. Carter shows Mrs. Lopez a paper with comments in the margins.</p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Oh, he wrote about being an engineer. I didn’t know that. His English still has some mistakes, but I can see he tried.</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Exactly. His ideas are very strong. We’re working on grammar and sentence structure. With more practice, he will become a more confident writer.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">What can we do at home to help him?</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">A few things: First, he should read in English for at least 20 minutes each day. Second, you can ask him to explain his homework to you. When he explains it, he remembers it better.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">That sounds reasonable. I can also give him a quiet place to work and a fixed time for homework.</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">That would help a lot. Also, if you ever have questions, please feel free to email me or send a message through the parent portal.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Thank you. I appreciate your communication. Overall, are you satisfied with his progress?</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Yes, I am. He has many strengths, and with a little more effort on homework, he can reach a B+ or even an A by the end of the term.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">That makes me happy. I’ll talk with him about these goals tonight.</span></p>
+    <p><strong>TEACHER (MR. CARTER):</strong> <span class="dialogue">Wonderful. Thank you again for coming, Mrs. Lopez. It was nice to meet you in person.</span></p>
+    <p><strong>MRS. LOPEZ:</strong> <span class="dialogue">Thank you, Mr. Carter. Have a good evening.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Parent–teacher conference
+          <button class="speaker-icon" onclick="speakWord('parent teacher conference')" aria-label="Pronounce parent teacher conference">🔊</button>
+        </span>
+        <span class="ipa">/ˌperənt ˈtiːtʃər ˈkɑːnfərəns/</span>
+        <span class="definition">(n.) a meeting between a student’s parent and teacher to talk about the student.</span>
+        <span class="example">Example: The school has a parent–teacher conference every semester.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Progress
+          <button class="speaker-icon" onclick="speakWord('progress')" aria-label="Pronounce progress">🔊</button>
+        </span>
+        <span class="ipa">/ˈprɑːɡres/</span>
+        <span class="definition">(n.) improvement or development over time.</span>
+        <span class="example">Example: Overall, Diego is making good progress in English.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Participate
+          <button class="speaker-icon" onclick="speakWord('participate')" aria-label="Pronounce participate">🔊</button>
+        </span>
+        <span class="ipa">/pɑːrˈtɪsəpeɪt/</span>
+        <span class="definition">(v.) to take part or be active in something.</span>
+        <span class="example">Example: He participates more in class this semester.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Assignment
+          <button class="speaker-icon" onclick="speakWord('assignment')" aria-label="Pronounce assignment">🔊</button>
+        </span>
+        <span class="ipa">/əˈsaɪnmənt/</span>
+        <span class="definition">(n.) a task or piece of schoolwork that a teacher gives students.</span>
+        <span class="example">Example: He has three missing homework assignments.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Missing (homework)
+          <button class="speaker-icon" onclick="speakWord('missing homework')" aria-label="Pronounce missing homework">🔊</button>
+        </span>
+        <span class="ipa">/ˈmɪsɪŋ ˈhoʊmwɜːrk/</span>
+        <span class="definition">(adj.) not turned in; not given to the teacher.</span>
+        <span class="example">Example: The teacher posts a list of missing homework online.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Behavior
+          <button class="speaker-icon" onclick="speakWord('behavior')" aria-label="Pronounce behavior">🔊</button>
+        </span>
+        <span class="ipa">/bɪˈheɪvjər/</span>
+        <span class="definition">(n.) the way a person acts, especially in school or in public.</span>
+        <span class="example">Example: His behavior is generally good in class.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Strengths
+          <button class="speaker-icon" onclick="speakWord('strengths')" aria-label="Pronounce strengths">🔊</button>
+        </span>
+        <span class="ipa">/streŋkθs/</span>
+        <span class="definition">(n. pl.) things that a person does well.</span>
+        <span class="example">Example: The teacher talks about Diego’s strengths and challenges.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Goal
+          <button class="speaker-icon" onclick="speakWord('goal')" aria-label="Pronounce goal">🔊</button>
+        </span>
+        <span class="ipa">/ɡoʊl/</span>
+        <span class="definition">(n.) something you want to achieve in the future.</span>
+        <span class="example">Example: He can reach his goal of a B+ if he finishes his homework.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Parent portal
+          <button class="speaker-icon" onclick="speakWord('parent portal')" aria-label="Pronounce parent portal">🔊</button>
+        </span>
+        <span class="ipa">/ˈperənt ˈpɔːrtəl/</span>
+        <span class="definition">(n.) an online system where parents can see grades and messages from teachers.</span>
+        <span class="example">Example: The teacher will post the assignments on the parent portal.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Follow up
+          <button class="speaker-icon" onclick="speakWord('follow up')" aria-label="Pronounce follow up">🔊</button>
+        </span>
+        <span class="ipa">/ˈfɑːloʊ ʌp/</span>
+        <span class="definition">(phrasal v.) to check again or continue to communicate about something.</span>
+        <span class="example">Example: The parent will follow up with Diego about his homework.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

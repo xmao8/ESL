@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Christmas Vocabulary & Phrases Challenge – ESLnote Style</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { display:flex; flex-direction:column; min-height:100vh; margin:0; font-family:'Segoe UI', Arial, sans-serif; background:#f6fbff; color:#222; line-height:1.6; }
+    main { flex:1; padding:2rem 1rem; }
+    h1,h2 { color:#0b4a6f; font-family:'Poppins',sans-serif; font-weight:700; }
+
+    nav { background:#0b4a6f; width:100%; padding:.8rem 1rem; }
+    .nav-container{ display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto; }
+    .logo{ display:flex; align-items:center; }
+    .logo-img{ width:32px; height:32px; margin-right:.5rem; }
+    .site-name{ font-family:'Poppins',sans-serif; font-size:1.25rem; color:#ffcf33; font-weight:700; white-space:nowrap; }
+    .nav-links{ display:flex; gap:1rem; }
+    .nav-links a{ color:#fff; font-weight:700; }
+    .nav-links a:hover,.nav-links a:focus{ color:#ffeb99; text-decoration:underline; outline:none; }
+
+    .game-container{ max-width:1200px; margin:2rem auto 3rem; background:#fff; padding:2.25rem; border-radius:12px; box-shadow:0 6px 20px rgba(11,74,111,.08); }
+    .game-container h1{ font-size:2.4rem; margin:0 0 0.75rem; text-align:center; }
+    .lead{ text-align:center; color:#345; margin-bottom:1rem; }
+
+    #scores{ display:flex; justify-content:center; gap:3rem; font-size:1.2rem; margin-bottom:1rem; font-weight:700; color:#13364a; }
+
+    .board{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:12px; background:#e9f2f7; border-radius:8px; }
+    .cell{ background:#0b4a6f; border:1px solid #0a78a3; padding:16px; font-size:1.2rem; min-height:96px; display:flex; align-items:center; justify-content:center; cursor:pointer; text-align:center; color:#fff; font-weight:800; border-radius:8px; transition:background-color .18s, transform .08s, box-shadow .18s; box-shadow:0 6px 12px rgba(11,74,111,.08); }
+    .cell:hover:not(.disabled):not(.category){ background:#0a78a3; transform:translateY(-3px); box-shadow:0 8px 18px rgba(10,120,163,.12); }
+    .cell.disabled{ background:#9aa5a9; color:#eaeff1; pointer-events:none; }
+    .category{ background:#163c50; color:#fff; font-size:1rem; text-transform:uppercase; letter-spacing:.6px; }
+
+    .modal{ position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; align-items:center; justify-content:center; z-index:1000; padding:1rem; }
+    .modal.show{ display:flex; }
+    .modal-content{ background:#fff; color:#333; padding:1.6rem; max-width:760px; width:min(96%,760px); border-radius:12px; text-align:center; box-shadow:0 12px 30px rgba(0,0,0,.45); border:1px solid #e0e6ea; }
+    #question{ font-size:1.45rem; margin-bottom:.75rem; color:#0b4a6f; font-family:'Poppins',sans-serif; }
+    #answerBlock{ display:none; margin-top:.75rem; }
+    #answer{ font-weight:800; color:#0b4a6f; }
+    #explanation{ font-size:.95rem; color:#555; margin-top:.35rem; }
+
+    .options{ display:grid; gap:.6rem; max-width:560px; margin:1rem auto; text-align:left; }
+    .option{ background:#fbfeff; border:1px solid #d7edf7; padding:.65rem .9rem; border-radius:10px; cursor:pointer; display:flex; align-items:center; gap:.6rem; }
+    .option input{ transform:scale(1.05); margin-left:4px; }
+
+    .controls{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-top:1rem; }
+    .btn{ padding:10px 18px; border:none; border-radius:10px; font-weight:800; cursor:pointer; box-shadow:0 3px 6px rgba(0,0,0,.12); }
+    .btn-primary{ background:#ff7b00; color:#fff; }
+    .btn-success{ background:#28a745; color:#fff; }
+    .btn-blue{ background:#007bff; color:#fff; }
+    .btn-gray{ background:#6c757d; color:#fff; }
+    .btn-outline{ background:#fff; color:#0b4a6f; border:2px solid #0b4a6f; }
+
+    .footer-links{ text-align:center; margin-top:1rem; color:#234b60; font-weight:700; }
+    .muted{ color:#567; font-weight:600; font-size:.95rem; margin-top:.4rem; text-align:center; }
+    @media (max-width:720px){ .board{ grid-template-columns:repeat(2,1fr); } .cell{ font-size:1rem; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+        <span class="site-name">ESLnote</span>
+      </a>
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../practice.html">Practice</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="game-container" role="main">
+    <h1>Christmas Vocabulary & Phrases Challenge (Intermediate-High)</h1>
+    <p class="lead">Four categories — Decorations, Food & Drinks, Traditions, Phrases & Idioms. 20 questions. Click a value to open a question.</p>
+
+    <div id="scores">
+      <div>Team A: <span id="scoreA">0</span></div>
+      <div>Team B: <span id="scoreB">0</span></div>
+    </div>
+
+    <div class="board" id="board" aria-hidden="false"></div>
+
+    <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <h2 id="question">Question</h2>
+        <div id="mcWrapper">
+          <div id="options" class="options" role="radiogroup" aria-label="Multiple choice options"></div>
+        </div>
+
+        <div id="answerBlock">
+          <p><strong>Answer:</strong> <span id="answer"></span></p>
+          <div id="explanation"></div>
+        </div>
+
+        <div class="controls">
+          <button id="checkBtn" class="btn btn-primary" aria-label="Check selected answer">Check</button>
+          <button id="showAnswerButton" class="btn btn-outline" aria-label="Show answer">Show Answer</button>
+          <button class="btn btn-success" onclick="claimPoints('A')" aria-label="Team A correct">Team A Correct</button>
+          <button class="btn btn-blue" onclick="claimPoints('B')" aria-label="Team B correct">Team B Correct</button>
+          <button class="btn btn-gray" onclick="closeModal(true)" aria-label="Close question">Close</button>
+        </div>
+        <p class="muted">Tip: use "Show Answer" if teams are unsure. Points equal the value on the board.</p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="../practice.html" class="btn btn-outline" style="display:inline-block;margin-right:.5rem;">Practice Exercises</a>
+      <a href="../flashcards.html" class="btn btn-outline" style="display:inline-block;">Christmas Flashcards</a>
+    </div>
+  </main>
+
+  <script>
+    // Categories and questions for Christmas vocabulary and phrases
+    const categories = ['Decorations','Food & Drinks','Traditions','Phrases & Idioms'];
+
+    const questions = {
+      'Decorations': [
+        { q: 'A small, shiny object hung on a tree is called a ___.', options:['ornament','candle','toboggan','ribbon'], a:['ornament'], exp:'Ornament = decorative object hung on a Christmas tree.' },
+        { q: 'A string of bright lights used on trees and houses are ___.', options:['garlands','lights','tinsel','stockings'], a:['lights'], exp:'Christmas lights (or fairy lights) decorate trees and houses.' },
+        { q: 'A long, thin metallic decoration often wrapped around a tree is called ___.', options:['tinsel','ribbon','wreath','mistletoe'], a:['tinsel'], exp:'Tinsel is shiny, thin metallic decoration.' },
+        { q: 'A circular arrangement of branches usually hung on doors is a ___.', options:['garland','wreath','banner','bunting'], a:['wreath'], exp:'A wreath is a circular decorative arrangement.' },
+        { q: 'A large star or angel often placed at the top of a Christmas tree is called the ___.', options:['tree topper','star piece','crown','finial'], a:['tree topper','tree-topper','treetopper'], exp:'Tree topper (star or angel) sits at the top of the tree.' }
+      ],
+      'Food & Drinks': [
+        { q: 'A sweet, spiced cake often eaten at Christmas in the UK is ___.', options:['pie','gingerbread','sushi','bagel'], a:['gingerbread'], exp:'Gingerbread (and gingerbread men) are popular at Christmas.' },
+        { q: 'A warm drink made from fruit and spices, sometimes with wine, is ___.', options:['cider','mulled wine','iced tea','lemonade'], a:['mulled wine'], exp:'Mulled wine = warmed spiced wine; mulled cider is similar.' },
+        { q: 'A small sweet wrapped in colorful paper and pulled by two people is a ___.', options:['cracker','candy cane','bonbon','truffle'], a:['cracker'], exp:'A Christmas cracker contains a small gift and a joke.' },
+        { q: 'A cane-shaped red-and-white striped sweet is a ___.', options:['peppermint stick','lollipop','candy cane','cane candy'], a:['candy cane'], exp:'Candy cane is the classic striped Christmas sweet.' },
+        { q: 'A big roasted bird often served for the Christmas meal is a ___.', options:['turkey','salmon','ham','duck'], a:['turkey','ham'], exp:'Turkey is common (ham in some countries)—both are traditional.' }
+      ],
+      'Traditions': [
+        { q: 'Children hang these on the fireplace to receive small gifts on Christmas morning: ___.', options:['socks','stockings','scarves','mittens'], a:['stockings'], exp:'Stockings are hung for small gifts.' },
+        { q: 'A popular activity where people visit neighbors and sing is called ___.', options:['caroling','dancing','parading','mumming'], a:['caroling'], exp:'Caroling = singing Christmas songs door-to-door.' },
+        { q: 'A plant under which people kiss at Christmas is ___.', options:['holly','ivy','mistletoe','poinsettia'], a:['mistletoe'], exp:'Mistletoe is traditionally used for a kiss.' },
+        { q: 'A community meal or party usually with friends and family is often called a ___.', options:['dinner','feast','gala','potluck'], a:['feast','dinner','potluck'], exp:'Feast or Christmas dinner; potlucks are common in groups.' },
+        { q: 'Gifts are commonly placed here before being opened: ___.', options:['under the tree','on the table','in the closet','under the bed'], a:['under the tree'], exp:'Presents are typically placed under the Christmas tree.' }
+      ],
+      'Phrases & Idioms': [
+        { q: 'If someone is very happy and excited, you might say they are "___ as a Christmas\ntree." (idiomatic)', options:['bright','trimmed','joyful','merry'], a:['merry','merry as a christmas tree'], exp:'Merry (or "merry as a Christmas tree") expresses festive joy.' },
+        { q: 'A short phrase meaning "wishing you a good holiday" is ___.', options:['Happy Holidays','Nice day','Good luck','Bon voyage'], a:['Happy Holidays','Merry Christmas'], exp:'"Happy Holidays" and "Merry Christmas" are common greetings.' },
+        { q: 'To give someone a surprise gift is to "___ a Christmas present". Which verb fits?', options:['wrap','give','present','hand'], a:['give','present'], exp:'You "give" or "present" someone with a gift; "wrap" is to cover it.' },
+        { q: 'An expression meaning to celebrate and enjoy the season: "___ the season." (single verb)', options:['Deck','Celebrate','Trim','Enjoy'], a:['deck','deck the halls'], exp:'"Deck the halls" means decorate and celebrate the season.' },
+        { q: 'If something is cheap and of low quality you might call it "___ tack". (two words)', options:['holiday tack','tinsel town','tinsel tack','tacky tinsel'], a:['tinsel tack','tacky tinsel','tinsel'], exp:'"Tacky" or "tacky tinsel" describes cheap, gaudy decoration (informal).' }
+      ]
+    };
+
+    // Build board: categories heading then 5 rows of values (100-500)
+    const board = document.getElementById('board');
+    categories.forEach(cat => {
+      const head = document.createElement('div');
+      head.className = 'cell category';
+      head.textContent = cat;
+      board.appendChild(head);
+    });
+
+    for (let row = 0; row < 5; row++) {
+      categories.forEach(cat => {
+        const q = questions[cat][row];
+        const value = (row + 1) * 100;
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.setAttribute('role','button');
+        cell.setAttribute('tabindex','0');
+        cell.innerHTML = `<div>${value} 🎄</div>`;
+        cell.addEventListener('click', () => openQuestion(cat, row, cell, value));
+        cell.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') openQuestion(cat, row, cell, value); });
+        board.appendChild(cell);
+      });
+    }
+
+    // State
+    let scoreA = 0, scoreB = 0, currentCell = null, currentQ = null, currentValue = 0;
+    const scoreAEl = document.getElementById('scoreA');
+    const scoreBEl = document.getElementById('scoreB');
+    const modal = document.getElementById('modal');
+    const questionEl = document.getElementById('question');
+    const optionsDiv = document.getElementById('options');
+    const answerBlock = document.getElementById('answerBlock');
+    const answerEl = document.getElementById('answer');
+    const explanationEl = document.getElementById('explanation');
+
+    function openQuestion(cat, idx, cell, value) {
+      currentCell = cell;
+      currentQ = questions[cat][idx];
+      currentValue = value;
+      // Set question text
+      questionEl.textContent = currentQ.q;
+      // Build options (shuffle for variety)
+      optionsDiv.innerHTML = '';
+      const opts = currentQ.options.slice();
+      shuffleArray(opts);
+      opts.forEach((opt, i) => {
+        const label = document.createElement('label');
+        label.className = 'option';
+        label.innerHTML = `<input type="radio" name="mc" value="${escapeHtml(opt)}"> <span>${opt}</span>`;
+        label.addEventListener('click', () => { /* click focuses the radio */ });
+        optionsDiv.appendChild(label);
+      });
+      answerBlock.style.display = 'none';
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
+      // focus first radio for keyboard users
+      setTimeout(() => {
+        const first = optionsDiv.querySelector('input[type="radio"]');
+        if (first) first.focus();
+      }, 120);
+    }
+
+    function checkAnswer() {
+      const chosen = document.querySelector('input[name="mc"]:checked');
+      if (!chosen) { return; }
+      answerBlock.style.display = 'block';
+      // Allow multiple acceptable answers in array
+      answerEl.textContent = currentQ.a.join(', ');
+      explanationEl.textContent = currentQ.exp;
+    }
+
+    function showSolution() {
+      answerBlock.style.display = 'block';
+      answerEl.textContent = currentQ.a.join(', ');
+      explanationEl.textContent = currentQ.exp;
+    }
+
+    function claimPoints(team) {
+      if (!currentCell || currentCell.classList.contains('disabled')) return;
+      const points = currentValue;
+      if (team === 'A') { scoreA += points; scoreAEl.textContent = scoreA; }
+      else { scoreB += points; scoreBEl.textContent = scoreB; }
+      currentCell.classList.add('disabled');
+      currentCell.innerHTML = `<div style="opacity:.9;">✓</div>`;
+      closeModal(false);
+    }
+
+    function closeModal(disableCell) {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden','true');
+      if (currentCell && disableCell) {
+        currentCell.classList.add('disabled');
+        currentCell.innerHTML = `<div style="opacity:.9;">✓</div>`;
+      }
+      currentCell = null; currentQ = null; currentValue = 0;
+      // clear radios
+      const radios = document.querySelectorAll('input[name="mc"]');
+      radios.forEach(r => r.checked = false);
+    }
+
+    // Utility: simple Fisher-Yates shuffle
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Escape HTML for input values
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function (m) {
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+      });
+    }
+
+    // Event listeners
+    document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+    document.getElementById('showAnswerButton').addEventListener('click', showSolution);
+
+    // Close modal on background click or Escape
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal(true);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(true);
+    });
+
+    // Accessibility: trap focus inside modal when open (simple)
+    document.addEventListener('focus', function(event) {
+      if (modal.classList.contains('show') && !modal.contains(event.target)) {
+        event.stopPropagation();
+        modal.querySelector('input, button, [tabindex]')?.focus();
+      }
+    }, true);
+  </script>
+</body>
+</html>

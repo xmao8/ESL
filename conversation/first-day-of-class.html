@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First Day of Class – Meeting a Classmate - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem;
+        transform: translateX(100%); transition: transform 0.3s ease;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 150px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .vocabulary-list ul { padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .speaker-icon {
+      cursor: pointer; background: none; border: none;
+      color: #3498db; font-size: 1.1rem;
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center; gap: 1rem;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="../index.html" class="logo">
+      <img src="/favicon.png" class="logo-img" alt="logo"> ESLnote
+    </a>
+    <button id="menuToggle" class="menu-toggle">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../conversation.html">Conversations</a>
+    </div>
+  </div>
+</nav>
+
+<h1>First Day of Class: Meeting a Classmate</h1>
+
+<div class="content-container">
+  <p class="scene-direction">
+    Scene: A classroom before the lesson starts. Students are finding their seats and talking quietly.
+  </p>
+
+  <div class="conversation-script">
+    <p><strong>EMMA:</strong> <span class="dialogue">Hi, is this seat taken?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">No, go ahead.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Thanks. I’m Emma. Nice to meet you.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Nice to meet you too. I’m David.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Is this your first time taking this class?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Yes, it is. I’m a little nervous, to be honest.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">(smiles) Me too. I heard the teacher is very friendly, though.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">That’s good to hear. What made you sign up for this class?</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">I want to improve my English for work. How about you?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">I’m studying for college, and I need better speaking skills.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">That makes sense. Do you live nearby?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Yeah, about ten minutes away. I usually walk here.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Nice. I take the bus. It’s not too bad.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Maybe we can practice together sometime, like before class.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">I’d like that. It’s easier to learn when you have someone to practice with.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Exactly.</span></p>
+    <p class="scene-direction">The teacher walks into the classroom.</p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Looks like class is starting.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Yeah. Good luck!</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">You too.</span></p>
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Seat
+          <button class="speaker-icon" onclick="speakWord('seat')">🔊</button>
+        </span>
+        – a place where you sit.
+      </li>
+      <li>
+        <span class="vocab-word">Sign up
+          <button class="speaker-icon" onclick="speakWord('sign up')">🔊</button>
+        </span>
+        – to register or join a class or activity.
+      </li>
+      <li>
+        <span class="vocab-word">Nervous
+          <button class="speaker-icon" onclick="speakWord('nervous')">🔊</button>
+        </span>
+        – feeling worried or anxious.
+      </li>
+      <li>
+        <span class="vocab-word">Improve
+          <button class="speaker-icon" onclick="speakWord('improve')">🔊</button>
+        </span>
+        – to get better at something.
+      </li>
+      <li>
+        <span class="vocab-word">Practice
+          <button class="speaker-icon" onclick="speakWord('practice')">🔊</button>
+        </span>
+        – to do something again and again to learn it well.
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  function speakWord(word) {
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.95;
+    speechSynthesis.speak(u);
+  }
+</script>
+
+</body>
+</html>

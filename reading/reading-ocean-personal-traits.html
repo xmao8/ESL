@@ -1,337 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="/favicon.png" type="image/png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Reading – OCEAN Personality Traits</title>
+    <title>Reading: The OCEAN Personality Traits (Big Five)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f9f9fb;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
         }
-        nav {
-            background-color: #2c3e50;
-            padding: 1rem;
-            text-align: center;
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
         }
-        nav a {
-            color: white;
-            margin: 0 1rem;
-            text-decoration: none;
-            font-weight: bold;
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        p { line-height: 1.6; margin: 0.6rem 0; }
+
+        .content-section {
+            background: #fff; border-radius: 8px; padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
         }
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            margin: 2rem 0;
-            color: #2c3e50;
+
+        .reading-text p { text-indent: 1.5rem; }
+
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        .vocabulary-list strong { color: #124076; margin-right: 8px; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+
+        .questions ol { padding-left: 1.2rem; }
+        .questions li { margin: 0.8rem 0; }
+
+        input[type="text"] {
+            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            min-width: 140px;
         }
-        p, ul {
-            line-height: 1.6;
-        }
-        ul.vocab {
-            list-style: none;
-            padding: 0;
-        }
-        ul.vocab > li {
-            margin-bottom: 1rem;
-        }
-        ul.vocab li ul {
-            list-style: disc;
-            margin-left: 1.5rem;
-        }
-        .speaker {
-            cursor: pointer;
-            margin-left: 0.3rem;
-            color: #3498db;
-        }
-        .speaker:hover {
-            color: #2980b9;
-        }
-        .questions {
-            margin: 2rem 0;
-        }
-        .questions li {
-            margin-bottom: 0.8rem;
-        }
-        .buttons {
-            text-align: center;
-            margin-top: 2rem;
-        }
+        .tf-options { margin-top: 0.3rem; }
+        .tf-options label { margin-right: 1rem; }
+
+        .buttons { text-align: center; margin: 2rem auto; }
         .buttons a {
-            text-decoration: none;
+            text-decoration: none; background: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
             margin: 0 0.5rem;
-            background-color: #3498db;
-            color: white;
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            font-weight: bold;
         }
-        .buttons a:hover {
-            background-color: #2980b9;
+        .buttons a:hover { background: #2980b9; }
+
+        .check-area { text-align: center; margin-top: 1rem; }
+        .check-btn {
+            border: none; cursor: pointer; background: #124076; color: #fff;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
         }
-        .narrator {
-            font-style: italic;
-            color: #555;
+        .check-btn:hover { filter: brightness(1.08); }
+        .result {
+            margin-top: 0.8rem; font-weight: bold;
         }
-        .trait-section h2 {
-            font-size: 1.5rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #3498db;
+        .answer-key {
+            margin-top: 0.8rem; display: none;
+            background: #f7fbff; border: 1px dashed #b8d2ee; padding: 1rem; border-radius: 8px;
+            text-align: left;
         }
-        .trait-section h3 {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
+        .pill {
+            display: inline-block; padding: 2px 8px; border-radius: 999px;
+            border: 1px solid #d0d7de; background: #fff; font-size: 0.9rem;
+            margin-left: 6px;
         }
     </style>
 </head>
 <body>
-
     <nav>
-        <a href="../index.html">Home</a>
-        <a href="../flashcards.html">Flashcards</a>
-        <a href="../conversation.html">Conversations</a>
-        <a href="../grammar.html">Grammar</a>
-        <a href="../reading.html">Reading</a>
-        <a href="../practice.html">Practice</a>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
     </nav>
 
-    <h1>Understanding the OCEAN Personality Traits</h1>
+    <h1>The OCEAN Personality Traits (The Big Five)</h1>
 
-    <div class="container">
-        <p class="narrator">Would you know where to start if someone asked you to describe yourself? Personality is complicated, but psychologists have developed five key factors to assess it — represented by the acronym OCEAN:</p>
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+           
+            <p>People have different personalities. Personality is the way we think, feel, and act in daily life. Psychologists often describe personality using the <strong>OCEAN model</strong>, also called the <strong>Big Five Personality Traits</strong>. OCEAN is an acronym that stands for <strong>Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism</strong>. These five traits help us understand ourselves and other people better.</p>
 
-        <ul>
-            <li><strong>Openness</strong></li>
-            <li><strong>Conscientiousness</strong></li>
-            <li><strong>Extroversion</strong></li>
-            <li><strong>Agreeableness</strong></li>
-            <li><strong>Neuroticism</strong></li>
-        </ul>
+            <p><strong>Openness</strong> describes how open a person is to new ideas and experiences. People with high openness are often curious and creative. They may enjoy learning, art, travel, and trying new foods. People with low openness often prefer routine and familiar situations. They usually feel comfortable with clear rules and traditional ways of doing things. Neither style is “better” — it depends on the situation and the person.</p>
 
-        <p class="narrator">Let’s explore each of these five personality traits and identify signs that show whether you score high or low in each area.</p>
+            <p><strong>Conscientiousness</strong> is about being organized and responsible. People who are high in conscientiousness are careful and reliable. They plan ahead, keep promises, and finish tasks on time. People who are low in conscientiousness may be more relaxed and flexible, but they can also forget deadlines or lose focus. This trait is useful in jobs that need planning and attention to detail.</p>
 
-        <div class="trait-section">
-            <h2>1. Openness</h2>
-            <p>Do you enjoy creativity and new experiences?</p>
-            <h3>Signs of High Openness:</h3>
+            <p><strong>Extraversion</strong> describes how social and energetic a person is. Extraverted people enjoy meeting others, talking, and working in groups. They often feel energized after social activities. Introverted people prefer quiet time and smaller groups. They may feel tired after too much social interaction. Extraversion does not mean someone is shy or confident. It mainly describes where a person gets their energy.</p>
+
+            <p><strong>Agreeableness</strong> is about how kind and cooperative a person is. People with high agreeableness are friendly and helpful. They care about other people’s feelings and try to avoid conflict. People with low agreeableness can be more direct or competitive. They may challenge ideas and speak very honestly. This can also be useful in some situations, especially when a team needs clear decisions.</p>
+
+            <p><strong>Neuroticism</strong> describes how people experience stress and strong emotions. People with high neuroticism may worry more and feel anxious or upset easily. People with low neuroticism are often calm and emotionally stable. They can handle problems without becoming very stressed. This trait does not mean someone is weak; it only describes emotional sensitivity.</p>
+
+            <p>Most people are a mix of all five traits. Understanding the OCEAN model can help us communicate better, work well with others, and learn about our own strengths. Personality can also change slowly over time through experience and practice.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
             <ul>
-                <li>You prefer and embrace abstract concepts and thinking.</li>
-                <li>You enjoy creative endeavors and innovation.</li>
-                <li>You enjoy trying new activities and hobbies.</li>
-            </ul>
-            <h3>Signs of Low Openness:</h3>
-            <ul>
-                <li>You prefer solid facts over abstract ideas.</li>
-                <li>You value tradition and consistency.</li>
-                <li>You are rigid in your routines and practices.</li>
+                <li><strong>personality</strong> <i class="fas fa-volume-up speaker-icon" data-word="personality"></i> — The way a person thinks, feels, and behaves.</li>
+                <li><strong>psychologist</strong> <i class="fas fa-volume-up speaker-icon" data-word="psychologist"></i> — A person who studies the mind and behavior.</li>
+                <li><strong>trait</strong> <i class="fas fa-volume-up speaker-icon" data-word="trait"></i> — A personal quality or characteristic.</li>
+                <li><strong>acronym</strong> <i class="fas fa-volume-up speaker-icon" data-word="acronym"></i> — A word made from the first letters of other words.</li>
+                <li><strong>openness</strong> <i class="fas fa-volume-up speaker-icon" data-word="openness"></i> — Being open to new ideas and experiences.</li>
+                <li><strong>conscientiousness</strong> <i class="fas fa-volume-up speaker-icon" data-word="conscientiousness"></i> — Being organized, careful, and responsible.</li>
+                <li><strong>extraversion</strong> <i class="fas fa-volume-up speaker-icon" data-word="extraversion"></i> — Being social and energized by being with people.</li>
+                <li><strong>introverted</strong> <i class="fas fa-volume-up speaker-icon" data-word="introverted"></i> — Preferring quiet time and small groups.</li>
+                <li><strong>agreeableness</strong> <i class="fas fa-volume-up speaker-icon" data-word="agreeableness"></i> — Being kind, cooperative, and supportive.</li>
+                <li><strong>conflict</strong> <i class="fas fa-volume-up speaker-icon" data-word="conflict"></i> — A disagreement or argument.</li>
+                <li><strong>neuroticism</strong> <i class="fas fa-volume-up speaker-icon" data-word="neuroticism"></i> — Tendency to feel stress, worry, or strong emotions.</li>
+                <li><strong>emotionally stable</strong> <i class="fas fa-volume-up speaker-icon" data-word="emotionally stable"></i> — Calm and able to handle stress well.</li>
+                <li><strong>sensitive</strong> <i class="fas fa-volume-up speaker-icon" data-word="sensitive"></i> — Easily affected by feelings or stress.</li>
+                <li><strong>strength</strong> <i class="fas fa-volume-up speaker-icon" data-word="strength"></i> — A skill or positive quality you are good at.</li>
             </ul>
         </div>
 
-        <div class="trait-section">
-            <h2>2. Conscientiousness</h2>
-            <p>Are you organized, goal-focused, and responsible?</p>
-            <h3>Signs of High Conscientiousness:</h3>
-            <ul>
-                <li>You're schedule-oriented and focused on goals.</li>
-                <li>You pay attention to detail and manage the small stuff.</li>
-                <li>You plan for the future and prepare for challenges.</li>
-            </ul>
-            <h3>Signs of Low Conscientiousness:</h3>
-            <ul>
-                <li>You tend to be disorganized and cluttered.</li>
-                <li>You act carelessly and impulsively.</li>
-                <li>You procrastinate and leave things until the last minute.</li>
-            </ul>
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    OCEAN is another name for the Big Five Personality Traits. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    People with low openness usually love changing routines every day. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Conscientious people often plan ahead and finish tasks on time. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Extraversion is only about confidence, not energy. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    High agreeableness often includes kindness and cooperation. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
         </div>
 
-        <div class="trait-section">
-            <h2>3. Extroversion</h2>
-            <p>Do you thrive in social settings and enjoy being around others?</p>
-            <h3>Signs of High Extroversion:</h3>
-            <ul>
-                <li>You enjoy being the center of attention.</li>
-                <li>You're people-oriented in most situations.</li>
-                <li>You often speak before thinking.</li>
-            </ul>
-            <h3>Signs of Low Extroversion (Introversion):</h3>
-            <ul>
-                <li>You prefer solitude or small gatherings.</li>
-                <li>You're drained by too much socialization.</li>
-                <li>You think carefully before speaking.</li>
-            </ul>
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    OCEAN is an <input type="text" id="fb1" placeholder="word type"> made from the first letters of five traits.
+                </li>
+                <li>
+                    People high in <input type="text" id="fb2" placeholder="trait"> are usually organized and reliable.
+                </li>
+                <li>
+                    Extraverted people often feel <input type="text" id="fb3" placeholder="adjective"> after social activities.
+                </li>
+                <li>
+                    People high in agreeableness try to avoid <input type="text" id="fb4" placeholder="noun">.
+                </li>
+                <li>
+                    Neuroticism is connected to stress and strong <input type="text" id="fb5" placeholder="plural noun">.
+                </li>
+            </ol>
+
+            <div class="check-area">
+                <button class="check-btn" id="checkBtn">✅ Check Answers</button>
+                <div class="result" id="resultText" aria-live="polite"></div>
+                <div class="answer-key" id="answerKey">
+                    <div><strong>Answer Key</strong></div>
+                    <div>True/False: 1 <span class="pill">True</span> | 2 <span class="pill">False</span> | 3 <span class="pill">True</span> | 4 <span class="pill">False</span> | 5 <span class="pill">True</span></div>
+                    <div style="margin-top:8px;">Fill in the Blanks: 1 <span class="pill">acronym</span> | 2 <span class="pill">conscientiousness</span> | 3 <span class="pill">energized</span> | 4 <span class="pill">conflict</span> | 5 <span class="pill">emotions</span></div>
+                    <div style="margin-top:8px; font-size:0.95rem;">*Note: For blanks, close answers like “energy” for #3 won’t count automatically. Accept them as correct in class if you want.</div>
+                </div>
+            </div>
         </div>
+    </main>
 
-        <div class="trait-section">
-            <h2>4. Agreeableness</h2>
-            <p>Are you kind, compassionate, and cooperative with others?</p>
-            <h3>Signs of High Agreeableness:</h3>
-            <ul>
-                <li>You enjoy forming connections with others.</li>
-                <li>You're empathetic and compassionate.</li>
-                <li>You contribute positively to your community.</li>
-            </ul>
-            <h3>Signs of Low Agreeableness:</h3>
-            <ul>
-                <li>You're callous and indifferent to others.</li>
-                <li>You may be bitter or antisocial.</li>
-                <li>You manipulate others for personal gain.</li>
-            </ul>
-        </div>
-
-        <div class="trait-section">
-            <h2>5. Neuroticism</h2>
-            <p>How do you handle stress and emotional situations?</p>
-            <h3>Signs of High Neuroticism:</h3>
-            <ul>
-                <li>You're moody and emotionally reactive.</li>
-                <li>You have a low tolerance for stress.</li>
-                <li>You're often on high alert or anxious.</li>
-            </ul>
-            <h3>Signs of Low Neuroticism:</h3>
-            <ul>
-                <li>You're calm and collected, even under stress.</li>
-                <li>You're easygoing and relaxed.</li>
-                <li>You're emotionally and mentally stable.</li>
-            </ul>
-        </div>
-
-        <h2>Conclusion</h2>
-        <p>Personality is complex, but the OCEAN model offers a great starting point for self-reflection.</p>
-        <ul class="questions">
-            <li>Which areas do you score high or low in?</li>
-            <li>How does your personality affect your daily life?</li>
-        </ul>
-        <p>Everyone is unique, and your answers may vary.</p>
-
-        <h2>Vocabulary List</h2>
-        <ul class="vocab">
-            <li>
-                <strong>personality</strong>
-                <span class="speaker" onclick="speak('personality')" title="Listen">&#128266;</span>: the combination of characteristics or qualities that form an individual's distinctive character.
-                <ul>
-                    <li>Example: She has a very outgoing personality.</li>
-                    <li>Example: Your personality traits can influence your career choice.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>acronym</strong>
-                <span class="speaker" onclick="speak('acronym')" title="Listen">&#128266;</span>: an abbreviation formed from the initial letters of other words and pronounced as a word.
-                <ul>
-                    <li>Example: NASA is an acronym for National Aeronautics and Space Administration.</li>
-                    <li>Example: OCEAN is an acronym for the five major personality traits.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>openness</strong>
-                <span class="speaker" onclick="speak('openness')" title="Listen">&#128266;</span>: the quality of being accessible or approachable; here, specifically referring to being open to new ideas and experiences.
-                <ul>
-                    <li>Example: Her openness to new ideas made her a great innovator.</li>
-                    <li>Example: High openness is often linked to creativity.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>conscientiousness</strong>
-                <span class="speaker" onclick="speak('conscientiousness')" title="Listen">&#128266;</span>: the quality of wishing to do one's work or duty well and thoroughly.
-                <ul>
-                    <li>Example: His conscientiousness helped him succeed in his studies.</li>
-                    <li>Example: Being organized is a sign of high conscientiousness.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>extroversion</strong>
-                <span class="speaker" onclick="speak('extroversion')" title="Listen">&#128266;</span>: the act, state, or habit of being predominantly concerned with and obtaining gratification from what is outside the self.
-                <ul>
-                    <li>Example: Her extroversion means she loves social gatherings.</li>
-                    <li>Example: People with high extroversion are often described as talkative.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>agreeableness</strong>
-                <span class="speaker" onclick="speak('agreeableness')" title="Listen">&#128266;</span>: the quality of being pleasant and willing to fit in with other people's wishes.
-                <ul>
-                    <li>Example: His agreeableness made him a popular team member.</li>
-                    <li>Example: Empathy is a key aspect of agreeableness.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>neuroticism</strong>
-                <span class="speaker" onclick="speak('neuroticism')" title="Listen">&#128266;</span>: a personality trait characterized by anxiety, moodiness, worry, envy, and jealousy.
-                <ul>
-                    <li>Example: High neuroticism can make it difficult to handle stress.</li>
-                    <li>Example: People with low neuroticism are usually calm and relaxed.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>abstract concepts</strong>
-                <span class="speaker" onclick="speak('abstract concepts')" title="Listen">&#128266;</span>: ideas that are not concrete or physical, but rather theoretical or imaginative.
-                <ul>
-                    <li>Example: Philosophy often deals with abstract concepts like justice and truth.</li>
-                    <li>Example: People with high openness enjoy exploring abstract concepts.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>procrastinate</strong>
-                <span class="speaker" onclick="speak('procrastinate')" title="Listen">&#128266;</span>: to delay or postpone action; put off doing something.
-                <ul>
-                    <li>Example: I always procrastinate when it comes to doing my taxes.</li>
-                    <li>Example: Low conscientiousness can lead to a tendency to procrastinate.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>solitude</strong>
-                <span class="speaker" onclick="speak('solitude')" title="Listen">&#128266;</span>: the state or situation of being alone.
-                <ul>
-                    <li>Example: She enjoys periods of solitude for reading and reflection.</li>
-                    <li>Example: Introverts often prefer solitude over large crowds.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>empathetic</strong>
-                <span class="speaker" onclick="speak('empathetic')" title="Listen">&#128266;</span>: showing an ability to understand and share the feelings of another.
-                <ul>
-                    <li>Example: An empathetic person can truly understand what others are going through.</li>
-                    <li>Example: Being empathetic is a sign of high agreeableness.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>callous</strong>
-                <span class="speaker" onclick="speak('callous')" title="Listen">&#128266;</span>: showing or having an insensitive and cruel disregard for others.
-                <ul>
-                    <li>Example: His callous remarks upset everyone.</li>
-                    <li>Example: A lack of empathy can make someone seem callous.</li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="buttons">
-            <a href="../index.html">🏠 Home</a>
-            <a href="../reading.html">← Back to Reading</a>
-            
-        </div>
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
     </div>
 
     <script>
-        function speak(text) {
-            const msg = new SpeechSynthesisUtterance(text);
-            msg.lang = 'en-US';
-            speechSynthesis.speak(msg);
+        // Pronunciation (Text-to-Speech)
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
         }
-    </script>
 
+        // Answer checking (simple)
+        const answersTF = {
+            tf1: "True",
+            tf2: "False",
+            tf3: "True",
+            tf4: "False",
+            tf5: "True"
+        };
+
+        const answersFB = {
+            fb1: ["acronym"],
+            fb2: ["conscientiousness"],
+            fb3: ["energized", "energised"],
+            fb4: ["conflict"],
+            fb5: ["emotions"]
+        };
+
+        function getSelectedValue(name) {
+            const checked = document.querySelector(`input[name="${name}"]:checked`);
+            return checked ? checked.value : "";
+        }
+
+        function normalize(s) {
+            return (s || "").trim().toLowerCase();
+        }
+
+        document.getElementById('checkBtn').addEventListener('click', () => {
+            let total = 0;
+            let correct = 0;
+
+            // True/False
+            Object.keys(answersTF).forEach(key => {
+                total += 1;
+                const userVal = getSelectedValue(key);
+                if (userVal && userVal === answersTF[key]) correct += 1;
+            });
+
+            // Fill in the blanks
+            Object.keys(answersFB).forEach(id => {
+                total += 1;
+                const userVal = normalize(document.getElementById(id).value);
+                const ok = answersFB[id].some(a => userVal === normalize(a));
+                if (userVal && ok) correct += 1;
+            });
+
+            const resultText = document.getElementById('resultText');
+            resultText.textContent = `Score: ${correct} / ${total}`;
+
+            // show answer key after checking
+            document.getElementById('answerKey').style.display = 'block';
+        });
+    </script>
 </body>
 </html>

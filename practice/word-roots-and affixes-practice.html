@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice: Word Roots and Affixes – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;margin:0;color:#333;text-align:center}
+    nav{background:#124076}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none}
+    .nav-links a:hover{color:#ffbb33}
+
+    h1{margin:2rem auto 1rem;color:#2c3e50}
+    .subhead{max-width:920px;margin:0 auto 1.5rem;padding:0 1rem;color:#555;line-height:1.6}
+
+    .content-container{
+      background:#fff;width:90%;max-width:920px;margin:1.5rem auto 2rem;
+      padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);
+      text-align:left;line-height:1.65;font-size:1.05rem
+    }
+
+    .tip{
+      background:#f7fafc;border-left:4px solid #3498db;padding:1rem;border-radius:6px;margin:1rem 0 1.5rem
+    }
+
+    .root-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .root-card{
+      background:#ffffff;
+      border:1px solid #e6e6e6;
+      border-radius:12px;
+      padding:1rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.05);
+    }
+
+    .root-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom:.75rem;
+    }
+
+    .root-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      font-weight:800;
+      color:#124076;
+      font-size:1.15rem;
+    }
+
+    .root-badge .num{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:28px;height:28px;border-radius:999px;
+      background:#e8f5e9;color:#2e7d32;font-weight:900;font-size:.95rem
+    }
+
+    .count{
+      font-size:.95rem;color:#555;
+      background:#f4f4f9;border:1px solid #e6e6e6;border-radius:999px;
+      padding:.25rem .6rem; white-space:nowrap
+    }
+
+    label{display:block;font-weight:700;margin:.5rem 0 .25rem;color:#2c3e50}
+    textarea{
+      width:100%;
+      min-height:78px;
+      resize:vertical;
+      padding:.6rem .7rem;
+      border:1px solid #dcdcdc;
+      border-radius:10px;
+      font-size:1rem;
+      line-height:1.5;
+      outline:none;
+    }
+    textarea:focus{border-color:#3498db;box-shadow:0 0 0 3px rgba(52,152,219,.15)}
+
+    .row-actions{
+      display:flex;
+      gap:.6rem;
+      flex-wrap:wrap;
+      margin-top:.6rem;
+      align-items:center;
+    }
+
+    .btn{
+      padding:.55rem 1rem;
+      border:none;
+      border-radius:8px;
+      font-weight:800;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      user-select:none;
+    }
+    .btn-primary{background:#3498db;color:#fff}
+    .btn-primary:hover{background:#2980b9}
+    .btn-light{background:#eef3f7;color:#124076;border:1px solid #d8e3ef}
+    .btn-light:hover{background:#e6eef6}
+    .btn-danger{background:#fbe9e7;color:#b71c1c;border:1px solid #ffcdd2}
+    .btn-danger:hover{background:#ffd9d5}
+
+    .footer-actions{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:1.5rem;
+      padding-top:1rem;
+      border-top:1px solid #eee;
+    }
+
+    .buttons{
+      margin:1rem auto 3rem;
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      max-width:700px
+    }
+    .buttons a{
+      padding:.6rem 1.2rem;background:#3498db;color:#fff;border-radius:8px;font-weight:800;text-decoration:none
+    }
+    .buttons a:hover{background:#2980b9}
+
+    .small-note{font-size:.95rem;color:#666}
+
+    @media (min-width: 860px){
+      .root-grid{grid-template-columns: 1fr 1fr}
+    }
+
+    @media print{
+      nav,.buttons,.footer-actions,.row-actions .btn{display:none !important}
+      body{background:#fff}
+      .content-container{box-shadow:none;border:1px solid #ddd}
+      textarea{border:1px solid #999}
+      .root-card{box-shadow:none}
+    }
+  </style>
+</head>
+
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Practice: Word Roots and Affixes</h1>
+<p class="subhead">
+  Write <strong>as many real English words as you can</strong> for each root by adding
+  <strong>prefixes</strong> and/or <strong>suffixes</strong>. Separate your words with commas.
+  <br /><span class="small-note">Example: <em>act</em> → react, inactive, action, actively…</span>
+</p>
+
+<div class="content-container">
+  <div class="tip">
+    <strong>Tip:</strong> Try different word forms: noun (<em>-tion, -ment</em>), adjective (<em>-ive, -able</em>),
+    adverb (<em>-ly</em>), person (<em>-er</em>). Prefix ideas: <em>un-, re-, mis-, dis-, over-, under-, pre-</em>.
+  </div>
+
+  <div class="root-grid" id="rootGrid" aria-label="Roots practice grid">
+    <!-- Cards injected by JS -->
+  </div>
+
+  <div class="footer-actions">
+    <div>
+      <button class="btn btn-primary" id="saveBtn" type="button">💾 Save</button>
+      <button class="btn btn-light" id="printBtn" type="button">🖨️ Print</button>
+      <button class="btn btn-light" id="clearBtn" type="button">🧹 Clear All</button>
+    </div>
+    <div class="small-note" id="statusMsg" aria-live="polite"></div>
+  </div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Roots list (student-facing)
+  const ROOTS = [
+    "act","port","form","use","respond","care","perceive","write","analyze","move",
+    "compensate","employ","agree","decide","legal","possible","secure","connect","appear","access"
+  ];
+
+  const STORAGE_KEY = "eslnote_roots_affixes_practice_v1";
+
+  function countWords(text) {
+    if (!text) return 0;
+    // Count comma-separated items; ignore empty entries
+    return text
+      .split(",")
+      .map(w => w.trim())
+      .filter(Boolean)
+      .length;
+  }
+
+  function setStatus(msg) {
+    const el = document.getElementById("statusMsg");
+    el.textContent = msg;
+    if (msg) {
+      clearTimeout(window.__statusTimer);
+      window.__statusTimer = setTimeout(() => el.textContent = "", 2500);
+    }
+  }
+
+  function buildCards(saved = {}) {
+    const grid = document.getElementById("rootGrid");
+    grid.innerHTML = "";
+
+    ROOTS.forEach((root, idx) => {
+      const n = idx + 1;
+      const id = `root_${n}`;
+
+      const card = document.createElement("div");
+      card.className = "root-card";
+
+      const header = document.createElement("div");
+      header.className = "root-header";
+
+      const badge = document.createElement("div");
+      badge.className = "root-badge";
+      badge.innerHTML = `<span class="num">${n}</span> <span>${root}</span>`;
+
+      const count = document.createElement("div");
+      count.className = "count";
+      count.id = `${id}_count`;
+      count.textContent = "Words: 0";
+
+      header.appendChild(badge);
+      header.appendChild(count);
+
+      const label = document.createElement("label");
+      label.setAttribute("for", id);
+      label.textContent = "Your word family (comma-separated):";
+
+      const textarea = document.createElement("textarea");
+      textarea.id = id;
+      textarea.name = id;
+      textarea.placeholder = "Example: re____, un____, ____tion, ____ive (write real words)";
+      textarea.value = saved[id] || "";
+
+      textarea.addEventListener("input", () => {
+        document.getElementById(`${id}_count`).textContent = `Words: ${countWords(textarea.value)}`;
+      });
+
+      // Per-card actions
+      const actions = document.createElement("div");
+      actions.className = "row-actions";
+
+      const clearRowBtn = document.createElement("button");
+      clearRowBtn.type = "button";
+      clearRowBtn.className = "btn btn-danger";
+      clearRowBtn.textContent = "Clear";
+      clearRowBtn.addEventListener("click", () => {
+        textarea.value = "";
+        textarea.dispatchEvent(new Event("input"));
+        setStatus(`Cleared: ${root}`);
+      });
+
+      const copyBtn = document.createElement("button");
+      copyBtn.type = "button";
+      copyBtn.className = "btn btn-light";
+      copyBtn.textContent = "Copy";
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(textarea.value || "");
+          setStatus(`Copied: ${root}`);
+        } catch (e) {
+          setStatus("Copy not available in this browser.");
+        }
+      });
+
+      actions.appendChild(clearRowBtn);
+      actions.appendChild(copyBtn);
+
+      card.appendChild(header);
+      card.appendChild(label);
+      card.appendChild(textarea);
+      card.appendChild(actions);
+
+      grid.appendChild(card);
+
+      // initialize count
+      textarea.dispatchEvent(new Event("input"));
+    });
+  }
+
+  function getAllData() {
+    const data = {};
+    ROOTS.forEach((_, idx) => {
+      const id = `root_${idx + 1}`;
+      data[id] = document.getElementById(id).value || "";
+    });
+    return data;
+  }
+
+  function saveAll() {
+    const data = getAllData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    setStatus("Saved!");
+  }
+
+  function loadAll() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function clearAll() {
+    if (!confirm("Clear all answers?")) return;
+    ROOTS.forEach((_, idx) => {
+      const id = `root_${idx + 1}`;
+      const el = document.getElementById(id);
+      el.value = "";
+      el.dispatchEvent(new Event("input"));
+    });
+    localStorage.removeItem(STORAGE_KEY);
+    setStatus("Cleared all.");
+  }
+
+  // Init
+  buildCards(loadAll());
+
+  document.getElementById("saveBtn").addEventListener("click", saveAll);
+  document.getElementById("printBtn").addEventListener("click", () => window.print());
+  document.getElementById("clearBtn").addEventListener("click", clearAll);
+
+  // Auto-save on page unload
+  window.addEventListener("beforeunload", () => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(getAllData())); } catch(e) {}
+  });
+</script>
+
+</body>
+</html>

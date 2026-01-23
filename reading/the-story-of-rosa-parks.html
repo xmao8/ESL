@@ -1,157 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reading – The Story of Rosa Parks</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9ffb;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    nav {
-      background-color: #2c3e50;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin: 2rem 0 1rem;
-      color: #2c3e50;
-    }
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      line-height: 1.6;
-    }
-    h2 {
-      color: #2c3e50;
-      margin-top: 1.5rem;
-    }
-    p {
-      margin: 0.8rem 0;
-    }
-    ul {
-      margin: 0.8rem 1.5rem;
-    }
-    dl {
-      margin: 1rem 0;
-    }
-    dt {
-      font-weight: bold;
-      margin-top: 0.8rem;
-    }
-    dd {
-      margin: 0.3rem 1.5rem 0.8rem;
-    }
-    .questions {
-      margin: 1rem 0;
-    }
-    .questions li {
-      margin: 0.6rem 0;
-    }
-    .buttons {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .buttons a {
-      text-decoration: none;
-      margin: 0 0.5rem;
-      background-color: #3498db;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-    .buttons a:hover {
-      background-color: #2980b9;
-    }
-  </style>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Rosa Parks — The Quiet Courage That Changed America</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
+        p { line-height: 1.6; margin: 0.6rem 0; }
+
+        .content-section {
+            background: #fff; border-radius: 8px; padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
+        }
+
+        .reading-text p { text-indent: 1.5rem; }
+
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
+        }
+        .vocabulary-list strong { color: #124076; margin-right: 8px; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+
+        .questions ol { padding-left: 1.2rem; }
+        .questions li { margin: 0.8rem 0; }
+
+        input[type="text"] {
+            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            min-width: 140px;
+        }
+        .tf-options { margin-top: 0.3rem; }
+        .tf-options label { margin-right: 1rem; }
+
+        .buttons { text-align: center; margin: 2rem auto; }
+        .buttons a {
+            text-decoration: none; background: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover { background: #2980b9; }
+    </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
 
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../flashcards.html">Flashcards</a>
-    <a href="../conversation.html">Conversations</a>
-    <a href="../grammar.html">Grammar</a>
-    <a href="../reading.html" class="active">Reading</a>
-    <a href="../practice.html">Practice</a>
-  </nav>
+    <h1>Rosa Parks — The Quiet Courage That Changed America</h1>
 
-  <h1>The Story of Rosa Parks</h1>
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <h2>Article for Intermediate ESL Adults</h2>
 
-  <div class="container">
-    <p>In 1955, in the city of Montgomery, Alabama, a woman named Rosa Parks did something very brave. At that time, Black people in the United States did not have the same rights as white people. They had to use separate schools, bathrooms, restaurants, and buses. On the bus, Black people had to sit in the back. If a white person needed a seat, a Black person had to give it up.</p>
-    <p>Rosa Parks was a quiet woman who worked as a seamstress, someone who sews clothes. On December 1, 1955, she was riding the bus home from work and sat in the section for Black passengers. But when more white people got on the bus, the driver told her to move so a white man could sit down.</p>
-    <p>Rosa Parks said, “No.”</p>
-    <p>She was arrested and taken to jail. This was not the first time someone had refused to give up a bus seat, but her arrest started something big. People in the Black community were tired of unfair treatment. A young pastor named Martin Luther King Jr. helped organize a bus boycott, which is when people refuse to use a service to protest something wrong.</p>
-    <p>For over a year, Black people in Montgomery stopped riding the buses. They walked to work and school, created carpool systems, and stayed strong even when it was hard. Finally, the U.S. Supreme Court said bus segregation was illegal. Rosa Parks’s small action helped change history.</p>
-    <p>Rosa Parks is now remembered as a symbol of courage and fairness. Because she said “no” to injustice, the civil rights movement grew stronger. Today, schools, parks, and streets are named after her. She showed that one person can make a difference.</p>
+            <p>Rosa Parks is one of the most famous leaders of the American Civil Rights Movement. Many people call her “the mother of the Civil Rights Movement” because her simple action on a bus helped start a major fight for equality. Rosa Parks did not become famous because she wanted attention. She became famous because she showed courage during a time when African Americans were treated unfairly by law.</p>
 
-    <h2>Vocabulary List</h2>
-    <dl>
-      <dt>Brave (adj.)</dt>
-      <dd>Not afraid to do something difficult or dangerous.</dd>
-      <dt>Rights (n.)</dt>
-      <dd>Freedoms or things people are allowed to do.</dd>
-      <dt>Separate (adj.)</dt>
-      <dd>Not together; kept apart.</dd>
-      <dt>Passengers (n.)</dt>
-      <dd>People who ride in a vehicle.</dd>
-      <dt>Seamstress (n.)</dt>
-      <dd>A woman who makes or fixes clothes.</dd>
-      <dt>Section (n.)</dt>
-      <dd>A part of something.</dd>
-      <dt>Refuse (v.)</dt>
-      <dd>To say no.</dd>
-      <dt>Arrest (n.)</dt>
-      <dd>When police take someone for breaking the law.</dd>
-      <dt>Jail (n.)</dt>
-      <dd>A place where people are kept for breaking the law.</dd>
-      <dt>Boycott (n.)</dt>
-      <dd>To stop using something as a protest.</dd>
-      <dt>Protest (n.)</dt>
-      <dd>To show you do not agree with something.</dd>
-      <dt>Treatment (n.)</dt>
-      <dd>The way someone is acted toward.</dd>
-      <dt>Community (n.)</dt>
-      <dd>A group of people living in the same place.</dd>
-      <dt>Illegal (adj.)</dt>
-      <dd>Not allowed by law.</dd>
-      <dt>Injustice (n.)</dt>
-      <dd>Something that is not fair.</dd>
-    </dl>
+            <p>Rosa Parks was born in 1913 in Alabama, in the southern United States. At that time, segregation was common and legal in many states. Segregation meant that Black and white people had to use different schools, restaurants, bathrooms, and buses. On buses in Montgomery, Alabama, Black passengers had to sit in the back. If the bus became crowded, Black passengers were expected to give their seats to white passengers. This rule was humiliating and unfair.</p>
 
-    <h2>Discussion Questions</h2>
-    <ol class="questions">
-      <li>What did Rosa Parks do on the bus that was important?</li>
-      <li>Why were Black people treated unfairly at that time?</li>
-      <li>What does the word “boycott” mean in this story?</li>
-      <li>How did people support the bus boycott?</li>
-      <li>Do you think one person can make a big change? Why or why not?</li>
-      <li>Have you ever seen or heard about someone who stood up for what is right?</li>
-    </ol>
+            <p>On December 1, 1955, Rosa Parks was riding the bus home after work. She was sitting in the “colored section,” which was still not equal, but it was allowed under the law. When the bus filled up, the bus driver told Rosa Parks and other Black passengers to stand so that white passengers could sit. The others stood up, but Rosa Parks stayed seated. She was arrested and taken to jail.</p>
 
-    <div class="buttons">
-      <a href="../reading.html">← Back to Reading</a>
-      <a href="../index.html">🏠 Home</a>
-    </div>
-  </div>
+            <p>Some people think Rosa Parks was simply tired that day. She was tired—but not only physically. She was tired of unfair laws and disrespect. Rosa Parks had already been involved in civil rights work for years. She worked with the NAACP, an organization that fought for equal rights. Her decision to stay seated was not an accident. It was a brave and powerful act.</p>
 
-</body>
-</html>
+            <p>After her arrest, civil rights leaders organized the Montgomery Bus Boycott. Black citizens refused to ride the buses. Instead, many people walked, carpooled, or found other ways to travel. The boycott lasted 381 days—more than a year. It was difficult, but the community stayed united. During this time, a young pastor named Martin Luther King Jr. became a major leader. The boycott ended when the U.S. Supreme Court ruled that bus segregation was illegal.</p>
+
+            <p>Rosa Parks faced serious consequences. She lost her job and received threats. Later, she moved to Detroit, Michigan, to find a safer life and better opportunities. Even after that, she continued to speak and work for civil rights, not only for Black Americans, but for fairness and justice in general.</p>
+
+            <p>Rosa Parks’s story teaches an important lesson: a single brave action can change history. She did not use violence, and she did not shout. She simply said “no” to an unfair rule. Her courage helped inspire a movement that changed laws and opened doors for future generations. Today, Rosa Parks is remembered as a symbol of dignity, strength, and peaceful resistance.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>civil rights</strong> <i class="fas fa-volume-up speaker-icon" data-word="civil rights"></i> — Rights that protect people’s freedom and equal treatment under the law.</li>
+                <li><strong>leader</strong> <i class="fas fa-volume-up speaker-icon" data-word="leader"></i> — A person who guides others or inspires action.</li>
+                <li><strong>courage</strong> <i class="fas fa-volume-up speaker-icon" data-word="courage"></i> — The ability to face fear or danger.</li>
+                <li><strong>unfairly</strong> <i class="fas fa-volume-up speaker-icon" data-word="unfairly"></i> — In a way that is not just or equal.</li>
+                <li><strong>segregation</strong> <i class="fas fa-volume-up speaker-icon" data-word="segregation"></i> — Keeping groups separated, especially by race.</li>
+                <li><strong>expected</strong> <i class="fas fa-volume-up speaker-icon" data-word="expected"></i> — Thought to be required; believed to be necessary.</li>
+                <li><strong>humiliating</strong> <i class="fas fa-volume-up speaker-icon" data-word="humiliating"></i> — Making someone feel ashamed or disrespected.</li>
+                <li><strong>arrested</strong> <i class="fas fa-volume-up speaker-icon" data-word="arrested"></i> — Taken by police because of an обвин

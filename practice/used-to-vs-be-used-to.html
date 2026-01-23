@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Used to vs Be used to — Practice · ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Base */
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;text-align:center;margin:0;color:#333}
+    nav{background:#124076}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none}
+    .nav-links a:hover{color:#ffbb33}
+    h1{margin:2rem auto 1rem;color:#2c3e50}
+    .content-container{background:#fff;width:90%;max-width:860px;margin:2rem auto;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.65}
+    p.hint{background:#f8fbff;border-left:4px solid #3498db;padding:.8rem 1rem;border-radius:8px}
+    .bank{background:#e8f5e9;border-left:4px solid #27ae60;padding:.6rem 1rem;border-radius:8px;margin:.8rem 0;font-weight:700}
+    ol{padding-left:20px}
+    li{margin-bottom:1rem}
+    .blank{display:inline-block;min-width:10ch;max-width:24ch;padding:.28rem .4rem;border:1px solid #cfd8dc;border-radius:6px;font-size:1rem;margin:0 .25rem;vertical-align:baseline}
+    .blank.correct{border-color:#27ae60}
+    .blank.incorrect{border-color:#c0392b}
+    .inline-feedback{margin-left:.5rem;font-style:italic;display:none}
+    .inline-feedback.correct{color:#27ae60;display:inline}
+    .inline-feedback.incorrect{color:#c0392b;display:inline}
+    .buttons{display:flex;justify-content:center;gap:1rem;margin:2rem 0}
+    button,.buttons a{padding:.6rem 1.2rem;background:#3498db;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none}
+    button:hover,.buttons a:hover{background:#2980b9}
+    .submit-button{background:#4caf50}
+    .submit-button:hover{background:#45a049}
+    .show-answers{background:#f44336}
+    .show-answers:hover{background:#d32f2f}
+    .reset-button{background:#7f8c8d}
+    .reset-button:hover{background:#707b7c}
+    .answers-section{display:none;margin-top:2rem;border-top:2px solid #ccc;padding-top:1rem}
+    .note{font-size:.95rem;color:#555}
+    @media print{
+      nav,.buttons{display:none!important}
+      body{background:#fff}
+      .content-container{box-shadow:none;border:1px solid #ddd}
+      .blank{min-width:12ch}
+    }
+  </style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Used to vs Be used to — Choose the correct form (20)</h1>
+<div class="content-container">
+  <p class="hint"><strong>Instructions:</strong> Type the correct phrase to complete each sentence. Choose between <strong>used to</strong> (past habit) and <strong>be used to / get used to / got used to</strong> (being accustomed). Accept answers may include auxiliary verbs (am/is/are/was/were), short forms (I'm), or 'use to' for questions. Examples in feedback will show one acceptable form.</p>
+
+  <div class="bank">Accepted forms (examples): used to · use to (in questions) · be used to (am/is/are/was/were) · get used to · got used to</div>
+
+  <ol id="items"></ol>
+
+  <p class="note"><strong>Teacher tip:</strong> When checking answers, consider whether students write "used to", "is used to", "got used to" or "getting used to" — accept reasonable tense/auxiliary variations shown in examples.</p>
+
+  <div class="buttons">
+    <button id="checkBtn" class="submit-button">Submit Answers</button>
+    <button id="toggleBtn" class="show-answers" style="display:none;">Show Answers</button>
+    <button id="resetBtn" class="reset-button">Reset</button>
+  </div>
+
+  <div id="results" class="answers-section" aria-live="polite">
+    <h3>Your Results</h3>
+    <p>You got <span id="score">0</span> out of <span id="total">0</span> correct.</p>
+  </div>
+</div>
+
+<div class="buttons" style="margin-bottom:3rem">
+  <a href="../practice.html">← Back to Practice</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+// ===== Utilities =====
+const norm = s => (s||'').toLowerCase().replace(/[.,!?;:’'"]/g,'').replace(/\s+/g,' ').trim();
+
+// ===== Items (20) =====
+// Each item: text with {c} placeholder for answer.
+// opts: array of arrays => accepted answers for that blank (first entry is the example shown)
+const DATA = [
+  { text: "1. I {c} wake up very early, but now I start work at 10 a.m.", opts: [["used to"], ["i used to", "used to wake", "used to wake up"]] },
+  { text: "2. She {c} living alone, so she enjoys having her own space.", opts: [["is used to"], ["is used to living", "she is used to"]] },
+  { text: "3. We {c} go out every weekend when we were younger.", opts: [["used to"], ["we used to"]] },
+  { text: "4. He isn’t {c} the hot weather yet.", opts: [["used to"], ["used to (the hot weather)", "used to the hot weather"]] },
+  { text: "5. Are you {c} working in a noisy office?", opts: [["used to"], ["used to", "are you used to"]] },
+  { text: "6. They {c} live near the factory before they moved.", opts: [["used to"], ["they used to"]] },
+  { text: "7. I’m not {c} speaking English on the phone.", opts: [["used to"], ["used to", "i'm used to (speaking)"]] },
+  { text: "8. My father {c} drive long distances for work.", opts: [["used to"], ["used to", "he used to drive"]] },
+  { text: "9. She quickly {c} the new software at her job.", opts: [["got used to"], ["got used to", "became used to"]] },
+  { text: "10. He {c} be afraid of public speaking.", opts: [["used to"], ["used to", "he used to"]] },
+  { text: "11. I wasn’t {c} driving in heavy traffic when I moved here.", opts: [["used to"], ["used to", "i wasn't used to"]] },
+  { text: "12. Did you {c} eat at home more before?", opts: [["use to"], ["use to", "used to", "did you use to"]] },
+  { text: "13. She {c} dealing with stressful situations at work.", opts: [["is used to"], ["is used to", "she is used to dealing"]] },
+  { text: "14. We {c} have more free time before we had children.", opts: [["used to"], ["used to", "we used to"]] },
+  { text: "15. He’s {c} waking up early because of his new job.", opts: [["getting used to"], ["getting used to", "he's getting used to"]] },
+  { text: "16. I {c} hate coffee, but now I drink it every day.", opts: [["used to"], ["used to", "i used to"]] },
+  { text: "17. They are {c} living in a small apartment.", opts: [["used to"], ["used to", "are used to living"]] },
+  { text: "18. She {c} work nights when she was a nurse.", opts: [["used to"], ["used to", "she used to"]] },
+  { text: "19. Are you {c} using online banking?", opts: [["used to"], ["used to", "are you used to"]] },
+  { text: "20. He wasn’t {c} the silence after moving to the countryside.", opts: [["used to"], ["used to", "wasn't used to the silence"]] }
+];
+
+// Render items
+const list = document.getElementById('items');
+DATA.forEach((row, idx) => {
+  const li = document.createElement('li');
+  // create input id without the number prefix in text (we already numbered in DATA)
+  const input = `<input type="text" class="blank" id="c${idx+1}" aria-label="Answer for item ${idx+1}" autocomplete="off">`;
+  li.innerHTML = row.text.replace('{c}', input) + ` <span id="fb${idx+1}" class="inline-feedback"></span>`;
+  list.appendChild(li);
+});
+
+document.getElementById('total').textContent = DATA.length;
+
+// Check answers
+function check(){
+  let correct = 0;
+  DATA.forEach((row, idx) => {
+    const el = document.getElementById('c'+(idx+1));
+    const fb = document.getElementById('fb'+(idx+1));
+    const val = norm(el.value);
+    // flatten accepted answers and normalize
+    const accepted = row.opts.flat().map(a => norm(a));
+    // Accept empty string as wrong
+    const ok = accepted.includes(val);
+    el.classList.remove('correct','incorrect');
+    el.classList.add(ok ? 'correct' : 'incorrect');
+    fb.className = 'inline-feedback ' + (ok ? 'correct' : 'incorrect');
+    // Show an example from opts[0][0] as suggestion
+    const example = row.opts[0][0];
+    fb.textContent = ok ? '✓' : `✗ (e.g., "${example}")`;
+    fb.style.display = 'inline';
+    if (ok) correct++;
+  });
+  document.getElementById('score').textContent = correct;
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('toggleBtn').style.display = 'inline-block';
+}
+
+// Show/Hide inline feedback
+function toggle(){
+  const btn = document.getElementById('toggleBtn');
+  const showing = btn.textContent === 'Hide Answers';
+  document.querySelectorAll('.inline-feedback').forEach(el => el.style.display = showing ? 'none' : 'inline');
+  btn.textContent = showing ? 'Show Answers' : 'Hide Answers';
+}
+
+// Reset
+function resetAll(){
+  DATA.forEach((_, idx) => {
+    const el = document.getElementById('c'+(idx+1));
+    const fb = document.getElementById('fb'+(idx+1));
+    el.value = '';
+    el.classList.remove('correct','incorrect');
+    fb.textContent = '';
+    fb.className = 'inline-feedback';
+    fb.style.display = 'none';
+  });
+  document.getElementById('results').style.display = 'none';
+  const btn = document.getElementById('toggleBtn');
+  btn.style.display = 'none';
+  btn.textContent = 'Show Answers';
+}
+
+document.getElementById('checkBtn').addEventListener('click', check);
+document.getElementById('toggleBtn').addEventListener('click', toggle);
+document.getElementById('resetBtn').addEventListener('click', resetAll);
+</script>
+</body>
+</html>

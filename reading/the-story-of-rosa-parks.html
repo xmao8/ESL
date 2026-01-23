@@ -112,8 +112,103 @@
                 <li><strong>civil rights</strong> <i class="fas fa-volume-up speaker-icon" data-word="civil rights"></i> — Rights that protect people’s freedom and equal treatment under the law.</li>
                 <li><strong>leader</strong> <i class="fas fa-volume-up speaker-icon" data-word="leader"></i> — A person who guides others or inspires action.</li>
                 <li><strong>courage</strong> <i class="fas fa-volume-up speaker-icon" data-word="courage"></i> — The ability to face fear or danger.</li>
-                <li><strong>unfairly</strong> <i class="fas fa-volume-up speaker-icon" data-word="unfairly"></i> — In a way that is not just or equal.</li>
-                <li><strong>segregation</strong> <i class="fas fa-volume-up speaker-icon" data-word="segregation"></i> — Keeping groups separated, especially by race.</li>
-                <li><strong>expected</strong> <i class="fas fa-volume-up speaker-icon" data-word="expected"></i> — Thought to be required; believed to be necessary.</li>
+                <li><strong>segregation</strong> <i class="fas fa-volume-up speaker-icon" data-word="segregation"></i> — Keeping groups of people separated, especially by race.</li>
                 <li><strong>humiliating</strong> <i class="fas fa-volume-up speaker-icon" data-word="humiliating"></i> — Making someone feel ashamed or disrespected.</li>
-                <li><strong>arrested</strong> <i class="fas fa-volume-up speaker-icon" data-word="arrested"></i> — Taken by police because of an обвин
+                <li><strong>arrested</strong> <i class="fas fa-volume-up speaker-icon" data-word="arrested"></i> — Taken by police because someone is accused of breaking a law.</li>
+                <li><strong>boycott</strong> <i class="fas fa-volume-up speaker-icon" data-word="boycott"></i> — Refusing to use or buy something as a protest.</li>
+                <li><strong>carpool</strong> <i class="fas fa-volume-up speaker-icon" data-word="carpool"></i> — Sharing rides with others to travel together.</li>
+                <li><strong>ruled</strong> <i class="fas fa-volume-up speaker-icon" data-word="ruled"></i> — Officially decided (by a court or authority).</li>
+                <li><strong>consequences</strong> <i class="fas fa-volume-up speaker-icon" data-word="consequences"></i> — Results of an action, often negative.</li>
+                <li><strong>threats</strong> <i class="fas fa-volume-up speaker-icon" data-word="threats"></i> — Warnings that someone may cause harm.</li>
+                <li><strong>opportunities</strong> <i class="fas fa-volume-up speaker-icon" data-word="opportunities"></i> — Chances to do something new or better.</li>
+                <li><strong>inspire</strong> <i class="fas fa-volume-up speaker-icon" data-word="inspire"></i> — To encourage or motivate others.</li>
+                <li><strong>resistance</strong> <i class="fas fa-volume-up speaker-icon" data-word="resistance"></i> — Refusing to accept something and fighting against it (often peacefully).</li>
+                <li><strong>dignity</strong> <i class="fas fa-volume-up speaker-icon" data-word="dignity"></i> — Calm respect for yourself; the value every person deserves.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Rosa Parks became famous because she wanted attention from the media. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Segregation required Black and white people to use different public places. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Rosa Parks was arrested on December 1, 1955. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    The Montgomery Bus Boycott lasted only one week. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Rosa Parks continued supporting civil rights after moving to Detroit. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Rosa Parks was born in <input type="text" placeholder="year"> in Alabama.
+                </li>
+                <li>
+                    On buses in Montgomery, Black passengers had to sit in the <input type="text" placeholder="place">.
+                </li>
+                <li>
+                    Rosa Parks was arrested after she refused to give up her <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    The Montgomery Bus Boycott lasted <input type="text" placeholder="number"> days.
+                </li>
+                <li>
+                    Rosa Parks is remembered as a symbol of dignity and peaceful <input type="text" placeholder="noun">.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

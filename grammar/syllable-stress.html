@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Syllable Stress – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f4f4f9;text-align:center;margin:0;padding:0;color:#333}
+    nav{background:#124076}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:.8rem 1rem}
+    .logo{display:flex;align-items:center;color:#ff9800;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+    .logo-img{width:32px;height:32px;margin-right:.5rem}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:#fff;font-weight:700;text-decoration:none}
+    .nav-links a:hover{color:#ffbb33}
+    h1{margin:2rem auto 1.5rem;color:#2c3e50}
+    .content-container{background:#fff;width:90%;max-width:860px;margin:2rem auto;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.65;font-size:1.06rem}
+    .content-container h2{color:#3498db;margin-top:1.5rem;margin-bottom:.8rem;font-size:1.55rem}
+    .content-container h3{color:#124076;margin-top:1.2rem;margin-bottom:.6rem;font-size:1.25rem}
+    .content-container ul{list-style-type:disc;padding-left:20px;margin-bottom:1rem}
+    .content-container ol{padding-left:20px;margin-bottom:1rem}
+    .content-container li{margin-bottom:.6rem}
+    .example{background:#e8f5e9;border-left:4px solid #4caf50;padding:1rem;margin:1rem 0;border-radius:5px}
+    .example strong{color:#2e7d32}
+    .grammar-table-container{width:100%;margin-bottom:1.5rem;overflow-x:auto}
+    .grammar-table{width:100%;border-collapse:collapse;text-align:left}
+    .grammar-table th,.grammar-table td{padding:12px 15px;border:1px solid #ddd}
+    .grammar-table th{background-color:#e8f5e9;color:#2c3e50;font-weight:bold}
+    .grammar-table tr:nth-child(even){background-color:#f9f9f9}
+    .note{font-size:.96rem;color:#555}
+    .buttons{margin:2rem auto 3rem auto;display:flex;justify-content:center;gap:1rem;max-width:600px}
+    .buttons a{padding:.6rem 1.2rem;background:#3498db;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+    .buttons a:hover{background:#2980b9}
+    .stress{font-weight:700;color:#2c3e50}
+    .small{font-size:.94rem;color:#555}
+    .practice-card{background:#fff7e6;border-left:4px solid #ff9800;padding:1rem;margin:1rem 0;border-radius:5px}
+    .reveal{display:inline-block;margin-left:.6rem;padding:.25rem .6rem;background:#e9f5ff;border-radius:6px;border:1px solid #cfe9ff;cursor:pointer}
+    .answer{display:none;margin-top:.6rem;padding:.6rem;border-radius:6px;background:#f3f9f3}
+    .tap{display:inline-block;padding:.08rem .45rem;border-radius:6px;background:#eef2ff;border:1px solid #d6e0ff;margin-left:.4rem;font-size:.92rem}
+    @media (max-width:600px){
+      .nav-container{padding:.6rem}
+      .logo{font-size:1.05rem}
+      .content-container{padding:1rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <div class="nav-links" role="navigation" aria-label="Site links">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Syllable Stress: Introduction & Rules</h1>
+
+<div class="content-container" role="main">
+  <p>In English, <strong>syllable stress</strong> is essential: one syllable in a word is usually stronger — it is <em>louder, longer, and clearer</em>. Getting stress right helps pronunciation, listening comprehension, and meaning.</p>
+
+  <h2>What Is Syllable Stress?</h2>
+  <p><strong>Key points:</strong></p>
+  <ul>
+    <li>One syllable in most words receives the <strong>main (primary) stress</strong>.</li>
+    <li>Stressed syllables are <span class="stress">louder</span>, <span class="stress">longer</span>, and pronounced more clearly.</li>
+    <li>Wrong stress can make a correct word hard to understand or change its meaning.</li>
+  </ul>
+
+  <h2>Quick Examples</h2>
+  <div class="example">
+    <strong>TA</strong>ble → <span class="small">/ˈteɪ.bəl/</span><br>
+    a<strong>BOUT</strong> → <span class="small">/əˈbaʊt/</span><br>
+    <strong>RE</strong>cord (noun) vs re<strong>CORD</strong> (verb)
+  </div>
+
+  <h2>Two-Syllable Patterns (Helpful Rules)</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Two-syllable stress patterns">
+      <thead>
+        <tr>
+          <th>Word Type</th>
+          <th>Stress Pattern</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nouns &amp; Adjectives</td>
+          <td>usually <strong>first</strong> syllable</td>
+          <td><span class="stress">TA</span>ble, <span class="stress">DOC</span>tor, <span class="stress">HAP</span>py</td>
+        </tr>
+        <tr>
+          <td>Verbs &amp; Prepositions</td>
+          <td>usually <strong>second</strong> syllable</td>
+          <td>re<span class="stress">LAX</span>, de<span class="stress">CIDE</span>, a<span class="stress">BOVE</span></td>
+        </tr>
+        <tr>
+          <td>Prefixes</td>
+          <td>usually <strong>unstressed</strong></td>
+          <td>un<span class="stress">HAP</span>py, re<span class="stress">TURN</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Three or More Syllables — Useful Rules & Patterns</h2>
+  <p>Long words still have one main stress. Many times the stress is influenced by suffixes (word endings) or falls near the end of the word.</p>
+
+  <h3>Stress-attracting suffixes (these <em>pull</em> the main stress)</h3>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Stress attracting suffixes">
+      <thead>
+        <tr>
+          <th>Suffix</th>
+          <th>Where the stress usually falls</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>-tion / -sion / -cian</td>
+          <td>on the syllable <strong>before</strong> the ending</td>
+          <td>infor<span class="stress">MA</span>tion, po<span class="stress">LI</span>tician, tele<span class="stress">VI</span>sion</td>
+        </tr>
+        <tr>
+          <td>-ic / -ical</td>
+          <td>on the syllable <strong>before</strong> the ending</td>
+          <td>eco<span class="stress">NO</span>mic, dra<span class="stress">MA</span>tic, e<span class="stress">LEC</span>trical</td>
+        </tr>
+        <tr>
+          <td>-ity</td>
+          <td>on the syllable <strong>before -ity</strong></td>
+          <td>pos<span class="stress">SI</span>bility, a<span class="stress">BIL</span>ity</td>
+        </tr>
+        <tr>
+          <td>-graphy / -logy</td>
+          <td>often on the <strong>third from the end</strong></td>
+          <td>pho<span class="stress">TO</span>graphy, bi<span class="stress">O</span>logy, psy<span class="stress">CHO</span>logy</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Stress-neutral suffixes (do not move the stress)</h3>
+  <p>When you add these, the stress usually stays on the same syllable as the root word.</p>
+  <ul>
+    <li><strong>-ment</strong> — agree<span class="stress">MENT</span></li>
+    <li><strong>-ness</strong> — hap<span class="stress">PI</span>ness</li>
+    <li><strong>-ful / -less / -ly</strong> — beau<span class="stress">TI</span>ful, care<span class="stress">LESS</span>, qui<span class="stress">ET</span>ly</li>
+  </ul>
+
+  <h3>Antepenultimate stress (third-from-last)</h3>
+  <p>When no strong suffix attracts stress, many long words have stress on the <strong>third syllable from the end</strong> (the antepenultimate syllable).</p>
+  <div class="example">
+    <span class="stress">CI</span>nematic, <span class="stress">MO</span>derately, <span class="stress">PO</span>litical, <span class="stress">IN</span>teresting
+  </div>
+
+  <h3>Prefixes are usually weak</h3>
+  <p>Prefixes such as <em>re-, un-, in-, dis-, im-, pre-</em> are usually unstressed. Teach the root stress first, then add the prefix.</p>
+
+  <h3>Primary vs Secondary Stress (advanced)</h3>
+  <p>Very long words can have a <strong>primary</strong> stress and a weaker <strong>secondary</strong> stress. ESL focus: find the <strong>main</strong> stress first.</p>
+  <div class="small">Example (showing a secondary stress with ˌ): ˌeco<span class="stress">NO</span>mical</div>
+
+  <h2>Classroom Tips and Shortcuts</h2>
+  <ul>
+    <li><strong>Look at the ending first.</strong> Suffixes often tell you where stress goes.</li>
+    <li>Teach the <strong>root</strong> and the base stress, then add prefixes/suffixes.</li>
+    <li>Use clapping or tapping to practice stressed syllables (students love this!).</li>
+    <li>Focus on finding the <strong>main stress</strong> before worrying about secondary stress.</li>
+  </ul>
+
+  <h2>Common Examples &amp; Pair Practice</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common stress examples">
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Marked stress</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>information</td><td>infor<span class="stress">MA</span>tion</td><td>-tion attracts stress</td></tr>
+        <tr><td>photography</td><td>pho<span class="stress">TO</span>graphy</td><td>third-from-end stress</td></tr>
+        <tr><td>economic</td><td>eco<span class="stress">NO</span>mic</td><td>-ic attracts stress</td></tr>
+        <tr><td>present / present</td><td><strong>PRE</strong>sent (noun) — pre<strong>SENT</strong> (verb)</td><td>stress changes word class</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Mini Practice</h2>
+  <div class="practice-card" aria-live="polite">
+    <ol>
+      <li>
+        What does the prefix <em>re-</em> usually mean? 
+        <button class="reveal" data-target="a1" aria-expanded="false">Show answer</button>
+        <div id="a1" class="answer" role="region">again</div>
+      </li>
+      <li style="margin-top:.6rem">
+        Circle the root in this word: <em>unemployment</em><span class="tap">Hint: root = <strong>employ</strong></span>
+        <button class="reveal" data-target="a2" aria-expanded="false">Show root</button>
+        <div id="a2" class="answer" role="region">employ</div>
+      </li>
+      <li style="margin-top:.6rem">
+        Which suffix changes a word into a noun: <em>-ness</em> or <em>-ful</em>? 
+        <button class="reveal" data-target="a3" aria-expanded="false">Show answer</button>
+        <div id="a3" class="answer" role="region">-ness</div>
+      </li>
+      <li style="margin-top:.6rem">
+        Where is the stress in <em>photography</em>? 
+        <button class="reveal" data-target="a4" aria-expanded="false">Show answer</button>
+        <div id="a4" class="answer" role="region">pho<strong class="stress">TO</strong>graphy — stress is the third syllable from the end.</div>
+      </li>
+      <li style="margin-top:.6rem">
+        Mark the stressed syllable in <em>education</em>.
+        <button class="reveal" data-target="a5" aria-expanded="false">Show answer</button>
+        <div id="a5" class="answer" role="region">edu<strong class="stress">CA</strong>tion — stress before -tion</div>
+      </li>
+    </ol>
+
+    <div class="note" style="margin-top:1rem">Teaching activity: Have students clap once for each syllable, louder on the stressed syllable. Then repeat at natural speed.</div>
+  </div>
+
+  <h2>More Practice Ideas</h2>
+  <ul>
+    <li>Provide lists: students mark stress and compare in pairs.</li>
+    <li>Minimal-pair drill: present vs. pre<span class="stress">SENT</span>, REcord vs re<span class="stress">CORD</span>.</li>
+    <li>Ask students to add suffixes to base words and decide if stress changes.</li>
+  </ul>
+
+</div>
+
+<div class="buttons">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Simple reveal toggles for practice answers (accessibility-friendly)
+  document.querySelectorAll('.reveal').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-target');
+      var el = document.getElementById(id);
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      if(el){
+        if(expanded){
+          el.style.display = 'none';
+          btn.setAttribute('aria-expanded','false');
+          btn.textContent = 'Show answer';
+        } else {
+          el.style.display = 'block';
+          btn.setAttribute('aria-expanded','true');
+          btn.textContent = 'Hide answer';
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

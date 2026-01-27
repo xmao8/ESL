@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: The Mayflower and Plymouth Colony</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base layout */
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0;
+        }
+        ul li, ol li { margin-bottom: 0.3rem; }
+
+        /* Content sections */
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li { margin-bottom: 0.8rem; }
+
+        /* Vocabulary List */
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            margin-right: 8px;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Back buttons */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+            margin: 0.3rem;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1rem; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
+            .menu-toggle { display: flex; }
+
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+
+            .vocabulary-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>The Mayflower and Plymouth Colony: A New Beginning</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>The Mayflower and Plymouth Colony: A New Beginning</h2>
+
+            <p>In 1620, a group of English people called the Pilgrims traveled across the Atlantic Ocean to North America. Their journey was difficult and risky, but it became one of the most famous stories in early American history. The Pilgrims sailed on a ship called the <em>Mayflower</em>, and they later created a settlement called Plymouth Colony.</p>
+
+            <p>The Pilgrims left England because they wanted religious freedom. At that time, the government controlled the church, and people who disagreed with the official religion could be punished. The Pilgrims wanted to worship in their own way. Some of them moved to the Netherlands first, but life there was not easy. They worried about jobs, language, and their children losing English culture. Finally, they decided to start a new life in America.</p>
+
+            <p>In September 1620, about 102 passengers boarded the Mayflower. The ship was crowded, and the trip took about two months. Storms made the ocean dangerous, and many people became sick. The Pilgrims planned to go to Virginia, but the weather pushed their ship north. In November 1620, they reached land near Cape Cod in present-day Massachusetts.</p>
+
+            <p>Before leaving the ship, the Pilgrims signed an agreement called the Mayflower Compact. In this document, they promised to make laws and work together for the good of the group. This idea of cooperation and self-government was important for the colony’s survival.</p>
+
+            <p>The Pilgrims chose a place to build their settlement and named it Plymouth. The first winter was terrible. They did not have enough food, and their shelters were weak. The weather was cold, and disease spread easily. More than half of the settlers died during that first winter.</p>
+
+            <p>In the spring, help came from local Native Americans. A man named Squanto taught the Pilgrims how to grow corn, catch fish, and use the land. With this help, the Pilgrims had a better harvest. In 1621, they shared a large meal with Native Americans to celebrate. Today, many people connect this meal to the story of the first Thanksgiving.</p>
+
+            <p>Plymouth Colony was not the biggest colony, but it became very important. The Pilgrims’ story is remembered because it shows how people searched for freedom, worked together, and survived in a new place.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Try to understand these words from the article. Click the speaker to hear the word.</p>
+            <ul>
+                <li>
+                    <strong>Pilgrims</strong> <i class="fas fa-volume-up speaker-icon" data-word="Pilgrims" aria-label="Pronounce Pilgrims"></i>
+                    <div class="definition">
+                        People who travel to a new place for religious reasons or freedom.
+                        <div class="example">Example: The Pilgrims traveled to America to practice their religion freely.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Religious freedom</strong> <i class="fas fa-volume-up speaker-icon" data-word="religious freedom" aria-label="Pronounce Religious freedom"></i>
+                    <div class="definition">
+                        The right to practice your religion without punishment.
+                        <div class="example">Example: They wanted religious freedom, so they left England.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Atlantic Ocean</strong> <i class="fas fa-volume-up speaker-icon" data-word="Atlantic Ocean" aria-label="Pronounce Atlantic Ocean"></i>
+                    <div class="definition">
+                        The ocean between Europe and North America.
+                        <div class="example">Example: The Mayflower crossed the Atlantic Ocean.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Crowded</strong> <i class="fas fa-volume-up speaker-icon" data-word="Crowded" aria-label="Pronounce Crowded"></i>
+                    <div class="definition">
+                        Full of people; not much space.
+                        <div class="example">Example: The ship was crowded, and people slept close together.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Settlement</strong> <i class="fas fa-volume-up speaker-icon" data-word="Settlement" aria-label="Pronounce Settlement"></i>
+                    <div class="definition">
+                        A place where people build homes and start a community.
+                        <div class="example">Example: Plymouth was a settlement built by the Pilgrims.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Agreement</strong> <i class="fas fa-volume-up speaker-icon" data-word="Agreement" aria-label="Pronounce Agreement"></i>
+                    <div class="definition">
+                        A plan or promise that people accept and follow.
+                        <div class="example">Example: The Mayflower Compact was an agreement to work together.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Self-government</strong> <i class="fas fa-volume-up speaker-icon" data-word="self government" aria-label="Pronounce Self-government"></i>
+                    <div class="definition">
+                        When people make their own rules and leaders instead of being controlled by others.
+                        <div class="example">Example: The Pilgrims practiced self-government in their colony.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Shelter</strong> <i class="fas fa-volume-up speaker-icon" data-word="Shelter" aria-label="Pronounce Shelter"></i>
+                    <div class="definition">
+                        A safe place to stay, especially from weather.
+                        <div class="example">Example: They needed better shelter for the cold winter.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Harvest</strong> <i class="fas fa-volume-up speaker-icon" data-word="Harvest" aria-label="Pronounce Harvest"></i>
+                    <div class="definition">
+                        The act of collecting crops (food) after they grow.
+                        <div class="example">Example: A good harvest helped the colony survive.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Celebrate</strong> <i class="fas fa-volume-up speaker-icon" data-word="Celebrate" aria-label="Pronounce Celebrate"></i>
+                    <div class="definition">
+                        To do something special to show happiness about an event.
+                        <div class="example">Example: They celebrated after a successful harvest.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Survive</strong> <i class="fas fa-volume-up speaker-icon" data-word="Survive" aria-label="Pronounce Survive"></i>
+                    <div class="definition">
+                        To stay alive during a difficult situation.
+                        <div class="example">Example: With help, the Pilgrims survived the first year.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Influence</strong> <i class="fas fa-volume-up speaker-icon" data-word="Influence" aria-label="Pronounce Influence"></i>
+                    <div class="definition">
+                        The power to affect how something develops or changes.
+                        <div class="example">Example: Plymouth Colony had a strong influence on later history.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the article.</p>
+            <ol>
+                <li>Why did the Pilgrims leave England?</li>
+                <li>What was the name of the ship they traveled on?</li>
+                <li>Where did the Mayflower land in 1620?</li>
+                <li>What was the Mayflower Compact?</li>
+                <li>What made the first winter in Plymouth so difficult?</li>
+                <li>Who helped the Pilgrims learn how to grow food and survive?</li>
+                <li>What happened after the Pilgrims had a successful harvest in 1621?</li>
+                <li>Why is Plymouth Colony remembered today?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech functionality for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            console.warn("Text-to-speech not supported in this browser.");
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

@@ -21,8 +21,22 @@
     .content-container{background:#fff;width:90%;max-width:860px;margin:2rem auto;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;line-height:1.65}
     p.hint{background:#f8fbff;border-left:4px solid #3498db;padding:.8rem 1rem;border-radius:8px}
     .bank{background:#e8f5e9;border-left:4px solid #27ae60;padding:.6rem 1rem;border-radius:8px;margin:.8rem 0;font-weight:700}
+
+    /* NEW: verb cue */
+    .verb-cue{
+      display:inline-block;
+      margin:.35rem 0 .65rem;
+      padding:.18rem .55rem;
+      border:1px solid #d7dee3;
+      border-radius:999px;
+      background:#fafbfc;
+      font-size:.9rem;
+      color:#2c3e50;
+    }
+    .verb-cue strong{color:#124076}
+
     ol{padding-left:20px}
-    li{margin-bottom:1rem}
+    li{margin-bottom:1.15rem}
     .blank{display:inline-block;min-width:10ch;max-width:24ch;padding:.28rem .4rem;border:1px solid #cfd8dc;border-radius:6px;font-size:1rem;margin:0 .25rem;vertical-align:baseline}
     .blank.correct{border-color:#27ae60}
     .blank.incorrect{border-color:#c0392b}
@@ -69,9 +83,13 @@
 
 <h1>Present Tenses — Personal Finance & Housing (20)</h1>
 <div class="content-container">
-  <p class="hint"><strong>Instructions:</strong> Fill each blank with the correct present tense form: <em>Simple Present</em>, <em>Present Progressive</em>, or <em>Present Perfect</em>. Type your answer (e.g., <strong>saves</strong>, <strong>am comparing</strong>, <strong>have just paid</strong>).</p>
+  <p class="hint">
+    <strong>Instructions:</strong> Fill each blank with the correct present tense form:
+    <em>Simple Present</em>, <em>Present Progressive</em>, or <em>Present Perfect</em>.
+    Use the <strong>verb cue</strong> under each sentence to help you. Type your answer (e.g., <strong>saves</strong>, <strong>am comparing</strong>, <strong>have just paid</strong>).
+  </p>
 
-  <div class="bank">Acceptable variations are shown in the feedback (auxiliaries and minor word-order differences are okay).</div>
+  <div class="bank">Verb cues are provided (base verb). Acceptable variations are shown in the feedback.</div>
 
   <ol id="items"></ol>
 
@@ -85,7 +103,7 @@
 
   <div id="results" class="answers-section" aria-live="polite">
     <h3>Your Results</h3>
-    <p>You got <strong id="score">0</strong> out of <strong id="total">0</strong> correct.</p>
+    <p>You got <strong id="score">0</strong> out of <strong id="total">20</strong> correct.</p>
   </div>
 </div>
 
@@ -96,82 +114,88 @@
 
 <script>
 // ===== Utilities =====
-const norm = s => (s||'').toLowerCase().replace(/[.,!?;:’'"]/g,'').replace(/\s+/g,' ').trim();
+const norm = s => (s||'')
+  .toLowerCase()
+  .replace(/[.,!?;:’'"]/g,'')
+  .replace(/\s+/g,' ')
+  .trim();
 
 // ===== Items (20) =====
-// Each item: text with {c} placeholder for answer.
-// opts: array of arrays => accepted answers for that blank (first entry is the example shown)
+// verb: base verb cue for students
 const DATA = [
-  { text: "1. Every month, Maria {c} a portion of her salary for emergencies.", opts: [["saves"], ["saves","save"]] },
-  { text: "2. Right now, I {c} mortgage rates from several banks.", opts: [["am comparing"], ["am comparing","i'm comparing","compare","am compare"]] },
-  { text: "3. We {c} this house — we rent it.", opts: [["do not own"], ["do not own","don't own","do n't own","do notown"]] },
-  { text: "4. They {c} the deposit for the new apartment just a few minutes ago.", opts: [["have just paid"], ["have just paid","just paid","has just paid"]] },
-  { text: "5. How often {c} your bank statements?", opts: [["do you check"], ["do you check","how often do you check","do you often check"]] },
-  { text: "6. The landlord usually {c} within 24 hours when we report a problem.", opts: [["responds"], ["responds","respond","replies","answers"]] },
-  { text: "7. I {c} for a cheaper place because rent is increasing this year.", opts: [["am looking"], ["am looking","i am looking","look","am looking for","looking"]] },
-  { text: "8. He {c} money to pay the utility bill already.", opts: [["has already transferred"], ["has already transferred","has transferred","already transferred"]] },
-  { text: "9. She often {c} when buying furniture to furnish her apartment.", opts: [["bargains"], ["bargains","is bargaining","bargain"]] },
-  { text: "10. We {c} whether to refinance our mortgage yet.", opts: [["have not decided"], ["have not decided","haven't decided","have n't decided"]] },
-  { text: "11. Currently, many people {c} a rental to afford city housing.", opts: [["are sharing"], ["are sharing","share","sharing"]] },
-  { text: "12. I rarely {c} cash; I mostly pay with a card.", opts: [["withdraw"], ["withdraw","withdraw cash","rarely withdraw"]] },
-  { text: "13. The inspector {c} the apartment right now.", opts: [["is inspecting"], ["is inspecting","is inspect","inspects"]] },
-  { text: "14. They {c} a mortgage payment since they bought their home.", opts: [["have never missed"], ["have never missed","never missed","have never missed a payment"]] },
-  { text: "15. My roommate always {c} to pay the electricity bill on time.", opts: [["forgets"], ["forgets","is always forgetting","always forgets"]] },
-  { text: "16. If you {c} to reduce costs, consider lowering your thermostat by a few degrees.", opts: [["want"], ["want","if you want","wants"]] },
-  { text: "17. We {c} the lease agreement for the new place just now.", opts: [["have just signed"], ["have just signed","just signed","have signed"]] },
-  { text: "18. Our savings account usually {c} a small interest each month.", opts: [["earns"], ["earns","earn","usually earns"]] },
-  { text: "19. She {c} the house while her parents are traveling — it's temporary.", opts: [["is looking after"], ["is looking after","looks after","look after"]] },
-  { text: "20. After years of careful planning, he finally {c} his first home.", opts: [["has bought"], ["has bought","bought","have bought"]] }
+  { verb:"save",     text:"1. Every month, Maria {c} a portion of her salary for emergencies.", opts:[["saves"], ["saves","save"]] },
+  { verb:"compare",  text:"2. Right now, I {c} mortgage rates from several banks.", opts:[["am comparing"], ["am comparing","i'm comparing","compare"]] },
+  { verb:"own",      text:"3. We {c} this house — we rent it.", opts:[["do not own"], ["do not own","don't own","do not own it","do not own this house"]] },
+  { verb:"pay",      text:"4. They {c} the deposit for the new apartment just a few minutes ago.", opts:[["have just paid"], ["have just paid","just paid","has just paid"]] },
+  { verb:"check",    text:"5. How often {c} your bank statements?", opts:[["do you check"], ["do you check","do you usually check","do you often check"]] },
+  { verb:"respond",  text:"6. The landlord usually {c} within 24 hours when we report a problem.", opts:[["responds"], ["responds","replies","answers"]] },
+  { verb:"look",     text:"7. I {c} for a cheaper place because rent is increasing this year.", opts:[["am looking"], ["am looking","i am looking","look","am looking for","looking"]] },
+  { verb:"transfer", text:"8. He {c} money to pay the utility bill already.", opts:[["has already transferred"], ["has already transferred","has transferred","already transferred"]] },
+  { verb:"bargain",  text:"9. She often {c} when buying furniture to furnish her apartment.", opts:[["bargains"], ["bargains","bargain","is bargaining"]] },
+  { verb:"decide",   text:"10. We {c} whether to refinance our mortgage yet.", opts:[["have not decided"], ["have not decided","haven't decided","have not decided yet"]] },
+  { verb:"share",    text:"11. Currently, many people {c} a rental to afford city housing.", opts:[["are sharing"], ["are sharing","share","sharing"]] },
+  { verb:"withdraw", text:"12. I rarely {c} cash; I mostly pay with a card.", opts:[["withdraw"], ["withdraw","withdraw cash"]] },
+  { verb:"inspect",  text:"13. The inspector {c} the apartment right now.", opts:[["is inspecting"], ["is inspecting","inspects"]] },
+  { verb:"miss",     text:"14. They {c} a mortgage payment since they bought their home.", opts:[["have never missed"], ["have never missed","never missed","have never missed a payment"]] },
+  { verb:"forget",   text:"15. My roommate always {c} to pay the electricity bill on time.", opts:[["forgets"], ["forgets","always forgets","is always forgetting"]] },
+  { verb:"want",     text:"16. If you {c} to reduce costs, consider lowering your thermostat by a few degrees.", opts:[["want"], ["want","if you want"]] },
+  { verb:"sign",     text:"17. We {c} the lease agreement for the new place just now.", opts:[["have just signed"], ["have just signed","just signed","have signed"]] },
+  { verb:"earn",     text:"18. Our savings account usually {c} a small interest each month.", opts:[["earns"], ["earns","earn","usually earns"]] },
+  { verb:"look after",text:"19. She {c} the house while her parents are traveling — it's temporary.", opts:[["is looking after"], ["is looking after","looks after","look after"]] },
+  { verb:"buy",      text:"20. After years of careful planning, he finally {c} his first home.", opts:[["has bought"], ["has bought","bought","has just bought"]] }
 ];
 
-// Render items
+// Render items (sentence + verb cue)
 const list = document.getElementById('items');
 DATA.forEach((row, idx) => {
   const li = document.createElement('li');
   const input = `<input type="text" class="blank" id="c${idx+1}" aria-label="Answer for item ${idx+1}" autocomplete="off">`;
-  li.innerHTML = row.text.replace('{c}', input) + ` <span id="fb${idx+1}" class="inline-feedback"></span>`;
+  const sentence = row.text.replace('{c}', input);
+  const cue = `<div class="verb-cue">Verb cue: <strong>${row.verb}</strong></div>`;
+  li.innerHTML = sentence + ` <span id="fb${idx+1}" class="inline-feedback"></span>` + cue;
   list.appendChild(li);
 });
 
-// Set total
-document.getElementById('total').textContent = DATA.length; // this will throw if #total not present — ensure it exists
-// If #total not in DOM (older browsers), create it gracefully:
-if (!document.getElementById('total')) {
-  const totalSpan = document.createElement('strong');
-  totalSpan.id = 'total';
-  totalSpan.textContent = DATA.length;
-  // append to results area later when shown
-  document.getElementById('results').querySelector('p').appendChild(totalSpan);
-}
+// Set total safely
+const totalEl = document.getElementById('total');
+if (totalEl) totalEl.textContent = DATA.length;
 
 // Check answers
 function check(){
   let correct = 0;
+
   DATA.forEach((row, idx) => {
     const el = document.getElementById('c'+(idx+1));
     const fb = document.getElementById('fb'+(idx+1));
+
     const val = norm(el.value);
     const accepted = row.opts.flat().map(a => norm(a));
-    const ok = accepted.includes(val);
-    // Additional loose matching: if user answer contains key verb forms
+
+    let ok = accepted.includes(val);
+
+    // Loose matching (optional): if learner includes the key verb and matches the target family
     if (!ok && val) {
-      const keyCandidates = ["save","compare","own","paid","check","respond","look","transfer","bargain","decide","share","withdraw","inspect","miss","forget","want","sign","earn","look","buy","bought","earn"];
-      for (const k of keyCandidates) {
-        if (val.includes(k) && accepted.some(a => a.includes(k))) { ok = true; break; }
-      }
+      // Use the cue verb (first word) as a loose key
+      const key = norm(row.verb.split(' ')[0]); // "look after" -> "look"
+      const hasKey = val.includes(key);
+      const acceptedHasKey = accepted.some(a => a.includes(key));
+      if (hasKey && acceptedHasKey) ok = true;
     }
+
     el.classList.remove('correct','incorrect');
     el.classList.add(ok ? 'correct' : 'incorrect');
+
     fb.className = 'inline-feedback ' + (ok ? 'correct' : 'incorrect');
     const example = row.opts[0][0];
     fb.textContent = ok ? '✓' : `✗ (e.g., "${example}")`;
     fb.style.display = 'inline';
+
     if (ok) correct++;
   });
+
   document.getElementById('score').textContent = correct;
   document.getElementById('results').style.display = 'block';
   document.getElementById('toggleBtn').style.display = 'inline-block';
-  // scroll to results
   document.getElementById('results').scrollIntoView({behavior:'smooth'});
 }
 

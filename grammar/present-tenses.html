@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Present Tenses – Simple, Progressive, Perfect • ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #2c3e50;
+        }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+        }
+        .logo {
+            display: flex; align-items: center; color: #ff9800;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+        }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+        /* Hamburger menu button */
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed; top: 56px; right: 0; background: #124076;
+                flex-direction: column; width: 100%; height: calc(100vh - 56px);
+                padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px; z-index: 999; box-sizing: border-box; align-items: flex-start;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+        }
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1.5rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+        }
+        /* --- Desktop Layout --- */
+        @media (min-width: 901px) {
+            .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+            .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; border-radius: 0; align-items: center; overflow: visible; }
+            .menu-toggle { display: none; }
+            body { padding: 0; }
+            h1, .content-container, .buttons { padding: 0; }
+        }
+
+        /* Content specific styles */
+        h1 { margin: 2rem auto 1rem auto; color: #2c3e50; max-width: 900px; font-size: 1.8rem; }
+        .subtitle { color: #555; margin-top: 0; margin-bottom: 1rem; font-size: 1rem; }
+        .content-container {
+            background: white; width: 92%; max-width: 900px; margin: 1.5rem auto; padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: left; line-height: 1.6; font-size: 1.05rem;
+        }
+        .content-container h2 { color: #3498db; margin-top: 1.4rem; margin-bottom: 0.6rem; font-size: 1.4rem; }
+        .content-container h3 { color: #124076; margin-top: 1.0rem; margin-bottom: 0.5rem; font-size: 1.15rem; }
+        .content-container p { margin-bottom: 1rem; }
+        .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+        .content-container li { margin-bottom: 0.5rem; }
+        .content-container strong { color: #124076; }
+        .content-container em { font-style: italic; color: #555; }
+
+        .example { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 5px; }
+        .example strong { color: #2E7D32; }
+
+        .grammar-table-container { width: 100%; margin-bottom: 1.2rem; overflow-x: auto; }
+        .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .grammar-table th, .grammar-table td { padding: 10px 12px; border: 1px solid #ddd; vertical-align: top; }
+        .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+        .grammar-table tr:nth-child(even) { background-color: #fbfcfd; }
+        .grammar-table tr:hover { background-color: #f1f1f1; }
+
+        .note { font-size: 0.98rem; color: #444; }
+        .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+
+        .buttons { margin: 1.5rem auto 2.5rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
+        .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
+        .buttons a:hover { background: #2980b9; }
+
+        /* Practice box */
+        .practice { background: #fff; border: 1px solid #e6eef7; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+        .practice label { display: block; margin: 0.6rem 0 0.3rem 0; font-weight: 600; }
+        .practice input[type="text"] { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; }
+        .practice select { padding: 0.45rem; border-radius: 6px; border: 1px solid #ccc; }
+        .check-btn { background: #2e7d32; color: white; padding: 0.5rem 0.9rem; border-radius: 6px; border: none; font-weight: 700; cursor: pointer; }
+        .check-btn:hover { background: #276629; }
+        .feedback { margin-top: 0.6rem; font-weight: 700; }
+        .correct { color: #2e7d32; }
+        .wrong { color: #c0392b; }
+        .small { font-size: 0.95rem; color: #555; }
+
+        footer { text-align: center; color: #666; font-size: 0.9rem; margin: 2rem 0 3rem 0; }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Present Tenses: Simple Present • Present Progressive • Present Perfect</h1>
+<p class="subtitle">Clear forms, signals, examples, common mistakes, and a quick interactive practice for intermediate learners.</p>
+
+<div class="content-container">
+
+    <p><strong>Today:</strong> we'll compare three present tenses and practise when to use each one. Read the rules, look at examples, then try the short practice below.</p>
+
+    <h2>Quick grammar overview</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Present tense overview">
+            <thead>
+                <tr><th>Tense</th><th>Form</th><th>Use</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Simple Present</strong></td>
+                    <td>base verb / adds -s (3rd sg)</td>
+                    <td>habits, general truths, schedules, permanent states</td>
+                    <td>I <strong>work</strong> on Mondays. • She <strong>lives</strong> in Seattle.</td>
+                </tr>
+                <tr>
+                    <td><strong>Present Progressive</strong></td>
+                    <td>be (am/is/are) + verb -ing</td>
+                    <td>actions now, temporary situations, changing trends</td>
+                    <td>I <strong>am teaching</strong> this class now. • They <strong>are staying</strong> in a hotel this week.</td>
+                </tr>
+                <tr>
+                    <td><strong>Present Perfect</strong></td>
+                    <td>have / has + past participle</td>
+                    <td>past actions connected to now; experiences; actions started in past and continuing</td>
+                    <td>I <strong>have visited</strong> London. • She <strong>has worked</strong> here for five years.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Forms & signal words</h2>
+    <div class="grammar-table-container">
+        <table class="grammar-table" aria-label="Forms and signal words">
+            <thead>
+                <tr><th>Tense</th><th>Common signal words</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Simple Present</td><td>always, usually, often, sometimes, never, every day/week/month</td><td>Third-person adds -s (he/she/it).</td></tr>
+                <tr><td>Present Progressive</td><td>now, at the moment, this week, today (temporary), currently</td><td>Not used with stative verbs (know, like, believe) in most cases.</td></tr>
+                <tr><td>Present Perfect</td><td>already, yet, just, ever, never, since, for, recently, lately</td><td>Use to connect past → present; exact time usually not given.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Important contrasts (with examples)</h2>
+
+    <h3>Habit vs. happening now</h3>
+    <div class="example">
+        <strong>Habit:</strong> I <strong>work</strong> from home on Fridays. (routine)<br>
+        <strong>Now / temporary:</strong> I <strong>am working</strong> from home this week. (temporary)
+    </div>
+
+    <h3>Past → now (present perfect) vs. finished past</h3>
+    <div class="example">
+        <strong>Present perfect:</strong> She <strong>has lived</strong> in Bangkok for three years. (she still lives there)<br>
+        <strong>Past simple:</strong> She <strong>lived</strong> in Bangkok in 2010. (finished, time given)
+    </div>
+
+    <h3>Stative verbs</h3>
+    <p class="small">Verbs of state (know, like, believe, understand, own) usually use the simple present, not -ing forms:</p>
+    <div class="example">I <strong>know</strong> the answer (NOT *I am knowing*).</div>
+
+    <h2>Common learner mistakes</h2>
+    <ul>
+        <li>✖️ <em>She work here.</em> → ✔️ <strong>She works</strong> here.</li>
+        <li>✖️ <em>I am knowing him.</em> → ✔️ <strong>I know</strong> him.</li>
+        <li>✖️ <em>I have seen him yesterday.</em> → ✔️ <strong>I saw</strong> him yesterday. (use past simple with finished time)</li>
+        <li>✖️ <em>He is always arriving late.</em> → ✔️ Use present continuous + always only to show annoyance or repetition with emotion: <strong>He is always arriving</strong> late. (acceptable for irritation)</li>
+    </ul>
+
+    <h2>Short grammar checklist</h2>
+    <ol>
+        <li>Is it a general truth or habit? → Simple present.</li>
+        <li>Is it happening now or temporary? → Present progressive.</li>
+        <li>Does the past action connect to now, or is the exact time unimportant? → Present perfect.</li>
+    </ol>
+
+    <h2>Quick practice (interactive)</h2>
+    <p class="small">Three short tasks. Type the missing words or choose the best option, then click <em>Check Answers</em>. This is a warm-up — no account needed.</p>
+
+    <div class="practice" id="practiceBox" aria-live="polite">
+        <!-- 1: Fill gap with correct form -->
+        <label for="q1">1) Fill the gap with the correct form of the verb in parentheses:</label>
+        <div><strong>She</strong> <input id="q1" type="text" placeholder="e.g. has lived / is living / lives"> <em>(live)</em> in Madrid since 2018.</div>
+
+        <!-- 2: Choose tense -->
+        <label for="q2">2) Choose the best tense (select):</label>
+        <div>
+            <select id="q2" aria-label="Select tense for question 2">
+                <option value="">— choose —</option>
+                <option value="simple">Simple Present</option>
+                <option value="progressive">Present Progressive</option>
+                <option value="perfect">Present Perfect</option>
+            </select>
+            &nbsp;• &nbsp;<span class="small">"I _______ English classes now."</span>
+        </div>
+
+        <!-- 3: Correct or incorrect -->
+        <label for="q3">3) Is this sentence correct? (Yes / No)</label>
+        <div>
+            <select id="q3">
+                <option value="">— select —</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            &nbsp;• &nbsp;<span class="small">"I have finished my homework yesterday."</span>
+        </div>
+
+        <div style="margin-top: 0.9rem;">
+            <button class="check-btn" id="checkBtn">Check Answers</button>
+            <button class="check-btn" id="clearBtn" style="background:#555; margin-left:0.6rem;">Clear</button>
+        </div>
+
+        <div class="feedback" id="feedbackArea" aria-atomic="true"></div>
+    </div>
+
+    <h2>Teaching tips (for instructors)</h2>
+    <ul>
+        <li>Use timelines on the board: show "past — now — future" and place examples under each tense.</li>
+        <li>Contrast pairs quickly (habit vs temporary) to build intuition: one board column for Simple Present, one for Progressive, one for Perfect.</li>
+        <li>Give controlled practice first (fill-the-gap), then freer speaking prompts: "Tell me something you have done this year."</li>
+    </ul>
+
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+</div>
+
+<footer>
+    © ESLnote • Present Tenses — Classroom handout & warm-up practice
+</footer>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+
+    // Practice check logic
+    const checkBtn = document.getElementById('checkBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const feedbackArea = document.getElementById('feedbackArea');
+
+    function normalize(s) {
+        return (s || '').trim().toLowerCase();
+    }
+
+    checkBtn.addEventListener('click', () => {
+        let messages = [];
+        // Q1: She ____ (live) in Madrid since 2018.
+        const q1 = normalize(document.getElementById('q1').value);
+        // Acceptable answers: "has lived", "has been living", optionally "lives" but explain preference
+        const q1Ok = q1 === 'has lived' || q1 === "has been living" || q1 === "has lived in madrid" || q1 === "has lived here" || q1 === "has been living in madrid" || q1 === "has been living here";
+        // Explanation: best answer is "has lived" (present perfect) because action started in past and continues.
+        if (q1.length === 0) {
+            messages.push({ok:false, text: "Q1 — please type an answer."});
+        } else if (q1Ok && q1 !== 'lives') {
+            messages.push({ok:true, text: "Q1 — Good: present perfect (e.g. 'has lived' or 'has been living'). This shows an action from the past that continues now."});
+        } else if (q1 === 'lives') {
+            messages.push({ok:false, text: "Q1 — 'lives' is grammatically possible, but with 'since 2018' the present perfect ('has lived') is preferred." });
+        } else {
+            messages.push({ok:false, text: "Q1 — not quite. With 'since 2018' use present perfect: 'has lived' or 'has been living'."});
+        }
+
+        // Q2: "I ______ English classes now."
+        const q2 = document.getElementById('q2').value;
+        if (!q2) {
+            messages.push({ok:false, text: "Q2 — please choose a tense."});
+        } else {
+            // best: Present Progressive ("am taking / am studying") because "now" indicates ongoing action
+            if (q2 === 'progressive') {
+                messages.push({ok:true, text: "Q2 — Correct. 'Now' signals present progressive: 'I am taking/studying English classes now.'"});
+            } else {
+                messages.push({ok:false, text: "Q2 — not the best choice. 'Now' usually needs present progressive (am/is/are + -ing)."});
+            }
+        }
+
+        // Q3: "I have finished my homework yesterday."
+        const q3 = document.getElementById('q3').value;
+        if (!q3) {
+            messages.push({ok:false, text: "Q3 — please answer Yes or No."});
+        } else {
+            // Sentence is incorrect: use past simple "I finished my homework yesterday."
+            if (q3 === 'no') {
+                messages.push({ok:true, text: "Q3 — Correct. This sentence is incorrect. With a finished time word like 'yesterday', use past simple: 'I finished my homework yesterday.'"});
+            } else {
+                messages.push({ok:false, text: "Q3 — actually incorrect. With 'yesterday' use past simple: 'I finished...' (not present perfect)."});
+            }
+        }
+
+        // Render feedback
+        feedbackArea.innerHTML = '';
+        messages.forEach(msg => {
+            const div = document.createElement('div');
+            div.className = msg.ok ? 'correct' : 'wrong';
+            div.textContent = msg.text;
+            feedbackArea.appendChild(div);
+        });
+        // Focus for screen readers
+        if (feedbackArea.focus) feedbackArea.focus();
+    });
+
+    clearBtn.addEventListener('click', () => {
+        document.getElementById('q1').value = '';
+        document.getElementById('q2').value = '';
+        document.getElementById('q3').value = '';
+        feedbackArea.innerHTML = '';
+    });
+</script>
+
+</body>
+</html>

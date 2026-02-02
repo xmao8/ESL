@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Worksheet — Present Tenses (Personal Finance & Housing)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial;
+      margin: 0; background: #f6f8fb; color: #213547;
+      padding: 1.2rem;
+    }
+    header {
+      max-width: 900px; margin: 0 auto 1rem auto; text-align: center;
+    }
+    h1 { margin: 0.4rem 0 0.2rem; font-size: 1.5rem; color: #0b3b5a; }
+    p.lead { margin: 0 0 1rem; color: #3b5568; }
+
+    .sheet {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      background: white;
+      padding: 1.2rem 1.4rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(16,40,60,0.06);
+    }
+
+    ol.questions { padding-left: 1.2rem; margin: 0; }
+    ol.questions li { margin: 1rem 0; line-height: 1.5; font-size: 1rem; }
+    .q-text { display: inline-block; max-width: 74%; vertical-align: middle; }
+    input[type="text"] {
+      display: inline-block;
+      width: 22%;
+      min-width: 140px;
+      padding: 0.4rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #cbd8e6;
+      font-size: 0.98rem;
+    }
+    .small { font-size: 0.92rem; color: #516577; }
+
+    .controls { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top: 1rem; }
+    button.btn {
+      background: #0b78c1; color: white; border: none; padding: 0.55rem 0.9rem;
+      border-radius: 8px; font-weight: 700; cursor: pointer;
+    }
+    button.btn.alt { background: #6c7a89; }
+    button.btn.ghost { background: rgba(11,120,193,0.08); color:#0b78c1; border:1px solid rgba(11,120,193,0.2); }
+
+    .feedback { margin-top: 1rem; font-weight: 700; }
+    .correct { color: #167a3f; }
+    .incorrect { color: #b02a37; }
+
+    .answers-list { margin-top: 1rem; padding: 0.8rem; background: #fbfcff; border-radius: 8px; border:1px solid #e6eef7; }
+    .answers-list dt { font-weight:700; color:#0b3b5a; margin-top:0.5rem; }
+    .answers-list dd { margin: 0.2rem 0 0.6rem 1rem; color:#2f4b5b; }
+
+    footer { max-width: 900px; margin: 1.2rem auto; text-align:center; color:#395368; font-size:0.95rem; }
+    @media (max-width:700px){
+      input[type="text"]{ width: 100%; display:block; margin-top:0.5rem; }
+      .q-text{ display:block; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Worksheet: Present Tenses — Personal Finance & Housing</h1>
+  <p class="lead">Complete each sentence using the correct present tense (Simple Present, Present Progressive, or Present Perfect). 20 items. Type your answer in the box. Click <strong>Check Answers</strong> when ready.</p>
+</header>
+
+<main class="sheet" aria-live="polite">
+  <form id="worksheetForm" onsubmit="return false;">
+    <ol class="questions" id="questionsList">
+      <li>
+        <span class="q-text">1. Every month, Maria ________ (save) a portion of her salary for emergencies.</span>
+        <input id="q1" name="q1" type="text" autocomplete="off" placeholder="e.g. saves / is saving">
+      </li>
+
+      <li>
+        <span class="q-text">2. Right now, I ________ (compare) mortgage rates from several banks.</span>
+        <input id="q2" name="q2" type="text" autocomplete="off" placeholder="e.g. am comparing">
+      </li>
+
+      <li>
+        <span class="q-text">3. We ________ (not/own) this house — we rent it.</span>
+        <input id="q3" name="q3" type="text" autocomplete="off" placeholder="e.g. do not own / don't own">
+      </li>
+
+      <li>
+        <span class="q-text">4. They ________ (just/pay) the deposit for the new apartment.</span>
+        <input id="q4" name="q4" type="text" autocomplete="off" placeholder="e.g. have just paid">
+      </li>
+
+      <li>
+        <span class="q-text">5. How often ________ you ________ (check) your bank statements?</span>
+        <input id="q5" name="q5" type="text" autocomplete="off" placeholder="e.g. do / check">
+      </li>
+
+      <li>
+        <span class="q-text">6. The landlord usually ________ (respond) within 24 hours when we report a problem.</span>
+        <input id="q6" name="q6" type="text" autocomplete="off" placeholder="e.g. responds">
+      </li>
+
+      <li>
+        <span class="q-text">7. I ________ (look) for a cheaper place because rent is increasing this year.</span>
+        <input id="q7" name="q7" type="text" autocomplete="off" placeholder="e.g. am looking / look">
+      </li>
+
+      <li>
+        <span class="q-text">8. He ________ (already/transfer) money to pay the utility bill.</span>
+        <input id="q8" name="q8" type="text" autocomplete="off" placeholder="e.g. has already transferred / already transferred">
+      </li>
+
+      <li>
+        <span class="q-text">9. She often ________ (bargain) when buying furniture to furnish her apartment.</span>
+        <input id="q9" name="q9" type="text" autocomplete="off" placeholder="e.g. bargains / is bargaining">
+      </li>
+
+      <li>
+        <span class="q-text">10. We ________ (not/decide) whether to refinance our mortgage yet.</span>
+        <input id="q10" name="q10" type="text" autocomplete="off" placeholder="e.g. have not decided / haven't decided">
+      </li>
+
+      <li>
+        <span class="q-text">11. Currently, many people ________ (share) a rental to afford city housing.</span>
+        <input id="q11" name="q11" type="text" autocomplete="off" placeholder="e.g. are sharing / share">
+      </li>
+
+      <li>
+        <span class="q-text">12. I rarely ________ (withdraw) cash; I mostly pay with a card.</span>
+        <input id="q12" name="q12" type="text" autocomplete="off" placeholder="e.g. withdraw / withdraw cash">
+      </li>
+
+      <li>
+        <span class="q-text">13. The inspector ________ (inspect) the apartment right now.</span>
+        <input id="q13" name="q13" type="text" autocomplete="off" placeholder="e.g. is inspecting">
+      </li>
+
+      <li>
+        <span class="q-text">14. They ________ (never/miss) a mortgage payment since they bought their home.</span>
+        <input id="q14" name="q14" type="text" autocomplete="off" placeholder="e.g. have never missed">
+      </li>
+
+      <li>
+        <span class="q-text">15. My roommate always ________ (forget) to pay the electricity bill on time.</span>
+        <input id="q15" name="q15" type="text" autocomplete="off" placeholder="e.g. forgets / is always forgetting">
+      </li>
+
+      <li>
+        <span class="q-text">16. If you ________ (want) to reduce costs, consider lowering your thermostat by a few degrees.</span>
+        <input id="q16" name="q16" type="text" autocomplete="off" placeholder="e.g. want">
+      </li>
+
+      <li>
+        <span class="q-text">17. We ________ (just/sign) the lease agreement for the new place.</span>
+        <input id="q17" name="q17" type="text" autocomplete="off" placeholder="e.g. have just signed">
+      </li>
+
+      <li>
+        <span class="q-text">18. Our savings account usually ________ (earn) a small interest each month.</span>
+        <input id="q18" name="q18" type="text" autocomplete="off" placeholder="e.g. earns">
+      </li>
+
+      <li>
+        <span class="q-text">19. She ________ (look after) the house while her parents are traveling — it's temporary.</span>
+        <input id="q19" name="q19" type="text" autocomplete="off" placeholder="e.g. is looking after">
+      </li>
+
+      <li>
+        <span class="q-text">20. After years of careful planning, he finally ________ (buy) his first home.</span>
+        <input id="q20" name="q20" type="text" autocomplete="off" placeholder="e.g. has bought / bought">
+      </li>
+    </ol>
+
+    <div class="controls" role="group" aria-label="worksheet controls">
+      <button id="checkBtn" class="btn" type="button">Check Answers</button>
+      <button id="clearBtn" class="btn alt" type="button">Clear Responses</button>
+      <button id="showBtn" class="btn ghost" type="button">Show Correct Answers</button>
+    </div>
+
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+
+    <details class="answers-list" id="answersReveal" style="display:none;">
+      <summary style="cursor:pointer; font-weight:700; color:#0b3b5a">Answer key (click to expand)</summary>
+      <dl>
+        <dt>1</dt><dd>saves</dd>
+        <dt>2</dt><dd>am comparing</dd>
+        <dt>3</dt><dd>do not own / don't own</dd>
+        <dt>4</dt><dd>have just paid / just paid</dd>
+        <dt>5</dt><dd>do … check (How often do you check?)</dd>
+        <dt>6</dt><dd>responds</dd>
+        <dt>7</dt><dd>am looking / are looking / looking (present progressive preferred)</dd>
+        <dt>8</dt><dd>has already transferred / has transferred already</dd>
+        <dt>9</dt><dd>bargains / is bargaining</dd>
+        <dt>10</dt><dd>have not decided / haven't decided</dd>
+        <dt>11</dt><dd>are sharing / share (progressive preferred with 'currently')</dd>
+        <dt>12</dt><dd>withdraw (rarely withdraw)</dd>
+        <dt>13</dt><dd>is inspecting</dd>
+        <dt>14</dt><dd>have never missed</dd>
+        <dt>15</dt><dd>forgets / is always forgetting</dd>
+        <dt>16</dt><dd>want</dd>
+        <dt>17</dt><dd>have just signed / just signed</dd>
+        <dt>18</dt><dd>earns</dd>
+        <dt>19</dt><dd>is looking after</dd>
+        <dt>20</dt><dd>has bought / bought (context: present perfect preferred if result matters now)</dd>
+      </dl>
+    </details>
+
+  </form>
+</main>
+
+<footer>
+  Tip: accept multiple forms when meaning is the same. Present perfect often connects past → present; progressive shows current/temporary action.
+</footer>
+
+<script>
+  // Acceptable answers data structure: list of arrays (each array = acceptable normalized answers)
+  const answers = [
+    ["saves","save"], //1
+    ["am comparing","i am comparing","'m comparing","am compare","is comparing"], //2
+    ["do not own","don't own","do not own","do notown"], //3
+    ["have just paid","has just paid","just paid","have paid"], //4
+    // Q5 expects an auxiliary + base verb; many correct forms, we'll accept patterns "do you check" or "how often do you check"
+    ["do you check","how often do you check","do you often check","do you usually check","do you check your bank statements","do you check your bank statement"], //5
+    ["responds","replies","reply","answers","respond"], //6
+    ["am looking","i am looking","are looking","is looking","looking","look","am looking for"], //7
+    ["has already transferred","has transferred","already transferred","has transferred money","already transfered","has already transfered"], //8 (typo tolerant)
+    ["bargains","is bargaining","bargain","is bargain"], //9
+    ["have not decided","haven't decided","have n't decided","has not decided"], //10
+    ["are sharing","are share","share","sharing"], //11
+    ["withdraw","withdraw cash","rarely withdraw","rarely withdraw cash"], //12
+    ["is inspecting","is inspect","inspecting","inspects"], //13
+    ["have never missed","have never miss","never missed","have never missed a payment"], //14
+    ["forgets","is always forgetting","always forgets","always forget"], //15
+    ["want","if you want","wants"], //16
+    ["have just signed","have signed","just signed","has just signed"], //17
+    ["earns","earn","usually earns"], //18
+    ["is looking after","is looking after the house","looks after","look after"], //19
+    ["has bought","bought","have bought","has buy","have buy"] //20
+  ];
+
+  // Normalize helper
+  function normalize(s){
+    return (s || "").trim().toLowerCase().replace(/\u2019/g,"'").replace(/\s+/g," ");
+  }
+
+  // Loose match: check if user answer equals one of acceptable answers after normalization OR contains all important words
+  function isAcceptable(user, opts){
+    const u = normalize(user);
+    if(!u) return false;
+    // direct match
+    for(const a of opts){
+      if(a && normalize(a) === u) return true;
+    }
+    // partial/loose checks for common patterns:
+    // allow present perfect variants: "has/have X" where X matches key verb
+    // We'll accept if user's answer contains main verb or expected verb forms
+    const keyWords = ["save","saves","comparing","own","paid","check","respond","look","transferred","bargain","decide","share","withdraw","inspect","missed","forget","want","signed","earn","looking","bought","buy"];
+    for(const kw of keyWords){
+      if(u.includes(kw) && opts.some(o => o.includes(kw))) return true;
+    }
+    // last resort: check token overlap
+    for(const a of opts){
+      const atoks = normalize(a).split(" ").filter(Boolean);
+      const utoks = u.split(" ").filter(Boolean);
+      if(atoks.length>0 && atoks.every(t => utoks.includes(t))) return true;
+    }
+    return false;
+  }
+
+  function setFeedback(message, isOk){
+    const fb = document.getElementById('feedback');
+    const div = document.createElement('div');
+    div.className = isOk ? 'correct' : 'incorrect';
+    div.textContent = message;
+    fb.appendChild(div);
+  }
+
+  document.getElementById('checkBtn').addEventListener('click', ()=> {
+    document.getElementById('feedback').innerHTML = '';
+    let correctCount = 0;
+    for(let i=1;i<=20;i++){
+      const el = document.getElementById('q'+i);
+      const val = el.value;
+      const ok = isAcceptable(val, answers[i-1]);
+      if(ok){
+        correctCount++;
+        el.style.borderColor = "#8fd19d";
+      } else {
+        el.style.borderColor = "#f2a1a1";
+      }
+    }
+    setFeedback(`You got ${correctCount} out of 20 correct (according to the answer key).`, true);
+    setFeedback('Green borders = accepted answers. Red borders = answers to review or alternate acceptable forms.', true);
+    // focus result
+    document.getElementById('feedback').scrollIntoView({behavior:'smooth'});
+  });
+
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    for(let i=1;i<=20;i++){
+      const el = document.getElementById('q'+i);
+      el.value = '';
+      el.style.borderColor = '#cbd8e6';
+    }
+    document.getElementById('feedback').innerHTML = '';
+  });
+
+  document.getElementById('showBtn').addEventListener('click', ()=>{
+    const reveal = document.getElementById('answersReveal');
+    if(reveal.style.display === 'none'){
+      reveal.style.display = '';
+      document.getElementById('showBtn').textContent = 'Hide Correct Answers';
+    } else {
+      reveal.style.display = 'none';
+      document.getElementById('showBtn').textContent = 'Show Correct Answers';
+    }
+  });
+
+  // Accessibility: allow Enter on any input to trigger check
+  document.getElementById('worksheetForm').addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      document.getElementById('checkBtn').click();
+    }
+  });
+
+</script>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Greatest Athlete of All Time</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Base layout */
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .nav-container .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-container .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-container .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-container .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-container .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-container .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        /* Hamburger menu button styles (hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1000;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        /* Headings */
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-style: italic;
+        }
+
+        /* Text and lists */
+        p {
+            line-height: 1.5;
+            margin: 0.5rem 0;
+        }
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding: 0;
+        }
+        ul li, ol li { margin-bottom: 0.3rem; }
+
+        /* Content sections */
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .content-section li { margin-bottom: 0.8rem; }
+
+        /* Vocabulary List */
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background-color: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        .vocabulary-list li strong {
+            color: #124076;
+            margin-right: 8px;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .speaker-icon:hover { color: #2980b9; }
+        .vocabulary-list li .definition { flex-grow: 1; }
+        .vocabulary-list li .example {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Back buttons */
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        .buttons a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            display: inline-block;
+            margin: 0.3rem;
+        }
+        .buttons a:hover { background-color: #2980b9; }
+
+        /* --- Tablet Layout --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container { padding: 0.8rem 1rem; }
+            .nav-container .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 1rem; }
+            .nav-container .site-name { font-size: 1.25rem; }
+            .menu-toggle { display: none; }
+
+            h1 { font-size: 2.2rem; margin: 1.8rem auto 0.8rem; padding: 0 1.5rem; }
+            main { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, ul, ol { font-size: 1rem; }
+            .buttons { padding: 0 1.5rem; }
+        }
+
+        /* --- Phone Layout --- */
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: row; justify-content: space-between; padding: 0.6rem 0.8rem; }
+            .nav-container .site-name { font-size: 1.2rem; }
+            .nav-container .nav-links {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%;
+                height: calc(100vh - 56px);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+                align-items: flex-start;
+                border-radius: 0 0 0 10px;
+            }
+            .nav-container .nav-links.active { transform: translateX(0); }
+            .nav-container .nav-links a { width: auto; text-align: left; padding: 0.5rem 0; }
+            .menu-toggle { display: flex; }
+
+            h1 { font-size: 1.8rem; margin: 1.5rem auto 0.5rem; padding: 0 0.8rem; }
+            main { padding: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            p, ul, ol { font-size: 0.95rem; }
+            .buttons a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+
+            .vocabulary-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .vocabulary-list li strong { font-size: 1em; margin-bottom: 5px; }
+            .speaker-icon { margin-left: 0; margin-bottom: 5px; }
+            .vocabulary-list li .definition { font-size: 0.9em; }
+            .vocabulary-list li .example { font-size: 0.85em; }
+        }
+
+        @media (max-width: 380px) {
+            .nav-container .nav-links a { font-size: 0.8rem; padding: 0.2rem 0.4rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="logo" aria-label="ESLnote Home">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+
+            <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="primary-navigation">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Who Is the Greatest Athlete of All Time?</h1>
+
+    <main>
+        <div class="content-section">
+            <h2>Who Is the Greatest Athlete of All Time?</h2>
+
+            <p>Many people enjoy watching sports, but one question often creates strong opinions: <em>Who is the greatest athlete of all time?</em> There is no single correct answer, because people value different qualities such as talent, hard work, success, and influence. However, by looking at famous athletes from different sports, we can better understand what “greatest” really means.</p>
+
+            <p>Some people believe <strong>Michael Jordan</strong> is the greatest athlete of all time. He played basketball for the Chicago Bulls and won six NBA championships. Jordan was known for his skill, confidence, and leadership. He performed his best in important games and became a global sports icon. Many fans admire him because he helped make basketball popular around the world.</p>
+
+            <p>Others say <strong>Lionel Messi</strong> deserves the title. Messi is a football (soccer) player from Argentina and is famous for his amazing control, speed, and creativity. He won many trophies with Barcelona and later helped Argentina win the World Cup. Messi is not very tall or physically strong, but he shows that intelligence and technique are just as important as strength.</p>
+
+            <p>Another strong candidate is <strong>Serena Williams</strong>, one of the greatest tennis players in history. She won 23 Grand Slam titles and dominated women’s tennis for many years. Serena faced many challenges, including injuries and criticism, but she continued to succeed. She inspired many people, especially young women, to believe in themselves and work hard.</p>
+
+            <p>Some fans choose <strong>Usain Bolt</strong>, the fastest man in the world. Bolt holds world records in the 100 and 200 meters and won many Olympic gold medals. What makes him special is not only his speed but also his confidence and fun personality. He made track and field exciting for people everywhere.</p>
+
+            <p>So, who is the greatest athlete of all time? The answer depends on how we define greatness. Is it winning the most titles? Changing a sport? Inspiring people around the world? Each athlete mentioned here is great in a different way.</p>
+
+            <p>In the end, the greatest athlete may not be one person. Greatness can mean success, influence, hard work, and the ability to inspire others. Sports give us heroes who motivate us to be better—both on and off the field—and that may be the greatest achievement of all.</p>
+        </div>
+
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <p>Click the speaker to hear each word.</p>
+            <ul>
+                <li>
+                    <strong>Opinion</strong> <i class="fas fa-volume-up speaker-icon" data-word="opinion" aria-label="Pronounce opinion"></i>
+                    <div class="definition">A personal belief or idea.
+                        <div class="example">Example: Everyone has an opinion about the best athlete.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Qualities</strong> <i class="fas fa-volume-up speaker-icon" data-word="qualities" aria-label="Pronounce qualities"></i>
+                    <div class="definition">Important characteristics of a person.
+                        <div class="example">Example: Discipline and confidence are strong qualities.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Influence</strong> <i class="fas fa-volume-up speaker-icon" data-word="influence" aria-label="Pronounce influence"></i>
+                    <div class="definition">The power to affect people or change how they think.
+                        <div class="example">Example: Famous athletes can influence young fans.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Championship</strong> <i class="fas fa-volume-up speaker-icon" data-word="championship" aria-label="Pronounce championship"></i>
+                    <div class="definition">A top-level competition to find the best team or player.
+                        <div class="example">Example: Winning a championship is a big achievement.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Icon</strong> <i class="fas fa-volume-up speaker-icon" data-word="icon" aria-label="Pronounce icon"></i>
+                    <div class="definition">A very famous person who represents something important.
+                        <div class="example">Example: Michael Jordan became a sports icon.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Deserves</strong> <i class="fas fa-volume-up speaker-icon" data-word="deserves" aria-label="Pronounce deserves"></i>
+                    <div class="definition">Should get something because of effort or achievement.
+                        <div class="example">Example: Many people think Messi deserves the title.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Technique</strong> <i class="fas fa-volume-up speaker-icon" data-word="technique" aria-label="Pronounce technique"></i>
+                    <div class="definition">A skillful way of doing something.
+                        <div class="example">Example: Her tennis technique is excellent.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Dominated</strong> <i class="fas fa-volume-up speaker-icon" data-word="dominated" aria-label="Pronounce dominated"></i>
+                    <div class="definition">Controlled or was much better than others.
+                        <div class="example">Example: Serena dominated tennis for many years.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>World record</strong> <i class="fas fa-volume-up speaker-icon" data-word="world record" aria-label="Pronounce world record"></i>
+                    <div class="definition">The best result ever achieved in the world.
+                        <div class="example">Example: Usain Bolt holds a world record in sprinting.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Motivate</strong> <i class="fas fa-volume-up speaker-icon" data-word="motivate" aria-label="Pronounce motivate"></i>
+                    <div class="definition">To encourage someone to take action or try harder.
+                        <div class="example">Example: Sports stories can motivate people to exercise.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Achievement</strong> <i class="fas fa-volume-up speaker-icon" data-word="achievement" aria-label="Pronounce achievement"></i>
+                    <div class="definition">Something you succeed in doing after effort.
+                        <div class="example">Example: Winning an Olympic gold medal is a huge achievement.</div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Define</strong> <i class="fas fa-volume-up speaker-icon" data-word="define" aria-label="Pronounce define"></i>
+                    <div class="definition">To explain the meaning of something.
+                        <div class="example">Example: People define “greatness” in different ways.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Comprehension Questions</h2>
+            <p>Answer these questions about the article.</p>
+            <ol>
+                <li>What question does the article ask?</li>
+                <li>Why is it difficult to choose one “greatest” athlete?</li>
+                <li>What sport did Michael Jordan play?</li>
+                <li>What did Lionel Messi achieve with Argentina?</li>
+                <li>How many Grand Slam titles did Serena Williams win (according to the article)?</li>
+                <li>What events is Usain Bolt famous for?</li>
+                <li>What are two ways people can define “greatness”?</li>
+                <li>Do you think there can be one greatest athlete? Why or why not?</li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Mobile nav toggle script
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('primary-navigation');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+        }
+
+        // Text-to-speech functionality for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const wordToSpeak = this.dataset.word;
+                    if (wordToSpeak) {
+                        const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+                        utterance.lang = 'en-US';
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            });
+        } else {
+            console.warn("Text-to-speech not supported in this browser.");
+            speakerIcons.forEach(icon => icon.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

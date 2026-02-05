@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sports Names – Flashcards (30 Sports)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px; flex-wrap: wrap;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Sports Names – Flashcards (30 Sports)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0"
+  onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Soccer", ipa: "/ˈsɑː.kɚ/", definition: "a sport where players kick a ball into a goal.", example: "I watch soccer on weekends.", chinese: "足球", spanish: "fútbol" },
+  { word: "Basketball", ipa: "/ˈbæs.kɪt.bɔːl/", definition: "a sport where teams score by shooting into a hoop.", example: "Basketball is fast and exciting.", chinese: "篮球", spanish: "baloncesto" },
+  { word: "Baseball", ipa: "/ˈbeɪs.bɔːl/", definition: "a bat-and-ball sport where players run bases.", example: "Baseball is popular in the U.S.", chinese: "棒球", spanish: "béisbol" },
+  { word: "Tennis", ipa: "/ˈten.ɪs/", definition: "a racket sport played individually or in pairs.", example: "She plays tennis after work.", chinese: "网球", spanish: "tenis" },
+  { word: "Volleyball", ipa: "/ˈvɑː.liˌbɔːl/", definition: "a sport where teams hit a ball over a net.", example: "We played volleyball at the beach.", chinese: "排球", spanish: "voleibol" },
+  { word: "Hockey", ipa: "/ˈhɑː.ki/", definition: "a sport played on ice or field using sticks.", example: "Hockey can be very physical.", chinese: "曲棍球/冰球", spanish: "hockey" },
+  { word: "Rugby", ipa: "/ˈrʌɡ.bi/", definition: "a contact team sport with running and passing.", example: "Rugby requires strength and teamwork.", chinese: "英式橄榄球", spanish: "rugby" },
+  { word: "Cricket", ipa: "/ˈkrɪk.ɪt/", definition: "a bat-and-ball sport popular in many countries.", example: "Cricket matches can last a long time.", chinese: "板球", spanish: "críquet" },
+  { word: "Boxing", ipa: "/ˈbɑːk.sɪŋ/", definition: "a combat sport where opponents punch with gloves.", example: "Boxing training improves fitness.", chinese: "拳击", spanish: "boxeo" },
+  { word: "Swimming", ipa: "/ˈswɪm.ɪŋ/", definition: "a sport of racing or training in water.", example: "Swimming is good for the whole body.", chinese: "游泳", spanish: "natación" },
+
+  { word: "Golf", ipa: "/ɡɑːlf/", definition: "a sport where players hit a ball into holes with clubs.", example: "He plays golf on Sundays.", chinese: "高尔夫", spanish: "golf" },
+  { word: "Badminton", ipa: "/ˈbæd.mɪn.tən/", definition: "a racket sport played with a shuttlecock.", example: "Badminton is fun indoors.", chinese: "羽毛球", spanish: "bádminton" },
+  { word: "Table tennis", ipa: "/ˈteɪ.bəl ˌten.ɪs/", definition: "a fast indoor sport also called ping-pong.", example: "We played table tennis at lunch.", chinese: "乒乓球", spanish: "tenis de mesa" },
+  { word: "Track and field", ipa: "/ˌtræk ən ˈfiːld/", definition: "sports like running, jumping, and throwing.", example: "Track and field includes many events.", chinese: "田径", spanish: "atletismo" },
+  { word: "Cycling", ipa: "/ˈsaɪ.klɪŋ/", definition: "riding a bicycle as a sport or race.", example: "Cycling is popular in many cities.", chinese: "骑行", spanish: "ciclismo" },
+  { word: "Skiing", ipa: "/ˈskiː.ɪŋ/", definition: "a winter sport of sliding on snow with skis.", example: "They went skiing in the mountains.", chinese: "滑雪", spanish: "esquí" },
+  { word: "Surfing", ipa: "/ˈsɝː.fɪŋ/", definition: "riding waves on a surfboard.", example: "Surfing depends on good waves.", chinese: "冲浪", spanish: "surf" },
+  { word: "Wrestling", ipa: "/ˈres.lɪŋ/", definition: "a sport where athletes try to control each other.", example: "Wrestling requires technique and balance.", chinese: "摔跤", spanish: "lucha" },
+  { word: "Martial arts", ipa: "/ˌmɑːr.ʃəl ˈɑːrts/", definition: "sports like karate or judo focused on fighting skills.", example: "Martial arts teach discipline.", chinese: "武术/格斗", spanish: "artes marciales" },
+  { word: "Handball", ipa: "/ˈhænd.bɔːl/", definition: "a team sport where players throw a ball into a goal.", example: "Handball is popular in Europe.", chinese: "手球", spanish: "balonmano" },
+
+  { word: "American football", ipa: "/əˈmer.ɪ.kən ˈfʊt.bɔːl/", definition: "a U.S. sport with tackling, passing, and touchdowns.", example: "American football is played in the NFL.", chinese: "美式橄榄球", spanish: "fútbol americano" },
+  { word: "Ice skating", ipa: "/ˈaɪs ˌskeɪ.tɪŋ/", definition: "moving on ice using skates.", example: "Ice skating is common in winter.", chinese: "滑冰", spanish: "patinaje sobre hielo" },
+  { word: "Snowboarding", ipa: "/ˈsnoʊˌbɔːr.dɪŋ/", definition: "riding down snow on a board.", example: "Snowboarding can be challenging at first.", chinese: "单板滑雪", spanish: "snowboard" },
+  { word: "Gymnastics", ipa: "/dʒɪmˈnæs.tɪks/", definition: "a sport of strength and flexibility, often on equipment.", example: "Gymnastics requires balance and practice.", chinese: "体操", spanish: "gimnasia" },
+  { word: "Rowing", ipa: "/ˈroʊ.ɪŋ/", definition: "moving a boat using oars, often as a race.", example: "Rowing builds strong muscles.", chinese: "划船", spanish: "remo" },
+  { word: "Kayaking", ipa: "/ˈkaɪ.æk.ɪŋ/", definition: "paddling a small boat called a kayak.", example: "Kayaking is fun on a calm river.", chinese: "皮划艇", spanish: "kayak" },
+  { word: "Fencing", ipa: "/ˈfen.sɪŋ/", definition: "a sport where athletes fight with swords safely.", example: "Fencing is fast and strategic.", chinese: "击剑", spanish: "esgrima" },
+  { word: "Archery", ipa: "/ˈɑːr.tʃɚ.i/", definition: "shooting arrows at a target.", example: "Archery requires focus and patience.", chinese: "射箭", spanish: "tiro con arco" },
+  { word: "Weightlifting", ipa: "/ˈweɪtˌlɪf.tɪŋ/", definition: "lifting heavy weights as a sport.", example: "Weightlifting improves strength.", chinese: "举重", spanish: "halterofilia" },
+  { word: "Climbing", ipa: "/ˈklaɪ.mɪŋ/", definition: "going up rocks or walls, often as a sport.", example: "Climbing needs strength and careful planning.", chinese: "攀岩", spanish: "escalada" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", (e) => { e.stopPropagation(); speak(); });
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        e.stopPropagation();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

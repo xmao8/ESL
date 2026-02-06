@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Big Game Blunder - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 900px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 100px; text-align: right; margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+    .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+    .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word { font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px; }
+    .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.1rem; color: #3498db; user-select: none; transition: color 0.2s; border: none; background: none; padding: 0; }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+    .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+    .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Small helpers */
+    .note { font-size: 0.95rem; color: #666; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Big Game Blunder</h1>
+
+<div class="content-container">
+  <h2>Characters</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>MARCO:</strong> Very enthusiastic about American sports and culture.</li>
+      <li><strong>ELENA:</strong> Practical, mostly interested in the snacks and halftime show.</li>
+      <li><strong>JIN:</strong> A newcomer who is very confused by the rules of football.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Setting: A living room cluttered with snacks. A TV is blaring loud commentary.</p>
+
+  <div class="conversation-script" role="dialog" aria-label="Super Bowl conversation script">
+    <h3>Scene</h3>
+
+    <p><strong>MARCO:</strong> <span class="dialogue">(Jumping up) Yes! Did you see that? He found the gap! That’s a first down!</span></p>
+    <p><strong>JIN:</strong> <span class="dialogue">Wait, Marco. Why did they stop? They were just starting to run.</span></p>
+    <p><strong>MARCO:</strong> <span class="dialogue">It’s strategic, Jin. They have four tries to go ten yards. It’s like chess, but with more hitting.</span></p>
+    <p><strong>ELENA:</strong> <span class="dialogue">It’s like chess if the pieces ate buffalo wings. Jin, forget the rules. Have a wing. They are the best part.</span></p>
+    <p><strong>JIN:</strong> <span class="dialogue">Thank you, Elena. But why did the man in the striped shirt throw a yellow flag? Is that a goal?</span></p>
+    <p><strong>MARCO:</strong> <span class="dialogue">(Groaning) No! That’s a penalty. Holding! That’s going to cost them fifteen yards. We are never going to score.</span></p>
+    <p><strong>ELENA:</strong> <span class="dialogue">Relax, Marco. The halftime show starts in five minutes. That’s why I’m actually here.</span></p>
+    <p><strong>MARCO:</strong> <span class="dialogue">“Just a game”? This is the championship! My team hasn't won since I moved here.</span></p>
+    <p><strong>JIN:</strong> <span class="dialogue">I think I’m getting it. So, the goal is to get the ball to the end, right?</span></p>
+    <p><strong>MARCO:</strong> <span class="dialogue">Exactly! The "End Zone."</span></p>
+    <p><strong>JIN:</strong> <span class="dialogue">And why is everyone standing around now?</span></p>
+    <p><strong>ELENA:</strong> <span class="dialogue">It’s a commercial break. Look, it’s a talking dog selling laundry detergent. Only in America.</span></p>
+    <p><strong>MARCO:</strong> <span class="dialogue">The commercials are famous, Jin. Companies pay millions for thirty seconds.</span></p>
+    <p><strong>JIN:</strong> <span class="dialogue">Millions? For a dog? I should change my career to advertising.</span></p>
+    <p><strong>ELENA:</strong> <span class="dialogue">(Laughing) See? You’re learning fast. Marco, pass the napkins. You're about to cry because your team just fumbled.</span></p>
+    <p><strong>MARCO:</strong> <span class="dialogue">(Yelling at TV) Pick it up! Oh, come on! My grandmother runs faster than that!</span></p>
+    <p><strong>ELENA:</strong> <span class="dialogue">Don't worry, Jin. He’ll be fine once the pizza arrives.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">First Down <button class="speaker-icon" onclick="speakWord('First Down')" aria-label="Pronounce First Down">🔊</button></span>
+        <span class="ipa">/fɜrst daʊn/</span>
+        <span class="definition">(n.) Achieving 10 yards, giving the team 4 more tries.</span>
+        <span class="example">Example: The quarterback ran for a first down.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Penalty <button class="speaker-icon" onclick="speakWord('Penalty')" aria-label="Pronounce Penalty">🔊</button></span>
+        <span class="ipa">/ˈpɛnəlti/</span>
+        <span class="definition">(n.) A punishment for breaking a rule.</span>
+        <span class="example">Example: The team got a penalty for holding.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Halftime <button class="speaker-icon" onclick="speakWord('Halftime')" aria-label="Pronounce Halftime">🔊</button></span>
+        <span class="ipa">/ˈhæfˌtaɪm/</span>
+        <span class="definition">(n.) The break in the middle of a game.</span>
+        <span class="example">Example: The halftime show is very popular.</span>
+      </li>
+      <li>
+        <span class="vocab-word">End Zone <button class="speaker-icon" onclick="speakWord('End Zone')" aria-label="Pronounce End Zone">🔊</button></span>
+        <span class="ipa">/ɛnd zoʊn/</span>
+        <span class="definition">(n.) The area at each end of the field where you score.</span>
+        <span class="example">Example: He caught the ball in the end zone.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Fumble <button class="speaker-icon" onclick="speakWord('Fumble')" aria-label="Pronounce Fumble">🔊</button></span>
+        <span class="ipa">/ˈfʌmbəl/</span>
+        <span class="definition">(v./n.) To drop the ball while running.</span>
+        <span class="example">Example: The player fumbled the ball near the goal.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Commercial <button class="speaker-icon" onclick="speakWord('Commercial')" aria-label="Pronounce Commercial">🔊</button></span>
+        <span class="ipa">/kəˈmɜrʃəl/</span>
+        <span class="definition">(n.) An advertisement on TV.</span>
+        <span class="example">Example: Super Bowl commercials are very expensive.</span>
+      </li>
+    </ul>
+  </div>
+
+  <p class="note">Teacher Tip: Encourage students to mimic the "emotional" cues like groaning or yelling to practice natural intonation.</p>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  function speakWord(word) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+    }
+  }
+</script>
+
+</body>
+</html>

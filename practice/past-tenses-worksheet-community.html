@@ -91,7 +91,7 @@
   <p class="hint">
     <strong>Instructions:</strong> Complete each sentence using the correct past tense:
     <strong>simple past</strong>, <strong>past progressive</strong>, or <strong>past perfect</strong>.
-    Focus on meaning and time order.
+    Use the verb in parentheses.
   </p>
 
   <div class="bank">
@@ -102,8 +102,8 @@
   <ol id="items"></ol>
 
   <p class="note">
-    <strong>Teacher tip:</strong> Accept equivalent verb forms (e.g. <em>was helping</em> / <em>were helping</em>,
-    <em>had already finished</em> / <em>had finished</em>) if meaning is correct.
+    <strong>Teacher tip:</strong> Accept reasonable tense forms if the meaning is correct
+    (e.g. <em>were helping</em> / <em>had helped</em>).
   </p>
 
   <div class="buttons">
@@ -131,28 +131,28 @@ const norm = s => (s||'')
   .replace(/\s+/g,' ')
   .trim();
 
-/* ===== Items (20) ===== */
+/* ===== Items (20) with verbs ===== */
 const DATA = [
-  { text:"1. The community center {c} a meeting last night.", opts:[["held"],["held","hosted","organized"]] },
-  { text:"2. Many neighbors {c} outside when the power went out.", opts:[["were talking"],["were talking","were standing","talked"]] },
-  { text:"3. By the time the police arrived, the crowd {c} home.", opts:[["had gone"],["had gone","had already gone"]] },
-  { text:"4. We {c} a cleanup event at the park last weekend.", opts:[["organized"],["organized","planned"]] },
-  { text:"5. While volunteers {c} food, others collected donations.", opts:[["were serving"],["were serving","were giving","served"]] },
-  { text:"6. The mayor thanked residents who {c} during the emergency.", opts:[["had helped"],["had helped","helped"]] },
-  { text:"7. I {c} my neighbor when I heard someone calling for help.", opts:[["was visiting"],["was visiting","visited"]] },
-  { text:"8. They {c} the street before the parade started.", opts:[["had closed"],["had closed","closed"]] },
-  { text:"9. People {c} quietly while the speaker addressed the crowd.", opts:[["were listening"],["were listening","listened"]] },
-  { text:"10. After the storm, volunteers {c} fallen trees.", opts:[["removed"],["removed","cleared"]] },
-  { text:"11. The children {c} in the playground when it began to rain.", opts:[["were playing"],["were playing","played"]] },
-  { text:"12. The neighborhood association {c} several events that year.", opts:[["organized"],["organized","ran"]] },
-  { text:"13. She realized she {c} the wrong meeting.", opts:[["had joined"],["had joined","had attended"]] },
-  { text:"14. We {c} for an hour before the bus finally arrived.", opts:[["were waiting"],["were waiting","waited"]] },
-  { text:"15. The volunteers {c} all the supplies before the event ended.", opts:[["had used"],["had used","used"]] },
-  { text:"16. While residents {c} the issue, a solution appeared.", opts:[["were discussing"],["were discussing","discussed"]] },
-  { text:"17. He apologized because he {c} the announcement.", opts:[["had missed"],["had missed","missed"]] },
-  { text:"18. The community {c} a celebration after the project finished.", opts:[["held"],["held","had"]] },
-  { text:"19. I {c} home when I saw my neighbors gathering.", opts:[["was walking"],["was walking","walked"]] },
-  { text:"20. By the time the meeting ended, everyone {c} their opinion.", opts:[["had shared"],["had shared","shared"]] }
+  { text:"1. The community center {c} a meeting last night. (hold)", opts:[["held"]] },
+  { text:"2. Many neighbors {c} outside when the power went out. (talk)", opts:[["were talking","talked"]] },
+  { text:"3. By the time the police arrived, the crowd {c} home. (go)", opts:[["had gone"]] },
+  { text:"4. We {c} a cleanup event at the park last weekend. (organize)", opts:[["organized"]] },
+  { text:"5. While volunteers {c} food, others collected donations. (serve)", opts:[["were serving","served"]] },
+  { text:"6. The mayor thanked residents who {c} during the emergency. (help)", opts:[["had helped","helped"]] },
+  { text:"7. I {c} my neighbor when I heard someone calling for help. (visit)", opts:[["was visiting","visited"]] },
+  { text:"8. They {c} the street before the parade started. (close)", opts:[["had closed","closed"]] },
+  { text:"9. People {c} quietly while the speaker addressed the crowd. (listen)", opts:[["were listening","listened"]] },
+  { text:"10. After the storm, volunteers {c} fallen trees. (remove)", opts:[["removed"]] },
+  { text:"11. The children {c} in the playground when it began to rain. (play)", opts:[["were playing","played"]] },
+  { text:"12. The neighborhood association {c} several events that year. (organize)", opts:[["organized"]] },
+  { text:"13. She realized she {c} the wrong meeting. (join)", opts:[["had joined","joined"]] },
+  { text:"14. We {c} for an hour before the bus finally arrived. (wait)", opts:[["were waiting","waited"]] },
+  { text:"15. The volunteers {c} all the supplies before the event ended. (use)", opts:[["had used","used"]] },
+  { text:"16. While residents {c} the issue, a solution appeared. (discuss)", opts:[["were discussing","discussed"]] },
+  { text:"17. He apologized because he {c} the announcement. (miss)", opts:[["had missed","missed"]] },
+  { text:"18. The community {c} a celebration after the project finished. (hold)", opts:[["held"]] },
+  { text:"19. I {c} home when I saw my neighbors gathering. (walk)", opts:[["was walking","walked"]] },
+  { text:"20. By the time the meeting ended, everyone {c} their opinion. (share)", opts:[["had shared","shared"]] }
 ];
 
 /* Render items */

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Wrong Envelope - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+      .conversation-script strong { width: 92px; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.5rem auto; color: #2c3e50; max-width: 800px; }
+    .content-container {
+      background: white; width: 90%; max-width: 900px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 { color: #3498db; margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.6rem; }
+    .content-container h3 { color: #124076; margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 1.3rem; }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 110px; text-align: right; margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+    .scene-direction { font-style: italic; color: #555; margin: 1rem 0; text-align: center; }
+    .character-info { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed #ccc; }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word { font-weight: bold; color: #124076; display: inline-flex; align-items: center; gap: 8px; }
+    .vocabulary-list .speaker-icon { cursor: pointer; font-size: 1.1rem; color: #3498db; user-select: none; transition: color 0.2s; border: none; background: none; padding: 0; }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa { font-family: 'Arial', sans-serif; font-style: italic; color: #666; margin-left: 5px; }
+    .vocabulary-list .definition { display: block; margin-top: 0.2rem; font-size: 0.95rem; color: #333; }
+    .vocabulary-list .example { display: block; font-style: italic; font-size: 0.9em; color: #555; margin-top: 0.3em; }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;
+      text-decoration: none; display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+
+    /* Small helpers */
+    .note { font-size: 0.95rem; color: #666; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The Wrong Envelope</h1>
+
+<div class="content-container">
+  <h2>Characters</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>EMMA:</strong> Organized and practical. She dislikes “fake” romance.</li>
+      <li><strong>DANIEL:</strong> Thoughtful but nervous. He wants to be honest.</li>
+      <li><strong>SOFIA:</strong> Emma’s friend—confident, playful, and protective.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">Setting: A small café on Valentine’s Day evening. Emma and Sofia sit at a table.</p>
+
+  <div class="conversation-script" role="dialog" aria-label="Valentine’s Day drama script">
+    <h3>Scene</h3>
+
+    <p><strong>SOFIA:</strong> <span class="dialogue">I still can’t believe you agreed to meet Daniel tonight.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">It’s not a date. We’re just talking.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">On Valentine’s Day? That sounds suspicious.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">I told him I don’t care about Valentine’s Day. It’s commercial and stressful.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Mm-hmm. And yet you look nervous.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">I am not nervous.</span></p>
+
+    <p class="scene-direction">(Daniel enters, holding two envelopes.)</p>
+
+    <p><strong>DANIEL:</strong> <span class="dialogue">Hi. Sorry I’m late.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">It’s fine. We just got here.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">“We”? I’ve been here twenty minutes.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Hi, Sofia.</span></p>
+    <p><strong>SOFIA:</strong> <span class="dialogue">Relax, Daniel. I’m leaving. I don’t want to interrupt this very “not a date.”</span></p>
+
+    <p class="scene-direction">(Sofia stands.)</p>
+
+    <p><strong>SOFIA:</strong> <span class="dialogue">(to Emma, quietly) Be honest tonight.</span></p>
+
+    <p class="scene-direction">(Sofia exits.)</p>
+
+    <p><strong>DANIEL:</strong> <span class="dialogue">She doesn’t like me very much, does she?</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">She’s protective. It’s her hobby.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">That’s fair.</span></p>
+
+    <p class="scene-direction">(Awkward silence.)</p>
+
+    <p><strong>DANIEL:</strong> <span class="dialogue">So… I know you said you don’t like Valentine’s Day. But I wrote something. You don’t have to read it now.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">You wrote something?</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Just a letter. Nothing dramatic.</span></p>
+
+    <p class="scene-direction">(He accidentally drops one envelope. Emma picks it up.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">Oh—this one says “Sofia.”</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">What? That’s impossible.</span></p>
+
+    <p class="scene-direction">(They look at the envelopes. Daniel freezes.)</p>
+
+    <p><strong>DANIEL:</strong> <span class="dialogue">Oh no.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Daniel… why do you have a letter for Sofia?</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">It’s not what you think.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Then explain.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">I asked Sofia for advice. I didn’t know what to write to you. So I wrote a practice letter to her first.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">A practice letter?</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Yes. She told me to be honest. She said if I couldn’t write something real, I shouldn’t give you anything at all.</span></p>
+
+    <p class="scene-direction">(Emma slowly relaxes.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">So the letter for me is the real one?</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Yes. The Sofia one just says, “Help me. I’m terrible at this.”</span></p>
+
+    <p class="scene-direction">(Emma laughs for the first time.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">That actually sounds like you.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">I know you don’t like big romantic gestures. But I wanted to tell you that I admire how direct you are. You don’t pretend. You say what you feel. It makes me want to be braver.</span></p>
+
+    <p class="scene-direction">(He hands her the correct envelope.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">You’re very nervous right now.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Extremely.</span></p>
+
+    <p class="scene-direction">(Emma opens the letter and reads silently. She looks up.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">You wrote that I make ordinary days feel calm.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">That’s true.</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">That’s not dramatic.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">No. Just honest.</span></p>
+
+    <p class="scene-direction">(Pause.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">Maybe I don’t hate Valentine’s Day. Maybe I just hate fake Valentine’s Day.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">I can promise you this isn’t fake.</span></p>
+
+    <p class="scene-direction">(Sofia suddenly appears in the doorway.)</p>
+
+    <p><strong>SOFIA:</strong> <span class="dialogue">So… should I leave you two alone again?</span></p>
+    <p><strong>EMMA:</strong> <span class="dialogue">Yes, Sofia.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Please.</span></p>
+
+    <p class="scene-direction">(Sofia smiles and exits again.)</p>
+
+    <p><strong>EMMA:</strong> <span class="dialogue">Next time, just write one letter.</span></p>
+    <p><strong>DANIEL:</strong> <span class="dialogue">Deal.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Commercial <button class="speaker-icon" onclick="speakWord('Commercial')" aria-label="Pronounce Commercial">🔊</button></span>
+        <span class="ipa">/kəˈmɝː.ʃəl/</span>
+        <span class="definition">(adj.) Related to buying and selling; (n.) a TV advertisement.</span>
+        <span class="example">Example: She thinks Valentine’s Day is too commercial.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Suspicious <button class="speaker-icon" onclick="speakWord('Suspicious')" aria-label="Pronounce Suspicious">🔊</button></span>
+        <span class="ipa">/səˈspɪʃ.əs/</span>
+        <span class="definition">(adj.) Making you think something is secret or not true.</span>
+        <span class="example">Example: Sofia said the meeting sounded suspicious.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Protective <button class="speaker-icon" onclick="speakWord('Protective')" aria-label="Pronounce Protective">🔊</button></span>
+        <span class="ipa">/prəˈtek.tɪv/</span>
+        <span class="definition">(adj.) Wanting to keep someone safe and prevent harm.</span>
+        <span class="example">Example: She is protective of her best friend.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Awkward <button class="speaker-icon" onclick="speakWord('Awkward')" aria-label="Pronounce Awkward">🔊</button></span>
+        <span class="ipa">/ˈɔː.kwɚd/</span>
+        <span class="definition">(adj.) Uncomfortable or embarrassing.</span>
+        <span class="example">Example: There was an awkward silence.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Gesture <button class="speaker-icon" onclick="speakWord('Gesture')" aria-label="Pronounce Gesture">🔊</button></span>
+        <span class="ipa">/ˈdʒes.tʃɚ/</span>
+        <span class="definition">(n.) An action that shows a feeling or intention.</span>
+        <span class="example">Example: Flowers can be a romantic gesture.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Sincere <button class="speaker-icon" onclick="speakWord('Sincere')" aria-label="Pronounce Sincere">🔊</button></span>
+        <span class="ipa">/sɪnˈsɪr/</span>
+        <span class="definition">(adj.) Honest and real; not fake.</span>
+        <span class="example">Example: Emma prefers sincere words, not dramatic ones.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Practice (letter) <button class="speaker-icon" onclick="speakWord('Practice letter')" aria-label="Pronounce Practice letter">🔊</button></span>
+        <span class="ipa">/ˈpræk.tɪs/</span>
+        <span class="definition">(n.) Something you do to improve a skill before the real thing.</span>
+        <span class="example">Example: Daniel wrote a practice letter first.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Braver <button class="speaker-icon" onclick="speakWord('Braver')" aria-label="Pronounce Braver">🔊</button></span>
+        <span class="ipa">/ˈbreɪ.vɚ/</span>
+        <span class="definition">(adj.) More brave; having more courage.</span>
+        <span class="example">Example: Emma’s honesty makes Daniel feel braver.</span>
+      </li>
+    </ul>
+  </div>
+
+  <p class="note">Teacher Tip: Ask students to practice intonation for “awkward silence,” “Oh no,” and “That’s not dramatic.” These lines are great for natural rhythm.</p>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  function speakWord(word) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+    }
+  }
+</script>
+
+</body>
+</html>

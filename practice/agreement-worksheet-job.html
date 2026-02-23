@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agreement (Jobs) – Fill-in-the-Blank Worksheet | ESLnote Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body{
+      font-family:'Segoe UI',sans-serif;
+      background:#f4f4f9;
+      text-align:center;
+      margin:0; padding:0;
+      overflow-x:hidden;
+      color:#333;
+    }
+    nav{ background:#124076; margin:0; padding:0; }
+    .nav-container{
+      display:flex; align-items:center; justify-content:space-between;
+      width:100%; max-width:1100px; margin:0 auto; padding:0.8rem 1rem;
+    }
+    .logo{
+      display:flex; align-items:center; color:#ff9800;
+      font-family:'Poppins',sans-serif; font-weight:700; font-size:1.3rem; text-decoration:none;
+    }
+    .logo-img{ width:32px; height:32px; margin-right:0.5rem; }
+    .nav-links{ display:flex; gap:1rem; }
+    .nav-links a{
+      color:white; font-weight:700; text-decoration:none; transition:color 0.2s ease;
+    }
+    .nav-links a:hover,.nav-links a:focus{ color:#ffbb33; outline:none; }
+
+    .menu-toggle{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; }
+    .menu-toggle .bar{ width:25px; height:3px; background:white; border-radius:2px; }
+
+    @media (max-width:600px){
+      .nav-links{
+        position:fixed; top:56px; right:0; background:#124076;
+        flex-direction:column; width:100%; height:calc(100vh - 56px);
+        padding:1rem 1.5rem 2rem; gap:1.2rem; overflow-y:auto;
+        transform:translateX(100%); transition:transform 0.3s ease;
+        border-radius:0 0 0 10px; z-index:999; align-items:flex-start;
+      }
+      .nav-links.active{ transform:translateX(0); }
+      .menu-toggle{ display:flex; }
+      h1,.content-container,.buttons{ padding:0 1rem; box-sizing:border-box; }
+    }
+    @media (min-width:601px) and (max-width:900px){
+      .nav-container{ padding:0.8rem 1.5rem; }
+      .nav-links{ position:static; flex-direction:row; background:none; height:auto; width:auto; padding:0; gap:1.3rem; transform:none !important; }
+      .menu-toggle{ display:none; }
+      h1,.content-container,.buttons{ padding:0 1.5rem; box-sizing:border-box; }
+    }
+    @media (min-width:901px){
+      .nav-container{ max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
+      .nav-links{ position:static; flex-direction:row; background:none; height:auto; width:auto; padding:0; gap:1.5rem; transform:none !important; }
+      .menu-toggle{ display:none; }
+      h1,.content-container,.buttons{ padding:0; }
+    }
+
+    h1{ margin:2rem auto 1.2rem; color:#2c3e50; max-width:900px; }
+    .subtitle{ max-width:900px; margin:0 auto 1.2rem; color:#555; padding:0 1rem; }
+    .content-container{
+      background:white; width:90%; max-width:900px; margin:1.2rem auto 2rem; padding:2rem;
+      border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      text-align:left; line-height:1.65; font-size:1.06rem;
+    }
+
+    .tips{
+      background:#fff3cd;
+      border-left:4px solid #ff9800;
+      padding:1rem;
+      border-radius:8px;
+      margin-bottom:1.2rem;
+      color:#5b4a00;
+    }
+    .tips strong{ color:#124076; }
+
+    .question{
+      display:flex;
+      gap:0.75rem;
+      align-items:flex-start;
+      padding:0.75rem 0;
+      border-bottom:1px solid #eee;
+    }
+    .qnum{
+      min-width:34px;
+      font-weight:800;
+      color:#124076;
+    }
+    .qtext{ flex:1; }
+    input.blank{
+      width:170px;
+      max-width:60vw;
+      padding:8px 10px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:1rem;
+      margin:0 6px;
+    }
+    .feedback{
+      margin-top:6px;
+      font-size:0.95rem;
+      font-weight:700;
+      display:none;
+    }
+    .correct{ color:#2E7D32; }
+    .incorrect{ color:#c0392b; }
+
+    .controls{
+      display:flex;
+      gap:0.75rem;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+      margin-top:1.3rem;
+    }
+    button{
+      background:#124076;
+      color:white;
+      border:none;
+      border-radius:10px;
+      padding:10px 14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform 0.05s ease, opacity 0.2s ease;
+    }
+    button:hover{ opacity:0.95; }
+    button:active{ transform:scale(0.99); }
+    .secondary{
+      background:#e8f5e9;
+      color:#124076;
+      border:1px solid #cfe8d1;
+    }
+
+    .scorebox{
+      margin-top:0.9rem;
+      padding:0.9rem 1rem;
+      background:#e8f5e9;
+      border-left:4px solid #4CAF50;
+      border-radius:8px;
+      display:none;
+    }
+    .scorebox strong{ color:#2E7D32; }
+
+    .buttons{
+      margin-top:-0.5rem; margin-bottom:2.5rem;
+      display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
+    }
+    .buttons a{
+      text-decoration:none;
+      font-weight:800;
+      color:#124076;
+      background:white;
+      border:1px solid #d7d7e3;
+      padding:10px 14px;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
+    .buttons a:hover{ border-color:#124076; }
+    .smallnote{ font-size:0.95rem; color:#666; margin-top:0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Agreement in English (Jobs) – Fill-in-the-Blank</h1>
+<p class="subtitle">
+  Fill in each blank with the correct word(s). Focus on <strong>agreement</strong>:
+  subject–verb agreement, pronoun agreement, and demonstratives.
+</p>
+
+<div class="content-container">
+  <div class="tips">
+    <strong>Tips:</strong>
+    <ul style="margin:0.6rem 0 0 1.1rem;">
+      <li>Singular subject → singular verb (often <strong>-s</strong> in present simple).</li>
+      <li>Plural subject → plural verb (no <strong>-s</strong> in present simple).</li>
+      <li><strong>this/that</strong> + singular noun; <strong>these/those</strong> + plural noun.</li>
+      <li>Pronouns should match the person/thing they replace: <strong>his/her/their</strong>, <strong>it/they</strong>, etc.</li>
+    </ul>
+  </div>
+
+  <!-- Questions -->
+  <div class="question">
+    <div class="qnum">1</div>
+    <div class="qtext">My manager <input class="blank" data-answer="checks"> emails every morning.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">2</div>
+    <div class="qtext">The managers <input class="blank" data-answer="check"> emails every morning.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">3</div>
+    <div class="qtext">Each employee <input class="blank" data-answer="has"> a password for the company system.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">4</div>
+    <div class="qtext">Everyone in the office <input class="blank" data-answer="is"> on time today.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">5</div>
+    <div class="qtext">There <input class="blank" data-answer="is"> a meeting at 9:00.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">6</div>
+    <div class="qtext">There <input class="blank" data-answer="are"> two meetings this afternoon.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">7</div>
+    <div class="qtext">The list of job applicants <input class="blank" data-answer="is"> on my desk.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">8</div>
+    <div class="qtext">The team <input class="blank" data-answer="works"> late on Fridays. <span class="smallnote">(team = one group)</span></div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">9</div>
+    <div class="qtext">The staff <input class="blank" data-answer="are"> helpful when customers have questions.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">10</div>
+    <div class="qtext">This report <input class="blank" data-answer="is"> important for the interview.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">11</div>
+    <div class="qtext"><input class="blank" data-answer="These"> documents are confidential. Please don’t share them.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">12</div>
+    <div class="qtext">That job <input class="blank" data-answer="sounds"> interesting, but the hours are long.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">13</div>
+    <div class="qtext">Those jobs <input class="blank" data-answer="sound"> interesting, but the hours are long.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">14</div>
+    <div class="qtext">Maria is a nurse. She loves <input class="blank" data-answer="her"> work.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">15</div>
+    <div class="qtext">The technicians finished <input class="blank" data-answer="their"> tasks before lunch.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">16</div>
+    <div class="qtext">Every worker should wear <input class="blank" data-answer="their"> ID badge at work.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">17</div>
+    <div class="qtext">A supervisor helps new employees when <input class="blank" data-answer="they"> need support.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">18</div>
+    <div class="qtext">All of the equipment <input class="blank" data-answer="is"> ready for the job site.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">19</div>
+    <div class="qtext">All of the workers <input class="blank" data-answer="are"> ready for the job site.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question">
+    <div class="qnum">20</div>
+    <div class="qtext">My coworkers and I <input class="blank" data-answer="are"> responsible for customer service.</div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="controls" aria-label="Worksheet controls">
+    <button id="checkBtn">Check Answers</button>
+    <button id="showBtn" class="secondary">Show Answers</button>
+    <button id="resetBtn" class="secondary">Reset</button>
+  </div>
+
+  <div id="scoreBox" class="scorebox" role="status" aria-live="polite"></div>
+</div>
+
+<div class="buttons">
+  <a href="../practice.html">← Back to Practices</a>
+  <a href="../grammar.html">📘 Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Worksheet logic
+  const inputs = Array.from(document.querySelectorAll('input.blank'));
+  const checkBtn = document.getElementById('checkBtn');
+  const showBtn = document.getElementById('showBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const scoreBox = document.getElementById('scoreBox');
+
+  function normalize(s) {
+    return (s || "").trim().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  function setFeedback(input, ok, answerText) {
+    const q = input.closest('.question');
+    const fb = q.querySelector('.feedback');
+    fb.style.display = 'block';
+
+    if (ok) {
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ Correct';
+      input.style.borderColor = '#4CAF50';
+    } else {
+      fb.className = 'feedback incorrect';
+      fb.textContent = '❌ Try again. Answer: ' + answerText;
+      input.style.borderColor = '#c0392b';
+    }
+  }
+
+  function clearFeedback() {
+    inputs.forEach(input => {
+      const q = input.closest('.question');
+      const fb = q.querySelector('.feedback');
+      fb.style.display = 'none';
+      fb.textContent = '';
+      fb.className = 'feedback';
+      input.style.borderColor = '#ccc';
+    });
+    scoreBox.style.display = 'none';
+    scoreBox.textContent = '';
+  }
+
+  checkBtn.addEventListener('click', () => {
+    let correct = 0;
+
+    inputs.forEach(input => {
+      const answers = (input.dataset.answer || "").split("|").map(a => a.trim()).filter(Boolean);
+      const user = normalize(input.value);
+
+      const ok = answers.some(a => normalize(a) === user);
+      if (ok) correct++;
+
+      setFeedback(input, ok, answers[0] || "");
+    });
+
+    scoreBox.style.display = 'block';
+    scoreBox.innerHTML = `<strong>Score:</strong> ${correct} / ${inputs.length}`;
+  });
+
+  showBtn.addEventListener('click', () => {
+    inputs.forEach(input => {
+      const answers = (input.dataset.answer || "").split("|").map(a => a.trim()).filter(Boolean);
+      input.value = answers[0] || "";
+      input.style.borderColor = '#4CAF50';
+      const q = input.closest('.question');
+      const fb = q.querySelector('.feedback');
+      fb.style.display = 'block';
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ Answer shown';
+    });
+    scoreBox.style.display = 'block';
+    scoreBox.innerHTML = `<strong>Answers filled in.</strong>`;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    inputs.forEach(i => i.value = "");
+    clearFeedback();
+  });
+
+  // Clear feedback when typing
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      const q = input.closest('.question');
+      const fb = q.querySelector('.feedback');
+      fb.style.display = 'none';
+      fb.textContent = '';
+      fb.className = 'feedback';
+      input.style.borderColor = '#ccc';
+      scoreBox.style.display = 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

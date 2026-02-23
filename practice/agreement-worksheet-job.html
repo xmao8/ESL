@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agreement (Jobs) – Fill-in-the-Blank Worksheet | ESLnote Practice</title>
+  <title>Agreement (Jobs) – Multiple Choice Worksheet | ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
@@ -79,11 +79,13 @@
     .tips strong{ color:#124076; }
 
     .question{
+      padding:0.9rem 0;
+      border-bottom:1px solid #eee;
+    }
+    .qhead{
       display:flex;
       gap:0.75rem;
       align-items:flex-start;
-      padding:0.75rem 0;
-      border-bottom:1px solid #eee;
     }
     .qnum{
       min-width:34px;
@@ -91,19 +93,30 @@
       color:#124076;
     }
     .qtext{ flex:1; }
-    input.blank{
-      width:170px;
-      max-width:60vw;
-      padding:8px 10px;
-      border:1px solid #ccc;
-      border-radius:8px;
-      font-size:1rem;
-      margin:0 6px;
+    .options{
+      margin:0.65rem 0 0 2.3rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.6rem 1rem;
     }
+    label.opt{
+      display:flex;
+      gap:0.45rem;
+      align-items:center;
+      background:#f7f8fc;
+      border:1px solid #e3e6f2;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      user-select:none;
+    }
+    label.opt:hover{ border-color:#124076; }
+    input[type="radio"]{ transform: translateY(1px); }
+
     .feedback{
-      margin-top:6px;
+      margin:0.5rem 0 0 2.3rem;
       font-size:0.95rem;
-      font-weight:700;
+      font-weight:800;
       display:none;
     }
     .correct{ color:#2E7D32; }
@@ -159,7 +172,9 @@
       box-shadow:0 2px 8px rgba(0,0,0,0.06);
     }
     .buttons a:hover{ border-color:#124076; }
-    .smallnote{ font-size:0.95rem; color:#666; margin-top:0.5rem; }
+
+    .muted{ color:#666; font-size:0.95rem; }
+    .pill{ display:inline-block; background:#fff3cd; color:#8a6d3b; padding:2px 8px; border-radius:12px; font-size:0.85rem; margin-left:6px; }
   </style>
 </head>
 <body>
@@ -187,141 +202,281 @@
   </div>
 </nav>
 
-<h1>Agreement in English (Jobs) – Fill-in-the-Blank</h1>
+<h1>Agreement in English (Jobs) – Multiple Choice</h1>
 <p class="subtitle">
-  Fill in each blank with the correct word(s). Focus on <strong>agreement</strong>:
-  subject–verb agreement, pronoun agreement, and demonstratives.
+  Choose the correct option for each sentence. Focus on <strong>agreement</strong>
+  (subject–verb, pronouns, and demonstratives).
 </p>
 
 <div class="content-container">
   <div class="tips">
-    <strong>Tips:</strong>
+    <strong>Reminder:</strong>
     <ul style="margin:0.6rem 0 0 1.1rem;">
       <li>Singular subject → singular verb (often <strong>-s</strong> in present simple).</li>
       <li>Plural subject → plural verb (no <strong>-s</strong> in present simple).</li>
       <li><strong>this/that</strong> + singular noun; <strong>these/those</strong> + plural noun.</li>
-      <li>Pronouns should match the person/thing they replace: <strong>his/her/their</strong>, <strong>it/they</strong>, etc.</li>
+      <li>Pronouns should match the person/thing: <strong>his / her / their</strong>, <strong>it / they</strong>.</li>
     </ul>
   </div>
 
   <!-- Questions -->
-  <div class="question">
-    <div class="qnum">1</div>
-    <div class="qtext">My manager <input class="blank" data-answer="checks"> emails every morning.</div>
+  <div class="question" data-answer="checks">
+    <div class="qhead">
+      <div class="qnum">1</div>
+      <div class="qtext">My manager ____ emails every morning.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 1 options">
+      <label class="opt"><input type="radio" name="q1" value="check"> check</label>
+      <label class="opt"><input type="radio" name="q1" value="checks"> checks</label>
+      <label class="opt"><input type="radio" name="q1" value="checking"> checking</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">2</div>
-    <div class="qtext">The managers <input class="blank" data-answer="check"> emails every morning.</div>
+  <div class="question" data-answer="check">
+    <div class="qhead">
+      <div class="qnum">2</div>
+      <div class="qtext">The managers ____ emails every morning.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 2 options">
+      <label class="opt"><input type="radio" name="q2" value="checks"> checks</label>
+      <label class="opt"><input type="radio" name="q2" value="check"> check</label>
+      <label class="opt"><input type="radio" name="q2" value="checked"> checked</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">3</div>
-    <div class="qtext">Each employee <input class="blank" data-answer="has"> a password for the company system.</div>
+  <div class="question" data-answer="has">
+    <div class="qhead">
+      <div class="qnum">3</div>
+      <div class="qtext">Each employee ____ a password for the company system.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 3 options">
+      <label class="opt"><input type="radio" name="q3" value="have"> have</label>
+      <label class="opt"><input type="radio" name="q3" value="has"> has</label>
+      <label class="opt"><input type="radio" name="q3" value="having"> having</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">4</div>
-    <div class="qtext">Everyone in the office <input class="blank" data-answer="is"> on time today.</div>
+  <div class="question" data-answer="is">
+    <div class="qhead">
+      <div class="qnum">4</div>
+      <div class="qtext">Everyone in the office ____ on time today.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 4 options">
+      <label class="opt"><input type="radio" name="q4" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q4" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q4" value="be"> be</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">5</div>
-    <div class="qtext">There <input class="blank" data-answer="is"> a meeting at 9:00.</div>
+  <div class="question" data-answer="is">
+    <div class="qhead">
+      <div class="qnum">5</div>
+      <div class="qtext">There ____ a meeting at 9:00.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 5 options">
+      <label class="opt"><input type="radio" name="q5" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q5" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q5" value="were"> were</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">6</div>
-    <div class="qtext">There <input class="blank" data-answer="are"> two meetings this afternoon.</div>
+  <div class="question" data-answer="are">
+    <div class="qhead">
+      <div class="qnum">6</div>
+      <div class="qtext">There ____ two meetings this afternoon.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 6 options">
+      <label class="opt"><input type="radio" name="q6" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q6" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q6" value="was"> was</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">7</div>
-    <div class="qtext">The list of job applicants <input class="blank" data-answer="is"> on my desk.</div>
+  <div class="question" data-answer="is">
+    <div class="qhead">
+      <div class="qnum">7</div>
+      <div class="qtext">The list of job applicants ____ on my desk.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 7 options">
+      <label class="opt"><input type="radio" name="q7" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q7" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q7" value="were"> were</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">8</div>
-    <div class="qtext">The team <input class="blank" data-answer="works"> late on Fridays. <span class="smallnote">(team = one group)</span></div>
+  <div class="question" data-answer="works">
+    <div class="qhead">
+      <div class="qnum">8</div>
+      <div class="qtext">The team ____ late on Fridays. <span class="pill">team = one group</span></div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 8 options">
+      <label class="opt"><input type="radio" name="q8" value="work"> work</label>
+      <label class="opt"><input type="radio" name="q8" value="works"> works</label>
+      <label class="opt"><input type="radio" name="q8" value="working"> working</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">9</div>
-    <div class="qtext">The staff <input class="blank" data-answer="are"> helpful when customers have questions.</div>
+  <div class="question" data-answer="are">
+    <div class="qhead">
+      <div class="qnum">9</div>
+      <div class="qtext">The staff ____ helpful when customers have questions.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 9 options">
+      <label class="opt"><input type="radio" name="q9" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q9" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q9" value="be"> be</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">10</div>
-    <div class="qtext">This report <input class="blank" data-answer="is"> important for the interview.</div>
+  <div class="question" data-answer="is">
+    <div class="qhead">
+      <div class="qnum">10</div>
+      <div class="qtext">This report ____ important for the interview.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 10 options">
+      <label class="opt"><input type="radio" name="q10" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q10" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q10" value="am"> am</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">11</div>
-    <div class="qtext"><input class="blank" data-answer="These"> documents are confidential. Please don’t share them.</div>
+  <div class="question" data-answer="These">
+    <div class="qhead">
+      <div class="qnum">11</div>
+      <div class="qtext">____ documents are confidential. Please don’t share them.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 11 options">
+      <label class="opt"><input type="radio" name="q11" value="This"> This</label>
+      <label class="opt"><input type="radio" name="q11" value="These"> These</label>
+      <label class="opt"><input type="radio" name="q11" value="That"> That</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">12</div>
-    <div class="qtext">That job <input class="blank" data-answer="sounds"> interesting, but the hours are long.</div>
+  <div class="question" data-answer="sounds">
+    <div class="qhead">
+      <div class="qnum">12</div>
+      <div class="qtext">That job ____ interesting, but the hours are long.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 12 options">
+      <label class="opt"><input type="radio" name="q12" value="sound"> sound</label>
+      <label class="opt"><input type="radio" name="q12" value="sounds"> sounds</label>
+      <label class="opt"><input type="radio" name="q12" value="sounding"> sounding</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">13</div>
-    <div class="qtext">Those jobs <input class="blank" data-answer="sound"> interesting, but the hours are long.</div>
+  <div class="question" data-answer="sound">
+    <div class="qhead">
+      <div class="qnum">13</div>
+      <div class="qtext">Those jobs ____ interesting, but the hours are long.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 13 options">
+      <label class="opt"><input type="radio" name="q13" value="sound"> sound</label>
+      <label class="opt"><input type="radio" name="q13" value="sounds"> sounds</label>
+      <label class="opt"><input type="radio" name="q13" value="sounded"> sounded</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">14</div>
-    <div class="qtext">Maria is a nurse. She loves <input class="blank" data-answer="her"> work.</div>
+  <div class="question" data-answer="her">
+    <div class="qhead">
+      <div class="qnum">14</div>
+      <div class="qtext">Maria is a nurse. She loves ____ work.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 14 options">
+      <label class="opt"><input type="radio" name="q14" value="his"> his</label>
+      <label class="opt"><input type="radio" name="q14" value="her"> her</label>
+      <label class="opt"><input type="radio" name="q14" value="their"> their</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">15</div>
-    <div class="qtext">The technicians finished <input class="blank" data-answer="their"> tasks before lunch.</div>
+  <div class="question" data-answer="their">
+    <div class="qhead">
+      <div class="qnum">15</div>
+      <div class="qtext">The technicians finished ____ tasks before lunch.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 15 options">
+      <label class="opt"><input type="radio" name="q15" value="his"> his</label>
+      <label class="opt"><input type="radio" name="q15" value="their"> their</label>
+      <label class="opt"><input type="radio" name="q15" value="her"> her</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">16</div>
-    <div class="qtext">Every worker should wear <input class="blank" data-answer="their"> ID badge at work.</div>
+  <div class="question" data-answer="their">
+    <div class="qhead">
+      <div class="qnum">16</div>
+      <div class="qtext">Every worker should wear ____ ID badge at work.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 16 options">
+      <label class="opt"><input type="radio" name="q16" value="their"> their</label>
+      <label class="opt"><input type="radio" name="q16" value="them"> them</label>
+      <label class="opt"><input type="radio" name="q16" value="they"> they</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">17</div>
-    <div class="qtext">A supervisor helps new employees when <input class="blank" data-answer="they"> need support.</div>
+  <div class="question" data-answer="they">
+    <div class="qhead">
+      <div class="qnum">17</div>
+      <div class="qtext">A supervisor helps new employees when ____ need support.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 17 options">
+      <label class="opt"><input type="radio" name="q17" value="he"> he</label>
+      <label class="opt"><input type="radio" name="q17" value="they"> they</label>
+      <label class="opt"><input type="radio" name="q17" value="it"> it</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">18</div>
-    <div class="qtext">All of the equipment <input class="blank" data-answer="is"> ready for the job site.</div>
+  <div class="question" data-answer="is">
+    <div class="qhead">
+      <div class="qnum">18</div>
+      <div class="qtext">All of the equipment ____ ready for the job site.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 18 options">
+      <label class="opt"><input type="radio" name="q18" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q18" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q18" value="be"> be</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">19</div>
-    <div class="qtext">All of the workers <input class="blank" data-answer="are"> ready for the job site.</div>
+  <div class="question" data-answer="are">
+    <div class="qhead">
+      <div class="qnum">19</div>
+      <div class="qtext">All of the workers ____ ready for the job site.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 19 options">
+      <label class="opt"><input type="radio" name="q19" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q19" value="are"> are</label>
+      <label class="opt"><input type="radio" name="q19" value="was"> was</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
-  <div class="question">
-    <div class="qnum">20</div>
-    <div class="qtext">My coworkers and I <input class="blank" data-answer="are"> responsible for customer service.</div>
+  <div class="question" data-answer="are">
+    <div class="qhead">
+      <div class="qnum">20</div>
+      <div class="qtext">My coworkers and I ____ responsible for customer service.</div>
+    </div>
+    <div class="options" role="radiogroup" aria-label="Question 20 options">
+      <label class="opt"><input type="radio" name="q20" value="am"> am</label>
+      <label class="opt"><input type="radio" name="q20" value="is"> is</label>
+      <label class="opt"><input type="radio" name="q20" value="are"> are</label>
+    </div>
     <div class="feedback"></div>
   </div>
 
@@ -332,6 +487,9 @@
   </div>
 
   <div id="scoreBox" class="scorebox" role="status" aria-live="polite"></div>
+  <p class="muted" style="margin-top:0.8rem;">
+    Teacher tip: After checking, ask students to explain <em>why</em> each answer is correct.
+  </p>
 </div>
 
 <div class="buttons">
@@ -360,94 +518,91 @@
     });
   }
 
-  // Worksheet logic
-  const inputs = Array.from(document.querySelectorAll('input.blank'));
   const checkBtn = document.getElementById('checkBtn');
-  const showBtn = document.getElementById('showBtn');
+  const showBtn  = document.getElementById('showBtn');
   const resetBtn = document.getElementById('resetBtn');
   const scoreBox = document.getElementById('scoreBox');
+  const questions = Array.from(document.querySelectorAll('.question'));
 
-  function normalize(s) {
-    return (s || "").trim().replace(/\s+/g, " ").toLowerCase();
+  function getSelectedValue(qEl) {
+    const checked = qEl.querySelector('input[type="radio"]:checked');
+    return checked ? checked.value : "";
   }
 
-  function setFeedback(input, ok, answerText) {
-    const q = input.closest('.question');
-    const fb = q.querySelector('.feedback');
+  function setFeedback(qEl, ok, answer) {
+    const fb = qEl.querySelector('.feedback');
     fb.style.display = 'block';
-
     if (ok) {
       fb.className = 'feedback correct';
       fb.textContent = '✅ Correct';
-      input.style.borderColor = '#4CAF50';
     } else {
       fb.className = 'feedback incorrect';
-      fb.textContent = '❌ Try again. Answer: ' + answerText;
-      input.style.borderColor = '#c0392b';
+      fb.textContent = '❌ Try again. Answer: ' + answer;
     }
   }
 
-  function clearFeedback() {
-    inputs.forEach(input => {
-      const q = input.closest('.question');
-      const fb = q.querySelector('.feedback');
+  function clearFeedbackAll() {
+    questions.forEach(qEl => {
+      const fb = qEl.querySelector('.feedback');
       fb.style.display = 'none';
       fb.textContent = '';
       fb.className = 'feedback';
-      input.style.borderColor = '#ccc';
     });
     scoreBox.style.display = 'none';
     scoreBox.textContent = '';
   }
 
+  // Clear feedback for one question when user changes an answer
+  questions.forEach(qEl => {
+    qEl.querySelectorAll('input[type="radio"]').forEach(r => {
+      r.addEventListener('change', () => {
+        const fb = qEl.querySelector('.feedback');
+        fb.style.display = 'none';
+        fb.textContent = '';
+        fb.className = 'feedback';
+        scoreBox.style.display = 'none';
+      });
+    });
+  });
+
   checkBtn.addEventListener('click', () => {
     let correct = 0;
 
-    inputs.forEach(input => {
-      const answers = (input.dataset.answer || "").split("|").map(a => a.trim()).filter(Boolean);
-      const user = normalize(input.value);
+    questions.forEach((qEl) => {
+      const answer = (qEl.dataset.answer || "").trim();
+      const user = getSelectedValue(qEl);
 
-      const ok = answers.some(a => normalize(a) === user);
+      const ok = user === answer;
       if (ok) correct++;
-
-      setFeedback(input, ok, answers[0] || "");
+      setFeedback(qEl, ok, answer);
     });
 
     scoreBox.style.display = 'block';
-    scoreBox.innerHTML = `<strong>Score:</strong> ${correct} / ${inputs.length}`;
+    scoreBox.innerHTML = `<strong>Score:</strong> ${correct} / ${questions.length}`;
   });
 
   showBtn.addEventListener('click', () => {
-    inputs.forEach(input => {
-      const answers = (input.dataset.answer || "").split("|").map(a => a.trim()).filter(Boolean);
-      input.value = answers[0] || "";
-      input.style.borderColor = '#4CAF50';
-      const q = input.closest('.question');
-      const fb = q.querySelector('.feedback');
+    questions.forEach(qEl => {
+      const answer = (qEl.dataset.answer || "").trim();
+      const radios = Array.from(qEl.querySelectorAll('input[type="radio"]'));
+      const target = radios.find(r => r.value === answer);
+      if (target) target.checked = true;
+
+      const fb = qEl.querySelector('.feedback');
       fb.style.display = 'block';
       fb.className = 'feedback correct';
       fb.textContent = '✅ Answer shown';
     });
+
     scoreBox.style.display = 'block';
-    scoreBox.innerHTML = `<strong>Answers filled in.</strong>`;
+    scoreBox.innerHTML = `<strong>Answers selected.</strong>`;
   });
 
   resetBtn.addEventListener('click', () => {
-    inputs.forEach(i => i.value = "");
-    clearFeedback();
-  });
-
-  // Clear feedback when typing
-  inputs.forEach(input => {
-    input.addEventListener('input', () => {
-      const q = input.closest('.question');
-      const fb = q.querySelector('.feedback');
-      fb.style.display = 'none';
-      fb.textContent = '';
-      fb.className = 'feedback';
-      input.style.borderColor = '#ccc';
-      scoreBox.style.display = 'none';
+    questions.forEach(qEl => {
+      qEl.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
     });
+    clearFeedbackAll();
   });
 </script>
 

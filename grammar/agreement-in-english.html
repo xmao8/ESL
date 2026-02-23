@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agreement in English – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin: 1.4rem 0 0.8rem; font-size: 1.45rem; }
+    .content-container h3 { color: #124076; margin: 1.2rem 0 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 6px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+
+    .mini { margin-top: 0.4rem; font-size: 0.98rem; color: #444; }
+    .ok { font-weight: 700; }
+    .bad { font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Agreement in English</h1>
+
+<div class="content-container">
+  <p>
+    <strong>Agreement</strong> (also called <em>concord</em>) means two parts of a sentence
+    “match” each other. In English, we mainly check agreement in three places:
+    <strong>subject–verb agreement</strong>, <strong>pronoun agreement</strong>, and
+    <strong>demonstrative agreement</strong>.
+  </p>
+
+  <h2>Quick Overview</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Overview: agreement in English">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>What must match?</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Subject–verb</strong></td>
+          <td>Singular/plural subject + correct verb form</td>
+          <td>She <strong>works</strong>. / They <strong>work</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Pronoun</strong></td>
+          <td>Pronoun + the noun it replaces (number, gender)</td>
+          <td>Maria lost <strong>her</strong> keys. / The boys forgot <strong>their</strong> homework.</td>
+        </tr>
+        <tr>
+          <td><strong>Demonstrative</strong></td>
+          <td>this/these/that/those + noun number</td>
+          <td><strong>This</strong> book. / <strong>These</strong> books.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>1) Subject–Verb Agreement</h2>
+  <p>
+    The verb must agree with the subject in <strong>number</strong>.
+    In the present simple, <strong>he / she / it</strong> usually takes <strong>-s</strong>.
+  </p>
+
+  <div class="example" role="note" aria-label="Examples: subject verb agreement">
+    <strong>Singular → singular verb</strong><br>
+    She <strong>works</strong> every day. / The dog <strong>barks</strong> loudly.<br><br>
+    <strong>Plural → plural verb</strong><br>
+    They <strong>work</strong> every day. / The dogs <strong>bark</strong> loudly.
+  </div>
+
+  <h3>Common Patterns</h3>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common subject verb agreement patterns">
+      <thead>
+        <tr>
+          <th>Situation</th>
+          <th>Rule</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>One subject</strong></td>
+          <td>Singular subject → singular verb</td>
+          <td>The teacher <strong>explains</strong> the lesson.</td>
+        </tr>
+        <tr>
+          <td><strong>Two subjects with <em>and</em></strong></td>
+          <td>Usually plural</td>
+          <td>Tom and Jerry <strong>are</strong> friends.</td>
+        </tr>
+        <tr>
+          <td><strong>One combined idea</strong></td>
+          <td>Sometimes singular (one “thing”) <span class="tag">meaning</span></td>
+          <td>Peanut butter and jelly <strong>is</strong> my favorite sandwich.</td>
+        </tr>
+        <tr>
+          <td><strong>There is / There are</strong></td>
+          <td>Agree with the noun after <em>there</em></td>
+          <td>There <strong>is</strong> a problem. / There <strong>are</strong> many problems.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Indefinite Pronouns</h3>
+  <p>
+    Some pronouns are usually <strong>singular</strong> (everyone, somebody, each),
+    some are usually <strong>plural</strong> (many, few), and some depend on what comes after them (all, some, most).
+  </p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Indefinite pronouns and agreement">
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Examples</th>
+          <th>Verb Agreement</th>
+          <th>Sentence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Usually singular</strong></td>
+          <td>everyone, somebody, each, nobody</td>
+          <td><strong>singular</strong></td>
+          <td>Everyone <strong>is</strong> ready. / Each student <strong>has</strong> a book.</td>
+        </tr>
+        <tr>
+          <td><strong>Usually plural</strong></td>
+          <td>many, few, several</td>
+          <td><strong>plural</strong></td>
+          <td>Many <strong>are</strong> absent. / Few <strong>have</strong> finished.</td>
+        </tr>
+        <tr>
+          <td><strong>Depends on the noun</strong> <span class="tag">all / some / most</span></td>
+          <td>all (of), some (of), most (of)</td>
+          <td>match the noun</td>
+          <td>All of the cake <strong>is</strong> gone. / All of the students <strong>are</strong> here.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) Pronoun–Antecedent Agreement</h2>
+  <p>
+    A pronoun must agree with the noun it replaces (the <strong>antecedent</strong>) in
+    <strong>number</strong> and usually <strong>gender</strong>.
+  </p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Pronoun antecedent agreement examples">
+      <thead>
+        <tr>
+          <th>Antecedent</th>
+          <th>Pronoun</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Maria</strong> (singular, female)</td>
+          <td><strong>her</strong></td>
+          <td>Maria lost <strong>her</strong> keys.</td>
+        </tr>
+        <tr>
+          <td><strong>the boys</strong> (plural)</td>
+          <td><strong>their</strong></td>
+          <td>The boys forgot <strong>their</strong> homework.</td>
+        </tr>
+        <tr>
+          <td><strong>every student</strong> (singular, any gender)</td>
+          <td><strong>their</strong> <span class="tag">common</span></td>
+          <td>Every student must bring <strong>their</strong> ID.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note">
+    <strong>Note:</strong> Singular <em>they</em> (<em>their / them</em>) is very common in modern English,
+    especially when the gender is unknown or not important.
+  </p>
+
+  <h2>3) Demonstrative Agreement</h2>
+  <p>Demonstratives must match the noun in number:</p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Demonstratives and agreement">
+      <thead>
+        <tr>
+          <th>Singular</th>
+          <th>Plural</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>this</strong>, <strong>that</strong></td>
+          <td><strong>these</strong>, <strong>those</strong></td>
+          <td>
+            <strong>This</strong> phone is new. / <strong>These</strong> phones are new.<br>
+            <strong>That</strong> car is fast. / <strong>Those</strong> cars are fast.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4) Common Mistakes</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common mistakes in agreement">
+      <thead>
+        <tr><th>❌ Wrong</th><th>✅ Correct</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>She <em>work</em> every day.</td>
+          <td>She <strong>works</strong> every day.</td>
+          <td>He/She/It in present simple usually needs <strong>-s</strong>.</td>
+        </tr>
+        <tr>
+          <td>There <em>are</em> a problem.</td>
+          <td>There <strong>is</strong> a problem.</td>
+          <td>Agree with the noun after <em>there</em> (<em>a problem</em> = singular).</td>
+        </tr>
+        <tr>
+          <td>Everyone <em>are</em> here.</td>
+          <td>Everyone <strong>is</strong> here.</td>
+          <td><em>Everyone</em> is treated as singular.</td>
+        </tr>
+        <tr>
+          <td>This <em>books</em> are interesting.</td>
+          <td><strong>These</strong> books are interesting.</td>
+          <td><em>Books</em> is plural → use <strong>these</strong>.</td>
+        </tr>
+        <tr>
+          <td>My friend forgot <em>their</em> phone. (one friend, male, known)</td>
+          <td>My friend forgot <strong>his</strong> phone. (or <strong>their</strong>, if gender isn’t important)</td>
+          <td>Use a pronoun that matches meaning and context.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>5) Real-life Usage</h2>
+  <div class="example">
+    My manager <strong>checks</strong> emails early.<br>
+    The managers <strong>check</strong> emails early.<br>
+    There <strong>are</strong> two meetings today.<br>
+    Everyone <strong>has</strong> a role in the project.<br>
+    These documents are important—please read <strong>them</strong>.
+  </div>
+
+  <h2>6) Quick Tips</h2>
+  <ul>
+    <li>Find the <strong>main subject</strong>, then choose the correct verb form.</li>
+    <li>Be careful when the subject is far from the verb: <em>The list of names</em> <strong>is</strong> on the table.</li>
+    <li>With <strong>there is/are</strong>, look at the noun that comes next.</li>
+    <li>Use <strong>this/that</strong> for singular nouns and <strong>these/those</strong> for plural nouns.</li>
+    <li>Use <strong>singular they</strong> when the person’s gender is unknown or not important.</li>
+  </ul>
+</div>
+
+<div class="buttons" style="margin-top: -0.5rem; margin-bottom: 2.5rem; display:flex; justify-content:center; gap:1rem;">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

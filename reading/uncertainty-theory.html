@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Uncertainty Theory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body{
+            display:flex; flex-direction:column; min-height:100vh; margin:0;
+            font-family:'Segoe UI', sans-serif; background-color:#f0f4f8; color:#333;
+        }
+        main{ flex:1; max-width:800px; margin:auto; padding:1rem; }
+        nav{ background-color:#124076; padding:0.8rem 1rem; width:100%; }
+        .nav-container{
+            display:flex; justify-content:space-between; align-items:center;
+            max-width:1100px; margin:0 auto;
+        }
+        .logo{ display:flex; align-items:center; text-decoration:none; }
+        .logo-img{ width:32px; height:32px; margin-right:0.5rem; }
+        .site-name{ font-family:'Poppins', sans-serif; font-size:1.3rem; color:#ff9800; font-weight:bold; }
+        .nav-links{ display:flex; gap:1.5rem; }
+        .nav-links a{ color:white; text-decoration:none; font-weight:bold; transition:color 0.2s; }
+        .nav-links a:hover{ color:#ffbb33; text-decoration:underline; }
+
+        h1{ text-align:center; font-size:2.2rem; margin:2rem auto 1rem; color:#2c3e50; }
+        h2{ color:#124076; margin-top:1.5rem; text-align:center; }
+        p{ line-height:1.6; margin:0.6rem 0; }
+
+        .content-section{
+            background:#fff; border-radius:8px; padding:1.5rem;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:2rem;
+        }
+        .reading-text p{ text-indent:1.5rem; }
+
+        .vocabulary-list ul{ list-style:none; padding-left:0; }
+        .vocabulary-list li{
+            background:#fdfdff; border:1px solid #e0e0e0; border-radius:6px;
+            margin-bottom:10px; padding:12px 15px; display:flex; align-items:center; gap:10px;
+            flex-wrap:wrap;
+        }
+        .vocabulary-list strong{ color:#124076; margin-right:8px; }
+        .speaker-icon{ color:#3498db; cursor:pointer; margin-left:5px; }
+
+        .questions ol{ padding-left:1.2rem; }
+        .questions li{ margin:0.8rem 0; }
+
+        input[type="text"]{
+            padding:4px 6px; border-radius:4px; border:1px solid #ccc;
+            min-width:140px;
+        }
+        .tf-options{ margin-top:0.3rem; }
+        .tf-options label{ margin-right:1rem; }
+
+        .buttons{ text-align:center; margin:2rem auto; }
+        .buttons a{
+            text-decoration:none; background:#3498db; color:white;
+            padding:0.7rem 1.2rem; border-radius:8px; font-weight:bold;
+            margin:0 0.5rem;
+        }
+        .buttons a:hover{ background:#2980b9; }
+
+        @media (max-width:640px){
+            .nav-links{ display:none; }
+            h1{ font-size:1.6rem; }
+            main{ padding:0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Living with Uncertainty: What Science Tells Us About the Unknown</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <h2>Article for Intermediate ESL Adults</h2>
+
+            <p>We make decisions every day without knowing exactly what will happen. Will it rain today? Will I get the job? Will this investment be a good idea? For thousands of years, people believed that <strong>uncertainty</strong> was simply a problem — something to overcome. But modern science tells us a different story. Uncertainty is not just a problem. It is a fundamental part of reality.</p>
+
+            <p><strong>Uncertainty theory</strong> is a branch of mathematics developed by Chinese scholar Baoding Liu in 2007. It was created to help us measure and work with situations where we do not have enough data or past experience to calculate exact <strong>probabilities</strong>. A probability is the mathematical chance that something will happen. For example, when you flip a coin, there is a 50% probability it lands on heads — because we have tested this thousands of times.</p>
+
+            <p>But what about situations where we have no past data? What is the probability that a brand-new type of business will succeed? What is the chance that a new medicine will cure a disease no one has treated before? In these cases, we cannot calculate an exact probability. Instead, we must rely on <strong>expert belief</strong> — the careful judgment of experienced people. Uncertainty theory gives us mathematical tools to work with this kind of belief in a logical and consistent way.</p>
+
+            <p>One key idea in uncertainty theory is called the <strong>uncertainty measure</strong>. This is a number between 0 and 1 that represents how confident an expert is that something will happen. A measure of 0 means the expert believes it is impossible. A measure of 1 means the expert believes it is certain. Numbers in between represent different degrees of belief. For example, an experienced engineer might say: "I believe there is an uncertainty measure of 0.8 that this bridge design will last 100 years."</p>
+
+            <p>Uncertainty theory has real-world applications in many fields. Engineers use it to design safer systems when they cannot test every possible condition. Doctors use similar thinking to make treatment decisions for rare diseases. Business leaders use it to <strong>estimate</strong> — or carefully guess — what future conditions will look like. In all of these cases, the goal is the same: making the best possible decision with incomplete information.</p>
+
+            <p>Perhaps the most important lesson from uncertainty theory is that uncertainty is not a weakness. It is simply the nature of life. The ancient Greek philosopher Socrates once said that wisdom begins with knowing what you do not know. Modern science agrees. Accepting uncertainty does not mean giving up. It means being honest about the limits of our knowledge while still taking action.</p>
+
+            <p>In conclusion, uncertainty theory is a powerful tool that helps scientists, engineers, and everyday people think more clearly about the unknown. Whether you are planning your future, making a business decision, or simply deciding what to do this weekend, learning to think logically about uncertainty is one of the most valuable skills you can develop.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>uncertainty</strong> <i class="fas fa-volume-up speaker-icon" data-word="uncertainty"></i> — The state of not knowing what will happen.</li>
+                <li><strong>predict</strong> <i class="fas fa-volume-up speaker-icon" data-word="predict"></i> — To say what you think will happen in the future.</li>
+                <li><strong>probability</strong> <i class="fas fa-volume-up speaker-icon" data-word="probability"></i> — The mathematical chance that something will happen.</li>
+                <li><strong>estimate</strong> <i class="fas fa-volume-up speaker-icon" data-word="estimate"></i> — To make a careful guess using available information.</li>
+                <li><strong>fundamental</strong> <i class="fas fa-volume-up speaker-icon" data-word="fundamental"></i> — Basic and very important.</li>
+                <li><strong>data</strong> <i class="fas fa-volume-up speaker-icon" data-word="data"></i> — Facts and information collected for study.</li>
+                <li><strong>expert</strong> <i class="fas fa-volume-up speaker-icon" data-word="expert"></i> — A person with a lot of knowledge or skill in a subject.</li>
+                <li><strong>measure</strong> <i class="fas fa-volume-up speaker-icon" data-word="measure"></i> — A way to find the size, amount, or degree of something.</li>
+                <li><strong>consistent</strong> <i class="fas fa-volume-up speaker-icon" data-word="consistent"></i> — Always the same; following the same rules.</li>
+                <li><strong>application</strong> <i class="fas fa-volume-up speaker-icon" data-word="application"></i> — A practical use of something in real life.</li>
+                <li><strong>incomplete</strong> <i class="fas fa-volume-up speaker-icon" data-word="incomplete"></i> — Not finished or not having all the parts.</li>
+                <li><strong>logical</strong> <i class="fas fa-volume-up speaker-icon" data-word="logical"></i> — Based on clear thinking and good reasons.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Uncertainty theory was developed by a Chinese scholar. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Probability and uncertainty measure mean exactly the same thing. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    An uncertainty measure of 1 means something is certain to happen. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Uncertainty theory can only be used by engineers. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    According to the article, accepting uncertainty means giving up. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Uncertainty theory is a branch of <input type="text" placeholder="subject">.
+                </li>
+                <li>
+                    The theory was developed by Baoding Liu in <input type="text" placeholder="year">.
+                </li>
+                <li>
+                    An uncertainty measure is a number between <input type="text" placeholder="numbers">.
+                </li>
+                <li>
+                    When we cannot use data, we rely on <input type="text" placeholder="two words"> belief.
+                </li>
+                <li>
+                    The philosopher <input type="text" placeholder="name"> said wisdom begins with knowing what you do not know.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // pronunciation for vocabulary words
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+
+        // keyboard accessibility for speaker icons
+        document.querySelectorAll('.speaker-icon').forEach(icon => {
+            icon.setAttribute('tabindex', '0');
+            icon.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    icon.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

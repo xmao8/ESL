@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>English Verb Forms – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin: 1.4rem 0 0.8rem; font-size: 1.45rem; }
+    .content-container h3 { color: #124076; margin: 1.2rem 0 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem; margin: 1rem 0; border-radius: 6px; }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag { display: inline-block; background: #fff3cd; color: #8a6d3b; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; margin-left: 6px; }
+
+    .mini { margin-top: 0.4rem; font-size: 0.98rem; color: #444; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>English Verb Forms</h1>
+
+<div class="content-container">
+  <p>
+    Verbs are one of the most important parts of any sentence. They tell us what happens, what someone does,
+    or what someone is. In English, verb forms change to show <strong>time (tense)</strong>,
+    <strong>aspect</strong> (progress or completion), <strong>voice</strong> (active or passive),
+    <strong>mood</strong> (reality, possibility, command), and <strong>agreement</strong> (subject–verb matching).
+    Understanding verb forms helps learners speak and write more clearly and accurately.
+  </p>
+
+  <h2>1) The Five Main Verb Forms</h2>
+  <p>Most English verbs have <strong>five main forms</strong>:</p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Five main English verb forms">
+      <thead>
+        <tr>
+          <th>Form</th>
+          <th>What it is</th>
+          <th>Examples</th>
+          <th>Common use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Base form</strong></td>
+          <td>The simple form of the verb</td>
+          <td>walk, eat, study</td>
+          <td>Present simple (I/you/we/they), infinitives (to walk)</td>
+        </tr>
+        <tr>
+          <td><strong>-s form</strong></td>
+          <td>3rd person singular present</td>
+          <td>walks, eats, studies</td>
+          <td>Present simple with <em>he/she/it</em></td>
+        </tr>
+        <tr>
+          <td><strong>Past</strong></td>
+          <td>Past tense form</td>
+          <td>walked, ate, studied</td>
+          <td>Past simple</td>
+        </tr>
+        <tr>
+          <td><strong>Past participle</strong></td>
+          <td>Used with <em>have</em> or in passive voice</td>
+          <td>walked, eaten, studied</td>
+          <td>Perfect tenses, passive</td>
+        </tr>
+        <tr>
+          <td><strong>-ing form</strong></td>
+          <td>Present participle / gerund form</td>
+          <td>walking, eating, studying</td>
+          <td>Continuous tenses, verb as a noun (Swimming is fun.)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2) Regular vs. Irregular Verbs</h2>
+  <p>
+    English verbs can be <strong>regular</strong> or <strong>irregular</strong>.
+    Regular verbs usually add <strong>-ed</strong> for the past and past participle.
+    Irregular verbs change in different ways, and you need to learn them.
+  </p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Regular and irregular verbs">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Pattern</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Regular</strong></td>
+          <td>Past = base + <strong>-ed</strong><br>Past participle = base + <strong>-ed</strong></td>
+          <td>work → worked → worked<br>play → played → played</td>
+        </tr>
+        <tr>
+          <td><strong>Irregular</strong></td>
+          <td>Past and past participle change (no single rule)</td>
+          <td>go → went → gone<br>eat → ate → eaten</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) Verb Forms in Sentences (Example: <em>eat</em>)</h2>
+  <div class="example" role="note" aria-label="Examples of eat in different verb forms">
+    I <strong>eat</strong> breakfast every day. <span class="tag">base form</span><br>
+    She <strong>eats</strong> at 7 a.m. <span class="tag">-s form</span><br>
+    Yesterday, we <strong>ate</strong> early. <span class="tag">past</span><br>
+    They have <strong>eaten</strong> already. <span class="tag">past participle</span><br>
+    He is <strong>eating</strong> now. <span class="tag">-ing form</span>
+  </div>
+
+  <h2>4) Tense, Aspect, and Voice (Simple Overview)</h2>
+  <p>
+    Verb forms work together with helping verbs (auxiliaries) like <strong>be</strong> and <strong>have</strong>.
+    Here are common patterns:
+  </p>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common verb patterns in English">
+      <thead>
+        <tr>
+          <th>Meaning</th>
+          <th>Pattern</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Simple (fact / routine)</strong></td>
+          <td>base / -s / past</td>
+          <td>I work. / She works. / I worked.</td>
+        </tr>
+        <tr>
+          <td><strong>Continuous (in progress)</strong></td>
+          <td>be + <strong>-ing</strong></td>
+          <td>I am working. / They were working.</td>
+        </tr>
+        <tr>
+          <td><strong>Perfect (completed before now/then)</strong></td>
+          <td>have + <strong>past participle</strong></td>
+          <td>I have worked. / She had worked.</td>
+        </tr>
+        <tr>
+          <td><strong>Passive (focus on the object)</strong></td>
+          <td>be + <strong>past participle</strong></td>
+          <td>The email was sent. / The rooms are cleaned.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>5) Common Mistakes</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common verb form mistakes">
+      <thead>
+        <tr><th>❌ Wrong</th><th>✅ Correct</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>He <em>eat</em> lunch at noon.</td>
+          <td>He <strong>eats</strong> lunch at noon.</td>
+          <td>With <em>he/she/it</em> in present simple, use <strong>-s</strong>.</td>
+        </tr>
+        <tr>
+          <td>I have <em>ate</em> already.</td>
+          <td>I have <strong>eaten</strong> already.</td>
+          <td><em>Have</em> + <strong>past participle</strong> (not past tense).</td>
+        </tr>
+        <tr>
+          <td>She is <em>study</em> now.</td>
+          <td>She is <strong>studying</strong> now.</td>
+          <td><em>Be</em> + <strong>-ing</strong> for actions in progress.</td>
+        </tr>
+        <tr>
+          <td>The cake <em>eat</em> yesterday.</td>
+          <td>The cake <strong>was eaten</strong> yesterday.</td>
+          <td>Passive voice: <em>be</em> + past participle.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>6) Quick Tips</h2>
+  <ul>
+    <li>Learn the <strong>five main forms</strong> for high-frequency verbs (especially irregular verbs).</li>
+    <li>Check for <strong>helping verbs</strong>: <em>be</em> often means <strong>-ing</strong>, <em>have</em> often means <strong>past participle</strong>.</li>
+    <li>In present simple, remember: <strong>he/she/it + -s</strong>.</li>
+    <li>Use the <strong>past participle</strong> after <em>have</em> and in <strong>passive voice</strong>.</li>
+    <li>Practice verb forms in sentences, not only as a list.</li>
+  </ul>
+</div>
+
+<div class="buttons" style="margin-top: -0.5rem; margin-bottom: 2.5rem; display:flex; justify-content:center; gap:1rem;">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

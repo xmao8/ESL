@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice: Verb Forms (Jobs & Health) – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) {
+      .menu-toggle { display: none; }
+    }
+
+    h1 { margin: 2rem auto 1rem; color: #2c3e50; max-width: 900px; }
+    .subtitle { margin: 0 auto 1.2rem; max-width: 900px; color: #555; }
+
+    .content-container {
+      background: white; width: 90%; max-width: 900px; margin: 1.5rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.05rem;
+    }
+
+    .instructions {
+      background: #eef6ff;
+      border-left: 4px solid #3498db;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.2rem;
+      color: #1f3b57;
+    }
+
+    .question {
+      border: 1px solid #e6e6ef;
+      border-radius: 10px;
+      padding: 1rem 1rem 0.8rem;
+      margin: 0.9rem 0;
+      background: #fcfcff;
+    }
+    .q-title { font-weight: 700; color: #124076; margin-bottom: 0.6rem; }
+    .options { margin: 0.2rem 0 0.4rem; }
+    .options label {
+      display: block;
+      padding: 0.35rem 0.4rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .options label:hover { background: #f1f6ff; }
+    .options input { margin-right: 0.5rem; }
+
+    .buttons {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      justify-content: center;
+      margin: 1.5rem auto 2.2rem;
+      max-width: 900px;
+    }
+    button, .link-btn {
+      border: none;
+      background: #3498db;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, .link-btn:hover { background: #2980b9; }
+    .secondary { background: #6c757d; }
+    .secondary:hover { background: #5a6268; }
+
+    .results {
+      max-width: 900px;
+      width: 90%;
+      margin: 0.5rem auto 2rem;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: left;
+      display: none;
+    }
+    .score {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #124076;
+      margin-bottom: 0.6rem;
+    }
+    .feedback {
+      margin: 0.3rem 0;
+      padding: 0.6rem 0.7rem;
+      border-radius: 10px;
+      border: 1px solid #eee;
+    }
+    .correct { background: #e8f5e9; border-left: 4px solid #4CAF50; }
+    .wrong { background: #ffebee; border-left: 4px solid #e53935; }
+    .ans { font-weight: 800; }
+    .note { color: #555; font-size: 0.95rem; margin-top: 0.3rem; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Practice: Verb Forms (Jobs & Health)</h1>
+<p class="subtitle">20 multiple-choice questions • Choose the best verb form.</p>
+
+<div class="content-container">
+  <div class="instructions">
+    <strong>Instructions:</strong> Read each sentence and choose the correct answer (A, B, C, or D).
+    Then click <strong>Check Answers</strong>.
+  </div>
+
+  <!-- QUESTIONS -->
+  <form id="quizForm">
+
+    <div class="question">
+      <div class="q-title">1) My manager usually _______ emails before 9 a.m.</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A) check</label>
+        <label><input type="radio" name="q1" value="B"> B) checks</label>
+        <label><input type="radio" name="q1" value="C"> C) checking</label>
+        <label><input type="radio" name="q1" value="D"> D) checked</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">2) Right now, the nurse _______ the patient’s temperature.</div>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A) takes</label>
+        <label><input type="radio" name="q2" value="B"> B) took</label>
+        <label><input type="radio" name="q2" value="C"> C) is taking</label>
+        <label><input type="radio" name="q2" value="D"> D) has took</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">3) Yesterday, I _______ late because I had a headache.</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> A) arrive</label>
+        <label><input type="radio" name="q3" value="B"> B) arrived</label>
+        <label><input type="radio" name="q3" value="C"> C) arriving</label>
+        <label><input type="radio" name="q3" value="D"> D) have arrived</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">4) The doctor has already _______ the test results.</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> A) read</label>
+        <label><input type="radio" name="q4" value="B"> B) reads</label>
+        <label><input type="radio" name="q4" value="C"> C) reading</label>
+        <label><input type="radio" name="q4" value="D"> D) readed</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">5) We _______ a safety meeting every Monday morning.</div>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> A) have</label>
+        <label><input type="radio" name="q5" value="B"> B) are having</label>
+        <label><input type="radio" name="q5" value="C"> C) had</label>
+        <label><input type="radio" name="q5" value="D"> D) has</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">6) She _______ to the gym three times a week for her health.</div>
+      <div class="options">
+        <label><input type="radio" name="q6" value="A"> A) go</label>
+        <label><input type="radio" name="q6" value="B"> B) goes</label>
+        <label><input type="radio" name="q6" value="C"> C) going</label>
+        <label><input type="radio" name="q6" value="D"> D) gone</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">7) I can’t talk now. I _______ with a client.</div>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A) talk</label>
+        <label><input type="radio" name="q7" value="B"> B) talked</label>
+        <label><input type="radio" name="q7" value="C"> C) am talking</label>
+        <label><input type="radio" name="q7" value="D"> D) have talk</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">8) By the time I got to work, my coworker had already _______ the report.</div>
+      <div class="options">
+        <label><input type="radio" name="q8" value="A"> A) finish</label>
+        <label><input type="radio" name="q8" value="B"> B) finished</label>
+        <label><input type="radio" name="q8" value="C"> C) finishing</label>
+        <label><input type="radio" name="q8" value="D"> D) finishes</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">9) The medicine _______ by the pharmacist every day.</div>
+      <div class="options">
+        <label><input type="radio" name="q9" value="A"> A) prepares</label>
+        <label><input type="radio" name="q9" value="B"> B) is prepared</label>
+        <label><input type="radio" name="q9" value="C"> C) prepared</label>
+        <label><input type="radio" name="q9" value="D"> D) is prepare</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">10) I _______ coffee this week because my doctor advised me to cut back.</div>
+      <div class="options">
+        <label><input type="radio" name="q10" value="A"> A) don’t drink</label>
+        <label><input type="radio" name="q10" value="B"> B) didn’t drink</label>
+        <label><input type="radio" name="q10" value="C"> C) am not drinking</label>
+        <label><input type="radio" name="q10" value="D"> D) haven’t drank</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">11) She _______ at this hospital since 2021.</div>
+      <div class="options">
+        <label><input type="radio" name="q11" value="A"> A) works</label>
+        <label><input type="radio" name="q11" value="B"> B) has worked</label>
+        <label><input type="radio" name="q11" value="C"> C) worked</label>
+        <label><input type="radio" name="q11" value="D"> D) is work</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">12) The receptionist _______ the appointments yesterday.</div>
+      <div class="options">
+        <label><input type="radio" name="q12" value="A"> A) confirms</label>
+        <label><input type="radio" name="q12" value="B"> B) confirmed</label>
+        <label><input type="radio" name="q12" value="C"> C) has confirm</label>
+        <label><input type="radio" name="q12" value="D"> D) confirming</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">13) The patient _______ to the clinic by a coworker after the accident.</div>
+      <div class="options">
+        <label><input type="radio" name="q13" value="A"> A) drove</label>
+        <label><input type="radio" name="q13" value="B"> B) was driven</label>
+        <label><input type="radio" name="q13" value="C"> C) is drive</label>
+        <label><input type="radio" name="q13" value="D"> D) driving</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">14) If you _______ sick, you should stay home and rest.</div>
+      <div class="options">
+        <label><input type="radio" name="q14" value="A"> A) feel</label>
+        <label><input type="radio" name="q14" value="B"> B) felt</label>
+        <label><input type="radio" name="q14" value="C"> C) are feeling</label>
+        <label><input type="radio" name="q14" value="D"> D) have felt</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">15) We _______ our hands before we prepare food at work.</div>
+      <div class="options">
+        <label><input type="radio" name="q15" value="A"> A) wash</label>
+        <label><input type="radio" name="q15" value="B"> B) washes</label>
+        <label><input type="radio" name="q15" value="C"> C) washed</label>
+        <label><input type="radio" name="q15" value="D"> D) washing</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">16) The forms must be _______ by Friday afternoon.</div>
+      <div class="options">
+        <label><input type="radio" name="q16" value="A"> A) complete</label>
+        <label><input type="radio" name="q16" value="B"> B) completed</label>
+        <label><input type="radio" name="q16" value="C"> C) completing</label>
+        <label><input type="radio" name="q16" value="D"> D) completes</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">17) I _______ my lunch yet, so I feel low energy.</div>
+      <div class="options">
+        <label><input type="radio" name="q17" value="A"> A) don’t eat</label>
+        <label><input type="radio" name="q17" value="B"> B) didn’t eat</label>
+        <label><input type="radio" name="q17" value="C"> C) haven’t eaten</label>
+        <label><input type="radio" name="q17" value="D"> D) am eaten</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">18) While the trainer _______ the exercise, everyone watched carefully.</div>
+      <div class="options">
+        <label><input type="radio" name="q18" value="A"> A) explains</label>
+        <label><input type="radio" name="q18" value="B"> B) explained</label>
+        <label><input type="radio" name="q18" value="C"> C) was explaining</label>
+        <label><input type="radio" name="q18" value="D"> D) has explained</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">19) The new schedule _______ next week, so please check your shifts.</div>
+      <div class="options">
+        <label><input type="radio" name="q19" value="A"> A) starts</label>
+        <label><input type="radio" name="q19" value="B"> B) started</label>
+        <label><input type="radio" name="q19" value="C"> C) is starting</label>
+        <label><input type="radio" name="q19" value="D"> D) start</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-title">20) She looks tired because she _______ overtime all month.</div>
+      <div class="options">
+        <label><input type="radio" name="q20" value="A"> A) works</label>
+        <label><input type="radio" name="q20" value="B"> B) has been working</label>
+        <label><input type="radio" name="q20" value="C"> C) worked</label>
+        <label><input type="radio" name="q20" value="D"> D) is work</label>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="buttons">
+  <button type="button" id="checkBtn">✅ Check Answers</button>
+  <button type="button" class="secondary" id="resetBtn">🔄 Reset</button>
+  <a class="link-btn" href="../practice.html">⬅️ Back to Practices</a>
+  <a class="link-btn" href="../index.html">🏠 Home</a>
+</div>
+
+<div class="results" id="results" aria-live="polite"></div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Answer key
+  const answers = {
+    q1: "B",
+    q2: "C",
+    q3: "B",
+    q4: "A",
+    q5: "A",
+    q6: "B",
+    q7: "C",
+    q8: "B",
+    q9: "B",
+    q10: "C",
+    q11: "B",
+    q12: "B",
+    q13: "B",
+    q14: "A",
+    q15: "A",
+    q16: "B",
+    q17: "C",
+    q18: "C",
+    q19: "A",
+    q20: "B"
+  };
+
+  const explanations = {
+    q1: "Present simple with 'my manager' (he/she/it) → checks.",
+    q2: "Right now → present continuous: is taking.",
+    q3: "Yesterday → past simple: arrived.",
+    q4: "Present perfect: has + past participle. 'Read' is the same form.",
+    q5: "Routine (every Monday) → present simple: have.",
+    q6: "Present simple with she → goes.",
+    q7: "Now → present continuous: am talking.",
+    q8: "Past perfect: had + past participle → finished.",
+    q9: "Passive voice: is prepared.",
+    q10: "Temporary situation (this week) → present continuous: am not drinking.",
+    q11: "Since 2021 → present perfect: has worked.",
+    q12: "Yesterday → past simple: confirmed.",
+    q13: "Passive voice in the past: was driven.",
+    q14: "General condition: If you feel sick…",
+    q15: "Habit/rule at work → present simple: wash.",
+    q16: "Passive: must be completed.",
+    q17: "Yet → present perfect: haven’t eaten.",
+    q18: "Background action in the past: was explaining.",
+    q19: "Future schedule (timetable) → present simple: starts.",
+    q20: "All month (up to now) with ongoing result → present perfect continuous: has been working."
+  };
+
+  const checkBtn = document.getElementById('checkBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const resultsDiv = document.getElementById('results');
+
+  function getSelected(name) {
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return checked ? checked.value : null;
+  }
+
+  checkBtn.addEventListener('click', () => {
+    let score = 0;
+    let output = `<div class="score">Your Score: `;
+
+    for (let i = 1; i <= 20; i++) {
+      const qName = `q${i}`;
+      const selected = getSelected(qName);
+      const correct = answers[qName];
+
+      const isCorrect = selected === correct;
+      if (isCorrect) score++;
+
+      const selectedText = selected ? selected : "No answer";
+      const blockClass = isCorrect ? "feedback correct" : "feedback wrong";
+
+      output += ``; // score added after loop
+
+      output += `
+        <div class="${blockClass}">
+          <div><strong>Q${i}.</strong> Your answer: <span class="ans">${selectedText}</span>
+          ${isCorrect ? "✅" : `❌ (Correct: <span class="ans">${correct}</span>)`}</div>
+          <div class="note">${explanations[qName]}</div>
+        </div>
+      `;
+    }
+
+    output = `<div class="score">Your Score: ${score} / 20</div>` + output.split('</div>').slice(1).join('</div>');
+
+    resultsDiv.innerHTML = output;
+    resultsDiv.style.display = "block";
+    resultsDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    document.getElementById('quizForm').reset();
+    resultsDiv.style.display = "none";
+    resultsDiv.innerHTML = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Choice - ESLnote Conversations</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+
+    body{
+      font-family:'Segoe UI',sans-serif;
+      background:#f4f4f9;
+      text-align:center;
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+      color:#2c3e50;
+    }
+
+    nav{ background:#124076; margin:0; padding:0; }
+    .nav-container{
+      display:flex; align-items:center; justify-content:space-between;
+      width:100%; max-width:1100px; margin:0 auto; padding:0.8rem 1rem;
+    }
+    .logo{
+      display:flex; align-items:center; color:#ff9800;
+      font-family:'Poppins',sans-serif; font-weight:700;
+      font-size:1.3rem; text-decoration:none;
+    }
+    .logo-img{ width:32px; height:32px; margin-right:0.5rem; }
+    .nav-links{ display:flex; gap:1rem; }
+    .nav-links a{
+      color:white; font-weight:700; text-decoration:none;
+      transition:color 0.2s ease;
+    }
+    .nav-links a:hover,.nav-links a:focus{ color:#ffbb33; outline:none; }
+
+    .menu-toggle{
+      display:none; flex-direction:column; gap:5px;
+      background:none; border:none; cursor:pointer; padding:0;
+    }
+    .menu-toggle .bar{ width:25px; height:3px; background:white; border-radius:2px; }
+
+    /* Responsive nav */
+    @media (max-width: 600px){
+      .nav-links{
+        position:fixed; top:56px; right:0; background:#124076;
+        flex-direction:column; width:100%; height:calc(100vh - 56px);
+        padding:1rem 1.5rem 2rem; gap:1.2rem; overflow-y:auto;
+        transform:translateX(100%); transition:transform 0.3s ease;
+        border-radius:0 0 0 10px; z-index:999; align-items:flex-start;
+      }
+      .nav-links.active{ transform:translateX(0); }
+      .menu-toggle{ display:flex; }
+      h1,.content-container,.buttons{ padding:0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px){
+      .nav-container{ padding:0.8rem 1.5rem; }
+      .nav-links{
+        position:static; flex-direction:row; background:none;
+        height:auto; width:auto; padding:0; gap:1.3rem; transform:none !important;
+      }
+      .menu-toggle{ display:none; }
+      h1,.content-container,.buttons{ padding:0 1.5rem; }
+    }
+    @media (min-width: 901px){
+      .nav-container{ max-width:1100px; margin:0 auto; padding:0.8rem 1rem; }
+      .nav-links{
+        position:static; flex-direction:row; background:none;
+        height:auto; width:auto; padding:0; gap:1.5rem; transform:none !important;
+      }
+      .menu-toggle{ display:none; }
+      body{ padding:0; }
+      h1,.content-container,.buttons{ padding:0; }
+    }
+
+    /* Content */
+    h1{ margin:2rem auto 1.5rem auto; color:#2c3e50; max-width:900px; }
+    .content-container{
+      background:white; width:90%; max-width:900px; margin:2rem auto; padding:2rem;
+      border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      text-align:left; line-height:1.65; font-size:1.08rem;
+    }
+    .content-container h2{ color:#3498db; margin-top:1.5rem; margin-bottom:0.8rem; font-size:1.6rem; }
+    .content-container h3{ color:#124076; margin-top:1.2rem; margin-bottom:0.6rem; font-size:1.3rem; }
+    .content-container p{ margin-bottom:0.9rem; }
+    .content-container strong{ color:#124076; }
+
+    .scene-direction{
+      font-style:italic; color:#555; margin:1rem 0; text-align:center;
+    }
+
+    .character-info{
+      margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px dashed #ccc;
+    }
+    .character-info ul{ list-style:none; padding:0; margin:0; }
+    .character-info li{ margin-bottom:0.25rem; }
+
+    .conversation-script p{ margin-bottom:0.8rem; }
+    .conversation-script strong{
+      display:inline-block; width:130px; text-align:right; margin-right:10px; color:#124076;
+    }
+    .conversation-script .dialogue{ display:inline; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul{ list-style-type:disc; padding-left:25px; }
+    .vocabulary-list li{ margin-bottom:0.85rem; }
+    .vocabulary-list .vocab-word{
+      font-weight:bold; color:#124076; display:inline-flex; align-items:center; gap:8px;
+    }
+    .vocabulary-list .speaker-icon{
+      cursor:pointer; font-size:1.1rem; color:#3498db; user-select:none;
+      transition:color 0.2s; border:none; background:none; padding:0;
+    }
+    .vocabulary-list .speaker-icon:hover{ color:#2980b9; }
+    .vocabulary-list .ipa{ font-family:Arial,sans-serif; font-style:italic; color:#666; margin-left:5px; }
+    .vocabulary-list .definition{ display:block; margin-top:0.2rem; font-size:0.95rem; color:#333; }
+    .vocabulary-list .example{ display:block; font-style:italic; font-size:0.9em; color:#555; margin-top:0.3em; }
+
+    /* Buttons */
+    .buttons{
+      margin:2rem auto 3rem auto; display:flex; justify-content:center; gap:1rem; max-width:600px;
+    }
+    .buttons a{
+      padding:0.6rem 1.2rem; background:#3498db; color:white;
+      border:none; border-radius:8px; font-weight:bold; text-decoration:none;
+      display:inline-block; user-select:none;
+    }
+    .buttons a:hover{ background:#2980b9; }
+
+    /* Teacher tip box */
+    .teacher-tip{
+      margin-top:1.2rem;
+      padding:1rem;
+      background:#f0f7ff;
+      border-left:5px solid #3498db;
+      border-radius:10px;
+      color:#2c3e50;
+    }
+    .teacher-tip strong{ color:#124076; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Big Choice</h1>
+
+<div class="content-container">
+
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>MAYA:</strong> A careful adult learner in her 30s. She wants stability but also growth.</li>
+      <li><strong>OMAR:</strong> Maya’s friend and classmate. Practical and focused on money and time.</li>
+      <li><strong>MS. KIM:</strong> Their ESL teacher. Calm, supportive, and asks helpful questions.</li>
+    </ul>
+  </div>
+
+  <div class="conversation-script" role="dialog" aria-label="Big Choice drama script">
+
+    <h3>Scene 1</h3>
+    <p class="scene-direction">After class. MAYA sits at a table with a paper in her hand. OMAR walks over with his backpack.</p>
+
+    <p><strong>OMAR:</strong> <span class="dialogue">Maya, you look serious. Everything okay?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">I got an email today. A company offered me a new job.</span></p>
+    <p><strong>OMAR:</strong> <span class="dialogue">That’s great! So… you will take it?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">I don’t know. It pays more, but it’s far. Two buses each way.</span></p>
+    <p><strong>OMAR:</strong> <span class="dialogue">More money is more money. If it’s a better salary, maybe you should do it.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Maybe. But my current job is close, and my manager is kind. Also, I’m taking English classes at night. If I’m tired, my English will get worse, not better.</span></p>
+
+    <p class="scene-direction">MS. KIM walks by and hears the last sentence. She stops and smiles.</p>
+
+    <p><strong>MS. KIM:</strong> <span class="dialogue">Hi, you two. Sounds like a big decision.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Yes. I feel stuck. I want a better future, but I’m scared to change.</span></p>
+
+    <h3>Scene 2</h3>
+    <p class="scene-direction">Same table. MS. KIM sits with them. She takes out a small notebook.</p>
+
+    <p><strong>MS. KIM:</strong> <span class="dialogue">Let’s slow down. First, what are your options?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Option one: stay at my current job. Option two: take the new job.</span></p>
+    <p><strong>OMAR:</strong> <span class="dialogue">Option three: take the new job but ask for a later start time. Less stress in the morning.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Or ask if I can work from home one day a week. That could help.</span></p>
+    <p><strong>MS. KIM:</strong> <span class="dialogue">Good. Now, what matters most to you? Money? Time? Learning? Health?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Time and learning. I want to improve my English and get a better job later. But I also need money for rent.</span></p>
+    <p><strong>OMAR:</strong> <span class="dialogue">If you take the new job, you might earn more now. But the commute is expensive too—bus pass, lunch, maybe childcare.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Exactly! I’m afraid the higher salary will disappear.</span></p>
+
+    <h3>Scene 3</h3>
+    <p class="scene-direction">MS. KIM points to the paper in MAYA’s hand. MAYA looks more confident.</p>
+
+    <p><strong>MS. KIM:</strong> <span class="dialogue">Here’s my teacher advice: don’t choose when you feel rushed. Ask questions first.</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">So I should email them?</span></p>
+    <p><strong>MS. KIM:</strong> <span class="dialogue">Yes. Ask about flexible hours, remote work, and training. Then compare the real costs and benefits.</span></p>
+    <p><strong>OMAR:</strong> <span class="dialogue">And if they say no?</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">Then I’ll stay where I am—for now. But I’ll keep studying and applying. I don’t have to choose fear or money. I can choose a plan.</span></p>
+    <p><strong>MS. KIM:</strong> <span class="dialogue">(smiling) That’s a strong decision. Not perfect, but smart.</span></p>
+    <p><strong>OMAR:</strong> <span class="dialogue">Look at you—making decisions in English!</span></p>
+    <p><strong>MAYA:</strong> <span class="dialogue">(laughing) Step by step, Omar. Step by step.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Option <button class="speaker-icon" onclick="speakWord('Option')" aria-label="Pronounce Option">🔊</button></span>
+        <span class="ipa">/ˈɒpʃən/</span>
+        <span class="definition">(n.) a choice you can make.</span>
+        <span class="example">Example: She has two options: stay or take the new job.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Offer <button class="speaker-icon" onclick="speakWord('Offer')" aria-label="Pronounce Offer">🔊</button></span>
+        <span class="ipa">/ˈɒfər/</span>
+        <span class="definition">(n.) a chance given to you, often for a job or help.</span>
+        <span class="example">Example: The company made her a job offer.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Commute <button class="speaker-icon" onclick="speakWord('Commute')" aria-label="Pronounce Commute">🔊</button></span>
+        <span class="ipa">/kəˈmjuːt/</span>
+        <span class="definition">(n./v.) travel from home to work and back.</span>
+        <span class="example">Example: Her commute is two buses each way.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Flexible <button class="speaker-icon" onclick="speakWord('Flexible')" aria-label="Pronounce Flexible">🔊</button></span>
+        <span class="ipa">/ˈflɛksəbəl/</span>
+        <span class="definition">(adj.) able to change easily to fit needs.</span>
+        <span class="example">Example: She asked for flexible hours.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Remote <button class="speaker-icon" onclick="speakWord('Remote')" aria-label="Pronounce Remote work')" aria-label="Pronounce Remote">🔊</button></span>
+        <span class="ipa">/rɪˈmoʊt/</span>
+        <span class="definition">(adj.) working from home or away from the office.</span>
+        <span class="example">Example: Remote work can reduce commute time.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Compare <button class="speaker-icon" onclick="speakWord('Compare')" aria-label="Pronounce Compare">🔊</button></span>
+        <span class="ipa">/kəmˈpɛr/</span>
+        <span class="definition">(v.) to look at two things and see differences.</span>
+        <span class="example">Example: Compare the costs and benefits.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Cost <button class="speaker-icon" onclick="speakWord('Cost')" aria-label="Pronounce Cost">🔊</button></span>
+        <span class="ipa">/kɒst/</span>
+        <span class="definition">(n.) how much money you need to pay for something.</span>
+        <span class="example">Example: The cost of commuting can be high.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Benefit <button class="speaker-icon" onclick="speakWord('Benefit')" aria-label="Pronounce Benefit">🔊</button></span>
+        <span class="ipa">/ˈbɛnɪfɪt/</span>
+        <span class="definition">(n.) a good result or advantage.</span>
+        <span class="example">Example: A higher salary is a benefit of the new job.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Rushed <button class="speaker-icon" onclick="speakWord('Rushed')" aria-label="Pronounce Rushed">🔊</button></span>
+        <span class="ipa">/rʌʃt/</span>
+        <span class="definition">(adj.) done too quickly, without enough time.</span>
+        <span class="example">Example: Don’t make a rushed decision.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Plan <button class="speaker-icon" onclick="speakWord('Plan')" aria-label="Pronounce Plan">🔊</button></span>
+        <span class="ipa">/plæn/</span>
+        <span class="definition">(n.) an idea for what you will do in the future.</span>
+        <span class="example">Example: She chose a plan: ask questions first.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="teacher-tip">
+    <strong>Teacher Tip:</strong> Pause after Scene 2 and ask students: “What should Maya do?” Put students in pairs to decide.
+    Then continue Scene 3 and compare their answers. For role-play practice, change the problem: new apartment, new school, or new schedule.
+  </div>
+
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

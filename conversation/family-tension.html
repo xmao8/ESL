@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Family Tension - ESLnote Conversations</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+
+    body{
+      font-family:'Segoe UI',sans-serif;
+      background:#f4f4f9;
+      text-align:center;
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+      color:#2c3e50;
+    }
+
+    nav{ background:#124076; margin:0; padding:0; }
+    .nav-container{
+      display:flex; align-items:center; justify-content:space-between;
+      width:100%; max-width:1100px; margin:0 auto; padding:0.8rem 1rem;
+    }
+    .logo{
+      display:flex; align-items:center; color:#ff9800;
+      font-family:'Poppins',sans-serif; font-weight:700;
+      font-size:1.3rem; text-decoration:none;
+    }
+    .logo-img{ width:32px; height:32px; margin-right:0.5rem; }
+    .nav-links{ display:flex; gap:1rem; }
+    .nav-links a{
+      color:white; font-weight:700; text-decoration:none;
+      transition:color 0.2s ease;
+    }
+    .nav-links a:hover,.nav-links a:focus{ color:#ffbb33; outline:none; }
+
+    .menu-toggle{
+      display:none; flex-direction:column; gap:5px;
+      background:none; border:none; cursor:pointer; padding:0;
+    }
+    .menu-toggle .bar{ width:25px; height:3px; background:white; border-radius:2px; }
+
+    @media (max-width: 600px){
+      .nav-links{
+        position:fixed; top:56px; right:0; background:#124076;
+        flex-direction:column; width:100%; height:calc(100vh - 56px);
+        padding:1rem 1.5rem 2rem; gap:1.2rem; overflow-y:auto;
+        transform:translateX(100%); transition:transform 0.3s ease;
+        border-radius:0 0 0 10px; z-index:999; align-items:flex-start;
+      }
+      .nav-links.active{ transform:translateX(0); }
+      .menu-toggle{ display:flex; }
+      h1,.content-container,.buttons{ padding:0 1rem; }
+    }
+
+    h1{ margin:2rem auto 1.5rem auto; color:#2c3e50; max-width:900px; }
+
+    .content-container{
+      background:white; width:90%; max-width:900px; margin:2rem auto; padding:2rem;
+      border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      text-align:left; line-height:1.65; font-size:1.08rem;
+    }
+
+    .content-container h2{ color:#3498db; margin-top:1.5rem; }
+    .content-container h3{ color:#124076; margin-top:1.2rem; }
+    .scene-direction{
+      font-style:italic; color:#555; margin:1rem 0; text-align:center;
+    }
+
+    .character-info ul{ list-style:none; padding:0; }
+    .conversation-script strong{
+      display:inline-block; width:130px; text-align:right; margin-right:10px; color:#124076;
+    }
+
+    .vocabulary-list ul{ list-style-type:disc; padding-left:25px; }
+    .vocabulary-list li{ margin-bottom:0.8rem; }
+
+    .buttons{
+      margin:2rem auto 3rem auto; display:flex; justify-content:center; gap:1rem;
+    }
+    .buttons a{
+      padding:0.6rem 1.2rem; background:#3498db; color:white;
+      border-radius:8px; font-weight:bold; text-decoration:none;
+    }
+    .buttons a:hover{ background:#2980b9; }
+
+    .teacher-tip{
+      margin-top:1.2rem;
+      padding:1rem;
+      background:#f0f7ff;
+      border-left:5px solid #3498db;
+      border-radius:10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="../index.html" class="logo">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html" aria-current="page">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Family Tension</h1>
+
+<div class="content-container">
+
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>ANNA:</strong> A mother in her late 30s. Worried about her teenage son.</li>
+      <li><strong>DAVID:</strong> Anna’s 16-year-old son. Independent but frustrated.</li>
+      <li><strong>MS. LOPEZ:</strong> Anna’s friend and counselor. Calm and understanding.</li>
+    </ul>
+  </div>
+
+  <div class="conversation-script">
+
+    <h3>Scene 1</h3>
+    <p class="scene-direction">Evening at home. ANNA waits in the living room. DAVID walks in late.</p>
+
+    <p><strong>ANNA:</strong> David, it’s 10:30. You said you’d be home at nine.</p>
+    <p><strong>DAVID:</strong> I was with my friends. I texted you.</p>
+    <p><strong>ANNA:</strong> One short message is not enough. I worry about you.</p>
+    <p><strong>DAVID:</strong> I’m not a child anymore. You don’t trust me.</p>
+    <p><strong>ANNA:</strong> It’s not about trust. It’s about safety.</p>
+
+    <h3>Scene 2</h3>
+    <p class="scene-direction">The next day. ANNA speaks with MS. LOPEZ at a café.</p>
+
+    <p><strong>ANNA:</strong> We argue all the time now. He used to tell me everything.</p>
+    <p><strong>MS. LOPEZ:</strong> Teenagers need independence, but they also need guidance.</p>
+    <p><strong>ANNA:</strong> I’m afraid he’ll make mistakes.</p>
+    <p><strong>MS. LOPEZ:</strong> He will. Everyone does. The question is: will he feel safe talking to you about them?</p>
+    <p><strong>ANNA:</strong> Maybe I focus too much on rules and not enough on listening.</p>
+
+    <h3>Scene 3</h3>
+    <p class="scene-direction">That evening. ANNA knocks on DAVID’s bedroom door.</p>
+
+    <p><strong>ANNA:</strong> Can we talk?</p>
+    <p><strong>DAVID:</strong> (quietly) Okay.</p>
+    <p><strong>ANNA:</strong> I’m sorry if I sound controlling. I worry because I love you.</p>
+    <p><strong>DAVID:</strong> I know. I just want you to see that I’m growing up.</p>
+    <p><strong>ANNA:</strong> Then let’s make a new agreement together. Later curfew on weekends—but better communication.</p>
+    <p><strong>DAVID:</strong> That sounds fair.</p>
+    <p><strong>ANNA:</strong> We’re on the same team, David.</p>
+    <p><strong>DAVID:</strong> I guess we are.</p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li><strong>Argue</strong> – to speak angrily because you disagree.</li>
+      <li><strong>Independence</strong> – freedom to make your own decisions.</li>
+      <li><strong>Guidance</strong> – advice or help.</li>
+      <li><strong>Trust</strong> – believing someone is honest and responsible.</li>
+      <li><strong>Agreement</strong> – a decision made by two or more people.</li>
+      <li><strong>Curfew</strong> – a time when someone must be home.</li>
+    </ul>
+  </div>
+
+  <div class="teacher-tip">
+    <strong>Teacher Tip:</strong> Stop after Scene 2 and ask students: “Who is right — Anna or David?”  
+    Then role-play a new ending where the conflict is worse or better.
+  </div>
+
+</div>
+
+<div class="buttons">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
+</body>
+</html>

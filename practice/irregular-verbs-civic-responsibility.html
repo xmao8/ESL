@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Irregular Verbs – Civic Responsibility Worksheet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        *{box-sizing:border-box}
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; margin: 0; padding: 0; text-align: center; }
+        nav { background: #124076; margin: 0; padding: 0; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+        .logo { display: flex; align-items: center; color: #ff9800; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 1rem; }
+        .nav-links a { color: white; font-weight: 700; text-decoration: none; }
+        h1 { margin: 2rem auto 1rem auto; color: #2c3e50; max-width:900px; }
+        .content-container { background: white; width: 90%; max-width: 900px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; font-size: 1.05rem; line-height: 1.6; }
+        .blank-input { padding: 0.4rem 0.6rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; width: 180px; }
+        .blank-input.correct { border-color:#2e7d32; }
+        .blank-input.incorrect { border-color:#c62828; }
+        .buttons { text-align: center; margin: 1.5rem auto 2.4rem; }
+        .buttons button { padding: 0.6rem 1.2rem; background: #4CAF50; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .score { margin:1rem auto 0; font-weight:700; text-align:center; }
+    </style>
+</head>
+<body>
+
+<h1>Irregular Verbs – Civic Responsibility</h1>
+
+<div class="content-container">
+<p><strong>Instructions:</strong> Fill in the blanks with the correct form of the irregular verb. Use either the <strong>past simple (V2)</strong> or the <strong>past participle (V3)</strong>.</p>
+
+<h2>Part A – Past Simple</h2>
+<ol>
+<li>Last year, citizens <input class="blank-input" type="text" data-answers="voted"/> (vote) in the local election.</li>
+<li>The mayor <input class="blank-input" type="text" data-answers="spoke"/> (speak) about community safety.</li>
+<li>Volunteers <input class="blank-input" type="text" data-answers="built"/> (build) a new playground.</li>
+<li>The police officer <input class="blank-input" type="text" data-answers="caught"/> (catch) a thief.</li>
+<li>Residents <input class="blank-input" type="text" data-answers="chose"/> (choose) a new community leader.</li>
+<li>The government <input class="blank-input" type="text" data-answers="sent"/> (send) emergency supplies.</li>
+<li>They <input class="blank-input" type="text" data-answers="found"/> (find) solutions to reduce pollution.</li>
+<li>The judge <input class="blank-input" type="text" data-answers="taught"/> (teach) young people about the law.</li>
+<li>The firefighter <input class="blank-input" type="text" data-answers="saved"/> (save) a family from danger.</li>
+<li>The council <input class="blank-input" type="text" data-answers="held"/> (hold) a public meeting.</li>
+</ol>
+
+<h2>Part B – Past Participle</h2>
+<ol start="11">
+<li>Many people have <input class="blank-input" type="text" data-answers="voted"/> (vote) in every election.</li>
+<li>The city has <input class="blank-input" type="text" data-answers="built"/> (build) new public schools.</li>
+<li>Volunteers have <input class="blank-input" type="text" data-answers="given"/> (give) their time to help others.</li>
+<li>The community has <input class="blank-input" type="text" data-answers="grown"/> (grow) stronger.</li>
+<li>The police have <input class="blank-input" type="text" data-answers="caught"/> (catch) several criminals.</li>
+<li>The mayor has <input class="blank-input" type="text" data-answers="spoken"/> (speak) about new laws.</li>
+<li>The government has <input class="blank-input" type="text" data-answers="sent"/> (send) financial support.</li>
+<li>Citizens have <input class="blank-input" type="text" data-answers="chosen"/> (choose) responsible leaders.</li>
+<li>The organization has <input class="blank-input" type="text" data-answers="led"/> (lead) many charity events.</li>
+<li>The court has <input class="blank-input" type="text" data-answers="forgiven"/> (forgive) minor offenses.</li>
+</ol>
+
+<div id="overallScore" class="score"></div>
+</div>
+
+<div class="buttons">
+<button onclick="checkAll()">Check Answers</button>
+</div>
+
+<script>
+function normalize(s){ return s.trim().toLowerCase(); }
+function parseAnswers(attr){ return attr.split(',').map(a => normalize(a)); }
+
+function checkAll(){
+  const inputs = document.querySelectorAll('input[type="text"]');
+  let correctCount = 0;
+
+  inputs.forEach(input => {
+    const accepted = parseAnswers(input.getAttribute('data-answers'));
+    const val = normalize(input.value);
+
+    if (accepted.includes(val)) {
+      input.classList.remove('incorrect');
+      input.classList.add('correct');
+      correctCount++;
+    } else {
+      input.classList.remove('correct');
+      input.classList.add('incorrect');
+    }
+  });
+
+  const score = document.getElementById('overallScore');
+  score.textContent = `Score: ${correctCount}/20`;
+  score.style.color = (correctCount===20? '#2e7d32' : '#c62828');
+}
+</script>
+
+</body>
+</html>

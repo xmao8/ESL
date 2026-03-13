@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>-ED Pronunciation Rules – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General body and container styles */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #333;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.3rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links { position: static; flex-direction: row; background: none; height: auto; width: auto; padding: 0; gap: 1.5rem; transform: none !important; }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 { margin: 2rem auto 1.2rem; color: #2c3e50; max-width: 860px; }
+    .content-container {
+      background: white; width: 90%; max-width: 860px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.06rem;
+    }
+    .content-container h2 { color: #3498db; margin: 1.4rem 0 0.8rem; font-size: 1.45rem; }
+    .content-container h3 { color: #124076; margin: 1.2rem 0 0.6rem; font-size: 1.25rem; }
+    .content-container p { margin-bottom: 1rem; }
+    .content-container ul { list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.6rem; }
+    .content-container strong { color: #124076; }
+    .content-container em { font-style: italic; color: #555; }
+
+    .example {
+      background: #e8f5e9;
+      border-left: 4px solid #4CAF50;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 6px;
+    }
+    .example strong { color: #2E7D32; }
+
+    .grammar-table-container { width: 100%; margin-bottom: 1.5rem; overflow-x: auto; }
+    .grammar-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; vertical-align: top; }
+    .grammar-table th { background-color: #e8f5e9; color: #2c3e50; font-weight: bold; }
+    .grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
+    .grammar-table tr:hover { background-color: #f1f1f1; }
+
+    .note { font-size: 0.98rem; color: #444; }
+    .tag {
+      display: inline-block;
+      background: #fff3cd;
+      color: #8a6d3b;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+
+    .mini { margin-top: 0.4rem; font-size: 0.98rem; color: #444; }
+
+    /* Little IPA chip */
+    .ipa {
+      display: inline-block;
+      background: #eef2ff;
+      border: 1px solid #dbe3ff;
+      color: #243b6b;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+
+    /* Key tip box */
+    .tip {
+      background: #e3f2fd;
+      border-left: 4px solid #2196F3;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 6px;
+    }
+    .tip strong { color: #0b5394; }
+
+    /* Quick cards for /t/ /d/ /ɪd/ */
+    .rule-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.4rem;
+    }
+    .card {
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      padding: 1rem;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .card h3 { margin-top: 0; }
+    .card .big {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #124076;
+    }
+    .card ul { margin: 0.6rem 0 0; }
+    @media (max-width: 820px) {
+      .rule-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>-ED Pronunciation Rules (Regular Past Verbs)</h1>
+
+<div class="content-container">
+  <p>
+    Many regular verbs add <strong>-ed</strong> for the past tense and past participle (work → worked).
+    But <strong>-ed has three different pronunciations</strong>.
+    The most important rule is: <strong>listen to the last SOUND</strong> of the base verb (not the last letter).
+  </p>
+
+  <div class="tip" role="note" aria-label="Key tip about the last sound">
+    <strong>Key tip:</strong> Decide the pronunciation by the <strong>final sound</strong> of the base verb.
+    Example: <em>laugh</em> ends with /f/ (voiceless), so <em>laughed</em> is /t/.
+  </div>
+
+  <h2>1) The Three Pronunciations</h2>
+
+  <div class="rule-cards" aria-label="Three -ed pronunciation options">
+    <div class="card">
+      <h3><span class="big">/t/</span> <span class="ipa">“t” sound</span></h3>
+      <p class="mini">No extra syllable</p>
+      <p><strong>Use /t/</strong> after a <strong>voiceless</strong> sound.</p>
+    </div>
+    <div class="card">
+      <h3><span class="big">/d/</span> <span class="ipa">“d” sound</span></h3>
+      <p class="mini">No extra syllable</p>
+      <p><strong>Use /d/</strong> after a <strong>voiced</strong> sound (including vowels).</p>
+    </div>
+    <div class="card">
+      <h3><span class="big">/ɪd/</span> <span class="ipa">“id” sound</span></h3>
+      <p class="mini"><strong>Extra syllable</strong></p>
+      <p><strong>Use /ɪd/</strong> after <strong>/t/ or /d/</strong>.</p>
+    </div>
+  </div>
+
+  <h2>2) Quick Rules + Examples</h2>
+
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="-ed pronunciation rules and examples">
+      <thead>
+        <tr>
+          <th>-ed sound</th>
+          <th>When?</th>
+          <th>Common final sounds (base verb)</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>/t/</strong> <span class="tag">voiceless</span></td>
+          <td>When the base verb ends in a <strong>voiceless</strong> sound</td>
+          <td>/p, k, f, s, ʃ (sh), tʃ (ch), θ (th)/</td>
+          <td>
+            stop → <strong>stopped</strong> /stɒpt/<br>
+            look → <strong>looked</strong> /lʊkt/<br>
+            laugh → <strong>laughed</strong> /læft/<br>
+            wash → <strong>washed</strong> /wɒʃt/<br>
+            watch → <strong>watched</strong> /wɒtʃt/
+          </td>
+        </tr>
+        <tr>
+          <td><strong>/d/</strong> <span class="tag">voiced</span></td>
+          <td>When the base verb ends in a <strong>voiced</strong> sound (or a vowel sound)</td>
+          <td>Most sounds except voiceless sounds and /t/, /d/</td>
+          <td>
+            play → <strong>played</strong> /pleɪd/<br>
+            clean → <strong>cleaned</strong> /kliːnd/<br>
+            love → <strong>loved</strong> /lʌvd/<br>
+            call → <strong>called</strong> /kɔːld/<br>
+            rain → <strong>rained</strong> /reɪnd/
+          </td>
+        </tr>
+        <tr>
+          <td><strong>/ɪd/</strong> <span class="tag">extra syllable</span></td>
+          <td>When the base verb ends in <strong>/t/ or /d/</strong></td>
+          <td>/t/, /d/</td>
+          <td>
+            want → <strong>wanted</strong> /ˈwɒntɪd/<br>
+            need → <strong>needed</strong> /ˈniːdɪd/<br>
+            start → <strong>started</strong> /ˈstɑːrtɪd/<br>
+            decide → <strong>decided</strong> /dɪˈsaɪdɪd/
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3) “Last SOUND, Not Last LETTER” (Very Important)</h2>
+  <div class="example" role="note" aria-label="Examples for last sound not last letter">
+    <strong>Laugh</strong> ends with /f/ → laughed = /t/ <span class="tag">/læft/</span><br>
+    <strong>Fix</strong> ends with /s/ → fixed = /t/ <span class="tag">/fɪkst/</span><br>
+    <strong>Play</strong> ends with a vowel sound → played = /d/ <span class="tag">/pleɪd/</span><br>
+    <strong>End</strong> ends with /d/ → ended = /ɪd/ <span class="tag">/ˈendɪd/</span>
+  </div>
+
+  <h2>4) Quick Classroom Tricks</h2>
+  <ul>
+    <li><strong>/ɪd/ = extra syllable</strong> (want-ed, need-ed).</li>
+    <li><strong>Touch your throat:</strong> if it vibrates, the last sound is usually <strong>voiced</strong> → /d/.</li>
+    <li>Teach students to check the <strong>sound</strong> of the last phoneme, not spelling.</li>
+  </ul>
+
+  <h2>5) Common Mistakes</h2>
+  <div class="grammar-table-container">
+    <table class="grammar-table" aria-label="Common -ed pronunciation mistakes">
+      <thead>
+        <tr>
+          <th>Common mistake</th>
+          <th>Better pronunciation</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>“work-<em>id</em>” for <em>worked</em></td>
+          <td><strong>worked</strong> = /wɜːrkt/ (no extra syllable)</td>
+          <td>The base verb ends with /k/ (voiceless) → /t/.</td>
+        </tr>
+        <tr>
+          <td>“play-<em>t</em>” for <em>played</em></td>
+          <td><strong>played</strong> = /pleɪd/</td>
+          <td>The base verb ends with a vowel sound (voiced) → /d/.</td>
+        </tr>
+        <tr>
+          <td>No extra syllable for <em>wanted</em></td>
+          <td><strong>wanted</strong> = /ˈwɒntɪd/ (extra syllable)</td>
+          <td>The base verb ends with /t/ → /ɪd/.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note">
+    <strong>Teacher note:</strong> You can practice by sorting verbs into 3 columns (/t/, /d/, /ɪd/) and reading them aloud.
+  </p>
+</div>
+
+<div class="buttons" style="margin-top: -0.5rem; margin-bottom: 2.5rem; display:flex; justify-content:center; gap:1rem;">
+  <a href="../grammar.html">← Back to Grammar</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

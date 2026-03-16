@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrepreneur & Business – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 2rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1rem; margin-top: 0.3rem; }
+    .translation { font-size: 0.9rem; margin-top: 0.5rem; color: #cfe6fb; }
+    .speaker {
+      cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s;
+    }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px; flex-wrap: wrap;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Entrepreneur &amp; Business – Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0"
+  onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+const flashcards = [
+  { word: "Entrepreneur", ipa: "/ˌɑːn.trə.prəˈnɜːr/", definition: "a person who starts and runs their own business, often taking on financial risk.", example: "She became an entrepreneur after launching her own clothing brand.", chinese: "创业者；企业家", spanish: "emprendedor" },
+  { word: "Startup", ipa: "/ˈstɑːrt.ʌp/", definition: "a new business that is just beginning to grow, often in technology or innovation.", example: "His startup raised $1 million in its first year.", chinese: "初创公司", spanish: "empresa emergente" },
+  { word: "Business", ipa: "/ˈbɪz.nɪs/", definition: "an organization that sells goods or services to make money.", example: "She started a small business selling handmade jewelry.", chinese: "商业；生意", spanish: "negocio" },
+  { word: "Company", ipa: "/ˈkʌm.pə.ni/", definition: "an organization made up of people who work together to sell products or services.", example: "He works for a technology company in Silicon Valley.", chinese: "公司", spanish: "empresa" },
+  { word: "Profit", ipa: "/ˈprɑː.fɪt/", definition: "the money a business earns after paying all its costs.", example: "The store made a profit after its first six months.", chinese: "利润", spanish: "ganancia" },
+  { word: "Investment", ipa: "/ɪnˈvest.mənt/", definition: "money put into something with the hope of earning more money later.", example: "They made a smart investment in real estate.", chinese: "投资", spanish: "inversión" },
+  { word: "Investor", ipa: "/ɪnˈves.tɚ/", definition: "a person or company that puts money into a business expecting a return.", example: "The investor provided funding for the new app.", chinese: "投资者", spanish: "inversor" },
+  { word: "Risk", ipa: "/rɪsk/", definition: "the chance that something might go wrong or cause loss.", example: "Starting a new business always involves some risk.", chinese: "风险", spanish: "riesgo" },
+  { word: "Innovation", ipa: "/ˌɪn.əˈveɪ.ʃən/", definition: "the process of creating new ideas, products, or methods.", example: "Their innovation changed the way people shop online.", chinese: "创新", spanish: "innovación" },
+  { word: "Idea", ipa: "/aɪˈdiː.ə/", definition: "a thought or plan that could be the start of something new.", example: "She had a great idea for a mobile app.", chinese: "想法；主意", spanish: "idea" },
+  { word: "Opportunity", ipa: "/ˌɑː.pɚˈtuː.nə.t̬i/", definition: "a situation that makes it possible to do something or achieve a goal.", example: "He saw an opportunity in the growing market and acted fast.", chinese: "机会", spanish: "oportunidad" },
+  { word: "Market", ipa: "/ˈmɑːr.kɪt/", definition: "the group of people who might buy a product or service.", example: "They researched the market before launching their product.", chinese: "市场", spanish: "mercado" },
+  { word: "Customer", ipa: "/ˈkʌs.tə.mɚ/", definition: "a person who buys goods or services from a business.", example: "Happy customers often return and recommend the store.", chinese: "顾客", spanish: "cliente" },
+  { word: "Product", ipa: "/ˈprɑː.dʌkt/", definition: "something made or sold by a business.", example: "They launched a new product at the trade show.", chinese: "产品", spanish: "producto" },
+  { word: "Service", ipa: "/ˈsɝː.vɪs/", definition: "work done for others as a job or business.", example: "The company offers customer service 24 hours a day.", chinese: "服务", spanish: "servicio" },
+  { word: "Marketing", ipa: "/ˈmɑːr.kɪ.t̬ɪŋ/", definition: "the activities used to promote and sell a product or service.", example: "Good marketing helped the brand reach millions of people.", chinese: "营销", spanish: "mercadotecnia" },
+  { word: "Advertising", ipa: "/ˈæd.vɚ.taɪ.zɪŋ/", definition: "paying to show messages that promote a product or service.", example: "They spent a lot on advertising to attract new customers.", chinese: "广告", spanish: "publicidad" },
+  { word: "Strategy", ipa: "/ˈstræt̬.ə.dʒi/", definition: "a plan designed to achieve a goal.", example: "The team developed a new strategy to increase sales.", chinese: "战略；策略", spanish: "estrategia" },
+  { word: "Competition", ipa: "/ˌkɑːm.pəˈtɪʃ.ən/", definition: "other businesses trying to win the same customers.", example: "The competition pushed them to improve their product.", chinese: "竞争", spanish: "competencia" },
+  { word: "Growth", ipa: "/ɡroʊθ/", definition: "an increase in size, number, or success of a business.", example: "The company showed strong growth in its second year.", chinese: "增长", spanish: "crecimiento" },
+  { word: "Leadership", ipa: "/ˈliː.dɚ.ʃɪp/", definition: "the ability to guide and inspire others toward a goal.", example: "Her leadership helped the team succeed under pressure.", chinese: "领导力", spanish: "liderazgo" },
+  { word: "Management", ipa: "/ˈmæn.ɪdʒ.mənt/", definition: "the process of organizing and directing people or resources.", example: "Good management is key to running a successful company.", chinese: "管理", spanish: "gestión" },
+  { word: "Networking", ipa: "/ˈnet.wɝː.kɪŋ/", definition: "building relationships with others to share information or create opportunities.", example: "Networking at the conference helped him find new clients.", chinese: "人脉拓展", spanish: "creación de redes" },
+  { word: "Partnership", ipa: "/ˈpɑːrt.nɚ.ʃɪp/", definition: "a business relationship between two or more people who share goals and responsibilities.", example: "They formed a partnership to grow the business together.", chinese: "合伙关系", spanish: "asociación" },
+  { word: "Revenue", ipa: "/ˈrev.ə.njuː/", definition: "the total money a business earns before costs are removed.", example: "The company's revenue doubled in just one year.", chinese: "收入；营业额", spanish: "ingresos" },
+  { word: "Sales", ipa: "/seɪlz/", definition: "the activity of selling products or the total amount sold.", example: "Strong sales in December helped them meet their annual goal.", chinese: "销售", spanish: "ventas" },
+  { word: "Brand", ipa: "/brænd/", definition: "the name, image, or identity of a company or product in people's minds.", example: "They worked hard to build a trusted brand.", chinese: "品牌", spanish: "marca" },
+  { word: "Budget", ipa: "/ˈbʌdʒ.ɪt/", definition: "a plan for how to spend money over a period of time.", example: "They set a strict budget to keep costs under control.", chinese: "预算", spanish: "presupuesto" },
+  { word: "Funding", ipa: "/ˈfʌn.dɪŋ/", definition: "money provided to support a business or project.", example: "They received funding from a group of investors.", chinese: "资金；融资", spanish: "financiamiento" },
+  { word: "Success", ipa: "/səkˈses/", definition: "achieving a goal or doing well in business or life.", example: "Hard work and good planning led to their success.", chinese: "成功", spanish: "éxito" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", (e) => { e.stopPropagation(); speak(); });
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        e.stopPropagation();
+        speak();
+      }
+    });
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+// Mobile nav toggle script
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+// Autoplay functionality
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    showCard();
+    await sleep(500);
+    flipCard();
+    await sleep(300);
+    await pronounce(flashcards[index].word);
+    await sleep(250);
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    await pronounce(flashcards[index].example);
+    await sleep(700);
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

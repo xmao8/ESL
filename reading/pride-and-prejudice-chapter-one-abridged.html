@@ -4,64 +4,175 @@
     <link rel="icon" href="/favicon.png" type="image/png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Reading: Pride and Prejudice — Chapter One</title>
+    <title>Reading: Pride and Prejudice — Chapter One (Abridged)</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { box-sizing: border-box; }
         body {
-            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
-            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
         }
-        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
-        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
         .nav-container {
-            display: flex; justify-content: space-between; align-items: center;
-            max-width: 1100px; margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        .logo { display: flex; align-items: center; text-decoration: none; }
-        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
-        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
-        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
 
-        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
-        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
-        p { line-height: 1.7; margin: 0.8rem 0; }
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.6rem 0;
+        }
 
         .content-section {
-            background: #fff; border-radius: 8px; padding: 1.5rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
 
-        .reading-text p { text-indent: 1.5rem; }
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
 
-        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
         .vocabulary-list li {
-            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
-            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
         }
-        .vocabulary-list strong { color: #124076; margin-right: 8px; }
-        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
 
-        .questions ol { padding-left: 1.2rem; }
-        .questions li { margin: 0.8rem 0; }
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
 
         input[type="text"] {
-            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
             min-width: 140px;
         }
-        .tf-options { margin-top: 0.3rem; }
-        .tf-options label { margin-right: 1rem; }
 
-        .buttons { text-align: center; margin: 2rem auto; }
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
         .buttons a {
-            text-decoration: none; background: #3498db; color: white;
-            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
             margin: 0 0.5rem;
         }
-        .buttons a:hover { background: #2980b9; }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -83,86 +194,77 @@
         </div>
     </nav>
 
-    <h1>Pride and Prejudice — Chapter One</h1>
+    <h1>Pride and Prejudice — Chapter One (Abridged)</h1>
 
     <main>
         <!-- Reading Text -->
-       <div class="content-section reading-text">
-    <p>It is a truth widely accepted that a single man with a large fortune must be looking for a wife. When such a man moves into a neighborhood, families quickly become interested, especially those with unmarried daughters.</p>
+        <div class="content-section reading-text">
+            <p>It is a truth universally acknowledged that a single man in possession of a good fortune must be in want of a wife. However little may be known of such a gentleman’s feelings when he first arrives in a neighbourhood, the local families are soon convinced that he ought to marry one of their daughters.</p>
 
-    <p>“My dear Mr. Bennet,” said Mrs. Bennet one day, “have you heard that Netherfield Park has finally been rented?”</p>
+            <p>“My dear Mr. Bennet,” said his lady to him one day, “have you heard that Netherfield Park is let at last?”</p>
 
-    <p>Mr. Bennet replied that he had not.</p>
+            <p>Mr. Bennet replied that he had not.</p>
 
-    <p>“But it has,” she said excitedly. “Mrs. Long just told me everything. A young man of great fortune from the north of England has taken it. He arrived earlier this week, liked the house immediately, and will move in soon.”</p>
+            <p>“But it is,” returned she; “for Mrs. Long has just been here, and she told me all about it.”</p>
 
-    <p>“What is his name?” Mr. Bennet asked.</p>
+            <p>Mr. Bennet made no answer.</p>
 
-    <p>“Bingley.”</p>
+            <p>“Do you not wish to know who has taken it?” cried his wife impatiently.</p>
 
-    <p>“Is he married or single?”</p>
+            <p>“You are eager to tell me, and I have no objection to hearing it.”</p>
 
-    <p>“Oh, single, of course! A very rich single man. What a wonderful opportunity for our daughters!”</p>
+            <p>This encouragement was sufficient. Mrs. Bennet then informed him that Netherfield had been taken by a young man of large fortune from the north of England; that he had come down only a few days earlier to see the place, had been so pleased with it that he agreed at once, and would soon take possession.</p>
 
-    <p>“How does it concern them?” Mr. Bennet asked calmly.</p>
+            <p>“What is his name?” asked Mr. Bennet.</p>
 
-    <p>“My dear Mr. Bennet,” she replied, “you must know that I am thinking he may marry one of them.”</p>
+            <p>“Bingley.”</p>
 
-    <p>Mr. Bennet smiled slightly. “Is that his reason for coming here?”</p>
+            <p>“Is he married or single?”</p>
 
-    <p>“Nonsense! But it is very likely he will fall in love with one of them. You must visit him as soon as he arrives.”</p>
+            <p>“Oh! single, my dear, to be sure! A single man of large fortune; four or five thousand a year. What an excellent thing for our girls!”</p>
 
-    <p>“I see no reason to do that,” he said. “You and the girls can visit him, or even better, send them alone. Perhaps he will like you best.”</p>
+            <p>“How can it affect them?”</p>
 
-    <p>“You flatter me,” said Mrs. Bennet, “but I am no longer young. A woman with five grown daughters should not think about her own beauty.”</p>
+            <p>“My dear Mr. Bennet,” replied his wife, “how can you be so tiresome? You must know that I am thinking of his marrying one of them.”</p>
 
-    <p>“In such cases, she usually has little beauty left to think about,” Mr. Bennet replied.</p>
+            <p>“Is that his design in settling here?”</p>
 
-    <p>“You must go and see Mr. Bingley,” she insisted.</p>
+            <p>“Design! Nonsense. But it is very likely that he may fall in love with one of them, and therefore you must visit him as soon as he comes.”</p>
 
-    <p>“I am not sure that I will,” he answered.</p>
+            <p>Mr. Bennet answered that he saw no particular occasion for such a visit. Mrs. Bennet, however, insisted upon it. Without a formal introduction, she explained, neither she nor the girls could properly call upon Mr. Bingley. Other families, including Sir William and Lady Lucas, intended to go for that very reason.</p>
 
-    <p>“But think of your daughters! Sir William and Lady Lucas plan to visit him. They never visit newcomers, so you know how important this is. If you do not go, we cannot meet him properly.”</p>
+            <p>Mr. Bennet continued to amuse himself by teasing his wife. He remarked that perhaps she and the girls might go without him, or even that Mr. Bingley might admire her more than any of her daughters. Mrs. Bennet accepted the compliment only long enough to declare that a woman with five grown-up daughters ought not to think of her own beauty any longer.</p>
 
-    <p>Mr. Bennet responded playfully, “I am sure Mr. Bingley will be happy to see you. I will send him a letter to give my permission for him to marry whichever daughter he prefers, though I may say a good word for Lizzy.”</p>
+            <p>Still, she returned to her chief point: he must visit Mr. Bingley. Mr. Bennet refused to give a direct answer, but instead joked that he would send a few lines expressing his hearty consent to Mr. Bingley’s marrying whichever daughter he preferred, though he might add a particular word in favour of little Lizzy.</p>
 
-    <p>“Please do no such thing!” cried Mrs. Bennet. “Lizzy is not better than the others. She is not as beautiful as Jane, nor as cheerful as Lydia. But you always prefer her.”</p>
+            <p>At this Mrs. Bennet protested strongly. Lizzy, she declared, was no better than the others, and not nearly so handsome as Jane, nor half so good-humoured as Lydia. She accused her husband of always preferring Lizzy. Mr. Bennet replied that none of the girls had much to distinguish them from others, but that Lizzy possessed rather more quickness than her sisters.</p>
 
-    <p>“None of them are especially remarkable,” Mr. Bennet replied, “but Lizzy is quicker and more intelligent than her sisters.”</p>
+            <p>Mrs. Bennet, offended by what she considered an attack on her children, complained that her husband delighted in vexing her and had no compassion for her poor nerves. Mr. Bennet answered that he had the greatest respect for her nerves, having heard them mentioned with consideration for many years.</p>
 
-    <p>“Mr. Bennet, how can you speak that way about your own children? You take pleasure in upsetting me. You have no sympathy for my poor nerves!”</p>
+            <p>She insisted that he could not understand what she suffered. He responded that he hoped she would recover, and live to see many more young men of four thousand a year enter the neighbourhood. When she answered that even twenty such men would be of no use if he refused to visit them, he replied that in that case he would visit them all.</p>
 
-    <p>“You misunderstand me,” he said calmly. “I have great respect for your nerves. They have been my companions for many years.”</p>
+            <p>Thus the first chapter presents the Bennets through lively conversation. Mr. Bennet appears intelligent, dry, and sarcastic, taking pleasure in irony and in provoking his wife. Mrs. Bennet is eager, excitable, and entirely occupied with the business of getting her daughters married. Her chief comforts are visiting and news. In this humorous exchange, Jane Austen introduces both the family and the social world in which marriage, money, and manners are deeply connected.</p>
+        </div>
 
-    <p>“You do not know what I suffer,” she said.</p>
-
-    <p>“But I hope you will recover,” he replied, “and live to see many more wealthy young men come into the neighborhood.”</p>
-
-    <p>“It will not matter if you refuse to visit them,” she answered.</p>
-
-    <p>“If twenty come, I will visit them all,” said Mr. Bennet.</p>
-
-    <p>Mr. Bennet was a man of sharp intelligence and dry humor, but he was also quiet and unpredictable. Even after many years of marriage, his wife did not fully understand him. Mrs. Bennet, on the other hand, was less complex. She was easily upset, had limited knowledge, and often became nervous when she was unhappy. Her main goal in life was to see her daughters married, and her greatest pleasure was sharing news and visiting others.</p>
-</div>
         <!-- Vocabulary List -->
         <div class="content-section vocabulary-list">
             <h2>Vocabulary List</h2>
             <ul>
-                <li><strong>universally</strong> <i class="fas fa-volume-up speaker-icon" data-word="universally"></i> — By almost everyone; widely accepted.</li>
-                <li><strong>acknowledged</strong> <i class="fas fa-volume-up speaker-icon" data-word="acknowledged"></i> — Accepted or recognized as true.</li>
-                <li><strong>fortune</strong> <i class="fas fa-volume-up speaker-icon" data-word="fortune"></i> — A large amount of money or wealth.</li>
-                <li><strong>neighbourhood</strong> <i class="fas fa-volume-up speaker-icon" data-word="neighbourhood"></i> — The area where people live near one another.</li>
-                <li><strong>chaise</strong> <i class="fas fa-volume-up speaker-icon" data-word="chaise"></i> — A horse-drawn carriage.</li>
-                <li><strong>possession</strong> <i class="fas fa-volume-up speaker-icon" data-word="possession"></i> — Control or ownership of something.</li>
-                <li><strong>tiresome</strong> <i class="fas fa-volume-up speaker-icon" data-word="tiresome"></i> — Annoying or boring.</li>
-                <li><strong>scrupulous</strong> <i class="fas fa-volume-up speaker-icon" data-word="scrupulous"></i> — Very careful about doing what is proper or correct.</li>
-                <li><strong>vexing</strong> <i class="fas fa-volume-up speaker-icon" data-word="vexing"></i> — Annoying or upsetting.</li>
-                <li><strong>sarcastic</strong> <i class="fas fa-volume-up speaker-icon" data-word="sarcastic"></i> — Using irony to mock or joke.</li>
-                <li><strong>reserve</strong> <i class="fas fa-volume-up speaker-icon" data-word="reserve"></i> — A quiet, restrained way of behaving.</li>
-                <li><strong>caprice</strong> <i class="fas fa-volume-up speaker-icon" data-word="caprice"></i> — A sudden change of mood or behavior.</li>
-                <li><strong>temper</strong> <i class="fas fa-volume-up speaker-icon" data-word="temper"></i> — A person’s usual emotional state.</li>
-                <li><strong>solace</strong> <i class="fas fa-volume-up speaker-icon" data-word="solace"></i> — Comfort in sadness or difficulty.</li>
-                <li><strong>establishment</strong> <i class="fas fa-volume-up speaker-icon" data-word="establishment"></i> — In this context, a secure marriage and home.</li>
+                <li><strong>universally acknowledged</strong> <i class="fas fa-volume-up speaker-icon" data-word="universally acknowledged"></i> — accepted by almost everyone as true.</li>
+                <li><strong>in possession of</strong> <i class="fas fa-volume-up speaker-icon" data-word="in possession of"></i> — having or owning something.</li>
+                <li><strong>neighbourhood</strong> <i class="fas fa-volume-up speaker-icon" data-word="neighbourhood"></i> — the area where people live near one another.</li>
+                <li><strong>fortune</strong> <i class="fas fa-volume-up speaker-icon" data-word="fortune"></i> — great wealth; a large amount of money.</li>
+                <li><strong>let</strong> <i class="fas fa-volume-up speaker-icon" data-word="let"></i> — rented out to someone.</li>
+                <li><strong>impatiently</strong> <i class="fas fa-volume-up speaker-icon" data-word="impatiently"></i> — in a way that shows annoyance at waiting.</li>
+                <li><strong>design</strong> <i class="fas fa-volume-up speaker-icon" data-word="design"></i> — intention or plan.</li>
+                <li><strong>particular</strong> <i class="fas fa-volume-up speaker-icon" data-word="particular"></i> — special or specific.</li>
+                <li><strong>good-humoured</strong> <i class="fas fa-volume-up speaker-icon" data-word="good-humoured"></i> — cheerful and pleasant.</li>
+                <li><strong>quickness</strong> <i class="fas fa-volume-up speaker-icon" data-word="quickness"></i> — mental sharpness; intelligence.</li>
+                <li><strong>vexing</strong> <i class="fas fa-volume-up speaker-icon" data-word="vexing"></i> — annoying or upsetting.</li>
+                <li><strong>sarcastic</strong> <i class="fas fa-volume-up speaker-icon" data-word="sarcastic"></i> — using irony to mock or amuse.</li>
+                <li><strong>irony</strong> <i class="fas fa-volume-up speaker-icon" data-word="irony"></i> — language that means the opposite of what it seems to say.</li>
+                <li><strong>manners</strong> <i class="fas fa-volume-up speaker-icon" data-word="manners"></i> — socially proper behavior.</li>
+                <li><strong>occupied with</strong> <i class="fas fa-volume-up speaker-icon" data-word="occupied with"></i> — busy thinking about or focused on something.</li>
             </ul>
         </div>
 
@@ -171,35 +273,35 @@
             <h2>True or False</h2>
             <ol>
                 <li>
-                    Mrs. Bennet tells her husband that Netherfield Park has been rented. <br>
+                    Mrs. Bennet learns from Mrs. Long that Netherfield Park has been rented. <br>
                     <div class="tf-options">
                         <label><input type="radio" name="tf1" value="True"> True</label>
                         <label><input type="radio" name="tf1" value="False"> False</label>
                     </div>
                 </li>
                 <li>
-                    Mr. Bingley is described as a married man. <br>
+                    Mr. Bingley is described as a married man with several children. <br>
                     <div class="tf-options">
                         <label><input type="radio" name="tf2" value="True"> True</label>
                         <label><input type="radio" name="tf2" value="False"> False</label>
                     </div>
                 </li>
                 <li>
-                    Mrs. Bennet wants one of her daughters to marry Mr. Bingley. <br>
+                    Mrs. Bennet believes one of her daughters may marry Mr. Bingley. <br>
                     <div class="tf-options">
                         <label><input type="radio" name="tf3" value="True"> True</label>
                         <label><input type="radio" name="tf3" value="False"> False</label>
                     </div>
                 </li>
                 <li>
-                    Mr. Bennet is serious and never jokes with his wife. <br>
+                    Mr. Bennet speaks with complete seriousness throughout the chapter. <br>
                     <div class="tf-options">
                         <label><input type="radio" name="tf4" value="True"> True</label>
                         <label><input type="radio" name="tf4" value="False"> False</label>
                     </div>
                 </li>
                 <li>
-                    The chapter ends with a description of Mr. and Mrs. Bennet’s characters. <br>
+                    The chapter introduces marriage, money, and social manners as important themes. <br>
                     <div class="tf-options">
                         <label><input type="radio" name="tf5" value="True"> True</label>
                         <label><input type="radio" name="tf5" value="False"> False</label>
@@ -213,19 +315,19 @@
             <h2>Fill in the Blanks</h2>
             <ol>
                 <li>
-                    Mr. Bingley takes Netherfield <input type="text" placeholder="place name">.
+                    Mrs. Bennet says that Netherfield <input type="text" placeholder="place name"> is let at last.
                 </li>
                 <li>
-                    Mrs. Bennet says Mr. Bingley is a single man of large <input type="text" placeholder="noun">.
+                    The wealthy young man who rents it is named Mr. <input type="text" placeholder="last name">.
                 </li>
                 <li>
-                    Mr. Bennet jokes that he will send a few <input type="text" placeholder="plural noun"> with his consent.
+                    Mrs. Bennet hopes that one of her <input type="text" placeholder="plural noun"> will marry him.
                 </li>
                 <li>
                     Mr. Bennet says Lizzy has more <input type="text" placeholder="noun"> than her sisters.
                 </li>
                 <li>
-                    Mrs. Bennet says her poor <input type="text" placeholder="plural noun"> suffer.
+                    Mrs. Bennet’s main goal in life is to get her daughters <input type="text" placeholder="past participle">.
                 </li>
             </ol>
         </div>

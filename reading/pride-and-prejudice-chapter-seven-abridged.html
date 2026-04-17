@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Pride and Prejudice — Chapter Seven (Abridged)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.8rem 0;
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
+
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
+
+        input[type="text"] {
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .buttons a {
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Pride and Prejudice — Chapter Seven (Abridged)</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>The Bennet family’s financial situation was less secure than it first appeared. Mr. Bennet owned an estate that brought in two thousand pounds a year, but because of the law of entail, the property would pass to a male relative rather than to his daughters. Mrs. Bennet had some money of her own, inherited from her family, but it was not enough to provide properly for all five girls. This is one reason why she thought so constantly about marriage.</p>
+
+            <p>Mrs. Bennet had a sister married to Mr. Phillips, an attorney in Meryton, and a brother in business in London. Because Longbourn was only a mile from Meryton, the younger Bennet girls often walked there. They liked visiting their aunt Phillips, shopping, and collecting gossip. Kitty and Lydia, especially, were delighted by any excuse to go. Their minds were less serious than those of Jane, Elizabeth, and Mary, and they were always eager for news.</p>
+
+            <p>At this time, Meryton had become especially exciting because a militia regiment was stationed nearby for the winter. This gave Kitty and Lydia endless happiness. Every day brought fresh information about the officers, their names, their lodgings, and their friendships. Through Mr. Phillips, the girls even came to know several of them personally. Soon they could speak of almost nothing except officers. To them, a handsome uniform was more interesting than Mr. Bingley’s fortune.</p>
+
+            <p>One morning, after listening to Kitty and Lydia talk enthusiastically about Captain Carter, Mr. Bennet dryly observed that from their conversation he had concluded they must be the silliest girls in the country. Kitty was embarrassed, but Lydia remained cheerful and unaffected. Mrs. Bennet, however, defended her daughters at once and accused her husband of speaking harshly of his own children. Mr. Bennet coolly replied that if his daughters were silly, he hoped at least to be aware of it.</p>
+
+            <p>Mrs. Bennet insisted that all her daughters were clever. She argued that young girls naturally cared about officers and red coats. Indeed, she admitted that she had once liked a red coat herself and still did at heart. If a handsome colonel with a good income wished to marry one of her girls, she declared that she would certainly not object.</p>
+
+            <p>While this conversation was going on, a servant brought a note for Jane from Netherfield. It was from Caroline Bingley, inviting Jane to dine with her and Mrs. Hurst that very day. Caroline added jokingly that without Jane’s company, the two sisters might quarrel during a whole day spent alone together. Mrs. Bennet was pleased, but Lydia immediately cried out over another detail in the note: Mr. Bingley and the gentlemen were to dine with the officers.</p>
+
+            <p>Jane asked whether she might take the carriage to Netherfield. Mrs. Bennet, however, cleverly suggested that she should go on horseback instead, because it looked like rain and she might then be obliged to stay the night. Elizabeth guessed her mother’s plan at once and pointed out that Jane might still be sent home if the weather remained fair. But Mrs. Bennet was confident that the gentlemen would need the chaise and that Jane would have to remain at Netherfield.</p>
+
+            <p>Jane would have preferred the carriage, but Mr. Bennet said the horses were needed on the farm, and so she had no choice. Mrs. Bennet sent her off with cheerful predictions of a wet day. Her hopes were fulfilled: soon after Jane left, it began to rain heavily, and it continued through the evening. Mrs. Bennet was delighted, because Jane could not possibly return home that night.</p>
+
+            <p>The next morning, however, a note arrived from Jane saying that she had become unwell after getting wet in the rain. She had a sore throat and headache, and Caroline Bingley and Mrs. Hurst would not allow her to leave until she recovered. They had also insisted that Mr. Jones, the apothecary, should see her. Mr. Bennet jokingly remarked that if Jane should become dangerously ill or even die, it would at least be comforting to know that it happened while pursuing Mr. Bingley under Mrs. Bennet’s orders. Mrs. Bennet was not alarmed at all and said people did not die of little colds.</p>
+
+            <p>Elizabeth, however, was truly anxious. Since no carriage was available and she did not ride, she decided to walk the three miles to Netherfield through the mud. Her mother protested that she would arrive dirty and unfit to be seen, but Elizabeth answered that she only wanted to be fit to see Jane. Kitty and Lydia agreed to walk with her as far as Meryton, and the three sisters set out together.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>entail</strong> <i class="fas fa-volume-up speaker-icon" data-word="entail"></i> — a legal rule that gives property to a fixed family heir.</li>
+                <li><strong>estate</strong> <i class="fas fa-volume-up speaker-icon" data-word="estate"></i> — a large property or area of land.</li>
+                <li><strong>militia</strong> <i class="fas fa-volume-up speaker-icon" data-word="militia"></i> — a military group or regiment.</li>
+                <li><strong>gossip</strong> <i class="fas fa-volume-up speaker-icon" data-word="gossip"></i> — informal talk about other people’s lives.</li>
+                <li><strong>enthusiastically</strong> <i class="fas fa-volume-up speaker-icon" data-word="enthusiastically"></i> — with great excitement.</li>
+                <li><strong>defended</strong> <i class="fas fa-volume-up speaker-icon" data-word="defended"></i> — spoke in support of someone.</li>
+                <li><strong>inviting</strong> <i class="fas fa-volume-up speaker-icon" data-word="inviting"></i> — asking someone to come.</li>
+                <li><strong>confident</strong> <i class="fas fa-volume-up speaker-icon" data-word="confident"></i> — sure about something.</li>
+                <li><strong>fulfilled</strong> <i class="fas fa-volume-up speaker-icon" data-word="fulfilled"></i> — happened as expected.</li>
+                <li><strong>apothecary</strong> <i class="fas fa-volume-up speaker-icon" data-word="apothecary"></i> — an old word for a medical doctor or druggist.</li>
+                <li><strong>anxious</strong> <i class="fas fa-volume-up speaker-icon" data-word="anxious"></i> — worried and concerned.</li>
+                <li><strong>carriage</strong> <i class="fas fa-volume-up speaker-icon" data-word="carriage"></i> — a horse-drawn vehicle.</li>
+                <li><strong>mud</strong> <i class="fas fa-volume-up speaker-icon" data-word="mud"></i> — wet, soft dirt.</li>
+                <li><strong>unwell</strong> <i class="fas fa-volume-up speaker-icon" data-word="unwell"></i> — sick; not healthy.</li>
+                <li><strong>fortune</strong> <i class="fas fa-volume-up speaker-icon" data-word="fortune"></i> — a large amount of money or wealth.</li>
+            </ul>
+        </div>
+
+        <!-- True / False -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Mr. Bennet’s estate will be inherited by one of his daughters.
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1"> True</label>
+                        <label><input type="radio" name="tf1"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Kitty and Lydia are very interested in the militia officers.
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2"> True</label>
+                        <label><input type="radio" name="tf2"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mrs. Bennet wants Jane to go to Netherfield in the carriage.
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3"> True</label>
+                        <label><input type="radio" name="tf3"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Jane becomes ill after getting wet in the rain.
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4"> True</label>
+                        <label><input type="radio" name="tf4"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth decides to walk to Netherfield to visit Jane.
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5"> True</label>
+                        <label><input type="radio" name="tf5"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill in the Blanks -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    The Bennet estate is entailed to a male <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Kitty and Lydia are especially excited by the arrival of the <input type="text" placeholder="military group">.
+                </li>
+                <li>
+                    Jane travels to Netherfield on <input type="text" placeholder="animal">.
+                </li>
+                <li>
+                    Jane becomes sick because she gets wet in the <input type="text" placeholder="weather">.
+                </li>
+                <li>
+                    Elizabeth walks <input type="text" placeholder="number"> miles to Netherfield.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -23,9 +23,11 @@
         .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
         .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
         .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: bold; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
 
-        h1 { text-align: center; margin: 2rem auto 1rem; }
+        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
         p { line-height: 1.7; margin: 0.8rem 0; }
 
         .content-section {
@@ -34,74 +36,253 @@
         }
 
         .reading-text p { text-indent: 1.5rem; }
+
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
+        }
+        .vocabulary-list strong { color: #124076; margin-right: 8px; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+
+        .questions ol { padding-left: 1.2rem; }
+        .questions li { margin: 0.8rem 0; }
+
+        input[type="text"] {
+            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            min-width: 140px;
+        }
+        .tf-options { margin-top: 0.3rem; }
+        .tf-options label { margin-right: 1rem; }
+
+        .buttons { text-align: center; margin: 2rem auto; }
+        .buttons a {
+            text-decoration: none; background: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
 
-<h1>Pride and Prejudice — Chapter Nine</h1>
+    <h1>Pride and Prejudice — Chapter Nine</h1>
 
-<main>
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>Elizabeth passed the chief of the night in her sister’s room, and in the morning had the pleasure of being able to send a tolerable answer to the inquiries which she very early received from Mr. Bingley by a housemaid, and some time afterwards from the two elegant ladies who waited on his sisters. In spite of this amendment, however, she requested to have a note sent to Longbourn, desiring her mother to visit Jane, and form her own judgment of her situation.</p>
 
-<div class="content-section reading-text">
+            <p>The note was immediately dispatched, and its contents as quickly complied with. Mrs. Bennet, accompanied by her two youngest girls, reached Netherfield soon after the family breakfast.</p>
 
-<p>Elizabeth passed the chief of the night in her sister’s room, and in the morning had the pleasure of being able to send a tolerable answer to the inquiries which she very early received from Mr. Bingley by a housemaid. Though the breakfast parlour was full of ladies, her entrance into it was not attended by any very gracious reception from Miss Bingley and Mrs. Hurst; their indifference towards Jane, when not immediately before them, restored Elizabeth to the enjoyment of all her former dislike.</p>
+            <p>Had she found Jane in any apparent danger, Mrs. Bennet would have been very miserable; but being satisfied on seeing her that her illness was not alarming, she had no wish of her recovering immediately, as her restoration to health would probably remove her from Netherfield. She would not listen, therefore, to her daughter’s proposal of being carried home; neither did the apothecary, who arrived about the same time, think it at all advisable.</p>
 
-<p>Their brother, indeed, was the only one of the party whom she could regard with any complacency. His anxiety for Jane was evident, and his attentions to herself most obliging; and they prevented her feeling herself so much an intruder as she believed she was considered by the others.</p>
+            <p>After sitting a little while with Jane, on Miss Bingley’s appearance and invitation, the mother and three daughters all attended her into the breakfast parlour. Bingley met them with hopes that Mrs. Bennet had not found Miss Bennet worse than she expected.</p>
 
-<p>She had very little notice from any but him. Miss Bingley was engrossed by Mr. Darcy, her sister scarcely less so; and as for Mr. Hurst, by whom Elizabeth sat, he was an indolent man, who lived only to eat, drink, and play at cards.</p>
+            <p>“Indeed I have, sir,” was her answer. “She is a great deal too ill to be moved. Mr. Jones says we must not think of moving her. We must trespass a little longer on your kindness.”</p>
 
-<p>When breakfast was over, they were joined by the sisters; and Elizabeth began to like them herself, when she saw how much affection they showed for Jane. They were, in fact, very fine ladies; not deficient in good humour when they were pleased, nor in the power of making themselves agreeable when they chose it; but proud and conceited.</p>
+            <p>“Removed!” cried Bingley. “It must not be thought of. My sister, I am sure, will not hear of her removal.”</p>
 
-<p>The conversation turned chiefly on the illness of Jane, whose health was a subject of much concern to Mr. Bingley. His sisters declared that they were excessively sorry, and spoke much of their dislike of being ill themselves; but their expressions of sympathy were so general and so little directed to Jane, that Elizabeth could not consider them as sincere.</p>
+            <p>“You may depend upon it, Madam,” said Miss Bingley, with cold civility, “that Miss Bennet will receive every possible attention while she remains with us.”</p>
 
-<p>After breakfast, Mrs. Bennet and her two youngest daughters came to Netherfield. Mrs. Bennet had calculated on seeing Jane better, but was surprised to find her still in bed. She was very much flattered by Mr. Bingley’s attention to her eldest daughter, and listened with pleasure to his expressions of concern.</p>
+            <p>Mrs. Bennet was profuse in her acknowledgments. “I am sure,” she added, “if it was not for such good friends I do not know what would become of her, for she is very ill indeed, and suffers a vast deal, though with the greatest patience in the world, which is always the way with her, for she has, without exception, the sweetest temper I have ever met with. I often tell my other girls they are nothing to her. You have a sweet room here, Mr. Bingley, and a charming prospect over the gravel walk. I do not know a place in the country that is equal to Netherfield. You will not think of quitting it in a hurry, I hope, though you have but a short lease.”</p>
 
-<p>She soon began to speak of her hopes for Jane’s recovery, and her confidence that she would soon be well again. She also talked of the pleasure she felt in seeing her daughter so well cared for, and of the kindness of the family at Netherfield.</p>
+            <p>“Whatever I do is done in a hurry,” replied he; “and therefore if I should resolve to quit Netherfield, I should probably be off in five minutes. At present, however, I consider myself as quite fixed here.”</p>
 
-<p>Miss Bingley, however, received Mrs. Bennet with cool politeness, and soon began to criticize the country, comparing it unfavorably with the elegance of London. Mrs. Bennet, though not understanding all her remarks, defended her home with spirit, and declared that she preferred the country to the town.</p>
+            <p>“That is exactly what I should have supposed of you,” said Elizabeth.</p>
 
-<p>The conversation then turned to the Bennet family in general. Mrs. Bennet spoke freely of her daughters, praising their beauty and accomplishments. She was particularly proud of Jane, whose beauty she described in glowing terms.</p>
+            <p>“You begin to comprehend me, do you?” cried he, turning towards her.</p>
 
-<p>Elizabeth listened with some embarrassment to her mother’s lack of restraint, and could not help feeling that her behavior was improper. Mr. Darcy, who sat near, observed the whole with silent attention, and his opinion of the family was not improved.</p>
+            <p>“Oh! yes—I understand you perfectly.”</p>
 
-<p>Miss Bingley and Mrs. Hurst listened with smiles of contempt, and occasionally exchanged glances that showed their amusement at Mrs. Bennet’s remarks. Elizabeth felt this keenly, and was ashamed of her mother’s conduct.</p>
+            <p>“I wish I might take this for a compliment; but to be so easily seen through I am afraid is pitiful.”</p>
 
-<p>Mr. Bingley, however, seemed not to notice anything that could give offense. His attentions were entirely directed toward Jane, and he appeared genuinely pleased with her.</p>
+            <p>“That is as it happens. It does not follow that a deep, intricate character is more or less estimable than such a one as yours.”</p>
 
-<p>The visit did not last long. Mrs. Bennet, satisfied with what she had seen, soon prepared to leave, taking Lydia and Kitty with her. Elizabeth remained at Netherfield to attend Jane.</p>
+            <p>“Lizzy,” cried her mother, “remember where you are, and do not run on in the wild manner that you are suffered to do at home.”</p>
 
-<p>As soon as they were gone, Miss Bingley could not help expressing her opinion of the Bennet family. She spoke of them with disdain, and particularly criticized the impropriety of the younger sisters. Mr. Darcy agreed in part, though he admitted that Elizabeth possessed qualities that distinguished her from the rest of her family.</p>
+            <p>“I did not know before,” continued Bingley immediately, “that you were a studier of character. It must be an amusing study.”</p>
 
-<p>Thus the chapter shows more clearly the differences between the characters: Mr. Bingley’s kindness, his sisters’ pride, Mrs. Bennet’s lack of judgment, and Elizabeth’s growing awareness of her family’s faults.</p>
+            <p>“Yes, but intricate characters are the most amusing. They have at least that advantage.”</p>
 
-</div>
+            <p>“The country,” said Darcy, “can in general supply but a few subjects for such a study. In a country neighbourhood you move in a very confined and unvarying society.”</p>
 
-<!-- Vocabulary -->
-<div class="content-section">
-<h2>Vocabulary</h2>
-<ul>
-<li><strong>complacency</strong> — a feeling of calm satisfaction</li>
-<li><strong>indolent</strong> — lazy</li>
-<li><strong>conceited</strong> — too proud of oneself</li>
-<li><strong>sincere</strong> — honest and genuine</li>
-<li><strong>disdain</strong> — lack of respect</li>
-<li><strong>impropriety</strong> — bad or improper behavior</li>
-</ul>
-</div>
+            <p>“But people themselves alter so much, that there is something new to be observed in them for ever.”</p>
 
-<!-- True/False -->
-<div class="content-section">
-<h2>True or False</h2>
-<ol>
-<li>Elizabeth feels welcomed warmly by Miss Bingley.</li>
-<li>Mr. Bingley shows real concern for Jane.</li>
-<li>Mrs. Bennet behaves very formally and quietly.</li>
-<li>Elizabeth feels embarrassed by her mother.</li>
-<li>Miss Bingley respects the Bennet family.</li>
-</ol>
-</div>
+            <p>“Yes, indeed,” cried Mrs. Bennet, offended by his manner of mentioning a country neighbourhood. “I assure you there is quite as much of that going on in the country as in town.”</p>
 
-</main>
+            <p>“Indeed, Mamma, you are mistaken,” said Elizabeth, blushing for her mother. “You quite mistook Mr. Darcy. He only meant that there was not such a variety of people to be met with in the country as in the town, which you must acknowledge to be true.”</p>
 
+            <p>“Certainly, my dear, nobody said there were; but as to not meeting with many people in this neighbourhood, I believe there are few neighbourhoods larger. I know we dine with four-and-twenty families.”</p>
+
+            <p>Nothing but concern for Elizabeth could enable Bingley to keep his countenance. His sister was less delicate, and directed her eyes towards Mr. Darcy with a very expressive smile. Elizabeth, for the sake of saying something that might turn her mother’s thoughts, now asked her if Charlotte Lucas had been at Longbourn since her coming away.</p>
+
+            <p>“Yes, she called yesterday with her father. What an agreeable man Sir William is, Mr. Bingley, is not he? So much the man of fashion! So genteel and easy! He had always something to say to everybody. That is my idea of good breeding; and those persons who fancy themselves very important, and never open their mouths, quite mistake the matter.”</p>
+
+            <p>“Did Charlotte dine with you?”</p>
+
+            <p>“No, she would go home. I fancy she was wanted about the mince-pies. For my part, Mr. Bingley, I always keep servants that can do their own work; my daughters are brought up very differently. But everybody is to judge for themselves, and the Lucases are a very good sort of girls, I assure you. It is a pity they are not handsome! Not that I think Charlotte so very plain—but then she is our particular friend.”</p>
+
+            <p>“She seems a very pleasant young woman.”</p>
+
+            <p>“Oh! dear, yes; but you must own she is very plain. Lady Lucas herself has often said so, and envied me Jane’s beauty. I do not like to boast of my own child, but to be sure, Jane—one does not often see anybody better looking. It is what everybody says. I do not trust my own partiality. When she was only fifteen, there was a man at my brother Gardiner’s in town so much in love with her that my sister-in-law was sure he would make her an offer before we came away. But, however, he did not. Perhaps he thought her too young. However, he wrote some verses on her, and very pretty they were.”</p>
+
+            <p>“And so ended his affection,” said Elizabeth impatiently. “There has been many a one, I fancy, overcome in the same way. I wonder who first discovered the efficacy of poetry in driving away love!”</p>
+
+            <p>“I have been used to consider poetry as the food of love,” said Darcy.</p>
+
+            <p>“Of a fine, stout, healthy love it may. Everything nourishes what is strong already. But if it be only a slight, thin sort of inclination, I am convinced that one good sonnet will starve it entirely away.”</p>
+
+            <p>Darcy only smiled; and the general pause which ensued made Elizabeth tremble lest her mother should be exposing herself again. She longed to speak, but could think of nothing to say; and after a short silence Mrs. Bennet began repeating her thanks to Mr. Bingley for his kindness to Jane, with an apology for troubling him also with Lizzy. Mr. Bingley was unaffectedly civil in his answer, and forced his younger sister to be civil also, and say what the occasion required.</p>
+
+            <p>She performed her part indeed without much graciousness, but Mrs. Bennet was satisfied, and soon afterwards ordered her carriage. Upon this signal, the youngest of her daughters put herself forward. The two girls had been whispering to each other during the whole visit, and the result of it was, that the youngest should tax Mr. Bingley with having promised on his first coming into the country to give a ball at Netherfield.</p>
+
+            <p>Lydia was a stout, well-grown girl of fifteen, with a fine complexion and good-humoured countenance; a favourite with her mother, whose affection had brought her into public at an early age. She had high animal spirits, and a sort of natural self-consequence, which the attention of the officers, to whom her uncle’s good dinners, and her own easy manners recommended her, had increased into assurance. She was very equal, therefore, to address Mr. Bingley on the subject of the ball, and abruptly reminded him of his promise; adding, that it would be the most shameful thing in the world if he did not keep it.</p>
+
+            <p>His answer to this sudden attack was delightful to their mother’s ear: “I am perfectly ready, I assure you, to keep my engagement; and when your sister is recovered, you shall, if you please, name the very day of the ball. But you would not wish to be dancing when she is ill.”</p>
+
+            <p>Lydia declared herself satisfied. “Oh! yes—it would be much better to wait till Jane was well, and by that time most likely Captain Carter would be at Meryton again. And when you have given your ball,” she added, “I shall insist on their giving one also. I shall tell Colonel Forster it will be quite a shame if he does not.”</p>
+
+            <p>Mrs. Bennet and her daughters then departed, and Elizabeth returned instantly to Jane, leaving her own and her relations’ behaviour to the remarks of the two ladies and Mr. Darcy; the latter of whom, however, could not be prevailed on to join in their censure of her, in spite of all Miss Bingley’s witticisms on fine eyes.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>amendment</strong> <i class="fas fa-volume-up speaker-icon" data-word="amendment"></i> — an improvement; a change for the better.</li>
+                <li><strong>apothecary</strong> <i class="fas fa-volume-up speaker-icon" data-word="apothecary"></i> — a person who prepared and sold medicine.</li>
+                <li><strong>civility</strong> <i class="fas fa-volume-up speaker-icon" data-word="civility"></i> — polite behavior.</li>
+                <li><strong>acknowledgments</strong> <i class="fas fa-volume-up speaker-icon" data-word="acknowledgments"></i> — expressions of thanks.</li>
+                <li><strong>intricate</strong> <i class="fas fa-volume-up speaker-icon" data-word="intricate"></i> — complicated; not simple.</li>
+                <li><strong>confined</strong> <i class="fas fa-volume-up speaker-icon" data-word="confined"></i> — limited to a small space or range.</li>
+                <li><strong>countenance</strong> <i class="fas fa-volume-up speaker-icon" data-word="countenance"></i> — facial expression; calm appearance.</li>
+                <li><strong>genteel</strong> <i class="fas fa-volume-up speaker-icon" data-word="genteel"></i> — polite and refined in manner.</li>
+                <li><strong>partiality</strong> <i class="fas fa-volume-up speaker-icon" data-word="partiality"></i> — unfair preference; favoritism.</li>
+                <li><strong>efficacy</strong> <i class="fas fa-volume-up speaker-icon" data-word="efficacy"></i> — power to produce a result.</li>
+                <li><strong>unaffectedly</strong> <i class="fas fa-volume-up speaker-icon" data-word="unaffectedly"></i> — naturally and sincerely; without pretense.</li>
+                <li><strong>graciousness</strong> <i class="fas fa-volume-up speaker-icon" data-word="graciousness"></i> — kindness and warmth in manner.</li>
+                <li><strong>self-consequence</strong> <i class="fas fa-volume-up speaker-icon" data-word="self-consequence"></i> — a strong sense of one’s own importance.</li>
+                <li><strong>assurance</strong> <i class="fas fa-volume-up speaker-icon" data-word="assurance"></i> — confidence, sometimes too much confidence.</li>
+                <li><strong>censure</strong> <i class="fas fa-volume-up speaker-icon" data-word="censure"></i> — strong criticism.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Mrs. Bennet wants Jane to recover immediately and return home at once. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mr. Bingley says Jane must not be moved from Netherfield. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth says that simple characters are always more estimable than intricate ones. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Darcy says the country offers a wide variety of people to study. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Lydia reminds Mr. Bingley about his promise to give a ball. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Mrs. Bennet comes to Netherfield with her two youngest <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Elizabeth says that intricate <input type="text" placeholder="noun"> are the most amusing.
+                </li>
+                <li>
+                    Mrs. Bennet says Jane has the sweetest <input type="text" placeholder="noun"> in the world.
+                </li>
+                <li>
+                    Darcy says poetry is the food of <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Lydia asks Mr. Bingley about the promised <input type="text" placeholder="event"> at Netherfield.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

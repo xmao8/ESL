@@ -60,6 +60,7 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.2s;
         }
         .nav-links a:hover {
             color: #ffbb33;
@@ -154,108 +155,167 @@
         .buttons a:hover {
             background: #2980b9;
         }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-
-<nav>
-    <div class="nav-container">
-        <a href="../index.html" class="logo">
-            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
-            <span class="site-name">ESLnote</span>
-        </a>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="../flashcards.html">Flashcards</a>
-            <a href="../conversation.html">Conversations</a>
-            <a href="../grammar.html">Grammar</a>
-            <a href="../reading.html">Reading</a>
-            <a href="../listening.html">Listening</a>
-            <a href="../practice.html">Practices</a>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
         </div>
+    </nav>
+
+    <h1>Pride and Prejudice — Chapter Ten (Abridged)</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>The day passed much as the day before had done. Jane, though slowly, continued to mend; and in the evening Elizabeth joined the party in the drawing-room. Mr. Darcy was writing, and Miss Bingley, seated near him, was watching the progress of his letter, and repeatedly calling off his attention by messages to his sister. Mr. Hurst and Mr. Bingley were at cards, while Mrs. Hurst observed their game.</p>
+
+            <p>Miss Bingley’s notice of Mr. Darcy was less employed in any concern for his letter than in admiration of his manner of writing. She praised the evenness of his lines, the length of his letters, and the pleasure his sister must have in receiving them. Darcy answered with civility, but little eagerness. Bingley, in contrast, confessed that he wrote carelessly, his ideas flowing too fast to be properly set down. Elizabeth, with playful irony, observed that such humility must disarm reproof; but Darcy maintained that modesty is often only another form of vanity, and that people are apt to value themselves for defects they imagine connected with superior qualities.</p>
+
+            <p>He then blamed Bingley’s readiness in forming resolutions and executing them too hastily. Bingley laughed at the charge, and declared that he disliked arguments, preferring ease and good humour to debate. Elizabeth, who entered readily into the spirit of such conversation, agreed that Mr. Darcy had better finish his letter than pursue the dispute; and Darcy, taking the advice, returned to his writing.</p>
+
+            <p>When his letter was completed, music was proposed. Miss Bingley immediately placed herself at the pianoforte, and Elizabeth, turning over some music books, could not help observing how often Mr. Darcy’s eyes were fixed on her. She hardly knew how to account for such attention, except by supposing that he found in her something more blameable than in any other person present. The thought did not vex her. She liked him too little to care for his approbation.</p>
+
+            <p>After a lively air had been played, Darcy approached her and asked whether she did not feel a great inclination to dance a reel. Elizabeth smiled, and after a moment replied that she believed he wished her to say yes, only that he might have the pleasure of despising her taste. She therefore determined to disappoint him, and declared that she had no desire to dance at all. Darcy answered, with more gallantry than she expected, that he did not dare despise her.</p>
+
+            <p>Elizabeth was astonished at such civility. There was, however, in her own manner a mixture of sweetness and arch playfulness which made it difficult for her to affront anybody; and Darcy had never been so bewitched by any woman as he was by her. In spite of his former objections, he found his admiration increasing. Miss Bingley saw enough of this to be jealous, and her anxiety for Jane’s recovery was not a little assisted by her desire of seeing Elizabeth removed from Netherfield.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>civility</strong> <i class="fas fa-volume-up speaker-icon" data-word="civility"></i> — polite behavior.</li>
+                <li><strong>carelessly</strong> <i class="fas fa-volume-up speaker-icon" data-word="carelessly"></i> — without enough care or attention.</li>
+                <li><strong>humility</strong> <i class="fas fa-volume-up speaker-icon" data-word="humility"></i> — modesty; not acting proud.</li>
+                <li><strong>reproof</strong> <i class="fas fa-volume-up speaker-icon" data-word="reproof"></i> — criticism or blame.</li>
+                <li><strong>vanity</strong> <i class="fas fa-volume-up speaker-icon" data-word="vanity"></i> — too much pride in oneself.</li>
+                <li><strong>resolutions</strong> <i class="fas fa-volume-up speaker-icon" data-word="resolutions"></i> — firm decisions.</li>
+                <li><strong>approbation</strong> <i class="fas fa-volume-up speaker-icon" data-word="approbation"></i> — approval or praise.</li>
+                <li><strong>inclination</strong> <i class="fas fa-volume-up speaker-icon" data-word="inclination"></i> — a tendency or desire.</li>
+                <li><strong>gallantry</strong> <i class="fas fa-volume-up speaker-icon" data-word="gallantry"></i> — polite and graceful behavior, especially to a woman.</li>
+                <li><strong>astonished</strong> <i class="fas fa-volume-up speaker-icon" data-word="astonished"></i> — very surprised.</li>
+                <li><strong>arch</strong> <i class="fas fa-volume-up speaker-icon" data-word="arch"></i> — playful and teasing.</li>
+                <li><strong>affront</strong> <i class="fas fa-volume-up speaker-icon" data-word="affront"></i> — insult or offend.</li>
+                <li><strong>bewitched</strong> <i class="fas fa-volume-up speaker-icon" data-word="bewitched"></i> — deeply charmed.</li>
+                <li><strong>admiration</strong> <i class="fas fa-volume-up speaker-icon" data-word="admiration"></i> — strong liking and respect.</li>
+                <li><strong>jealous</strong> <i class="fas fa-volume-up speaker-icon" data-word="jealous"></i> — unhappy because of someone else’s attention or success.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Miss Bingley quietly leaves Darcy alone while he writes his letter. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth says Bingley’s humility protects him from criticism. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Darcy believes modesty can sometimes hide vanity. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth gladly agrees to dance a reel with Darcy. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Miss Bingley becomes jealous of Darcy’s growing admiration for Elizabeth. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Mr. Darcy is writing a <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Elizabeth says Bingley’s humility must disarm <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Darcy asks Elizabeth whether she wishes to dance a <input type="text" placeholder="dance">.
+                </li>
+                <li>
+                    Elizabeth says she does not care for Darcy’s <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Miss Bingley wishes Elizabeth would leave <input type="text" placeholder="place">.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
     </div>
-</nav>
 
-<h1>Pride and Prejudice — Chapter Ten (Abridged)</h1>
-
-<main>
-
-<div class="content-section reading-text">
-<p>The day passed much as the day before had done. Jane continued to mend, though slowly, and Elizabeth spent part of the morning with her. In the evening she joined the party in the drawing-room, where Mr. Darcy was engaged in writing a letter, and Miss Bingley, seated near him, watched his progress with eager admiration.</p>
-
-<p>She frequently interrupted him with messages to his sister and praises of his handwriting, but Darcy bore her attentions with calm politeness. Mr. Bingley, meanwhile, amused himself at cards with Mr. Hurst, and Elizabeth observed the scene with quiet amusement.</p>
-
-<p>The conversation soon turned to writing. Miss Bingley admired Darcy’s long letters, while Bingley confessed that he wrote carelessly, his ideas flowing too quickly for proper expression. Elizabeth replied with playful irony that such humility must protect him from criticism. Darcy, however, remarked that apparent modesty is often only a form of pride, and that people frequently value themselves for faults which they believe to arise from superior qualities.</p>
-
-<p>He went on to observe that quickness of action, though admired, might lead to careless decisions. Bingley laughed at this and declared that he disliked arguments, preferring ease and cheerfulness. Elizabeth agreed, and Darcy soon returned to finish his letter.</p>
-
-<p>When the writing was completed, Miss Bingley seated herself at the pianoforte and began to play. Elizabeth listened, turning over the music, and could not help noticing that Mr. Darcy’s eyes were often fixed upon her. She hardly knew how to interpret such attention, and concluded that he observed her only to find fault; yet the idea did not trouble her, for she liked him too little to care for his opinion.</p>
-
-<p>After some music, Darcy approached Elizabeth and asked whether she felt inclined to dance a reel. She smiled, but refused, saying that she suspected he wished her to agree only that he might despise her taste. She preferred, she added, to disappoint him and avoid his judgment altogether. Darcy replied with courtesy that he did not dare despise her.</p>
-
-<p>Elizabeth, who had expected to provoke him, was surprised by his civility. There was in her manner a mixture of arch playfulness and sweetness which made it difficult to offend anyone; and Darcy found himself increasingly charmed by her. In spite of his former objections to her connections, he could not deny the attraction of her lively mind and engaging manner.</p>
-
-<p>Miss Bingley, observing this growing admiration, felt a rising jealousy. Her concern for Jane’s recovery was not entirely disinterested, for she wished to see Elizabeth removed from Netherfield as soon as possible. Thus, while Jane improved, the quiet interactions of the household revealed changing feelings, particularly in Darcy, whose interest in Elizabeth was daily increasing.</p>
-</div>
-
-<div class="content-section vocabulary-list">
-<h2>Vocabulary List</h2>
-<ul>
-<li><strong>admiration</strong> — strong approval or liking.</li>
-<li><strong>politeness</strong> — good manners.</li>
-<li><strong>carelessly</strong> — without attention.</li>
-<li><strong>modesty</strong> — not thinking too highly of oneself.</li>
-<li><strong>irony</strong> — saying the opposite of what is meant.</li>
-<li><strong>engaging</strong> — charming and interesting.</li>
-<li><strong>civility</strong> — polite behavior.</li>
-<li><strong>inclined</strong> — likely or willing.</li>
-<li><strong>jealousy</strong> — feeling of envy.</li>
-<li><strong>attraction</strong> — interest or liking.</li>
-</ul>
-</div>
-
-<div class="content-section questions">
-<h2>True or False</h2>
-<ol>
-<li>Miss Bingley helps Darcy concentrate on writing.<br>
-<input type="radio" name="tf1"> True
-<input type="radio" name="tf1"> False</li>
-
-<li>Darcy believes modesty can sometimes hide pride.<br>
-<input type="radio" name="tf2"> True
-<input type="radio" name="tf2"> False</li>
-
-<li>Elizabeth agrees to dance with Darcy.<br>
-<input type="radio" name="tf3"> True
-<input type="radio" name="tf3"> False</li>
-
-<li>Darcy becomes more interested in Elizabeth.<br>
-<input type="radio" name="tf4"> True
-<input type="radio" name="tf4"> False</li>
-
-<li>Miss Bingley is happy about Darcy’s attention to Elizabeth.<br>
-<input type="radio" name="tf5"> True
-<input type="radio" name="tf5"> False</li>
-</ol>
-</div>
-
-<div class="content-section questions">
-<h2>Fill in the Blanks</h2>
-<ol>
-<li>Mr. Darcy is writing a <input type="text">.</li>
-<li>Elizabeth responds with <input type="text"> and wit.</li>
-<li>Darcy asks Elizabeth to dance a <input type="text">.</li>
-<li>Elizabeth refuses in a <input type="text"> way.</li>
-<li>Miss Bingley feels <input type="text"> of Elizabeth.</li>
-</ol>
-</div>
-
-</main>
-
-<div class="buttons">
-<a href="../reading.html">⬅️ Back</a>
-<a href="../index.html">🏠 Home</a>
-</div>
-
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

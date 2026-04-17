@@ -60,14 +60,24 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
         }
 
         h1 {
             text-align: center;
             font-size: 2.2rem;
             margin: 2rem auto 1rem;
+            color: #2c3e50;
         }
-
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
         p {
             line-height: 1.7;
             margin: 0.8rem 0;
@@ -84,66 +94,228 @@
         .reading-text p {
             text-indent: 1.5rem;
         }
+
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
+
+        input[type="text"] {
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .buttons a {
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
 
-<h1>Pride and Prejudice — Chapter Eight (Abridged)</h1>
+    <h1>Pride and Prejudice — Chapter Eight (Abridged)</h1>
 
-<main>
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>By the time Elizabeth came down to dinner at Netherfield, Jane was still ill. Everyone politely asked about her health, but Mr. Bingley’s concern was clearly more sincere than anyone else’s. His sisters said all the right things and repeated how unpleasant illness was, yet they did not seem deeply troubled. Mr. Bingley, however, showed real anxiety for Jane, and his kindness toward Elizabeth was warm and natural. Elizabeth was grateful for his attention and could see how much he cared about her sister.</p>
 
-<div class="content-section reading-text">
+            <p>The rest of the party did not impress her. Miss Bingley spent most of her time trying to attract Mr. Darcy’s notice, and Mrs. Hurst followed her example. Mr. Hurst appeared lazy and uninterested in everything except eating, drinking, and cards. After dinner, Elizabeth returned to Jane’s room. As soon as she left, Miss Bingley began criticizing her. She declared that Elizabeth’s manners were poor and that she had no style, no conversation, and no beauty. Darcy did not support this cruel judgment completely. Though he said little, he remarked that Elizabeth’s eyes had a fine expression, which was more praise than Miss Bingley expected.</p>
 
-<p>Elizabeth spent the evening at Netherfield caring for her sister Jane, who was still ill with a cold. At dinner, the others asked politely about Jane’s health, though Elizabeth noticed that their concern quickly faded when Jane was not present. Only Mr. Bingley showed genuine interest and kindness. His sisters expressed sympathy, but their attention soon turned elsewhere.</p>
+            <p>Elizabeth continued to spend most of her time caring for Jane. On the following day, Miss Bingley and Mrs. Hurst invited her to sit with them in the drawing room. She agreed, taking some work with her, while Darcy wrote a letter. His neat handwriting and calm concentration attracted attention, and Miss Bingley tried repeatedly to flatter him. She praised his writing, offered to mend his pen, and hinted that his sister Georgiana would be delighted to receive such a letter. Darcy answered politely, but without much interest. Elizabeth watched this with quiet amusement.</p>
 
-<p>This behavior strengthened Elizabeth’s dislike of Miss Bingley and Mrs. Hurst. She saw clearly that their kindness toward Jane came mainly from their brother’s admiration rather than from true affection. In contrast, Mr. Bingley remained warm, friendly, and attentive to everyone.</p>
+            <p>When Miss Bingley turned the conversation to Darcy’s sister, she praised Georgiana’s beauty, elegance, and accomplishments. Darcy spoke of his sister with genuine affection, and Elizabeth noticed that beneath his proud manner, he was capable of strong family feeling. Soon the talk moved to the idea of an “accomplished woman.” Miss Bingley listed the usual fashionable skills: music, drawing, dancing, singing, and modern languages. Darcy agreed, but he added something more demanding. In his opinion, a truly accomplished woman must also improve her mind by extensive reading. Elizabeth laughed at this and said she was no longer surprised at his knowing only six accomplished women. She was surprised he knew that many.</p>
 
-<p>The evening passed with conversation among the guests. Miss Bingley began to compare the pleasures of city life with those of the country, praising the elegance of London society and suggesting that country gatherings were less refined. Elizabeth disagreed politely, arguing that people could enjoy themselves just as much in the country. She believed that happiness depended more on people’s attitudes than on wealth or fashion.</p>
+            <p>This playful answer amused Darcy, though Miss Bingley did not enjoy it. Elizabeth’s intelligence and liveliness continued to interest him. Later, while Jane was resting, Elizabeth joined the others again. Miss Bingley and Mrs. Hurst walked around the room with Darcy, hoping he would admire them. Elizabeth was invited to join, but she refused, guessing that they wanted either to display their figures or to have the pleasure of criticizing her if she walked with them. Darcy asked which of these motives she meant, and Elizabeth replied with humor that perhaps both were true. Her wit made the exchange lively, and Darcy listened with growing interest.</p>
 
-<p>Mr. Darcy listened quietly, occasionally joining the conversation. Though he did not speak much, he paid close attention to Elizabeth. He was struck by her intelligence, her lively expressions, and the brightness of her eyes, which seemed even more noticeable after her walk through the muddy fields. At the same time, he questioned whether such behavior—walking alone across the countryside—was proper for a young lady.</p>
+            <p>That evening, when the conversation turned to character and faults, Darcy admitted that he found it difficult to forget the follies and weaknesses of others once they had offended him. Elizabeth challenged him lightly, suggesting that such resentment was itself a weakness. Their conversation revealed an important contrast: Darcy valued seriousness, control, and good judgment, while Elizabeth valued laughter, flexibility, and human warmth. Yet instead of separating them, these differences seemed to draw Darcy’s attention more strongly toward her. Although Elizabeth still considered him proud and often disagreeable, she could not deny that his mind was worth engaging. At Netherfield, while Jane slowly recovered, the connection between Elizabeth and Darcy quietly deepened through conversation, teasing, and mutual observation.</p>
+        </div>
 
-<p>Miss Bingley, however, was less interested in Elizabeth’s ideas and more concerned with attracting Mr. Darcy’s attention. She often directed the conversation toward topics she thought would please him. Soon, the discussion turned to the idea of an “accomplished woman.”</p>
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>sincere</strong> <i class="fas fa-volume-up speaker-icon" data-word="sincere"></i> — honest and genuine.</li>
+                <li><strong>anxiety</strong> <i class="fas fa-volume-up speaker-icon" data-word="anxiety"></i> — worry or concern.</li>
+                <li><strong>criticizing</strong> <i class="fas fa-volume-up speaker-icon" data-word="criticizing"></i> — saying negative things about someone.</li>
+                <li><strong>judgment</strong> <i class="fas fa-volume-up speaker-icon" data-word="judgment"></i> — an opinion formed after thinking carefully.</li>
+                <li><strong>concentration</strong> <i class="fas fa-volume-up speaker-icon" data-word="concentration"></i> — careful attention.</li>
+                <li><strong>flatter</strong> <i class="fas fa-volume-up speaker-icon" data-word="flatter"></i> — to praise someone too much to gain favor.</li>
+                <li><strong>accomplished</strong> <i class="fas fa-volume-up speaker-icon" data-word="accomplished"></i> — highly skilled and educated.</li>
+                <li><strong>extensive</strong> <i class="fas fa-volume-up speaker-icon" data-word="extensive"></i> — large in amount.</li>
+                <li><strong>resentment</strong> <i class="fas fa-volume-up speaker-icon" data-word="resentment"></i> — lasting anger about something unfair.</li>
+                <li><strong>flexibility</strong> <i class="fas fa-volume-up speaker-icon" data-word="flexibility"></i> — willingness to adapt or change.</li>
+                <li><strong>engaging</strong> <i class="fas fa-volume-up speaker-icon" data-word="engaging"></i> — interesting and pleasant.</li>
+                <li><strong>observation</strong> <i class="fas fa-volume-up speaker-icon" data-word="observation"></i> — careful watching or noticing.</li>
+                <li><strong>elegance</strong> <i class="fas fa-volume-up speaker-icon" data-word="elegance"></i> — graceful beauty and style.</li>
+                <li><strong>genuine</strong> <i class="fas fa-volume-up speaker-icon" data-word="genuine"></i> — real and true.</li>
+                <li><strong>liveliness</strong> <i class="fas fa-volume-up speaker-icon" data-word="liveliness"></i> — energy and spirited charm.</li>
+            </ul>
+        </div>
 
-<p>Miss Bingley declared that a truly accomplished woman must have many talents, including skill in music, singing, drawing, dancing, and languages. She also needed to have elegant manners and a fashionable appearance. Mr. Darcy added that she must also improve her mind through extensive reading.</p>
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Mr. Bingley shows real concern for Jane’s illness. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Miss Bingley praises Elizabeth kindly after dinner. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Darcy says an accomplished woman should improve her mind by reading. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth eagerly joins Miss Bingley and Mrs. Hurst in walking around the room. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth and Darcy reveal different views about faults and character. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
 
-<p>Elizabeth listened with amusement and expressed doubt. She said she was surprised that so many accomplished women existed, as she had rarely met anyone who met such high expectations. Miss Bingley responded that she knew very few women who truly deserved the title. This exchange revealed Elizabeth’s practical thinking and her willingness to question unrealistic standards.</p>
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Elizabeth can see that Mr. <input type="text" placeholder="name"> is sincerely worried about Jane.
+                </li>
+                <li>
+                    Miss Bingley criticizes Elizabeth’s manners, style, and <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Darcy says a truly accomplished woman must improve her mind by extensive <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Elizabeth refuses to join the ladies walking around the <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Elizabeth and Darcy are drawn together through conversation, teasing, and mutual <input type="text" placeholder="noun">.
+                </li>
+            </ol>
+        </div>
+    </main>
 
-<p>As the evening continued, Mr. Hurst suggested playing cards, and some of the group joined him. Elizabeth chose not to participate and instead stayed with Jane, showing her strong sense of loyalty and care. Meanwhile, Miss Bingley continued her efforts to engage Mr. Darcy, praising his sister and discussing her accomplishments. Although Darcy listened politely, he did not respond with much enthusiasm.</p>
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
 
-<p>Elizabeth’s quiet concern for her sister stood in contrast to the artificial manners of the others. She remained sincere and natural, while Miss Bingley and Mrs. Hurst seemed more focused on appearances and social advantage.</p>
-
-<p>Throughout the evening, Darcy found himself increasingly interested in Elizabeth, though he did not openly admit it. He admired her intelligence and independence, even while struggling with his own pride and expectations. Elizabeth, however, remained unaware of his growing admiration. To her, he was still the proud man who had once insulted her.</p>
-
-<p>This chapter highlights the differences between characters: Bingley’s kindness, Darcy’s reserved nature, Elizabeth’s intelligence, and the Bingley sisters’ pride. It also deepens the developing relationships, especially the contrast between genuine feeling and social ambition.</p>
-
-</div>
-
-<!-- Vocabulary -->
-<div class="content-section">
-<h2>Vocabulary</h2>
-<ul>
-<li><strong>genuine</strong> — real and sincere</li>
-<li><strong>refined</strong> — elegant and cultured</li>
-<li><strong>accomplished</strong> — skilled and educated</li>
-<li><strong>expectation</strong> — a belief about what should happen</li>
-<li><strong>loyalty</strong> — strong support for someone</li>
-<li><strong>admiration</strong> — strong liking or respect</li>
-</ul>
-</div>
-
-<!-- True/False -->
-<div class="content-section">
-<h2>True or False</h2>
-<ol>
-<li>Elizabeth believes the Bingley sisters truly care about Jane.</li>
-<li>Mr. Bingley shows real concern for Jane’s health.</li>
-<li>Elizabeth agrees that city life is always better than country life.</li>
-<li>Darcy says reading is important for an accomplished woman.</li>
-<li>Elizabeth spends the evening playing cards.</li>
-</ol>
-</div>
-
-</main>
-
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

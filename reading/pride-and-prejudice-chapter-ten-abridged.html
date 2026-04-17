@@ -6,87 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Reading: Pride and Prejudice — Chapter Ten (Abridged)</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f0f4f8;
-            margin: 0;
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
         }
-        main {
-            max-width: 800px;
-            margin: auto;
-            padding: 1rem;
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
         }
-        h1 { text-align: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
         p { line-height: 1.7; margin: 0.8rem 0; }
+
         .content-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: #fff; border-radius: 8px; padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
         }
+
         .reading-text p { text-indent: 1.5rem; }
+
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+            margin-bottom: 10px; padding: 12px 15px;
+        }
+        .vocabulary-list strong { color: #124076; }
+
+        .questions ol { padding-left: 1.2rem; }
+        .questions li { margin: 0.8rem 0; }
+
+        input[type="text"] {
+            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .buttons { text-align: center; margin: 2rem auto; }
+        .buttons a {
+            text-decoration: none; background: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            margin: 0 0.5rem;
+        }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">
+            <img src="/favicon.png" class="logo-img">
+            <span class="site-name">ESLnote</span>
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../practice.html">Practice</a>
+        </div>
+    </div>
+</nav>
 
 <h1>Pride and Prejudice — Chapter Ten (Abridged)</h1>
 
 <main>
 
 <div class="content-section reading-text">
+<p>The day at Netherfield passed quietly. Jane continued to recover, and Elizabeth spent much of her time with her. In the evening, she joined the others in the drawing room. Mr. Darcy was writing a letter, while Miss Bingley sat beside him, trying to attract his attention. She repeatedly interrupted him with compliments and messages to his sister, praising his handwriting and asking him to add more to his letter. Darcy responded politely but remained focused on his writing.</p>
 
-<p>The day at Netherfield passed quietly, with Elizabeth spending most of her time caring for her sister Jane, who was still recovering from her illness. Whenever Elizabeth joined the others, she found herself observing their behavior rather than fully participating in their conversations. She noticed that Mr. Bingley remained cheerful and attentive, especially toward Jane, while his sisters were more concerned with appearances and social refinement.</p>
+<p>Miss Bingley admired everything Darcy did and tried to impress him, but her efforts were not very successful. Her brother, Mr. Bingley, joked about his own careless writing style, saying that his ideas moved too quickly for him to express clearly. Elizabeth responded humorously, suggesting that his modesty protected him from criticism. Darcy disagreed and argued that apparent modesty is often only a form of pride or indirect boasting. He explained that people sometimes take pride in their weaknesses if they believe those weaknesses make them interesting.</p>
 
-<p>Miss Bingley made several attempts to engage Mr. Darcy in conversation, often speaking about his sister and her many accomplishments. She praised her beauty, her talents, and her elegant manners, hoping to interest Darcy and draw him into discussion. Darcy responded politely, but without much enthusiasm, showing little desire to continue the topic.</p>
+<p>The conversation continued with Darcy criticizing Bingley’s tendency to act too quickly. He suggested that acting without careful thought could lead to mistakes and unfinished responsibilities. Bingley laughed and admitted that he might dislike long arguments, preferring a lighter and more relaxed discussion. Elizabeth agreed to end the debate and encouraged Darcy to finish his letter.</p>
 
-<p>Elizabeth, seated quietly with her work, listened with amusement. Miss Bingley soon invited her to walk about the room, suggesting that the movement would improve her spirits. Elizabeth accepted, and the two women began walking together. Miss Bingley then asked Mr. Darcy to join them, but he refused. He explained that he could imagine only two reasons for their walking: either they wished to discuss private matters, or they were showing off their figures. In either case, he preferred to remain seated.</p>
+<p>After completing his writing, Darcy suggested having some music. Miss Bingley quickly went to the piano and began to play, hoping to impress him. Elizabeth listened quietly and noticed that Darcy often looked at her. She was unsure why he paid attention to her, since she believed he did not admire her. She assumed he was simply finding fault with her, but this did not trouble her.</p>
 
-<p>This remark made Elizabeth laugh, while Miss Bingley pretended to be offended. She asked what could be done to punish such behavior, and Elizabeth suggested that teasing him might be the best method. Darcy replied that he was not easily teased because he tried to avoid weaknesses that could be laughed at.</p>
+<p>Later, Darcy approached Elizabeth and asked if she wished to dance. She understood that he expected her to agree so that he could judge her taste. Instead, she refused playfully, saying she preferred to surprise him and avoid giving him the chance to criticize her. Darcy responded with politeness and did not appear offended. Elizabeth was surprised by his reaction, as she had expected to annoy him.</p>
 
-<p>Elizabeth answered that everyone has faults, and she accused Darcy of pride. He admitted that pride might indeed be a weakness but made a distinction between pride and vanity. Pride, he explained, relates to how we think of ourselves, while vanity concerns what we want others to think of us. Elizabeth found this conversation both entertaining and revealing, as it showed Darcy’s serious and thoughtful nature.</p>
-
-<p>As the discussion continued, Elizabeth challenged Darcy’s ideas with wit and confidence. He found himself increasingly interested in her intelligence and lively manner of speaking. Although he tried to remain reserved, he could not entirely hide his growing admiration. Elizabeth, however, remained unaware of this change in his feelings. To her, he was still the proud man who had once dismissed her as only “tolerable.”</p>
-
-<p>Miss Bingley began to notice Darcy’s attention toward Elizabeth and became more determined to win his interest. She returned to the subject of accomplishments, describing the qualities that a truly accomplished woman should possess. According to her, such a woman must be skilled in music, drawing, dancing, and languages, as well as graceful and elegant in her manners. Darcy agreed but added that she must also improve her mind through extensive reading.</p>
-
-<p>Elizabeth listened and expressed her doubt that many women could meet such high expectations. She said she had never seen so many accomplished women as they described. This response amused Darcy but slightly annoyed Miss Bingley, who believed Elizabeth was undervaluing the importance of refinement and education.</p>
-
-<p>Later, the group turned to reading. Miss Bingley selected a book but quickly grew bored and abandoned it. She continued to seek Darcy’s attention through conversation, but he remained distant. Elizabeth, on the other hand, showed independence and calm confidence. She did not attempt to impress anyone, and this natural behavior made her even more attractive to Darcy.</p>
-
-<p>Throughout the evening, the contrast between the characters became clearer. Elizabeth’s sincerity and intelligence stood out against Miss Bingley’s artificial manners and social ambition. Darcy’s struggle between his pride and his growing admiration for Elizabeth became more noticeable, even though he tried to conceal it.</p>
-
-<p>This chapter deepens the development of their relationship, showing how Elizabeth’s natural charm begins to challenge Darcy’s prejudices, while also revealing the influence of pride, social expectations, and personal character.</p>
-
+<p>In truth, Darcy was becoming more interested in Elizabeth. He admired her lively personality, intelligence, and playful manner. Although he still noticed the lower social position of her family, he found himself increasingly attracted to her. Miss Bingley, observing this growing interest, became jealous. She hoped for Jane’s recovery, not only out of concern, but also because she wished Elizabeth would leave Netherfield.</p>
 </div>
 
-<!-- Vocabulary -->
-<div class="content-section">
-<h2>Vocabulary</h2>
+<div class="content-section vocabulary-list">
+<h2>Vocabulary List</h2>
 <ul>
-<li><strong>refinement</strong> — elegance and good manners</li>
-<li><strong>enthusiasm</strong> — strong interest or excitement</li>
-<li><strong>vanity</strong> — concern about others’ opinions</li>
-<li><strong>independence</strong> — not needing approval from others</li>
-<li><strong>confidence</strong> — belief in oneself</li>
-<li><strong>admiration</strong> — strong liking or respect</li>
+<li><strong>interrupt</strong> — to stop someone while they are speaking or working.</li>
+<li><strong>compliment</strong> — a polite expression of praise.</li>
+<li><strong>modesty</strong> — not thinking too highly of oneself.</li>
+<li><strong>boasting</strong> — speaking with pride about oneself.</li>
+<li><strong>criticize</strong> — to point out faults.</li>
+<li><strong>responsibility</strong> — something you must do.</li>
+<li><strong>politeness</strong> — showing good manners.</li>
+<li><strong>assume</strong> — to think something is true without proof.</li>
+<li><strong>refuse</strong> — to say no.</li>
+<li><strong>attracted</strong> — feeling interest or liking.</li>
 </ul>
 </div>
 
-<!-- True/False -->
-<div class="content-section">
+<div class="content-section questions">
 <h2>True or False</h2>
 <ol>
-<li>Elizabeth spends most of the day caring for Jane.</li>
-<li>Mr. Darcy eagerly joins the women walking.</li>
-<li>Elizabeth and Darcy discuss pride and vanity.</li>
-<li>Miss Bingley succeeds in gaining Darcy’s attention.</li>
-<li>Darcy begins to admire Elizabeth more.</li>
+<li>Miss Bingley helps Darcy concentrate on writing.<br>
+<input type="radio" name="tf1"> True
+<input type="radio" name="tf1"> False</li>
+
+<li>Darcy thinks modesty can sometimes hide pride.<br>
+<input type="radio" name="tf2"> True
+<input type="radio" name="tf2"> False</li>
+
+<li>Elizabeth agrees to dance with Darcy.<br>
+<input type="radio" name="tf3"> True
+<input type="radio" name="tf3"> False</li>
+
+<li>Darcy begins to admire Elizabeth.<br>
+<input type="radio" name="tf4"> True
+<input type="radio" name="tf4"> False</li>
+
+<li>Miss Bingley becomes jealous of Elizabeth.<br>
+<input type="radio" name="tf5"> True
+<input type="radio" name="tf5"> False</li>
+</ol>
+</div>
+
+<div class="content-section questions">
+<h2>Fill in the Blanks</h2>
+<ol>
+<li>Mr. Darcy is writing a <input type="text">.</li>
+<li>Miss Bingley gives Darcy many <input type="text">.</li>
+<li>Elizabeth responds with <input type="text"> and wit.</li>
+<li>Darcy admires Elizabeth’s <input type="text"> personality.</li>
+<li>Miss Bingley feels <input type="text"> of Elizabeth.</li>
 </ol>
 </div>
 
 </main>
+
+<div class="buttons">
+<a href="../reading.html">⬅️ Back</a>
+<a href="../index.html">🏠 Home</a>
+</div>
 
 </body>
 </html>

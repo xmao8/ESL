@@ -10,58 +10,151 @@
     <style>
         * { box-sizing: border-box; }
         body {
-            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
-            font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
         }
-        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; }
-        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
         .nav-container {
-            display: flex; justify-content: space-between; align-items: center;
-            max-width: 1100px; margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        .logo { display: flex; align-items: center; text-decoration: none; }
-        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
-        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
-        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
 
-        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; }
-        h2 { color: #124076; margin-top: 1.5rem; text-align: center; }
-        p { line-height: 1.7; margin: 0.8rem 0; }
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.8rem 0;
+        }
 
         .content-section {
-            background: #fff; border-radius: 8px; padding: 1.5rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
 
-        .reading-text p { text-indent: 1.5rem; }
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
 
-        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
         .vocabulary-list li {
-            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
-            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
         }
-        .vocabulary-list strong { color: #124076; margin-right: 8px; }
-        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 5px; }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
 
-        .questions ol { padding-left: 1.2rem; }
-        .questions li { margin: 0.8rem 0; }
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
 
         input[type="text"] {
-            padding: 3px 5px; border-radius: 4px; border: 1px solid #ccc;
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
             min-width: 140px;
         }
-        .tf-options { margin-top: 0.3rem; }
-        .tf-options label { margin-right: 1rem; }
 
-        .buttons { text-align: center; margin: 2rem auto; }
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
         .buttons a {
-            text-decoration: none; background: #3498db; color: white;
-            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
             margin: 0 0.5rem;
         }
-        .buttons a:hover { background: #2980b9; }
+        .buttons a:hover {
+            background: #2980b9;
+        }
 
         @media (max-width: 768px) {
             .nav-container {
@@ -69,10 +162,12 @@
                 align-items: flex-start;
                 gap: 0.8rem;
             }
+
             .nav-links {
                 flex-wrap: wrap;
                 gap: 1rem;
             }
+
             h1 {
                 font-size: 1.8rem;
                 padding: 0 1rem;
@@ -108,13 +203,13 @@
 
             <p>She had a sister married to a Mr. Phillips, who had been a clerk to their father and succeeded him in the business, and a brother settled in London in a respectable line of trade.</p>
 
-            <p>The village of Longbourn was only one mile from Meryton; a most convenient distance for the young ladies, who were usually tempted thither three or four times a week, to pay their duty to their aunt and to a milliner’s shop just over the way. The two youngest of the family, Catherine and Lydia, were particularly frequent in these attentions; their minds were more vacant than their sisters’, and when nothing better offered, a walk to Meryton was necessary to amuse their morning hours and furnish conversation for the evening; and however bare of news the country in general might be, they always contrived to learn some from their aunt. At present, indeed, they were well supplied both with news and happiness by the recent arrival of a militia regiment in the neighbourhood; it was to remain the whole winter, and Meryton was the headquarters.</p>
+            <p>The village of Longbourn was only one mile from Meryton; a most convenient distance for the young ladies, who were usually tempted thither three or four times a week, to pay their duty to their aunt, and to a milliner’s shop just over the way. The two youngest of the family, Catherine and Lydia, were particularly frequent in these attentions; their minds were more vacant than their sisters’, and when nothing better offered, a walk to Meryton was necessary to amuse their morning hours and furnish conversation for the evening; and however bare of news the country in general might be, they always contrived to learn some from their aunt.</p>
+
+            <p>At present, indeed, they were well supplied both with news and happiness by the recent arrival of a militia regiment in the neighbourhood; it was to remain the whole winter, and Meryton was the headquarters.</p>
 
             <p>Their visits to Mrs. Phillips were now productive of the most interesting intelligence. Every day added something to their knowledge of the officers’ names and connections. Their lodgings were not long a secret, and at length they began to know the officers themselves. Mr. Phillips visited them all, and this opened to his nieces a store of felicity unknown before. They could talk of nothing but officers; and Mr. Bingley’s large fortune, the mention of which gave animation to their mother, was worthless in their eyes when opposed to the regimentals of an ensign.</p>
 
-            <p>After listening one morning to their effusions on this subject, Mr. Bennet coolly observed:</p>
-
-            <p>“From all that I can collect by your manner of talking, you must be two of the silliest girls in the country. I have suspected it some time, but I am now convinced.”</p>
+            <p>After listening one morning to their effusions on this subject, Mr. Bennet coolly observed, “From all that I can collect by your manner of talking, you must be two of the silliest girls in the country. I have suspected it some time, but I am now convinced.”</p>
 
             <p>Catherine was disconcerted, and made no answer; but Lydia, with perfect indifference, continued to express her admiration of Captain Carter, and her hope of seeing him in the course of the day, as he was going the next morning to London.</p>
 
@@ -130,15 +225,13 @@
 
             <p>“Mamma,” cried Lydia, “my aunt says that Colonel Forster and Captain Carter do not go so often to Miss Watson’s as they did when they first came; she sees them now very often standing in Clarke’s library.”</p>
 
-            <p>Mrs. Bennet was prevented replying by the entrance of the footman with a note for Miss Bennet; it came from Netherfield, and the servant waited for an answer. Mrs. Bennet’s eyes sparkled with pleasure, and she was eagerly calling out, while her daughter read,</p>
-
-            <p>“Well, Jane, who is it from? What is it about? What does he say? Well, Jane, make haste and tell us; make haste, my love.”</p>
+            <p>Mrs. Bennet was prevented replying by the entrance of the footman with a note for Miss Bennet; it came from Netherfield, and the servant waited for an answer. Mrs. Bennet’s eyes sparkled with pleasure, and she was eagerly calling out, while her daughter read, “Well, Jane, who is it from? what is it about? what does he say? Well, Jane, make haste and tell us; make haste, my love.”</p>
 
             <p>“It is from Miss Bingley,” said Jane, and then read it aloud.</p>
 
-            <p>“MY DEAR FRIEND,—If you are not so compassionate as to dine to-day with Louisa and me, we shall be in danger of hating each other for the rest of our lives, for a whole day’s tête-à-tête between two women can never end without a quarrel. Come as soon as you can on receipt of this. My brother and the gentlemen are to dine with the officers.—Yours ever, CAROLINE BINGLEY.”</p>
+            <p>“MY DEAR FRIEND,—If you are not so compassionate as to dine to-day with Louisa and me, we shall be in danger of hating each other for the rest of our lives, for a whole day’s tete-a-tete between two women can never end without a quarrel. Come as soon as you can on receipt of this. My brother and the gentlemen are to dine with the officers.—Yours ever, CAROLINE BINGLEY.”</p>
 
-            <p>“With the officers!” cried Lydia. “I wonder my aunt did not tell us of <em>that</em>.”</p>
+            <p>“With the officers!” cried Lydia. “I wonder my aunt did not tell us of that.”</p>
 
             <p>“Dining out,” said Mrs. Bennet, “that is very unlucky.”</p>
 
@@ -152,7 +245,7 @@
 
             <p>“I had much rather go in the coach.”</p>
 
-            <p>“But, my dear, your father cannot spare the horses, I am sure. They are wanted in the farm, Mr. Bennet, are not they?”</p>
+            <p>“But, my dear, your father cannot spare the horses, I am sure. They are wanted in the farm, Mr. Bennet, are they not?”</p>
 
             <p>“They are wanted in the farm much oftener than I can get them.”</p>
 
@@ -164,73 +257,96 @@
 
             <p>“MY DEAREST LIZZY,—I find myself very unwell this morning, which, I suppose, is to be imputed to my getting wet through yesterday. My kind friends will not hear of my returning till I am better. They insist also on my seeing Mr. Jones—therefore do not be alarmed if you should hear of his having been to me—and, excepting a sore throat and headache, there is not much the matter with me.—Yours, etc.”</p>
 
-            <p>“Well, my dear,” said Mr. Bennet, when Elizabeth had read the note aloud, “if your daughter should have a dangerous fit of illness—if she should die—it would be a comfort to know that it was all in pursuit of Mr. Bingley, and under your orders.”</p>
+            <p>“Well, my dear,” said Mr. Bennet, when Elizabeth had read the note aloud, “if your daughter should have a dangerous fit of illness—if she should die, it would be a comfort to know that it was all in pursuit of Mr. Bingley, and under your orders.”</p>
 
-            <p>“Oh! I am not afraid of her dying. People do not die of little trifling colds. She will be taken good care of. As long as she stays there, it is all very well.”</p>
+            <p>“Oh! I am not afraid of her dying. People do not die of little trifling colds. She will be taken good care of. As long as she stays there, it is all very well. I would go and see her if I could have the carriage.”</p>
 
-            <p>Elizabeth, feeling really anxious, determined to go to her, though the carriage was not to be had; and as she was no horsewoman, walking was her only alternative. She declared her resolution.</p>
-
-            <p>“How can you be so silly,” cried her mother, “as to think of such a thing, in all this dirt! You will not be fit to be seen when you get there.”</p>
-
-            <p>“I shall be very fit to see Jane—which is all I want.”</p>
-
-            <p>“Is this a hint to me, Lizzy,” said her father, “to send for the horses?”</p>
-
-            <p>“No, indeed, I do not wish to avoid the walk. The distance is nothing when one has a motive; only three miles. I shall be back by dinner.”</p>
-
-            <p>“I admire the activity of your benevolence,” observed Mary; “but every impulse of feeling should be guided by reason; and, in my opinion, exertion should always be in proportion to what is required.”</p>
-
-            <p>“We will go as far as Meryton with you,” said Catherine and Lydia. Elizabeth accepted their company, and the three young ladies set off together.</p>
+            <p>Elizabeth, feeling really anxious, proposed to go to her, and Mr. Bennet readily agreed, while Mrs. Bennet objected to nothing but the trouble of her walking three miles so early in the day. Elizabeth accepted the challenge, however, and set off alone, crossing field after field at a quick pace, jumping over stiles and springing over puddles, with impatient activity, and finding herself at last within view of the house, with weary ankles, dirty stockings, and a face glowing with the warmth of exercise.</p>
         </div>
 
         <!-- Vocabulary List -->
         <div class="content-section vocabulary-list">
             <h2>Vocabulary List</h2>
             <ul>
-                <li><strong>entailed</strong> — legally passed to a specific heir.</li>
-                <li><strong>militia</strong> — a military force of soldiers.</li>
-                <li><strong>regimentals</strong> — military uniforms.</li>
-                <li><strong>contrivance</strong> — a clever plan.</li>
-                <li><strong>prognostics</strong> — predictions about the future.</li>
-                <li><strong>intermission</strong> — a pause or break.</li>
-                <li><strong>benevolence</strong> — kindness.</li>
-                <li><strong>impulse</strong> — a sudden feeling or action.</li>
-                <li><strong>exertion</strong> — effort.</li>
-                <li><strong>alternative</strong> — another choice.</li>
+                <li><strong>entailed</strong> <i class="fas fa-volume-up speaker-icon" data-word="entailed"></i> — legally limited to pass to a particular heir.</li>
+                <li><strong>deficiency</strong> <i class="fas fa-volume-up speaker-icon" data-word="deficiency"></i> — a lack of something needed.</li>
+                <li><strong>respectable</strong> <i class="fas fa-volume-up speaker-icon" data-word="respectable"></i> — considered proper and honorable.</li>
+                <li><strong>milliner</strong> <i class="fas fa-volume-up speaker-icon" data-word="milliner"></i> — a person who makes or sells women’s hats.</li>
+                <li><strong>militia regiment</strong> <i class="fas fa-volume-up speaker-icon" data-word="militia regiment"></i> — a military group of soldiers serving locally.</li>
+                <li><strong>ensign</strong> <i class="fas fa-volume-up speaker-icon" data-word="ensign"></i> — a low-ranking army officer.</li>
+                <li><strong>disconcerted</strong> <i class="fas fa-volume-up speaker-icon" data-word="disconcerted"></i> — embarrassed or unsettled.</li>
+                <li><strong>regimentals</strong> <i class="fas fa-volume-up speaker-icon" data-word="regimentals"></i> — military uniform clothes.</li>
+                <li><strong>prognostics</strong> <i class="fas fa-volume-up speaker-icon" data-word="prognostics"></i> — predictions about what will happen.</li>
+                <li><strong>contrivance</strong> <i class="fas fa-volume-up speaker-icon" data-word="contrivance"></i> — a clever or planned scheme.</li>
+                <li><strong>imputed</strong> <i class="fas fa-volume-up speaker-icon" data-word="imputed"></i> — attributed or blamed to something.</li>
+                <li><strong>readily</strong> <i class="fas fa-volume-up speaker-icon" data-word="readily"></i> — willingly and quickly.</li>
+                <li><strong>stiles</strong> <i class="fas fa-volume-up speaker-icon" data-word="stiles"></i> — steps or structures used to climb over a fence.</li>
+                <li><strong>puddles</strong> <i class="fas fa-volume-up speaker-icon" data-word="puddles"></i> — small pools of water on the ground.</li>
+                <li><strong>glowing</strong> <i class="fas fa-volume-up speaker-icon" data-word="glowing"></i> — shining or showing warmth and color.</li>
             </ul>
         </div>
 
-        <!-- True / False -->
+        <!-- True / False Questions -->
         <div class="content-section questions">
             <h2>True or False</h2>
             <ol>
-                <li>Mr. Bennet’s property will go to his daughters.
-                    <div class="tf-options"><label><input type="radio" name="tf1"> True</label><label><input type="radio" name="tf1"> False</label></div>
+                <li>
+                    The Bennet estate is safely divided among the five daughters. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
                 </li>
-                <li>Lydia and Kitty are very interested in soldiers.
-                    <div class="tf-options"><label><input type="radio" name="tf2"> True</label><label><input type="radio" name="tf2"> False</label></div>
+                <li>
+                    Lydia and Kitty are especially interested in the officers in Meryton. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
                 </li>
-                <li>Jane rides to Netherfield.
-                    <div class="tf-options"><label><input type="radio" name="tf3"> True</label><label><input type="radio" name="tf3"> False</label></div>
+                <li>
+                    Mr. Bennet thinks Lydia and Kitty are very sensible girls. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
                 </li>
-                <li>Mrs. Bennet hopes Jane will stay overnight.
-                    <div class="tf-options"><label><input type="radio" name="tf4"> True</label><label><input type="radio" name="tf4"> False</label></div>
+                <li>
+                    Mrs. Bennet wants Jane to go to Netherfield on horseback because she expects rain. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
                 </li>
-                <li>Elizabeth decides to walk to Netherfield.
-                    <div class="tf-options"><label><input type="radio" name="tf5"> True</label><label><input type="radio" name="tf5"> False</label></div>
+                <li>
+                    Elizabeth decides to walk to Netherfield to see Jane. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
                 </li>
             </ol>
         </div>
 
-        <!-- Fill in the Blanks -->
+        <!-- Fill-in-the-Blank Questions -->
         <div class="content-section questions">
             <h2>Fill in the Blanks</h2>
             <ol>
-                <li>The estate is entailed to a male <input type="text" placeholder="noun">.</li>
-                <li>The militia brings excitement to <input type="text" placeholder="town name">.</li>
-                <li>Jane travels to Netherfield on <input type="text" placeholder="animal">.</li>
-                <li>Elizabeth walks about <input type="text" placeholder="number"> miles.</li>
-                <li>Jane becomes ill from the <input type="text" placeholder="weather">.</li>
+                <li>
+                    Mr. Bennet’s estate was entailed on a distant <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Kitty and Lydia often walked to <input type="text" placeholder="place">.
+                </li>
+                <li>
+                    Jane receives a note from Miss <input type="text" placeholder="name">.
+                </li>
+                <li>
+                    Mrs. Bennet hopes the rainy weather will keep Jane at <input type="text" placeholder="place">.
+                </li>
+                <li>
+                    Elizabeth arrives with dirty stockings and weary <input type="text" placeholder="body part">.
+                </li>
             </ol>
         </div>
     </main>
@@ -239,5 +355,19 @@
         <a href="../reading.html">⬅️ Back to Reading</a>
         <a href="../index.html">🏠 Back to Home</a>
     </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

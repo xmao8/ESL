@@ -6,86 +6,384 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Reading: Pride and Prejudice — Chapter Ten</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
         }
         main {
+            flex: 1;
             max-width: 800px;
             margin: auto;
             padding: 1rem;
         }
-        h1 { text-align: center; }
-        p { line-height: 1.7; }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.8rem 0;
+        }
+
         .content-section {
-            background: white;
-            padding: 1.5rem;
+            background: #fff;
             border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
         }
-        .reading-text p { text-indent: 1.5rem; }
+
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
+
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
+
+        input[type="text"] {
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .buttons a {
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
 
-<h1>Pride and Prejudice — Chapter Ten</h1>
+    <h1>Pride and Prejudice — Chapter Ten</h1>
 
-<main>
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>The day passed much as the day before had done. Mrs. Hurst and Miss Bingley had spent some hours of the morning with the invalid, who continued, though slowly, to mend; and in the evening Elizabeth joined their party in the drawing-room. The loo-table, however, did not appear. Mr. Darcy was writing, and Miss Bingley, seated near him, was watching the progress of his letter and repeatedly calling off his attention by messages to his sister. Mr. Hurst and Mr. Bingley were at piquet, and Mrs. Hurst was observing their game.</p>
 
-<div class="content-section reading-text">
+            <p>Miss Bingley’s attention to Mr. Darcy was over, in great part, employed in keeping him from writing to his sister than in any actual concern for the contents of his letter. She was perpetually asking him to make his letters as long as possible, and then admiring the evenness of his lines and the length of his sentences.</p>
 
-<p>The day passed quietly at Netherfield. Elizabeth spent most of her time with Jane, whose illness continued, though she was slowly improving. When Elizabeth joined the others, she found them engaged in polite but somewhat artificial conversation.</p>
+            <p>“How delighted Miss Darcy will be to receive such a letter!” he said, with affectionate praise of his sister. “You write uncommonly fast.”</p>
 
-<p>Miss Bingley made several attempts to draw Mr. Darcy into conversation, often speaking about his sister and her accomplishments. She praised his sister’s beauty and talents, hoping to engage his interest. Darcy responded politely but without much enthusiasm.</p>
+            <p>“You are mistaken. I write rather slowly.”</p>
 
-<p>Elizabeth, meanwhile, sat sewing and listening. Miss Bingley soon invited her to walk about the room, suggesting that such movement might improve her spirits. Elizabeth agreed, and the two women began walking together.</p>
+            <p>“How many letters you must have occasion to write in the course of a year! Letters of business, too! How odious I should think them!”</p>
 
-<p>Miss Bingley then invited Mr. Darcy to join them. He declined, saying he could imagine only two reasons for their walking: either they wished to discuss private matters, or they were displaying their figures. In either case, he preferred to remain seated.</p>
+            <p>“It is fortunate, then, that they fall to my lot instead of yours.”</p>
 
-<p>Elizabeth laughed at his remark, while Miss Bingley pretended to be offended. She continued to try to engage him, asking what could be done to punish such behavior. Elizabeth suggested that teasing him might be the best method.</p>
+            <p>“Pray tell your sister that I long to see her.”</p>
 
-<p>Darcy replied that he was not easily teased, as he tried to avoid weaknesses that could be laughed at. Elizabeth answered that everyone has faults, and that pride is one of his. Darcy admitted that pride might indeed be a weakness, though he distinguished it from vanity. Pride, he said, relates to our opinion of ourselves, while vanity concerns what others think of us.</p>
+            <p>“I have already told her so once, by your desire.”</p>
 
-<p>The conversation continued with wit and playfulness. Elizabeth enjoyed challenging Darcy’s ideas, while he found himself increasingly interested in her intelligence and spirit. Though he tried to maintain his usual reserve, he could not entirely hide his admiration.</p>
+            <p>“I am afraid you do not like your pen. Let me mend it for you. I mend pens remarkably well.”</p>
 
-<p>Miss Bingley, noticing this, became more determined to attract Darcy’s attention. She spoke again of accomplishments, elegance, and fashionable society, but her efforts were less successful than she hoped.</p>
+            <p>“Thank you—but I always mend my own.”</p>
 
-<p>Later, the group turned to reading. Miss Bingley selected a book but soon lost interest, complaining that she could not focus. She attempted once more to engage Darcy, but he remained calm and distant.</p>
+            <p>“How can you contrive to write so even?”</p>
 
-<p>Elizabeth, on the other hand, showed quiet independence. She neither tried to impress Darcy nor sought his approval. This natural behavior made her more appealing to him, even as he struggled against his growing feelings.</p>
+            <p>He made no answer.</p>
 
-<p>The chapter highlights the developing tension between Darcy’s pride and his attraction to Elizabeth. It also contrasts Elizabeth’s genuine character with Miss Bingley’s artificial attempts to gain attention.</p>
+            <p>“Tell your sister I am delighted to hear of her improvement on the harp; and pray let her know that I am quite in raptures with her beautiful little design for a table, and I think it infinitely superior to Miss Grantley’s.”</p>
 
-</div>
+            <p>“Will you give me leave to defer your raptures till I write again? At present I have not room to do them justice.”</p>
 
-<!-- Vocabulary -->
-<div class="content-section">
-<h2>Vocabulary</h2>
-<ul>
-<li><strong>accomplishment</strong> — a learned skill</li>
-<li><strong>reserve</strong> — calm and controlled behavior</li>
-<li><strong>tease</strong> — to joke about someone</li>
-<li><strong>vanity</strong> — concern about others’ opinions</li>
-<li><strong>independence</strong> — not needing approval from others</li>
-<li><strong>admiration</strong> — strong liking or respect</li>
-</ul>
-</div>
+            <p>“Oh! it is of no consequence. I shall see her in January. But do you always write such charming long letters to her, Mr. Darcy?”</p>
 
-<!-- Questions -->
-<div class="content-section">
-<h2>True or False</h2>
-<ol>
-<li>Elizabeth spends most of her time with Jane.</li>
-<li>Darcy eagerly joins the women walking.</li>
-<li>Elizabeth and Darcy discuss pride and vanity.</li>
-<li>Miss Bingley successfully attracts Darcy’s attention.</li>
-<li>Darcy begins to admire Elizabeth more.</li>
-</ol>
-</div>
+            <p>“They are generally long; but whether always charming, it is not for me to determine.”</p>
 
-</main>
+            <p>“It is a rule with me, that a person who can write a long letter with ease, cannot write ill.”</p>
 
+            <p>“That will not do for a compliment to Darcy, Caroline,” cried her brother, “because he does not write with ease. He studies too much for words of four syllables. Do not you, Darcy?”</p>
+
+            <p>“My style of writing is very different from yours.”</p>
+
+            <p>“Oh!” cried Miss Bingley, “Charles writes in the most careless way imaginable. He leaves out half his words, and blots the rest.”</p>
+
+            <p>“My ideas flow so rapidly that I have not time to express them—by which means my letters sometimes convey no ideas at all to my correspondents.”</p>
+
+            <p>“Your humility, Mr. Bingley,” said Elizabeth, “must disarm reproof.”</p>
+
+            <p>“Nothing is more deceitful,” said Darcy, “than the appearance of humility. It is often only carelessness of opinion, and sometimes an indirect boast.”</p>
+
+            <p>“And which of the two do you call my little recent piece of modesty?”</p>
+
+            <p>“The indirect boast; for you are really proud of your defects in writing, because you consider them as proceeding from a rapidity of thought and carelessness of execution, which, if not estimable, you think at least highly interesting. The power of doing anything with quickness is always valued much by the possessor, and often without any attention to the imperfection of the performance. When you told Mrs. Bennet this morning that if you ever resolved on quitting Netherfield you should be gone in five minutes, you meant it to be a sort of panegyric, of compliment to yourself—and yet what is there so very laudable in a precipitance which must leave very necessary business undone, and can be of no real advantage to yourself or anyone else?”</p>
+
+            <p>“Nay,” cried Bingley, “this is too much, to remember at night all the foolish things that were said in the morning. And yet, upon my honour, I believe what I said of myself to be true, and I believe it at this moment. At least, therefore, I did not assume the character of needless precipitance merely to show off before the ladies.”</p>
+
+            <p>“I dare say you believed it; but I am by no means convinced that you were gone with such celerity when first you called at Netherfield. Something must have been left undone.”</p>
+
+            <p>“Perhaps you did not speak with enough precision, Charles. You meant, perhaps, that you might have made an agreement to quit the place in five minutes, but not that you would have actually left it in five minutes.”</p>
+
+            <p>“No, by no means, this was more than I intended. I see your design, Bingley,” said his friend. “You dislike an argument, and want to silence this.”</p>
+
+            <p>“Perhaps I do. Arguments are too much like disputes. If you and Miss Bennet will defer yours till I am out of the room, I shall be very thankful; and then you may say whatever you like of me.”</p>
+
+            <p>“What you ask,” said Elizabeth, “is no sacrifice on my side; and Mr. Darcy had much better finish his letter.”</p>
+
+            <p>Mr. Darcy took her advice, and did finish his letter.</p>
+
+            <p>When that business was over, he applied to Miss Bingley and Elizabeth for an indulgence of some music. Miss Bingley moved with some alacrity to the pianoforte; and after a polite request that Elizabeth would lead the way which the other as politely and more earnestly negatived, she seated herself.</p>
+
+            <p>Mrs. Hurst sang with her sister, and while they were thus employed, Elizabeth could not help observing, as she turned over some music books that lay on the instrument, how frequently Mr. Darcy’s eyes were fixed on her. She hardly knew how to suppose that she could be an object of admiration to so great a man; and yet that he should look at her because he disliked her, was still more strange. She could only imagine, however, at last, that she drew his notice because there was something more wrong and reprehensible, according to his ideas of right, than in any other person present. The supposition did not pain her. She liked him too little to care for his approbation.</p>
+
+            <p>After playing some Italian songs, Miss Bingley varied the charm by a lively Scotch air; and soon afterwards Mr. Darcy, drawing near Elizabeth, said to her, “Do not you feel a great inclination, Miss Bennet, to seize such an opportunity of dancing a reel?”</p>
+
+            <p>She smiled, but made no answer. He repeated the question, with some surprise at her silence.</p>
+
+            <p>“Oh!” said she, “I heard you before, but I could not immediately determine what to say in reply. You wanted me, I know, to say ‘Yes,’ that you might have the pleasure of despising my taste; but I always delight in overthrowing those kind of schemes, and cheating a person of their premeditated contempt. I have, therefore, made up my mind to tell you, that I do not want to dance a reel at all—and now despise me if you dare.”</p>
+
+            <p>“Indeed I do not dare.”</p>
+
+            <p>Elizabeth, having rather expected to affront him, was amazed at his gallantry; but there was a mixture of sweetness and archness in her manner which made it difficult for her to affront anybody; and Darcy had never been so bewitched by any woman as he was by her. He really believed, that were it not for the inferiority of her connections, he should be in some danger.</p>
+
+            <p>Miss Bingley saw, or suspected enough to be jealous; and her great anxiety for the recovery of her dear friend Jane received some assistance from her desire of getting rid of Elizabeth.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>invalid</strong> <i class="fas fa-volume-up speaker-icon" data-word="invalid"></i> — a sick person.</li>
+                <li><strong>piquet</strong> <i class="fas fa-volume-up speaker-icon" data-word="piquet"></i> — a card game for two players.</li>
+                <li><strong>raptures</strong> <i class="fas fa-volume-up speaker-icon" data-word="raptures"></i> — great joy or delight.</li>
+                <li><strong>careless</strong> <i class="fas fa-volume-up speaker-icon" data-word="careless"></i> — not paying enough attention.</li>
+                <li><strong>humility</strong> <i class="fas fa-volume-up speaker-icon" data-word="humility"></i> — modesty; not acting proud.</li>
+                <li><strong>deceitful</strong> <i class="fas fa-volume-up speaker-icon" data-word="deceitful"></i> — misleading or dishonest.</li>
+                <li><strong>panegyric</strong> <i class="fas fa-volume-up speaker-icon" data-word="panegyric"></i> — high praise.</li>
+                <li><strong>precipitance</strong> <i class="fas fa-volume-up speaker-icon" data-word="precipitance"></i> — acting too quickly.</li>
+                <li><strong>indulgence</strong> <i class="fas fa-volume-up speaker-icon" data-word="indulgence"></i> — permission or favor.</li>
+                <li><strong>alacrity</strong> <i class="fas fa-volume-up speaker-icon" data-word="alacrity"></i> — cheerful willingness.</li>
+                <li><strong>reprehensible</strong> <i class="fas fa-volume-up speaker-icon" data-word="reprehensible"></i> — deserving blame.</li>
+                <li><strong>approbation</strong> <i class="fas fa-volume-up speaker-icon" data-word="approbation"></i> — approval or praise.</li>
+                <li><strong>affront</strong> <i class="fas fa-volume-up speaker-icon" data-word="affront"></i> — to offend or insult.</li>
+                <li><strong>bewitched</strong> <i class="fas fa-volume-up speaker-icon" data-word="bewitched"></i> — deeply charmed.</li>
+                <li><strong>inferiority</strong> <i class="fas fa-volume-up speaker-icon" data-word="inferiority"></i> — lower social position or status.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Miss Bingley sincerely helps Darcy focus on writing his letter. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth says Bingley’s humility protects him from criticism. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Darcy believes quick action is always admirable. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth eagerly agrees to dance a reel. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Miss Bingley becomes jealous of Darcy’s interest in Elizabeth. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Mr. Darcy is writing a letter to his <input type="text" placeholder="family member">.
+                </li>
+                <li>
+                    Elizabeth says Bingley’s humility must disarm <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Darcy asks Elizabeth whether she wants to dance a <input type="text" placeholder="dance">.
+                </li>
+                <li>
+                    Elizabeth says she likes to overthrow schemes and cheat people of their premeditated <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Darcy is increasingly charmed by Elizabeth’s sweetness and <input type="text" placeholder="noun">.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

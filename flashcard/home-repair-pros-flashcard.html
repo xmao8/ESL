@@ -4,14 +4,34 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home Repair – Flashcards (Intermediate ESL)</title>
+  <title>Home Repair – Flashcards (Intermediate)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
 
+  <!-- KEEP ALL YOUR ORIGINAL STYLES -->
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f4f9;
       text-align: center;
       margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    nav { background: #124076; }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      margin: 0 0.5rem;
     }
 
     h1 { margin: 2rem auto; color: #2c3e50; }
@@ -19,32 +39,32 @@
     .flashcard {
       background: white;
       width: 90%;
-      max-width: 600px;
+      max-width: 640px;
       margin: 2rem auto;
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
       cursor: pointer;
     }
 
     .flashcard.flipped {
-      background: #3498db;
+      background-color: #3498db;
       color: white;
     }
 
     .word { font-size: 2rem; font-weight: bold; }
-    .definition { margin-top: 1rem; }
-    .example { font-style: italic; margin-top: 0.5rem; }
 
-    .buttons { margin: 2rem; }
+    .buttons {
+      margin: 2rem;
+    }
+
     button {
       padding: 0.6rem 1rem;
-      margin: 0.3rem;
       background: #3498db;
       color: white;
       border: none;
       border-radius: 8px;
+      margin: 0.3rem;
       cursor: pointer;
     }
   </style>
@@ -52,7 +72,7 @@
 
 <body>
 
-<h1>Common Home Repair Words (30)</h1>
+<h1>Common Home Repair – 30 Useful Words</h1>
 <p id="progress">Card 1 of 30</p>
 
 <div id="flashcard" class="flashcard" onclick="flipCard()">
@@ -60,43 +80,45 @@
 </div>
 
 <div class="buttons">
-  <button onclick="prevCard()">⬅</button>
-  <button onclick="nextCard()">➡</button>
+  <button onclick="prevCard()">⬅ Previous</button>
+  <button onclick="nextCard()">Next ➡</button>
 </div>
 
 <script>
 
 const flashcards = [
-  { word: "Plumber", definition: "Fixes pipes, sinks, and toilets.", example: "The plumber fixed the leak." },
-  { word: "Electrician", definition: "Fixes wires, lights, and outlets.", example: "The electrician repaired the light." },
-  { word: "Painter", definition: "Paints walls and rooms.", example: "The painter painted the room." },
-  { word: "Roofer", definition: "Repairs roofs.", example: "The roofer fixed the roof." },
-  { word: "Handyman", definition: "Fixes small home problems.", example: "The handyman fixed the door." },
-  { word: "Locksmith", definition: "Fixes locks and keys.", example: "The locksmith opened the door." },
-  { word: "Carpenter", definition: "Works with wood.", example: "The carpenter built a table." },
+  { word: "Plumber", definition: "Fixes pipes, sinks, and toilets.", example: "The plumber fixed the leaking sink." },
+  { word: "Electrician", definition: "Fixes lights and wiring.", example: "The electrician repaired the outlet." },
+  { word: "HVAC Technician", definition: "Fixes heating and air conditioning.", example: "The HVAC tech fixed the AC." },
+  { word: "Roofer", definition: "Repairs roofs.", example: "The roofer fixed the roof leak." },
+  { word: "Painter", definition: "Paints walls.", example: "The painter painted the room." },
+  { word: "Carpenter", definition: "Works with wood.", example: "The carpenter fixed the cabinet." },
+  { word: "Flooring Installer", definition: "Installs floors.", example: "They installed new floors." },
+  { word: "Tile Setter", definition: "Installs tiles.", example: "He fixed the bathroom tiles." },
+  { word: "Window Installer", definition: "Installs windows.", example: "They replaced the broken window." },
+  { word: "Gutter Cleaner", definition: "Cleans gutters.", example: "He cleaned the gutters." },
+
+  { word: "Appliance Repair Technician", definition: "Fixes appliances.", example: "He fixed the washing machine." },
+  { word: "Garage Door Technician", definition: "Fixes garage doors.", example: "The door works now." },
+  { word: "Pest Control Technician", definition: "Removes pests.", example: "They removed ants." },
   { word: "Cleaner", definition: "Cleans homes.", example: "The cleaner cleaned the house." },
-  { word: "Gardener", definition: "Takes care of plants.", example: "The gardener watered the plants." },
-  { word: "Mover", definition: "Moves furniture.", example: "The movers carried the sofa." },
-  { word: "Technician", definition: "Fixes machines.", example: "The technician fixed the washer." },
-  { word: "Contractor", definition: "Manages repair work.", example: "The contractor fixed the kitchen." },
-  { word: "Inspector", definition: "Checks for problems.", example: "The inspector checked the house." },
-  { word: "Fence Builder", definition: "Builds fences.", example: "He built a new fence." },
-  { word: "Floor Installer", definition: "Installs floors.", example: "They installed new floors." },
-  { word: "Tile Worker", definition: "Installs tiles.", example: "He fixed the bathroom tiles." },
-  { word: "Window Repair", definition: "Fixes windows.", example: "They replaced the glass." },
-  { word: "Garage Repair", definition: "Fixes garage doors.", example: "The garage door is fixed." },
-  { word: "Pest Control", definition: "Removes insects.", example: "They removed ants." },
-  { word: "Pool Cleaner", definition: "Cleans pools.", example: "He cleaned the pool." },
+  { word: "Carpet Cleaner", definition: "Cleans carpets.", example: "The carpet looks new." },
+  { word: "Landscaper", definition: "Works on yards.", example: "He planted flowers." },
+  { word: "Gardener", definition: "Takes care of plants.", example: "She watered the plants." },
+  { word: "Tree Worker", definition: "Cuts trees.", example: "He cut the branch." },
+  { word: "Fence Contractor", definition: "Builds fences.", example: "They built a new fence." },
+  { word: "Concrete Contractor", definition: "Works with concrete.", example: "He fixed the driveway." },
+
+  { word: "Locksmith", definition: "Fixes locks.", example: "He opened the door." },
+  { word: "Handyperson", definition: "Fixes small problems.", example: "He fixed the shelf." },
+  { word: "Home Inspector", definition: "Checks houses.", example: "The inspector found problems." },
+  { word: "Contractor", definition: "Manages repairs.", example: "The contractor fixed the kitchen." },
+  { word: "Mover", definition: "Moves furniture.", example: "They carried the sofa." },
   { word: "Delivery Worker", definition: "Delivers items.", example: "They delivered a fridge." },
   { word: "Maintenance Worker", definition: "Fixes building problems.", example: "He fixed the sink." },
-  { word: "Tree Worker", definition: "Cuts trees.", example: "He cut the branch." },
-  { word: "Concrete Worker", definition: "Works with cement.", example: "He fixed the driveway." },
-  { word: "Gutter Cleaner", definition: "Cleans gutters.", example: "He cleaned the gutters." },
-  { word: "Air Conditioner Tech", definition: "Fixes AC.", example: "He fixed the AC." },
-  { word: "Heater Tech", definition: "Fixes heaters.", example: "He fixed the heater." },
-  { word: "Appliance Repair", definition: "Fixes home machines.", example: "He fixed the fridge." },
-  { word: "Carpet Cleaner", definition: "Cleans carpets.", example: "He cleaned the carpet." },
-  { word: "Landscaper", definition: "Works on yards.", example: "He planted flowers." }
+  { word: "Pool Technician", definition: "Maintains pools.", example: "He cleaned the pool." },
+  { word: "Heater Technician", definition: "Fixes heaters.", example: "He fixed the heater." },
+  { word: "Air Conditioner Technician", definition: "Fixes AC units.", example: "He fixed the AC." }
 ];
 
 let index = 0;
@@ -109,7 +131,7 @@ function showCard() {
   flipped = false;
   flashcard.classList.remove('flipped');
   flashcard.innerHTML = `<div class="word">${flashcards[index].word}</div>`;
-  progress.textContent = `Card ${index+1} of ${flashcards.length}`;
+  progress.textContent = `Card ${index + 1} of ${flashcards.length}`;
 }
 
 function flipCard() {
@@ -117,8 +139,8 @@ function flipCard() {
     const card = flashcards[index];
     flashcard.innerHTML = `
       <div class="word">${card.word}</div>
-      <div class="definition">${card.definition}</div>
-      <div class="example">"${card.example}"</div>
+      <div>${card.definition}</div>
+      <div style="margin-top:0.5rem; font-style:italic;">"${card.example}"</div>
     `;
     flashcard.classList.add('flipped');
     flipped = true;

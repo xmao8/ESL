@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Pride and Prejudice — Chapter Fourteen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.8rem 0;
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
+
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
+
+        input[type="text"] {
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .buttons a {
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Pride and Prejudice — Chapter Fourteen</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>During dinner, Mr. Bennet scarcely spoke at all; but when the servants were withdrawn, he thought it time to have some conversation with his guest, and therefore started a subject in which he expected him to shine, by observing that he seemed very fortunate in his patroness.</p>
+
+            <p>Lady Catherine de Bourgh’s attention to his wishes, and consideration for his comfort, appeared very remarkable. Mr. Bennet could not have chosen better. Mr. Collins was eloquent in her praise. The subject elevated him to more than usual solemnity of manner, and with a most important aspect he protested that “he had never in his life witnessed such behaviour in a person of rank—such affability and condescension, as he had himself experienced from Lady Catherine.”</p>
+
+            <p>She had been graciously pleased to approve of both the discourses which he had already had the honour of preaching before her. She had also asked him twice to dine at Rosings, and had sent for him only the Saturday before, to make up her pool of quadrille in the evening.</p>
+
+            <p>Lady Catherine was reckoned proud by many people he knew, but he had never seen anything but affability in her. She had always spoken to him as she would to any other gentleman; she made not the smallest objection to his joining in the society of the neighbourhood, nor to his leaving the parish occasionally for a week or two to visit his relations.</p>
+
+            <p>She had even condescended to advise him to marry as soon as he could, provided he chose with discretion; and had once paid him a visit in his humble parsonage, where she had perfectly approved all the alterations he had been making, and had even vouchsafed to suggest some herself—some shelves in the closet upstairs.</p>
+
+            <p>“That is all very proper and civil, I am sure,” said Mrs. Bennet, “and I dare say she is a very agreeable woman. It is a pity that great ladies in general are not more like her. Does she live near you, sir?”</p>
+
+            <p>“The garden in which stands my humble abode is separated only by a lane from Rosings Park, her ladyship’s residence.”</p>
+
+            <p>“I think you said she was a widow, sir? Has she any family?”</p>
+
+            <p>“She has only one daughter, the heiress of Rosings, and of very extensive property.”</p>
+
+            <p>“Ah!” cried Mrs. Bennet, shaking her head, “then she is better off than many girls. And what sort of young lady is she? Is she handsome?”</p>
+
+            <p>“She is a most charming young lady indeed. Lady Catherine herself says that, in point of true beauty, Miss de Bourgh is far superior to the handsomest of her sex, because there is that in her features which marks the young woman of distinguished birth.</p>
+
+            <p>She is unfortunately of a sickly constitution, which has prevented her from making that progress in many accomplishments which she could not otherwise have failed of, as I am informed by the lady who superintended her education, and who still resides with them.</p>
+
+            <p>But she is perfectly amiable, and often condescends to drive by my humble abode in her little phaeton and ponies.”</p>
+
+            <p>“Has she been presented? I do not remember her name among the ladies at court.”</p>
+
+            <p>“Her indifferent state of health unhappily prevents her being in town; and by that means, as I told Lady Catherine one day, has deprived the British court of its brightest ornament. Her ladyship seemed pleased with the idea; and you may imagine that I am happy on every occasion to offer those little delicate compliments which are always acceptable to ladies.</p>
+
+            <p>I have more than once observed to Lady Catherine, that her charming daughter seemed born to be a duchess; and that the most elevated rank, instead of giving her consequence, would be adorned by her. These are the kind of little things which please her ladyship, and it is a sort of attention which I conceive myself peculiarly bound to pay.”</p>
+
+            <p>“You judge very properly,” said Mr. Bennet, “and it is happy for you that you possess the talent of flattering with delicacy. May I ask whether these pleasing attentions proceed from the impulse of the moment, or are the result of previous study?”</p>
+
+            <p>“They arise chiefly from what is passing at the time; and though I sometimes amuse myself with suggesting and arranging such little elegant compliments as may be adapted to ordinary occasions, I always wish to give them as unstudied an air as possible.”</p>
+
+            <p>Mr. Bennet’s expectations were fully answered. His cousin was as absurd as he had hoped, and he listened to him with the keenest enjoyment, maintaining at the same time the most resolute composure of countenance; and, except in an occasional glance at Elizabeth, requiring no partner in his pleasure.</p>
+
+            <p>By tea-time, however, the dose had been enough, and Mr. Bennet was glad to take his guest into the drawing-room again. When tea was over, he was glad to invite him to read aloud to the ladies.</p>
+
+            <p>Mr. Collins readily assented, and a book was produced; but on beholding it—for everything announced it to be from a circulating library—he started back, and begging pardon, protested that he never read novels.</p>
+
+            <p>Kitty stared at him, and Lydia exclaimed. Other books were produced, and after some deliberation he chose Fordyce’s Sermons.</p>
+
+            <p>Lydia gaped as he opened the volume; and before he had, with very monotonous solemnity, read three pages, she interrupted him with:</p>
+
+            <p>“Do you know, mamma, that my uncle Phillips talks of turning away Richard; and if he does, Colonel Forster will hire him. My aunt told me so herself on Saturday. I shall walk to Meryton to-morrow to hear more about it, and to ask when Mr. Denny comes back from town.”</p>
+
+            <p>Lydia was bid by her two eldest sisters to hold her tongue; but Mr. Collins, much offended, laid aside his book and said:</p>
+
+            <p>“I have often observed how little young ladies are interested by books of a serious stamp, though written solely for their benefit. It amazes me, I confess; for certainly there can be nothing so advantageous to them as instruction.</p>
+
+            <p>But I will no longer importune my young cousin.”</p>
+
+            <p>Then turning to Mr. Bennet, he offered himself as his antagonist at backgammon.</p>
+
+            <p>Mr. Bennet accepted the challenge, observing that he acted very wisely in leaving the girls to their own trifling amusements.</p>
+
+            <p>Mrs. Bennet and her daughters apologised most civilly for Lydia’s interruption, and promised that it should not occur again, if he would resume his book; but Mr. Collins, after assuring them that he bore his young cousin no ill-will, seated himself at another table with Mr. Bennet, and prepared for backgammon.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>patroness</strong> <i class="fas fa-volume-up speaker-icon" data-word="patroness"></i> — a woman who gives support or help.</li>
+                <li><strong>eloquent</strong> <i class="fas fa-volume-up speaker-icon" data-word="eloquent"></i> — speaking well and persuasively.</li>
+                <li><strong>solemnity</strong> <i class="fas fa-volume-up speaker-icon" data-word="solemnity"></i> — seriousness.</li>
+                <li><strong>affability</strong> <i class="fas fa-volume-up speaker-icon" data-word="affability"></i> — friendliness and politeness.</li>
+                <li><strong>condescension</strong> <i class="fas fa-volume-up speaker-icon" data-word="condescension"></i> — acting kindly to someone considered lower in rank.</li>
+                <li><strong>parsonage</strong> <i class="fas fa-volume-up speaker-icon" data-word="parsonage"></i> — a clergyman’s house.</li>
+                <li><strong>vouchsafed</strong> <i class="fas fa-volume-up speaker-icon" data-word="vouchsafed"></i> — graciously gave or offered.</li>
+                <li><strong>heiress</strong> <i class="fas fa-volume-up speaker-icon" data-word="heiress"></i> — a woman who will inherit wealth or property.</li>
+                <li><strong>constitution</strong> <i class="fas fa-volume-up speaker-icon" data-word="constitution"></i> — a person’s physical health.</li>
+                <li><strong>phaeton</strong> <i class="fas fa-volume-up speaker-icon" data-word="phaeton"></i> — a light horse-drawn carriage.</li>
+                <li><strong>delicacy</strong> <i class="fas fa-volume-up speaker-icon" data-word="delicacy"></i> — careful politeness or sensitivity.</li>
+                <li><strong>absurd</strong> <i class="fas fa-volume-up speaker-icon" data-word="absurd"></i> — ridiculous or foolish.</li>
+                <li><strong>composure</strong> <i class="fas fa-volume-up speaker-icon" data-word="composure"></i> — calmness and control.</li>
+                <li><strong>monotonous</strong> <i class="fas fa-volume-up speaker-icon" data-word="monotonous"></i> — dull and unchanging in sound.</li>
+                <li><strong>importune</strong> <i class="fas fa-volume-up speaker-icon" data-word="importune"></i> — to bother someone with repeated requests.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Mr. Bennet asks Mr. Collins about Lady Catherine because he expects Mr. Collins to praise her greatly. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mr. Collins says Lady Catherine has always treated him with great kindness. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Miss de Bourgh is described as strong, healthy, and often in town. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mr. Collins refuses to read a novel and chooses Fordyce’s Sermons instead. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Lydia interrupts Mr. Collins while he is reading aloud. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Mr. Collins speaks highly of his patroness, Lady Catherine de <input type="text" placeholder="surname">.
+                </li>
+                <li>
+                    Lady Catherine’s daughter is the heiress of <input type="text" placeholder="place">.
+                </li>
+                <li>
+                    Mr. Collins says Miss de Bourgh has a sickly <input type="text" placeholder="noun">.
+                </li>
+                <li>
+                    Mr. Collins refuses to read <input type="text" placeholder="type of book">.
+                </li>
+                <li>
+                    After being interrupted, Mr. Collins plays <input type="text" placeholder="game"> with Mr. Bennet.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

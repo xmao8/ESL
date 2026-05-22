@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Pride and Prejudice — Chapter Twenty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.8rem 0;
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
+
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
+
+        input[type="text"] {
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .buttons a {
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Pride and Prejudice — Chapter Twenty</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>Mr. Collins's proposal was received with great surprise by Elizabeth. She had not expected it, though she had long suspected that he admired her; and she was not a little relieved when, after his very long and pompous speech, she was able to clearly say "no."</p>
+
+            <p>Mr. Collins was not a man to be easily discouraged. He began his proposal by complimenting Elizabeth on her many good qualities, noting that though she had no large fortune, he did not hold that against her. He reminded her of the honour he was doing her, as the clergyman of Lady Catherine de Bourgh. He listed several reasons why she should be very happy to accept him: she was not likely to receive another offer of marriage so soon, she had no large fortune, and her family home would one day belong to him anyway.</p>
+
+            <p>Elizabeth listened politely at first. Then, as clearly and calmly as she could, she thanked him but firmly refused his offer. She told him she was honoured, but that she could not accept him. She wished him well.</p>
+
+            <p>Mr. Collins did not believe her. He was certain that when a young woman says no, she really means yes. He told Elizabeth that it was common for young ladies to refuse a first proposal, and that he would not give up hope. He expected her to change her mind.</p>
+
+            <p>Elizabeth repeated herself with greater emphasis. She was not being modest or coy. She was serious. She had no intention of marrying him. She asked him not to speak of it again.</p>
+
+            <p>Mr. Collins was astonished. He could not understand her refusal. He reminded her again of all his advantages — his comfortable home, his income, his connection to Lady Catherine — and said he could not believe any sensible young woman would turn down such a good offer freely.</p>
+
+            <p>Elizabeth remained firm. She said that he could not make her happy, and she was sure she could not make him happy either. It would be best for both of them to drop the subject entirely.</p>
+
+            <p>Mr. Collins replied stiffly that perhaps she was only being modest, as young ladies sometimes are. But he believed that when he had the honour of speaking to her parents, the matter would be settled in his favour.</p>
+
+            <p>Elizabeth left the room, and Mr. Collins went at once to find Mrs. Bennet. He told her what had happened — not as a failure, but with the confidence of a man who expected her support.</p>
+
+            <p>Mrs. Bennet was horrified. She hurried to Mr. Bennet's library at once, burst in, and declared that Elizabeth had refused Mr. Collins and that Mr. Bennet must make her change her mind immediately.</p>
+
+            <p>Mr. Bennet looked up calmly from his book. He asked Elizabeth to come in. Then he told her, with perfect composure, that she now faced a difficult choice. "From this day on," he said, "you must be a stranger to one of your parents. Your mother will never see you again if you do not marry Mr. Collins, and I will never see you again if you do."</p>
+
+            <p>Elizabeth could barely hide her relief and amusement. Her father's quiet humour was a great comfort.</p>
+
+            <p>Mrs. Bennet was furious. She complained loudly about her nerves, her suffering, and the ingratitude of her children. She could not believe that Elizabeth would throw away such a good chance — a secure home, a steady income, a respectable husband — out of stubbornness.</p>
+
+            <p>Mr. Collins, for his part, behaved with dignity — at least in his own opinion. He thanked Mrs. Bennet for her support and assured her that he held no ill feelings toward Elizabeth. He was sure that her refusal only showed a delicacy of character that was very becoming in a young woman. He would remain hopeful.</p>
+
+            <p>But as the day ended, it became clear that Elizabeth had not changed her mind, and that she would not. The matter, as far as she was concerned, was entirely closed.</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>discouraged</strong> <i class="fas fa-volume-up speaker-icon" data-word="discouraged"></i> — feeling less confident or willing to try after a setback.</li>
+                <li><strong>pompous</strong> <i class="fas fa-volume-up speaker-icon" data-word="pompous"></i> — speaking or behaving in a self-important, overly grand way.</li>
+                <li><strong>honour</strong> <i class="fas fa-volume-up speaker-icon" data-word="honour"></i> — great respect or a special privilege.</li>
+                <li><strong>coy</strong> <i class="fas fa-volume-up speaker-icon" data-word="coy"></i> — pretending to be shy or modest, often to seem more attractive.</li>
+                <li><strong>emphasis</strong> <i class="fas fa-volume-up speaker-icon" data-word="emphasis"></i> — special importance or force given to something.</li>
+                <li><strong>astonished</strong> <i class="fas fa-volume-up speaker-icon" data-word="astonished"></i> — very surprised or shocked.</li>
+                <li><strong>composure</strong> <i class="fas fa-volume-up speaker-icon" data-word="composure"></i> — a calm and controlled state of mind.</li>
+                <li><strong>ingratitude</strong> <i class="fas fa-volume-up speaker-icon" data-word="ingratitude"></i> — the quality of not feeling or showing thankfulness.</li>
+                <li><strong>respectable</strong> <i class="fas fa-volume-up speaker-icon" data-word="respectable"></i> — regarded by society as good, proper, and decent.</li>
+                <li><strong>stubbornness</strong> <i class="fas fa-volume-up speaker-icon" data-word="stubbornness"></i> — refusing to change one's mind or give in.</li>
+                <li><strong>delicacy</strong> <i class="fas fa-volume-up speaker-icon" data-word="delicacy"></i> — careful, gentle behaviour; a quality of refinement.</li>
+                <li><strong>becoming</strong> <i class="fas fa-volume-up speaker-icon" data-word="becoming"></i> — (old-fashioned) attractive or suitable for a person.</li>
+                <li><strong>firmly</strong> <i class="fas fa-volume-up speaker-icon" data-word="firmly"></i> — in a strong and definite way; without doubt.</li>
+                <li><strong>stiffly</strong> <i class="fas fa-volume-up speaker-icon" data-word="stiffly"></i> — in a cold, formal, or unfriendly manner.</li>
+                <li><strong>ingratitude</strong> <i class="fas fa-volume-up speaker-icon" data-word="ingratitude"></i> — a lack of gratitude or thankfulness.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Elizabeth was expecting Mr. Collins to propose to her. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mr. Collins accepts Elizabeth's refusal right away and gives up. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mrs. Bennet is angry that Elizabeth refused Mr. Collins. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Mr. Bennet tells Elizabeth she must marry Mr. Collins to make her mother happy. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    By the end of the chapter, Elizabeth has changed her mind and agreed to marry Mr. Collins. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Mr. Collins proposes to <input type="text" placeholder="name">, but she refuses him.
+                </li>
+                <li>
+                    Mr. Collins thinks Elizabeth's refusal is just a sign of <input type="text" placeholder="noun"> and does not believe her at first.
+                </li>
+                <li>
+                    After the refusal, Mrs. Bennet rushes to Mr. Bennet's <input type="text" placeholder="room"> to ask for help.
+                </li>
+                <li>
+                    Mr. Bennet humorously tells Elizabeth he will never see her again if she <input type="text" placeholder="verb phrase"> Mr. Collins.
+                </li>
+                <li>
+                    Mr. Collins tells Mrs. Bennet that he holds no <input type="text" placeholder="noun phrase"> toward Elizabeth.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

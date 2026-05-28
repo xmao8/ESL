@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerunds & Infinitives as Subjects – ESLnote Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* General body and container styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0.8rem 1rem; /* Padding for all screen sizes */
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* --- Phone Layout (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; 
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; 
+                height: calc(100vh - 56px); 
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex; /* Show hamburger on phones */
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; 
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Tablet Layout (min-width: 601px and max-width: 900px) --- */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; 
+            }
+            .nav-links {
+                position: static; 
+                flex-direction: row; 
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; 
+                transform: none !important; 
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; 
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; 
+                box-sizing: border-box;
+            }
+        }
+
+        /* --- Desktop Layout (min-width: 901px) --- */
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; 
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; 
+            }
+        }
+
+        /* Content specific styles */
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; 
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; 
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; 
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container h4 {
+            color: #124076;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .content-container em {
+            font-style: italic;
+            color: #555;
+        }
+        .example {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .example strong {
+            color: #2E7D32;
+        }
+        
+        /* Custom table styling for summary layout */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background-color: #124076;
+            color: white;
+        }
+        .grammar-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+            margin: 2rem 0;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Using Gerunds and Infinitives as Subjects</h1>
+
+<div class="content-container">
+    <p>In English grammar, every sentence needs a subject. Usually, the subject is a standard noun or pronoun (e.g., <em>"Coffee is hot"</em>). However, when we want to talk about an <strong>action</strong> or an <strong>activity</strong> as the main topic of our sentence, we must transform that action verb into a noun. We can do this using either a <strong>Gerund</strong> or an <strong>Infinitive</strong>.</p>
+
+    <h2>The Core Concept</h2>
+    <p>Think of this structure as changing an action into a concept. Look at how standard actions change when they sit at the front of a sentence:</p>
+    
+    <table class="grammar-table">
+        <thead>
+            <tr>
+                <th>Form</th>
+                <th>How it Looks</th>
+                <th>Example as Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Gerund</strong></td>
+                <td>Verb + <em>-ing</em></td>
+                <td><strong>Learning</strong> a new language takes time.</td>
+            </tr>
+            <tr>
+                <td><strong>Infinitive</strong></td>
+                <td>To + Verb</td>
+                <td><strong>To learn</strong> a new language takes time.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <h2>1. The Gerund Subject (The Everyday Choice)</h2>
+    <p>Using a <strong>gerund</strong> (the <em>-ing</em> form) as a subject is the most natural, frequent, and common choice in daily conversational and professional English.</p>
+    
+    <div class="example">
+        <ul>
+            <li><strong>Speaking</strong> English in public makes me nervous.</li>
+            <li><strong>Saving</strong> money for a house requires discipline.</li>
+            <li><strong>Exercising</strong> every day improves your overall health.</li>
+        </ul>
+    </div>
+
+    <h3>The Singular Verb Rule</h3>
+    <p>Even if the object following the gerund is plural, the gerund action itself is always considered a <strong>singular subject</strong>. Therefore, it always takes a singular verb form.</p>
+    <ul>
+        <li><strong>Correct:</strong> <strong>Buying</strong> new cars <strong>is</strong> expensive.</li>
+        <li><strong>Incorrect:</strong> Buying new cars <em>are</em> expensive.</li>
+    </ul>
+
+    <hr/>
+
+    <h2>2. The Infinitive Subject (The Formal Choice)</h2>
+    <p>While you can place an <strong>infinitive</strong> (<em>to + verb</em>) at the very beginning of a sentence, it sounds completely different to native speakers. It feels highly formal, poetic, or academic.</p>
+    
+    <div class="example">
+        <ul>
+            <li><strong>To err</strong> is human; <strong>to forgive</strong> is divine. <em>(Famous Proverb)</em></li>
+            <li><strong>To be</strong> or not <strong>to be</strong>, that is the question. <em>(Shakespeare)</em></li>
+            <li><strong>To speak</strong> English perfectly is my ultimate objective.</li>
+        </ul>
+    </div>
+    <p><em>Note: If you use this structure in casual daily conversation, it can sound a bit old-fashioned or unnatural.</em></p>
+
+    <hr/>
+
+    <h2>3. The "It" Structure with Infinitives</h2>
+    <p>Because starting a sentence with a heavy infinitive phrase can feel awkward, native English speakers almost always shift the infinitive to the very end of the sentence. To fill the empty subject slot at the front, we use the placeholder word <strong>"It"</strong>.</p>
+    <p>This is one of the most practical and frequent sentence patterns to master for daily conversation:</p>
+
+    <div class="example">
+        <p><strong>Pattern:</strong> It + is + adjective + [To + Verb]</p>
+        <ul>
+            <li>Formal: <em>To learn a new language is difficult.</em> <br/> 
+                <strong>&rarr; Natural: It is</strong> difficult <strong>to learn</strong> a new language.</li>
+            <li>Formal: <em>To find a good job takes a lot of patience.</em> <br/> 
+                <strong>&rarr; Natural: It takes</strong> patience <strong>to find</strong> a good job.</li>
+            <li>Formal: <em>To wake up at 5:00 AM is hard.</em> <br/> 
+                <strong>&rarr; Natural: It is</strong> hard <strong>to wake up</strong> at 5:00 AM.</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="buttons">
+    <a href="../grammar.html">&larr; Back to Grammar</a>
+    <a href="../index.html">&nbsp;&nbsp;🏠 Home</a>
+</div>
+
+<script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Traits – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    
+    /* Progress Indicator Styling */
+    .progress-tag {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #7f8c8d;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .flashcard.flipped .progress-tag {
+      color: #d2e7f7;
+    }
+
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 1.5rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.15rem; line-height: 1.5; font-weight: 500; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1.05rem; margin-top: 0.5rem; color: #f5f6fa; }
+    .flashcard.flipped .example { color: #f5f6fa; }
+    .translation { font-size: 0.95rem; margin-top: 0.5rem; color: #cfe6fb; font-weight: 600; }
+    .speaker { cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s; }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px; flex-wrap: wrap;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Personal Traits Vocabulary – Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="progress-tag">Loading...</div>
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+// Complete list of 15 pairs (30 words) provided by the user
+const flashcards = [
+  // Pair 1
+  { word: "Introverted", ipa: "/ˈɪntrəvɜːrtɪd/", definition: "Quiet, reserved, and energized by spending time alone.", example: "As an introverted person, she prefers a quiet evening reading a book over a busy party.", chinese: "内向的", spanish: "introvertido/a" },
+  { word: "Extroverted", ipa: "/ˈekstrəvɜːrtɪd/", definition: "Outgoing, friendly, and energized by socializing with others.", example: "The extroverted manager loves meeting new clients and networking at large events.", chinese: "外向的", spanish: "extrovertido/a" },
+  // Pair 2
+  { word: "Conscientious", ipa: "/ˌkɑːnʃiˈenʃəs/", definition: "Guided by a strong sense of duty; highly organized, responsible, and careful.", example: "He is a conscientious employee who always double-checks his weekly reports.", chinese: "认真负责的", spanish: "conscienzudo/a" },
+  { word: "Easygoing", ipa: "/ˌiːziˈɡoʊɪŋ/", definition: "Relaxed, tolerant, and not easily worried, stressed, or upset.", example: "Our teacher is so easygoing that she didn't mind when we arrived a few minutes late.", chinese: "随和的/好说话的", spanish: "despreocupado/a" },
+  // Pair 3
+  { word: "Rational", ipa: "/ˈræʃnəl/", definition: "Guided by logic, facts, and reason rather than emotions.", example: "In a crisis, it is important to stay rational and examine the data objectively.", chinese: "理性的", spanish: "racional" },
+  { word: "Impulsive", ipa: "/ɪmˈpʌlsɪv/", definition: "Acting quickly without thinking or evaluating the future consequences.", example: "Buying that expensive sports jacket was an impulsive decision he soon regretted.", chinese: "冲动的", spanish: "impulsivo/a" },
+  // Pair 4
+  { word: "Ambitious", ipa: "/æmˈbɪʃəs/", definition: "Having strong goals, career drive, and a desire to succeed and advance.", example: "The ambitious graduate hopes to run her own marketing company within five years.", chinese: "有雄心壮志的", spanish: "ambicioso/a" },
+  { word: "Content", ipa: "/kənˈtent/", definition: "Happy, satisfied, and comfortable with what one already has.", example: "After retiring, she is completely content with a quiet life in the countryside.", chinese: "满足的", spanish: "satisfecho/a" },
+  // Pair 5
+  { word: "Meticulous", ipa: "/mɪˈtɪkjʊləs/", definition: "Paying extreme, precise attention to tiny details; extremely careful and neat.", example: "The researcher was meticulous, triple-checking every figure inside the spreadsheet.", chinese: "严谨细致的", spanish: "meticuloso/a" },
+  { word: "Careless", ipa: "/ˈkerləs/", definition: "Doing tasks too fast without enough thought, leading to preventable mistakes.", example: "A careless spelling error on his resume caused him to lose the interview chance.", chinese: "粗心的", spanish: "descuidado/a" },
+  // Pair 6
+  { word: "Proactive", ipa: "/proʊˈæktɪv/", definition: "Taking action early to plan situations and stop problems before they occur.", example: "Our proactive team fixed the system bug before the global customers complained.", chinese: "积极主动的", spanish: "proactivo/a" },
+  { word: "Reactive", ipa: "/riˈæktɪv/", definition: "Waiting for events to occur or mistakes to happen first before taking action.", example: "The reactive company only updates safety rules after an emergency has occurred.", chinese: "被动应对的", spanish: "reactivo/a" },
+  // Pair 7
+  { word: "Frank", ipa: "/fræŋk/", definition: "Very honest, direct, and straightforward in speech, saying exactly what one thinks.", example: "Let me be frank with you: your presentation was interesting but too long.", chinese: "直率坦诚的", spanish: "franco/a" },
+  { word: "Diplomatic", ipa: "/ˌdɪpləˈmætɪk/", definition: "Careful with choosing words to avoid hurting feelings or causing arguments.", example: "She gave a diplomatic answer to keep both of her arguing coworkers satisfied.", chinese: "得体周到的", spanish: "diplomático/a" },
+  // Pair 8
+  { word: "Empathetic", ipa: "/ˌempəˈθetɪk/", definition: "Able to understand, feel, and share another person's feelings and difficulties.", example: "An empathetic doctor makes patients feel understood, respected, and cared for.", chinese: "有同理心的", spanish: "empático/a" },
+  { word: "Objective", ipa: "/əbˈdʒektɪv/", definition: "Based purely on facts and physical truth rather than personal feelings and opinions.", example: "To evaluate candidates fairly, we must establish objective criteria for the job.", chinese: "客观中立的", spanish: "objetivo/a" },
+  // Pair 9
+  { word: "Reserved", ipa: "/rɪˈzɜːrvd/", definition: "Keeping feelings, private habits, and ideas hidden; slow to reveal emotions.", example: "He is quite reserved at first, but once you know him, he talks a lot.", chinese: "内敛含蓄的", spanish: "reservado/a" },
+  { word: "Open book", ipa: "/ˈoʊpən bʊk/", definition: "Expressing emotions easily; sharing life stories openly with anyone.", example: "My neighbor is an open book; I knew all her childhood secrets within an hour.", chinese: "坦露心扉的人", spanish: "libro abierto" },
+  // Pair 10
+  { word: "Optimistic", ipa: "/ˌɑːptɪˈmɪstɪk/", definition: "Always looking at the bright, good side of situations and expecting positive outcomes.", example: "Despite the rainy forecast, the event coordinators remain optimistic about attendance.", chinese: "乐观的", spanish: "optimista" },
+  { word: "Pessimistic", ipa: "/ˌpesɪˈmɪstɪk/", definition: "Focusing on negative parts of situations and constantly expecting things to fail.", example: "He has a pessimistic attitude and thinks we are going to lose the deal.", chinese: "悲观的", spanish: "pesimista" },
+  // Pair 11
+  { word: "Stubborn", ipa: "/ˈstʌbərn/", definition: "Refusing to change plans, views, or decisions despite clear, logical counterarguments.", example: "The stubborn cat refused to move from the middle of the kitchen table.", chinese: "固执的", spanish: "obstinado/a" },
+  { word: "Compliant", ipa: "/kəmˈplaɪənt/", definition: "Easily agreeing with others, obeying rules, or adapting smoothly without arguing.", example: "The compliant dog sat down immediately when the trainer gave the command.", chinese: "顺从听话的", spanish: "complaciente" },
+  // Pair 12
+  { word: "Cautious", ipa: "/ˈkɔːʃəs/", definition: "Extremely careful to avoid potential risks, danger, errors, or surprise mistakes.", example: "The cautious investor decided to put his savings into secure government bonds.", chinese: "谨慎小心的", spanish: "cauto/a" },
+  { word: "Adventurous", ipa: "/ədˈventʃərəs/", definition: "Willing to take risks, try exciting challenges, or travel to completely unknown lands.", example: "The adventurous family spent holidays rafting down remote rivers.", chinese: "喜欢冒险的", spanish: "aventurero/a" },
+  // Pair 13
+  { word: "Decisive", ipa: "/dɪˈsaɪsɪv/", definition: "Able to make solid, correct decisions quickly, confidently, and effectively.", example: "In medical emergencies, the surgical staff must make decisive maneuvers.", chinese: "果断坚决的", spanish: "decisivo/a" },
+  { word: "Indecisive", ipa: "/ˌɪndɪˈsaɪsɪv/", definition: "Constantly hesitating, struggling to make basic choices, or changing minds.", example: "She was so indecisive that she took an hour to choose a restaurant.", chinese: "优柔寡断的", spanish: "indeciso/a" },
+  // Pair 14
+  { word: "Disciplined", ipa: "/ˈdɪsəplɪnd/", definition: "Having strong, consistent self-control; sticking tightly to rules and schedules.", example: "A disciplined runner trains every morning, even when it is freezing cold.", chinese: "高度自律的", spanish: "disciplinado/a" },
+  { word: "Indulgent", ipa: "/ɪnˈdʌldʒənt/", definition: "Giving in to simple temptations, laziness, or pampering oneself with treats.", example: "On Sundays, she is indulgent and eats chocolate cake while watching movies.", chinese: "自我放纵的", spanish: "indulgente" },
+  // Pair 15
+  { word: "Focused", ipa: "/ˈfoʊkəst/", definition: "Concentrating deeply on a single target for an extended period without distraction.", example: "The developer stayed focused for hours, writing code with headphones on.", chinese: "专注的", spanish: "enfocado/a" },
+  { word: "Absent-minded", ipa: "/ˌæbsənt ˈmaɪndɪd/", definition: "Forgetful, easily distracted, and lost in deep thoughts; a typical daydreamer.", example: "Our absent-minded cousin searched for her smartphone while holding it.", chinese: "健忘/心不在焉的", spanish: "distraído/a" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="progress-tag">Word ${index + 1} of ${flashcards.length}</div>
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1.5rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="progress-tag">Word ${index + 1} of ${flashcards.length}</div>
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1.5rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(2200);
+    if (!autoplay) break;
+    
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(500);
+    if (!autoplay) break;
+    
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    if (!autoplay) break;
+    
+    await pronounce(flashcards[index].word);
+    
+    // Speak example
+    await sleep(600);
+    if (!autoplay) break;
+    
+    await pronounce(flashcards[index].example);
+    
+    // Next
+    await sleep(2500);
+    if (!autoplay) break;
+    
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

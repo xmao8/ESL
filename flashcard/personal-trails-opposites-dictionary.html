@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Traits – The 15 Opposites Dictionary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .search-container, .dict-container, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .search-container, .dict-container, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .search-container, .dict-container, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto 0.5rem auto; color: #2c3e50; max-width: 780px; }
+    .subtitle { margin: 0.5rem auto 2rem auto; color: #666; font-size: 1.1rem; max-width: 780px; }
+
+    .search-container {
+      max-width: 780px;
+      margin: 0 auto 2rem auto;
+      width: 90%;
+    }
+    .search-bar {
+      width: 100%;
+      padding: 0.9rem 1.3rem;
+      font-size: 1.1rem;
+      border: 2px solid #ced4da;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .search-bar:focus {
+      border-color: #3498db;
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.15);
+    }
+
+    .dict-container {
+      max-width: 780px;
+      margin: 0 auto;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .pair-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      padding: 1.8rem;
+      text-align: left;
+      border-left: 6px solid #124076;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pair-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .pair-header {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ff9800;
+      margin-bottom: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.6rem;
+    }
+    .pair-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      position: relative;
+    }
+    .vs-divider {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f4f4f9;
+      color: #7f8c8d;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 50%;
+      border: 1px dashed #ced4da;
+      z-index: 2;
+    }
+    @media (max-width: 600px) {
+      .pair-columns {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .vs-divider {
+        display: none;
+      }
+    }
+    .trait-half {
+      position: relative;
+    }
+    .trait-word {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .speaker {
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: #3498db;
+      user-select: none;
+      transition: color 0.2s, transform 0.1s;
+    }
+    .speaker:hover {
+      color: #ff9800;
+      transform: scale(1.15);
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 0.6rem;
+    }
+    .definition {
+      font-size: 0.98rem;
+      color: #333;
+      line-height: 1.45;
+      margin-bottom: 0.5rem;
+    }
+    .example {
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #555;
+      background: #fdfdfe;
+      border-left: 3px solid #3498db;
+      padding: 0.3rem 0.6rem;
+      margin-top: 0.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .translations {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 0.82rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .tag-chinese {
+      background: #e3f2fd;
+      color: #1e88e5;
+    }
+    .tag-spanish {
+      background: #fbe9e7;
+      color: #d84315;
+    }
+    .no-results {
+      padding: 3rem 1rem;
+      font-size: 1.2rem;
+      color: #7f8c8d;
+      background: white;
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>The 15 Opposites Personal traits Dictionary</h1>
+<p class="subtitle">Review vocabulary in dynamic, contrasting pairs. Search traits or listen to pronunciations.</p>
+
+<div class="search-container">
+  <input type="text" id="searchInput" oninput="filterDictionary()" placeholder="Search traits (e.g., proactive, 随和, introvertido)..." class="search-bar" />
+</div>
+
+<div id="dictContainer" class="dict-container">
+  <!-- JavaScript will populate the pairs here dynamically -->
+</div>
+
+<script>
+const oppositesData = [
+  {
+    pairId: 1,
+    left: { word: "Introverted", ipa: "/ˈɪntrəvɜːrtɪd/", definition: "Quiet, reserved, and energized by spending time alone in quiet environments.", example: "As an introverted person, she prefers a quiet evening reading a book over a busy party.", chinese: "内向的", spanish: "introvertido/a" },
+    right: { word: "Extroverted", ipa: "/ˈekstrəvɜːrtɪd/", definition: "Outgoing, friendly, and energized by socializing with large crowds of people.", example: "The extroverted manager loves meeting clients and networking at international events.", chinese: "外向的", spanish: "extrovertido/a" }
+  },
+  {
+    pairId: 2,
+    left: { word: "Conscientious", ipa: "/ˌkɑːnʃiˈenʃəs/", definition: "Highly organized, responsible, and careful to finish duties correctly and on time.", example: "He is a conscientious employee who always submits his weekly reports before the deadline.", chinese: "认真负责的", spanish: "conscienzudo/a" },
+    right: { word: "Easygoing", ipa: "/ˌiːziˈɡoʊɪŋ/", definition: "Relaxed, tolerant, flexible, and not easily worried, stressed, or upset.", example: "Our teacher is so easygoing that she didn't get angry when we forgot our books.", chinese: "随和的/好说话的", spanish: "despreocupado/a" }
+  },
+  {
+    pairId: 3,
+    left: { word: "Rational", ipa: "/ˈræʃnəl/", definition: "Acting or thinking in accordance with logic, reason, and facts instead of emotions.", example: "In a crisis, it is important to stay rational and examine the data objectively.", chinese: "理性的", spanish: "racional" },
+    right: { word: "Impulsive", ipa: "/ɪmˈpʌlsɪv/", definition: "Acting quickly without thinking or evaluating the future consequences of actions.", example: "Buying that expensive sports jacket was an impulsive decision he couldn't afford.", chinese: "冲动的", spanish: "impulsivo/a" }
+  },
+  {
+    pairId: 4,
+    left: { word: "Ambitious", ipa: "/æmˈbɪʃəs/", definition: "Having strong goals, career drives, and a strong desire to succeed and advance.", example: "The ambitious graduate hopes to run her own marketing company within five years.", chinese: "有雄心壮志的", spanish: "ambicioso/a" },
+    right: { word: "Content", ipa: "/kənˈtent/", definition: "Happy, satisfied, and comfortable with what one has rather than desiring more.", example: "After retiring from politics, she is completely content with a quiet life in the countryside.", chinese: "满足的", spanish: "satisfecho/a" }
+  },
+  {
+    pairId: 5,
+    left: { word: "Meticulous", ipa: "/mɪˈtɪkjʊləs/", definition: "Paying extreme, precise attention to tiny details; extremely careful and neat.", example: "The researcher was meticulous, triple-checking every figure inside the spreadsheet.", chinese: "严谨细致的", spanish: "meticuloso/a" },
+    right: { word: "Careless", ipa: "/ˈkerləs/", definition: "Doing tasks too fast without enough thought, leading to preventable mistakes.", example: "A careless spelling error on his resume caused him to lose the interview chance.", chinese: "粗心的", spanish: "descuidado/a" }
+  },
+  {
+    pairId: 6,
+    left: { word: "Proactive", ipa: "/ˌproʊˈæktɪv/", definition: "Taking immediate action early to plan situations and stop issues before they occur.", example: "Our proactive team fixed the system bug before the global customers complained.", chinese: "积极主动的", spanish: "proactivo/a" },
+    right: { word: "Reactive", ipa: "/riˈæktɪv/", definition: "Waiting for events to occur or mistakes to happen first before taking action.", example: "The reactive company only updates safety rules after an emergency has occurred.", chinese: "被动应对的", spanish: "reactivo/a" }
+  },
+  {
+    pairId: 7,
+    left: { word: "Frank", ipa: "/fræŋk/", definition: "Very honest, straightforward, and direct in speech, saying exactly what one thinks.", example: "Let me be frank with you: your presentation was interesting but too long.", chinese: "直率坦诚的", spanish: "franco/a" },
+    right: { word: "Diplomatic", ipa: "/ˌdɪpləˈmætɪk/", definition: "Careful with choosing words to avoid hurting feelings or causing useless arguments.", example: "She gave a diplomatic answer to keep both of her coworkers satisfied.", chinese: "得体周到的", spanish: "diplomático/a" }
+  },
+  {
+    pairId: 8,
+    left: { word: "Empathetic", ipa: "/ˌempəˈθetɪk/", definition: "Able to closely feel, understand, and share another person's feelings and difficulties.", example: "An empathetic doctor makes patients feel understood and cared for.", chinese: "有同理心的", spanish: "empático/a" },
+    right: { word: "Objective", ipa: "/əbˈdʒektɪv/", definition: "Based purely on facts and physical truth rather than personal feelings and opinions.", example: "To evaluate candidates fairly, we must establish objective criteria for the job.", chinese: "客观中立的", spanish: "objetivo/a" }
+  },
+  {
+    pairId: 9,
+    left: { word: "Reserved", ipa: "/rɪˈzɜːrvd/", definition: "Keeping feelings, private habits, and ideas hidden; slow to reveal emotions.", example: "He is quite reserved at first, but once you know him, he talks a lot.", chinese: "内敛含蓄的", spanish: "reservado/a" },
+    right: { word: "Open book", ipa: "/ˈoʊpən bʊk/", definition: "Expressing emotions easily; sharing life stories with anyone around them.", example: "My neighbor is an open book; I knew all her childhood secrets within an hour.", chinese: "坦露心扉的人", spanish: "libro abierto" }
+  },
+  {
+    pairId: 10,
+    left: { word: "Optimistic", ipa: "/ˌɑːptɪˈmɪstɪk/", definition: "Always looking at the bright, good side of situations and expecting positive outcomes.", example: "Despite the rainy forecast, the event coordinators remain optimistic about attendance.", chinese: "乐观的", spanish: "optimista" },
+    right: { word: "Pessimistic", ipa: "/ˌpesɪˈmɪstɪk/", definition: "Focusing on negative parts of situations and constantly expecting things to fail.", example: "He has a pessimistic attitude and thinks we are going to lose the deal.", chinese: "悲观的", spanish: "pesimista" }
+  },
+  {
+    pairId: 11,
+    left: { word: "Stubborn", ipa: "/ˈstʌbərn/", definition: "Refusing to change plans, views, or decisions despite clear, logical counterarguments.", example: "The stubborn cat refused to move from the middle of the kitchen table.", chinese: "固执的", spanish: "obstinado/a" },
+    right: { word: "Compliant", ipa: "/kəmˈplaɪənt/", definition: "Easily agreeing with others, obeying rules, or adapting smoothly without arguing.", example: "The compliant dog sat down immediately when the trainer gave the command.", chinese: "顺从听话的", spanish: "complaciente" }
+  },
+  {
+    pairId: 12,
+    left: { word: "Cautious", ipa: "/ˈcɔːʃəs/", definition: "Extremely careful to avoid potential risks, danger, errors, or surprise mistakes.", example: "The cautious investor decided to put his savings into secure government bonds.", chinese: "谨慎小心的", spanish: "cauto/a" },
+    right: { word: "Adventurous", ipa: "/ədˈventʃərəs/", definition: "Willing to take risks, try crazy challenges, or travel to completely unknown lands.", example: "The adventurous family spent holidays rafting down remote rivers.", chinese: "喜欢冒险的", spanish: "aventurero/a" }
+  },
+  {
+    pairId: 13,
+    left: { word: "Decisive", ipa: "/dɪˈsaɪsɪv/", definition: "Able to make solid, correct decisions quickly, confidently, and effectively.", example: "In medical emergencies, the surgical staff must make decisive maneuvers.", chinese: "果断坚决的", spanish: "decisivo/a" },
+    right: { word: "Indecisive", ipa: "/ˌɪndɪˈsaɪsɪv/", definition: "Constantly hesitating, struggling to make basic choices, or changing minds.", example: "She was so indecisive that she took an hour to choose a restaurant.", chinese: "优柔寡断的", spanish: "indeciso/a" }
+  },
+  {
+    pairId: 14,
+    left: { word: "Disciplined", ipa: "/ˈdɪsəplɪnd/", definition: "Having strong, consistent self-control; sticking tightly to rules and schedules.", example: "A disciplined runner trains every morning, even when it is freezing cold.", chinese: "高度自律的", spanish: "disciplinado/a" },
+    right: { word: "Indulgent", ipa: "/ɪnˈdʌldʒənt/", definition: "Giving in to simple temptations, laziness, or pampering oneself with treats.", example: "On Sundays, she is indulgent and eats chocolate cake while watching movies.", chinese: "自我放纵的", spanish: "indulgente" }
+  },
+  {
+    pairId: 15,
+    left: { word: "Focused", ipa: "/ˈfoʊkəst/", definition: "Concentrating deeply on a single target for an extended period without distraction.", example: "The developer stayed focused for hours, writing code with headphones on.", chinese: "专注的", spanish: "enfocado/a" },
+    right: { word: "Absent-minded", ipa: "/ˌæbsənt ˈmaɪndɪd/", definition: "Forgetful, easily distracted, and lost in deep thoughts; a typical daydreamer.", example: "Our absent-minded cousin searched for her smartphone while holding it.", chinese: "健忘/心不在焉的", spanish: "distraído/a" }
+  }
+];
+
+function speak(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.95;
+  speechSynthesis.speak(utterance);
+}
+
+function renderDictionary(data) {
+  const container = document.getElementById("dictContainer");
+  container.innerHTML = "";
+
+  if (data.length === 0) {
+    container.innerHTML = `<div class="no-results">No traits found matching your query. Try searching another term!</div>`;
+    return;
+  }
+
+  data.forEach((pair) => {
+    const card = document.createElement("div");
+    card.className = "pair-card";
+    
+    card.innerHTML = `
+      <div class="pair-header">
+        <span>OPPOSITES PAIRING</span>
+        <span>Pair ${pair.pairId} of 15</span>
+      </div>
+      <div class="pair-columns">
+        <div class="vs-divider">VS</div>
+        
+        <!-- Left Side Trait -->
+        <div class="trait-half">
+          <div class="trait-word">
+            <span>${pair.left.word}</span>
+            <span class="speaker" onclick="speak('${pair.left.word}')" title="Pronounce ${pair.left.word}">🔊</span>
+          </div>
+          <div class="ipa">${pair.left.ipa}</div>
+          <div class="definition">${pair.left.definition}</div>
+          <div class="example">"${pair.left.example}"</div>
+          <div class="translations">
+            <span class="tag tag-chinese">CN: ${pair.left.chinese}</span>
+            <span class="tag tag-spanish">ES: ${pair.left.spanish}</span>
+          </div>
+        </div>
+
+        <!-- Right Side Trait -->
+        <div class="trait-half">
+          <div class="trait-word">
+            <span>${pair.right.word}</span>
+            <span class="speaker" onclick="speak('${pair.right.word}')" title="Pronounce ${pair.right.word}">🔊</span>
+          </div>
+          <div class="ipa">${pair.right.ipa}</div>
+          <div class="definition">${pair.right.definition}</div>
+          <div class="example">"${pair.right.example}"</div>
+          <div class="translations">
+            <span class="tag tag-chinese">CN: ${pair.right.chinese}</span>
+            <span class="tag tag-spanish">ES: ${pair.right.spanish}</span>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    container.appendChild(card);
+  });
+}
+
+function filterDictionary() {
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+  
+  if (!query) {
+    renderDictionary(oppositesData);
+    return;
+  }
+
+  const filtered = oppositesData.filter(pair => {
+    const matchesLeft = 
+      pair.left.word.toLowerCase().includes(query) ||
+      pair.left.definition.toLowerCase().includes(query) ||
+      pair.left.chinese.toLowerCase().includes(query) ||
+      pair.left.spanish.toLowerCase().includes(query);
+
+    const matchesRight = 
+      pair.right.word.toLowerCase().includes(query) ||
+      pair.right.definition.toLowerCase().includes(query) ||
+      pair.right.chinese.toLowerCase().includes(query) ||
+      pair.right.spanish.toLowerCase().includes(query);
+
+    return matchesLeft || matchesRight;
+  });
+
+  renderDictionary(filtered);
+}
+
+// Initial render on load
+renderDictionary(oppositesData);
+
+// Mobile navigation toggle logic
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

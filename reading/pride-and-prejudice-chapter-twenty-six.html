@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Pride and Prejudice — Chapter Twenty-Six</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #124076;
+            padding: 0.8rem 1rem;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .site-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffbb33;
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 2rem auto 1rem;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #124076;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        p {
+            line-height: 1.7;
+            margin: 0.8rem 0;
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .reading-text p {
+            text-indent: 1.5rem;
+        }
+
+        .vocabulary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vocabulary-list li {
+            background: #fdfdff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-list strong {
+            color: #124076;
+            margin-right: 8px;
+        }
+        .speaker-icon {
+            color: #3498db;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .questions ol {
+            padding-left: 1.2rem;
+        }
+        .questions li {
+            margin: 0.8rem 0;
+        }
+
+        input[type="text"] {
+            padding: 3px 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-width: 140px;
+        }
+
+        .tf-options {
+            margin-top: 0.3rem;
+        }
+        .tf-options label {
+            margin-right: 1rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .buttons a {
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+        .buttons a:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Pride and Prejudice — Chapter Twenty-Six</h1>
+
+    <main>
+        <!-- Reading Text -->
+        <div class="content-section reading-text">
+            <p>Mrs. Gardiner's caution to Elizabeth was punctually and kindly given on the first favourable opportunity of speaking to her alone: after honestly telling her what she thought, she thus went on: "You are too sensible a girl, Lizzy, to fall in love merely because you are warned against it; and, therefore, I am not afraid of speaking openly. Seriously, I would have you be on your guard. Do not involve yourself, or endeavour to involve him, in an affection which the want of fortune would make so very imprudent. I have nothing to say against him: he is a most interesting young man; and if he had the fortune he ought to have, I should think you could not do better. But as it is — you must not let your fancy run away with you. You have sense, and we all expect you to use it. Your father would depend on your resolution and good conduct, I am sure. You must not disappoint your father."</p>
+
+            <p>"My dear aunt, this is being serious indeed."</p>
+
+            <p>"Yes, and I hope to engage you to be serious likewise."</p>
+
+            <p>"Well, then, you need not be under any alarm. I will take care of myself, and of Mr. Wickham too. He shall not be in love with me, if I can prevent it."</p>
+
+            <p>"Elizabeth, you are not serious now."</p>
+
+            <p>"I beg your pardon. I will try again. At present I am not in love with Mr. Wickham; no, I certainly am not. But he is, beyond all comparison, the most agreeable man I ever saw — and if he becomes really attached to me — I believe it will be better that he should not. I see the imprudence of it. Oh, that abominable Mr. Darcy! My father's opinion of me does me the greatest honour; and I should be miserable to forfeit it. My father, however, is partial to Mr. Wickham. In short, my dear aunt, I should be very sorry to be the means of making any of you unhappy; but since we see, every day, that where there is affection young people are seldom withheld, by immediate want of fortune, from entering into engagements with each other, how can I promise to be wiser than so many of my fellow-creatures, if I am tempted, or how am I even to know that it would be wiser to resist? All that I can promise you, therefore, is not to be in a hurry. I will not be in a hurry to believe myself his first object. When I am in company with him, I will not be wishing. In short, I will do my best."</p>
+
+            <p>"Perhaps it will be as well if you discourage his coming here so very often. At least you should not remind your mother of inviting him."</p>
+
+            <p>"As I did the other day," said Elizabeth, with a conscious smile; "very true, it will be wise in me to refrain from that. But do not imagine that he is always here so often. It is on your account that he has been so frequently invited this week. You know my mother's ideas as to the necessity of constant company for her friends. But really, and upon my honour, I will try to do what I think to be wisest; and now I hope you are satisfied."</p>
+
+            <p>Her aunt assured her that she was; and Elizabeth, having thanked her for the kindness of her hints, they parted — a wonderful instance of advice being given on such a point without being resented.</p>
+
+            <p>Mr. Collins returned into Hertfordshire soon after it had been quitted by the Gardiners and Jane; but, as he took up his abode with the Lucases, his arrival was no great inconvenience to Mrs. Bennet. His marriage was now fast approaching; and she was at length so far resigned as to think it inevitable, and even repeatedly to say, in an ill-natured tone, that she "wished they might be happy." Thursday was to be the wedding-day, and on Wednesday Miss Lucas paid her farewell visit; and when she rose to take leave, Elizabeth, ashamed of her mother's ungracious and reluctant good wishes, and sincerely affected herself, accompanied her out of the room. As they went downstairs together, Charlotte said, "I shall depend on hearing from you very often, Eliza."</p>
+
+            <p>"That you certainly shall."</p>
+
+            <p>"And I have another favour to ask. Will you come and see me?"</p>
+
+            <p>"We shall often meet, I hope, in Hertfordshire."</p>
+
+            <p>"I am not likely to leave Kent for some time. Promise me, therefore, to come to Hunsford."</p>
+
+            <p>Elizabeth could not refuse, though she foresaw little pleasure in the visit. "My father and Maria are to come to me in March," added Charlotte, "and I hope you will consent to be of the party. Indeed, Eliza, you will be as welcome to me as either of them."</p>
+
+            <p>The wedding took place: the bride and bridegroom set off for Kent from the church door, and everybody had as much to say or to hear on the subject as usual. Elizabeth soon heard from her friend, and their correspondence was as regular and frequent as it ever had been: that it should be equally unreserved was impossible. Elizabeth could never address her without feeling that all the comfort of intimacy was over; and, though determined not to slacken as a correspondent, it was for the sake of what had been rather than what was. Charlotte's first letters were received with a good deal of eagerness: there could not but be curiosity to know how she would speak of her new home, how she would like Lady Catherine, and how happy she would dare pronounce herself to be; though, when the letters were read, Elizabeth felt that Charlotte expressed herself on every point exactly as she might have foreseen. She wrote cheerfully, seemed surrounded with comforts, and mentioned nothing which she could not praise. The house, furniture, neighbourhood, and roads, were all to her taste, and Lady Catherine's behaviour was most friendly and obliging. It was Mr. Collins's picture of Hunsford and Rosings rationally softened; and Elizabeth perceived that she must wait for her own visit there, to know the rest.</p>
+
+            <p>Jane had already written a few lines to her sister, to announce their safe arrival in London; and when she wrote again, Elizabeth hoped it would be in her power to say something of the Bingleys.</p>
+
+            <p>Her impatience for this second letter was as well rewarded as impatience generally is. Jane had been a week in town, without either seeing or hearing from Caroline. She accounted for it, however, by supposing that her last letter to her friend from Longbourn had by some accident been lost. "My aunt," she continued, "is going tomorrow into that part of the town, and I shall take the opportunity of calling in Grosvenor Street."</p>
+
+            <p>She wrote again when the visit was paid, and she had seen Miss Bingley. "I did not think Caroline in spirits," were her words, "but she was very glad to see me, and reproached me for giving her no notice of my coming to London. I was right, therefore; my last letter had never reached her. I inquired after their brother, of course. He was well, but so much engaged with Mr. Darcy that they scarcely ever saw him. I found that Miss Darcy was expected to dinner: I wish I could see her. My visit was not long, as Caroline and Mrs. Hurst were going out. I dare say I shall soon see them here."</p>
+
+            <p>Elizabeth shook her head over this letter. It convinced her that accident only could discover to Mr. Bingley her sister's being in town.</p>
+
+            <p>Four weeks passed away, and Jane saw nothing of him. She endeavoured to persuade herself that she did not regret it; but she could no longer be blind to Miss Bingley's inattention. After waiting at home every morning for a fortnight, and inventing every evening a fresh excuse for her, the visitor did at last appear; but the shortness of her stay, and, yet more, the alteration of her manner, would allow Jane to deceive herself no longer. The letter which she wrote on this occasion to her sister will prove what she felt:</p>
+
+            <p>"My dearest Lizzy will, I am sure, be incapable of triumphing in her better judgment, at my expense, when I confess myself to have been entirely deceived in Miss Bingley's regard for me. But, my dear sister, though the event has proved you right, do not think me obstinate if I still assert that, considering what her behaviour was, my confidence was as natural as your suspicion. I do not at all comprehend her reason for wishing to be intimate with me; but, if the same circumstances were to happen again, I am sure I should be deceived again. Caroline did not return my visit till yesterday; and not a note, not a line, did I receive in the meantime. When she did come, it was very evident that she had no pleasure in it; she made a slight, formal apology for not calling before, said not a word of wishing to see me again, and was, in every respect, so altered a creature, that when she went away I was perfectly resolved to continue the acquaintance no longer. I pity, though I cannot help blaming, her. She was very wrong in singling me out as she did; I can safely say, that every advance to intimacy began on her side. But I pity her, because she must feel that she has been acting wrong, and because I am very sure that anxiety for her brother is the cause of it. I need not explain myself farther; and though we know this anxiety to be quite needless, yet if she feels it, it will easily account for her behaviour to me; and so deservedly dear as he is to his sister, whatever anxiety she may feel on his behalf is natural and amiable. I cannot but wonder, however, at her having any such fears now, because if he had at all cared about me, we must have met long, long ago. He knows of my being in town, I am certain, from something she said herself; and yet it would seem, by her manner of talking, as if she wanted to persuade herself that he is really partial to Miss Darcy. I cannot understand it. If I were not afraid of judging harshly, I should be almost tempted to say, that there is a strong appearance of duplicity in all this. I will endeavour to banish every painful thought, and think only of what will make me happy, your affection, and the invariable kindness of my dear uncle and aunt. Let me hear from you very soon. Miss Bingley said something of his never returning to Netherfield again, of giving up the house, but not with any certainty. We had better not mention it. I am extremely glad that you have such pleasant accounts from our friends at Hunsford. Pray go to see them, with Sir William and Maria. I am sure you will be very comfortable there. Yours, etc."</p>
+
+            <p>This letter gave Elizabeth some pain; but her spirits returned, as she considered that Jane would no longer be duped, by the sister at least. All expectation from the brother was now absolutely over. She would not even wish for any renewal of his attentions. His character sunk on every review of it; and, as a punishment for him, as well as a possible advantage to Jane, she seriously hoped he might really soon marry Mr. Darcy's sister, as, by Wickham's account, she would make him abundantly regret what he had thrown away.</p>
+
+            <p>Mrs. Gardiner about this time reminded Elizabeth of her promise concerning that gentleman, and required information; and Elizabeth had such to send as might rather give contentment to her aunt than to herself. His apparent partiality had subsided, his attentions were over, he was the admirer of some one else. Elizabeth was watchful enough to see it all, but she could see it and write of it without material pain. Her heart had been but slightly touched, and her vanity was satisfied with believing that she would have been his only choice, had fortune permitted it. The sudden acquisition of ten thousand pounds was the most remarkable charm of the young lady to whom he was now rendering himself agreeable; but Elizabeth, less clear-sighted perhaps in this case than in Charlotte's, did not quarrel with him for his wish of independence. Nothing, on the contrary, could be more natural; and, while able to suppose that it cost him a few struggles to relinquish her, she was ready to allow it a wise and desirable measure for both, and could very sincerely wish him happy.</p>
+
+            <p>All this was acknowledged to Mrs. Gardiner; and, after relating the circumstances, she thus went on: "I am now convinced, my dear aunt, that I have never been much in love; for had I really experienced that pure and elevating passion, I should at present detest his very name, and wish him all manner of evil. But my feelings are not only cordial towards him, they are even impartial towards Miss King. I cannot find out that I hate her at all, or that I am in the least unwilling to think her a very good sort of girl. There can be no love in all this. My watchfulness has been effectual; and though I should certainly be a more interesting object to all my acquaintance, were I distractedly in love with him, I cannot say that I regret my comparative insignificance. Importance may sometimes be purchased too dearly. Kitty and Lydia take his defection much more to heart than I do. They are young in the ways of the world, and not yet open to the mortifying conviction that handsome young men must have something to live on as well as the plain."</p>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>punctually</strong> <i class="fas fa-volume-up speaker-icon" data-word="punctually"></i> — at exactly the right time; promptly.</li>
+                <li><strong>imprudent</strong> <i class="fas fa-volume-up speaker-icon" data-word="imprudent"></i> — not showing good judgment; unwise.</li>
+                <li><strong>resolution</strong> <i class="fas fa-volume-up speaker-icon" data-word="resolution"></i> — firm determination to do or not do something.</li>
+                <li><strong>abominable</strong> <i class="fas fa-volume-up speaker-icon" data-word="abominable"></i> — causing moral disgust; utterly unpleasant.</li>
+                <li><strong>forfeit</strong> <i class="fas fa-volume-up speaker-icon" data-word="forfeit"></i> — to lose or give up something as a penalty.</li>
+                <li><strong>conscious</strong> <i class="fas fa-volume-up speaker-icon" data-word="conscious"></i> — aware of one's own actions or feelings; here, slightly embarrassed.</li>
+                <li><strong>ungracious</strong> <i class="fas fa-volume-up speaker-icon" data-word="ungracious"></i> — not polite or kind; rude.</li>
+                <li><strong>unreserved</strong> <i class="fas fa-volume-up speaker-icon" data-word="unreserved"></i> — open and frank; without holding anything back.</li>
+                <li><strong>slacken</strong> <i class="fas fa-volume-up speaker-icon" data-word="slacken"></i> — to become less active or frequent.</li>
+                <li><strong>duplicity</strong> <i class="fas fa-volume-up speaker-icon" data-word="duplicity"></i> — deceitfulness; saying one thing while meaning another.</li>
+                <li><strong>subsided</strong> <i class="fas fa-volume-up speaker-icon" data-word="subsided"></i> — became less strong or intense; died down.</li>
+                <li><strong>acquisition</strong> <i class="fas fa-volume-up speaker-icon" data-word="acquisition"></i> — something gained or obtained, especially money or property.</li>
+                <li><strong>relinquish</strong> <i class="fas fa-volume-up speaker-icon" data-word="relinquish"></i> — to give up or let go of something.</li>
+                <li><strong>impartial</strong> <i class="fas fa-volume-up speaker-icon" data-word="impartial"></i> — treating all sides equally; not biased.</li>
+                <li><strong>defection</strong> <i class="fas fa-volume-up speaker-icon" data-word="defection"></i> — the act of abandoning a person or cause in favour of another.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Questions -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <ol>
+                <li>
+                    Mrs. Gardiner warns Elizabeth against encouraging an attachment to Mr. Wickham because he lacks fortune. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf1" value="True"> True</label>
+                        <label><input type="radio" name="tf1" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth promises her aunt that she will never speak to Mr. Wickham again. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf2" value="True"> True</label>
+                        <label><input type="radio" name="tf2" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Charlotte's letters from Hunsford describe her new life as comfortable and pleasant. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf3" value="True"> True</label>
+                        <label><input type="radio" name="tf3" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Jane is immediately aware that Miss Bingley was never a sincere friend to her. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf4" value="True"> True</label>
+                        <label><input type="radio" name="tf4" value="False"> False</label>
+                    </div>
+                </li>
+                <li>
+                    Elizabeth tells Mrs. Gardiner she believes she was never truly in love with Mr. Wickham. <br>
+                    <div class="tf-options">
+                        <label><input type="radio" name="tf5" value="True"> True</label>
+                        <label><input type="radio" name="tf5" value="False"> False</label>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Fill-in-the-Blank Questions -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li>
+                    Mrs. Gardiner warns Elizabeth not to let her <input type="text" placeholder="noun"> run away with her regarding Mr. Wickham.
+                </li>
+                <li>
+                    Elizabeth promises her aunt that she will not be in a <input type="text" placeholder="noun"> to believe herself Mr. Wickham's first object.
+                </li>
+                <li>
+                    Charlotte invites Elizabeth to come and visit her at <input type="text" placeholder="place name"> in Kent.
+                </li>
+                <li>
+                    Jane writes that she is resolved to continue the <input type="text" placeholder="noun"> with Miss Bingley no longer.
+                </li>
+                <li>
+                    Mr. Wickham transfers his attentions to Miss King after she inherits <input type="text" placeholder="amount"> pounds.
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

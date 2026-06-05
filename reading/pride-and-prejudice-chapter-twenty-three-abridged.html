@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reading: Pride and Prejudice — Chapter Twenty-Three (Abridged)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            display: flex; flex-direction: column; min-height: 100vh; margin: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: #f0f4f8; color: #333;
+        }
+        main { flex: 1; max-width: 800px; margin: auto; padding: 1rem; width: 100%; }
+        nav { background-color: #124076; padding: 0.8rem 1rem; width: 100%; }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+        .site-name { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff9800; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffbb33; text-decoration: underline; }
+
+        h1 { text-align: center; font-size: 2.2rem; margin: 2rem auto 1rem; color: #2c3e50; font-family: 'Poppins', sans-serif; }
+        h2 { color: #124076; margin-top: 1.5rem; text-align: center; font-family: 'Poppins', sans-serif; }
+        p { line-height: 1.7; margin: 0.8rem 0; font-size: 1.05rem; }
+
+        .content-section {
+            background: #fff; border-radius: 8px; padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem;
+        }
+
+        .reading-text p { text-indent: 1.5rem; text-align: justify; }
+
+        /* Vocabulary section interactive styles */
+        .vocabulary-list ul { list-style: none; padding-left: 0; }
+        .vocabulary-list li {
+            background: #fdfdff; border: 1px solid #e0e0e0; border-radius: 6px;
+            margin-bottom: 10px; padding: 12px 15px; display: flex; flex-wrap: wrap;
+            align-items: center; transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .vocabulary-list li:hover {
+            transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .vocabulary-list strong { color: #124076; margin-right: 8px; font-size: 1.1rem; }
+        .speaker-icon { color: #3498db; cursor: pointer; margin-left: 8px; transition: color 0.2s; }
+        .speaker-icon:hover { color: #2980b9; }
+
+        /* Questions list styles */
+        .questions ol { padding-left: 1.5rem; }
+        .questions li { margin: 1.5rem 0; font-size: 1.05rem; }
+
+        input[type="text"] {
+            padding: 6px 10px; border-radius: 4px; border: 2px solid #ccc;
+            min-width: 150px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+        }
+        .tf-options { margin-top: 0.5rem; display: flex; gap: 1.5rem; }
+        .tf-options label { cursor: pointer; display: flex; align-items: center; gap: 0.3rem; }
+
+        /* Evaluation elements */
+        .feedback {
+            margin-top: 0.5rem; font-weight: bold; font-size: 0.95rem; display: none;
+        }
+        .feedback.correct { color: #27ae60; display: block; }
+        .feedback.incorrect { color: #c0392b; display: block; }
+        
+        .correct-input { border-color: #27ae60 !important; background-color: #e8f8f0; }
+        .incorrect-input { border-color: #c0392b !important; background-color: #fceae9; }
+
+        .eval-btn-container { text-align: center; margin: 1.5rem 0; }
+        .btn-check {
+            background-color: #27ae60; color: white; border: none; padding: 0.8rem 2rem;
+            font-size: 1rem; font-weight: bold; border-radius: 8px; cursor: pointer;
+            transition: background-color 0.2s; box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .btn-check:hover { background-color: #219150; }
+        
+        .score-display {
+            font-size: 1.2rem; font-weight: bold; color: #124076; text-align: center;
+            margin-top: 1rem; display: none; padding: 1rem; border-radius: 6px; background-color: #e8f1fc;
+        }
+
+        .buttons { text-align: center; margin: 2rem auto; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .buttons a {
+            text-decoration: none; background: #3498db; color: white;
+            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .buttons a:hover { background: #2980b9; }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+            .content-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" onerror="this.src='https://placehold.co/32x32/124076/ff9800?text=ESL'">
+                <span class="site-name">ESLnote</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../flashcards.html">Flashcards</a>
+                <a href="../conversation.html">Conversations</a>
+                <a href="../grammar.html">Grammar</a>
+                <a href="../reading.html">Reading</a>
+                <a href="../listening.html">Listening</a>
+                <a href="../practice.html">Practices</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Pride and Prejudice — Chapter Twenty-Three (Abridged)</h1>
+
+    <main>
+        <!-- Reading Text Section -->
+        <div class="content-section reading-text">
+            <p>Elizabeth was sitting with her family, reflecting on Charlotte's news, when Sir William Lucas appeared to announce his daughter’s engagement.</p>
+
+            <p>With many compliments and much self-gratulation on the prospect of a connection between their houses, he unfolded the matter to an audience not merely wondering, but incredulous. Mrs. Bennet protested he must be entirely mistaken, and Lydia, always unguarded and uncivil, boisterously exclaimed—</p>
+
+            <p>“Good Lord! Sir William, how can you tell such a story? Do not you know that Mr. Collins wants to marry Lizzy?”</p>
+
+            <p>Nothing less than the complaisance of a courtier could have borne such treatment without anger; but Sir William’s good-breeding carried him through. He listened to their impertinence with the most forbearing courtesy.</p>
+
+            <p>Elizabeth, feeling it incumbent on her to relieve him from so unpleasant a situation, put herself forward to confirm the account by mentioning her prior knowledge of it from Charlotte herself. She endeavoured to stop the exclamations of her family by the earnestness of her congratulations, in which she was readily joined by Jane, making remarks on the happiness to be expected from the match.</p>
+
+            <p>Mrs. Bennet was too overpowered to say much while Sir William remained; but no sooner had he left than her feelings found a rapid vent. She persisted in disbelieving the matter, was sure Mr. Collins had been taken in, and trusted they would never be happy.</p>
+
+            <p>Two inferences, however, were plainly deduced from the whole: that Elizabeth was the cause of all the mischief, and that Mrs. Bennet had been barbarously used by them all. Nothing could console and nothing appease her. A week elapsed before she could see Elizabeth without scolding her, a month passed before she could speak to Sir William without being rude, and many months were gone before she could forgive their daughter.</p>
+
+            <p>Mr. Bennet’s emotions were much more tranquil. It gratified him to discover that Charlotte Lucas, whom he had used to think tolerably sensible, was as foolish as his wife, and more foolish than his daughter!</p>
+
+            <p>Jane confessed herself surprised at the match, but said less of her astonishment than of her earnest desire for their happiness. Kitty and Lydia were far from envying Miss Lucas, for Mr. Collins was only a clergyman; it affected them only as a piece of news to spread at Meryton.</p>
+            
+            <p>Lady Lucas could not be insensible of triumph on being able to retort on Mrs. Bennet the comfort of having a daughter well married. She called at Longbourn rather oftener than usual, though Mrs. Bennet’s sour looks and ill-natured remarks might have been enough to drive happiness away.</p>
+
+            <p>Between Elizabeth and Charlotte there was a restraint which kept them mutually silent. Elizabeth’s disappointment in Charlotte made her turn with fonder regard to her sister Jane, of whose rectitude and delicacy she was sure. She grew daily more anxious for Jane's happiness, as Bingley had now been gone a week and nothing was heard of his return.</p>
+        </div>
+
+        <!-- Vocabulary Section -->
+        <div class="content-section vocabulary-list">
+            <h2>Vocabulary List</h2>
+            <ul>
+                <li><strong>self-gratulation</strong> <i class="fas fa-volume-up speaker-icon" data-word="self-gratulation"></i> — self-congratulation; pride or satisfaction in one's own actions or fortune.</li>
+                <li><strong>incredulous</strong> <i class="fas fa-volume-up speaker-icon" data-word="incredulous"></i> — unwilling or unable to believe something; skeptical.</li>
+                <li><strong>complaisance</strong> <i class="fas fa-volume-up speaker-icon" data-word="complaisance"></i> — a willingness to please others; compliance or courtesy.</li>
+                <li><strong>forbearing</strong> <i class="fas fa-volume-up speaker-icon" data-word="forbearing"></i> — patient and restrained; demonstrating self-control in the face of provocation.</li>
+                <li><strong>incumbent</strong> <i class="fas fa-volume-up speaker-icon" data-word="incumbent"></i> — necessary for someone as a duty or responsibility.</li>
+                <li><strong>deduced</strong> <i class="fas fa-volume-up speaker-icon" data-word="deduced"></i> — arrived at a fact or a conclusion by reasoning; inferred.</li>
+                <li><strong>appease</strong> <i class="fas fa-volume-up speaker-icon" data-word="appease"></i> — to pacify or placate someone by acceding to their demands; calm.</li>
+                <li><strong>tranquil</strong> <i class="fas fa-volume-up speaker-icon" data-word="tranquil"></i> — free from disturbance; calm, peaceful, and quiet.</li>
+                <li><strong>retort</strong> <i class="fas fa-volume-up speaker-icon" data-word="retort"></i> — to say something in answer to a remark or accusation, typically in a sharp, angry, or witty manner.</li>
+                <li><strong>rectitude</strong> <i class="fas fa-volume-up speaker-icon" data-word="rectitude"></i> — morally correct behavior or thinking; righteousness.</li>
+            </ul>
+        </div>
+
+        <!-- True / False Section -->
+        <div class="content-section questions">
+            <h2>True or False</h2>
+            <form id="quiz-form">
+                <ol>
+                    <li data-type="tf" data-answer="True">
+                        Sir William Lucas announced Charlotte's engagement to the Bennet family in person. <br>
+                        <div class="tf-options">
+                            <label><input type="radio" name="tf1" value="True"> True</label>
+                            <label><input type="radio" name="tf1" value="False"> False</label>
+                        </div>
+                        <div class="feedback"></div>
+                    </li>
+                    <li data-type="tf" data-answer="False">
+                        Mrs. Bennet was delighted with the news and offered her instant congratulations. <br>
+                        <div class="tf-options">
+                            <label><input type="radio" name="tf2" value="True"> True</label>
+                            <label><input type="radio" name="tf2" value="False"> False</label>
+                        </div>
+                        <div class="feedback"></div>
+                    </li>
+                    <li data-type="tf" data-answer="True">
+                        Elizabeth tried to help Sir William out of his awkward situation by confirming Charlotte's prior announcement. <br>
+                        <div class="tf-options">
+                            <label><input type="radio" name="tf3" value="True"> True</label>
+                            <label><input type="radio" name="tf3" value="False"> False</label>
+                        </div>
+                        <div class="feedback"></div>
+                    </li>
+                    <li data-type="tf" data-answer="False">
+                        Mr. Bennet was deeply upset to hear that Charlotte Lucas would be marrying Mr. Collins. <br>
+                        <div class="tf-options">
+                            <label><input type="radio" name="tf4" value="True"> True</label>
+                            <label><input type="radio" name="tf4" value="False"> False</label>
+                        </div>
+                        <div class="feedback"></div>
+                    </li>
+                    <li data-type="tf" data-answer="True">
+                        A full week passed before Mrs. Bennet could look at Elizabeth without scolding her. <br>
+                        <div class="tf-options">
+                            <label><input type="radio" name="tf5" value="True"> True</label>
+                            <label><input type="radio" name="tf5" value="False"> False</label>
+                        </div>
+                        <div class="feedback"></div>
+                    </li>
+                </ol>
+            </form>
+        </div>
+
+        <!-- Fill-in-the-Blank Section -->
+        <div class="content-section questions">
+            <h2>Fill in the Blanks</h2>
+            <ol>
+                <li data-type="fitb" data-answer="incredulous">
+                    Sir William Lucas unfolded the matter of the engagement to an audience that was not merely wondering, but <input type="text" id="fitb1" placeholder="adjective">.
+                    <div class="feedback"></div>
+                </li>
+                <li data-type="fitb" data-answer="forbearing">
+                    Sir William listened to the family's unexpected impertinence with the most <input type="text" id="fitb2" placeholder="adjective"> courtesy.
+                    <div class="feedback"></div>
+                </li>
+                <li data-type="fitb" data-answer="appease">
+                    After the shocking news of Charlotte's marriage settled, Mrs. Bennet was inconsolable; nothing could comfort and nothing could <input type="text" id="fitb3" placeholder="verb"> her.
+                    <div class="feedback"></div>
+                </li>
+                <li data-type="fitb" data-answer="tranquil">
+                    While Mrs. Bennet was in hysterics, Mr. Bennet's emotions on the matter were much more <input type="text" id="fitb4" placeholder="adjective">.
+                    <div class="feedback"></div>
+                </li>
+                <li data-type="fitb" data-answer="retort">
+                    Lady Lucas took great pride and pleasure in being able to <input type="text" id="fitb5" placeholder="verb"> on Mrs. Bennet with the news of her daughter's successful marriage.
+                    <div class="feedback"></div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Interactive Grading Component -->
+        <div class="eval-btn-container">
+            <button class="btn-check" id="check-answers-btn">Check My Answers</button>
+            <div id="score-output" class="score-display"></div>
+        </div>
+    </main>
+
+    <div class="buttons">
+        <a href="../reading.html">⬅️ Back to Reading</a>
+        <a href="../index.html">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Web Speech API Pronunciation Module
+        const speakerIcons = document.querySelectorAll('.speaker-icon');
+        if ('speechSynthesis' in window) {
+            speakerIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const word = this.dataset.word;
+                    const utterance = new SpeechSynthesisUtterance(word);
+                    utterance.lang = 'en-US';
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+        }
+
+        // Quiz Verification Logic
+        document.getElementById('check-answers-btn').addEventListener('click', function() {
+            let score = 0;
+            const totalQuestions = 10;
+
+            // 1. Grade True / False Questions
+            const tfItems = document.querySelectorAll('li[data-type="tf"]');
+            tfItems.forEach((item, index) => {
+                const correctVal = item.getAttribute('data-answer');
+                const selectedRadio = item.querySelector('input[type="radio"]:checked');
+                const feedbackDiv = item.querySelector('.feedback');
+                
+                if (selectedRadio) {
+                    const userVal = selectedRadio.value;
+                    if (userVal === correctVal) {
+                        score++;
+                        feedbackDiv.className = "feedback correct";
+                        feedbackDiv.innerText = "Correct!";
+                    } else {
+                        feedbackDiv.className = "feedback incorrect";
+                        feedbackDiv.innerText = `Incorrect. The correct answer is ${correctVal}.`;
+                    }
+                } else {
+                    feedbackDiv.className = "feedback incorrect";
+                    feedbackDiv.innerText = `Unanswered. The correct answer is ${correctVal}.`;
+                }
+            });
+
+            // 2. Grade Fill-in-the-Blank Questions
+            const fitbItems = document.querySelectorAll('li[data-type="fitb"]');
+            fitbItems.forEach((item) => {
+                const correctAns = item.getAttribute('data-answer').toLowerCase().trim();
+                const inputElement = item.querySelector('input[type="text"]');
+                const userAns = inputElement.value.toLowerCase().trim();
+                const feedbackDiv = item.querySelector('.feedback');
+
+                if (userAns === correctAns) {
+                    score++;
+                    inputElement.className = "correct-input";
+                    feedbackDiv.className = "feedback correct";
+                    feedbackDiv.innerText = "Correct!";
+                } else {
+                    inputElement.className = "incorrect-input";
+                    feedbackDiv.className = "feedback incorrect";
+                    feedbackDiv.innerText = `Incorrect. The correct answer is "${correctAns}".`;
+                }
+            });
+
+            // 3. Display Final Score
+            const scorePercent = (score / totalQuestions) * 100;
+            const scoreOutput = document.getElementById('score-output');
+            scoreOutput.style.display = "block";
+            scoreOutput.innerHTML = `You scored <strong>${score} / ${totalQuestions}</strong> (${scorePercent}%). <br>` +
+                (scorePercent === 100 ? "🎉 Outstanding! You understood this chapter perfectly!" : "Good effort! Keep practicing to improve your score.");
+            
+            // Scroll smoothly to score output
+            scoreOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    </script>
+</body>
+</html>

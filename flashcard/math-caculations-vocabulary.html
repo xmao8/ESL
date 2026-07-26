@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Math Calculations Vocabulary – Flashcards (30 Words)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; box-sizing: border-box;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 0%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease; border-radius: 0 0 0 10px;
+        z-index: 999; box-sizing: border-box; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); width: 80%; }
+      .menu-toggle { display: flex; }
+      h1, .flashcard, .buttons { padding: 0 1rem; box-sizing: border-box; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.3rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .flashcard, .buttons { padding: 0 1.5rem; box-sizing: border-box; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none;
+        height: auto; width: auto; padding: 0; gap: 1.5rem;
+        transform: none !important; border-radius: 0; align-items: center; overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .flashcard, .buttons { padding: 0; }
+    }
+
+    h1 { margin: 2rem auto; color: #2c3e50; max-width: 780px; }
+    
+    /* Progress Indicator Styling */
+    .progress-tag {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #7f8c8d;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .flashcard.flipped .progress-tag {
+      color: #d2e7f7;
+    }
+
+    .flashcard {
+      background: white; width: 90%; max-width: 640px; margin: 1.5rem auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .flashcard.flipped { background-color: #3498db; color: white; }
+    .word {
+      font-weight: bold; font-size: 2rem; margin-bottom: 0.3rem;
+      display: flex; justify-content: center; align-items: center; gap: 0.8rem;
+    }
+    .ipa {
+      font-family: 'Arial', sans-serif; font-style: italic; font-size: 1.2rem; color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .flashcard.flipped .ipa { color: #e0e0e0; }
+    .definition { margin: 1rem 0 0.5rem 0; font-size: 1.15rem; line-height: 1.5; font-weight: 500; }
+    .example { font-style: italic; opacity: 0.95; font-size: 1.05rem; margin-top: 0.5rem; color: #f5f6fa; }
+    .flashcard.flipped .example { color: #f5f6fa; }
+    .translation { font-size: 0.95rem; margin-top: 0.5rem; color: #cfe6fb; font-weight: 600; }
+    .speaker { cursor: pointer; font-size: 1.6rem; color: #2c3e50; user-select: none; transition: color 0.2s; }
+    .flashcard.flipped .speaker { color: #fff; }
+    .speaker:hover { color: #f0c040; }
+
+    .buttons {
+      margin: 2rem auto 3rem auto; display: flex; justify-content: center;
+      gap: 1rem; max-width: 640px; flex-wrap: wrap;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1rem; background: #3498db; color: white;
+      border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+      text-decoration: none; display: inline-block; user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    button:hover, .buttons a:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="ESLnote Home">
+      <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+      <span class="site-name">ESLnote</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="nav-links" id="primary-navigation">
+      <a href="../index.html">Home</a>
+      <a href="../flashcards.html">Flashcards</a>
+      <a href="../conversation.html">Conversations</a>
+      <a href="../grammar.html">Grammar</a>
+      <a href="../reading.html">Reading</a>
+      <a href="../listening.html">Listening</a>
+      <a href="../practice.html">Practices</a>
+    </div>
+  </div>
+</nav>
+
+<h1>Math Calculations Vocabulary – Flashcards (30 Words)</h1>
+
+<div id="flashcard" class="flashcard" onclick="flipCard()" role="button" aria-pressed="false" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' ') flipCard()">
+  <div class="progress-tag">Loading...</div>
+  <div class="word">Click to Flip</div>
+  <div style="font-size:1rem; margin-top:1rem; color:#888;">Click to flip for definition</div>
+</div>
+
+<div class="buttons">
+  <button id="autoplayBtn" aria-pressed="false" aria-label="Toggle autoplay">▶ Autoplay Off</button>
+  <button id="prevBtn" onclick="prevCard()" aria-label="Previous flashcard">⬅ Previous</button>
+  <button id="nextBtn" onclick="nextCard()" aria-label="Next flashcard">Next ➡</button>
+</div>
+
+<script>
+// Complete list of 30 calculation terms from your reference charts
+const flashcards = [
+  // Pair 1: Addition terms
+  { word: "Sum", ipa: "/sʌm/", definition: "The total amount resulting from adding two or more numbers together.", example: "The sum of 8 and 4 is 12.", chinese: "总和 / 和", spanish: "suma / total" },
+  { word: "Addend", ipa: "/ˈæd.end/", definition: "Any one of the numbers that are added together in an addition problem.", example: "In the equation 5 + 3 = 8, both 5 and 3 are addends.", chinese: "加数", spanish: "sumando" },
+  
+  // Pair 2: Subtraction terms
+  { word: "Difference", ipa: "/ˈdɪf.ɚ.əns/", definition: "The result obtained by subtracting one number from another.", example: "The difference between 10 and 3 is 7.", chinese: "差额 / 差", spanish: "diferencia" },
+  { word: "Subtrahend", ipa: "/ˈsʌb.trə.hend/", definition: "The quantity or number to be subtracted from another.", example: "In 9 - 4 = 5, the number 4 is the subtrahend.", chinese: "减数", spanish: "sustraendo" },
+  
+  // Pair 3: Multiplication terms
+  { word: "Product", ipa: "/ˈprɑː.dʌkt/", definition: "The total quantity resulting from multiplying two or more numbers together.", example: "The product of 6 and 7 is 42.", chinese: "乘积 / 积", spanish: "producto" },
+  { word: "Factor", ipa: "/ˈfæk.tɚ/", definition: "A number or quantity that when multiplied with another produces a given number.", example: "3 and 4 are factors of 12.", chinese: "因子 / 因数", spanish: "factor" },
+  
+  // Pair 4: Division terms
+  { word: "Quotient", ipa: "/ˈkwoʊ.ʃənt/", definition: "The result obtained by dividing one quantity by another.", example: "The quotient of 20 divided by 5 is 4.", chinese: "商", spanish: "cociente" },
+  { word: "Remainder", ipa: "/rɪˈmeɪn.dɚ/", definition: "The amount left over after performing a division calculation.", example: "13 divided by 4 leaves a quotient of 3 and a remainder of 1.", chinese: "余数", spanish: "resto / residuo" },
+  
+  // Pair 5: Division parts
+  { word: "Dividend", ipa: "/ˈdɪv.ə.dend/", definition: "A number or amount to be divided by another number.", example: "In 15 ÷ 3 = 5, the number 15 is the dividend.", chinese: "被除数", spanish: "dividendo" },
+  { word: "Divisor", ipa: "/dɪˈvaɪ.zɚ/", definition: "The number by which another number is divided.", example: "In 15 ÷ 3 = 5, 3 is the divisor.", chinese: "除数", spanish: "divisor" },
+  
+  // Pair 6: Equality terms
+  { word: "Equivalent", ipa: "/ɪˈkwɪv.əl.ənt/", definition: "Equal in value, amount, function, or meaning.", example: "One-half is equivalent to fifty percent.", chinese: "等价的 / 相等的", spanish: "equivalente" },
+  { word: "Equation", ipa: "/ɪˈkweɪ.ʒən/", definition: "A mathematical statement showing that two expressions are equal using the = symbol.", example: "She solved the algebraic equation for x.", chinese: "等式 / 方程式", spanish: "ecuación" },
+  
+  // Pair 7: Fractions
+  { word: "Numerator", ipa: "/ˈnuː.mə.reɪ.tɚ/", definition: "The top number in a fraction showing how many parts are counted.", example: "In 3/4, the number 3 is the numerator.", chinese: "分子", spanish: "numerador" },
+  { word: "Denominator", ipa: "/dɪˈnɑː.mə.neɪ.tɚ/", definition: "The bottom number in a fraction showing the total number of equal parts.", example: "In 3/4, the number 4 is the denominator.", chinese: "分母", spanish: "denominador" },
+  
+  // Pair 8: Estimation
+  { word: "Estimate", ipa: "/ˈes.tə.meɪt/", definition: "To make a quick, reasonable calculation or rough guess of a value.", example: "We estimate the total repair cost will be around 200 dollars.", chinese: "估计 / 估算", spanish: "estimar" },
+  { word: "Approximate", ipa: "/əˈprɑːk.sə.mət/", definition: "Almost correct or exact; very close to the actual number.", example: "The approximate distance between the two cities is 50 miles.", chinese: "近似的 / 大约的", spanish: "aproximado/a" },
+  
+  // Pair 9: Operations verbs
+  { word: "Calculate", ipa: "/ˈkæl.kjə.leɪt/", definition: "To determine a numerical answer using mathematical processes.", example: "Please calculate the total cost including sales tax.", chinese: "计算", spanish: "calcular" },
+  { word: "Simplify", ipa: "/ˈsɪm.plə.faɪ/", definition: "To reduce an algebraic expression or fraction to its simplest form.", example: "Simplify the fraction 4/8 to 1/2.", chinese: "化简 / 简化", spanish: "simplificar" },
+  
+  // Pair 10: Quantitative increase / decrease
+  { word: "Increased by", ipa: "/ɪnˈkriːst baɪ/", definition: "To add a specified amount to an existing number.", example: "Her monthly salary was increased by five hundred dollars.", chinese: "增加了", spanish: "incrementado por" },
+  { word: "Decreased by", ipa: "/dɪˈkriːst baɪ/", definition: "To subtract a specified amount from an existing number.", example: "The store inventory was decreased by twenty items today.", chinese: "减少了", spanish: "disminuido por" },
+  
+  // Pair 11: Multipliers
+  { word: "Double", ipa: "/ˈdʌb.əl/", definition: "To multiply a quantity or number by two.", example: "If you double six, you get twelve.", chinese: "翻倍 / 乘以二", spanish: "duplicar" },
+  { word: "Triple", ipa: "/ˈtrɪp.əl/", definition: "To multiply a quantity or number by three.", example: "Our company profits tripled in the third quarter.", chinese: "三倍 / 乘以三", spanish: "triplicar" },
+  
+  // Pair 12: Percent & Ratio
+  { word: "Percentage", ipa: "/pɚˈsen.t̬ɪdʒ/", definition: "A rate, number, or amount per hundred parts.", example: "What percentage of students passed the math exam?", chinese: "百分比", spanish: "porcentaje" },
+  { word: "Ratio", ipa: "/ˈreɪ.ʃi.oʊ/", definition: "A relationship between two quantities showing how many times one contains the other.", example: "The ratio of boys to girls in our class is 2 to 3.", chinese: "比例 / 比率", spanish: "proporción / razón" },
+  
+  // Pair 13: Financial operations
+  { word: "Discount", ipa: "/ˈdɪs.kaʊnt/", definition: "A reduction in the usual price of a product or service.", example: "They offered a ten percent discount on cash payments.", chinese: "折扣", spanish: "descuento" },
+  { word: "Markup", ipa: "/ˈmɑːrk.ʌp/", definition: "An amount added to the cost price of goods to cover overhead and profit.", example: "The retail markup on shoes is usually quite high.", chinese: "加价 / 利润空间", spanish: "margen de beneficio" },
+  
+  // Pair 14: Solving & Evaluating
+  { word: "Evaluate", ipa: "/ɪˈvæl.ju.eɪt/", definition: "To calculate the numerical value of an expression by replacing variables.", example: "Evaluate x + 5 when x equals 10.", chinese: "求值 / 评估", spanish: "evaluar" },
+  { word: "Solve", ipa: "/sɑːlv/", definition: "To find the correct answer or unknown value in a mathematical problem.", example: "Can you solve this complex algebra equation?", chinese: "解答 / 求解", spanish: "resolver" },
+  
+  // Pair 15: Statistical operations
+  { word: "Average", ipa: "/ˈæv.ɚ.ɪdʒ/", definition: "A single value calculated by summing numbers and dividing by their quantity.", example: "His average test score for the semester was 88.", chinese: "平均数", spanish: "promedio" },
+  { word: "Parenthesis", ipa: "/pəˈren.θə.sɪs/", definition: "Round brackets ( ) used to group numbers and indicate operation priority.", example: "Always perform the calculation inside the parenthesis first.", chinese: "小括号 / 圆括号", spanish: "paréntesis" }
+];
+
+let index = 0;
+let flipped = false;
+
+const flashcard = document.getElementById("flashcard");
+
+function showCard() {
+  flipped = false;
+  flashcard.classList.remove("flipped");
+  flashcard.setAttribute("aria-pressed", "false");
+  const { word, ipa } = flashcards[index];
+  flashcard.innerHTML = `
+    <div class="progress-tag">Word ${index + 1} of ${flashcards.length}</div>
+    <div class="word">${word}</div>
+    <div class="ipa">${ipa}</div>
+    <div style="font-size:1rem; margin-top:1.5rem; color:#888;">Click to flip for definition</div>
+  `;
+}
+
+function flipCard() {
+  if (!flipped) {
+    const { word, ipa, definition, example, chinese, spanish } = flashcards[index];
+    flashcard.innerHTML = `
+      <div class="progress-tag">Word ${index + 1} of ${flashcards.length}</div>
+      <div class="word">
+        ${word}
+        <span class="speaker" title="Hear pronunciation" role="button" tabindex="0" aria-label="Play pronunciation of ${word}">🔊</span>
+      </div>
+      <div class="ipa">${ipa}</div>
+      <div class="definition">${definition}</div>
+      <div class="example">"${example}"</div>
+      <div class="translation">Chinese: ${chinese}</div>
+      <div class="translation">Spanish: ${spanish}</div>
+      <div style="font-size:1rem; margin-top:1.5rem; color:#eee; cursor:pointer;" title="Click to flip back">Click to flip back</div>
+    `;
+    flashcard.classList.add("flipped");
+    flashcard.setAttribute("aria-pressed", "true");
+    flipped = true;
+
+    const speakerBtn = flashcard.querySelector(".speaker");
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    }
+    speakerBtn.addEventListener("click", speak);
+    speakerBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        speak();
+      }
+    });
+    // Auto pronounce once on flip
+    speak();
+  } else {
+    showCard();
+  }
+}
+
+function nextCard() {
+  index = (index + 1) % flashcards.length;
+  showCard();
+}
+
+function prevCard() {
+  index = (index - 1 + flashcards.length) % flashcards.length;
+  showCard();
+}
+
+showCard();
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primary-navigation');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', false);
+      }
+    });
+  });
+}
+
+let autoplay = false;
+let autoplayTimeouts = [];
+const autoplayBtn = document.getElementById('autoplayBtn');
+
+function clearAutoplayTimeouts() {
+  autoplayTimeouts.forEach(t => clearTimeout(t));
+  autoplayTimeouts = [];
+  speechSynthesis.cancel();
+}
+
+function sleep(ms){ return new Promise(r => autoplayTimeouts.push(setTimeout(r, ms))); }
+
+function pronounce(text) {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.onend = resolve;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function autoplaySequence() {
+  while (autoplay) {
+    // Show front
+    showCard();
+    await sleep(2200);
+    if (!autoplay) break;
+    
+    // Flip + speak word (flipCard auto-speaks once)
+    flipCard();
+    await sleep(500);
+    if (!autoplay) break;
+    
+    // Speak word twice more
+    await pronounce(flashcards[index].word);
+    await sleep(400);
+    if (!autoplay) break;
+    
+    await pronounce(flashcards[index].word);
+    
+    // Speak example
+    await sleep(600);
+    if (!autoplay) break;
+    
+    await pronounce(flashcards[index].example);
+    
+    // Next
+    await sleep(2500);
+    if (!autoplay) break;
+    
+    nextCard();
+  }
+}
+
+autoplayBtn.addEventListener('click', () => {
+  autoplay = !autoplay;
+  if (autoplay) {
+    autoplayBtn.textContent = '⏸ Autoplay On';
+    autoplayBtn.setAttribute('aria-pressed', 'true');
+    autoplaySequence();
+  } else {
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+});
+
+// Stop autoplay if user manually interacts
+function stopAutoplayOnUserAction() {
+  if (autoplay) {
+    autoplay = false;
+    autoplayBtn.textContent = '▶ Autoplay Off';
+    autoplayBtn.setAttribute('aria-pressed', 'false');
+    clearAutoplayTimeouts();
+  }
+}
+flashcard.addEventListener('click', stopAutoplayOnUserAction);
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener('click', stopAutoplayOnUserAction);
+  nextBtn.addEventListener('click', stopAutoplayOnUserAction);
+}
+</script>
+
+<div class="buttons">
+  <a href="../flashcards.html">← Back to Flashcards</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+</body>
+</html>

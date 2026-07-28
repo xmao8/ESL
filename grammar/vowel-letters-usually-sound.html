@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How Vowel Letters Usually Sound – ESLnote Phonetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; 
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; 
+                height: calc(100vh - 56px); 
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; 
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; 
+            }
+            .nav-links {
+                position: static; 
+                flex-direction: row; 
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; 
+                transform: none !important; 
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; 
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; 
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; 
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; 
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; 
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; 
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; 
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 0.3rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .content-container em {
+            font-style: italic;
+            color: #555;
+        }
+        .ipa-tag {
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .example {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .example strong {
+            color: #2E7D32;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .rule-card {
+            background-color: #f4f6f9;
+            border: 1px solid #dcdfe6;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+        }
+        .rule-card h4 {
+            margin-top: 0;
+            color: #124076;
+            font-size: 1.2rem;
+        }
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            display: block;
+        }
+        @media (min-width: 600px) {
+            .grammar-table {
+                display: table;
+            }
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background-color: #124076;
+            color: white;
+        }
+        .grammar-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .audio-btn {
+            background: #124076;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-left: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+        .audio-btn:hover {
+            background: #ff9800;
+            transform: scale(1.1);
+        }
+
+        .quiz-item {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .quiz-option {
+            display: inline-block;
+            margin: 0.3rem 0.4rem 0.3rem 0;
+            padding: 0.4rem 0.8rem;
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            border-color: #3498db;
+            background: #ebf5fb;
+        }
+        .quiz-option.correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+            font-weight: bold;
+        }
+        .quiz-option.incorrect {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+        .feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+            margin: 2rem 0;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button.nav-btn, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button.nav-btn:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" onerror="this.style.display='none'" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>How Vowel Letters Usually Sound</h1>
+
+<div class="content-container">
+    <p>English spelling can seem unpredictable because there are <strong>5 main vowel letters</strong> (<strong>A, E, I, O, U</strong>, plus <strong>Y</strong>), but over <strong>15 distinct vowel sounds</strong>! However, written English follows very consistent patterns once you learn how letter positions affect sound.</p>
+    
+    <p>Each vowel letter usually makes two primary sounds: a <strong>Short Vowel sound</strong> and a <strong>Long Vowel sound</strong> (which says the letter's actual name).</p>
+
+    <div class="tip-box">
+        <strong>The Golden Rule of Vowels:</strong>
+        <ul>
+            <li><strong>Short Vowels:</strong> Occur in closed syllables (consonant-vowel-consonant, e.g., <em>cat, bed, sit</em>).</li>
+            <li><strong>Long Vowels:</strong> Say their letter name when followed by a silent E (<em>cake, bite</em>) or in open syllables (<em>he, go</em>).</li>
+        </ul>
+    </div>
+
+    <h2>1. Letter A</h2>
+    <div class="rule-card">
+        <h4>Common Sounds of A:</h4>
+        <ul>
+            <li><strong>Short A <span class="ipa-tag">/æ/</span>:</strong> Used in closed 1-syllable words.
+                <br/><em>Examples:</em> cat, map, apple, fast <button class="audio-btn" onclick="speak('cat, map, apple, fast')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Long A <span class="ipa-tag">/eɪ/</span> ("says its name"):</strong> Used with Magic E (CVCe) or vowel teams (<em>ai, ay</em>).
+                <br/><em>Examples:</em> make, rain, day, game <button class="audio-btn" onclick="speak('make, rain, day, game')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Broad A <span class="ipa-tag">/ɑː/</span> or <span class="ipa-tag">/ɔː/</span>:</strong> Followed by 'll', 'w', or 'u'.
+                <br/><em>Examples:</em> father, call, saw, august <button class="audio-btn" onclick="speak('father, call, saw, august')">🔊</button>
+            </li>
+        </ul>
+    </div>
+
+    <h2>2. Letter E</h2>
+    <div class="rule-card">
+        <h4>Common Sounds of E:</h4>
+        <ul>
+            <li><strong>Short E <span class="ipa-tag">/ɛ/</span>:</strong> Standard short sound in closed syllables.
+                <br/><em>Examples:</em> bed, red, pen, desk <button class="audio-btn" onclick="speak('bed, red, pen, desk')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Long E <span class="ipa-tag">/iː/</span> ("says its name"):</strong> In open syllables or teams (<em>ee, ea</em>).
+                <br/><em>Examples:</em> he, see, team, keep <button class="audio-btn" onclick="speak('he, see, team, keep')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Silent E (at word end):</strong> Makes the preceding vowel long!
+                <br/><em>Examples:</em> mat &rarr; mat<strong>e</strong>, bit &rarr; bit<strong>e</strong> <button class="audio-btn" onclick="speak('mat, mate, bit, bite')">🔊</button>
+            </li>
+        </ul>
+    </div>
+
+    <h2>3. Letter I</h2>
+    <div class="rule-card">
+        <h4>Common Sounds of I:</h4>
+        <ul>
+            <li><strong>Short I <span class="ipa-tag">/ɪ/</span>:</strong> Quick, relaxed sound.
+                <br/><em>Examples:</em> sit, pin, big, listen <button class="audio-btn" onclick="speak('sit, pin, big, listen')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Long I <span class="ipa-tag">/aɪ/</span> ("says its name"):</strong> Magic E pattern or 'igh'.
+                <br/><em>Examples:</em> like, time, night, high <button class="audio-btn" onclick="speak('like, time, night, high')">🔊</button>
+            </li>
+        </ul>
+    </div>
+
+    <h2>4. Letter O</h2>
+    <div class="rule-card">
+        <h4>Common Sounds of O:</h4>
+        <ul>
+            <li><strong>Short O <span class="ipa-tag">/ɑ/</span>:</strong> Open mouth sound in short words.
+                <br/><em>Examples:</em> hot, stop, rock, box <button class="audio-btn" onclick="speak('hot, stop, rock, box')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Long O <span class="ipa-tag">/oʊ/</span> ("says its name"):</strong> Open syllables or teams (<em>oa, ow</em>).
+                <br/><em>Examples:</em> go, hope, boat, snow <button class="audio-btn" onclick="speak('go, hope, boat, snow')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Double OO Sounds:</strong>
+                <br/>Short <span class="ipa-tag">/ʊ/</span>: book, look, foot <button class="audio-btn" onclick="speak('book, look, foot')">🔊</button>
+                <br/>Long <span class="ipa-tag">/uː/</span>: moon, food, zoo <button class="audio-btn" onclick="speak('moon, food, zoo')">🔊</button>
+            </li>
+        </ul>
+    </div>
+
+    <h2>5. Letter U</h2>
+    <div class="rule-card">
+        <h4>Common Sounds of U:</h4>
+        <ul>
+            <li><strong>Short U <span class="ipa-tag">/ʌ/</span>:</strong> Relaxed central sound.
+                <br/><em>Examples:</em> cup, sun, bus, jump <button class="audio-btn" onclick="speak('cup, sun, bus, jump')">🔊</button>
+            </li>
+            <li style="margin-top: 0.6rem;"><strong>Long U <span class="ipa-tag">/juː/</span> or <span class="ipa-tag">/uː/</span> ("says its name"):</strong> Magic E or team.
+                <br/><em>Examples:</em> use, cute, music, blue <button class="audio-btn" onclick="speak('use, cute, music, blue')">🔊</button>
+            </li>
+        </ul>
+    </div>
+
+    <h2>6. Letter Y (The Sometimes Vowel)</h2>
+    <p>Letter Y acts as a vowel whenever there is no other vowel in the syllable!</p>
+
+    <table class="grammar-table">
+        <thead>
+            <tr>
+                <th>Word Position</th>
+                <th>Sound Produced</th>
+                <th>Examples</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>End of 1-syllable word</td>
+                <td>Long I <span class="ipa-tag">/aɪ/</span></td>
+                <td>my, sky, cry, fly <button class="audio-btn" onclick="speak('my, sky, cry, fly')">🔊</button></td>
+            </tr>
+            <tr>
+                <td>End of multi-syllable word</td>
+                <td>Long E <span class="ipa-tag">/iː/</span></td>
+                <td>happy, baby, funny, city <button class="audio-btn" onclick="speak('happy, baby, funny, city')">🔊</button></td>
+            </tr>
+            <tr>
+                <td>Middle of a short syllable</td>
+                <td>Short I <span class="ipa-tag">/ɪ/</span></td>
+                <td>gym, myth, system <button class="audio-btn" onclick="speak('gym, myth, system')">🔊</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>7. Essential Vowel Spelling Patterns</h2>
+
+    <h3>Pattern A: CVC vs. CVCe (The Magic E)</h3>
+    <div class="example">
+        <p>Adding a silent <strong>E</strong> at the end turns a short vowel into a long vowel:</p>
+        <ul>
+            <li><strong>cap</strong> <span class="ipa-tag">/æ/</span> &rarr; <strong>cape</strong> <span class="ipa-tag">/eɪ/</span> <button class="audio-btn" onclick="speak('cap, cape')">🔊</button></li>
+            <li><strong>pet</strong> <span class="ipa-tag">/ɛ/</span> &rarr; <strong>Pete</strong> <span class="ipa-tag">/iː/</span> <button class="audio-btn" onclick="speak('pet, Pete')">🔊</button></li>
+            <li><strong>pin</strong> <span class="ipa-tag">/ɪ/</span> &rarr; <strong>pine</strong> <span class="ipa-tag">/aɪ/</span> <button class="audio-btn" onclick="speak('pin, pine')">🔊</button></li>
+            <li><strong>not</strong> <span class="ipa-tag">/ɑ/</span> &rarr; <strong>note</strong> <span class="ipa-tag">/oʊ/</span> <button class="audio-btn" onclick="speak('not, note')">🔊</button></li>
+            <li><strong>cub</strong> <span class="ipa-tag">/ʌ/</span> &rarr; <strong>cube</strong> <span class="ipa-tag">/juː/</span> <button class="audio-btn" onclick="speak('cub, cube')">🔊</button></li>
+        </ul>
+    </div>
+
+    <h3>Pattern B: Bossy R (R-Controlled Vowels)</h3>
+    <p>When an 'R' follows a vowel, it changes the vowel's natural sound:</p>
+    <div class="example">
+        <ul>
+            <li><strong>AR <span class="ipa-tag">/ɑːr/</span>:</strong> car, park, star <button class="audio-btn" onclick="speak('car, park, star')">🔊</button></li>
+            <li><strong>OR <span class="ipa-tag">/ɔːr/</span>:</strong> fork, storm, door <button class="audio-btn" onclick="speak('fork, storm, door')">🔊</button></li>
+            <li><strong>ER, IR, UR <span class="ipa-tag">/ɜːr/</span>:</strong> (All sound identical!): her, bird, nurse <button class="audio-btn" onclick="speak('her, bird, nurse')">🔊</button></li>
+        </ul>
+    </div>
+
+    <h2>8. Practice Quiz</h2>
+    <p>Test your understanding of how vowel letters usually sound!</p>
+
+    <div class="quiz-item" id="q1">
+        <p>1. What sound does the vowel 'a' make in the word <strong>"cake"</strong>?</p>
+        <div class="quiz-option" onclick="checkQuiz('q1', this, false)">Short A /æ/ (as in cat)</div>
+        <div class="quiz-option" onclick="checkQuiz('q1', this, true)">Long A /eɪ/ (says its name)</div>
+        <div class="quiz-option" onclick="checkQuiz('q1', this, false)">Schwa /ə/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q2">
+        <p>2. What vowel sound does 'y' make in the word <strong>"happy"</strong>?</p>
+        <div class="quiz-option" onclick="checkQuiz('q2', this, false)">Long I /aɪ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q2', this, true)">Long E /iː/</div>
+        <div class="quiz-option" onclick="checkQuiz('q2', this, false)">Short U /ʌ/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q3">
+        <p>3. What effect does the silent 'e' have in the word <strong>"pine"</strong>?</p>
+        <div class="quiz-option" onclick="checkQuiz('q3', this, true)">It turns short /ɪ/ (pin) into long /aɪ/ (pine)</div>
+        <div class="quiz-option" onclick="checkQuiz('q3', this, false)">It makes the 'p' silent</div>
+        <div class="quiz-option" onclick="checkQuiz('q3', this, false)">It keeps the vowel short</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q4">
+        <p>4. Which vowel sound is in the word <strong>"cup"</strong>?</p>
+        <div class="quiz-option" onclick="checkQuiz('q4', this, true)">Short U /ʌ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q4', this, false)">Long U /juː/</div>
+        <div class="quiz-option" onclick="checkQuiz('q4', this, false)">Short O /ɑ/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q5">
+        <p>5. What sound do 'er', 'ir', and 'ur' make when controlled by 'R'?</p>
+        <div class="quiz-option" onclick="checkQuiz('q5', this, false)">They all make different sounds</div>
+        <div class="quiz-option" onclick="checkQuiz('q5', this, true)">They all make the same /ɜːr/ sound (her, bird, nurse)</div>
+        <div class="quiz-option" onclick="checkQuiz('q5', this, false)">They are silent</div>
+        <div class="feedback"></div>
+    </div>
+
+</div>
+
+<div class="buttons">
+    <a href="../phonetics.html">&larr; Back to Phonetics</a>
+    <a href="../index.html">&nbsp;&nbsp;🏠 Home</a>
+</div>
+
+<script>
+    // Speech synthesis helper
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.log('Speech synthesis not supported.');
+        }
+    }
+
+    // Quiz evaluator
+    function checkQuiz(quizId, optionElem, isCorrect) {
+        const container = document.getElementById(quizId);
+        const options = container.querySelectorAll('.quiz-option');
+        const feedback = container.querySelector('.feedback');
+
+        options.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+        });
+
+        if (isCorrect) {
+            optionElem.classList.add('correct');
+            feedback.style.color = '#2e7d32';
+            feedback.textContent = '✓ Correct!';
+        } else {
+            optionElem.classList.add('incorrect');
+            feedback.style.color = '#c62828';
+            feedback.textContent = '✗ Try again!';
+        }
+    }
+
+    // Mobile navigation drawer toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

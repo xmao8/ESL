@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering English Vowel Sounds – ESLnote Phonetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: #124076;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #ff9800;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #ffbb33;
+            outline: none;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                position: fixed;
+                top: 56px; 
+                right: 0;
+                background: #124076;
+                flex-direction: column;
+                width: 100%; 
+                height: calc(100vh - 56px); 
+                padding: 1rem 1.5rem 2rem 1.5rem;
+                gap: 1.2rem;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-radius: 0 0 0 10px;
+                z-index: 999;
+                box-sizing: border-box;
+                align-items: flex-start;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1rem; 
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .nav-container {
+                padding: 0.8rem 1.5rem; 
+            }
+            .nav-links {
+                position: static; 
+                flex-direction: row; 
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.3rem; 
+                transform: none !important; 
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; 
+            }
+            h1, .content-container, .buttons {
+                padding: 0 1.5rem; 
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .nav-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                position: static;
+                flex-direction: row;
+                background: none;
+                height: auto;
+                width: auto;
+                padding: 0;
+                gap: 1.5rem;
+                transform: none !important;
+                border-radius: 0;
+                align-items: center;
+                overflow: visible;
+            }
+            .menu-toggle {
+                display: none; 
+            }
+            body {
+                padding: 0;
+            }
+            h1, .content-container, .buttons {
+                padding: 0; 
+            }
+        }
+
+        h1 {
+            margin: 2rem auto 1.5rem auto;
+            color: #2c3e50;
+            max-width: 800px; 
+        }
+        .content-container {
+            background: white;
+            width: 90%;
+            max-width: 800px; 
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left; 
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .content-container h2 {
+            color: #3498db;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 0.3rem;
+        }
+        .content-container h3 {
+            color: #124076;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+        .content-container p {
+            margin-bottom: 1rem;
+        }
+        .content-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .content-container li {
+            margin-bottom: 0.5rem;
+        }
+        .content-container strong {
+            color: #124076;
+        }
+        .content-container em {
+            font-style: italic;
+            color: #555;
+        }
+        .ipa-tag {
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .example {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .example strong {
+            color: #2E7D32;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            display: block;
+        }
+        @media (min-width: 600px) {
+            .grammar-table {
+                display: table;
+            }
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background-color: #124076;
+            color: white;
+        }
+        .grammar-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Interactive Speech & Quiz Styling */
+        .audio-btn {
+            background: #124076;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-left: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+        .audio-btn:hover {
+            background: #ff9800;
+            transform: scale(1.1);
+        }
+        .quiz-item {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .quiz-option {
+            display: inline-block;
+            margin: 0.3rem 0.4rem 0.3rem 0;
+            padding: 0.4rem 0.8rem;
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            border-color: #3498db;
+            background: #ebf5fb;
+        }
+        .quiz-option.correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+            font-weight: bold;
+        }
+        .quiz-option.incorrect {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+        .feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+            margin: 2rem 0;
+        }
+        .buttons {
+            margin: 2rem auto 3rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+        }
+        button.nav-btn, .buttons a {
+            padding: 0.6rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            user-select: none;
+        }
+        button.nav-btn:hover, .buttons a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="ESLnote Home">
+            <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" onerror="this.style.display='none'" />
+            <span class="site-name">ESLnote</span>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="primary-navigation">
+            <a href="../index.html">Home</a>
+            <a href="../flashcards.html">Flashcards</a>
+            <a href="../conversation.html">Conversations</a>
+            <a href="../grammar.html">Grammar</a>
+            <a href="../reading.html">Reading</a>
+            <a href="../listening.html">Listening</a>
+            <a href="../practice.html">Practices</a>
+        </div>
+    </div>
+</nav>
+
+<h1>Mastering English Vowel Sounds</h1>
+
+<div class="content-container">
+    <p>In English, spelling can be deceiving. While there are only 5 written vowel letters (<strong>A, E, I, O, U</strong>, and sometimes <strong>Y</strong>), General American English features <strong>15 to 20 distinct vowel sounds</strong> (phonemes).</p>
+    
+    <p>Understanding vowel sounds—how your mouth shapes them, how long they last, and whether your tongue glides during pronunciation—is the key to clear pronunciation and improved listening comprehension.</p>
+
+    <h2>1. Vowels vs. Consonants: What's the Difference?</h2>
+    <ul>
+        <li><strong>Consonants:</strong> Involve stopping or restricting airflow using your lips, teeth, or tongue (e.g., <span class="ipa-tag">/p/</span>, <span class="ipa-tag">/t/</span>, <span class="ipa-tag">/s/</span>).</li>
+        <li><strong>Vowels:</strong> Produced with an <strong>open vocal tract</strong>. Air flows freely from your lungs, and the pitch/tone is modulated by the position of your <strong>tongue</strong>, <strong>jaw</strong>, and <strong>lips</strong>.</li>
+    </ul>
+
+    <h2>2. Short Vowel Sounds (Monophthongs)</h2>
+    <p>Short vowels are pronounced with a single, relaxed mouth position without gliding to another sound.</p>
+
+    <table class="grammar-table">
+        <thead>
+            <tr>
+                <th>Phoneme (IPA)</th>
+                <th>Sound Description</th>
+                <th>Key Example Words</th>
+                <th>Mouth / Tongue Position Tips</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="ipa-tag">/æ/</span></td>
+                <td>Short A</td>
+                <td>cat, map, apple <button class="audio-btn" onclick="speak('cat, map, apple')">🔊</button></td>
+                <td>Jaw dropped low, tongue flat and forward, mouth wide.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/ɛ/</span></td>
+                <td>Short E</td>
+                <td>bed, red, head <button class="audio-btn" onclick="speak('bed, red, head')">🔊</button></td>
+                <td>Jaw relaxed, open halfway; tongue in the middle.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/ɪ/</span></td>
+                <td>Short I</td>
+                <td>sit, pin, bit <button class="audio-btn" onclick="speak('sit, pin, bit')">🔊</button></td>
+                <td>Lips slightly parted, tongue high near front teeth, relaxed mouth.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/ɑ/</span></td>
+                <td>Short O</td>
+                <td>hot, stop, father <button class="audio-btn" onclick="speak('hot, stop, father')">🔊</button></td>
+                <td>Jaw dropped wide open, tongue low and pulled back.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/ʌ/</span></td>
+                <td>Short U</td>
+                <td>cup, sun, love <button class="audio-btn" onclick="speak('cup, sun, love')">🔊</button></td>
+                <td>Relaxed mouth, tongue neutral in center (stressed sound).</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/ʊ/</span></td>
+                <td>Foot/Book Vowel</td>
+                <td>book, put, look <button class="audio-btn" onclick="speak('book, put, look')">🔊</button></td>
+                <td>Lips slightly rounded, jaw high, relaxed tongue pulled back.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. Long Vowel Sounds (Monophthongs & Tense Vowels)</h2>
+    <p>"Long vowels" in English phonics often say their letter name. In linguistics, these are <strong>tense vowels</strong>, requiring more muscle tension in the tongue and jaw.</p>
+
+    <table class="grammar-table">
+        <thead>
+            <tr>
+                <th>Phoneme (IPA)</th>
+                <th>Vowel Name / Sound</th>
+                <th>Key Example Words</th>
+                <th>Pronunciation Tip</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="ipa-tag">/eɪ/</span></td>
+                <td>Long A</td>
+                <td>make, rain, day <button class="audio-btn" onclick="speak('make, rain, day')">🔊</button></td>
+                <td>Glides from <span class="ipa-tag">/e/</span> to a higher <span class="ipa-tag">/ɪ/</span> sound.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/iː/</span></td>
+                <td>Long E</td>
+                <td>see, meat, happy <button class="audio-btn" onclick="speak('see, meat, happy')">🔊</button></td>
+                <td>High tension, lips stretched into a wide smile.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/aɪ/</span></td>
+                <td>Long I</td>
+                <td>time, my, sky <button class="audio-btn" onclick="speak('time, my, sky')">🔊</button></td>
+                <td>Starts open at <span class="ipa-tag">/a/</span> and glides up to <span class="ipa-tag">/ɪ/</span>.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/oʊ/</span></td>
+                <td>Long O</td>
+                <td>go, boat, home <button class="audio-btn" onclick="speak('go, boat, home')">🔊</button></td>
+                <td>Starts at <span class="ipa-tag">/o/</span> and rounds lips toward <span class="ipa-tag">/ʊ/</span>.</td>
+            </tr>
+            <tr>
+                <td><span class="ipa-tag">/uː/</span></td>
+                <td>Long U / "Oo"</td>
+                <td>blue, moon, shoes <button class="audio-btn" onclick="speak('blue, moon, shoes')">🔊</button></td>
+                <td>Lips tightly rounded, tongue high in the back.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Diphthongs: Gliding Vowel Sounds</h2>
+    <p>A <strong>diphthong</strong> is a single vowel sound created when the voice glides smoothly from one vowel position to another within the same syllable.</p>
+
+    <div class="example">
+        <ol>
+            <li>
+                <strong><span class="ipa-tag">/aʊ/</span></strong> as in <em>cow, house, now</em> <button class="audio-btn" onclick="speak('cow, house, now')">🔊</button>
+                <br/><em>Movement:</em> Starts with a wide open mouth (<span class="ipa-tag">/a/</span>) and moves up to rounded lips (<span class="ipa-tag">/ʊ/</span>).
+            </li>
+            <li style="margin-top: 0.8rem;">
+                <strong><span class="ipa-tag">/ɔɪ/</span></strong> as in <em>boy, coin, voice</em> <button class="audio-btn" onclick="speak('boy, coin, voice')">🔊</button>
+                <br/><em>Movement:</em> Starts with rounded, open lips (<span class="ipa-tag">/ɔ/</span>) and glides into a smile (<span class="ipa-tag">/ɪ/</span>).
+            </li>
+            <li style="margin-top: 0.8rem;">
+                <strong><span class="ipa-tag">/aɪ/</span></strong>, <strong><span class="ipa-tag">/eɪ/</span></strong>, and <strong><span class="ipa-tag">/oʊ/</span></strong> (often classified as diphthongs in modern American English phonology).
+            </li>
+        </ol>
+    </div>
+
+    <h2>5. The Magic of the Schwa (<span class="ipa-tag">/ə/</span>)</h2>
+    <p>The <strong>schwa</strong> is the most common vowel sound in the English language. It occurs <strong>only in unstressed syllables</strong>.</p>
+
+    <div class="tip-box">
+        <p><strong>Sound:</strong> A very quick, relaxed, lazy "uh" sound.</p>
+        <p><strong>Examples:</strong></p>
+        <ul>
+            <li><strong>a</strong>bout &rarr; <span class="ipa-tag">/əˈbaʊt/</span> <button class="audio-btn" onclick="speak('about')">🔊</button></li>
+            <li>SOPh<strong>a</strong> &rarr; <span class="ipa-tag">/ˈsoʊfə/</span> <button class="audio-btn" onclick="speak('sofa')">🔊</button></li>
+            <li>photog<strong>ra</strong>pher &rarr; <span class="ipa-tag">/fəˈtɑːɡrəfər/</span> <button class="audio-btn" onclick="speak('photographer')">🔊</button></li>
+            <li>lem<strong>o</strong>n &rarr; <span class="ipa-tag">/ˈlɛmən/</span> <button class="audio-btn" onclick="speak('lemon')">🔊</button></li>
+        </ul>
+        <p><strong>Rule of Thumb:</strong> If an English syllable is unstressed, its vowel will almost always reduce to a schwa!</p>
+    </div>
+
+    <h2>6. Minimal Pair Exercises</h2>
+    <p>Minimal pairs are pairs of words that differ by only <strong>one</strong> sound. Practice saying these pairs aloud to train your ears and mouth muscles:</p>
+
+    <h3>Exercise A: <span class="ipa-tag">/ɪ/</span> (Short I) vs. <span class="ipa-tag">/iː/</span> (Long E)</h3>
+    <div class="example">
+        <ul>
+            <li>ship <button class="audio-btn" onclick="speak('ship')">🔊</button> vs. sheep <button class="audio-btn" onclick="speak('sheep')">🔊</button></li>
+            <li>fit <button class="audio-btn" onclick="speak('fit')">🔊</button> vs. feet <button class="audio-btn" onclick="speak('feet')">🔊</button></li>
+            <li>bit <button class="audio-btn" onclick="speak('bit')">🔊</button> vs. beat <button class="audio-btn" onclick="speak('beat')">🔊</button></li>
+        </ul>
+    </div>
+
+    <h3>Exercise B: <span class="ipa-tag">/æ/</span> (Short A) vs. <span class="ipa-tag">/ɛ/</span> (Short E)</h3>
+    <div class="example">
+        <ul>
+            <li>man <button class="audio-btn" onclick="speak('man')">🔊</button> vs. men <button class="audio-btn" onclick="speak('men')">🔊</button></li>
+            <li>pan <button class="audio-btn" onclick="speak('pan')">🔊</button> vs. pen <button class="audio-btn" onclick="speak('pen')">🔊</button></li>
+            <li>bad <button class="audio-btn" onclick="speak('bad')">🔊</button> vs. bed <button class="audio-btn" onclick="speak('bed')">🔊</button></li>
+        </ul>
+    </div>
+
+    <h3>Exercise C: <span class="ipa-tag">/ʊ/</span> (Book) vs. <span class="ipa-tag">/uː/</span> (Moon)</h3>
+    <div class="example">
+        <ul>
+            <li>full <button class="audio-btn" onclick="speak('full')">🔊</button> vs. fool <button class="audio-btn" onclick="speak('fool')">🔊</button></li>
+            <li>pull <button class="audio-btn" onclick="speak('pull')">🔊</button> vs. pool <button class="audio-btn" onclick="speak('pool')">🔊</button></li>
+            <li>look <button class="audio-btn" onclick="speak('look')">🔊</button> vs. Luke <button class="audio-btn" onclick="speak('Luke')">🔊</button></li>
+        </ul>
+    </div>
+
+    <h2>7. Lesson Practice & Quiz</h2>
+    <p>Directions: Identify the primary vowel sound (IPA symbol) for the bolded syllables below.</p>
+
+    <div class="quiz-item" id="q1">
+        <p>1. "c<strong>u</strong>p"</p>
+        <div class="quiz-option" onclick="checkQuiz('q1', this, false)">/æ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q1', this, true)">/ʌ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q1', this, false)">/ʊ/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q2">
+        <p>2. "m<strong>ee</strong>t"</p>
+        <div class="quiz-option" onclick="checkQuiz('q2', this, true)">/iː/</div>
+        <div class="quiz-option" onclick="checkQuiz('q2', this, false)">/ɪ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q2', this, false)">/eɪ/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q3">
+        <p>3. "<strong>a</strong>lone" (first syllable)</p>
+        <div class="quiz-option" onclick="checkQuiz('q3', this, false)">/æ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q3', this, false)">/ɑ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q3', this, true)">/ə/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q4">
+        <p>4. "c<strong>oi</strong>n"</p>
+        <div class="quiz-option" onclick="checkQuiz('q4', this, true)">/ɔɪ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q4', this, false)">/aʊ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q4', this, false)">/oʊ/</div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" id="q5">
+        <p>5. "b<strong>a</strong>ck"</p>
+        <div class="quiz-option" onclick="checkQuiz('q5', this, true)">/æ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q5', this, false)">/ɛ/</div>
+        <div class="quiz-option" onclick="checkQuiz('q5', this, false)">/eɪ/</div>
+        <div class="feedback"></div>
+    </div>
+
+</div>
+
+<div class="buttons">
+    <a href="../phonetics.html">&larr; Back to Phonetics</a>
+    <a href="../index.html">&nbsp;&nbsp;🏠 Home</a>
+</div>
+
+<script>
+    // Text-to-Speech audio assistant function
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Stop any active speech
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85; // Slightly slower for clear phonetics
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.log('Speech synthesis not supported in this browser.');
+        }
+    }
+
+    // Quiz evaluation function
+    function checkQuiz(quizId, optionElem, isCorrect) {
+        const container = document.getElementById(quizId);
+        const options = container.querySelectorAll('.quiz-option');
+        const feedback = container.querySelector('.feedback');
+
+        options.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+        });
+
+        if (isCorrect) {
+            optionElem.classList.add('correct');
+            feedback.style.color = '#2e7d32';
+            feedback.textContent = '✓ Correct!';
+        } else {
+            optionElem.classList.add('incorrect');
+            feedback.style.color = '#c62828';
+            feedback.textContent = '✗ Try again!';
+        }
+    }
+
+    // Mobile navigation menu toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

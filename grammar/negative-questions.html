@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Negative Questions in English – ESLnote Grammar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+
+    /* Hamburger menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* Phone Layout */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        transform: translateX(0);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      h1,
+      .content-container,
+      .buttons {
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+    }
+
+    /* Tablet Layout */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container {
+        padding: 0.8rem 1.5rem;
+      }
+
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      h1,
+      .content-container,
+      .buttons {
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+      }
+    }
+
+    /* Desktop Layout */
+    @media (min-width: 901px) {
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+      }
+
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      h1,
+      .content-container,
+      .buttons {
+        padding: 0;
+      }
+    }
+
+    /* Main Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 850px;
+    }
+
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 860px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left;
+      line-height: 1.65;
+      font-size: 1.06rem;
+    }
+
+    .content-container h2 {
+      color: #3498db;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.55rem;
+    }
+
+    .content-container h3 {
+      color: #124076;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.25rem;
+    }
+
+    .content-container p {
+      margin-bottom: 1rem;
+    }
+
+    .content-container ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .content-container ol {
+      list-style-type: decimal;
+      padding-left: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .content-container li {
+      margin-bottom: 0.6rem;
+    }
+
+    .content-container strong {
+      color: #124076;
+    }
+
+    .content-container em {
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Example Box */
+    .example {
+      background-color: #e8f5e9;
+      border-left: 4px solid #4CAF50;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+    }
+
+    .example strong {
+      color: #2E7D32;
+    }
+
+    /* Grammar Table */
+    .grammar-table-container {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .grammar-table th,
+    .grammar-table td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+
+    .grammar-table th {
+      background-color: #e8f5e9;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    .grammar-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .grammar-table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Notes */
+    .note {
+      font-size: 0.98rem;
+      color: #444;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fff3cd;
+      color: #8a6d3b;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      margin-left: 6px;
+    }
+
+    .formula {
+      background: #eef6ff;
+      border-left: 4px solid #3498db;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+      font-size: 1.05rem;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .compare-box {
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+    }
+
+    .compare-box h3 {
+      margin-top: 0;
+    }
+
+    .tip {
+      background: #fff3cd;
+      border-left: 4px solid #f0ad4e;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+    }
+
+    .tip strong {
+      color: #8a6d3b;
+    }
+
+    @media (max-width: 600px) {
+      .compare {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Bottom Buttons */
+    .buttons {
+      width: 90%;
+      max-width: 860px;
+      margin: 1rem auto 3rem auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .buttons a {
+      display: inline-block;
+      background: #124076;
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .buttons a:hover {
+      background: #1d5a9b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav aria-label="Main navigation">
+    <div class="nav-container">
+
+      <a href="../index.html" class="logo" aria-label="ESLnote Home">
+        <img src="/favicon.png" alt="ESLnote Logo" class="logo-img" />
+        <span class="site-name">ESLnote</span>
+      </a>
+
+      <button
+        id="menuToggle"
+        class="menu-toggle"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+        aria-label="Toggle menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <div class="nav-links" id="primary-navigation">
+        <a href="../index.html">Home</a>
+        <a href="../flashcards.html">Flashcards</a>
+        <a href="../conversation.html">Conversations</a>
+        <a href="../grammar.html">Grammar</a>
+        <a href="../reading.html">Reading</a>
+        <a href="../listening.html">Listening</a>
+        <a href="../practice.html">Practices</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <h1>Negative Questions in English</h1>
+
+  <div class="content-container">
+
+    <p>
+      <strong>Negative questions</strong> are questions that contain a negative word such as
+      <strong>don't, doesn't, didn't, isn't, aren't, haven't</strong>, or <strong>can't</strong>.
+      They are very common in everyday English.
+    </p>
+
+    <p>
+      Negative questions can have several purposes. They can be used to
+      <strong>make suggestions, check information, express surprise, show expectations,
+      or ask for agreement</strong>.
+    </p>
+
+    <div class="example">
+      <strong>Two important patterns:</strong>
+      <ul>
+        <li><strong>Why don't you + base verb?</strong> → usually a suggestion</li>
+        <li><strong>Don't you + base verb?</strong> → usually confirmation or surprise</li>
+      </ul>
+    </div>
+
+    <h2>1) “Why don't you...?” — Making Suggestions</h2>
+
+    <p>
+      We commonly use <strong>Why don't you + base verb</strong> to suggest an action.
+      Although the question contains <em>don't</em>, it usually means
+      <strong>“I suggest that you...”</strong>
+    </p>
+
+    <div class="formula">
+      <strong>Why don't you + base verb...?</strong>
+    </div>
+
+    <div class="example">
+      <strong>Examples:</strong>
+      <ul>
+        <li>Why don't you <strong>take a break</strong>?</li>
+        <li>Why don't you <strong>call your mom</strong>?</li>
+        <li>Why don't you <strong>try again</strong>?</li>
+        <li>Why don't you <strong>ask your teacher</strong>?</li>
+        <li>Why don't you <strong>take a taxi</strong>?</li>
+      </ul>
+    </div>
+
+    <p>
+      <strong>Why don't you take a taxi?</strong> usually means:
+      <em>I suggest that you take a taxi.</em>
+    </p>
+
+    <h2>2) “Why don't we...?” — Making Suggestions Together</h2>
+
+    <p>
+      We use <strong>Why don't we + base verb</strong> when the speaker suggests
+      doing something together.
+    </p>
+
+    <div class="formula">
+      <strong>Why don't we + base verb...?</strong>
+    </div>
+
+    <div class="example">
+      <strong>Examples:</strong>
+      <ul>
+        <li>Why don't we <strong>go out for dinner</strong>?</li>
+        <li>Why don't we <strong>take a break</strong>?</li>
+        <li>Why don't we <strong>start tomorrow</strong>?</li>
+        <li>Why don't we <strong>ask John</strong>?</li>
+        <li>Why don't we <strong>watch a movie</strong>?</li>
+      </ul>
+    </div>
+
+    <div class="compare">
+      <div class="compare-box">
+        <h3>Why don't you...?</h3>
+        <p><strong>You</strong> should do it.</p>
+        <p>Why don't you call John?</p>
+      </div>
+
+      <div class="compare-box">
+        <h3>Why don't we...?</h3>
+        <p><strong>You and I</strong> should do it.</p>
+        <p>Why don't we call John?</p>
+      </div>
+    </div>
+
+    <h2>3) “Don't you...?” — Checking Information</h2>
+
+    <p>
+      <strong>Don't you + base verb</strong> is commonly used to check information.
+      The speaker usually thinks the answer is probably <strong>yes</strong>.
+    </p>
+
+    <div class="formula">
+      <strong>Don't you + base verb...?</strong>
+    </div>
+
+    <div class="example">
+      <strong>Examples:</strong>
+      <ul>
+        <li>Don't you <strong>like coffee</strong>?</li>
+        <li>Don't you <strong>work here</strong>?</li>
+        <li>Don't you <strong>remember him</strong>?</li>
+        <li>Don't you <strong>have a car</strong>?</li>
+        <li>Don't you <strong>know Sarah</strong>?</li>
+      </ul>
+    </div>
+
+    <p>
+      <strong>Don't you live in Los Angeles?</strong>
+      means that the speaker thinks you probably live in Los Angeles and wants to confirm it.
+    </p>
+
+    <h2>4) “Don't you...?” — Expressing Surprise</h2>
+
+    <p>
+      Negative questions can also express <strong>surprise</strong> when the speaker
+      expected a different answer.
+    </p>
+
+    <div class="example">
+      <strong>Example:</strong>
+      <p>
+        <strong>A:</strong> I'm not coming to the party.
+      </p>
+      <p>
+        <strong>B:</strong> Don't you want to come?
+      </p>
+      <p>
+        Here, B is surprised because B expected A to want to come.
+      </p>
+    </div>
+
+    <div class="example">
+      <strong>More examples:</strong>
+      <ul>
+        <li>Don't you <strong>like pizza</strong>?</li>
+        <li>Don't you <strong>want to come with us</strong>?</li>
+        <li>Don't you <strong>need any help</strong>?</li>
+        <li>Don't you <strong>remember her</strong>?</li>
+      </ul>
+    </div>
+
+    <h2>5) Positive Questions vs. Negative Questions</h2>
+
+    <p>
+      A positive question is usually more neutral. A negative question often shows
+      that the speaker already has an expectation.
+    </p>
+
+    <div class="grammar-table-container">
+      <table class="grammar-table" aria-label="Positive and Negative Questions">
+        <thead>
+          <tr>
+            <th>Positive Question</th>
+            <th>Negative Question</th>
+            <th>Difference</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Do you like coffee?</td>
+            <td>Don't you like coffee?</td>
+            <td>The negative question suggests I expected you to like coffee.</td>
+          </tr>
+
+          <tr>
+            <td>Do you have a car?</td>
+            <td>Don't you have a car?</td>
+            <td>The negative question suggests I thought you had a car.</td>
+          </tr>
+
+          <tr>
+            <td>Are you tired?</td>
+            <td>Aren't you tired?</td>
+            <td>The negative question suggests I expected you to be tired.</td>
+          </tr>
+
+          <tr>
+            <td>Did you call Sarah?</td>
+            <td>Didn't you call Sarah?</td>
+            <td>The negative question suggests I thought you called Sarah.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>6) “Didn't you...?” — Talking About the Past</h2>
+
+    <p>
+      We use <strong>Didn't you + base verb</strong> to check something that happened
+      in the past.
+    </p>
+
+    <div class="formula">
+      <strong>Didn't you + base verb...?</strong>
+    </div>
+
+    <div class="example">
+      <strong>Examples:</strong>
+      <ul>
+        <li>Didn't you <strong>call Sarah</strong>?</li>
+        <li>Didn't you <strong>see him yesterday</strong>?</li>
+        <li>Didn't you <strong>tell me about this</strong>?</li>
+        <li>Didn't you <strong>go to the party</strong>?</li>
+        <li>Didn't you <strong>meet John last week</strong>?</li>
+      </ul>
+    </div>
+
+    <p>
+      <strong>Didn't you meet John last week?</strong>
+      means the speaker thought that you met John and wants to confirm it.
+    </p>
+
+    <h2>7) “Aren't you...?” — Expectations and Surprise</h2>
+
+    <p>
+      With the verb <strong>be</strong>, we use <strong>Aren't you...?</strong>
+      Negative questions with <em>be</em> often express an expectation or surprise.
+    </p>
+
+    <div class="formula">
+      <strong>Aren't you + adjective/noun...?</strong>
+    </div>
+
+    <div class="example">
+      <strong>Examples:</strong>
+      <ul>
+        <li>Aren't you <strong>tired</strong>?</li>
+        <li>Aren't you <strong>hungry</strong>?</li>
+        <li>Aren't you <strong>ready</strong>?</li>
+        <li>Aren't you <strong>a teacher</strong>?</li>
+        <li>Aren't you <strong>coming with us</strong>?</li>
+      </ul>
+    </div>
+
+    <h2>8) “Haven't you...?” — Something Expected to Have Happened</h2>
+
+    <p>
+      We use <strong>Haven't you + past participle</strong> when we expected something
+      to have happened already.
+    </p>
+
+    <div class="formula">
+      <strong>Haven't you + past participle...?</strong>
+    </div>
+
+    <div class="example">
+      <strong>Examples:</strong>
+      <ul>
+        <li>Haven't you <strong>finished</strong>?</li>
+        <li>Haven't you <strong>seen this movie</strong>?</li>
+        <li>Haven't you <strong>met her before</strong>?</li>
+        <li>Haven't you <strong>done your homework</strong>?</li>
+      </ul>
+    </div>
+
+    <p>
+      <strong>Haven't you finished your homework?</strong>
+      suggests that the speaker expected the homework to be finished already.
+    </p>
+
+    <h2>9) Other Common Negative Questions</h2>
+
+    <div class="grammar-table-container">
+      <table class="grammar-table" aria-label="Common Negative Questions">
+        <thead>
+          <tr>
+            <th>Pattern</th>
+            <th>Example</th>
+            <th>Common Purpose</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Why don't you...?</strong></td>
+            <td>Why don't you sit down?</td>
+            <td>Suggestion</td>
+          </tr>
+
+          <tr>
+            <td><strong>Why don't we...?</strong></td>
+            <td>Why don't we order pizza?</td>
+            <td>Suggestion together</td>
+          </tr>
+
+          <tr>
+            <td><strong>Don't you...?</strong></td>
+            <td>Don't you know him?</td>
+            <td>Confirmation / surprise</td>
+          </tr>
+
+          <tr>
+            <td><strong>Didn't you...?</strong></td>
+            <td>Didn't you call her?</td>
+            <td>Past confirmation</td>
+          </tr>
+
+          <tr>
+            <td><strong>Aren't you...?</strong></td>
+            <td>Aren't you hungry?</td>
+            <td>Expectation / surprise</td>
+          </tr>
+
+          <tr>
+            <td><strong>Isn't it...?</strong></td>
+            <td>Isn't it beautiful?</td>
+            <td>Agreement / confirmation</td>
+          </tr>
+
+          <tr>
+            <td><strong>Haven't you...?</strong></td>
+            <td>Haven't you finished?</td>
+            <td>Expectation</td>
+          </tr>
+
+          <tr>
+            <td><strong>Can't you...?</strong></td>
+            <td>Can't you help me?</td>
+            <td>Request / complaint</td>
+          </tr>
+
+          <tr>
+            <td><strong>Won't you...?</strong></td>
+            <td>Won't you come in?</td>
+            <td>Invitation / request</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>10) A Useful Comparison</h2>
+
+    <div class="example">
+      <strong>Why don't you...?</strong>
+      <p>
+        → Usually a <strong>suggestion</strong>
+      </p>
+      <p>
+        <strong>Why don't you get some rest?</strong>
+      </p>
+      <p>
+        = I think you should get some rest.
+      </p>
+    </div>
+
+    <div class="example">
+      <strong>Don't you...?</strong>
+      <p>
+        → Usually <strong>confirmation or surprise</strong>
+      </p>
+      <p>
+        <strong>Don't you want to get some rest?</strong>
+      </p>
+      <p>
+        = I thought you wanted to get some rest.
+      </p>
+    </div>
+
+    <div class="tip">
+      <strong>ESL Tip:</strong>
+      The two forms look similar, but they have different purposes.
+      <strong>“Why don't you...?”</strong> usually gives a suggestion,
+      while <strong>“Don't you...?”</strong> usually checks information
+      or expresses surprise.
+    </div>
+
+    <h2>11) Quick Practice</h2>
+
+    <p>Choose the best negative question for each situation.</p>
+
+    <ol>
+      <li>Your friend is very tired. You suggest going home early.
+        <br><strong>Why don't you go home early?</strong>
+      </li>
+
+      <li>You thought your friend worked at a hospital.
+        <br><strong>Don't you work at the hospital?</strong>
+      </li>
+
+      <li>You want to suggest having dinner together.
+        <br><strong>Why don't we have dinner together?</strong>
+      </li>
+
+      <li>You thought Sarah had already finished her homework.
+        <br><strong>Haven't you finished your homework?</strong>
+      </li>
+
+      <li>You are surprised that your friend doesn't want pizza.
+        <br><strong>Don't you like pizza?</strong>
+      </li>
+    </ol>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="example">
+      <ul>
+        <li><strong>Why don't you...?</strong> → Make a suggestion</li>
+        <li><strong>Why don't we...?</strong> → Suggest doing something together</li>
+        <li><strong>Don't you...?</strong> → Check information or express surprise</li>
+        <li><strong>Didn't you...?</strong> → Check something about the past</li>
+        <li><strong>Aren't you...?</strong> → Express an expectation or surprise</li>
+        <li><strong>Haven't you...?</strong> → Ask about something expected to have happened</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="buttons">
+    <a href="../grammar.html">← Back to Grammar</a>
+    <a href="../index.html">🏠 Home</a>
+  </div>
+
+  <script>
+    // Mobile nav toggle script
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('primary-navigation');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const expanded =
+          menuToggle.getAttribute('aria-expanded') === 'true' || false;
+
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

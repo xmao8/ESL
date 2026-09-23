@@ -151,7 +151,7 @@
   <p class="hint">
     Choose a word from the <strong>word bank</strong> and place it in each blank.
     <br>Steps: (1) click a blank to select it, (2) click a word to place it. Click a filled blank to remove the word.
-    <br><strong>Note:</strong> Each word can be used <strong>once</strong>. Three words in the bank are extra and will not be used.
+    <br><strong>Note:</strong> Each word can be used <strong>once</strong>. Three words in the bank are extra and will not be used. More than one word may fit a blank — any correct answer counts.
   </p>
 
   <div class="word-bank" aria-label="Word bank">
@@ -189,23 +189,24 @@ const BANK = [
   "almost never","never","most of the time","not usually"
 ];
 
-// Data: 15 items on everyday life, goals, obstacles, solutions
+// Data: 15 items on everyday life, goals, obstacles, solutions.
+// Each blank accepts the intended word plus other semantically reasonable words.
 const items = [
-  { prompt: "I __________ wake up at 6 a.m. so I can start my day on time.", answers: ["usually"] },
-  { prompt: "Schedules __________ help us manage our time better.", answers: ["generally"] },
-  { prompt: "She __________ comes late to class because she leaves early.", answers: ["never"] },
-  { prompt: "My brother __________ finishes his homework before dinner.", answers: ["occasionally"] },
-  { prompt: "__________ we feel too tired to keep up with our goals.", answers: ["sometimes"] },
-  { prompt: "He is __________ stressed when he has no plan for the day.", answers: ["always"] },
-  { prompt: "They __________ talk about their goals during lunch.", answers: ["often"] },
-  { prompt: "I __________ skip my study time, even on weekends.", answers: ["seldom"] },
-  { prompt: "Her boss __________ reminds her to take breaks.", answers: ["frequently"] },
-  { prompt: "We __________ eat out because we are saving money.", answers: ["hardly ever"] },
-  { prompt: "A good plan __________ turns an obstacle into a small problem.", answers: ["almost always"] },
-  { prompt: "She __________ gives up when her goals feel too hard.", answers: ["almost never"] },
-  { prompt: "He __________ is home by six on most days.", answers: ["normally"] },
-  { prompt: "__________ do I miss my morning routine — it keeps my life balanced.", answers: ["rarely"] },
-  { prompt: "My friends and I __________ meet to talk about our progress.", answers: ["every now and then"] }
+  { prompt: "I __________ wake up at 6 a.m. so I can start my day on time.", answers: ["usually","always","almost always","normally","generally","often","frequently"] },
+  { prompt: "Schedules __________ help us manage our time better.", answers: ["generally","usually","often","frequently","normally"] },
+  { prompt: "She __________ comes late to class because she leaves early.", answers: ["never","hardly ever","almost never","rarely","seldom"] },
+  { prompt: "My brother __________ finishes his homework before dinner.", answers: ["occasionally","sometimes","every now and then","often","usually","generally","frequently","rarely","seldom"] },
+  { prompt: "__________ we feel too tired to keep up with our goals.", answers: ["sometimes","occasionally","every now and then","often","usually"] },
+  { prompt: "He is __________ stressed when he has no plan for the day.", answers: ["always","almost always","usually","normally","generally","often","frequently"] },
+  { prompt: "They __________ talk about their goals during lunch.", answers: ["often","sometimes","occasionally","every now and then","usually","always","frequently"] },
+  { prompt: "I __________ skip my study time, even on weekends.", answers: ["seldom","rarely","hardly ever","almost never","never"] },
+  { prompt: "Her boss __________ reminds her to take breaks.", answers: ["frequently","often","usually","sometimes","occasionally","always"] },
+  { prompt: "We __________ eat out because we are saving money.", answers: ["hardly ever","rarely","seldom","almost never","never"] },
+  { prompt: "A good plan __________ turns an obstacle into a small problem.", answers: ["almost always","usually","generally","often","normally","always","frequently"] },
+  { prompt: "She __________ gives up when her goals feel too hard.", answers: ["almost never","never","rarely","seldom","hardly ever"] },
+  { prompt: "He __________ is home by six on most days.", answers: ["normally","usually","generally","often"] },
+  { prompt: "__________ do I miss my morning routine — it keeps my life balanced.", answers: ["rarely","seldom","hardly ever","barely ever","almost never","never"] },
+  { prompt: "My friends and I __________ meet to talk about our progress.", answers: ["every now and then","sometimes","occasionally","often","usually"] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

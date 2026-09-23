@@ -64,7 +64,12 @@
     .buttons { margin: 2rem auto 3rem auto; display: flex; justify-content: center; gap: 1rem; max-width: 600px; }
     button, .buttons a { padding: 0.6rem 1.2rem; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; user-select: none; }
     button:hover, .buttons a:hover { background: #2980b9; }
-  </style>
+  
+    .resource-body { padding: 1.2rem 1.4rem 1.6rem; text-align: center; border-radius: 0 0 14px 14px; }
+    .resource-body p { margin: 0 0 1.1rem; color: #333; font-size: 1rem; line-height: 1.55; }
+    .visit-btn { display: inline-block; padding: 0.6rem 1.5rem; background: #124076; color: #fff !important; border-radius: 8px; font-weight: bold; text-decoration: none; }
+    .visit-btn:hover { background: #0d3057; }
+</style>
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -108,6 +113,95 @@
       </div>
     </div>
   </div>
+    <div class="resource-card" data-title="[Dictionary] Cambridge Dictionary">
+      <div class="resource-label">
+        <h2>Cambridge Dictionary</h2>
+      </div>
+      <div class="resource-body">
+        <p>Learner-friendly definitions with US and UK audio pronunciations and example sentences.</p>
+        <a class="visit-btn" href="https://dictionary.cambridge.org" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Dictionary] Forvo">
+      <div class="resource-label">
+        <h2>Forvo</h2>
+      </div>
+      <div class="resource-body">
+        <p>Hear any English word pronounced by native speakers from around the world.</p>
+        <a class="visit-btn" href="https://forvo.com" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Listening] VOA Learning English">
+      <div class="resource-label">
+        <h2>VOA Learning English</h2>
+      </div>
+      <div class="resource-body">
+        <p>US news read at slow speed with transcripts — ideal listening practice for intermediate learners.</p>
+        <a class="visit-btn" href="https://learningenglish.voanews.com" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Listening] BBC Learning English">
+      <div class="resource-label">
+        <h2>BBC Learning English</h2>
+      </div>
+      <div class="resource-body">
+        <p>Short videos and series on grammar, vocabulary, and pronunciation.</p>
+        <a class="visit-btn" href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Listening] ELLLO">
+      <div class="resource-label">
+        <h2>ELLLO</h2>
+      </div>
+      <div class="resource-body">
+        <p>Thousands of short real conversations with transcripts, audio, and quizzes.</p>
+        <a class="visit-btn" href="https://www.elllo.org" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Course] USA Learns">
+      <div class="resource-label">
+        <h2>USA Learns</h2>
+      </div>
+      <div class="resource-body">
+        <p>Free full English courses for adults living in the US, from beginning to intermediate levels.</p>
+        <a class="visit-btn" href="https://www.usalearns.org" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Course] British Council LearnEnglish">
+      <div class="resource-label">
+        <h2>British Council LearnEnglish</h2>
+      </div>
+      <div class="resource-body">
+        <p>Graded reading, listening, and grammar activities organized by level.</p>
+        <a class="visit-btn" href="https://learnenglish.britishcouncil.org" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Grammar] Purdue OWL – ESL">
+      <div class="resource-label">
+        <h2>Purdue OWL – ESL</h2>
+      </div>
+      <div class="resource-body">
+        <p>Clear guides to English grammar, punctuation, and academic writing.</p>
+        <a class="visit-btn" href="https://owl.purdue.edu/owl/english_as_a_second_language/" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
+
+    <div class="resource-card" data-title="[Writing] Write & Improve">
+      <div class="resource-label">
+        <h2>Write & Improve</h2>
+      </div>
+      <div class="resource-body">
+        <p>Free Cambridge tool: write in English and get instant feedback on your writing.</p>
+        <a class="visit-btn" href="https://writeandimprove.com" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
 </div>
 
 <div class="buttons">
@@ -138,7 +232,9 @@
     searchInput.addEventListener('input', function () {
       const q = this.value.toLowerCase();
       document.querySelectorAll('.resource-card').forEach(card => {
-        const text = card.querySelector('.resource-label h2')?.textContent.toLowerCase() || '';
+        const text = ((card.querySelector('.resource-label h2')?.textContent || '') + ' ' +
+                      (card.querySelector('.resource-body p')?.textContent || '') + ' ' +
+                      (card.dataset.title || '')).toLowerCase();
         card.hidden = !text.includes(q);
       });
     });

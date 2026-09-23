@@ -120,7 +120,37 @@
     .answers-section { display: none; margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem; }
     .answers-section h3 { color: #4CAF50; }
     .answers-section p { margin: 0.3rem 0 0.8rem; }
-  </style>
+  
+    /* Print support */
+    .print-only, .answer-key { display: none; }
+    .print-button { background-color: #124076; }
+    .print-button:hover { background-color: #0d3057; }
+    @media print {
+      header, .buttons, .hint, .inline-feedback, #results { display: none !important; }
+      body { background: #fff; }
+      h1 { font-size: 1.35rem; margin: 0 0 0.4rem; }
+      .content-container {
+        box-shadow: none; width: 100%; max-width: 100%;
+        margin: 0; padding: 0; font-size: 0.98rem;
+      }
+      .content-container h2 { font-size: 1.15rem; color: #000; margin: 0.8rem 0 0.5rem; }
+      .blank-input {
+        border: none !important; border-bottom: 2px solid #333 !important;
+        box-shadow: none !important; background: transparent !important;
+        min-width: 13ch; padding: 0 0.2rem;
+      }
+      .blank-input::placeholder { color: transparent; }
+      .word-bank { break-inside: avoid; }
+      .chip { border: 1px solid #666; }
+      .chip:disabled { opacity: 1; text-decoration: none; }
+      .print-only { display: block !important; margin-bottom: 0.8rem; font-size: 1rem; }
+      .answer-key { display: block !important; page-break-before: always; }
+      .answer-key h2 { font-size: 1.2rem; }
+      .answer-key ol { columns: 2; -webkit-columns: 2; }
+      .answer-key li { break-inside: avoid; margin-bottom: 0.4rem; font-size: 0.95rem; }
+      a { text-decoration: none; color: #000; }
+    }
+</style>
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -154,6 +184,8 @@
     <br><strong>Note:</strong> Each word can be used <strong>once</strong>. Three words in the bank are extra and will not be used. More than one word may fit a blank — any correct answer counts.
   </p>
 
+  <p class="print-only"><strong>Name:</strong> ____________________ &nbsp;&nbsp; <strong>Date:</strong> __________<br>Write the correct word from the word bank in each blank. Use each word once.</p>
+
   <div class="word-bank" aria-label="Word bank">
     <div class="word-bank-title">Word Bank</div>
     <div class="chips" id="bankChips"></div>
@@ -164,10 +196,17 @@
     <!-- Items will be rendered by JS -->
   </ol>
 
+  <div class="answer-key">
+    <h2>Answer Key (for teachers)</h2>
+    <p class="print-only" style="margin-bottom:0.6rem;">Other reasonable answers are also acceptable.</p>
+    <ol id="answerKeyList"></ol>
+  </div>
+
   <div class="buttons">
     <button id="submitBtn" class="submit-button">Submit Answers</button>
     <button id="showAnswersBtn" class="show-answers" style="display:none;">Show Answers</button>
     <button id="resetBtn" class="reset-button">Reset</button>
+    <button class="print-button" onclick="window.print()">\u0001F5A8\uFE0F Print</button>
   </div>
 
   <div id="results" class="answers-section" aria-live="polite">
@@ -354,6 +393,17 @@ function resetAll() {
 document.getElementById('submitBtn').addEventListener('click', checkAll);
 document.getElementById('showAnswersBtn').addEventListener('click', toggleAnswers);
 document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+// Build the printable answer key
+(function buildAnswerKey() {
+  const ol = document.getElementById('answerKeyList');
+  if (!ol) return;
+  items.forEach((it, idx) => {
+    const li = document.createElement('li');
+    li.textContent = it.answers[0];
+    ol.appendChild(li);
+  });
+})();
 </script>
 </body>
 </html>

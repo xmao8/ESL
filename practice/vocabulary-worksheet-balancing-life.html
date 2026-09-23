@@ -189,28 +189,28 @@ const BANK = [
   "promote","degree","graduate","position","night school","achieve","worried"
 ];
 
-// Data: 20 fill-in-the-blank items
+// Data: 20 fill-in-the-blank items (original sentences; words drawn from Unit 1, Lessons 1–2)
 const items = [
-  { prompt: "I wake up at 6 a.m. every day. That is my morning __________.", answers: ["routine"] },
-  { prompt: "Luisa writes her weekly __________ on a calendar app.", answers: ["schedule"] },
-  { prompt: "I need to __________ after work: go to the bank and pick up the kids.", answers: ["run errands"] },
-  { prompt: "We do our __________ every Sunday at the supermarket.", answers: ["grocery shopping"] },
-  { prompt: "Maria is my __________; we work in the same office.", answers: ["co-worker"] },
-  { prompt: "I use an app to __________ my busy schedule.", answers: ["keep track of"] },
-  { prompt: "I NEVER cook on my __________ because I am a cook at a restaurant!", answers: ["day off"] },
-  { prompt: "A __________ is something you would like to achieve in the future.", answers: ["goal"] },
-  { prompt: "An __________ is a problem that gets in the way of your goal.", answers: ["obstacle"] },
-  { prompt: "A __________ is a way to solve a problem.", answers: ["solution"] },
-  { prompt: "Buying a new home is Bolin\u2019s __________.", answers: ["personal goal"] },
-  { prompt: "Graduating from college is Bolin\u2019s __________.", answers: ["educational goal"] },
-  { prompt: "Getting a new position at work is Bolin\u2019s __________.", answers: ["professional goal"] },
-  { prompt: "His boss will not __________ him to a better job.", answers: ["promote"] },
-  { prompt: "Bolin plans to go to night school and get his bachelor\u2019s __________.", answers: ["degree"] },
-  { prompt: "When Bolin __________, he will apply for a new position at work.", answers: ["graduate"] },
-  { prompt: "He hopes to find a new __________ at a bigger company.", answers: ["position"] },
-  { prompt: "Bolin will go to __________ in the evening to finish his studies.", answers: ["night school"] },
-  { prompt: "He will work hard to __________ his goals.", answers: ["achieve"] },
-  { prompt: "Bolin is __________ about the future.", answers: ["worried"] }
+  { prompt: "Eating breakfast at 7 a.m. every day is part of my morning __________.", answers: ["routine"] },
+  { prompt: "I write all my appointments on my weekly __________.", answers: ["schedule"] },
+  { prompt: "I need to __________ this afternoon: go to the post office and buy milk.", answers: ["run errands"] },
+  { prompt: "They do their __________ at the market every weekend.", answers: ["grocery shopping"] },
+  { prompt: "Luis is my __________; we work at the same school.", answers: ["co-worker"] },
+  { prompt: "I write everything down to __________ my tasks.", answers: ["keep track of"] },
+  { prompt: "Sunday is my __________; I like to rest and watch movies.", answers: ["day off"] },
+  { prompt: "Learning English is one of my __________ this year.", answers: ["goal"] },
+  { prompt: "Lack of time is an __________ for many students.", answers: ["obstacle"] },
+  { prompt: "A good __________ to this problem is to make a plan.", answers: ["solution"] },
+  { prompt: "Saving money for a trip is her __________.", answers: ["personal goal"] },
+  { prompt: "Finishing his English class is his __________.", answers: ["educational goal"] },
+  { prompt: "Becoming a manager is her __________.", answers: ["professional goal"] },
+  { prompt: "The company will __________ him to manager next month.", answers: ["promote"] },
+  { prompt: "She earned a college __________ last spring.", answers: ["degree"] },
+  { prompt: "After I __________, I want to find a better job.", answers: ["graduate"] },
+  { prompt: "She applied for a __________ at a new company.", answers: ["position"] },
+  { prompt: "He takes English classes at __________ after work.", answers: ["night school"] },
+  { prompt: "With a good plan, you can __________ your dreams.", answers: ["achieve"] },
+  { prompt: "She is __________ about her test tomorrow.", answers: ["worried"] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

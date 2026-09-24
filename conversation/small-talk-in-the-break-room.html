@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ESL conversation: Small Talk in the Break Room. Everyday English dialogue with vocabulary and speaking practice. Free.">
+  <title>Small Talk in the Break Room - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>Small Talk in the Break Room</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>KEVIN:</strong> An IT support specialist, outgoing and chatty.</li>
+      <li><strong>LUCIA:</strong> A customer service representative, warm but a bit shy.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Kevin and Lucia both happen to be in the break room at lunchtime. They work in different departments and don’t know each other well.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Two coworkers make small talk in the office break room">
+    <h3>Conversation</h3>
+
+    <p><strong>KEVIN:</strong> <span class="dialogue">Hey! You’re from customer service, right? I’m Kevin, from IT.</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">Hi, Kevin! I’m Lucia. I think we met at the holiday party.</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">That’s right! How’s your day going so far?</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">Busy! Mondays are always crazy with weekend messages. How about you?</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">Same here — three password resets before 10 a.m. Is that your lunch? It smells amazing.</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">Thanks! It’s my grandmother’s rice recipe. Do you usually bring lunch or buy it?</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">I bring leftovers most days. There’s a great taco truck on Fridays though — have you tried it?</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">Not yet! Where does it park?</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">Right on the corner of 5th and Main. Get there before noon or the line is huge.</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">I’ll check it out this Friday. So, have you been with the company long?</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">About two years. You?</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">Eight months. I moved here from Texas for this job.</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">Oh nice! How are you liking California so far?</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">I love the weather, but I miss real barbecue. And my family, of course.</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">I bet. Do you get back to Texas often?</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">A few times a year. My mom keeps asking when I’m visiting next. What about you — are you from around here?</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">Born and raised! But I’ve never been to Texas. I should visit sometime.</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">You should! I’ll give you a list of barbecue places. Hey, do you know if the company is doing anything for the holidays this year?</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">I heard there might be a potluck in December. Last year’s was fun — someone brought amazing dumplings.</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">A potluck sounds perfect. I could bring my grandmother’s rice!</span></p>
+    <p><strong>KEVIN:</strong> <span class="dialogue">I’d sign up for that. Well, I should get back to my desk. It was great chatting with you, Lucia!</span></p>
+    <p><strong>LUCIA:</strong> <span class="dialogue">You too, Kevin! See you around — and thanks for the taco truck tip!</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Small talk
+          <button class="speaker-icon" onclick="speakWord('Small talk')" aria-label="Pronounce Small talk">🔊</button>
+        </span>
+        <span class="ipa">/smɔːl tɔːk/</span>
+        <span class="definition">(n.) friendly, light conversation.</span>
+        <span class="example">Example: They make small talk in the break room.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Break room
+          <button class="speaker-icon" onclick="speakWord('Break room')" aria-label="Pronounce Break room">🔊</button>
+        </span>
+        <span class="ipa">/breɪk ruːm/</span>
+        <span class="definition">(n.) a room where workers rest and eat.</span>
+        <span class="example">Example: They met in the break room.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Leftovers
+          <button class="speaker-icon" onclick="speakWord('Leftovers')" aria-label="Pronounce Leftovers">🔊</button>
+        </span>
+        <span class="ipa">/ˈleftoʊvərz/</span>
+        <span class="definition">(n.) food remaining from an earlier meal.</span>
+        <span class="example">Example: I bring leftovers most days.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Taco truck
+          <button class="speaker-icon" onclick="speakWord('Taco truck')" aria-label="Pronounce Taco truck">🔊</button>
+        </span>
+        <span class="ipa">/ˈtɑːkoʊ trʌk/</span>
+        <span class="definition">(n.) a food truck selling tacos.</span>
+        <span class="example">Example: There’s a great taco truck on Fridays.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Born and raised
+          <button class="speaker-icon" onclick="speakWord('Born and raised')" aria-label="Pronounce Born and raised">🔊</button>
+        </span>
+        <span class="ipa">/bɔːrn ænd reɪzd/</span>
+        <span class="definition">(phr.) born and grew up in a place.</span>
+        <span class="example">Example: Born and raised in California!</span>
+      </li>
+      <li>
+        <span class="vocab-word">Potluck
+          <button class="speaker-icon" onclick="speakWord('Potluck')" aria-label="Pronounce Potluck">🔊</button>
+        </span>
+        <span class="ipa">/ˈpɑːtlʌk/</span>
+        <span class="definition">(n.) a meal where everyone brings a dish.</span>
+        <span class="example">Example: There might be a potluck in December.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Chatty
+          <button class="speaker-icon" onclick="speakWord('Chatty')" aria-label="Pronounce Chatty">🔊</button>
+        </span>
+        <span class="ipa">/ˈtʃæti/</span>
+        <span class="definition">(adj.) talkative and friendly.</span>
+        <span class="example">Example: Kevin is outgoing and chatty.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Crazy
+          <button class="speaker-icon" onclick="speakWord('Crazy')" aria-label="Pronounce Crazy">🔊</button>
+        </span>
+        <span class="ipa">/ˈkreɪzi/</span>
+        <span class="definition">(adj.) very busy or hectic (informal).</span>
+        <span class="example">Example: Mondays are always crazy.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tip
+          <button class="speaker-icon" onclick="speakWord('Tip')" aria-label="Pronounce Tip">🔊</button>
+        </span>
+        <span class="ipa">/tɪp/</span>
+        <span class="definition">(n.) a helpful suggestion.</span>
+        <span class="example">Example: Thanks for the taco truck tip!</span>
+      </li>
+      <li>
+        <span class="vocab-word">Sign up
+          <button class="speaker-icon" onclick="speakWord('Sign up')" aria-label="Pronounce Sign up">🔊</button>
+        </span>
+        <span class="ipa">/saɪn ʌp/</span>
+        <span class="definition">(phr v.) to register for something.</span>
+        <span class="example">Example: I’d sign up for that.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ESL conversation: Renewing a Lease. Everyday English dialogue with vocabulary and speaking practice. Free.">
+  <title>Renewing a Lease - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>Renewing a Lease</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>MR. GARCIA:</strong> The landlord, businesslike but fair.</li>
+      <li><strong>HANNAH:</strong> A tenant who wants to renew her lease at a fair price.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Hannah’s one-year lease ends next month. She likes the apartment but the rent is going up. She’s meeting Mr. Garcia, her landlord, to discuss renewal.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Tenant discusses renewing an apartment lease with the landlord">
+    <h3>Conversation</h3>
+
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">Hi, Hannah. Thanks for meeting with me. Your lease ends on October 31st — have you thought about renewing?</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">I have, and I’d love to stay. I really like the apartment and the neighborhood.</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">I’m glad to hear that — you’ve been a great tenant. I’m offering a 12-month renewal at $1,650 a month.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">I see. That’s $100 more than I’m paying now. That’s a pretty big increase.</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">I understand it feels like a lot. But property taxes and insurance went up this year, so I had to adjust.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">I understand costs go up. Would you consider meeting in the middle at $1,600? I’ve always paid on time and never caused any problems.</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">You have been an excellent tenant, that’s true. Let me think… I could do $1,620. That’s the best I can offer.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">I appreciate that. $1,620 works for me. Would the other terms stay the same?</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">Yes — same terms, same security deposit. The new lease would run November 1st through October 31st.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">One question: the dishwasher has been leaking a little. Could that be fixed before I sign?</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">Absolutely. I’ll send my handyman this week. I want everything working properly.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">Thank you. When do you need my decision?</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">If you could sign by the 15th, that would be great. That gives us both enough time.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">I’ll sign this week. Can you email me the new lease so I can read it first?</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">Of course. I’ll send it tonight. Everything will be the same except the rent amount and the dates.</span></p>
+    <p><strong>HANNAH:</strong> <span class="dialogue">Perfect. I’m happy we could work this out, Mr. Garcia.</span></p>
+    <p><strong>MR. GARCIA:</strong> <span class="dialogue">Me too, Hannah. Good tenants are hard to find — I’m glad you’re staying.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Lease
+          <button class="speaker-icon" onclick="speakWord('Lease')" aria-label="Pronounce Lease">🔊</button>
+        </span>
+        <span class="ipa">/liːs/</span>
+        <span class="definition">(n.) a legal contract to rent a place.</span>
+        <span class="example">Example: Your lease ends October 31st.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Renew
+          <button class="speaker-icon" onclick="speakWord('Renew')" aria-label="Pronounce Renew">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈnuː/</span>
+        <span class="definition">(v.) to extend a contract for another period.</span>
+        <span class="example">Example: Have you thought about renewing?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tenant
+          <button class="speaker-icon" onclick="speakWord('Tenant')" aria-label="Pronounce Tenant">🔊</button>
+        </span>
+        <span class="ipa">/ˈtenənt/</span>
+        <span class="definition">(n.) a person who rents a home.</span>
+        <span class="example">Example: You’ve been a great tenant.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Landlord
+          <button class="speaker-icon" onclick="speakWord('Landlord')" aria-label="Pronounce Landlord">🔊</button>
+        </span>
+        <span class="ipa">/ˈlændlɔːrd/</span>
+        <span class="definition">(n.) the owner of a rented property.</span>
+        <span class="example">Example: She’s meeting her landlord.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Increase
+          <button class="speaker-icon" onclick="speakWord('Increase')" aria-label="Pronounce Increase">🔊</button>
+        </span>
+        <span class="ipa">/ɪnˈkriːs/</span>
+        <span class="definition">(n.) a rise in amount.</span>
+        <span class="example">Example: That’s a pretty big increase.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Meet in the middle
+          <button class="speaker-icon" onclick="speakWord('Meet in the middle')" aria-label="Pronounce Meet in the middle">🔊</button>
+        </span>
+        <span class="ipa">/miːt ɪn ðə ˈmɪdəl/</span>
+        <span class="definition">(phr.) to compromise.</span>
+        <span class="example">Example: Would you meet in the middle at $1,600?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Security deposit
+          <button class="speaker-icon" onclick="speakWord('Security deposit')" aria-label="Pronounce Security deposit">🔊</button>
+        </span>
+        <span class="ipa">/səˈkjʊrəti dɪˈpɑːzɪt/</span>
+        <span class="definition">(n.) money held by the landlord as protection.</span>
+        <span class="example">Example: Same terms, same security deposit.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Terms
+          <button class="speaker-icon" onclick="speakWord('Terms')" aria-label="Pronounce Terms">🔊</button>
+        </span>
+        <span class="ipa">/tɜːrmz/</span>
+        <span class="definition">(n.) the conditions of an agreement.</span>
+        <span class="example">Example: Would the other terms stay the same?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Handyman
+          <button class="speaker-icon" onclick="speakWord('Handyman')" aria-label="Pronounce Handyman">🔊</button>
+        </span>
+        <span class="ipa">/ˈhændimæn/</span>
+        <span class="definition">(n.) a person who does small repairs.</span>
+        <span class="example">Example: I’ll send my handyman this week.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Work out
+          <button class="speaker-icon" onclick="speakWord('Work out')" aria-label="Pronounce Work out">🔊</button>
+        </span>
+        <span class="ipa">/wɜːrk aʊt/</span>
+        <span class="definition">(phr v.) to resolve successfully.</span>
+        <span class="example">Example: I’m happy we could work this out.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

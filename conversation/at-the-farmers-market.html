@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ESL conversation: At the Farmers Market. Everyday English dialogue with vocabulary and speaking practice. Free.">
+  <title>At the Farmers Market - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>At the Farmers Market</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>TOM:</strong> A local farmer selling vegetables at the market, warm and chatty.</li>
+      <li><strong>WEI:</strong> A retired teacher exploring the farmers market for the first time.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: It’s Saturday morning. Wei is shopping at the local farmers market for the first time. Tom, a friendly vendor, is selling fresh vegetables.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Shopper chats with a vendor while buying fresh produce">
+    <h3>Conversation</h3>
+
+    <p><strong>TOM:</strong> <span class="dialogue">Morning! Everything on this table was picked yesterday. Can I help you find something?</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">Good morning! I’m new to farmers markets. How does it work — do I just pick what I want?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Exactly! Grab a bag, pick what you like, and I’ll weigh it at the end. Or I can pick the best ones for you.</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">These tomatoes look beautiful. Are they organic?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">They sure are. No pesticides — just sunshine, water, and good soil. Taste one!</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">Mmm, that’s the best tomato I’ve had in years. The ones at the supermarket don’t taste like anything.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">That’s because ours ripen on the vine. Supermarket tomatoes are picked green and shipped across the country.</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">That makes sense. How much are they?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">$3.50 a pound. How many would you like?</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">Give me about two pounds, please. And what are these purple vegetables?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Those are eggplants. They’re great grilled or in stir-fry. Want the recipe I give all my customers?</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">Yes, please! I love trying new recipes.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Slice it, brush with olive oil, add garlic and salt, then grill five minutes per side. Simple and delicious.</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">I’ll take two eggplants too. Do you come here every Saturday?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Every Saturday, rain or shine, from 8 to 1. We also do a vegetable box subscription — $25 a week for a mix of whatever’s fresh.</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">A subscription sounds wonderful, but let me start small today. Do you take cards?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">We do — cards, cash, and even phone payments.</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">Perfect. Here’s my card. Oh — one more thing. Are these peaches ripe yet?</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">Give them one more day on your counter. If they smell sweet at the stem, they’re ready.</span></p>
+    <p><strong>WEI:</strong> <span class="dialogue">Thank you, Tom! I’ve learned so much. I’ll definitely be back next Saturday.</span></p>
+    <p><strong>TOM:</strong> <span class="dialogue">See you then, Wei! Tell your friends about us!</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Farmers market
+          <button class="speaker-icon" onclick="speakWord('Farmers market')" aria-label="Pronounce Farmers market">🔊</button>
+        </span>
+        <span class="ipa">/ˈfɑːrmərz ˈmɑːrkɪt/</span>
+        <span class="definition">(n.) an outdoor market where farmers sell directly.</span>
+        <span class="example">Example: She is shopping at the farmers market.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Organic
+          <button class="speaker-icon" onclick="speakWord('Organic')" aria-label="Pronounce Organic">🔊</button>
+        </span>
+        <span class="ipa">/ɔːrˈɡænɪk/</span>
+        <span class="definition">(adj.) grown without chemical pesticides.</span>
+        <span class="example">Example: Are these tomatoes organic?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Pesticide
+          <button class="speaker-icon" onclick="speakWord('Pesticide')" aria-label="Pronounce Pesticide">🔊</button>
+        </span>
+        <span class="ipa">/ˈpestəsaɪd/</span>
+        <span class="definition">(n.) a chemical that kills insects on crops.</span>
+        <span class="example">Example: No pesticides — just sunshine and water.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Ripen
+          <button class="speaker-icon" onclick="speakWord('Ripen')" aria-label="Pronounce Ripen">🔊</button>
+        </span>
+        <span class="ipa">/ˈraɪpən/</span>
+        <span class="definition">(v.) to become ready to eat.</span>
+        <span class="example">Example: Ours ripen on the vine.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Weigh
+          <button class="speaker-icon" onclick="speakWord('Weigh')" aria-label="Pronounce Weigh">🔊</button>
+        </span>
+        <span class="ipa">/weɪ/</span>
+        <span class="definition">(v.) to measure how heavy something is.</span>
+        <span class="example">Example: I’ll weigh it at the end.</span>
+      </li>
+      <li>
+        <span class="vocab-word">A pound
+          <button class="speaker-icon" onclick="speakWord('A pound')" aria-label="Pronounce A pound">🔊</button>
+        </span>
+        <span class="ipa">/ə paʊnd/</span>
+        <span class="definition">(n.) a unit of weight, about 454 grams.</span>
+        <span class="example">Example: $3.50 a pound.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Stir-fry
+          <button class="speaker-icon" onclick="speakWord('Stir-fry')" aria-label="Pronounce Stir-fry">🔊</button>
+        </span>
+        <span class="ipa">/ˈstɜːr fraɪ/</span>
+        <span class="definition">(n.) a dish of quickly fried vegetables and meat.</span>
+        <span class="example">Example: Great grilled or in stir-fry.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Rain or shine
+          <button class="speaker-icon" onclick="speakWord('Rain or shine')" aria-label="Pronounce Rain or shine">🔊</button>
+        </span>
+        <span class="ipa">/reɪn ɔːr ʃaɪn/</span>
+        <span class="definition">(phr.) no matter what the weather is.</span>
+        <span class="example">Example: Every Saturday, rain or shine.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Subscription
+          <button class="speaker-icon" onclick="speakWord('Subscription')" aria-label="Pronounce Subscription">🔊</button>
+        </span>
+        <span class="ipa">/səbˈskrɪpʃən/</span>
+        <span class="definition">(n.) a regular paid delivery.</span>
+        <span class="example">Example: We do a vegetable box subscription.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Ripe
+          <button class="speaker-icon" onclick="speakWord('Ripe')" aria-label="Pronounce Ripe">🔊</button>
+        </span>
+        <span class="ipa">/raɪp/</span>
+        <span class="definition">(adj.) ready to eat.</span>
+        <span class="example">Example: Are these peaches ripe yet?</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

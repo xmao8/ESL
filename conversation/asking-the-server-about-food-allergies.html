@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ESL conversation: Asking the Server About Food Allergies. Everyday English dialogue with vocabulary and speaking practice. Free.">
+  <title>Asking the Server About Food Allergies - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>Asking the Server About Food Allergies</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>ANNA:</strong> A server at an Italian restaurant, careful and attentive.</li>
+      <li><strong>DAVID:</strong> A delivery driver with a severe peanut allergy.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: David has a serious peanut allergy. He is having dinner at a restaurant with a friend. Anna, the server, comes to take their order.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Diner with a nut allergy asks the server about menu ingredients">
+    <h3>Conversation</h3>
+
+    <p><strong>ANNA:</strong> <span class="dialogue">Good evening! Welcome to Bella Roma. Can I start you with something to drink?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Just water for me, please. And I have a question before we order — I have a peanut allergy.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Thank you for telling me. Is it a mild allergy or a severe one?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Severe. Even a small amount can cause a serious reaction. I carry an EpiPen just in case.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">I understand. Let me be very careful with your order then. Which dishes were you considering?</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">I was thinking about the chicken parmesan. Does it contain any nuts?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">The chicken parmesan itself doesn’t, but let me double-check with the kitchen about the breading and the oil they use.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">I’d really appreciate that. Cross-contact in the kitchen is what worries me most.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Of course. I’ll ask them to use clean utensils and a fresh pan for your dish.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Thank you. What about the salads? Is the dressing made in-house?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Two of them are. The Caesar dressing is made here and it’s nut-free. The other one I’d need to check.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">The Caesar salad sounds safe then. And for dessert — do any desserts contain nuts?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Most of our desserts are made in a kitchen that also handles nuts, so I can’t guarantee they’re completely nut-free.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">I see. Then I’ll skip dessert to be safe. Better safe than sorry.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">That’s a smart call. I’ll also put an allergy alert on your ticket so the whole kitchen sees it.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">What does the alert do exactly?</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">It prints in red on the kitchen ticket, and the chef has to confirm the dish is prepared separately.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">That makes me feel much better. You’re really thorough — thank you.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">It’s the most important part of my job. I’ll go check on that chicken parmesan now.</span></p>
+    <p class="scene-direction">Anna returns from the kitchen a few minutes later.</p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Good news! The kitchen confirmed the chicken parmesan is completely nut-free, and they’ll prepare it separately.</span></p>
+    <p><strong>DAVID:</strong> <span class="dialogue">Perfect. I’ll have that with the Caesar salad. Thanks for taking this so seriously, Anna.</span></p>
+    <p><strong>ANNA:</strong> <span class="dialogue">Always. Enjoy your meal, David — I’ll keep an eye on your table.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Allergy
+          <button class="speaker-icon" onclick="speakWord('Allergy')" aria-label="Pronounce Allergy">🔊</button>
+        </span>
+        <span class="ipa">/ˈælərdʒi/</span>
+        <span class="definition">(n.) a strong bad reaction to a food or substance.</span>
+        <span class="example">Example: I have a peanut allergy.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Severe
+          <button class="speaker-icon" onclick="speakWord('Severe')" aria-label="Pronounce Severe">🔊</button>
+        </span>
+        <span class="ipa">/səˈvɪr/</span>
+        <span class="definition">(adj.) very serious.</span>
+        <span class="example">Example: Even a small amount can cause a severe reaction.</span>
+      </li>
+      <li>
+        <span class="vocab-word">EpiPen
+          <button class="speaker-icon" onclick="speakWord('EpiPen')" aria-label="Pronounce EpiPen">🔊</button>
+        </span>
+        <span class="ipa">/ˈepiˌpen/</span>
+        <span class="definition">(n.) a device that injects emergency allergy medicine.</span>
+        <span class="example">Example: I carry an EpiPen just in case.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Cross-contact
+          <button class="speaker-icon" onclick="speakWord('Cross-contact')" aria-label="Pronounce Cross-contact">🔊</button>
+        </span>
+        <span class="ipa">/krɔːs ˈkɑːntækt/</span>
+        <span class="definition">(n.) when allergens accidentally get into safe food.</span>
+        <span class="example">Example: Cross-contact is what worries me most.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Utensil
+          <button class="speaker-icon" onclick="speakWord('Utensil')" aria-label="Pronounce Utensil">🔊</button>
+        </span>
+        <span class="ipa">/juːˈtensəl/</span>
+        <span class="definition">(n.) a tool used for cooking or eating.</span>
+        <span class="example">Example: Use clean utensils for my dish.</span>
+      </li>
+      <li>
+        <span class="vocab-word">In-house
+          <button class="speaker-icon" onclick="speakWord('In-house')" aria-label="Pronounce In-house">🔊</button>
+        </span>
+        <span class="ipa">/ɪn haʊs/</span>
+        <span class="definition">(adj.) made inside the restaurant, not bought.</span>
+        <span class="example">Example: The dressing is made in-house.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Nut-free
+          <button class="speaker-icon" onclick="speakWord('Nut-free')" aria-label="Pronounce Nut-free">🔊</button>
+        </span>
+        <span class="ipa">/nʌt friː/</span>
+        <span class="definition">(adj.) containing no nuts.</span>
+        <span class="example">Example: The Caesar dressing is nut-free.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Alert
+          <button class="speaker-icon" onclick="speakWord('Alert')" aria-label="Pronounce Alert">🔊</button>
+        </span>
+        <span class="ipa">/əˈlɜːrt/</span>
+        <span class="definition">(n.) a warning notice.</span>
+        <span class="example">Example: I’ll put an allergy alert on your ticket.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Thorough
+          <button class="speaker-icon" onclick="speakWord('Thorough')" aria-label="Pronounce Thorough">🔊</button>
+        </span>
+        <span class="ipa">/ˈθɜːroʊ/</span>
+        <span class="definition">(adj.) careful and complete.</span>
+        <span class="example">Example: You’re really thorough — thank you.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Better safe than sorry
+          <button class="speaker-icon" onclick="speakWord('Better safe than sorry')" aria-label="Pronounce Better safe than sorry">🔊</button>
+        </span>
+        <span class="ipa">/ˈbetər seɪf ðæn ˈsɑːri/</span>
+        <span class="definition">(phr.) it’s wiser to be careful than to take risks.</span>
+        <span class="example">Example: I’ll skip dessert — better safe than sorry.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ESL conversation: Riding the Bus: Asking the Driver for Help. Everyday English dialogue with vocabulary and speaking practice. Free.">
+  <title>Riding the Bus: Asking the Driver for Help - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>Riding the Bus: Asking the Driver for Help</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>DRIVER:</strong> A city bus driver, experienced and helpful.</li>
+      <li><strong>TARIQ:</strong> A job seeker riding the bus for the first time.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Tariq needs to take the bus to a job interview, but he’s never used public transit here. He asks the driver for help as he boards.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="New rider asks the bus driver for help with routes and fares">
+    <h3>Conversation</h3>
+
+    <p><strong>TARIQ:</strong> <span class="dialogue">Good morning! Does this bus go to the shopping center on Lake Avenue?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Morning! Yes, the Number 42 goes right past it. Hop on!</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">Great. How much is the fare?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">$2.00 exactly. Do you have exact change? The machine doesn’t give change.</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">I have two dollar bills. Where do I put them?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Just feed them into the slot right here. Perfect. Now grab a seat — we’re pulling out.</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">Thank you. How will I know when to get off?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">I’ll announce the major stops. The shopping center is about 15 minutes away — it’s the stop after the high school.</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">Could you let me know when we get there? I don’t want to miss my stop.</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Sure thing. I’ll give you a shout. Is this your first time on this route?</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">First time on any bus here, actually. I have a job interview at 10:00. Will I make it on time?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">It’s 9:20 now, so you’ll arrive around 9:40. Plenty of time. Good luck with the interview!</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">Thanks! Do I need to pull a cord or press a button to request the stop?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Press the yellow strip on the window or pull the cord — either one signals me to stop. Do it about a block before.</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">Got it. One more question — how do I get back? Is it the same bus?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Same number, opposite direction. Cross the street and wait at the shelter with the Number 42 sign.</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">And if I ride the bus every day for work, is there a cheaper pass?</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Definitely. A monthly pass is $65 — it pays for itself if you ride more than twice a day. You can buy one at the transit center downtown.</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">That’s good to know. I really appreciate all your help.</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">Anytime! And here’s your stop coming up — shopping center, next!</span></p>
+    <p><strong>TARIQ:</strong> <span class="dialogue">Thank you! Have a great day!</span></p>
+    <p><strong>DRIVER:</strong> <span class="dialogue">You too — knock that interview out of the park!</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Fare
+          <button class="speaker-icon" onclick="speakWord('Fare')" aria-label="Pronounce Fare">🔊</button>
+        </span>
+        <span class="ipa">/fer/</span>
+        <span class="definition">(n.) the price of a bus or taxi ride.</span>
+        <span class="example">Example: How much is the fare?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Exact change
+          <button class="speaker-icon" onclick="speakWord('Exact change')" aria-label="Pronounce Exact change">🔊</button>
+        </span>
+        <span class="ipa">/ɪɡˈzækt tʃeɪndʒ/</span>
+        <span class="definition">(n.) the precise amount of money.</span>
+        <span class="example">Example: Do you have exact change?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Hop on
+          <button class="speaker-icon" onclick="speakWord('Hop on')" aria-label="Pronounce Hop on">🔊</button>
+        </span>
+        <span class="ipa">/hɑːp ɑːn/</span>
+        <span class="definition">(phr v.) to get on a bus (informal).</span>
+        <span class="example">Example: Hop on!</span>
+      </li>
+      <li>
+        <span class="vocab-word">Pull out
+          <button class="speaker-icon" onclick="speakWord('Pull out')" aria-label="Pronounce Pull out">🔊</button>
+        </span>
+        <span class="ipa">/pʊl aʊt/</span>
+        <span class="definition">(phr v.) to start moving (for a vehicle).</span>
+        <span class="example">Example: We’re pulling out.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Announce
+          <button class="speaker-icon" onclick="speakWord('Announce')" aria-label="Pronounce Announce">🔊</button>
+        </span>
+        <span class="ipa">/əˈnaʊns/</span>
+        <span class="definition">(v.) to say loudly for people to hear.</span>
+        <span class="example">Example: I’ll announce the major stops.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Miss my stop
+          <button class="speaker-icon" onclick="speakWord('Miss my stop')" aria-label="Pronounce Miss my stop">🔊</button>
+        </span>
+        <span class="ipa">/mɪs maɪ stɑːp/</span>
+        <span class="definition">(phr.) to not get off where planned.</span>
+        <span class="example">Example: I don’t want to miss my stop.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Request a stop
+          <button class="speaker-icon" onclick="speakWord('Request a stop')" aria-label="Pronounce Request a stop">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈkwest ə stɑːp/</span>
+        <span class="definition">(phr.) to signal you want to get off.</span>
+        <span class="example">Example: Pull the cord to request the stop.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Shelter
+          <button class="speaker-icon" onclick="speakWord('Shelter')" aria-label="Pronounce Shelter">🔊</button>
+        </span>
+        <span class="ipa">/ˈʃeltər/</span>
+        <span class="definition">(n.) a covered bus stop.</span>
+        <span class="example">Example: Wait at the shelter across the street.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Monthly pass
+          <button class="speaker-icon" onclick="speakWord('Monthly pass')" aria-label="Pronounce Monthly pass">🔊</button>
+        </span>
+        <span class="ipa">/ˈmʌnθli pæs/</span>
+        <span class="definition">(n.) a ticket for unlimited rides for a month.</span>
+        <span class="example">Example: A monthly pass is $65.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Pays for itself
+          <button class="speaker-icon" onclick="speakWord('Pays for itself')" aria-label="Pronounce Pays for itself">🔊</button>
+        </span>
+        <span class="ipa">/peɪz fɔːr ɪtˈself/</span>
+        <span class="definition">(phr.) saves enough to cover its cost.</span>
+        <span class="example">Example: It pays for itself quickly.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

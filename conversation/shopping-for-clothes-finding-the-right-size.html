@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ESL conversation: Shopping for Clothes: Finding the Right Size. Everyday English dialogue with vocabulary and speaking practice. Free.">
+  <title>Shopping for Clothes: Finding the Right Size - ESLnote Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #ffbb33; outline-offset: 2px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #2c3e50;
+    }
+    nav { background: #124076; margin: 0; padding: 0; }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; color: #ff9800;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img { width: 32px; height: 32px; margin-right: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      color: white; font-weight: 700; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: #ffbb33; outline: none; }
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px; height: 3px; background: white; border-radius: 2px;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed; top: 56px; right: 0; background: #124076;
+        flex-direction: column; width: 100%; height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem; gap: 1.2rem; overflow-y: auto;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px; z-index: 999; align-items: flex-start;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons { padding: 0 1rem; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.3rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons { padding: 0 1.5rem; }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static; flex-direction: row; background: none; height: auto;
+        width: auto; padding: 0; gap: 1.5rem; transform: none !important;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+
+    /* Content */
+    h1 {
+      margin: 2rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white; width: 90%; max-width: 800px;
+      margin: 2rem auto; padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left; line-height: 1.65; font-size: 1.08rem;
+    }
+    .content-container h2 {
+      color: #3498db; margin-top: 1.5rem;
+      margin-bottom: 0.8rem; font-size: 1.6rem;
+    }
+    .content-container h3 {
+      color: #124076; margin-top: 1.2rem;
+      margin-bottom: 0.6rem; font-size: 1.3rem;
+    }
+    .content-container p { margin-bottom: 0.9rem; }
+    .content-container ul { margin-left: 20px; margin-bottom: 1rem; }
+    .content-container li { margin-bottom: 0.5rem; }
+    .content-container strong { color: #124076; }
+
+    .conversation-script p { margin-bottom: 0.8rem; }
+    .conversation-script strong {
+      display: inline-block; width: 130px; text-align: right;
+      margin-right: 10px; color: #124076;
+    }
+    .conversation-script .dialogue { display: inline; }
+
+    .scene-direction {
+      font-style: italic; color: #555;
+      margin: 1rem 0; text-align: center;
+    }
+
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex; justify-content: center;
+      gap: 1rem; max-width: 600px;
+    }
+    .buttons a {
+      padding: 0.6rem 1.2rem; background: #3498db;
+      color: white; border: none; border-radius: 8px;
+      font-weight: bold; text-decoration: none;
+      display: inline-block; user-select: none;
+    }
+    .buttons a:hover { background: #2980b9; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>Shopping for Clothes: Finding the Right Size</h1>
+
+<div class="content-container">
+  <h2>Characters:</h2>
+  <div class="character-info">
+    <ul>
+      <li><strong>JAKE:</strong> A sales associate at a clothing store, friendly and helpful.</li>
+      <li><strong>LINH:</strong> An accountant looking for a blouse for a job interview.</li>
+    </ul>
+  </div>
+
+  <p class="scene-direction">
+    Scene: Linh needs a blouse for a job interview tomorrow. She is in a clothing store, looking through a rack. Jake, a sales associate, offers help.
+  </p>
+
+  <div class="conversation-script" role="dialog" aria-label="Customer asks a sales associate for help finding clothing sizes">
+    <h3>Conversation</h3>
+
+    <p><strong>JAKE:</strong> <span class="dialogue">Hi! Welcome in. Are you looking for anything in particular today?</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">Yes, I need a blouse for a job interview tomorrow. Something professional but not too formal.</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Great, the blouses are right over here. What size do you usually wear?</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">In my country I wear a medium, but sizes here seem different.</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">You’re right — sizing varies a lot between brands. Let me grab a few options so you can try them on.</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">That would be wonderful. I like this light blue one. Do you have it in medium?</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Let me check… Here’s a medium. The fitting rooms are just around the corner.</span></p>
+    <p class="scene-direction">Linh tries on the blouse and comes out of the fitting room.</p>
+    <p><strong>LINH:</strong> <span class="dialogue">Hmm, the medium is a little tight across the shoulders. Do you have a large?</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Of course. Here’s the large — and I also brought the same style in white, in case you want to compare.</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">Thank you! I’ll try both.</span></p>
+    <p class="scene-direction">A few minutes later, Linh comes out smiling.</p>
+    <p><strong>LINH:</strong> <span class="dialogue">The large fits much better. It’s comfortable, and I can move my arms easily. I’ll take the blue one.</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Excellent choice — the color really suits you. Is there anything else you need for the interview?</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">Actually, do you have any return policy in case I change my mind?</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Yes, you have 30 days to return or exchange it, as long as the tags are still on and you have the receipt.</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">Good to know. Is this blouse on sale? The tag says $39.99, but there’s a red sticker too.</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Good eye! That sticker means it’s an extra 20% off at the register.</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">Even better. Can I pay with a credit card?</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Absolutely. Right this way — I’ll ring you up.</span></p>
+    <p class="scene-direction">At the register, Jake folds the blouse and places it in a bag.</p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Here you go. Good luck at your interview tomorrow!</span></p>
+    <p><strong>LINH:</strong> <span class="dialogue">Thank you so much for all your help, Jake.</span></p>
+    <p><strong>JAKE:</strong> <span class="dialogue">Anytime! Come back and see us again.</span></p>
+
+    <p class="scene-direction"><strong>— THE END —</strong></p>
+  </div>
+
+  <hr>
+
+  <h2>Vocabulary List</h2>
+  <div class="vocabulary-list">
+    <ul>
+      <li>
+        <span class="vocab-word">Blouse
+          <button class="speaker-icon" onclick="speakWord('Blouse')" aria-label="Pronounce Blouse">🔊</button>
+        </span>
+        <span class="ipa">/blaʊs/</span>
+        <span class="definition">(n.) a shirt for women, often worn for work.</span>
+        <span class="example">Example: I need a blouse for a job interview.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Rack
+          <button class="speaker-icon" onclick="speakWord('Rack')" aria-label="Pronounce Rack">🔊</button>
+        </span>
+        <span class="ipa">/ræk/</span>
+        <span class="definition">(n.) a frame where clothes hang in a store.</span>
+        <span class="example">Example: She is looking through a rack.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Try on
+          <button class="speaker-icon" onclick="speakWord('Try on')" aria-label="Pronounce Try on">🔊</button>
+        </span>
+        <span class="ipa">/traɪ ɑːn/</span>
+        <span class="definition">(phr v.) to put on clothes to check the fit before buying.</span>
+        <span class="example">Example: You can try them on in the fitting room.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Fitting room
+          <button class="speaker-icon" onclick="speakWord('Fitting room')" aria-label="Pronounce Fitting room">🔊</button>
+        </span>
+        <span class="ipa">/ˈfɪtɪŋ ruːm/</span>
+        <span class="definition">(n.) a small room in a store for trying on clothes.</span>
+        <span class="example">Example: The fitting rooms are around the corner.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Tight
+          <button class="speaker-icon" onclick="speakWord('Tight')" aria-label="Pronounce Tight">🔊</button>
+        </span>
+        <span class="ipa">/taɪt/</span>
+        <span class="definition">(adj.) clothes that fit too closely and feel uncomfortable.</span>
+        <span class="example">Example: The medium is a little tight.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Return policy
+          <button class="speaker-icon" onclick="speakWord('Return policy')" aria-label="Pronounce Return policy">🔊</button>
+        </span>
+        <span class="ipa">/rɪˈtɜːrn ˈpɑːləsi/</span>
+        <span class="definition">(n.) the store’s rules for bringing items back.</span>
+        <span class="example">Example: Do you have a return policy?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Exchange
+          <button class="speaker-icon" onclick="speakWord('Exchange')" aria-label="Pronounce Exchange">🔊</button>
+        </span>
+        <span class="ipa">/ɪksˈtʃeɪndʒ/</span>
+        <span class="definition">(v.) to replace a bought item with a different one.</span>
+        <span class="example">Example: You have 30 days to return or exchange it.</span>
+      </li>
+      <li>
+        <span class="vocab-word">On sale
+          <button class="speaker-icon" onclick="speakWord('On sale')" aria-label="Pronounce On sale">🔊</button>
+        </span>
+        <span class="ipa">/ɑːn seɪl/</span>
+        <span class="definition">(phr.) being sold at a lower price.</span>
+        <span class="example">Example: Is this blouse on sale?</span>
+      </li>
+      <li>
+        <span class="vocab-word">Register
+          <button class="speaker-icon" onclick="speakWord('Register')" aria-label="Pronounce Register">🔊</button>
+        </span>
+        <span class="ipa">/ˈredʒɪstər/</span>
+        <span class="definition">(n.) the counter where you pay in a store.</span>
+        <span class="example">Example: It’s an extra 20% off at the register.</span>
+      </li>
+      <li>
+        <span class="vocab-word">Ring up
+          <button class="speaker-icon" onclick="speakWord('Ring up')" aria-label="Pronounce Ring up">🔊</button>
+        </span>
+        <span class="ipa">/rɪŋ ʌp/</span>
+        <span class="definition">(phr v.) to enter a purchase into the cash register.</span>
+        <span class="example">Example: I’ll ring you up over here.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="buttons" role="navigation" aria-label="Page navigation">
+  <a href="../conversation.html">← Back to Conversations</a>
+  <a href="../index.html">🏠 Home</a>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Web Speech API pronunciation
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

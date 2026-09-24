@@ -69,6 +69,9 @@
     .resource-body p { margin: 0 0 1.1rem; color: #333; font-size: 1rem; line-height: 1.55; }
     .visit-btn { display: inline-block; padding: 0.6rem 1.5rem; background: #124076; color: #fff !important; border-radius: 8px; font-weight: bold; text-decoration: none; }
     .visit-btn:hover { background: #0d3057; }
+    .resource-section { margin-bottom: 2.5rem; }
+    .resource-section[hidden] { display: none !important; }
+    .section-title { font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: #124076; margin: 0 0 1.2rem; padding-bottom: 0.4rem; border-bottom: 3px solid #ff9800; display: inline-block; }
 </style>
 <link rel="stylesheet" href="/site.css">
 </head>
@@ -101,17 +104,9 @@
     <input type="text" id="search-bar" placeholder="Search resources..." autocomplete="off" />
   </div>
   <div class="blocks-row" id="blocks">
-    <div class="resource-card" data-title="[Tool] YouGlish">
-      <div class="resource-label">
-        <h2>YouGlish</h2>
-      </div>
-      <div class="resource-embed">
-        <div class="embed-frame">
-          <a id="yg-widget-0" class="youglish-widget" data-query="great%20power" data-lang="english" data-components="8415" data-bkg-color="theme_light" rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a>
-          <script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
-        </div>
-      </div>
-    </div>
+    <div class="resource-section" style="grid-column: 1 / -1;">
+      <h2 class="section-title">Dictionaries & Pronunciation</h2>
+      <div class="blocks-row">
     <div class="resource-card" data-title="[Dictionary] Cambridge Dictionary">
       <div class="resource-label">
         <h2>Cambridge Dictionary</h2>
@@ -132,6 +127,23 @@
       </div>
     </div>
 
+    <div class="resource-card" data-title="[Tool] YouGlish">
+      <div class="resource-label">
+        <h2>YouGlish</h2>
+      </div>
+      <div class="resource-embed">
+        <div class="embed-frame">
+          <a id="yg-widget-0" class="youglish-widget" data-query="great%20power" data-lang="english" data-components="8415" data-bkg-color="theme_light" rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a>
+          <script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <div class="resource-section" style="grid-column: 1 / -1;">
+      <h2 class="section-title">Listening Practice</h2>
+      <div class="blocks-row">
     <div class="resource-card" data-title="[Listening] VOA Learning English">
       <div class="resource-label">
         <h2>VOA Learning English</h2>
@@ -161,7 +173,12 @@
         <a class="visit-btn" href="https://www.elllo.org" target="_blank" rel="noopener">Visit site &#8599;</a>
       </div>
     </div>
+      </div>
+    </div>
 
+    <div class="resource-section" style="grid-column: 1 / -1;">
+      <h2 class="section-title">Online Courses</h2>
+      <div class="blocks-row">
     <div class="resource-card" data-title="[Course] USA Learns">
       <div class="resource-label">
         <h2>USA Learns</h2>
@@ -181,7 +198,12 @@
         <a class="visit-btn" href="https://learnenglish.britishcouncil.org" target="_blank" rel="noopener">Visit site &#8599;</a>
       </div>
     </div>
+      </div>
+    </div>
 
+    <div class="resource-section" style="grid-column: 1 / -1;">
+      <h2 class="section-title">Writing & Grammar</h2>
+      <div class="blocks-row">
     <div class="resource-card" data-title="[Grammar] Purdue OWL – ESL">
       <div class="resource-label">
         <h2>Purdue OWL – ESL</h2>
@@ -199,6 +221,8 @@
       <div class="resource-body">
         <p>Free Cambridge tool: write in English and get instant feedback on your writing.</p>
         <a class="visit-btn" href="https://writeandimprove.com" target="_blank" rel="noopener">Visit site &#8599;</a>
+      </div>
+    </div>
       </div>
     </div>
   </div>
@@ -236,6 +260,10 @@
                       (card.querySelector('.resource-body p')?.textContent || '') + ' ' +
                       (card.dataset.title || '')).toLowerCase();
         card.hidden = !text.includes(q);
+      });
+      document.querySelectorAll('.resource-section').forEach(section => {
+        const visible = Array.from(section.querySelectorAll('.resource-card')).some(card => !card.hidden);
+        section.hidden = !visible;
       });
     });
   }

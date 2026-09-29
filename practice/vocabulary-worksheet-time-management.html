@@ -222,14 +222,16 @@
 </div>
 
 <script>
-// Word bank: 10 vocabulary words + 3 decoys
+// Word bank: 20 vocabulary words + 3 decoys
 const BANK = [
   "deadline","prioritize","calendar","procrastinate","schedule",
   "alarm","punctual","reliable","organized","routine",
-  "flexible","multitask","patient"
+  "flexible","multitask","patient","appointment","balance",
+  "distraction","habit","overtime","planner","priority",
+  "reminder","task","urgent"
 ];
 
-// Data: 10 fill-in-the-blank items (original sentences)
+// Data: 20 fill-in-the-blank items (original sentences)
 const items = [
   { prompt: "The project __________ is Friday, so we must finish by Thursday.", answers: ["deadline"] },
   { prompt: "When everything feels urgent, __________ your tasks and do the most important one first.", answers: ["prioritize"] },
@@ -240,7 +242,17 @@ const items = [
   { prompt: "Keep your desk __________ and you will find things faster.", answers: ["organized"] },
   { prompt: "Plans change, so stay __________ and adjust your day when you need to.", answers: ["flexible"] },
   { prompt: "It is hard to __________ well; focus on one thing at a time.", answers: ["multitask"] },
-  { prompt: "Learning a new skill takes time, so be __________ with yourself.", answers: ["patient"] }
+  { prompt: "Learning a new skill takes time, so be __________ with yourself.", answers: ["patient"] },
+  { prompt: "She has a dentist __________ at 3 p.m. tomorrow.", answers: ["appointment"] },
+  { prompt: "It is important to find a good __________ between work and rest.", answers: ["balance"] },
+  { prompt: "Turn off your phone — it is a big __________ when you study.", answers: ["distraction"] },
+  { prompt: "Checking your calendar every morning is a good __________.", answers: ["habit"] },
+  { prompt: "He worked __________ last week to finish the project on time.", answers: ["overtime"] },
+  { prompt: "Write your goals in a __________ so you can see your whole week.", answers: ["planner"] },
+  { prompt: "Family is her __________, so she leaves work at 5 p.m. every day.", answers: ["priority"] },
+  { prompt: "Set a __________ on your phone so you don't miss the meeting.", answers: ["reminder"] },
+  { prompt: "Finish one __________ before you start the next one.", answers: ["task"] },
+  { prompt: "This email is __________ — please read it right away.", answers: ["urgent"] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

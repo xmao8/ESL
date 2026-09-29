@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="ESL conversation: Conversation – Weekend Plans. Everyday English dialogue with vocabulary and speaking practice. Free.">
+<meta name="description" content="ESL conversation: Conversation – Weekend Plans. Everyday English dialogue with vocabulary and speaking practice. About 5 minutes of pair speaking. Free.">
   <title>Conversation – Weekend Plans</title>
   <style>
     body {
@@ -31,6 +31,10 @@
       margin: 2rem 0 1rem;
       color: #2c3e50;
     }
+    h2 {
+      color: #2c3e50;
+      margin-top: 2rem;
+    }
     .container {
       width: 90%;
       max-width: 700px;
@@ -45,12 +49,45 @@
       font-style: italic;
       margin-bottom: 1.5rem;
     }
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
     .dialogue p {
       margin: 0.5rem 0;
     }
     .dialogue strong {
       color: #3498db;
     }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
     .buttons {
       display: flex;
       justify-content: center;
@@ -97,31 +134,137 @@
 
   <div class="container">
     <p class="scene-info">
-      Setting: Friday afternoon at a café near their workplace. Lena, Carlos, and Maya are sitting around a table with coffee.
+      Setting: Friday afternoon at a café near their workplace. Lena, Carlos, and Maya are sitting around a table with coffee, making plans for the weekend. (About 5 minutes of pair speaking practice.)
     </p>
+
+    <h2>Characters:</h2>
+    <div class="character-info">
+      <ul>
+        <li><strong>Lena</strong> — tired after a long week; prefers quiet, relaxing weekends.</li>
+        <li><strong>Carlos</strong> — energetic; loves sports, music, and doing things with friends.</li>
+        <li><strong>Maya</strong> — friendly and organized; taking a Saturday pottery class.</li>
+      </ul>
+    </div>
+
     <div class="dialogue">
       <p><strong>Carlos:</strong> So, what’s everyone doing this weekend? I need some good ideas!</p>
       <p><strong>Maya:</strong> Hmm, I’m going to a pottery class on Saturday. It’s my third time. I love it!</p>
       <p><strong>Lena:</strong> That sounds nice, but messy. I think I’ll just stay home and read. I’ve had a long week.</p>
-      <p><strong>Carlos:</strong> Read? Come on, Lena, it’s the weekend! Let’s do something exciting—hiking, maybe?</p>
+      <p><strong>Carlos:</strong> Read? Come on, Lena, it’s the weekend! Let’s do something exciting — hiking, maybe?</p>
       <p><strong>Lena:</strong> (Laughs) Hiking? That sounds like more work! I want to relax. My legs are still tired from last weekend’s shopping trip.</p>
       <p><strong>Maya:</strong> I agree with both of you. Pottery helps me relax <em>and</em> be active. You shape the clay, and it feels so calming.</p>
       <p><strong>Carlos:</strong> Sounds artsy! But I like moving. I was thinking of biking or going to the lake.</p>
       <p><strong>Lena:</strong> Maybe I’ll try pottery someday. But not this weekend. I need my sofa, my tea, and my book.</p>
-      <p><strong>Maya:</strong> What about Sunday? Maybe we can do something together—just for a few hours?</p>
+      <p><strong>Maya:</strong> What about Sunday? Maybe we can do something together — just for a few hours?</p>
       <p><strong>Carlos:</strong> Oh! How about we go to the park? We can have a little picnic, maybe play frisbee or volleyball?</p>
       <p><strong>Lena:</strong> That’s not a bad idea. I could bring some sandwiches. But no running, okay?</p>
       <p><strong>Maya:</strong> Deal! I’ll bring fruit and drinks. And Carlos brings the games.</p>
-      <p><strong>Carlos:</strong> Perfect! I’ll bring my speaker too—some music will make it more fun! Maybe even some salsa!</p>
+      <p><strong>Carlos:</strong> Perfect! I’ll bring my speaker too — some music will make it more fun! Maybe even some salsa!</p>
       <p><strong>Lena:</strong> (Smiling) I guess I’m not staying home all weekend after all.</p>
       <p><strong>Maya:</strong> We all need a little fun and fresh air. It’s good for the brain!</p>
       <p><strong>Carlos:</strong> And the heart! What time works best for everyone?</p>
       <p><strong>Lena:</strong> Hmm... How about 11 in the morning?</p>
       <p><strong>Maya:</strong> Sounds good to me. Riverside Park?</p>
       <p><strong>Carlos:</strong> Yes! Sunday at 11 it is!</p>
-      <p><strong>Lena and Maya:</strong> (Yay!) Agreed!</p>
-      <p><strong>Carlos:</strong> This will be the best weekend ever!</p>
+      <p><strong>Lena:</strong> Wait — what will we do if it rains? The forecast said there might be showers.</p>
+      <p><strong>Maya:</strong> Good point. If it rains, we’ll move the picnic to my apartment. I have a big living room.</p>
+      <p><strong>Carlos:</strong> And if the rain stops early, we’ll still go to the park. I’ll check the forecast Sunday morning and text you both.</p>
+      <p><strong>Lena:</strong> Should we invite anyone else? What about Priya from work? She’s new in town.</p>
+      <p><strong>Maya:</strong> Great idea! I’ll ask her tomorrow. If she says yes, I’ll tell her to bring a dessert.</p>
+      <p><strong>Carlos:</strong> Let’s make it a potluck then — everyone brings one dish. If we all bring something, we’ll have plenty of food.</p>
+      <p><strong>Lena:</strong> I love that plan. I’m really looking forward to Sunday now — rain or shine!</p>
+      <p><strong>Maya:</strong> Me too! Okay, so Sunday at 11, Riverside Park — or my place if it rains.</p>
+      <p><strong>Carlos:</strong> (Raising his cup) To the best weekend ever!</p>
+      <p><strong>Lena and Maya:</strong> (Yay!) To the weekend!</p>
       <p>(They all smile and clink their coffee cups together.)</p>
+    </div>
+
+    <hr>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+      <ul>
+        <li>
+          <span class="vocab-word">Pottery
+            <button class="speaker-icon" onclick="speakWord('Pottery')" aria-label="Pronounce Pottery">🔊</button>
+          </span>
+          <span class="ipa">/ˈpɑːtəri/</span>
+          <span class="definition">(n.) cups, bowls, and other objects made from clay.</span>
+          <span class="example">Example: Maya takes a pottery class every Saturday.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Picnic
+            <button class="speaker-icon" onclick="speakWord('Picnic')" aria-label="Pronounce Picnic">🔊</button>
+          </span>
+          <span class="ipa">/ˈpɪknɪk/</span>
+          <span class="definition">(n.) a meal eaten outside, often in a park.</span>
+          <span class="example">Example: We had a picnic by the lake last summer.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Frisbee
+            <button class="speaker-icon" onclick="speakWord('Frisbee')" aria-label="Pronounce Frisbee">🔊</button>
+          </span>
+          <span class="ipa">/ˈfrɪzbi/</span>
+          <span class="definition">(n.) a flat plastic disc thrown back and forth as a game.</span>
+          <span class="example">Example: Carlos will bring a frisbee to the park.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Forecast
+            <button class="speaker-icon" onclick="speakWord('Forecast')" aria-label="Pronounce Forecast">🔊</button>
+          </span>
+          <span class="ipa">/ˈfɔːrkæst/</span>
+          <span class="definition">(n.) a report saying what the weather will probably be like.</span>
+          <span class="example">Example: The forecast says it might rain on Sunday.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Shower
+            <button class="speaker-icon" onclick="speakWord('Shower')" aria-label="Pronounce Shower">🔊</button>
+          </span>
+          <span class="ipa">/ˈʃaʊər/</span>
+          <span class="definition">(n.) a short period of rain.</span>
+          <span class="example">Example: The showers stopped before noon.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Potluck
+            <button class="speaker-icon" onclick="speakWord('Potluck')" aria-label="Pronounce Potluck">🔊</button>
+          </span>
+          <span class="ipa">/ˈpɑːtlʌk/</span>
+          <span class="definition">(n.) a meal where each person brings one dish to share.</span>
+          <span class="example">Example: Our office potluck had food from ten countries.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Clink
+            <button class="speaker-icon" onclick="speakWord('Clink')" aria-label="Pronounce Clink">🔊</button>
+          </span>
+          <span class="ipa">/klɪŋk/</span>
+          <span class="definition">(v.) to make a short ringing sound when glass or metal hits together.</span>
+          <span class="example">Example: They clinked their coffee cups together.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Count me in
+            <button class="speaker-icon" onclick="speakWord('Count me in')" aria-label="Pronounce Count me in">🔊</button>
+          </span>
+          <span class="ipa">/kaʊnt miː ɪn/</span>
+          <span class="definition">(phrase) include me; I want to join.</span>
+          <span class="example">Example: A picnic on Sunday? Count me in!</span>
+        </li>
+        <li>
+          <span class="vocab-word">Look forward to
+            <button class="speaker-icon" onclick="speakWord('Look forward to')" aria-label="Pronounce Look forward to">🔊</button>
+          </span>
+          <span class="ipa">/lʊk ˈfɔːrwərd tuː/</span>
+          <span class="definition">(phr v.) to feel excited about something that will happen.</span>
+          <span class="example">Example: I’m looking forward to seeing you.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Rain or shine
+            <button class="speaker-icon" onclick="speakWord('Rain or shine')" aria-label="Pronounce Rain or shine">🔊</button>
+          </span>
+          <span class="ipa">/reɪn ɔːr ʃaɪn/</span>
+          <span class="definition">(idiom) no matter what the weather is; whatever happens.</span>
+          <span class="example">Example: The game will be played rain or shine.</span>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -129,6 +272,19 @@
     <a href="../conversation.html">← Back to Conversations</a>
     <a href="../index.html">🏠 Home</a>
   </div>
+
+<script>
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
 
 </body>
 </html>

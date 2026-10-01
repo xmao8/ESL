@@ -753,11 +753,14 @@ var SENTENCES = [
     document.getElementById('ds-text').textContent='“'+s.s+'”';
     document.getElementById('ds-meaning').textContent=s.m;
     document.getElementById('ds-date').textContent=fmtDate(sOff);
+    /* Future days are hidden: the next arrow stops at today. */
+    document.getElementById('dw-next').disabled = wOff>=0;
+    document.getElementById('ds-next').disabled = sOff>=0;
   }
   document.getElementById('dw-prev').addEventListener('click',function(){wOff--;render();});
-  document.getElementById('dw-next').addEventListener('click',function(){wOff++;render();});
+  document.getElementById('dw-next').addEventListener('click',function(){if(wOff<0){wOff++;render();}});
   document.getElementById('ds-prev').addEventListener('click',function(){sOff--;render();});
-  document.getElementById('ds-next').addEventListener('click',function(){sOff++;render();});
+  document.getElementById('ds-next').addEventListener('click',function(){if(sOff<0){sOff++;render();}});
   document.getElementById('dw-speak').addEventListener('click',function(){
     var w=WORDS[idx(wOff,WORDS.length)];speak(w.w+'. '+w.def+' '+w.ex);});
   document.getElementById('ds-speak').addEventListener('click',function(){

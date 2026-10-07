@@ -4,8 +4,8 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Vocabulary Worksheet — Comparing Products & Paying. Fill in the blanks with instant feedback. Free English practice, printable.">
-  <title>Vocabulary Worksheet — Comparing Products & Paying · ESLnote Practice</title>
+<meta name="description" content="Interactive ESL worksheet: Vocabulary Worksheet — Comparisons & Paying. Fill in the blanks with instant feedback. Free English practice, printable.">
+  <title>Vocabulary Worksheet — Comparisons & Paying · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -178,7 +178,7 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Vocabulary Worksheet — Comparing Products & Paying</h1>
+<h1>Vocabulary Worksheet — Comparisons & Paying</h1>
 
 <div class="content-container">
   <p class="hint">
@@ -230,26 +230,26 @@
 <script>
 // Word bank: 20 vocabulary words + 3 decoys
 const BANK = [
-  "speed",
-  "touch pad",
-  "monitor",
-  "screen",
-  "USB port",
-  "memory",
-  "CD drive",
+  "headphones jack",
+  "power cable socket",
+  "power cable",
+  "touchpad",
+  "keyboard",
+  "display",
+  "camera",
   "cash",
-  "check",
   "credit card",
   "debit card",
-  "advantages",
-  "disadvantages",
-  "comparison shopping",
-  "save",
-  "smart consumer",
-  "discount",
-  "sale price",
-  "regular",
-  "guarantee",
+  "online payment",
+  "personal check",
+  "warranty",
+  "expire",
+  "laundromat",
+  "pharmacy",
+  "tailor",
+  "dry cleaner",
+  "free",
+  "installation",
   "coupon",
   "bargain",
   "receipt"
@@ -257,26 +257,26 @@ const BANK = [
 
 // Data: 20 fill-in-the-blank items (original sentences)
 const items = [
-  { prompt: "This new laptop has great __________; it starts in seconds.", answers: ["speed"] },
-  { prompt: "I move the cursor with the __________ on my laptop.", answers: ["touch pad"] },
-  { prompt: "I bought a new __________ for my desktop computer.", answers: ["monitor"] },
-  { prompt: "Be careful \u2014 the __________ on my phone is cracked.", answers: ["screen"] },
-  { prompt: "Plug the mouse into the __________ on the side.", answers: ["USB port"] },
-  { prompt: "This computer doesn't have enough __________ for big games.", answers: ["memory"] },
-  { prompt: "Old laptops had a __________ for playing music discs.", answers: ["CD drive"] },
-  { prompt: "I paid in __________, so I didn't need a card.", answers: ["cash"] },
-  { prompt: "She wrote a __________ to pay the rent.", answers: ["check"] },
-  { prompt: "He used his __________ to buy the TV online.", answers: ["credit card"] },
+  { prompt: "Plug your earphones into the __________ on the side of the laptop.", answers: ["headphones jack"] },
+  { prompt: "Push the plug into the __________ to charge the laptop.", answers: ["power cable socket"] },
+  { prompt: "The __________ connects the printer to the wall outlet.", answers: ["power cable"] },
+  { prompt: "Move your finger on the __________ to move the arrow on the screen.", answers: ["touchpad"] },
+  { prompt: "Type your password on the __________.", answers: ["keyboard"] },
+  { prompt: "This laptop has a large, bright __________.", answers: ["display"] },
+  { prompt: "The __________ on the front of the phone takes great selfies.", answers: ["camera"] },
+  { prompt: "I paid in __________ because the small shop doesn't take cards.", answers: ["cash"] },
+  { prompt: "She used her __________ to buy the plane ticket online.", answers: ["credit card"] },
   { prompt: "A __________ takes money directly from your bank account.", answers: ["debit card"] },
-  { prompt: "What are the __________ of buying online?", answers: ["advantages"] },
-  { prompt: "High prices and slow shipping are __________ of that store.", answers: ["disadvantages"] },
-  { prompt: "__________ means checking prices at different stores.", answers: ["comparison shopping"] },
-  { prompt: "If you buy the larger size, you __________ $5.", answers: ["save"] },
-  { prompt: "A __________ reads reviews before buying anything.", answers: ["smart consumer"] },
-  { prompt: "Students get a 15% __________ with a school ID.", answers: ["discount"] },
-  { prompt: "The __________ is $299, but the original price was $449.", answers: ["sale price"] },
-  { prompt: "The __________ price is $80; today it's only $60.", answers: ["regular"] },
-  { prompt: "This refrigerator comes with a five-year __________.", answers: ["guarantee"] }
+  { prompt: "He made an __________ with his phone to pay the bill.", answers: ["online payment"] },
+  { prompt: "She wrote a __________ to pay the plumber.", answers: ["personal check"] },
+  { prompt: "Keep the receipt in case you need the __________.", answers: ["warranty"] },
+  { prompt: "These coupons __________ soon, so let's use them this week.", answers: ["expire"] },
+  { prompt: "She washes her clothes at the __________ near her apartment.", answers: ["laundromat"] },
+  { prompt: "I picked up my medicine at the __________.", answers: ["pharmacy"] },
+  { prompt: "The __________ fixed the hole in my jacket.", answers: ["tailor"] },
+  { prompt: "He dropped his suit off at the __________.", answers: ["dry cleaner"] },
+  { prompt: "Children under five eat __________ at this restaurant.", answers: ["free"] },
+  { prompt: "__________ is included in the price of the air conditioner.", answers: ["installation"] },
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

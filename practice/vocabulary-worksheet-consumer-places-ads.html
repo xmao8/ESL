@@ -4,8 +4,8 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Vocabulary Worksheet — Places to Shop & Ads. Fill in the blanks with instant feedback. Free English practice, printable.">
-  <title>Vocabulary Worksheet — Places to Shop & Ads · ESLnote Practice</title>
+<meta name="description" content="Interactive ESL worksheet: Vocabulary Worksheet — Shopping for Goods & Services. Fill in the blanks with instant feedback. Free English practice, printable.">
+  <title>Vocabulary Worksheet — Shopping for Goods & Services · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -178,7 +178,7 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Vocabulary Worksheet — Places to Shop & Ads</h1>
+<h1>Vocabulary Worksheet — Shopping for Goods & Services</h1>
 
 <div class="content-container">
   <p class="hint">
@@ -194,7 +194,7 @@
     <div class="chips" id="bankChips"></div>
   </div>
 
-  <h2>Fill in the Blanks (20)</h2>
+  <h2>Fill in the Blanks (19)</h2>
   <ol id="questionsList">
     <!-- Items will be rendered by JS -->
   </ol>
@@ -230,26 +230,25 @@
 <script>
 // Word bank: 20 vocabulary words + 3 decoys
 const BANK = [
-  "laundromat",
-  "gas station",
+  "bank",
+  "dry cleaner",
+  "hair salon",
   "pharmacy",
+  "car wash",
+  "gas station",
   "jewelry store",
   "post office",
   "department store",
-  "car wash",
-  "tailor's",
-  "dry cleaners",
-  "hardware store",
-  "ad",
-  "discount",
-  "sale price",
-  "offer",
-  "expire",
-  "sale",
-  "regular",
-  "save",
-  "percent off",
+  "grocery store",
+  "laundromat",
+  "tailor",
   "warranty",
+  "installation",
+  "lowest price available",
+  "free",
+  "everything included",
+  "expire",
+  "starting from",
   "coupon",
   "bargain",
   "receipt"
@@ -257,26 +256,25 @@ const BANK = [
 
 // Data: 20 fill-in-the-blank items (original sentences)
 const items = [
-  { prompt: "I wash my clothes myself at the __________.", answers: ["laundromat"] },
-  { prompt: "He stopped at the __________ to fill up his car.", answers: ["gas station"] },
+  { prompt: "I need to deposit this check at the __________.", answers: ["bank"] },
+  { prompt: "I took my dirty suit to the __________ to have it cleaned.", answers: ["dry cleaner"] },
+  { prompt: "She got her hair cut at the __________.", answers: ["hair salon"] },
   { prompt: "You can buy medicine at the __________.", answers: ["pharmacy"] },
-  { prompt: "She bought a gold necklace at the __________.", answers: ["jewelry store"] },
-  { prompt: "I mailed the package at the __________.", answers: ["post office"] },
-  { prompt: "That __________ sells clothes, shoes, and furniture all in one building.", answers: ["department store"] },
-  { prompt: "My car is dirty, so I'm taking it to the __________.", answers: ["car wash"] },
-  { prompt: "The __________ fixed the broken zipper on my jacket.", answers: ["tailor's"] },
-  { prompt: "I dropped off my suit at the __________ to have it cleaned.", answers: ["dry cleaners"] },
-  { prompt: "He bought nails and paint at the __________.", answers: ["hardware store"] },
-  { prompt: "I saw an __________ for a new phone in the newspaper.", answers: ["ad"] },
-  { prompt: "Students get a 10% __________ at this store.", answers: ["discount"] },
-  { prompt: "The __________ of this TV is $399, down from $599.", answers: ["sale price"] },
-  { prompt: "This special __________ ends on Sunday.", answers: ["offer"] },
-  { prompt: "These coupons __________ at the end of the month.", answers: ["expire"] },
-  { prompt: "The store is having a big __________ this weekend.", answers: ["sale"] },
-  { prompt: "The __________ price is $50, but today it's only $35.", answers: ["regular"] },
-  { prompt: "Buy one, get one free \u2014 you __________ $20.", answers: ["save"] },
-  { prompt: "Everything is 25 __________ today.", answers: ["percent off"] },
-  { prompt: "The TV comes with a one-year __________.", answers: ["warranty"] }
+  { prompt: "My car is dirty, so I'm going through the __________.", answers: ["car wash"] },
+  { prompt: "He stopped at the __________ to fill the tank.", answers: ["gas station"] },
+  { prompt: "They bought a gold ring at the __________.", answers: ["jewelry store"] },
+  { prompt: "I mailed the birthday card at the __________.", answers: ["post office"] },
+  { prompt: "That __________ sells clothes, shoes, and furniture in one big building.", answers: ["department store"] },
+  { prompt: "We buy milk and vegetables at the __________ every week.", answers: ["grocery store"] },
+  { prompt: "I wash my own clothes at the __________ on Saturdays.", answers: ["laundromat"] },
+  { prompt: "The __________ shortened my pants for me.", answers: ["tailor"] },
+  { prompt: "The TV comes with a two-year __________, so repairs are free.", answers: ["warranty"] },
+  { prompt: "The store offers free __________ of your new washing machine.", answers: ["installation"] },
+  { prompt: "This shelf tag promises the __________ on every TV in the store.", answers: ["lowest price available"] },
+  { prompt: "Buy one shirt and get the second one __________.", answers: ["free"] },
+  { prompt: "The vacation package is $800 with __________: hotel, food, and tours.", answers: ["everything included"] },
+  { prompt: "These coupons __________ at the end of the month, so use them soon.", answers: ["expire"] },
+  { prompt: "Phones on sale, __________ $199!", answers: ["starting from"] },
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

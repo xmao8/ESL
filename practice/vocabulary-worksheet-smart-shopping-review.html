@@ -4,8 +4,8 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Vocabulary Worksheet — Smart Shopping Review. Fill in the blanks with instant feedback. Free English practice, printable.">
-  <title>Vocabulary Worksheet — Smart Shopping Review · ESLnote Practice</title>
+<meta name="description" content="Interactive ESL worksheet: Vocabulary Worksheet — Smart Buying Review. Fill in the blanks with instant feedback. Free English practice, printable.">
+  <title>Vocabulary Worksheet — Smart Buying Review · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -178,7 +178,7 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Vocabulary Worksheet — Smart Shopping Review</h1>
+<h1>Vocabulary Worksheet — Smart Buying Review</h1>
 
 <div class="content-container">
   <p class="hint">
@@ -230,26 +230,26 @@
 <script>
 // Word bank: 20 vocabulary words + 3 decoys
 const BANK = [
-  "post office",
-  "grocery store",
-  "department store",
-  "pharmacy",
-  "bank",
-  "gas station",
-  "dry cleaners",
-  "laundromat",
-  "discount",
-  "percent off",
-  "warranty",
-  "ad",
-  "expire",
-  "sale",
-  "save",
-  "screen",
-  "memory",
-  "credit card",
-  "cash",
-  "comparison shopping",
+  "Finally",
+  "First",
+  "First of all",
+  "Fourth",
+  "Lastly",
+  "Next",
+  "once",
+  "Second",
+  "Second of all",
+  "Then",
+  "the next step",
+  "the second step",
+  "Third",
+  "brand",
+  "brand awareness",
+  "consumer",
+  "target audience",
+  "lowest price available",
+  "everything included",
+  "starting from",
   "coupon",
   "bargain",
   "receipt"
@@ -257,26 +257,26 @@ const BANK = [
 
 // Data: 20 fill-in-the-blank items (original sentences)
 const items = [
-  { prompt: "I dropped off a letter at the __________.", answers: ["post office"] },
-  { prompt: "We buy all our food at the __________.", answers: ["grocery store"] },
-  { prompt: "The __________ has three floors of clothes, shoes, and home goods.", answers: ["department store"] },
-  { prompt: "You can pick up medicine at the __________.", answers: ["pharmacy"] },
-  { prompt: "I need to deposit this check at the __________.", answers: ["bank"] },
-  { prompt: "He filled up his tank at the __________.", answers: ["gas station"] },
-  { prompt: "My suit will be ready at the __________ on Friday.", answers: ["dry cleaners"] },
-  { prompt: "She washes her blankets at the __________ because they don't fit in her machine.", answers: ["laundromat"] },
-  { prompt: "This store gives students a 20% __________.", answers: ["discount"] },
-  { prompt: "Everything in the store is 30 __________ this week.", answers: ["percent off"] },
-  { prompt: "The TV comes with a two-year __________.", answers: ["warranty"] },
-  { prompt: "I saw an __________ for cheap flights online.", answers: ["ad"] },
-  { prompt: "Don't wait too long \u2014 these coupons __________ on Sunday.", answers: ["expire"] },
-  { prompt: "The big end-of-year __________ starts tomorrow.", answers: ["sale"] },
-  { prompt: "Buy the family size and __________ $10.", answers: ["save"] },
-  { prompt: "My phone's __________ is too small to read easily.", answers: ["screen"] },
-  { prompt: "This laptop needs more __________ to run new games.", answers: ["memory"] },
-  { prompt: "She paid with her __________ because she didn't have cash.", answers: ["credit card"] },
-  { prompt: "I always pay in __________ at the farmers market.", answers: ["cash"] },
-  { prompt: "__________ helps you find the lowest price.", answers: ["comparison shopping"] }
+  { prompt: "__________, I made a list of what I really needed.", answers: ["First of all"] },
+  { prompt: "__________, I compared prices at three stores.", answers: ["First"] },
+  { prompt: "__________, I drove to two different stores.", answers: ["Second"] },
+  { prompt: "__________, I read the customer reviews online.", answers: ["Third"] },
+  { prompt: "__________, I visited the store to see the product.", answers: ["Fourth"] },
+  { prompt: "__________, I asked the salesperson about the warranty.", answers: ["Next"] },
+  { prompt: "__________, I paid for the laptop.", answers: ["Then"] },
+  { prompt: "__________, I brought it home and set it up.", answers: ["Finally"] },
+  { prompt: "The price was too high. __________, the quality was poor.", answers: ["Second of all"] },
+  { prompt: "We compared the price, the size, and the color. __________, we chose the blue one.", answers: ["Lastly"] },
+  { prompt: "__________ you sign the contract, you can't return the phone.", answers: ["once"] },
+  { prompt: "I chose the laptop. __________, I will pay for it.", answers: ["the next step"] },
+  { prompt: "The first step is to make a budget. __________ is to compare prices.", answers: ["the second step"] },
+  { prompt: "I always buy the same __________ of coffee because I trust it.", answers: ["brand"] },
+  { prompt: "The funny TV ads increased __________ of the new phone.", answers: ["brand awareness"] },
+  { prompt: "Every __________ should read the label before buying.", answers: ["consumer"] },
+  { prompt: "The ad is funny because its __________ is teenagers.", answers: ["target audience"] },
+  { prompt: "The sign promises the __________, or they will refund the difference.", answers: ["lowest price available"] },
+  { prompt: "The $50 ticket covers __________: bus, lunch, and museum entry.", answers: ["everything included"] },
+  { prompt: "Laptops on sale, __________ $299!", answers: ["starting from"] },
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

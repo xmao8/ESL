@@ -161,22 +161,25 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Modals for Advice — Time Management</h1>
+<h1>Modals for Advice & Obligation — Time Management</h1>
 
 <div class="content-container">
   <h2>How it works</h2>
   <p>
-    Use modals to give advice. <strong>Should</strong> gives strong advice about a good idea.
+    Use modals to give advice and talk about obligation. <strong>Should</strong> gives strong advice about a good idea.
     <strong>Shouldn't</strong> gives strong advice against a bad idea.
     <strong>Could</strong> suggests a possibility.
+    <strong>Have to / must</strong> talk about obligation and necessity.
+    <strong>Don't have to</strong> means something is not necessary.
+    <strong>Mustn't</strong> means something is not allowed.
   </p>
-  <p><strong>Examples:</strong> You <em>should</em> make a to-do list. &nbsp;·&nbsp; You <em>shouldn't</em> stay up late. &nbsp;·&nbsp; You <em>could</em> try a calendar app.</p>
+  <p><strong>Examples:</strong> You <em>should</em> make a to-do list. &nbsp;·&nbsp; You <em>shouldn't</em> stay up late. &nbsp;·&nbsp; You <em>could</em> try a calendar app. &nbsp;·&nbsp; We <em>have to</em> leave by 6. &nbsp;·&nbsp; You <em>mustn't</em> take photos here.</p>
 
   <p class="hint">
-    Type <strong>should</strong>, <strong>shouldn't</strong>, or <strong>could</strong> in each blank.
+    Type the correct modal in each blank: <strong>should</strong>, <strong>shouldn't</strong>, <strong>could</strong>, <strong>have to</strong> / <strong>has to</strong>, <strong>must</strong>, <strong>mustn't</strong>, or <strong>don't have to</strong>.
   </p>
 
-  <p class="print-only"><strong>Name:</strong> ____________________ &nbsp;&nbsp; <strong>Date:</strong> __________<br>Write <strong>should</strong>, <strong>shouldn't</strong>, or <strong>could</strong> in each blank.</p>
+  <p class="print-only"><strong>Name:</strong> ____________________ &nbsp;&nbsp; <strong>Date:</strong> __________<br>Write the correct modal (<strong>should</strong>, <strong>shouldn't</strong>, <strong>could</strong>, <strong>have to</strong>/<strong>has to</strong>, <strong>must</strong>, <strong>mustn't</strong>, <strong>don't have to</strong>) in each blank.</p>
 
   <h2>Fill in the Blanks (15)</h2>
   <ol id="questionsList">
@@ -217,32 +220,32 @@ const items = [
     answers: [["should"]] },
   { prompt: "Your desk is a mess. You __________ clean it this weekend.",
     answers: [["should"]] },
-  { prompt: "You always run late. You __________ leave home ten minutes earlier.",
-    answers: [["should"]] },
   { prompt: "You have three tests this week. You __________ watch TV tonight.",
     answers: [["shouldn't","should not"]] },
   { prompt: "You feel stressed. You __________ take a short walk after lunch.",
     answers: [["could"]] },
-  { prompt: "Your phone distracts you. You __________ turn it off while you study.",
-    answers: [["should"]] },
   { prompt: "You forget appointments. You __________ use a calendar app.",
-    answers: [["could"]] },
-  { prompt: "You never exercise. You __________ walk for 20 minutes a day.",
     answers: [["should"]] },
+  { prompt: "You never exercise. You __________ walk for 20 minutes a day.",
+    answers: [["could"]] },
   { prompt: "You eat lunch at your desk every day. You __________ skip your break.",
     answers: [["shouldn't","should not"]] },
   { prompt: "You have too much to do. You __________ make a to-do list.",
     answers: [["should"]] },
-  { prompt: "You stay up late gaming. You __________ play after midnight.",
-    answers: [["shouldn't","should not"]] },
-  { prompt: "You feel lonely in a new city. You __________ join a club or a class.",
-    answers: [["could"]] },
-  { prompt: "Your roommate is noisy. You __________ study at the library.",
-    answers: [["should"]] },
-  { prompt: "You waste time on social media. You __________ set a daily limit.",
-    answers: [["could"]] },
   { prompt: "You want better grades. You __________ review your notes every evening.",
-    answers: [["should"]] }
+    answers: [["could"]] },
+  { prompt: "The library closes at 6 p.m. We __________ leave before 6.",
+    answers: [["have to"]] },
+  { prompt: "The test starts at 9 a.m. sharp. You __________ arrive on time.",
+    answers: [["must"]] },
+  { prompt: "It's Sunday and the office is closed. You __________ go to work today.",
+    answers: [["don't have to","do not have to"]] },
+  { prompt: "She has a doctor's appointment at 3. She __________ leave early.",
+    answers: [["has to"]] },
+  { prompt: "The museum doesn't allow photos. You __________ take pictures inside.",
+    answers: [["mustn't","must not"]] },
+  { prompt: "The meeting is optional. You __________ attend if you're busy.",
+    answers: [["don't have to","do not have to"]] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

@@ -160,3 +160,6 @@ footer a{
     text-decoration:none;
   }
 }
+
+/* IPA pronunciation in vocabulary lists (reading pages) */
+.vocabulary-list .ipa { font-style: italic; color: #666; margin-left: 5px; }

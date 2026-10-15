@@ -161,10 +161,45 @@
     var url = 'mailto:?subject=' + encodeURIComponent(subject) +
               '&body=' + encodeURIComponent(buildBody());
     if (url.length > 8000) {
-      alert('Your answers are too long to email this way. Please use "Save my answers" instead.');
+      alert('Your answers are too long to email this way. Please use "Save my answers" or "Copy answers" instead.');
       return;
     }
-    window.location.href = url;
+    // Use a real link click: more reliable than location.href for mailto: on mobile.
+    var a = document.createElement('a');
+    a.href = url;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { a.remove(); }, 800);
+  }
+
+  function flash(btn, msg) {
+    var old = btn.textContent;
+    btn.textContent = msg;
+    setTimeout(function () { btn.textContent = old; }, 1600);
+  }
+
+  function copyAnswers(btn) {
+    save();
+    var text = buildBody();
+    function legacy() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try { document.execCommand('copy'); flash(btn, 'Copied!'); }
+      catch (e) { flash(btn, 'Copy failed'); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flash(btn, 'Copied!'); },
+        function () { legacy(); }
+      );
+    } else {
+      legacy();
+    }
   }
 
   var BTN = 'background:#124076;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:15px;cursor:pointer;';
@@ -182,10 +217,13 @@
     var b2 = document.createElement('button');
     b2.type = 'button'; b2.id = 'esl-mail'; b2.style.cssText = BTN; b2.textContent = '✉️ Email my answers';
     b2.onclick = email;
+    var b3 = document.createElement('button');
+    b3.type = 'button'; b3.id = 'esl-copy'; b3.style.cssText = BTN; b3.textContent = '📋 Copy answers';
+    b3.onclick = function () { copyAnswers(b3); };
     var note = document.createElement('span');
     note.style.cssText = 'font-size:13px;color:#666;';
-    note.textContent = 'Tip: your answers are also saved in this browser automatically.';
-    bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(note);
+    note.textContent = 'Tip: your answers are also saved in this browser automatically. Email opens your email app with everything filled in — just add your address and send.';
+    bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(b3); bar.appendChild(note);
     if (btn) {
       btn.parentNode.insertBefore(bar, btn.nextSibling);
     } else {

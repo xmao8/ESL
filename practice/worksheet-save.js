@@ -145,7 +145,7 @@
     if (!h1) return;
     var div = document.createElement('div');
     div.id = 'esl-student-info';
-    div.style.cssText = 'display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end;margin:10px 0 4px;';
+    div.style.cssText = 'display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end;justify-content:center;margin:10px 0 4px;text-align:center;';
     function field(id, label, width) {
       var lab = document.createElement('label');
       lab.style.cssText = 'font-size:15px;color:#333;';

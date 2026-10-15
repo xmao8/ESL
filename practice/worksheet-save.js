@@ -320,7 +320,7 @@
     save();
     var bar = document.createElement('div');
     bar.id = 'esl-save-toolbar';
-    bar.style.cssText = 'margin:14px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;';
+    bar.style.cssText = 'margin:14px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;';
     var b1 = document.createElement('button');
     b1.type = 'button'; b1.id = 'esl-dl'; b1.style.cssText = BTN; b1.textContent = '💾 Save my answers';
     b1.onclick = download;

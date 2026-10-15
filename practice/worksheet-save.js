@@ -302,7 +302,12 @@
     var b = e.target && e.target.closest ? e.target.closest('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]') : null;
     if (b) { submitted = true; setTimeout(addToolbar, 700); return; }
     var r = e.target && e.target.closest ? e.target.closest('#resetBtn,.reset-button') : null;
-    if (r) { submitted = false; }
+    if (r) {
+      submitted = false;
+      try { localStorage.removeItem(KEY); } catch (e2) {}
+      var bar = document.getElementById('esl-save-toolbar');
+      if (bar) bar.remove();
+    }
   });
 
   // Print buttons print the student's answers, but only after submit.

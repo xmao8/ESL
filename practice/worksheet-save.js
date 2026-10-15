@@ -315,7 +315,8 @@
 
   function addToolbar() {
     if ($('#esl-save-toolbar')) return;
-    var btn = findSubmitButton();
+    // anchor after the button the student actually clicked, if it's still on the page
+    var btn = (lastSubmitBtn && document.contains(lastSubmitBtn)) ? lastSubmitBtn : findSubmitButton();
     save();
     var bar = document.createElement('div');
     bar.id = 'esl-save-toolbar';
@@ -348,6 +349,7 @@
   }
 
   var submitted = false;
+  var lastSubmitBtn = null;
 
   function btnText(el) { return (el.textContent || '').toLowerCase(); }
 
@@ -429,7 +431,7 @@
   document.addEventListener('click', function (e) {
     var el = e.target && e.target.closest ? e.target.closest('button') : null;
     if (!el) return;
-    if (isSubmitButton(el)) { submitted = true; setTimeout(addToolbar, 700); return; }
+    if (isSubmitButton(el)) { submitted = true; lastSubmitBtn = el; setTimeout(addToolbar, 700); return; }
     if (isResetButton(el)) {
       submitted = false;
       try { localStorage.removeItem(KEY); } catch (e2) {}

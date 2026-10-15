@@ -208,8 +208,7 @@
   const norm = s => s.toLowerCase().replace(/\s+/g, ' ').replace(/’/g, "'").trim();
 
   // 20 items, slightly harder (intermediate-high): abstract adjectives, least/most, comparisons with nouns, irregulars
-  const fillItems = [
-    { template: "1) Which option is usually {1} for first-time renters, a studio or a one-bedroom? (affordable)", answers: [["more affordable"]] },
+  const fillItems = [{ template: "1) Which option is usually {1} for first-time renters, a studio or a one-bedroom? (affordable)", answers: [["more affordable"]] },
     { template: "2) Which neighborhood is {1} in your city for families? (good)", answers: [["the best"]] },
     { template: "3) Which place is {1} to public transportation, your home or your workplace? (close)", answers: [["closer"]] },
     { template: "4) Which building has {1} elevators, the old building or the new one? (many)", answers: [["more"]] },
@@ -223,7 +222,7 @@
     { template: "11) Which street is {1} on weekends, the main road or the side street? (noisy)", answers: [["noisier"]] },
     { template: "12) Which home is {1} for privacy: living alone or sharing with roommates? (good)", answers: [["better"]] },
     { template: "13) Which option has {1} rules, renting from a private owner or from a large company? (few)", answers: [["fewer"]] },
-    { template: "14) Which place is the {1} to commute from, the suburbs or downtown? (far)", answers: [["farthest"], ["furthest"]] },
+    { template: "14) Which place is the {1} to commute from, the suburbs or downtown? (far)", answers: [["farthest", "furthest"]]},
     { template: "15) Which apartment is the {1} to heat in winter, a top-floor unit or a middle-floor unit? (cheap)", answers: [["cheapest"]] },
     { template: "16) Which neighborhood has the {1} services nearby (shops, clinics, banks)? (many)", answers: [["most"]] },
     { template: "17) Which type of housing is the {1} in your city right now? (demanded)", answers: [["most demanded"]] },
@@ -324,6 +323,6 @@
   document.getElementById('resetBtn').addEventListener('click', resetAll);
 </script>
 
-<script src="/practice/worksheet-save.js?v=20261014d"></script>
+<script src="/practice/worksheet-save.js?v=20261014e"></script>
 </body>
 </html>

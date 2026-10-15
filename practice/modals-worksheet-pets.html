@@ -145,7 +145,7 @@ function normalize(s){ return s.trim().toLowerCase().replace(/\s+/g,' '); }
 function parseAnswers(attr){ return attr.split(',').map(a => normalize(a)); }
 
 function checkAll(){
-  const inputs = document.querySelectorAll('input[type="text"]');
+  const inputs = document.querySelectorAll('input[type="text"]:not(#esl-student-info input)');
   let firstWrong = null; let correctCount = 0;
 
   inputs.forEach(input => {
@@ -190,7 +190,7 @@ function checkAll(){
 
 document.getElementById('checkBtn').addEventListener('click', checkAll);
 document.getElementById('resetBtn').addEventListener('click', () => {
-  document.querySelectorAll('input[type="text"]').forEach(i => { i.value=''; i.classList.remove('correct','incorrect'); });
+  document.querySelectorAll('input[type="text"]:not(#esl-student-info input)').forEach(i => { i.value=''; i.classList.remove('correct','incorrect'); });
   document.querySelectorAll('.feedback').forEach(el => el.remove());
   document.querySelectorAll('.explain').forEach(el => el.remove());
   const score = document.getElementById('overallScore');
@@ -198,6 +198,6 @@ document.getElementById('resetBtn').addEventListener('click', () => {
 });
 </script>
 
-<script src="/practice/worksheet-save.js?v=20261014d"></script>
+<script src="/practice/worksheet-save.js?v=20261014e"></script>
 </body>
 </html>

@@ -93,7 +93,7 @@ function normalize(s){ return s.trim().toLowerCase(); }
 function parseAnswers(attr){ return attr.split(',').map(a => normalize(a)); }
 
 function checkAll(){
-  const inputs = document.querySelectorAll('input[type="text"]');
+  const inputs = document.querySelectorAll('input[type="text"]:not(#esl-student-info input)');
   let correctCount = 0;
 
   inputs.forEach(input => {
@@ -116,6 +116,6 @@ function checkAll(){
 }
 </script>
 
-<script src="/practice/worksheet-save.js?v=20261014d"></script>
+<script src="/practice/worksheet-save.js?v=20261014e"></script>
 </body>
 </html>

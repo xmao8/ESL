@@ -540,7 +540,7 @@
         inputs.forEach(input => {
             const userAnswer = input.value.trim().toLowerCase();
             const correctAnswer = input.dataset.answer.toLowerCase();
-            const feedbackId = input.id.replace('input', 'feedback');
+            const feedbackId = input.id.replace(/-input\d+$/, '-feedback');
             const feedbackElement = document.getElementById(feedbackId);
 
             if (userAnswer === correctAnswer) {
@@ -583,6 +583,6 @@
     }
 </script>
 
-<script src="/practice/worksheet-save.js?v=20261014d"></script>
+<script src="/practice/worksheet-save.js?v=20261014e"></script>
 </body>
 </html>

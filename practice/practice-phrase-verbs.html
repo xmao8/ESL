@@ -520,7 +520,7 @@
 
     matchingGridItems.forEach((item, index) => {
         if (index % 2 === 0) { // This is a phrasal verb (odd-indexed item in the HTML is first child, so even index here)
-            const verb = item.textContent;
+            const verb = item.textContent.trim().replace(/^\d+\.\s*/, '');
             const meaningDiv = matchingGridItems[index + 1];
             const correctMeaning = matchingAnswers[verb];
 
@@ -557,7 +557,7 @@
     // Exercise 3: Multiple Choice
     for (const qName in multipleChoiceAnswers) {
       const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
-      const correctAnswerSpan = document.getElementById(`mc-answer-${qName}`);
+      const correctAnswerSpan = document.getElementById(`mc-answer-${qName.replace(/^q/, '')}`);
 
       if (selectedOption && selectedOption.value === multipleChoiceAnswers[qName]) {
         correctAnswerSpan.style.display = 'inline';
@@ -574,6 +574,6 @@
   }
 </script>
 
-<script src="/practice/worksheet-save.js?v=20261014d"></script>
+<script src="/practice/worksheet-save.js?v=20261014e"></script>
 </body>
 </html>

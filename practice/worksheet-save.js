@@ -418,9 +418,9 @@
       if (!info || !info.parentNode) return;
       b.className = 'print-button';
       b.style.cssText = 'background:#fff;border:1.5px solid #124076;color:#124076;' +
-        'border-radius:8px;padding:8px 16px;font-size:15px;cursor:pointer;margin:2px 0 10px;';
+        'border-radius:8px;padding:8px 16px;font-size:15px;cursor:pointer;';
       var wrap = document.createElement('div');
-      wrap.style.cssText = 'text-align:center;';
+      wrap.style.cssText = 'text-align:center;margin:14px 0 4px;';
       wrap.appendChild(b);
       info.parentNode.insertBefore(wrap, info.nextSibling);
     }
@@ -452,6 +452,14 @@
 
   document.addEventListener('input', saveSoon, true);
   document.addEventListener('change', saveSoon, true);
+
+  // Don't let Enter in the Name/Class/Date fields submit a surrounding <form>.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target && e.target.closest &&
+        e.target.closest('#esl-student-info')) {
+      e.preventDefault();
+    }
+  });
 
   function init() {
     addStudentInfo();

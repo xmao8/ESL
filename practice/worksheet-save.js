@@ -12,15 +12,19 @@
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
   function textInputs() {
-    return $all('input.blank-input').concat(
-      $all('input[type="text"]').filter(function (i) { return i.className.indexOf('blank-input') < 0; })
+    var list = $all('input.blank-input').concat(
+      $all('input[type="text"]').filter(function (i) {
+        return i.className.indexOf('blank-input') < 0;
+      })
     );
+    // exclude the Name/Class/Date header fields
+    return list.filter(function (i) { return !i.closest('#esl-student-info'); });
   }
 
   function textAreas() { return $all('textarea'); }
 
   function collect() {
-    var data = { text: [], radio: {}, area: [] };
+    var data = { text: [], radio: {}, area: [], info: studentInfo() };
     textInputs().forEach(function (inp, i) { data.text[i] = inp.value || ''; });
     textAreas().forEach(function (ta, i) { data.area[i] = ta.value || ''; });
     $all('input[type="radio"]:checked').forEach(function (r) { data.radio[r.name] = r.value; });
@@ -49,6 +53,11 @@
     var tas = textAreas();
     (data.area || []).forEach(function (v, i) {
       if (tas[i] && !tas[i].value && v) tas[i].value = v;
+    });
+    var info = data.info || {};
+    [['esl-f-name', info.name], ['esl-f-class', info.cls], ['esl-f-date', info.date]].forEach(function (pair) {
+      var el = document.getElementById(pair[0]);
+      if (el && !el.value && pair[1]) el.value = pair[1];
     });
     Object.keys(data.radio || {}).forEach(function (name) {
       if (document.querySelector('input[type="radio"][name="' + name + '"]:checked')) return;
@@ -130,6 +139,39 @@
 
   function docTitle() { return document.title.replace(/\s+/g, ' ').trim(); }
 
+  function addStudentInfo() {
+    if (document.getElementById('esl-student-info')) return;
+    var h1 = document.querySelector('h1');
+    if (!h1) return;
+    var div = document.createElement('div');
+    div.id = 'esl-student-info';
+    div.style.cssText = 'display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end;margin:10px 0 4px;';
+    function field(id, label, width) {
+      var lab = document.createElement('label');
+      lab.style.cssText = 'font-size:15px;color:#333;';
+      lab.appendChild(document.createTextNode(label + ' '));
+      var inp = document.createElement('input');
+      inp.type = 'text'; inp.id = id;
+      inp.setAttribute('autocomplete', 'off');
+      inp.style.cssText = 'border:none;border-bottom:1.5px solid #888;padding:4px 6px;font-size:16px;background:transparent;outline:none;width:' + width + ';';
+      lab.appendChild(inp);
+      return lab;
+    }
+    div.appendChild(field('esl-f-name', 'Name:', '220px'));
+    div.appendChild(field('esl-f-class', 'Class:', '140px'));
+    div.appendChild(field('esl-f-date', 'Date:', '130px'));
+    h1.parentNode.insertBefore(div, h1.nextSibling);
+  }
+
+  function infoVal(id) {
+    var el = document.getElementById(id);
+    return el ? (el.value || '').trim() : '';
+  }
+
+  function studentInfo() {
+    return { name: infoVal('esl-f-name'), cls: infoVal('esl-f-class'), date: infoVal('esl-f-date') };
+  }
+
   function buildBody() {
     var lines = [];
     lines.push(docTitle());
@@ -137,6 +179,10 @@
     lines.push('Date: ' + new Date().toLocaleDateString());
     var sc = scoreText();
     if (sc) lines.push('Score: ' + sc);
+    var si = studentInfo();
+    if (si.name || si.cls || si.date) {
+      lines.push('Name: ' + (si.name || '') + '    Class: ' + (si.cls || '') + '    Date: ' + (si.date || ''));
+    }
     lines.push('');
     lines.push('My answers:');
     var items = collectQA();
@@ -176,6 +222,10 @@
       esc('eslnote.com — ' + location.pathname) + ' · ' + esc(new Date().toLocaleDateString());
     var sc = scoreText();
     if (sc) html += ' · Score: ' + esc(sc);
+    var si = studentInfo();
+    if (si.name || si.cls || si.date) {
+      html += '<br>Name: ' + esc(si.name) + ' &nbsp;&nbsp; Class: ' + esc(si.cls) + ' &nbsp;&nbsp; Date: ' + esc(si.date);
+    }
     html += '</div>';
     collectQA().forEach(function (it, i) {
       html += '<div class="qa"><div class="q">' + (i + 1) + '. ' + esc(it.q) +
@@ -325,6 +375,7 @@
   document.addEventListener('change', saveSoon, true);
 
   function init() {
+    addStudentInfo();
     var hasInputs = textInputs().length || textAreas().length || $('input[type="radio"]');
     if (!hasInputs) return;
     restore();

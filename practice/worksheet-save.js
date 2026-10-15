@@ -292,15 +292,28 @@
     }
   }
 
+  var submitted = false;
+  function hasSubmitButton() { return !!$('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]'); }
+  function hasAnswers() {
+    return collectQA().some(function (it) { return it.a !== '(no answer)'; });
+  }
+
   document.addEventListener('click', function (e) {
     var b = e.target && e.target.closest ? e.target.closest('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]') : null;
-    if (b) setTimeout(addToolbar, 700);
+    if (b) { submitted = true; setTimeout(addToolbar, 700); return; }
+    var r = e.target && e.target.closest ? e.target.closest('#resetBtn,.reset-button') : null;
+    if (r) { submitted = false; }
   });
 
-  // Print buttons print the student's answers (capture phase runs before inline onclick).
+  // Print buttons print the student's answers, but only after submit.
+  // A blank (unsubmitted) worksheet still prints blank as before.
+  // Capture phase runs before the inline onclick="window.print()".
   document.addEventListener('click', function (e) {
     var b = e.target && e.target.closest ? e.target.closest('.print-button') : null;
-    if (b) { e.preventDefault(); e.stopPropagation(); printAnswers(); }
+    if (!b) return;
+    var printFilled = submitted || (!hasSubmitButton() && hasAnswers());
+    if (printFilled) { e.preventDefault(); e.stopPropagation(); printAnswers(); }
+    // otherwise: let the page's own window.print() run (blank worksheet)
   }, true);
 
   document.addEventListener('input', saveSoon, true);

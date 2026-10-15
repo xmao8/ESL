@@ -223,9 +223,10 @@
     var sc = scoreText();
     if (sc) html += ' · Score: ' + esc(sc);
     var si = studentInfo();
-    if (si.name || si.cls || si.date) {
-      html += '<br>Name: ' + esc(si.name) + ' &nbsp;&nbsp; Class: ' + esc(si.cls) + ' &nbsp;&nbsp; Date: ' + esc(si.date);
+    function blank(v) {
+      return v ? esc(v) : '<span style="display:inline-block;min-width:150px;border-bottom:1px solid #000;">&nbsp;</span>';
     }
+    html += '<br>Name: ' + blank(si.name) + ' &nbsp;&nbsp; Class: ' + blank(si.cls) + ' &nbsp;&nbsp; Date: ' + blank(si.date);
     html += '</div>';
     collectQA().forEach(function (it, i) {
       html += '<div class="qa"><div class="q">' + (i + 1) + '. ' + esc(it.q) +

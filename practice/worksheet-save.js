@@ -110,37 +110,79 @@
     return '';
   }
 
+  function collectQA() {
+    var list = [];
+    textInputs().forEach(function (inp) {
+      list.push({ q: inputLabel(inp), a: (inp.value || '').trim() || '(no answer)' });
+    });
+    textAreas().forEach(function (ta) {
+      list.push({ q: inputLabel(ta), a: (ta.value || '').trim() || '(no answer)' });
+    });
+    var names = [];
+    $all('input[type="radio"]').forEach(function (r) { if (names.indexOf(r.name) < 0) names.push(r.name); });
+    names.forEach(function (name) {
+      var checked = null;
+      $all('input[type="radio"]').forEach(function (x) { if (x.name === name && x.checked) checked = x; });
+      list.push({ q: radioLabel(name), a: checked ? checked.value : '(no answer)' });
+    });
+    return list;
+  }
+
+  function docTitle() { return document.title.replace(/\s+/g, ' ').trim(); }
+
   function buildBody() {
     var lines = [];
-    lines.push(document.title.replace(/\s+/g, ' ').trim());
+    lines.push(docTitle());
     lines.push('eslnote.com — ' + location.pathname);
     lines.push('Date: ' + new Date().toLocaleDateString());
     var sc = scoreText();
     if (sc) lines.push('Score: ' + sc);
     lines.push('');
     lines.push('My answers:');
-    var ins = textInputs();
-    ins.forEach(function (inp, i) {
-      var v = (inp.value || '').trim() || '(no answer)';
-      lines.push((i + 1) + '. ' + inputLabel(inp));
-      lines.push('   → ' + v);
+    var items = collectQA();
+    items.forEach(function (it, i) {
+      lines.push((i + 1) + '. ' + it.q);
+      lines.push('   → ' + it.a);
     });
-    var tas = textAreas();
-    tas.forEach(function (ta, i) {
-      var v = (ta.value || '').trim() || '(no answer)';
-      lines.push((ins.length + i + 1) + '. ' + inputLabel(ta));
-      lines.push('   → ' + v);
-    });
-    var base = ins.length + tas.length;
-    var names = [];
-    $all('input[type="radio"]').forEach(function (r) { if (names.indexOf(r.name) < 0) names.push(r.name); });
-    names.forEach(function (name, i) {
-      var checked = document.querySelector('input[type="radio"][name="' + name + '"]:checked');
-      lines.push((base + i + 1) + '. ' + radioLabel(name));
-      lines.push('   → ' + (checked ? checked.value : '(no answer)'));
-    });
-    if (!ins.length && !tas.length && !names.length) lines.push('(no answers found on this page)');
+    if (!items.length) lines.push('(no answers found on this page)');
     return lines.join('\n');
+  }
+
+  function esc(s) {
+    return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function printAnswers() {
+    save();
+    var area = document.getElementById('esl-print-area');
+    if (!area) {
+      area = document.createElement('div');
+      area.id = 'esl-print-area';
+      document.body.appendChild(area);
+      var st = document.createElement('style');
+      st.textContent = '@media print{' +
+        'body>*:not(#esl-print-area){display:none !important;}' +
+        '#esl-print-area{display:block !important;font-family:Arial,Helvetica,sans-serif;color:#000;}' +
+        '#esl-print-area h1{font-size:20px;margin:0 0 6px;}' +
+        '#esl-print-area .meta{font-size:13px;color:#333;margin-bottom:14px;}' +
+        '#esl-print-area .qa{margin:0 0 10px;page-break-inside:avoid;}' +
+        '#esl-print-area .q{font-weight:bold;}' +
+        '#esl-print-area .a{margin:2px 0 0 14px;}' +
+        '}' +
+        '@media screen{#esl-print-area{display:none;}}';
+      document.head.appendChild(st);
+    }
+    var html = '<h1>' + esc(docTitle()) + '</h1><div class="meta">' +
+      esc('eslnote.com — ' + location.pathname) + ' · ' + esc(new Date().toLocaleDateString());
+    var sc = scoreText();
+    if (sc) html += ' · Score: ' + esc(sc);
+    html += '</div>';
+    collectQA().forEach(function (it, i) {
+      html += '<div class="qa"><div class="q">' + (i + 1) + '. ' + esc(it.q) +
+              '</div><div class="a">' + esc(it.a) + '</div></div>';
+    });
+    area.innerHTML = html;
+    window.print();
   }
 
   function download() {
@@ -148,7 +190,7 @@
     var blob = new Blob([buildBody()], { type: 'text/plain;charset=utf-8' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    var name = document.title.replace(/\s+/g, ' ').trim().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-').toLowerCase();
+    var name = docTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-').toLowerCase();
     a.download = (name || 'worksheet') + '-my-answers.txt';
     document.body.appendChild(a);
     a.click();
@@ -157,7 +199,7 @@
 
   function email() {
     save();
-    var subject = 'My answers — ' + document.title.replace(/\s+/g, ' ').trim();
+    var subject = 'My answers — ' + docTitle();
     var url = 'mailto:?subject=' + encodeURIComponent(subject) +
               '&body=' + encodeURIComponent(buildBody());
     if (url.length > 8000) {
@@ -175,7 +217,7 @@
 
   function gmail() {
     save();
-    var subject = 'My answers — ' + document.title.replace(/\s+/g, ' ').trim();
+    var subject = 'My answers — ' + docTitle();
     var url = 'https://mail.google.com/mail/?view=cm&fs=1&su=' + encodeURIComponent(subject) +
               '&body=' + encodeURIComponent(buildBody());
     if (url.length > 8000) {
@@ -254,6 +296,12 @@
     var b = e.target && e.target.closest ? e.target.closest('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]') : null;
     if (b) setTimeout(addToolbar, 700);
   });
+
+  // Print buttons print the student's answers (capture phase runs before inline onclick).
+  document.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest ? e.target.closest('.print-button') : null;
+    if (b) { e.preventDefault(); e.stopPropagation(); printAnswers(); }
+  }, true);
 
   document.addEventListener('input', saveSoon, true);
   document.addEventListener('change', saveSoon, true);

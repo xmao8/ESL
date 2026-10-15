@@ -1,7 +1,11 @@
 /* worksheet-save.js — lets students keep their worksheet answers.
+ * - Adds a Name / Class / Date row under the page title.
  * - Auto-saves answers in this browser (localStorage) and restores them on revisit.
- * - After Submit/Check, adds "Save my answers" (downloads a .txt file) and
- *   "Email my answers" (opens the student's email app with answers prefilled).
+ * - After Submit/Check, adds a toolbar: "Save my answers" (downloads a .txt),
+ *   "Email app" / "Gmail" (open a draft with answers prefilled), "Copy answers".
+ * - Print button: prints the student's answers after submit, the blank
+ *   worksheet before submit. Added automatically on pages that lack one.
+ * - Reset clears saved answers and removes the toolbar.
  * Works on any practice worksheet page; does nothing on pages without inputs.
  */
 (function () {
@@ -12,13 +16,13 @@
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
   function textInputs() {
-    var list = $all('input.blank-input').concat(
-      $all('input[type="text"]').filter(function (i) {
-        return i.className.indexOf('blank-input') < 0;
-      })
-    );
-    // exclude the Name/Class/Date header fields
-    return list.filter(function (i) { return !i.closest('#esl-student-info'); });
+    // any text-like input: explicit type="text" or no type attribute (defaults to text)
+    return $all('input').filter(function (i) {
+      var tp = (i.getAttribute('type') || 'text').toLowerCase();
+      if (tp !== 'text') return false;                  // skip radio/checkbox/hidden/button
+      if (i.closest('#esl-student-info')) return false; // skip Name/Class/Date header
+      return true;
+    });
   }
 
   function textAreas() { return $all('textarea'); }
@@ -311,7 +315,7 @@
 
   function addToolbar() {
     if ($('#esl-save-toolbar')) return;
-    var btn = $('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]');
+    var btn = findSubmitButton();
     save();
     var bar = document.createElement('div');
     bar.id = 'esl-save-toolbar';
@@ -344,16 +348,89 @@
   }
 
   var submitted = false;
-  function hasSubmitButton() { return !!$('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]'); }
+
+  function btnText(el) { return (el.textContent || '').toLowerCase(); }
+
+  function isSubmitButton(el) {
+    if (!el || el.tagName !== 'BUTTON') return false;
+    if (el.closest('#esl-save-toolbar') || el.closest('#esl-student-info')) return false;
+    if (el.classList.contains('print-button')) return false;
+    return /check|submit|grade|score/.test(btnText(el));
+  }
+
+  function isResetButton(el) {
+    if (!el || el.tagName !== 'BUTTON') return false;
+    if (el.closest('#esl-save-toolbar')) return false;
+    var id = (el.id || '').toLowerCase();
+    var cl = typeof el.className === 'string' ? el.className.toLowerCase() : '';
+    if (/reset/.test(id) || /reset/.test(cl)) return true;
+    return /reset|clear answers|start over|try again/.test(btnText(el));
+  }
+
+  function findSubmitButton() {
+    var btns = $all('button');
+    for (var i = 0; i < btns.length; i++) { if (isSubmitButton(btns[i])) return btns[i]; }
+    return null;
+  }
+
+  function findResetButton() {
+    var btns = $all('button');
+    for (var i = 0; i < btns.length; i++) { if (isResetButton(btns[i])) return btns[i]; }
+    return null;
+  }
+
+  function hasSubmitButton() { return !!findSubmitButton(); }
+
   function hasAnswers() {
     return collectQA().some(function (it) { return it.a !== '(no answer)'; });
   }
 
+  // Add a Print button next to Check/Submit on pages that don't have one,
+  // styled to match the page's own buttons. On pages with no buttons at all,
+  // it goes right under the Name/Class/Date row.
+  function ensurePrintButton() {
+    if (document.querySelector('.print-button')) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = '🖨️ Print';
+    var anchor = findSubmitButton() || findResetButton();
+    if (!anchor) {
+      var btns = $all('button', $('.content-container') || $('.container') || document.body)
+        .filter(function (x) {
+          return !x.closest('#esl-save-toolbar') && !x.closest('nav') && x.id !== 'hamb' &&
+                 (typeof x.className !== 'string' || x.className.indexOf('hamb') < 0);
+        });
+      anchor = btns.length ? btns[btns.length - 1] : null;
+    }
+    if (anchor && anchor.parentNode) {
+      b.className = 'print-button ' + (typeof anchor.className === 'string' ? anchor.className : '');
+      try {
+        var cs = window.getComputedStyle(anchor);
+        ['background-color', 'color', 'border', 'border-radius', 'padding',
+         'font-size', 'font-weight', 'cursor'].forEach(function (p) {
+          b.style.setProperty(p, cs.getPropertyValue(p));
+        });
+        b.style.setProperty('margin-left', '8px');
+      } catch (e) {}
+      anchor.parentNode.insertBefore(b, anchor.nextSibling);
+    } else {
+      var info = document.getElementById('esl-student-info');
+      if (!info || !info.parentNode) return;
+      b.className = 'print-button';
+      b.style.cssText = 'background:#fff;border:1.5px solid #124076;color:#124076;' +
+        'border-radius:8px;padding:8px 16px;font-size:15px;cursor:pointer;margin:2px 0 10px;';
+      var wrap = document.createElement('div');
+      wrap.style.cssText = 'text-align:center;';
+      wrap.appendChild(b);
+      info.parentNode.insertBefore(wrap, info.nextSibling);
+    }
+  }
+
   document.addEventListener('click', function (e) {
-    var b = e.target && e.target.closest ? e.target.closest('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]') : null;
-    if (b) { submitted = true; setTimeout(addToolbar, 700); return; }
-    var r = e.target && e.target.closest ? e.target.closest('#resetBtn,.reset-button') : null;
-    if (r) {
+    var el = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (!el) return;
+    if (isSubmitButton(el)) { submitted = true; setTimeout(addToolbar, 700); return; }
+    if (isResetButton(el)) {
       submitted = false;
       try { localStorage.removeItem(KEY); } catch (e2) {}
       var bar = document.getElementById('esl-save-toolbar');
@@ -363,13 +440,14 @@
 
   // Print buttons print the student's answers, but only after submit.
   // A blank (unsubmitted) worksheet still prints blank as before.
-  // Capture phase runs before the inline onclick="window.print()".
+  // Capture phase runs before any inline onclick="window.print()".
   document.addEventListener('click', function (e) {
     var b = e.target && e.target.closest ? e.target.closest('.print-button') : null;
     if (!b) return;
-    var printFilled = submitted || (!hasSubmitButton() && hasAnswers());
-    if (printFilled) { e.preventDefault(); e.stopPropagation(); printAnswers(); }
-    // otherwise: let the page's own window.print() run (blank worksheet)
+    e.preventDefault();
+    e.stopPropagation();
+    if (submitted || (!hasSubmitButton() && hasAnswers())) printAnswers();
+    else window.print();
   }, true);
 
   document.addEventListener('input', saveSoon, true);
@@ -379,9 +457,11 @@
     addStudentInfo();
     var hasInputs = textInputs().length || textAreas().length || $('input[type="radio"]');
     if (!hasInputs) return;
+    ensurePrintButton();
     restore();
-    if (!$('.submit-button,#submitBtn,#checkBtn,[id^="submitBtn"]') && textAreas().length) {
-      setTimeout(addToolbar, 1200); // free-writing pages: show toolbar without submit
+    if (!hasSubmitButton()) {
+      // pages with no Check/Submit (free-writing, show-answers-only): show toolbar on load
+      setTimeout(addToolbar, 1200);
     }
   }
   if (document.readyState === 'loading') {

@@ -173,6 +173,18 @@
     setTimeout(function () { a.remove(); }, 800);
   }
 
+  function gmail() {
+    save();
+    var subject = 'My answers — ' + document.title.replace(/\s+/g, ' ').trim();
+    var url = 'https://mail.google.com/mail/?view=cm&fs=1&su=' + encodeURIComponent(subject) +
+              '&body=' + encodeURIComponent(buildBody());
+    if (url.length > 8000) {
+      alert('Your answers are too long for this. Please use "Save my answers" or "Copy answers" instead.');
+      return;
+    }
+    window.open(url, '_blank', 'noopener');
+  }
+
   function flash(btn, msg) {
     var old = btn.textContent;
     btn.textContent = msg;
@@ -215,15 +227,20 @@
     b1.type = 'button'; b1.id = 'esl-dl'; b1.style.cssText = BTN; b1.textContent = '💾 Save my answers';
     b1.onclick = download;
     var b2 = document.createElement('button');
-    b2.type = 'button'; b2.id = 'esl-mail'; b2.style.cssText = BTN; b2.textContent = '✉️ Email my answers';
+    b2.type = 'button'; b2.id = 'esl-mail'; b2.style.cssText = BTN; b2.textContent = '✉️ Email app';
     b2.onclick = email;
+    b2.title = 'Opens your computer\u2019s email program with answers filled in';
+    var b2g = document.createElement('button');
+    b2g.type = 'button'; b2g.id = 'esl-gmail'; b2g.style.cssText = BTN; b2g.textContent = '📧 Gmail';
+    b2g.onclick = gmail;
+    b2g.title = 'Opens Gmail in your browser with answers filled in (no email program needed)';
     var b3 = document.createElement('button');
     b3.type = 'button'; b3.id = 'esl-copy'; b3.style.cssText = BTN; b3.textContent = '📋 Copy answers';
     b3.onclick = function () { copyAnswers(b3); };
     var note = document.createElement('span');
     note.style.cssText = 'font-size:13px;color:#666;';
-    note.textContent = 'Tip: your answers are also saved in this browser automatically. Email opens your email app with everything filled in — just add your address and send.';
-    bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(b3); bar.appendChild(note);
+    note.textContent = 'Tip: your answers are also saved in this browser automatically. Email options open a draft with everything filled in — just add your address and press Send.';
+    bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(b2g); bar.appendChild(b3); bar.appendChild(note);
     if (btn) {
       btn.parentNode.insertBefore(bar, btn.nextSibling);
     } else {

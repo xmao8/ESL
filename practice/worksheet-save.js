@@ -320,7 +320,7 @@
     save();
     var bar = document.createElement('div');
     bar.id = 'esl-save-toolbar';
-    bar.style.cssText = 'margin:14px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;';
+    bar.style.cssText = 'margin:14px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;width:100%;box-sizing:border-box;';
     var b1 = document.createElement('button');
     b1.type = 'button'; b1.id = 'esl-dl'; b1.style.cssText = BTN; b1.textContent = '💾 Save my answers';
     b1.onclick = download;
@@ -339,8 +339,16 @@
     note.style.cssText = 'font-size:13px;color:#666;width:100%;text-align:center;';
     note.textContent = 'Tip: your answers are also saved in this browser automatically. Email options open a draft with everything filled in — just add your address and press Send.';
     bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(b2g); bar.appendChild(b3); bar.appendChild(note);
-    if (btn) {
-      btn.parentNode.insertBefore(bar, btn.nextSibling);
+    if (btn && btn.parentNode) {
+      var host = btn.parentNode;
+      var hd = '';
+      try { hd = window.getComputedStyle(host).display; } catch (e) {}
+      if (hd === 'flex' || hd === 'inline-flex' || hd === 'grid' || hd === 'inline-grid') {
+        // button row uses flex/grid: don't become a squeezed item, go after the whole row
+        host.parentNode.insertBefore(bar, host.nextSibling);
+      } else {
+        host.insertBefore(bar, btn.nextSibling);
+      }
     } else {
       // free-writing pages with no submit button: put toolbar at end of content
       var host = $('.content-container') || $('.container') || document.body;

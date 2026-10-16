@@ -336,7 +336,7 @@
     b3.type = 'button'; b3.id = 'esl-copy'; b3.style.cssText = BTN; b3.textContent = '📋 Copy answers';
     b3.onclick = function () { copyAnswers(b3); };
     var note = document.createElement('span');
-    note.style.cssText = 'font-size:13px;color:#666;';
+    note.style.cssText = 'font-size:13px;color:#666;width:100%;text-align:center;';
     note.textContent = 'Tip: your answers are also saved in this browser automatically. Email options open a draft with everything filled in — just add your address and press Send.';
     bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(b2g); bar.appendChild(b3); bar.appendChild(note);
     if (btn) {

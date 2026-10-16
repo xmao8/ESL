@@ -1,6 +1,5 @@
 /* worksheet-save.js — lets students keep their worksheet answers.
  * - Adds a Name / Class / Date row under the page title.
- * - Auto-saves answers in this browser (localStorage) and restores them on revisit.
  * - After Submit/Check, adds a toolbar: "Save my answers" (downloads a .txt),
  *   "Email app" / "Gmail" (open a draft with answers prefilled), "Copy answers".
  * - Print button: prints the student's answers after submit, the blank
@@ -10,7 +9,6 @@
  */
 (function () {
   'use strict';
-  var KEY = 'eslnote-answers:' + location.pathname;
 
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -33,42 +31,6 @@
     textAreas().forEach(function (ta, i) { data.area[i] = ta.value || ''; });
     $all('input[type="radio"]:checked').forEach(function (r) { data.radio[r.name] = r.value; });
     return data;
-  }
-
-  function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(collect())); } catch (e) {}
-  }
-
-  var saveSoon = (function () {
-    var t = null;
-    return function () { clearTimeout(t); t = setTimeout(save, 600); };
-  })();
-
-  function restore() {
-    var raw = null;
-    try { raw = localStorage.getItem(KEY); } catch (e) { return; }
-    if (!raw) return;
-    var data;
-    try { data = JSON.parse(raw); } catch (e) { return; }
-    var ins = textInputs();
-    (data.text || []).forEach(function (v, i) {
-      if (ins[i] && !ins[i].value && v) ins[i].value = v;
-    });
-    var tas = textAreas();
-    (data.area || []).forEach(function (v, i) {
-      if (tas[i] && !tas[i].value && v) tas[i].value = v;
-    });
-    var info = data.info || {};
-    [['esl-f-name', info.name], ['esl-f-class', info.cls], ['esl-f-date', info.date]].forEach(function (pair) {
-      var el = document.getElementById(pair[0]);
-      if (el && !el.value && pair[1]) el.value = pair[1];
-    });
-    Object.keys(data.radio || {}).forEach(function (name) {
-      if (document.querySelector('input[type="radio"][name="' + name + '"]:checked')) return;
-      var r = null;
-      $all('input[type="radio"]').forEach(function (x) { if (x.name === name && x.value === data.radio[name]) r = x; });
-      if (r) r.checked = true;
-    });
   }
 
   function cleanText(s) {
@@ -203,7 +165,6 @@
   }
 
   function printAnswers() {
-    save();
     var area = document.getElementById('esl-print-area');
     if (!area) {
       area = document.createElement('div');
@@ -241,7 +202,6 @@
   }
 
   function download() {
-    save();
     var blob = new Blob([buildBody()], { type: 'text/plain;charset=utf-8' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -253,7 +213,6 @@
   }
 
   function email() {
-    save();
     var subject = 'My answers — ' + docTitle();
     var url = 'mailto:?subject=' + encodeURIComponent(subject) +
               '&body=' + encodeURIComponent(buildBody());
@@ -271,7 +230,6 @@
   }
 
   function gmail() {
-    save();
     var subject = 'My answers — ' + docTitle();
     var url = 'https://mail.google.com/mail/?view=cm&fs=1&su=' + encodeURIComponent(subject) +
               '&body=' + encodeURIComponent(buildBody());
@@ -289,7 +247,6 @@
   }
 
   function copyAnswers(btn) {
-    save();
     var text = buildBody();
     function legacy() {
       var ta = document.createElement('textarea');
@@ -317,7 +274,6 @@
     if ($('#esl-save-toolbar')) return;
     // anchor after the button the student actually clicked, if it's still on the page
     var btn = (lastSubmitBtn && document.contains(lastSubmitBtn)) ? lastSubmitBtn : findSubmitButton();
-    save();
     var bar = document.createElement('div');
     bar.id = 'esl-save-toolbar';
     bar.style.cssText = 'margin:14px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;width:100%;box-sizing:border-box;';
@@ -337,7 +293,7 @@
     b3.onclick = function () { copyAnswers(b3); };
     var note = document.createElement('span');
     note.style.cssText = 'font-size:13px;color:#666;width:100%;text-align:center;';
-    note.textContent = 'Tip: your answers are also saved in this browser automatically. Email options open a draft with everything filled in — just add your address and press Send.';
+    note.textContent = 'Tip: use Save to keep a copy, or Email to send your work to your teacher.';
     bar.appendChild(b1); bar.appendChild(b2); bar.appendChild(b2g); bar.appendChild(b3); bar.appendChild(note);
     if (btn && btn.parentNode) {
       var host = btn.parentNode;
@@ -442,7 +398,6 @@
     if (isSubmitButton(el)) { submitted = true; lastSubmitBtn = el; setTimeout(addToolbar, 700); return; }
     if (isResetButton(el)) {
       submitted = false;
-      try { localStorage.removeItem(KEY); } catch (e2) {}
       var bar = document.getElementById('esl-save-toolbar');
       if (bar) bar.remove();
     }
@@ -460,9 +415,6 @@
     else window.print();
   }, true);
 
-  document.addEventListener('input', saveSoon, true);
-  document.addEventListener('change', saveSoon, true);
-
   // Don't let Enter in the Name/Class/Date fields submit a surrounding <form>.
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && e.target && e.target.closest &&
@@ -476,15 +428,14 @@
     var hasInputs = textInputs().length || textAreas().length || $('input[type="radio"]');
     if (!hasInputs) return;
     ensurePrintButton();
-    restore();
     if (!hasSubmitButton()) {
       // pages with no Check/Submit (free-writing, show-answers-only): show toolbar on load
       setTimeout(addToolbar, 1200);
     }
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { init(); setTimeout(restore, 900); setTimeout(restore, 2200); });
+    document.addEventListener('DOMContentLoaded', function () { init(); });
   } else {
-    init(); setTimeout(restore, 900); setTimeout(restore, 2200);
+    init();
   }
 })();

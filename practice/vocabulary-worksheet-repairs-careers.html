@@ -136,7 +136,12 @@
       .answer-key li { break-inside: avoid; margin-bottom: 0.4rem; font-size: 0.95rem; }
       a { text-decoration: none; color: #000; }
     }
-</style>
+
+    .word-bank { background: #fff8e1; border: 2px solid #ff9800; border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; }
+    .word-bank h3 { margin: 0 0 0.6rem 0; color: #124076; font-size: 1.05rem; }
+    .word-bank .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .word-bank .chip { background: #fff; border: 1.5px solid #ff9800; color: #333; border-radius: 999px; padding: 0.3rem 0.8rem; font-weight: 600; font-size: 0.98rem; }
+  </style>
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -172,9 +177,14 @@
   <p><strong>Examples:</strong> Our <em>air conditioner</em> isn't working. &nbsp;·&nbsp; The <em>plumber</em> fixed the sink.</p>
 
   <p class="hint">
-    Type the correct <strong>word or phrase</strong> in each blank. There is no word bank — think about which word fits best!
-    Spelling counts, but don't worry: you can try again.
+    Choose the correct <strong>word or phrase</strong> from the Word Bank for each blank.
+    <br><strong>Note:</strong> Each word can be used <strong>once</strong>.
   </p>
+
+  <div class="word-bank">
+    <h3>📚 Word Bank — use each word once</h3>
+    <div class="chips"><span class="chip">exterminator</span><span class="chip">dripping faucet</span><span class="chip">landlord</span><span class="chip">make repairs</span><span class="chip">health insurance</span><span class="chip">tenant</span><span class="chip">air conditioner</span><span class="chip">entry-level</span><span class="chip">electrician</span><span class="chip">state the problem</span><span class="chip">roaches and mice</span><span class="chip">plumber</span><span class="chip">electricity went out</span><span class="chip">do-it-yourself</span><span class="chip">maintenance technicians</span></div>
+  </div>
 
   <h2>Fill in the Blanks (15)</h2>
   <ol id="questionsList">

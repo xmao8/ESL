@@ -4,8 +4,8 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Past Continuous with When and While. 15 fill-in-the-blank questions: type was/were + verb-ing, with instant feedback. Free English practice, printable with answer key.">
-  <title>Past Continuous with When and While — Home Repairs · ESLnote Practice</title>
+<meta name="description" content="Interactive ESL worksheet: Simple Past & Past Progressive. 15 fill-in-the-blank questions: type the simple past or was/were + verb-ing, with instant feedback. Free English practice, printable with answer key.">
+  <title>Simple Past &amp; Past Progressive — Home Repairs · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -161,7 +161,7 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Past Continuous with <em>when</em> and <em>while</em> — Home Repairs</h1>
+<h1>Simple Past &amp; Past Progressive — Home Repairs</h1>
 
 <div class="content-container">
   <h2>How it works</h2>
@@ -172,7 +172,7 @@
   <p><strong>Examples:</strong> I <em>was cooking</em> when the lights went out. &nbsp;·&nbsp; <em>While</em> she <em>was cleaning</em>, she found a leak.</p>
 
   <p class="hint">
-    Type the correct verb form in each blank. Use the <strong>past continuous</strong> (was/were + verb-ing) for the longer action.
+    Type the correct verb form in each blank. Use the <strong>simple past</strong> for the short, finished action and the <strong>past progressive</strong> (was/were + verb-ing) for the longer action in progress.
     The verb you need is in parentheses — change it to the correct form.
   </p>
 
@@ -215,32 +215,32 @@ const items = [
     answers: [["was cooking"]] },
   { prompt: "She __________ (take) a shower when the water suddenly stopped.",
     answers: [["was taking"]] },
-  { prompt: "The tenant __________ (call) the landlord when the phone died.",
-    answers: [["was calling"]] },
   { prompt: "While they __________ (watch) TV, the air conditioner stopped working.",
     answers: [["were watching"]] },
-  { prompt: "He __________ (fix) the sink when water sprayed everywhere.",
-    answers: [["was fixing"]] },
   { prompt: "We __________ (sleep) when we heard a strange noise in the kitchen.",
     answers: [["were sleeping"]] },
   { prompt: "While the plumber __________ (repair) the faucet, the landlord arrived.",
     answers: [["was repairing"]] },
-  { prompt: "They __________ (eat) dinner when they saw a mouse in the kitchen.",
-    answers: [["were eating"]] },
   { prompt: "I __________ (talk) to the electrician when the lights went out again.",
     answers: [["was talking"]] },
   { prompt: "While she __________ (clean) the apartment, she found a leak under the sink.",
     answers: [["was cleaning"]] },
-  { prompt: "He burned his hand while he __________ (cook) without an oven mitt.",
-    answers: [["was cooking"]] },
-  { prompt: "The children __________ (play) in the living room when the window broke.",
-    answers: [["were playing"]] },
-  { prompt: "While I __________ (wait) for the handyman, the rain started.",
-    answers: [["was waiting"]] },
-  { prompt: "She __________ (wash) the dishes when the faucet started dripping.",
-    answers: [["was washing"]] },
-  { prompt: "We __________ (discuss) the repair bill when the landlord called back.",
-    answers: [["were discussing"]] }
+  { prompt: "They __________ (eat) dinner when they saw a mouse in the kitchen.",
+    answers: [["were eating"]] },
+  { prompt: "While I was cooking dinner, the lights __________ (go) out.",
+    answers: [["went"]] },
+  { prompt: "She was taking a shower when the water suddenly __________ (stop).",
+    answers: [["stopped"]] },
+  { prompt: "The tenant __________ (call) the landlord while he was fixing the sink.",
+    answers: [["called"]] },
+  { prompt: "He was fixing the sink when water __________ (spray) everywhere.",
+    answers: [["sprayed"]] },
+  { prompt: "While I was waiting for the handyman, the rain __________ (start).",
+    answers: [["started"]] },
+  { prompt: "She was washing the dishes when the faucet __________ (begin) to drip.",
+    answers: [["began"]] },
+  { prompt: "We were discussing the repair bill when the landlord __________ (call) back.",
+    answers: [["called"]] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

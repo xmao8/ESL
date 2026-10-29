@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Adverbial Clauses — A Busy Saturday. Read a short story about a day of errands around town, and fill in 15 missing time words (before, after, when), with instant feedback. Free English practice, printable with answer key.">
+<meta name="description" content="Interactive ESL worksheet: Adverbial Clauses — A Busy Saturday. Read a short story about a day of errands around town, and fill in 20 missing time words (before, after, when, because, as soon as, where, although, until), with instant feedback. Free English practice, printable with answer key.">
   <title>Adverbial Clauses — A Busy Saturday · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
@@ -168,13 +168,17 @@
   <p>
     Time clauses tell us <em>when</em> something happens. Use <strong>before</strong> for the
     earlier action, <strong>after</strong> for the later action, and <strong>when</strong> for
-    the moment something happens. In this story, Ana runs errands all over town — but 15 time
-    words are missing! Read the story carefully and fill in each blank with
-    <em>before</em>, <em>after</em>, or <em>when</em>.
+    the moment something happens. Use <strong>because</strong> for a reason,
+    <strong>as soon as</strong> for the moment right after something, <strong>where</strong> for
+    a place, <strong>although</strong> for a surprise, and <strong>until</strong> for how long
+    you wait. In this story, Ana runs errands all over town — but 20 time words are missing!
+    Read the story carefully and fill in each blank with
+    <em>before</em>, <em>after</em>, <em>when</em>, <em>because</em>, <em>as soon as</em>,
+    <em>where</em>, <em>although</em>, or <em>until</em>.
   </p>
   <p><strong>Examples:</strong> <em>Before</em> I left home, I made a list. &nbsp;·&nbsp; <em>After</em> I paid, I went home. &nbsp;·&nbsp; <em>When</em> the bus arrived, I got on.</p>
 
-  <h2>Read the Story — Fill in 15 Prepositions</h2>
+  <h2>Read the Story — Fill in 20 Time Words</h2>
   <div id="storyText">
     <!-- Story paragraphs with blanks will be rendered by JS -->
   </div>
@@ -233,6 +237,14 @@ const storyParas = [
     "__________ I woke up on Sunday, I felt happy.",
     "__________ I finished all my errands, I could finally relax."
   ]
+,
+  [
+    "On Sunday, I stayed home. I was tired __________ I walked all day on Saturday.",
+    "I stayed in bed __________ the rain stopped.",
+    "__________ it rained in the afternoon, I still enjoyed a quiet day.",
+    "I watched a movie at the small theater __________ my friends and I always go.",
+    "__________ the movie ended, I called my roommate and told her about my weekend."
+  ]
 ];
 const answers = [
   ["before"],
@@ -250,6 +262,8 @@ const answers = [
   ["before"],
   ["when"],
   ["after"]
+,
+  ["because"], ["until"], ["although"], ["where"], ["as soon as"]
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

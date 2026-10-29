@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Before / After / When — Errands. 15 fill-in-the-blank questions about daily errands, with instant feedback. Free English practice, printable with answer key.">
+<meta name="description" content="Interactive ESL worksheet: Before / After / When — Errands. 20 fill-in-the-blank questions about daily errands, with instant feedback. Free English practice, printable with answer key.">
   <title>Before / After / When — Errands · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
@@ -167,14 +167,17 @@
   <h2>How it works</h2>
   <p>
     Use <strong>before</strong>, <strong>after</strong>, and <strong>when</strong> to show the order of two actions.
+    Use <strong>because</strong> to give a reason, <strong>as soon as</strong> for the moment right after
+    something happens, <strong>where</strong> for a place, <strong>although</strong> for a surprise
+    (something happens even though you do not expect it), and <strong>until</strong> for how long you wait.
     Put a <strong>comma</strong> when the time clause comes <strong>first</strong>:
     <em>Before I went grocery shopping, I stopped by the dry cleaner's.</em>
     No comma when it comes <strong>last</strong>:
     <em>I stopped by the dry cleaner's before I went grocery shopping.</em>
   </p>
-  <p><strong>Examples:</strong> I bought <em>an</em> umbrella. &nbsp;·&nbsp; <em>The</em> umbrella was cheap. &nbsp;·&nbsp; <em>The</em> cheapest shoes are here.</p>
+  <p><strong>Examples:</strong> <em>Before</em> I left home, I made a list. &nbsp;·&nbsp; I stayed home <em>because</em> I was sick. &nbsp;·&nbsp; Wait here <em>until</em> I come back.</p>
 
-  <h2>Fill in the Blanks (15)</h2>
+  <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList">
     <!-- Items will be rendered by JS -->
   </ol>
@@ -238,6 +241,16 @@ const items = [
     answers: [["before"]] },
   { prompt: "Call me __________ you get to the parking lot.",
     answers: [["when"]] },
+  { prompt: "She stayed home __________ she was sick.",
+    answers: [["because"]] },
+  { prompt: "I will call you __________ I finish my errands.",
+    answers: [["as soon as"]] },
+  { prompt: "This is the café __________ we met last year.",
+    answers: [["where"]] },
+  { prompt: "__________ it was raining, we went for a walk.",
+    answers: [["although"]] },
+  { prompt: "Please wait here __________ I come back.",
+    answers: [["until"]] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

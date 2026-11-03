@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Used To — Habits & Nutrition. 15 fill-in-the-blank questions about past habits and food choices, with instant feedback. Free English practice, printable with answer key.">
+<meta name="description" content="Interactive ESL worksheet: Used To — Habits & Nutrition. 20 fill-in-the-blank questions about past habits and food choices, with instant feedback. Free English practice, printable with answer key.">
   <title>Used To — Habits & Nutrition · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
@@ -173,7 +173,7 @@
   </p>
   <p><strong>Examples:</strong> I <em>used to drink</em> soda every day. &nbsp;·&nbsp; We <em>did not use to eat</em> breakfast. &nbsp;·&nbsp; <em>Did you use to eat</em> candy every day?</p>
 
-  <h2>Fill in the Blanks (15)</h2>
+  <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList">
     <!-- Items will be rendered by JS -->
   </ol>
@@ -205,7 +205,7 @@
 </div>
 
 <script>
-// 15 items, 1 blank each. answers lists accepted forms for the blank.
+// 20 items, 1 blank each. answers lists accepted forms for the blank.
 const items = [
   { prompt: "When I was a child, I __________ (drink) soda every day.",
     answers: [["used to drink"]] },
@@ -237,6 +237,16 @@ const items = [
     answers: [["used to ride"]] },
   { prompt: "Did you __________ (eat) candy every day when you were a child?",
     answers: [["use to eat"]] },
+  { prompt: "They __________ (never, eat) at home; they always ordered pizza.",
+    answers: [["never used to eat"]] },
+  { prompt: "My brother __________ (be) afraid of vegetables when he was little.",
+    answers: [["used to be"]] },
+  { prompt: "When we lived in the countryside, we __________ (drink) fresh milk every morning.",
+    answers: [["used to drink"]] },
+  { prompt: "Did your family __________ (grow) vegetables in the garden?",
+    answers: [["use to grow"]] },
+  { prompt: "She __________ (not, sleep) well, but now she sleeps eight hours every night.",
+    answers: [["did not use to sleep", "didn't use to sleep", "didnt use to sleep"]] },
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

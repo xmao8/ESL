@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Adjective Clauses — Body & Symptoms. 15 fill-in-the-blank questions about a town and banking careers, with instant feedback. Free English practice, printable with answer key.">
+<meta name="description" content="Interactive ESL worksheet: Adjective Clauses — Body & Symptoms. 20 fill-in-the-blank questions about body parts, symptoms, and health care, with instant feedback. Free English practice, printable with answer key.">
   <title>Adjective Clauses — Body & Symptoms · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
@@ -171,7 +171,7 @@
     Example: This is the doctor <em>who helps</em> sick children.
   </p>
 
-  <h2>Fill in the Blanks (15)</h2>
+  <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList">
     <!-- Items will be rendered by JS -->
   </ol>
@@ -203,7 +203,7 @@
 </div>
 
 <script>
-// 15 items, 1 blank each. answers lists accepted forms for the blank.
+// 20 items, 1 blank each. answers lists accepted forms for the blank.
 const items = [
   { prompt: "This is the doctor __________ (treat) children at the clinic every day.",
     answers: [["who treats"]] },
@@ -235,6 +235,16 @@ const items = [
     answers: [["who listens"]] },
   { prompt: "The bandage __________ (cover) the cut is clean.",
     answers: [["that covers", "which covers"]] },
+  { prompt: "The woman __________ (son/be) a nurse lives in my building.",
+    answers: [["whose son is"]] },
+  { prompt: "This is the clinic __________ (I/go) for my yearly checkup.",
+    answers: [["where I go"]] },
+  { prompt: "The pharmacist __________ (we/ask) about the medicine was very patient.",
+    answers: [["whom we asked"]] },
+  { prompt: "The medicine __________ (doctor/give) me made me feel sleepy all day.",
+    answers: [["that the doctor gave", "which the doctor gave"]] },
+  { prompt: "Monday is the day __________ (I/visit) the dentist.",
+    answers: [["when I visit"]] },
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

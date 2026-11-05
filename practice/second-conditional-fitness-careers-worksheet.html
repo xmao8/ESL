@@ -4,7 +4,7 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Second Conditional — Fitness & Health Careers. 15 fill-in-the-blank questions about fitness routines and health careers, with instant feedback. Free English practice, printable with answer key.">
+<meta name="description" content="Interactive ESL worksheet: Second Conditional — Fitness & Health Careers. 20 fill-in-the-blank questions about fitness routines and health careers, with instant feedback. Free English practice, printable with answer key.">
   <title>Second Conditional — Fitness & Health Careers · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
@@ -173,7 +173,7 @@
   </p>
   <p><strong>Examples:</strong> If he <em>ate</em> less fast food, he <em>would lose</em> weight. &nbsp;·&nbsp; If we <em>lived</em> near a park, we <em>would run</em> there.</p>
 
-  <h2>Fill in the Blanks (15)</h2>
+  <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList">
     <!-- Items will be rendered by JS -->
   </ol>
@@ -205,7 +205,7 @@
 </div>
 
 <script>
-// 15 items, 1 blank each. answers lists accepted forms for the blank.
+// 20 items, 1 blank each. answers lists accepted forms for the blank.
 const items = [
   { prompt: "If I __________ (have) more free time, I would walk to work every day.",
     answers: [["had"]] },
@@ -237,6 +237,16 @@ const items = [
     answers: [["would ride"]] },
   { prompt: "If we __________ (take) a first-aid class, we would know what to do in an emergency.",
     answers: [["took"]] },
+  { prompt: "What __________ (you, do) if you had more free time?",
+    answers: [["would you do"]] },
+  { prompt: "If I __________ (be) you, I would talk to a doctor first.",
+    answers: [["were"]] },
+  { prompt: "If he had a bike, he __________ (can, ride) to work every day.",
+    answers: [["could ride"]] },
+  { prompt: "If they had a gym at school, students __________ (be) healthier.",
+    answers: [["would be"]] },
+  { prompt: "If she practiced every day, she __________ (might, become) a professional trainer.",
+    answers: [["might become"]] },
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

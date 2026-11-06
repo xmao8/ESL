@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="ESL conversation: A Job Interview. Pair speaking practice about job interviews and careers — what to wear, what to say, and how to sound confident. Free.">
+  <title>Conversation &ndash; A Job Interview</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      color: #2c3e50;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      color: #2c3e50;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 2rem;
+    }
+    .container {
+      width: 90%;
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .scene-info {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .character-info {
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    .character-info ul { list-style: none; padding: 0; margin: 0; }
+    .character-info li { margin-bottom: 0.2rem; }
+    .dialogue p {
+      margin: 0.5rem 0;
+    }
+    .dialogue strong {
+      color: #3498db;
+    }
+
+    /* Vocabulary list */
+    .vocabulary-list ul { list-style-type: disc; padding-left: 25px; }
+    .vocabulary-list li { margin-bottom: 0.8rem; }
+    .vocabulary-list .vocab-word {
+      font-weight: bold; color: #124076;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .vocabulary-list .speaker-icon {
+      cursor: pointer; font-size: 1.1rem;
+      color: #3498db; user-select: none; transition: color 0.2s;
+      border: none; background: none; padding: 0;
+      display: inline-flex; align-items: center;
+    }
+    .vocabulary-list .speaker-icon:hover { color: #2980b9; }
+    .vocabulary-list .ipa {
+      font-family: 'Arial', sans-serif;
+      font-style: italic; color: #666; margin-left: 5px;
+    }
+    .vocabulary-list .definition {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.95rem; color: #333;
+    }
+    .vocabulary-list .example {
+      display: block; font-style: italic;
+      font-size: 0.9em; color: #555; margin-top: 0.3em;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .buttons a {
+      text-decoration: none;
+      background: #3498db;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .buttons a:hover {
+      background: #2980b9;
+    }
+
+        .speaking-challenge { background: #eef6ff; border-left: 4px solid #3498db; border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+        .speaking-challenge h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+        .speaking-challenge ul { margin: 0; padding-left: 1.2rem; }
+        .speaking-challenge li { margin-bottom: 0.4rem; }
+    </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+  <header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+  <h1>A Job Interview</h1>
+
+  <div class="container">
+    <p class="scene-info">
+      Setting: A kitchen table in the evening. Maya has a job interview tomorrow morning for an office job, and her friend Carlos — a general manager at a store — is helping her prepare. They talk about what to wear, what to say, and how to sound confident. (About 5 minutes of pair speaking practice.)
+    </p>
+
+    <h2>Characters:</h2>
+    <div class="character-info">
+      <ul>
+        <li><strong>Maya</strong> &mdash; has a job interview tomorrow for an office job; nervous but motivated.</li>
+        <li><strong>Carlos</strong> &mdash; Maya's friend, a general manager at a store; has done many job interviews.</li>
+      </ul>
+    </div>
+
+    <div class="dialogue">
+      <p><strong>Carlos:</strong> Maya! You look nervous. Is everything okay?</p>
+      <p><strong>Maya:</strong> I have a job interview tomorrow morning, and I am preparing my answers.</p>
+      <p><strong>Carlos:</strong> That is exciting! What job is it?</p>
+      <p><strong>Maya:</strong> It is an office job. I would rather work in an office than outdoors, because I like a quiet place.</p>
+      <p><strong>Carlos:</strong> Good. And what will you wear?</p>
+      <p><strong>Maya:</strong> I would rather wear a long-sleeved shirt than a t-shirt. A t-shirt is too casual for an interview.</p>
+      <p><strong>Carlos:</strong> Smart. The interviewer will notice that. What questions do you think they will ask?</p>
+      <p><strong>Maya:</strong> Probably, &ldquo;Tell me about yourself.&rdquo; I want to sound confident and enthusiastic.</p>
+      <p><strong>Carlos:</strong> You are confident! And you are honest and helpful &mdash; those are good qualities to talk about.</p>
+      <p><strong>Maya:</strong> Thank you. I also want to talk about my communication skills. I speak clearly, and I listen well.</p>
+      <p><strong>Carlos:</strong> That is important. A general manager needs communication skills and leadership skills.</p>
+      <p><strong>Maya:</strong> I know. I would rather work on a team than work alone, too. I like helping people.</p>
+      <p><strong>Carlos:</strong> Then say that! Enthusiasm matters. Show them you really want the job.</p>
+      <p><strong>Maya:</strong> I will. But what if they ask about money? The average annual salary is in the job ad, but I am not sure what to say.</p>
+      <p><strong>Carlos:</strong> Just be honest. You can say, &ldquo;I would rather talk about the job first, and we can discuss salary later.&rdquo;</p>
+      <p><strong>Maya:</strong> That is a good answer. Polite and honest at the same time.</p>
+      <p><strong>Carlos:</strong> Exactly. And remember &mdash; arrive early. I would rather you arrived ten minutes early than two minutes late.</p>
+      <p><strong>Maya:</strong> I will arrive early. I would rather not be late for my first interview!</p>
+      <p><strong>Carlos:</strong> One more tip: smile, and speak slowly. Self-confidence grows when you breathe and take your time.</p>
+      <p><strong>Maya:</strong> Thank you, Carlos. You are a thoughtful friend.</p>
+      <p><strong>Carlos:</strong> You will do well. Would you rather practice with me now, or rest tonight?</p>
+      <p><strong>Maya:</strong> I would rather practice now &mdash; just a few questions. Then I can sleep well.</p>
+      <p><strong>Carlos:</strong> Okay. Question one: why do you want this job?</p>
+      <p><strong>Maya:</strong> Because I am motivated, I like helping people, and I would rather do work I love.</p>
+      <p><strong>Carlos:</strong> Perfect answer. Now, question two &hellip;</p>
+    </div>
+
+    <hr>
+
+    <div class="speaking-challenge">
+        <h3>&#x1F3AF; Speaking Challenge</h3>
+        <ul>
+            <li>Use 3 new vocabulary words in your conversation.</li>
+            <li>Talk about YOUR life, not just the characters'.</li>
+            <li>After you finish: your teacher will share useful corrections they heard &mdash; during the conversation, focus on speaking, not on being perfect.</li>
+        </ul>
+    </div>
+
+    <h2>Vocabulary List</h2>
+    <div class="vocabulary-list">
+      <ul>
+        <li>
+          <span class="vocab-word">Confident
+            <button class="speaker-icon" onclick="speakWord('Confident')" aria-label="Pronounce Confident"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈkɑnfɪdənt/</span>
+          <span class="definition">(adj.) sure of your own skills.</span>
+          <span class="example">Example: A confident person speaks clearly in an interview.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Enthusiastic
+            <button class="speaker-icon" onclick="speakWord('Enthusiastic')" aria-label="Pronounce Enthusiastic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ɪnˌθuziˈæstɪk/</span>
+          <span class="definition">(adj.) full of energy and interest.</span>
+          <span class="example">Example: An enthusiastic worker smiles and asks good questions.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Honest
+            <button class="speaker-icon" onclick="speakWord('Honest')" aria-label="Pronounce Honest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈɑnɪst/</span>
+          <span class="definition">(adj.) always telling the truth.</span>
+          <span class="example">Example: Be honest about your skills and your experience.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Thoughtful
+            <button class="speaker-icon" onclick="speakWord('Thoughtful')" aria-label="Pronounce Thoughtful"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈθɔtfəl/</span>
+          <span class="definition">(adj.) thinking about other people's feelings.</span>
+          <span class="example">Example: A thoughtful manager listens to the team.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Arrogant
+            <button class="speaker-icon" onclick="speakWord('Arrogant')" aria-label="Pronounce Arrogant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈærəɡənt/</span>
+          <span class="definition">(adj.) thinking you are better than everyone else.</span>
+          <span class="example">Example: Do not sound arrogant in an interview.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Sneaky
+            <button class="speaker-icon" onclick="speakWord('Sneaky')" aria-label="Pronounce Sneaky"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈsniki/</span>
+          <span class="definition">(adj.) doing things in secret, in a dishonest way.</span>
+          <span class="example">Example: A sneaky worker hides mistakes.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Self-confidence
+            <button class="speaker-icon" onclick="speakWord('Self-confidence')" aria-label="Pronounce Self-confidence"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˌsɛlfˈkɑnfɪdəns/</span>
+          <span class="definition">(n.) belief in your own skills.</span>
+          <span class="example">Example: Good self-confidence helps you speak clearly.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Enthusiasm
+            <button class="speaker-icon" onclick="speakWord('Enthusiasm')" aria-label="Pronounce Enthusiasm"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ɪnˈθuziˌæzəm/</span>
+          <span class="definition">(n.) strong interest and energy.</span>
+          <span class="example">Example: Show enthusiasm when you talk about the job.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Long-sleeved shirt
+            <button class="speaker-icon" onclick="speakWord('Long-sleeved shirt')" aria-label="Pronounce Long-sleeved shirt"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈlɔŋ ˈslivd ˈʃɜrt/</span>
+          <span class="definition">(n.) a shirt with sleeves that cover your arms.</span>
+          <span class="example">Example: Wear a long-sleeved shirt to the interview.</span>
+        </li>
+        <li>
+          <span class="vocab-word">T-shirt
+            <button class="speaker-icon" onclick="speakWord('T-shirt')" aria-label="Pronounce T-shirt"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈti ˈʃɜrt/</span>
+          <span class="definition">(n.) a casual shirt with short sleeves.</span>
+          <span class="example">Example: Do not wear a t-shirt to a job interview.</span>
+        </li>
+        <li>
+          <span class="vocab-word">General manager
+            <button class="speaker-icon" onclick="speakWord('General manager')" aria-label="Pronounce General manager"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/ˈdʒɛnərəl ˈmænɪdʒər/</span>
+          <span class="definition">(n.) the person who leads a whole store or company.</span>
+          <span class="example">Example: The general manager hires new workers.</span>
+        </li>
+        <li>
+          <span class="vocab-word">Communication skills
+            <button class="speaker-icon" onclick="speakWord('Communication skills')" aria-label="Pronounce Communication skills"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg></button>
+          </span>
+          <span class="ipa">/kəˌmjunəˈkeɪʃən ˈskɪlz/</span>
+          <span class="definition">(n.) the ability to speak clearly and listen well.</span>
+          <span class="example">Example: Good communication skills help a team work well.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a href="../conversation.html">&larr; Back to Conversations</a>
+    <a href="../index.html">&#x1F3E0; Home</a>
+  </div>
+
+<script>
+  function speakWord(word) {
+    if ('speechSynthesis' in window && typeof word === 'string' && word.trim() !== '') {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.95;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Speech Synthesis API not supported or word is empty.");
+    }
+  }
+</script>
+
+</body>
+</html>

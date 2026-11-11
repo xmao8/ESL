@@ -4,8 +4,8 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Wish + Past Simple — Thanksgiving & Gratitude. 20 fill-in-the-blank questions about body parts, symptoms, and health care, with instant feedback. Free English practice, printable with answer key.">
-  <title>Wish + Past Simple — Thanksgiving & Gratitude · ESLnote Practice</title>
+<meta name="description" content="Interactive ESL worksheet: Wish and Hope — Thanksgiving & Gratitude. 20 fill-in-the-blank questions about wishes and hopes for Thanksgiving, with instant feedback. Free English practice, printable with answer key.">
+  <title>Wish and Hope — Thanksgiving & Gratitude · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -161,18 +161,19 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Wish + Past Simple — Thanksgiving &amp; Gratitude</h1>
+<h1>Wish and Hope — Thanksgiving &amp; Gratitude</h1>
 
 <div class="content-container">
   <h2>How it works</h2>
   <p>
-    <strong>Wish + past simple</strong> talks about a wish for the present — something that is not true now,
-    but you want to be true. Use the <strong>past simple</strong> after <em>wish</em>, even though you mean now:
+    <strong>Wish</strong> is for things that are not true now: use the <strong>past simple</strong> after <em>wish</em>, even though you mean now:
     <em>I wish I lived closer</em> (I do not live close now). Use <strong>could</strong> for wishes about ability:
     <em>I wish I could thank my teacher.</em> With <em>be</em>, use <em>were</em> for all subjects
-    (<em>I wish I were at home</em>). Read each sentence and type the correct past simple form. The verb to use is in (parentheses).
+    (<em>I wish I were at home</em>). <strong>Hope</strong> is for things that are possible in the future: use the
+    <strong>present simple</strong> after <em>hope</em> (<em>I hope my family comes</em> — they might come).
+    Some sentences ask you to choose <em>hope</em> or <em>wish</em>. Read each sentence and type the correct form. The verb to use is in (parentheses).
   </p>
-  <p><strong>Examples:</strong> I wish I <em>lived</em> closer to my family. &nbsp;·&nbsp; She wishes she <em>had</em> more time. &nbsp;·&nbsp; I wish I <em>could</em> thank my teacher.</p>
+  <p><strong>Examples:</strong> I wish I <em>lived</em> closer to my family. &nbsp;·&nbsp; I hope my family <em>comes</em> for Thanksgiving. &nbsp;·&nbsp; I <em>wish</em> my family came. (hope / wish)</p>
 
   <h2>Fill in the Blanks (20)</h2>
   <ol id="questionsList">
@@ -180,7 +181,7 @@
   </ol>
 
   <div class="hint">
-    <strong>✏️ Now use it:</strong> Write 3 sentences about your own wishes — start each one with <em>I wish …</em> and use the past simple. Read them to a partner.</div>
+    <strong>✏️ Now use it:</strong> Write 3 sentences about your own wishes and hopes — start one with <em>I wish …</em> (past simple) and one with <em>I hope …</em> (present simple). Read them to a partner.</div>
 
   <div class="answer-key">
     <h2>Answer Key (for teachers)</h2>
@@ -210,42 +211,42 @@
 const items = [
   { prompt: "I wish I __________ (live) closer to my family.",
     answers: [["lived"]] },
+  { prompt: "I hope my family __________ (come) for Thanksgiving.",
+    answers: [["comes"]] },
   { prompt: "She wishes she __________ (have) more time to cook a big dinner.",
     answers: [["had"]] },
+  { prompt: "I __________ my family will come for Thanksgiving. (hope / wish)",
+    answers: [["hope"]] },
   { prompt: "I wish I __________ (can) thank my teacher in person.",
     answers: [["could"]] },
   { prompt: "They wish they __________ (speak) English better at the dinner table.",
     answers: [["spoke"]] },
+  { prompt: "I hope it __________ (be) sunny tomorrow.",
+    answers: [["is"]] },
   { prompt: "He wishes he __________ (be) at home for Thanksgiving.",
-    answers: [["were", "was"]] },
-  { prompt: "We wish our house __________ (be) bigger for a big family dinner.",
-    answers: [["were", "was"]] },
+    answers: [["were"]] },
+  { prompt: "She hopes her son __________ (call) on Thanksgiving Day.",
+    answers: [["calls"]] },
   { prompt: "I wish I __________ (know) how to make pumpkin pie.",
     answers: [["knew"]] },
+  { prompt: "I __________ my family came for Thanksgiving. (hope / wish)",
+    answers: [["wish"]] },
   { prompt: "She wishes her son __________ (call) more often.",
     answers: [["called"]] },
-  { prompt: "I wish it __________ (not rain) on Thanksgiving Day.",
-    answers: [["did not rain", "didn't rain"]] },
-  { prompt: "They wish they __________ (not work) on the holiday.",
-    answers: [["did not work", "didn't work"]] },
+  { prompt: "We hope the turkey __________ (be) ready by six o'clock.",
+    answers: [["is"]] },
   { prompt: "He wishes he __________ (have) a car to visit his parents.",
     answers: [["had"]] },
-  { prompt: "I wish my English __________ (be) better when I talk to new friends.",
-    answers: [["were", "was"]] },
+  { prompt: "I __________ I were rich. (hope / wish)",
+    answers: [["wish"]] },
   { prompt: "She wishes she __________ (can) cook turkey like her mother.",
     answers: [["could"]] },
-  { prompt: "We wish we __________ (live) in a warmer place in winter.",
-    answers: [["lived"]] },
+  { prompt: "They __________ it will snow this winter. (hope / wish)",
+    answers: [["hope"]] },
   { prompt: "I wish I __________ (remember) my grandmother's recipes.",
     answers: [["remembered"]] },
   { prompt: "He wishes his children __________ (visit) more often.",
     answers: [["visited"]] },
-  { prompt: "I wish I __________ (not be) so busy this week.",
-    answers: [["were not", "was not", "wasn't", "weren't"]] },
-  { prompt: "They wish the dinner __________ (start) earlier in the evening.",
-    answers: [["started"]] },
-  { prompt: "She wishes she __________ (earn) more money to help her family.",
-    answers: [["earned"]] },
   { prompt: "I wish I __________ (see) my best friend more often.",
     answers: [["saw"]] },
 ];

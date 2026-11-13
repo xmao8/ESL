@@ -4,8 +4,8 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Interactive ESL worksheet: Passive Voice — Maria Applies for a Job. 15 fill-in-the-blank questions in a story about reading a job ad and applying for a job, with instant feedback. Free English practice, printable with answer key.">
-  <title>Passive Voice — Maria Applies for a Job · ESLnote Practice</title>
+<meta name="description" content="Interactive ESL worksheet: English Verbs — Maria Applies for a Job. 15 fill-in-the-blank questions in a story about reading a job ad and applying for a job, with instant feedback. Free English practice, printable with answer key.">
+  <title>English Verbs — Maria Applies for a Job · ESLnote Practice</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* General body and container styles */
@@ -161,26 +161,22 @@
 </header>
 <script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
 
-<h1>Passive Voice — Maria Applies for a Job</h1>
+<h1>English Verbs — Maria Applies for a Job</h1>
 
 <div class="content-container">
   <h2>How it works</h2>
   <p>
-    In the <strong>passive voice</strong>, the subject receives the action. Job ads and job interviews
-    use the passive a lot: <em>is required</em>, <em>is offered</em>, <em>is told</em>. In this story, Maria
-    reads a job ad and applies for a job — but 15 passive forms are missing! Read the story carefully and
-    fill in each blank with the form that fits. Use <strong>am / is / are + past participle</strong>:
-    <em>is needed</em>, <em>are accepted</em>, <em>is scheduled</em>.
+    Every sentence needs a verb. In this story, Maria reads a job ad and applies for a job — but 15 verb forms are missing! Read the story carefully and fill in each blank with the form that fits. Watch the kind of verb: an <strong>action verb</strong> shows what someone does (<em>reads, writes, calls</em>), a <strong>state verb</strong> shows a feeling or a thought (<em>wants, knows, feels</em>), and a <strong>linking verb</strong> (<em>seems, looks, sounds</em>) connects the subject to an adjective.
   </p>
   <p><strong>Examples:</strong> Experience <em>is required</em>. &nbsp;·&nbsp; Applications <em>are accepted</em> online. &nbsp;·&nbsp; Maria <em>is called</em> by the manager.</p>
 
-  <h2>Read the Story — Fill in 15 Passive Forms</h2>
+  <h2>Read the Story — Fill in 15 Verb Forms</h2>
   <div id="storyText">
     <!-- Story paragraphs with blanks will be rendered by JS -->
   </div>
 
   <div class="hint">
-        <strong>✏️ Now use it:</strong> Tell your partner about a job you applied for — or a job you want. Use the passive voice: "Experience is required" or "Applications must be sent by Friday." Can your partner guess the job?</div>
+        <strong>✏️ Now use it:</strong> Tell your partner about a job you applied for — or a job you want. Use one action verb, one state verb, and one linking verb — for example, "I want a job with good benefits" or "The office looks very nice." Can your partner guess the job?</div>
 
   <div class="answer-key">
     <h2>Answer Key (for teachers)</h2>
@@ -211,28 +207,28 @@
 const storyParas = [
   [
     "Maria is looking for a new job. On Monday morning, she reads a job ad in the newspaper.",
-    "\u201cA receptionist __________ (need) at a dental office,\u201d the ad says.",
-    "\u201cExperience __________ (require), but training __________ (provide).\u201d",
-    "\u201cThe office __________ (open) at 8 a.m. and __________ (close) at 5 p.m.\u201d",
-    "\u201cGood pay __________ (offer). Applications __________ (accept) online.\u201d"
+    "\u201cOur dental office __________ (need) a receptionist,\u201d the ad says.",
+    "\u201cThe job __________ (offer) good pay and good benefits.\u201d",
+    "\u201cExperience __________ (help), but we __________ (train) new workers.\u201d",
+    "\u201cThe office __________ (open) at 8 a.m. and __________ (close) at 5 p.m.\u201d"
   ],
   [
-    "Maria writes her resume that evening. Her resume __________ (send) by email on Monday night.",
-    "On Tuesday, Maria __________ (call) by the manager.",
-    "\u201cAn interview __________ (schedule) for Thursday morning,\u201d the manager says.",
-    "Maria __________ (ask) to bring two references.",
-    "The office __________ (locate) near her home, and Maria __________ (tell) to arrive at 9 a.m."
+    "Maria writes her resume that evening. She __________ (send) it by email on Monday night.",
+    "On Tuesday, the manager __________ (call) Maria.",
+    "\u201cWe __________ (want) to meet you on Thursday morning,\u201d the manager says.",
+    "\u201cPlease __________ (bring) two references.\u201d",
+    "Maria __________ (feel) happy. She __________ (know) the office is near her home."
   ],
   [
-    "At the interview on Thursday, Maria __________ (ask) about her experience and her availability.",
-    "She is happy. The job __________ (offer) to her on Friday!",
-    "Maria smiles. \u201cI am so glad,\u201d she says. \u201cA new job is the start of a new life.\u201d"
+    "At the interview on Thursday, the manager __________ (ask) Maria about her experience and her availability.",
+    "Maria __________ (answer) every question. She __________ (seem) calm and dependable.",
+    "On Friday, the manager calls Maria with good news. \u201cYou got the job!\u201d he says."
   ]
 ];
 const answers = [
-  ["is needed"], ["is required"], ["is provided"], ["is opened"], ["is closed"], ["is offered"], ["are accepted"],
-  ["is sent"], ["is called"], ["is scheduled"], ["is asked"], ["is located"], ["is told"],
-  ["is asked"], ["is offered"]
+  ["needs"], ["offers"], ["helps"], ["train"], ["opens"], ["closes"],
+  ["sends"], ["calls"], ["want"], ["bring"], ["feels"], ["knows"],
+  ["asks"], ["answers"], ["seems"]
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

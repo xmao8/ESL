@@ -166,11 +166,11 @@
 <div class="content-container">
   <h2>How it works</h2>
   <p>
-    Every sentence needs a verb. In this story, Maria reads a job ad and applies for a job — but 15 verb forms are missing! Read the story carefully and fill in each blank with the form that fits. Watch the kind of verb: an <strong>action verb</strong> shows what someone does (<em>reads, writes, calls</em>), a <strong>state verb</strong> shows a feeling or a thought (<em>wants, knows, feels</em>), and a <strong>linking verb</strong> (<em>seems, looks, sounds</em>) connects the subject to an adjective.
+    Read the story. The verbs in bold each have a blank after them. Write what kind of verb it is: <strong>action</strong>, <strong>state</strong>, <strong>linking</strong>, <strong>helping</strong>, <strong>modal</strong>, <strong>transitive</strong>, or <strong>intransitive</strong>. Remember: an <strong>action verb</strong> shows what someone does; a <strong>state verb</strong> shows a feeling, a thought, or something you own; a <strong>linking verb</strong> (<em>be, seem, look, feel, taste, sound</em>) connects the subject to an adjective; a <strong>helping verb</strong> (<em>be, have, do</em>) works with the main verb.
   </p>
-  <p><strong>Examples:</strong> Experience <em>is required</em>. &nbsp;·&nbsp; Applications <em>are accepted</em> online. &nbsp;·&nbsp; Maria <em>is called</em> by the manager.</p>
+  <p><strong>Examples:</strong> Maria writes her resume. The verb “writes” is an <em>action</em> verb. &nbsp;·&nbsp; Maria feels happy. The verb “feels” is a <em>linking</em> verb.</p>
 
-  <h2>Read the Story — Fill in 15 Verb Forms</h2>
+  <h2>Read the Story — Mark the Verbs (15)</h2>
   <div id="storyText">
     <!-- Story paragraphs with blanks will be rendered by JS -->
   </div>
@@ -206,29 +206,31 @@
 // answers[i] lists accepted forms for blank i, in story order.
 const storyParas = [
   [
-    "Maria is looking for a new job. On Monday morning, she reads a job ad in the newspaper.",
-    "\u201cOur dental office __________ (need) a receptionist,\u201d the ad says.",
-    "\u201cThe job __________ (offer) good pay and good benefits.\u201d",
-    "\u201cExperience __________ (help), but we __________ (train) new workers.\u201d",
-    "\u201cThe office __________ (open) at 8 a.m. and __________ (close) at 5 p.m.\u201d"
+    "Maria <strong>is</strong> (__________) looking for a new job. On Monday morning, she <strong>reads</strong> (__________) a job ad in the newspaper.",
+    "\u201cOur dental office <strong>needs</strong> (__________) a receptionist,\u201d the ad says.",
+    "\u201cThe job <strong>offers</strong> (__________) good pay and good benefits.\u201d",
+    "\u201cExperience helps, but we <strong>train</strong> (__________) new workers.\u201d",
+    "\u201cThe office <strong>opens</strong> (__________) at 8 a.m. and closes at 5 p.m.\u201d"
   ],
   [
-    "Maria writes her resume that evening. She __________ (send) it by email on Monday night.",
-    "On Tuesday, the manager __________ (call) Maria.",
-    "\u201cWe __________ (want) to meet you on Thursday morning,\u201d the manager says.",
-    "\u201cPlease __________ (bring) two references.\u201d",
-    "Maria __________ (feel) happy. She __________ (know) the office is near her home."
+    "Maria <strong>writes</strong> (__________) her resume that evening. She sends it by email on Monday night.",
+    "On Tuesday, the manager <strong>calls</strong> (__________) Maria.",
+    "\u201cWe <strong>want</strong> (__________) to meet you on Thursday morning,\u201d the manager says.",
+    "\u201cPlease <strong>bring</strong> (__________) two references.\u201d",
+    "Maria <strong>feels</strong> (__________) happy. She <strong>knows</strong> (__________) the office is near her home."
   ],
   [
-    "At the interview on Thursday, the manager __________ (ask) Maria about her experience and her availability.",
-    "Maria __________ (answer) every question. She __________ (seem) calm and dependable.",
+    "At the interview on Thursday, the manager <strong>asks</strong> (__________) Maria about her experience and her availability.",
+    "Maria <strong>answers</strong> (__________) every question. She <strong>seems</strong> (__________) calm and dependable.",
     "On Friday, the manager calls Maria with good news. \u201cYou got the job!\u201d he says."
   ]
 ];
 const answers = [
-  ["needs"], ["offers"], ["helps"], ["train"], ["opens"], ["closes"],
-  ["sends"], ["calls"], ["want"], ["bring"], ["feels"], ["knows"],
-  ["asks"], ["answers"], ["seems"]
+  ["helping", "auxiliary"], ["action", "transitive"], ["action", "transitive"],
+  ["action", "transitive"], ["action", "transitive"], ["action", "intransitive"],
+  ["action", "transitive"], ["action", "transitive"], ["state", "stative"],
+  ["action", "transitive"], ["linking"], ["state", "stative"],
+  ["action", "transitive"], ["action", "transitive"], ["linking"]
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

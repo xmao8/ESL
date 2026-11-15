@@ -166,7 +166,7 @@
 <div class="content-container">
   <h2>How it works</h2>
   <p>
-    Read each sentence. The verb you must mark is in quotes. Write what kind of verb it is: <strong>action</strong>, <strong>state</strong>, <strong>linking</strong>, <strong>helping</strong>, <strong>modal</strong>, <strong>transitive</strong>, or <strong>intransitive</strong>. Remember: an <strong>action verb</strong> shows what someone does; a <strong>state verb</strong> shows a feeling, a thought, or something you own; a <strong>linking verb</strong> (<em>be, seem, look, feel, taste, sound</em>) connects the subject to an adjective; a <strong>helping verb</strong> (<em>be, have, do</em>) works with the main verb; a <strong>modal verb</strong> (<em>can, should, must</em>) is a kind of helping verb. Some items ask you to choose between <strong>transitive</strong> (takes an object) and <strong>intransitive</strong> (no object).
+    Read each sentence. The verb you must mark is in quotes. Write what kind of verb it is: <strong>action</strong>, <strong>state</strong>, <strong>linking</strong>, <strong>helping</strong>, <strong>modal</strong>. Remember: an <strong>action verb</strong> shows what someone does; a <strong>state verb</strong> shows a feeling, a thought, or something you own; a <strong>linking verb</strong> (<em>be, seem, look, feel, taste, sound</em>) connects the subject to an adjective; a <strong>helping verb</strong> (<em>be, have, do</em>) works with the main verb; a <strong>modal verb</strong> (<em>can, should, must</em>) is a kind of helping verb.
   </p>
   <p><strong>Examples:</strong> The receptionist answers the phone. The verb “answers” is an <em>action</em> verb. &nbsp;·&nbsp; The office looks bright. The verb “looks” is a <em>linking</em> verb. &nbsp;·&nbsp; Maria has finished the form. The verb “has” is a <em>helping</em> verb.</p>
 
@@ -205,11 +205,11 @@
 // 20 items, 1 blank each. answers lists accepted forms for the blank.
 const items = [
   { prompt: "The receptionist answers the phone and greets every visitor with a smile. The verb \u201canswers\u201d is __________.",
-    answers: [["action", "transitive"]] },
+    answers: [["action"]] },
   { prompt: "Maria writes a new resume and sends it to five companies in one evening. The verb \u201cwrites\u201d is __________.",
-    answers: [["action", "transitive"]] },
+    answers: [["action"]] },
   { prompt: "The manager interviewed three bilingual applicants for the receptionist job yesterday. The verb \u201cinterviewed\u201d is __________.",
-    answers: [["action", "transitive"]] },
+    answers: [["action"]] },
   { prompt: "Maria wants a full-time job with good benefits and a quiet office. The verb \u201cwants\u201d is __________.",
     answers: [["state", "stative"]] },
   { prompt: "She knows three languages, and the manager believes she is perfect for the job. The verb \u201cknows\u201d is __________.",
@@ -225,9 +225,9 @@ const items = [
   { prompt: "The free coffee at the office tastes terrible, so nobody drinks it. The verb \u201ctastes\u201d is __________.",
     answers: [["linking"]] },
   { prompt: "She looked at the job ad for a long time before she applied. The verb \u201clooked\u201d is __________.",
-    answers: [["action", "intransitive"]] },
+    answers: [["action"]] },
   { prompt: "He felt the cold metal of the office door before he opened it. The verb \u201cfelt\u201d is __________.",
-    answers: [["action", "transitive"]] },
+    answers: [["action"]] },
   { prompt: "Maria is looking for a new job in a dental office near her home. The verb \u201cis\u201d is __________.",
     answers: [["helping", "auxiliary"]] },
   { prompt: "Maria has finished the application and sent her resume by email. The verb \u201chas\u201d is __________.",
@@ -238,12 +238,12 @@ const items = [
     answers: [["modal", "helping"]] },
   { prompt: "Applicants should bring two references and a copy of their resume to the interview. The verb \u201cshould\u201d is __________.",
     answers: [["modal", "helping"]] },
-  { prompt: "The manager reads every resume carefully before the interview. The verb \u201creads\u201d is __________ (transitive or intransitive).",
-    answers: [["transitive"]] },
-  { prompt: "The custodian cleans the offices every night and locks the doors at 9 p.m. The verb \u201ccleans\u201d is __________ (transitive or intransitive).",
-    answers: [["transitive"]] },
-  { prompt: "The pharmacy clerk arrives at 8 a.m. and opens the store. The verb \u201carrives\u201d is __________ (transitive or intransitive).",
-    answers: [["intransitive"]] },
+  { prompt: "Applicants can apply online or in person at the office. The verb \u201ccan\u201d is __________.",
+    answers: [["modal", "helping"]] }
+  { prompt: "The manager prefers workers who arrive on time and speak clearly. The verb \u201cprefers\u201d is __________.",
+    answers: [["state", "stative"]] }
+  { prompt: "The new job sounds perfect for Maria, and the office is near her home. The verb \u201csounds\u201d is __________.",
+    answers: [["linking"]] }
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

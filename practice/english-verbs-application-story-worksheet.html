@@ -166,7 +166,7 @@
 <div class="content-container">
   <h2>How it works</h2>
   <p>
-    Read the story. The verbs in bold each have a blank after them. Write what kind of verb it is: <strong>action</strong>, <strong>state</strong>, <strong>linking</strong>, <strong>helping</strong>, <strong>modal</strong>, <strong>transitive</strong>, or <strong>intransitive</strong>. Remember: an <strong>action verb</strong> shows what someone does; a <strong>state verb</strong> shows a feeling, a thought, or something you own; a <strong>linking verb</strong> (<em>be, seem, look, feel, taste, sound</em>) connects the subject to an adjective; a <strong>helping verb</strong> (<em>be, have, do</em>) works with the main verb.
+    Read the story. The verbs in bold each have a blank after them. Write what kind of verb it is: <strong>action</strong>, <strong>state</strong>, <strong>linking</strong>, <strong>helping</strong>, <strong>modal</strong>. Remember: an <strong>action verb</strong> shows what someone does; a <strong>state verb</strong> shows a feeling, a thought, or something you own; a <strong>linking verb</strong> (<em>be, seem, look, feel, taste, sound</em>) connects the subject to an adjective; a <strong>helping verb</strong> (<em>be, have, do</em>) works with the main verb.
   </p>
   <p><strong>Examples:</strong> Maria writes her resume. The verb “writes” is an <em>action</em> verb. &nbsp;·&nbsp; Maria feels happy. The verb “feels” is a <em>linking</em> verb.</p>
 
@@ -226,11 +226,11 @@ const storyParas = [
   ]
 ];
 const answers = [
-  ["helping", "auxiliary"], ["action", "transitive"], ["action", "transitive"],
-  ["action", "transitive"], ["action", "transitive"], ["action", "intransitive"],
-  ["action", "transitive"], ["action", "transitive"], ["state", "stative"],
-  ["action", "transitive"], ["linking"], ["state", "stative"],
-  ["action", "transitive"], ["action", "transitive"], ["linking"]
+  ["helping", "auxiliary"], ["action"], ["action"],
+  ["action"], ["action"], ["action"],
+  ["action"], ["action"], ["state", "stative"],
+  ["action"], ["linking"], ["state", "stative"],
+  ["action"], ["action"], ["linking"]
 ];
 
 const norm = s => (s || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:—–-]/g, "").replace(/\s+/g, " ").trim();

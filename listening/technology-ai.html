@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Free ESL listening practice: videos and audio lessons with transcripts and exercises for English learners.">
+  <title>Technology &amp; AI – Listening Materials – ESLnote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    nav {
+      background: #124076;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      box-sizing: border-box;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ff9800;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #ffbb33;
+      outline: none;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        background: #124076;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 56px);
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        gap: 1.2rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle { display: flex; }
+      h1, .content-container, .buttons {
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .nav-container { padding: 0.8rem 1.5rem; }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.3rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      h1, .content-container, .buttons {
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+      }
+    }
+    @media (min-width: 901px) {
+      .nav-container { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1rem; }
+      .nav-links {
+        position: static;
+        flex-direction: row;
+        background: none;
+        height: auto;
+        width: auto;
+        padding: 0;
+        gap: 1.5rem;
+        transform: none !important;
+        border-radius: 0;
+        align-items: center;
+        overflow: visible;
+      }
+      .menu-toggle { display: none; }
+      body { padding: 0; }
+      h1, .content-container, .buttons { padding: 0; }
+    }
+    h1 {
+      margin: 1.5rem auto 1.5rem auto;
+      color: #2c3e50;
+      max-width: 800px;
+    }
+    .content-container {
+      background: white;
+      width: 90%;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem 2rem 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .search-bar-container {
+      max-width: 600px;
+      margin: 0 auto 1.5rem auto;
+      padding: 0 0 0.5rem 0;
+      text-align: center;
+    }
+    #search-bar {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.05rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    .video-blocks-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 950px) {
+      .video-blocks-row {
+        grid-template-columns: 1fr;
+        gap: 1.3rem;
+      }
+    }
+    .video-card {
+  background: #f6faff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  margin: 0;
+  height: 100px; /* Reduced to 1/3 of 320px */
+  transition: box-shadow 0.2s;
+}
+    .video-card[hidden] {
+      display: none !important;
+    }
+
+    .video-transcript-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #124076;
+      text-decoration: underline;
+    }
+    .practice-section {
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      color: #124076;
+      margin: 0 0 1.2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid #ff9800;
+      display: inline-block;
+    }
+    .sections-wrap { text-align: center; }
+    .video-label-text {
+      flex: 1 1 140px;
+      min-width: 120px;
+      max-width: 200px;
+      background: #e8eefc;
+      border-radius: 14px 0 0 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    .video-label-text h2 {
+      margin: 0;
+      color: #124076;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem; 
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: center;
+      word-break: break-word;
+    }
+    .video-label-video {
+      flex: 3 1 240px;
+      min-width: 180px;
+      max-width: 400px;
+      display: flex;
+      align-items: stretch;
+      border-radius: 0 14px 14px 0;
+      /* Remove height limits */
+    }
+    .video-responsive {
+      width: 100%;
+      height: 100%;
+      background: #ddd;
+      border-radius: 0 14px 14px 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .video-responsive iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 0 14px 14px 0;
+      display: block;
+    }
+    /* Stack label above video on mobile */
+    @media (max-width: 700px) {
+      .video-card {
+        flex-direction: column;
+        border-radius: 14px;
+        height: auto;
+        min-height: 280px;
+      }
+      .video-label-text {
+        border-radius: 14px 14px 0 0;
+        max-width: 100%;
+        min-width: 0;
+        padding: 1rem 0.5rem;
+      }
+      .video-label-video {
+        border-radius: 0 0 14px 14px;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .video-responsive,
+      .video-responsive iframe {
+        border-radius: 0 0 14px 14px;
+      }
+    }
+    .buttons {
+      margin: 2rem auto 3rem auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    button, .buttons a {
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    button:hover, .buttons a:hover {
+      background: #2980b9;
+    }
+  .back-link { max-width: 1100px; margin: 0 auto; padding: 0.75rem 1rem 0; text-align: left; } .back-link a { color: #124076; font-weight: 600; text-decoration: none; }
+  </style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="ESLnote home"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#124076"/><path d="M10 9h11M10 15h11M10 21h7" stroke="#ff9800" stroke-width="2.6" stroke-linecap="round"/></svg><span>ESL<b>note</b></span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/flashcards.html">Flashcards</a>
+      <a href="/conversation.html">Conversations</a>
+      <a href="/grammar.html">Grammar</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/listening.html">Listening</a>
+      <a href="/practice.html">Practices</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#124076" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="/">Home</a><a href="/flashcards.html">Flashcards</a><a href="/conversation.html">Conversations</a><a href="/grammar.html">Grammar</a><a href="/reading.html">Reading</a><a href="/listening.html">Listening</a><a href="/practice.html">Practices</a>
+  </div>
+</header>
+<script>const h=document.getElementById('hamb'),m=document.getElementById('mmenu');if(h&&m){h.addEventListener('click',()=>{const o=m.classList.toggle('open');h.setAttribute('aria-expanded',o);});}</script>
+
+<h1>Technology &amp; AI</h1>
+<p class="back-link"><a href="/listening.html">&larr; Back to Listening Materials</a></p>
+
+<div class="content-container">
+  <div class="search-bar-container">
+    <input
+      type="text"
+      id="search-bar"
+      placeholder="Search listening topics..."
+      autocomplete="off"
+    />
+  </div>
+  <div class="sections-wrap">
+    
+    
+
+    <section class="practice-section">
+      <h2 class="section-title">Technology &amp; AI (30)</h2>
+      <div class="video-blocks-row">
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How does artificial intelligence learn?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1RwPlbnEwNIOxZ9IDdLOpi5xaceORx-F23QgiX9oKtR8/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/0yCJMt9Mx9c"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] The Turing test: Can a computer pass for a human?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1xUaSWdQeJmKQ4Nz0qpH7k6SRI-fqmYtIxqwuPYHYA3k/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/3wLqsRLvV-c"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] The ethical dilemma of self-driving cars</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1zLfMc15kV5iNMNLIV5YZiy7mYHBerdWXSzJZ4hIQTbk/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/ixIoDYVfKA0"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] What&#x27;s an algorithm?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1g-_2BhAso7AcYuA78tbI2xoKRbQRZ5u2k47SQmAxPuQ/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/6hfOvs8pY1k"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How to manage your time more effectively (according to machines)</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1T89dWK4U3L22JNYEScPddlt90HIh6u27bRs_o9NOhMI/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/iDbdXTMnOmE"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Is AI the most important technology of the century?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1nc8NCC61cRRuaTG9dfJv3c07R3HNHwt6TVxrETKAlog/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/-T__YWoq45I"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How do self-driving cars &quot;see&quot;?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1qAxZXKaX4S55yoBrt34k7PBqHjLU2tusIVTeuPoZr7M/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/PRg5RNU_JLk"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Can robots be creative?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1qyokS5tY7j-0XuptDNaZNRc8RAasZWUOnmmJ8qGIwvo/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/Rh9vBczqMk0"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How will AI change the world?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1wMuhuCdcyPDeL-0dLE_HPkT7svLinPOXX5jKf2OjjeM/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/RzkD_rTEBYs"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Scientists still don&#x27;t know the answer to this infamous question</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1LQD1tRYRE3KqoL85CHci5RhUvvosGyNqXMENKwj5API/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/3ezPMAoxSbw"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How computers translate human language</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/16FqwUu_nEiLi3-Trh1RB2JU6nEfCQBAE8lv_upcct74/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/X4BmV2t83SM"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How computer memory works</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1IeDAQlgPSYo51ZtndApw-O8sfAmxIRM4kErC7leHHJw/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/p3q5zWCw8J4"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How do hard drives work?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1yAhtWnKfJ3LRkR_-1H41BI45xe3bCq0sRfymz9f6Oks/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/wteUW2sL7bc"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How exactly does binary code work?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1uCV8UgBSbN5lm0dJH8GUAudtx-SbI_TWKGlo8eZj3VI/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/wgbV6DLVezo"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How transistors work</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1_A0hX386XGg97waIVoYuiVg6eFwU3crN9XdZ20XuGIw/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/WhNyURBiJcU"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How are microchips made?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1dGhIXchlZQHIG-sedOQC2-VBrFbgxJOpnTpFpQrWx9c/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/IkRXpFIRUl4"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] The high-stakes race to make quantum computers work</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/18p3A-8jcqiAX_g7y4538a1az1za0fnC-7pmBGnR___s/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/r_t96FqWE4M"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Why a sausage can do what your gloves cannot</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1cFcM9evkwedHg7R9B9j6t12xbYRG9s76XWHwLjl_Zps/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/IdWXT391FJE"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Your phone&#x27;s camera isn&#x27;t as good as you think</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/16LJ4Hah96jgIvOLCH58oMKMw9Yru0MxxqRwCymFhc8o/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/7dm2AsJ3-E8"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Can you solve the computer virus riddle?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1aau15AAB5WjU6HfU3vdFy1EO5XLOAFh_PSlsOZ9cCcQ/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/i0WH4SFpeB8"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How to get better at video games, according to babies</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1zzAlwJw6u_DelWzvyaauuhmQZdj3sRBxGxwupLw4kKA/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/PP8Zc778B8s"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] A brief history of video games (Part I)</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/13oyLNxnnxHGvmCXnJyiczJ2B_5KpTUo9LfXTaJ8v3es/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/x24KoVNliMk"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Make robots smarter</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/124Gj6kfGa8TZV5NX-bp_KdDXUwrat7ud7UQg_2wDKnQ/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/WejeIgo5cRc"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Why are AI data centers using so much electricity?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1QAlpEpKkR6qX7HMcSI76smOWEjNCGxu6lGBiCuLl71g/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/z3Y-gsBKChc"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How to 3D print human tissue</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1JZYAeoCdQWzRtuEN0dVN3rbloZD99j6XqToy61llMeU/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/uHbn7wLN_3k"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How do solar panels work?</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1B3_QXhm6QMBbNkoNlaVbHjJCfkR4glqQOmT9Ru7PrH8/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/xKxrkht7CpY"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] 4 ways to fix your attention span</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1giQSNfxxWM8_KNhk5sTyjzxU32k5ZSNARPKEuQP04LE/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/N2uQWfV6Jr4"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] How to control someone else&#x27;s arm with your brain</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1rjfHZv6bCcA3E7LEm2Eb21SDuNbaVg-VPGnwh62XYvE/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/rSQNi5sAwuc"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] A robot that flies like a bird</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1RIkTuvzK_OZoLMr8k2kgu_w2mvbXkiDlzfQFZcIOGoU/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/Fg_JcKSHUtQ"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+<div class="video-card">
+      <div class="video-label-text">
+        <h2>[Video] Maybe the best robot demo ever</h2>
+        <a class="video-transcript-link" href="https://docs.google.com/document/d/1860T82nevvJwxXpf-6oKg6QaR_JYVd0cMQKVhg8taAw/edit?usp=drivesdk" target="_blank" rel="noopener">Transcript &amp; Vocabulary</a>
+      </div>
+      <div class="video-label-video">
+        <div class="video-responsive">
+          <iframe src="https://www.youtube.com/embed/FJJe8PXEUhk"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+</div>
+      </div>
+    </section>
+  </div>
+
+<script>
+  // Mobile nav toggle script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('primary-navigation');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  }
+
+  // Search bar filtering for video cards
+  document.getElementById('search-bar').addEventListener('input', function() {
+    let filter = this.value.toLowerCase().trim();
+    document.querySelectorAll('.practice-section').forEach(function(sec) {
+      let anyVisible = false;
+      sec.querySelectorAll('.video-card').forEach(function(card) {
+        let label = card.querySelector('.video-label-text h2').textContent.toLowerCase();
+        let show = !filter || label.includes(filter);
+        card.hidden = !show;
+        if (show) anyVisible = true;
+      });
+      sec.hidden = !anyVisible;
+    });
+  });
+</script>
+
+</body>
+</html>
